@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum RoleUtilisateur {
+  ADMIN
+  EMPLOYE
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String
+  brand       String
+  type        String
+  description String   @db.Text
+  price       Decimal  @db.Decimal(10, 2)
+  features    Json
+  category    String
+  subCategory String?  // For accessories: FILTRE, TUYAU, etc.
+  inStock     Boolean  @default(true)
+  reviews     Review[]
+  media       Media[]  // Relation to media files
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  url       String   // URL or path to the media file
+  type      String   // "image" or "video"
+  alt       String?  // Alternative text for images
+  order     Int      // For ordering media files
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId String
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  rating    Int
+  comment   String?  @db.Text
+  userName  String
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?  @db.Text
+  image       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Utilisateur {
+  id            String          @id @default(cuid())
+  dateCreation  DateTime        @default(now())
+  dateMiseAJour DateTime        @updatedAt
+  email         String          @unique
+  motDePasse    String
+  nom           String
+  prenom        String
+  role          RoleUtilisateur @default(EMPLOYE)
+  actif         Boolean         @default(true)
+  telephone     String?
+  photo         String?
+}
