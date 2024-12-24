@@ -1,54 +1,24 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import {
-  Users,
-  Package,
-  ShoppingCart,
-  TrendingUp,
-  ArrowUp,
-  ArrowDown
-} from 'lucide-react';
+import { Card } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Overview } from '@/components/dashboard/Overview';
+import { RecentSales } from '@/components/dashboard/RecentSales';
 
-interface StatCard {
-  title: string;
-  value: string;
-  change: number;
-  icon: any;
-  color: string;
+interface DashboardMetrics {
+  totalRevenue: number;
+  totalOrders: number;
+  totalProducts: number;
+  totalCustomers: number;
 }
 
 export default function DashboardPage() {
-  const stats: StatCard[] = [
-    {
-      title: "Utilisateurs actifs",
-      value: "120",
-      change: 12,
-      icon: Users,
-      color: "blue"
-    },
-    {
-      title: "Produits en stock",
-      value: "1,234",
-      change: -2,
-      icon: Package,
-      color: "green"
-    },
-    {
-      title: "Commandes du jour",
-      value: "25",
-      change: 8,
-      icon: ShoppingCart,
-      color: "purple"
-    },
-    {
-      title: "Chiffre d'affaires",
-      value: "45,678 €",
-      change: 24,
-      icon: TrendingUp,
-      color: "yellow"
-    }
-  ];
+  const stats: DashboardMetrics = {
+    totalRevenue: 45678,
+    totalOrders: 25,
+    totalProducts: 1234,
+    totalCustomers: 120
+  };
 
   return (
     <div>
@@ -59,30 +29,74 @@ export default function DashboardPage() {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {stats.map((stat, index) => (
-          <div
-            key={index}
-            className="bg-white rounded-xl shadow-sm p-6 border border-gray-100"
-          >
-            <div className="flex items-center justify-between mb-4">
-              <div className={`p-2 rounded-lg bg-${stat.color}-100`}>
-                <stat.icon className={`h-6 w-6 text-${stat.color}-600`} />
-              </div>
-              <div className="flex items-center space-x-1">
-                <span className={`text-sm ${stat.change > 0 ? 'text-green-600' : 'text-red-600'}`}>
-                  {Math.abs(stat.change)}%
-                </span>
-                {stat.change > 0 ? (
-                  <ArrowUp className="h-4 w-4 text-green-600" />
-                ) : (
-                  <ArrowDown className="h-4 w-4 text-red-600" />
-                )}
-              </div>
+        <div
+          className="bg-white rounded-xl shadow-sm p-6 border border-gray-100"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className={`p-2 rounded-lg bg-yellow-100`}>
+              <TrendingUp className={`h-6 w-6 text-yellow-600`} />
             </div>
-            <h3 className="text-gray-500 text-sm font-medium">{stat.title}</h3>
-            <p className="text-2xl font-semibold text-gray-900 mt-1">{stat.value}</p>
+            <div className="flex items-center space-x-1">
+              <span className={`text-sm text-green-600`}>
+                24%
+              </span>
+              <ArrowUp className="h-4 w-4 text-green-600" />
+            </div>
           </div>
-        ))}
+          <h3 className="text-gray-500 text-sm font-medium">Chiffre d'affaires</h3>
+          <p className="text-2xl font-semibold text-gray-900 mt-1">{stats.totalRevenue} €</p>
+        </div>
+        <div
+          className="bg-white rounded-xl shadow-sm p-6 border border-gray-100"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className={`p-2 rounded-lg bg-purple-100`}>
+              <ShoppingCart className={`h-6 w-6 text-purple-600`} />
+            </div>
+            <div className="flex items-center space-x-1">
+              <span className={`text-sm text-green-600`}>
+                8%
+              </span>
+              <ArrowUp className="h-4 w-4 text-green-600" />
+            </div>
+          </div>
+          <h3 className="text-gray-500 text-sm font-medium">Commandes du jour</h3>
+          <p className="text-2xl font-semibold text-gray-900 mt-1">{stats.totalOrders}</p>
+        </div>
+        <div
+          className="bg-white rounded-xl shadow-sm p-6 border border-gray-100"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className={`p-2 rounded-lg bg-green-100`}>
+              <Package className={`h-6 w-6 text-green-600`} />
+            </div>
+            <div className="flex items-center space-x-1">
+              <span className={`text-sm text-red-600`}>
+                -2%
+              </span>
+              <ArrowDown className="h-4 w-4 text-red-600" />
+            </div>
+          </div>
+          <h3 className="text-gray-500 text-sm font-medium">Produits en stock</h3>
+          <p className="text-2xl font-semibold text-gray-900 mt-1">{stats.totalProducts}</p>
+        </div>
+        <div
+          className="bg-white rounded-xl shadow-sm p-6 border border-gray-100"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className={`p-2 rounded-lg bg-blue-100`}>
+              <Users className={`h-6 w-6 text-blue-600`} />
+            </div>
+            <div className="flex items-center space-x-1">
+              <span className={`text-sm text-green-600`}>
+                12%
+              </span>
+              <ArrowUp className="h-4 w-4 text-green-600" />
+            </div>
+          </div>
+          <h3 className="text-gray-500 text-sm font-medium">Utilisateurs actifs</h3>
+          <p className="text-2xl font-semibold text-gray-900 mt-1">{stats.totalCustomers}</p>
+        </div>
       </div>
 
       {/* Recent Activity */}

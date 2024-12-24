@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import * as ProductService from '@/lib/services/products';
 import prisma from '@/lib/prisma';
+import { Product } from '@/types/product';
+
 
 export async function GET(
   request: Request,
@@ -29,7 +31,7 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   try {
-    const body = await request.json();
+    const body: Partial<Product> = await request.json();
     const product = await prisma.product.update({
       where: {
         id: params.id,
@@ -43,7 +45,7 @@ export async function PUT(
         category: body.category,
         subCategory: body.subCategory,
         inStock: body.inStock,
-        media: {
+        media: body.media ? {
           deleteMany: {},
           create: body.media.map((media: any) => ({
             url: media.url,
@@ -51,8 +53,37 @@ export async function PUT(
             alt: media.alt,
             order: media.order
           }))
-        }
+        } : undefined
       },
+      include: {
+        media: true
+      }
+    });
+
+    return NextResponse.json(product);
+  } catch (error) {
+    console.error('Error updating product:', error);
+    return NextResponse.json(
+      { error: 'Error updating product' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PATCH(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const data = await request.json();
+    // Remove media from the data if it exists as we'll handle it separately
+    const { media, ...updateData } = data;
+    
+    const product = await prisma.product.update({
+      where: {
+        id: params.id,
+      },
+      data: updateData,
       include: {
         media: true
       }

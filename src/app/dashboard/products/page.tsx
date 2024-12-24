@@ -11,8 +11,6 @@ const ITEMS_PER_PAGE = 5;
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState('');
   const [type, setType] = useState('');
@@ -51,7 +49,10 @@ export default function ProductsPage() {
 
   useEffect(() => {
     fetchProducts();
-  }, [category, type]);
+  }, [fetchProducts]);
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filteredProducts = products.filter(product => 
     product.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||

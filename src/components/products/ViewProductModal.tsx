@@ -3,6 +3,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { X } from 'lucide-react';
+import Image from 'next/image';
 
 interface Product {
   id: string;
@@ -66,10 +67,12 @@ export default function ViewProductModal({ isOpen, closeModal, product }: ViewPr
 
                 <div className="mt-2">
                   {product.media && product.media[0] && (
-                    <img
-                      src={product.media[0].url}
-                      alt={product.media[0].alt || product.name}
-                      className="w-full h-48 object-cover rounded-lg mb-4"
+                    <Image
+                      src={product.media[0]?.url || '/placeholder.jpg'}
+                      alt={product.media[0]?.alt || product.name}
+                      width={400}
+                      height={400}
+                      className="w-full h-auto object-cover rounded-lg"
                     />
                   )}
 

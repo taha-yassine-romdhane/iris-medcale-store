@@ -43,7 +43,7 @@ export default function AboutPage() {
             À Propos de Elite Medicale Service
           </h1>
           <p className="text-xl text-white/90 max-w-2xl">
-            Leader en solutions d'oxygénothérapie et d'assistance respiratoire en Tunisie
+            Leader en solutions d&apos;oxygénothérapie et d&apos;assistance respiratoire en Tunisie
           </p>
         </div>
       </section>
@@ -59,7 +59,7 @@ export default function AboutPage() {
               <p className="text-lg text-gray-700">
                 Nous sommes une société spécialisée en oxygénothérapie, offrant des solutions
                 médicales pour les patients nécessitant une assistance respiratoire. Notre engagement
-                est d'assurer un service à domicile personnalisé pour garantir le confort et le
+                est d&apos;assurer un service à domicile personnalisé pour garantir le confort et le
                 bien-être de nos patients.
               </p>
               <div className="space-y-4">
@@ -162,7 +162,7 @@ export default function AboutPage() {
             Besoin de nos services ?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Contactez-nous dès aujourd'hui pour discuter de vos besoins en matière de santé respiratoire
+            Contactez-nous dès aujourd&apos;hui pour discuter de vos besoins en matière de santé respiratoire
           </p>
           <a
             href="/contact"
