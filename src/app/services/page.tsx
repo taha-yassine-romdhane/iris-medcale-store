@@ -1,10 +1,9 @@
-import Image from 'next/image';
-import { MapPin, Clock, Wrench, Phone, Truck, HeartPulse } from 'lucide-react';
+import { MapPin, Wrench, Phone, Truck, HeartPulse } from 'lucide-react';
 
 const services = [
   {
     title: "Service à Domicile",
-    description: "Installation et maintenance d'équipements médicaux directement chez vous",
+    description: "Installation et maintenance d&apos;équipements médicaux directement chez vous",
     icon: Truck,
   },
   {
@@ -34,7 +33,7 @@ export default function ServicesPage() {
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
         <div className="max-w-7xl mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Services d'Oxygénothérapie Professionnels
+            Services d&apos;Oxygénothérapie Professionnels
           </h1>
           <p className="text-xl max-w-2xl">
             Solutions médicales spécialisées pour les patients nécessitant une assistance respiratoire,
@@ -55,7 +54,7 @@ export default function ServicesPage() {
               <p className="text-lg text-gray-700">
                 Nous sommes une société spécialisée en oxygénothérapie, offrant des solutions
                 médicales pour les patients nécessitant une assistance respiratoire. Nous
-                proposons un service à domicile personnalisé pour garantir le confort et le bien-être
+                proposons un service à domicile personnalisé pour garantir le confort et le bien-etre
                 de nos patients.
               </p>
               <div className="bg-blue-50 p-6 rounded-lg">
@@ -103,16 +102,16 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Besoin d'Assistance ?
+              Besoin d&apos;Assistance ?
             </h2>
             <p className="text-lg text-gray-600">
-              Notre équipe est disponible 24/7 pour répondre à vos besoins
+              Notre équipe est disponible 24/7 pour repondre à vos besoins
             </p>
           </div>
           <div className="flex justify-center">
             <div className="flex items-center space-x-4 bg-white px-8 py-4 rounded-full shadow-md">
               <Phone className="h-6 w-6 text-blue-600" />
-              <span className="text-xl font-semibold text-gray-900">+216 XX XXX XXX</span>
+              <span className="text-xl font-semibold text-gray-900">+216 55 850 000</span>
             </div>
           </div>
         </div>

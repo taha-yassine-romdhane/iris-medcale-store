@@ -91,7 +91,7 @@ export default function ProductPage() {
 
       if (!response.ok) throw new Error('Failed to submit review');
 
-      // Refresh product data to show new review
+      
       const updatedProduct = await fetch(`/api/products/${id}`).then(res => res.json());
       setProduct(updatedProduct);
       setShowReviewForm(false);
@@ -127,7 +127,6 @@ export default function ProductPage() {
   }
 
   const features = JSON.parse(product.features);
-  const averageRating = product.reviews.reduce((acc, review) => acc + review.rating, 0) / product.reviews.length || 0;
 
   return (
     <div className="min-h-screen bg-gray-50 pt-32">

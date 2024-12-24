@@ -76,9 +76,7 @@ export async function PATCH(
 ) {
   try {
     const data = await request.json();
-    // Remove media from the data if it exists as we'll handle it separately
     const { media, ...updateData } = data;
-    
     const product = await prisma.product.update({
       where: {
         id: params.id,

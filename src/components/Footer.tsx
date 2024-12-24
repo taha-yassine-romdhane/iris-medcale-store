@@ -88,7 +88,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center text-blue-100">
                 <MapPin className="mr-3 text-red-500" size={20} />
-                O Medicale Store M'saken
+                O Medicale Store M&#39;saken
               </li>
             </ul>
           </div>
@@ -109,7 +109,7 @@ export default function Footer() {
                 className="w-full bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors flex items-center justify-center"
               >
                 <Send className="mr-2" size={20} />
-                S'abonner
+                S&#39;abonner
               </button>
             </form>
           </div>
@@ -118,7 +118,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-blue-800 mt-12 pt-8 text-center">
           <p className="text-blue-200">
-            &copy; 2024 Elite Medicale Service. Tous droits réservés.
+            &copy; 2024 Elite Medicale Service. Tous droits r&#233;serv&#233;s.
           </p>
         </div>
       </div>
