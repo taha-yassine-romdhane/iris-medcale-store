@@ -81,7 +81,7 @@ export default function CPAPMachinesPage() {
               Machines CPAP
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              Découvrez notre sélection de machines CPAP de haute qualité pour le traitement de l'apnée du sommeil.
+              Découvrez notre sélection de machines CPAP de haute qualité pour le traitement de l&apos;apnée du sommeil.
               Nous proposons des modèles fixes et auto-pilotés des meilleures marques.
             </p>
           </div>
@@ -140,7 +140,7 @@ export default function CPAPMachinesPage() {
                   <Link href={`/product/${product.id}`} className="text-sm font-semibold text-blue-600 hover:underline">
                     {product.brand}
                   </Link>
-                  
+
                 </div>
                 <Link href={`/product/${product.id}`} className="block group-hover:text-blue-600">
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{product.name}</h3>
@@ -159,9 +159,9 @@ export default function CPAPMachinesPage() {
                   </ul>
                 </div>
 
-                <button 
+                <button
                   className="w-full mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200"
-                  onClick={() => {/* Add to cart logic */}}
+                  onClick={() => {/* Add to cart logic */ }}
                 >
                   Ajouter au panier
                 </button>

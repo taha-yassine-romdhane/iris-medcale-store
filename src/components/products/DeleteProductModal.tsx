@@ -77,7 +77,7 @@ export default function DeleteProductModal({ isOpen, closeModal, product, onDele
 
                 <div className="mt-2">
                   <p className="text-sm text-gray-500">
-                    Êtes-vous sûr de vouloir supprimer le produit "{product.name}" ? Cette action est irréversible.
+                    Êtes-vous sûr de vouloir supprimer le produit &quot;{product.name}&quot; ? Cette action est irréversible.
                   </p>
                 </div>
 

@@ -97,9 +97,9 @@ export default function CPAPAccessoiresPage() {
             Accessoires CPAP
           </h1>
           <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            Découvrez notre gamme complète d'accessoires pour machines CPAP : filtres, tuyaux,
-            humidificateurs et plus encore pour optimiser votre traitement.
-          </p>
+              Découvrez notre sélection de machines CPAP de haute qualité pour le traitement de l&apos;apnée du sommeil.
+              Nous proposons des modèles fixes et auto-pilotés des meilleures marques.
+            </p>
         </div>
       </div>
       {/* Decorative SVG divider */}

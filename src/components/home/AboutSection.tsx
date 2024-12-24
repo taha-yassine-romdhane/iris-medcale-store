@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle } from "lucide-react";
 
@@ -13,9 +12,9 @@ export default function AboutSection() {
               À Propos de Notre Entreprise
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed">
-              Nous sommes spécialisés dans la fourniture d'équipements médicaux de haute qualité pour améliorer votre qualité de vie. Notre engagement envers l'excellence et le service client nous distingue.
+              Nous sommes spécialisés dans la fourniture d&apos;équipements médicaux de haute qualité pour améliorer votre qualité de vie. Notre engagement envers l&apos;excellence et le service client nous distingue.
             </p>
-            
+
             {/* Key Highlights */}
             <div className="space-y-4">
               <div className="flex items-center text-green-600">
