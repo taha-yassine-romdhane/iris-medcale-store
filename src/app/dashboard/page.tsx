@@ -1,9 +1,13 @@
 'use client';
 
-import { Card } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Overview } from '@/components/dashboard/Overview';
-import { RecentSales } from '@/components/dashboard/RecentSales';
+import {
+  ArrowUp,
+  ArrowDown,
+  TrendingUp,
+  Package,
+  Users,
+  ShoppingCart
+} from 'lucide-react';
 
 interface DashboardMetrics {
   totalRevenue: number;
