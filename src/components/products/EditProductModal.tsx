@@ -72,6 +72,7 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
     setUploadingMedia(true);
     try {
       for (const file of Array.from(files)) {
+
         const formDataUpload = new FormData();
         formDataUpload.append('file', file);
 
