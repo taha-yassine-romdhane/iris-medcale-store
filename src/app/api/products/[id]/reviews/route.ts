@@ -12,7 +12,7 @@ export async function POST(
     const review = await ProductService.addProductReview(params.id, {
       rating,
       comment,
-      userName: 'Anonymous', // You can add user authentication later
+      userName: 'Anonymous',
     });
 
     return NextResponse.json(review);
