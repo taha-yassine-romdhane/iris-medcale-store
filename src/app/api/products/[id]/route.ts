@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import * as ProductService from '@/lib/services/products';
 import prisma from '@/lib/prisma';
-import { Product } from '@/types/product';
+
 
 
 export async function GET(
@@ -71,7 +71,7 @@ export async function PATCH(
 ) {
   try {
     const data = await request.json();
-    const { media, ...updateData } = data;
+    const {...updateData } = data;
     const product = await prisma.product.update({
       where: {
         id: params.id,

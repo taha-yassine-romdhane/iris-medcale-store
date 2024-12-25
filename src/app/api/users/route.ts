@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     });
 
     // Don't send the password back
-    const { motDePasse, ...userWithoutPassword } = user;
+    const {...userWithoutPassword } = user;
     return NextResponse.json(userWithoutPassword);
   } catch (error) {
     console.error('Error creating user:', error);

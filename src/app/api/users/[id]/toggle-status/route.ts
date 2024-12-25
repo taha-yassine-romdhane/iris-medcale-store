@@ -13,7 +13,7 @@ export async function PATCH(
       data: { actif }
     });
 
-    const { motDePasse, ...userWithoutPassword } = user;
+    const {...userWithoutPassword } = user;
     return NextResponse.json(userWithoutPassword);
   } catch (error) {
     console.error('Error toggling user status:', error);
