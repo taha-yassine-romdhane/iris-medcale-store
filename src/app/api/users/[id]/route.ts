@@ -19,7 +19,7 @@ export async function PATCH(
       data: data,
     });
 
-    const { motDePasse, ...userWithoutPassword } = user;
+    const {...userWithoutPassword } = user;
     return NextResponse.json(userWithoutPassword);
   } catch (error) {
     console.error('Error updating user:', error);

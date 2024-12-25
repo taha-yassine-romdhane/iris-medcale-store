@@ -35,7 +35,7 @@ export default function UsersPage() {
       }
       const data = await response.json();
       setUsers(data);
-    } catch (error) {
+    } catch {
       alert('Impossible de charger les utilisateurs');
     } finally {
       setLoading(false);
@@ -54,29 +54,7 @@ export default function UsersPage() {
   );
 
   // Handle user status toggle
-  const toggleUserStatus = async (userId: string, currentStatus: boolean) => {
-    try {
-      const response = await fetch(`/api/users/${userId}/toggle-status`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ actif: !currentStatus }),
-      });
 
-      if (!response.ok) {
-        throw new Error('Failed to toggle user status');
-      }
-
-      setUsers(users.map(user => 
-        user.id === userId ? { ...user, actif: !currentStatus } : user
-      ));
-      
-      alert('Statut de l\'utilisateur mis à jour');
-    } catch (error) {
-      alert('Impossible de modifier le statut');
-    }
-  };
 
   // Modal handlers
   const handleEdit = (user: User) => {

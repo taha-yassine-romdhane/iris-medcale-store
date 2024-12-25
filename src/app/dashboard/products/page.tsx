@@ -7,14 +7,14 @@ import EditProductModal from '@/components/products/EditProductModal';
 import DeleteProductModal from '@/components/products/DeleteProductModal';
 import AddProductModal from '@/components/products/AddProductModal';
 import { Product } from '@/types/product';
+import Image from 'next/image';
 
 const ITEMS_PER_PAGE = 5;
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [category, setCategory] = useState('');
-  const [type, setType] = useState('');
+  const [category] = useState('');
+  const [type] = useState('');
 
   // Modal states
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -25,7 +25,6 @@ export default function ProductsPage() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      setLoading(true);
       try {
         const queryParams = new URLSearchParams({
           ...(category && { category }),
@@ -45,8 +44,6 @@ export default function ProductsPage() {
       } catch (error) {
         console.error('Error:', error);
         setProducts([]);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -144,10 +141,12 @@ export default function ProductsPage() {
                   <tr key={product.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap">
                       {product.media && product.media[0] ? (
-                        <img 
+                        <Image 
                           src={product.media[0].url} 
                           alt={product.media[0].alt || product.name}
-                          className="h-16 w-16 object-cover rounded-md"
+                          width={64}
+                          height={64}
+                          className="object-cover rounded-md"
                         />
                       ) : (
                         <div className="h-16 w-16 bg-gray-100 rounded-md flex items-center justify-center">
