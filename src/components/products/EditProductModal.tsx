@@ -4,6 +4,8 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState, useEffect } from 'react';
 import { X, Upload, Trash2 } from 'lucide-react';
 import { Product, Media } from '@/types/product';
+import Image from 'next/image';
+
 
 interface EditProductModalProps {
   isOpen: boolean;
@@ -72,14 +74,14 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
       for (const file of Array.from(files)) {
         const formDataUpload = new FormData();
         formDataUpload.append('file', file);
-        
+
         const response = await fetch('/api/upload', {
           method: 'POST',
           body: formDataUpload,
         });
-        
+
         if (!response.ok) throw new Error('Upload failed');
-        
+
         const data = await response.json();
         const newMedia: Media = {
           url: data.url,
@@ -87,7 +89,7 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
           alt: file.name,
           order: formData.media.length
         };
-        
+
         setFormData(prev => {
           if (!prev) return prev;
           return {
@@ -284,45 +286,35 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
                         />
                       </label>
                     </div>
-
                     <div className="space-y-2">
                       {formData.media
                         .sort((a, b) => a.order - b.order)
                         .map((media, index) => (
                           <div
                             key={media.id || index}
-                            className="flex items-center gap-2 bg-gray-50 p-2 rounded-lg"
+                            className="flex items-center gap-2"
                           >
                             {media.type === 'image' ? (
-                              <img
+                              <Image
                                 src={media.url}
-                                alt={media.alt || ''}
-                                className="w-16 h-16 object-cover rounded"
+                                alt={media.alt || 'Media'}
+                                width={100}
+                                height={100}
+                                className="rounded-md"
+                                quality={75} // Optimize image quality
+                                placeholder="blur" // Optional, if blur placeholder is available
                               />
                             ) : (
                               <video
                                 src={media.url}
-                                className="w-16 h-16 object-cover rounded"
+                                controls
+                                className="rounded-md w-full max-w-[100px]"
                               />
                             )}
-                            <input
-                              type="text"
-                              value={media.alt || ''}
-                              onChange={(e) => {
-                                const newMedia = [...formData.media];
-                                newMedia[index] = {
-                                  ...newMedia[index],
-                                  alt: e.target.value
-                                };
-                                setFormData({ ...formData, media: newMedia });
-                              }}
-                              className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                              placeholder="Description du média"
-                            />
                             <button
                               type="button"
                               onClick={() => handleMediaDelete(index)}
-                              className="p-2 text-red-600 hover:text-red-800"
+                              className="text-red-500 hover:text-red-700"
                             >
                               <Trash2 size={16} />
                             </button>

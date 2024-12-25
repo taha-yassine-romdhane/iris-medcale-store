@@ -38,7 +38,7 @@ export default function LoginPage() {
         <div className="space-y-4">
           <div className="flex items-center space-x-3">
             <Shield className="h-6 w-6" />
-            <span>Accès sécurisé aux données de l'entreprise</span>
+            <span>Accès sécurisé aux données de l&apos;entreprise</span>
           </div>
           <div className="flex items-center space-x-3">
             <Lock className="h-6 w-6" />

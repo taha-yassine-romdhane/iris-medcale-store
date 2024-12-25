@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Star } from "lucide-react";
 import Link from "next/link";
 
 interface Media {
