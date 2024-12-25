@@ -1,8 +1,19 @@
 import { prisma } from '../db';
 
+type ProductWhereInput = {
+  category?: {
+    equals: string;
+    mode: 'insensitive';
+  };
+  type?: {
+    equals: string;
+    mode: 'insensitive';
+  };
+};
+
 export async function getAllProducts(category?: string, type?: string) {
-  const where: any = {};
-  
+  const where: ProductWhereInput = {};
+
   if (category) {
     where.category = {
       equals: category,
@@ -41,7 +52,7 @@ export async function getAllProducts(category?: string, type?: string) {
           return JSON.parse(product.features);
         }
         return Array.isArray(product.features) ? product.features : [];
-      } catch (error) {
+      } catch {
         console.error('Error parsing features for product:', product.id);
         return [];
       }
@@ -160,4 +171,3 @@ export async function addProductReview(productId: string, data: {
     }
   });
 }
-

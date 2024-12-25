@@ -68,7 +68,7 @@ export default function AddUserModal({ isOpen, onClose, onSuccess }: AddUserModa
       
       onSuccess();
       handleClose();
-    } catch (error) {
+    } catch {
       toast({
         title: "Erreur",
         description: "Impossible de créer l'utilisateur",

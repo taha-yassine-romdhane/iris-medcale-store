@@ -21,7 +21,7 @@ export default function ViewUserModal({ isOpen, onClose, user }: ViewUserModalPr
         <Dialog open={isOpen} onOpenChange={onClose}>
             <DialogContent className="sm:max-w-[425px] bg-white p-6 rounded-md shadow-md">
                 <DialogHeader>
-                    <DialogTitle className="text-xl font-semibold">Détails de l'utilisateur</DialogTitle>
+                    <DialogTitle className="text-xl font-semibold">Détails de l&apos;utilisateur</DialogTitle>
                 </DialogHeader>
                 <div className="space-y-4">
                     <div>

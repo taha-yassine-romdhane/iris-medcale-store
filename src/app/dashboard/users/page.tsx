@@ -53,7 +53,6 @@ export default function UsersPage() {
     user.email.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Handle user status toggle
 
 
   // Modal handlers

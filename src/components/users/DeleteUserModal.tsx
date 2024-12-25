@@ -34,7 +34,7 @@ export default function DeleteUserModal({ isOpen, onClose, userId, onSuccess }: 
 
       onSuccess();
       onClose();
-    } catch (error) {
+    } catch {
       toast({
         title: "Erreur",
         description: "Impossible de supprimer l'utilisateur",
@@ -49,7 +49,7 @@ export default function DeleteUserModal({ isOpen, onClose, userId, onSuccess }: 
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px] bg-white p-6 rounded-md shadow-md">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold">Supprimer l'utilisateur</DialogTitle>
+          <DialogTitle className="text-xl font-semibold">Supprimer l&apos;utilisateur</DialogTitle>
         </DialogHeader>
         <div className="space-y-4">
           <p>Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.</p>

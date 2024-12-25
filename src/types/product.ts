@@ -15,7 +15,7 @@ export interface Product {
   price: number;
   category: string;
   subCategory?: string;
-  features: any;
+  features: string[];
   inStock: boolean;
   media: Media[];
 }

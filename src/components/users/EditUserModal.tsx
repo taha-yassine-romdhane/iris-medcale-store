@@ -86,7 +86,7 @@ export default function EditUserModal({ isOpen, onClose, onSuccess, user }: Edit
       
       onSuccess();
       handleClose();
-    } catch (error) {
+    } catch {
       toast({
         title: "Erreur",
         description: "Impossible de modifier l'utilisateur",
@@ -101,7 +101,7 @@ export default function EditUserModal({ isOpen, onClose, onSuccess, user }: Edit
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-[425px] bg-white p-6 rounded-md shadow-md">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold">Modifier l'utilisateur</DialogTitle>
+          <DialogTitle className="text-xl font-semibold">Modifier l&apos;utilisateur</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
