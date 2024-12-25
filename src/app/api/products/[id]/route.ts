@@ -27,36 +27,31 @@ export async function GET(
 }
 
 export async function PUT(
-  request: Request,
+  req: Request,
   { params }: { params: { id: string } }
 ) {
   try {
-    const body: Partial<Product> = await request.json();
+    const data = await req.json();
+    
+    // Ensure features is properly formatted for JSON storage
+    const features = Array.isArray(data.features) ? data.features : [];
+
     const product = await prisma.product.update({
       where: {
         id: params.id,
       },
       data: {
-        name: body.name,
-        brand: body.brand,
-        type: body.type,
-        description: body.description,
-        price: body.price,
-        category: body.category,
-        subCategory: body.subCategory,
-        inStock: body.inStock,
-        media: body.media ? {
+        ...data,
+        features: features,
+        price: typeof data.price === 'string' ? parseFloat(data.price) : data.price,
+        media: data.media ? {
           deleteMany: {},
-          create: body.media.map((media: any) => ({
-            url: media.url,
-            type: media.type,
-            alt: media.alt,
-            order: media.order
-          }))
+          create: data.media
         } : undefined
       },
       include: {
-        media: true
+        media: true,
+        reviews: true
       }
     });
 
@@ -64,7 +59,7 @@ export async function PUT(
   } catch (error) {
     console.error('Error updating product:', error);
     return NextResponse.json(
-      { error: 'Error updating product' },
+      { error: 'Failed to update product' },
       { status: 500 }
     );
   }

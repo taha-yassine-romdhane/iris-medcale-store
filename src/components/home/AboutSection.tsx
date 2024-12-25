@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, CheckCircle } from "lucide-react";
 
 export default function AboutSection() {
@@ -43,10 +44,12 @@ export default function AboutSection() {
 
           {/* Image Section */}
           <div className="relative h-[500px] rounded-xl overflow-hidden shadow-2xl group">
-            <img 
-              src="https://images.unsplash.com/photo-1631815587646-b85a1bb027e1?q=80&w=800" 
-              alt="À Propos de Notre Entreprise" 
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            <Image
+              src="https://images.unsplash.com/photo-1631815587646-b85a1bb027e1?q=80&w=800"
+              alt="À Propos de Notre Entreprise"
+              layout="fill"
+              objectFit="cover"
+              className="transition-transform duration-500 group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-blue-900 opacity-20 group-hover:opacity-10 transition-opacity duration-500"></div>
           </div>

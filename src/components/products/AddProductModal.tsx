@@ -1,58 +1,40 @@
 'use client';
 
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useState, useEffect } from 'react';
+import { Fragment, useState } from 'react';
 import { X, Upload, Trash2 } from 'lucide-react';
 import { Product, Media } from '@/types/product';
 import Image from 'next/image';
 
-interface EditProductModalProps {
+interface AddProductModalProps {
   isOpen: boolean;
   closeModal: () => void;
-  product: Product | null;
-  onUpdate: (updatedProduct: Product) => void;
+  onAdd: (newProduct: Product) => void;
 }
 
-export default function EditProductModal({ isOpen, closeModal, product, onUpdate }: EditProductModalProps) {
-  const [formData, setFormData] = useState<Product | null>(null);
+export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProductModalProps) {
+  const [formData, setFormData] = useState<Omit<Product, 'id'>>({
+    name: '',
+    brand: '',
+    type: '',
+    price: 0,
+    description: '',
+    category: '',
+    subCategory: '',
+    inStock: true,
+    features: [],
+    media: [],
+  });
   const [uploadingMedia, setUploadingMedia] = useState(false);
   const [newFeature, setNewFeature] = useState('');
 
-  useEffect(() => {
-    if (product) {
-      // Parse features if it's a string or JSON object
-      let parsedFeatures: string[] = [];
-      try {
-        if (typeof product.features === 'string') {
-          parsedFeatures = JSON.parse(product.features);
-        } else if (typeof product.features === 'object') {
-          // If it's already a JSON object from Prisma
-          parsedFeatures = Array.isArray(product.features) ? product.features : [];
-        }
-      } catch (error) {
-        console.error('Error parsing features:', error);
-        parsedFeatures = [];
-      }
-
-      setFormData({
-        ...product,
-        features: parsedFeatures
-      });
-    }
-  }, [product]);
-
-  if (!formData) return null;
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData) return;
-
     try {
       // Prepare the data
       const productData = {
         ...formData,
-        price: Number(formData.price),
-        // Ensure features is an array before sending to API
+        price: Number(formData.price) || 0,
         features: Array.isArray(formData.features) ? formData.features : [],
         media: formData.media.map((m, index) => ({
           ...m,
@@ -60,10 +42,8 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
         }))
       };
 
-      console.log('Submitting product data:', productData); // Debug log
-
-      const response = await fetch(`/api/products/${formData.id}`, {
-        method: 'PUT',
+      const response = await fetch('/api/products', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -71,36 +51,47 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
       });
 
       if (!response.ok) {
-        throw new Error('Failed to update product');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to add product');
       }
 
       const result = await response.json();
-      onUpdate(result);
+      onAdd(result);
       closeModal();
+      // Reset form
+      setFormData({
+        name: '',
+        brand: '',
+        type: '',
+        price: 0,
+        description: '',
+        category: '',
+        subCategory: '',
+        inStock: true,
+        features: [],
+        media: [],
+      });
     } catch (error) {
-      console.error('Error updating product:', error);
+      console.error('Error adding product:', error);
+      alert(error instanceof Error ? error.message : 'Failed to add product. Please try again.');
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
-    setFormData(prev => {
-      if (!prev) return prev;
-      return {
-        ...prev,
-        [name]: type === 'number' ? parseFloat(value) : value,
-      };
-    });
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'number' ? (value === '' ? 0 : parseFloat(value)) : value,
+    }));
   };
 
   const handleMediaUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (!files || !formData) return;
+    if (!files) return;
 
     setUploadingMedia(true);
     try {
       for (const file of Array.from(files)) {
-
         const formDataUpload = new FormData();
         formDataUpload.append('file', file);
 
@@ -119,13 +110,10 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
           order: formData.media.length
         };
 
-        setFormData(prev => {
-          if (!prev) return prev;
-          return {
-            ...prev,
-            media: [...prev.media, newMedia]
-          };
-        });
+        setFormData(prev => ({
+          ...prev,
+          media: [...prev.media, newMedia]
+        }));
       }
     } catch (error) {
       console.error('Error uploading media:', error);
@@ -135,42 +123,31 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
   };
 
   const handleMediaDelete = (index: number) => {
-    setFormData(prev => {
-      if (!prev) return prev;
-      const newMedia = [...prev.media];
-      newMedia.splice(index, 1);
-      return {
-        ...prev,
-        media: newMedia.map((m, i) => ({ ...m, order: i }))
-      };
-    });
+    setFormData(prev => ({
+      ...prev,
+      media: prev.media
+        .filter((_, i) => i !== index)
+        .map((m, i) => ({ ...m, order: i }))
+    }));
   };
 
   const handleAddFeature = () => {
-    if (!formData || !newFeature.trim()) return;
-
-    setFormData(prev => {
-      if (!prev) return prev;
-      const currentFeatures = Array.isArray(prev.features) ? prev.features : [];
-      return {
+    if (newFeature.trim()) {
+      setFormData(prev => ({
         ...prev,
-        features: [...currentFeatures, newFeature.trim()]
-      };
-    });
-    setNewFeature('');
+        features: [...(Array.isArray(prev.features) ? prev.features : []), newFeature.trim()]
+      }));
+      setNewFeature('');
+    }
   };
 
   const handleRemoveFeature = (index: number) => {
-    if (!formData) return;
-
-    setFormData(prev => {
-      if (!prev) return prev;
-      const currentFeatures = Array.isArray(prev.features) ? prev.features : [];
-      return {
-        ...prev,
-        features: currentFeatures.filter((_, i) => i !== index)
-      };
-    });
+    setFormData(prev => ({
+      ...prev,
+      features: Array.isArray(prev.features) 
+        ? prev.features.filter((_, i) => i !== index)
+        : []
+    }));
   };
 
   return (
@@ -202,7 +179,7 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
               <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title as="div" className="flex justify-between items-center mb-4">
                   <h3 className="text-lg font-medium leading-6 text-gray-900">
-                    Modifier le produit
+                    Ajouter un produit
                   </h3>
                   <button
                     onClick={closeModal}
@@ -267,9 +244,10 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
                         type="number"
                         name="price"
                         id="price"
-                        value={formData.price}
+                        value={formData.price || ''}
                         onChange={handleChange}
                         step="0.01"
+                        min="0"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                         required
                       />
@@ -298,7 +276,7 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
                         type="text"
                         name="subCategory"
                         id="subCategory"
-                        value={formData.subCategory || ''}
+                        value={formData.subCategory}
                         onChange={handleChange}
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                       />
@@ -318,6 +296,45 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                       required
                     />
+                  </div>
+
+                  <div className="col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Caractéristiques
+                    </label>
+                    <div className="space-y-2">
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          value={newFeature}
+                          onChange={(e) => setNewFeature(e.target.value)}
+                          onKeyPress={(e) => e.key === 'Enter' && handleAddFeature()}
+                          placeholder="Ajouter une caractéristique"
+                          className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                        />
+                        <button
+                          type="button"
+                          onClick={handleAddFeature}
+                          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        >
+                          Ajouter
+                        </button>
+                      </div>
+                      <ul className="space-y-2">
+                        {Array.isArray(formData.features) && formData.features.map((feature, index) => (
+                          <li key={index} className="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-md">
+                            <span className="text-sm text-gray-700">{feature}</span>
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveFeature(index)}
+                              className="text-red-600 hover:text-red-800"
+                            >
+                              <Trash2 size={16} />
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
 
                   <div>
@@ -347,7 +364,7 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
                         .sort((a, b) => a.order - b.order)
                         .map((media, index) => (
                           <div
-                            key={media.id || index}
+                            key={index}
                             className="flex items-center gap-2"
                           >
                             {media.type === 'image' ? (
@@ -378,45 +395,6 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
                     </div>
                   </div>
 
-                  <div className="col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Caractéristiques
-                    </label>
-                    <div className="space-y-2">
-                      <div className="flex gap-2">
-                        <input
-                          type="text"
-                          value={newFeature}
-                          onChange={(e) => setNewFeature(e.target.value)}
-                          onKeyPress={(e) => e.key === 'Enter' && handleAddFeature()}
-                          placeholder="Ajouter une caractéristique"
-                          className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                        />
-                        <button
-                          type="button"
-                          onClick={handleAddFeature}
-                          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                        >
-                          Ajouter
-                        </button>
-                      </div>
-                      <ul className="space-y-2">
-                        {formData && Array.isArray(formData.features) && formData.features.map((feature, index) => (
-                          <li key={index} className="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-md">
-                            <span className="text-sm text-gray-700">{feature}</span>
-                            <button
-                              type="button"
-                              onClick={() => handleRemoveFeature(index)}
-                              className="text-red-600 hover:text-red-800"
-                            >
-                              <Trash2 size={16} />
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
                   <div>
                     <label htmlFor="inStock" className="block text-sm font-medium text-gray-700">
                       Statut
@@ -425,7 +403,7 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
                       name="inStock"
                       id="inStock"
                       value={formData.inStock.toString()}
-                      onChange={(e) => setFormData({ ...formData, inStock: e.target.value === 'true' })}
+                      onChange={(e) => setFormData(prev => ({ ...prev, inStock: e.target.value === 'true' }))}
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                     >
                       <option value="true">En stock</option>
@@ -445,7 +423,7 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
                       type="submit"
                       className="rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     >
-                      Sauvegarder
+                      Ajouter
                     </button>
                   </div>
                 </form>

@@ -9,6 +9,7 @@ interface Product {
   name: string;
 }
 
+
 interface DeleteProductModalProps {
   isOpen: boolean;
   closeModal: () => void;

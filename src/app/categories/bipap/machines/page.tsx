@@ -19,7 +19,7 @@ interface Product {
   type: string;
   description: string;
   price: number;
-  features: string;
+  features: string[];
   media: Media[];
   reviews: Array<{
     rating: number;
@@ -148,19 +148,21 @@ export default function BipapMachinesPage() {
 
                 {/* Features List */}
                 <div className="mt-4">
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    {JSON.parse(product.features).slice(0, 3).map((feature: string, index: number) => (
+                  <ul className="space-y-2">
+                  {(Array.isArray(product.features) ? product.features : [])
+                    .slice(0, 3)
+                    .map((feature: string, index: number) => (
                       <li key={index} className="flex items-start">
                         <span className="text-blue-500 mr-2">•</span>
                         {feature}
                       </li>
                     ))}
-                  </ul>
+                    </ul>
                 </div>
 
-                <button 
+                <button
                   className="w-full mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200"
-                  onClick={() => {/* Add to cart logic */}}
+                  onClick={() => {/* Add to cart logic */ }}
                 >
                   Ajouter au panier
                 </button>

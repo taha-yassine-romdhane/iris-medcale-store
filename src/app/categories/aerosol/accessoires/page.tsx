@@ -19,7 +19,7 @@ interface Product {
   type: string;
   description: string;
   price: number;
-  features: string;
+  features: string[];
   media: Media[];
   reviews: Array<{
     rating: number;
@@ -149,7 +149,9 @@ export default function AerosolAccessoriesPage() {
                 {/* Features List */}
                 <div className="mt-4">
                   <ul className="text-sm text-gray-600 space-y-1">
-                    {JSON.parse(product.features).slice(0, 3).map((feature: string, index: number) => (
+                  {(Array.isArray(product.features) ? product.features : [])
+                      .slice(0, 3)
+                      .map((feature: string, index: number) => (
                       <li key={index} className="flex items-start">
                         <span className="text-blue-500 mr-2">•</span>
                         {feature}

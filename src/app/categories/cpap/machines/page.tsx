@@ -19,11 +19,17 @@ interface Product {
   type: string;
   description: string;
   price: number;
-  features: string;
+  features: any;
+  category: string;
+  subCategory?: string;
+  inStock: boolean;
   media: Media[];
   reviews: Array<{
+    id: string;
     rating: number;
     comment?: string;
+    userName: string;
+    createdAt: string;
   }>;
 }
 
@@ -36,8 +42,14 @@ export default function CPAPMachinesPage() {
     async function fetchProducts() {
       try {
         const response = await fetch('/api/products?category=cpap');
-        if (!response.ok) throw new Error('Failed to fetch products');
+        if (!response.ok) {
+          const error = await response.text();
+          throw new Error(error || 'Failed to fetch products');
+        }
         const data = await response.json();
+        if (!Array.isArray(data)) {
+          throw new Error('Invalid data format received from server');
+        }
         setProducts(data);
         // Initialize selected media for each product
         const initialSelected = data.reduce((acc: { [key: string]: number }, product: Product) => {
@@ -150,7 +162,9 @@ export default function CPAPMachinesPage() {
                 {/* Features List */}
                 <div className="mt-4">
                   <ul className="text-sm text-gray-600 space-y-1">
-                    {JSON.parse(product.features).slice(0, 3).map((feature: string, index: number) => (
+                    {(Array.isArray(product.features) ? product.features : 
+                      typeof product.features === 'string' ? JSON.parse(product.features) : 
+                      []).slice(0, 3).map((feature: string, index: number) => (
                       <li key={index} className="flex items-start">
                         <span className="text-blue-500 mr-2">•</span>
                         {feature}

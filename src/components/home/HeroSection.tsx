@@ -1,9 +1,8 @@
 'use client';
-
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useEffect } from "react";
 
 const heroProducts = [
   {
@@ -13,7 +12,6 @@ const heroProducts = [
     image: "https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?q=80&w=1200",
     link: "/produits/cpap-pro",
     highlight: "Nouveau",
-    price: "899,99 DT"
   },
   {
     id: 2,
@@ -22,7 +20,6 @@ const heroProducts = [
     image: "https://images.unsplash.com/photo-1584362917165-526a968579e8?q=80&w=1200",
     link: "/produits/concentrateur-oxygene",
     highlight: "Populaire",
-    price: "1299,99 DT"
   },
   {
     id: 3,
@@ -31,7 +28,6 @@ const heroProducts = [
     image: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?q=80&w=1200",
     link: "/produits/masque-nasal",
     highlight: "Meilleure vente",
-    price: "199,99 DT"
   },
   {
     id: 4,
@@ -40,7 +36,6 @@ const heroProducts = [
     image: "https://images.unsplash.com/photo-1633613286991-611fe299c4be?q=80&w=1200",
     link: "/produits/anti-ronflement",
     highlight: "Promotion",
-    price: "149,99 DT"
   },
   {
     id: 5,
@@ -49,7 +44,6 @@ const heroProducts = [
     image: "https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?q=80&w=1200",
     link: "/produits/kit-therapie",
     highlight: "Pack complet",
-    price: "1499,99 DT"
   }
 ];
 
@@ -57,42 +51,38 @@ export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     if (isAnimating) return;
     setIsAnimating(true);
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === heroProducts.length - 1 ? 0 : prevIndex + 1
     );
     setTimeout(() => setIsAnimating(false), 500);
-  };
+  }, [isAnimating]);
 
-  const prevSlide = () => {
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 5000);
+    return () => clearInterval(timer);
+  }, [nextSlide]);
+
+  const prevSlide = useCallback(() => {
     if (isAnimating) return;
     setIsAnimating(true);
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? heroProducts.length - 1 : prevIndex - 1
     );
     setTimeout(() => setIsAnimating(false), 500);
-  };
+  }, [isAnimating]);
 
-  const goToSlide = (index: number) => {
+  const goToSlide = useCallback((index: number) => {
     if (isAnimating) return;
     setIsAnimating(true);
     setCurrentIndex(index);
     setTimeout(() => setIsAnimating(false), 500);
-  };
+  }, [isAnimating]);
 
   return (
     <section className="relative h-[500px] overflow-hidden mt-16">
-      {/* Background Images */}
       {heroProducts.map((product, index) => (
         <div
           key={product.id}
@@ -107,17 +97,26 @@ export default function HeroSection() {
             priority={index === 0}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-black/50" />
+          {/* Logo Overlay with Background Effect */}
+          <div className="absolute bottom-14 right-1/4 transform -translate-x-1/2">
+            <div className="p-4 bg-white/10 rounded-full backdrop-blur-md">
+              <Image
+                src="/logo_No_BG.png"
+                alt="Logo"
+                width={150}
+                height={150}
+                className="opacity-90"
+              />
+            </div>
+          </div>
+
         </div>
       ))}
-
-      {/* Content */}
+      {/* Content and other elements remain unchanged */}
       <div className="relative h-full max-w-7xl mx-auto px-4">
         <div className="h-full flex items-center">
           <div className="max-w-xl space-y-6">
-            <div 
-              className="inline-block px-3 py-1 bg-white/20 rounded-full text-sm backdrop-blur-sm text-white
-                transform transition-all duration-500 hover:scale-105"
-            >
+            <div className="inline-block px-3 py-1 bg-white/20 rounded-full text-sm backdrop-blur-sm text-white transform transition-all duration-500 hover:scale-105">
               {heroProducts[currentIndex].highlight}
             </div>
             <h1 className="text-6xl font-bold text-white transition-all duration-500 ease-out transform">
@@ -127,11 +126,9 @@ export default function HeroSection() {
               {heroProducts[currentIndex].description}
             </p>
             <div className="flex items-center gap-6">
-              <span className="text-3xl font-bold text-white">{heroProducts[currentIndex].price}</span>
-              <Link 
+              <Link
                 href={heroProducts[currentIndex].link}
-                className="inline-flex items-center bg-white text-blue-600 px-8 py-4 rounded-full font-semibold 
-                  hover:bg-blue-50 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                className="inline-flex items-center bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-blue-50 transition-all duration-300 hover:scale-105 hover:shadow-lg"
               >
                 Découvrir
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -139,45 +136,6 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Navigation Buttons */}
-      <button
-        onClick={prevSlide}
-        disabled={isAnimating}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 
-          rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-110 
-          disabled:opacity-50 disabled:cursor-not-allowed"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="h-6 w-6" />
-      </button>
-      <button
-        onClick={nextSlide}
-        disabled={isAnimating}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 
-          rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-110 
-          disabled:opacity-50 disabled:cursor-not-allowed"
-        aria-label="Next slide"
-      >
-        <ChevronRight className="h-6 w-6" />
-      </button>
-
-      {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
-        {heroProducts.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            disabled={isAnimating}
-            className={`w-3 h-3 rounded-full transition-all duration-300 
-              ${index === currentIndex 
-                ? "bg-white scale-125" 
-                : "bg-white/50 hover:bg-white/70"
-              }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
       </div>
     </section>
   );
