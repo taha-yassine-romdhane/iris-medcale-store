@@ -4,23 +4,17 @@ import * as ProductService from '@/lib/services/products';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
     const data = await request.json();
-    const { rating, comment } = data;
-
-    const review = await ProductService.addProductReview(params.id, {
-      rating,
-      comment,
-      userName: 'Anonymous',
-    });
+    const review = await ProductService.addProductReview(context.params.id, data);
 
     return NextResponse.json(review);
   } catch (error) {
     console.error('Error adding review:', error);
     return NextResponse.json(
-      { error: 'Internal Server Error' },
+      { error: 'Failed to add review' },
       { status: 500 }
     );
   }
