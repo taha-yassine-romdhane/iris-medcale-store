@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const heroProducts = [
   {
@@ -64,22 +64,6 @@ export default function HeroSection() {
     const timer = setInterval(nextSlide, 5000);
     return () => clearInterval(timer);
   }, [nextSlide]);
-
-  const prevSlide = useCallback(() => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? heroProducts.length - 1 : prevIndex - 1
-    );
-    setTimeout(() => setIsAnimating(false), 500);
-  }, [isAnimating]);
-
-  const goToSlide = useCallback((index: number) => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex(index);
-    setTimeout(() => setIsAnimating(false), 500);
-  }, [isAnimating]);
 
   return (
     <section className="relative h-[500px] overflow-hidden mt-16">

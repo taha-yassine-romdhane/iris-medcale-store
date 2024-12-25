@@ -19,7 +19,7 @@ interface Product {
   type: string;
   description: string;
   price: number;
-  features: any;
+  features: string[];
   category: string;
   subCategory?: string;
   inStock: boolean;
