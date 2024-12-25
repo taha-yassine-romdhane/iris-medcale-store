@@ -154,14 +154,14 @@ export default function LoginPage() {
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   <Lock className="h-5 w-5 text-blue-500 group-hover:text-blue-400" />
                 </span>
-                {loading ? 'Connexion en cours...' : 'Se connecter'}
+                {loading ? "Connexion en cours..." : "Se connecter"}
               </button>
             </div>
           </form>
 
           <div className="text-center text-sm text-gray-600">
             <p>
-              Besoin d'aide? Contactez le{' '}
+              Besoin d&apos;aide? Contactez le{' '}
               <a href="mailto:support@elitemedicale.com" className="font-medium text-blue-600 hover:text-blue-500">
                 support technique
               </a>

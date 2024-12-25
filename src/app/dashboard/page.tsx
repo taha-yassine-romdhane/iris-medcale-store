@@ -28,7 +28,7 @@ export default function DashboardPage() {
     <div>
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-gray-900">Tableau de bord</h1>
-        <p className="text-gray-500">Bienvenue dans votre espace de gestion</p>
+        <p className="text-gray-500">Bienvenue dans votre éspace de gestion</p>
       </div>
 
       {/* Stats Grid */}
@@ -47,8 +47,8 @@ export default function DashboardPage() {
               <ArrowUp className="h-4 w-4 text-green-600" />
             </div>
           </div>
-          <h3 className="text-gray-500 text-sm font-medium">Chiffre d'affaires</h3>
-          <p className="text-2xl font-semibold text-gray-900 mt-1">{stats.totalRevenue} €</p>
+          <h3 className="text-gray-500 text-sm font-medium">Chiffre d&apos;affaires</h3>
+          <p className="text-2xl font-semibold text-gray-900 mt-1">{stats.totalRevenue} TND</p>
         </div>
         <div
           className="bg-white rounded-xl shadow-sm p-6 border border-gray-100"
