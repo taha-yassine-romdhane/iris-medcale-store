@@ -51,12 +51,23 @@ export default function ServicesPage() {
               <h2 className="text-3xl font-bold text-gray-900">
                 Notre Expertise à Votre Service
               </h2>
-              <p className="text-lg text-gray-700">
-                Nous sommes une société spécialisée en oxygénothérapie, offrant des solutions
-                médicales pour les patients nécessitant une assistance respiratoire. Nous
-                proposons un service à domicile personnalisé pour garantir le confort et le bien-etre
-                de nos patients.
-              </p>
+              <div className="container mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  <span className="font-bold">Bienvenue chez Elite Médicale Services</span>, votre partenaire de confiance en oxygénothérapie, ventilation et services à domicile.
+                  Depuis notre fondation en <span className="italic font-semibold">2018</span>
+                </p>
+
+                <p className="text-lg text-gray-700 leading-relaxed mt-4">
+                  Spécialisés dans l'<span className="font-semibold text-gray-700">assistance respiratoire à domicile</span>, nous offrons des services de vente et de location, garantissant que nos patients disposent des dispositifs les mieux adaptés.
+                  Nous sommes <span className="underline">conventionnés avec la Caisse Nationale d'Assurance Maladie (CNAM)</span> et les assurances maladies pour faciliter l’accès aux soins pour tous.
+                </p>
+
+                <p className="text-lg text-gray-700 leading-relaxed mt-4">
+                  Notre équipe dévouée et professionnelle s’engage à fournir une assistance rapide, sécurisée et chaleureuse , assurant un service humain, professionnel et de qualité, conçu pour accompagner votre santé au quotidien, ainsi que le bien-être et la tranquillité d’esprit pour chaque patient et sa famille.
+                </p>
+              </div>
+
+
               <div className="bg-blue-50 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold text-blue-800 mb-4">
                   Zones de Couverture
@@ -105,13 +116,13 @@ export default function ServicesPage() {
               Besoin d&apos;Assistance ?
             </h2>
             <p className="text-lg text-gray-600">
-              Notre équipe est disponible 24/7 pour repondre à vos besoins
+              Notre équipe est disponible 24/7 pour répondre à vos besoins.
             </p>
           </div>
           <div className="flex justify-center">
             <div className="flex items-center space-x-4 bg-white px-8 py-4 rounded-full shadow-md">
               <Phone className="h-6 w-6 text-blue-600" />
-              <span className="text-xl font-semibold text-gray-900">+216 55 850 000</span>
+              <span className="text-xl font-semibold text-gray-900">+216 55 820 000</span>
             </div>
           </div>
         </div>

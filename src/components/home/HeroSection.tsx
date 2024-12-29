@@ -9,7 +9,7 @@ const heroProducts = [
     id: 1,
     title: "Machine CPAP Pro",
     description: "Solution avancée pour l'apnée du sommeil avec technologie intelligente",
-    image: "https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?q=80&w=1200",
+    image: "/hero section/Capture d'écran 2024-12-28 160625.png", // Fixed image path
     link: "/produits/cpap-pro",
     highlight: "Nouveau",
   },
@@ -17,7 +17,7 @@ const heroProducts = [
     id: 2,
     title: "Concentrateur d'Oxygène Premium",
     description: "Oxygénothérapie de haute performance pour un confort optimal",
-    image: "https://images.unsplash.com/photo-1584362917165-526a968579e8?q=80&w=1200",
+    image: "/hero section/Capture d'écran 2024-12-28 160713.png", // Fixed image path
     link: "/produits/concentrateur-oxygene",
     highlight: "Populaire",
   },
@@ -25,26 +25,10 @@ const heroProducts = [
     id: 3,
     title: "Masque Nasal Confort+",
     description: "Masque ergonomique avec coussin en silicone pour un ajustement parfait",
-    image: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?q=80&w=1200",
+    image: "/hero section/photo1.png", // Fixed image path
     link: "/produits/masque-nasal",
     highlight: "Meilleure vente",
   },
-  {
-    id: 4,
-    title: "Solution Anti-Ronflement Avancée",
-    description: "Technologie innovante pour des nuits paisibles et silencieuses",
-    image: "https://images.unsplash.com/photo-1633613286991-611fe299c4be?q=80&w=1200",
-    link: "/produits/anti-ronflement",
-    highlight: "Promotion",
-  },
-  {
-    id: 5,
-    title: "Kit Complet Thérapie Respiratoire",
-    description: "Ensemble complet pour une thérapie respiratoire optimale",
-    image: "https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?q=80&w=1200",
-    link: "/produits/kit-therapie",
-    highlight: "Pack complet",
-  }
 ];
 
 export default function HeroSection() {
@@ -93,7 +77,6 @@ export default function HeroSection() {
               />
             </div>
           </div>
-
         </div>
       ))}
       {/* Content and other elements remain unchanged */}

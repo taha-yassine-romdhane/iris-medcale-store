@@ -85,6 +85,12 @@ export default function CategoryNavbar() {
           >
             Accueil
           </Link>
+          <Link 
+            href="/apne-du-sommeil"
+            className="px-1 h-full flex items-center text-gray-700 hover:text-blue-600 font-bold transition-colors border-r border-gray-200"
+          >
+            Apnée du sommeil
+          </Link>
 
           {/* Categories */}
           <div className="flex overflow-x-auto hide-scrollbar">

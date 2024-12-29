@@ -27,7 +27,7 @@ interface Product {
   type: string;
   description: string;
   price: number;
-  features: string;
+  features: string[];
   category: string;
   subCategory?: string;
   media: Media[];
@@ -126,7 +126,14 @@ export default function ProductPage() {
     );
   }
 
-  const features = JSON.parse(product.features);
+  const features =  (Array.isArray(product.features) ? product.features : 
+    typeof product.features === 'string' ? JSON.parse(product.features) : 
+    []).slice(0, 3).map((feature: string, index: number) => (
+      <>
+      <span className="text-blue-500 mr-2"></span>
+      {feature}
+      </>
+  ));
 
   return (
     <div className="min-h-screen bg-gray-50 pt-32">

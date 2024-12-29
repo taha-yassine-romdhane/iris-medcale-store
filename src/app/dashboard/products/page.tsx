@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { PlusCircle, Edit, Trash, Search, Eye, ChevronLeft, ChevronRight } from 'lucide-react';
+import { PlusCircle, Edit, Trash, Search, Eye, ChevronLeft, ChevronRight, Home } from 'lucide-react';
 import ViewProductModal from '@/components/products/ViewProductModal';
 import EditProductModal from '@/components/products/EditProductModal';
 import DeleteProductModal from '@/components/products/DeleteProductModal';
@@ -30,10 +30,10 @@ export default function ProductsPage() {
           ...(category && { category }),
           ...(type && { type })
         });
-        
+
         const response = await fetch(`/api/products?${queryParams}`);
         if (!response.ok) throw new Error('Failed to fetch products');
-        
+
         const data = await response.json();
         // Ensure price is converted to number
         const formattedData = Array.isArray(data) ? data.map(product => ({
@@ -53,7 +53,7 @@ export default function ProductsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
-  const filteredProducts = products.filter(product => 
+  const filteredProducts = products.filter(product =>
     product.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
     product.brand?.toLowerCase().includes(searchQuery.toLowerCase()) ||
     product.type?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -83,19 +83,32 @@ export default function ProductsPage() {
   return (
     <div className="p-10 flex flex-col h-full bg-gray-100">
       <div className="p-10">
-        <div className="p-6 flex justify-between items-center mb-6">
+        <div className="p-10 flex flex-col md:flex-row justify-between items-start md:items-center mb-6 space-y-4 md:space-y-0">
+          {/* Left Section */}
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Produits</h1>
             <p className="text-gray-500">Gérez vos produits</p>
           </div>
-          <button 
-            onClick={() => setIsAddModalOpen(true)}
-            className="flex items-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
-          >
-            <PlusCircle className="mr-2" />
-            Ajouter un produit
-          </button>
+
+          {/* Right Section */}
+          <div className="flex space-x-4">
+            <a
+              href="/dashboard"
+              className="flex items-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+            >
+              <Home className="mr-2" />
+              Accueil
+            </a>
+            <button
+              onClick={() => setIsAddModalOpen(true)}
+              className="flex items-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+            >
+              <PlusCircle className="mr-2" />
+              Ajouter un produit
+            </button>
+          </div>
         </div>
+
 
         <div className="relative mb-6">
           <input
@@ -141,8 +154,8 @@ export default function ProductsPage() {
                   <tr key={product.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap">
                       {product.media && product.media[0] ? (
-                        <Image 
-                          src={product.media[0].url} 
+                        <Image
+                          src={product.media[0].url}
                           alt={product.media[0].alt || product.name}
                           width={64}
                           height={64}
@@ -160,15 +173,14 @@ export default function ProductsPage() {
                     <td className="px-6 py-4 whitespace-nowrap">TND {Number(product.price).toFixed(2)}</td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
-                        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                          product.inStock ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                        }`}
+                        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${product.inStock ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                          }`}
                       >
                         {product.inStock ? 'En stock' : 'En rupture'}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <button 
+                      <button
                         className="text-blue-600 hover:text-blue-900 mr-2"
                         onClick={() => {
                           setSelectedProduct(product);
@@ -177,7 +189,7 @@ export default function ProductsPage() {
                       >
                         <Eye size={18} />
                       </button>
-                      <button 
+                      <button
                         className="text-gray-600 hover:text-gray-900 mr-2"
                         onClick={() => {
                           setSelectedProduct(product);
@@ -186,7 +198,7 @@ export default function ProductsPage() {
                       >
                         <Edit size={18} />
                       </button>
-                      <button 
+                      <button
                         className="text-red-600 hover:text-red-900"
                         onClick={() => {
                           setSelectedProduct(product);
@@ -230,21 +242,21 @@ export default function ProductsPage() {
         closeModal={() => setIsViewModalOpen(false)}
         product={selectedProduct}
       />
-      
+
       <EditProductModal
         isOpen={isEditModalOpen}
         closeModal={() => setIsEditModalOpen(false)}
         product={selectedProduct}
         onUpdate={handleUpdateProduct}
       />
-      
+
       <DeleteProductModal
         isOpen={isDeleteModalOpen}
         closeModal={() => setIsDeleteModalOpen(false)}
         product={selectedProduct}
         onDelete={handleDeleteProduct}
       />
-      
+
       <AddProductModal
         isOpen={isAddModalOpen}
         closeModal={() => setIsAddModalOpen(false)}

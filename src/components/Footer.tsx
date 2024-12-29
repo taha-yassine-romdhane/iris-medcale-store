@@ -80,11 +80,11 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center text-blue-100">
                 <Mail className="mr-3 text-red-500" size={20} />
-                info@OmedicaleStore.com
+                eliteMedicaleServices@Gmail.com
               </li>
               <li className="flex items-center text-blue-100">
                 <Phone className="mr-3 text-red-500" size={20} />
-                (+216) 95 458 811
+                (+216) 55 820 000
               </li>
               <li className="flex items-center text-blue-100">
                 <MapPin className="mr-3 text-red-500" size={20} />
@@ -95,7 +95,7 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h3 className="text-xl font-bold text-white mb-4 border-b-2 border-red-500 pb-2">
+            <h3 className="text-xl font-bold text-white mb-4 border-b-2 border-red-600 pb-2">
               Newsletter
             </h3>
             <form className="space-y-4">
@@ -116,7 +116,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-blue-800 mt-12 pt-8 text-center">
+        <div className="border-t border-blue-500 mt-12 pt-8 text-center">
           <p className="text-blue-200">
             &copy; 2024 Elite Medicale Service. Tous droits r&#233;serv&#233;s.
           </p>

@@ -17,22 +17,15 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
+    <div className="min-h-screen flex flex-col md:flex-row mt-[50px]">
       {/* Left side - Decorative */}
-      <div className="hidden md:flex md:w-1/2 bg-blue-600 text-white p-12 flex-col justify-between">
+      <div className="hidden md:flex md:w-1/2 bg-blue-600 text-white p-12 flex-col justify-between relative">
         <div>
-          <Image
-            src="/logo.png"
-            alt="Elite Medicale Service Logo"
-            width={180}
-            height={60}
-            className="object-contain mb-12"
-          />
-          <h1 className="text-4xl font-bold mb-6">
-            Espace Employés Elite Medicale Service
+          <h1 className="py-10 text-4xl font-bold mb-6">
+            Espace Client Elite Medicale Service
           </h1>
           <p className="text-xl text-blue-100 mb-8">
-            Accédez à votre espace de travail sécurisé pour gérer les commandes, les stocks et le service client.
+            Connectez-vous pour accéder à vos informations et services personnalisés.
           </p>
         </div>
         <div className="space-y-4">
@@ -63,10 +56,10 @@ export default function LoginPage() {
 
           <div className="text-center">
             <h2 className="text-3xl font-extrabold text-gray-900 mb-2">
-              Connexion Employés
+              Connexion Client
             </h2>
             <p className="text-gray-600 text-sm">
-              Veuillez vous connecter avec vos identifiants professionnels
+              Veuillez vous connecter avec vos identifiants personnels
             </p>
           </div>
 
@@ -81,7 +74,7 @@ export default function LoginPage() {
             <div className="space-y-4">
               <div>
                 <label htmlFor="email-address" className="block text-sm font-medium text-gray-700 mb-1">
-                  Email professionnel
+                  Email
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -94,7 +87,7 @@ export default function LoginPage() {
                     autoComplete="email"
                     required
                     className="pl-10 appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="nom@elitemedicale.com"
+                    placeholder="votre_email@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -124,49 +117,20 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                  Rester connecté
-                </label>
-              </div>
-
-              <div className="text-sm">
-                <Link href="/forgot-password" className="font-medium text-blue-600 hover:text-blue-500">
-                  Mot de passe oublié?
-                </Link>
-              </div>
-            </div>
-
             <div>
               <button
                 type="submit"
-                disabled={loading}
-                className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200 ${loading ? 'opacity-75 cursor-not-allowed' : ''
-                  }`}
+                className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition"
               >
-                <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                  <Lock className="h-5 w-5 text-blue-500 group-hover:text-blue-400" />
-                </span>
-                {loading ? "Connexion en cours..." : "Se connecter"}
+                Se connecter
               </button>
             </div>
+            <div className="text-sm text-center">
+              <Link href="/forgot-password" className="text-blue-600 hover:underline">
+                Mot de passe oublié ?
+              </Link>
+            </div>
           </form>
-
-          <div className="text-center text-sm text-gray-600">
-            <p>
-              Besoin d&apos;aide? Contactez le{' '}
-              <a href="mailto:support@elitemedicale.com" className="font-medium text-blue-600 hover:text-blue-500">
-                support technique
-              </a>
-            </p>
-          </div>
         </div>
       </div>
     </div>

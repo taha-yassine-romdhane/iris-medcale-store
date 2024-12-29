@@ -7,25 +7,25 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Téléphone",
-    content: "+216 95 458 811",
+    content: "+216 55 820 000",
     detail: "Disponible 24/7"
   },
   {
     icon: Mail,
     title: "Email",
-    content: "contact@elitemedical.tn",
+    content: "eliteMedicaleServices@Gmail.com",
     detail: "Réponse sous 24h"
   },
   {
     icon: MapPin,
     title: "Adresse",
-    content: "Rue prése de rampoin mosque lyceé, M'saken, Sousse",
+    content: "11 Rue tayeb el hedi 4070 M'Saken Sousse ",
     detail: "Bureaux principaux"
   },
   {
     icon: Clock,
     title: "Heures d'ouverture",
-    content: "Lun - Ven: 8h - 18h",
+    content: "Lun - Ven: 9h - 17h",
     detail: "Service d'urgence 24/7"
   }
 ];
@@ -73,25 +73,26 @@ export default function ContactPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-8">
               Informations de Contact
             </h2>
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="flex flex-wrap gap-6">
               {contactInfo.map((info, index) => (
                 <div
                   key={index}
-                  className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                  className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow flex-1 min-w-[500px] max-w-[300px]"
                 >
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-blue-100 p-3 rounded-full">
-                      <info.icon className="h-6 w-6 text-blue-600" />
+                  <div className="flex items-start space-x-6">
+                    <div className="bg-blue-100 p-4 rounded-full">
+                      <info.icon className="h-8 w-8 text-blue-600" />
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900">{info.title}</h3>
-                      <p className="text-blue-600 mt-1">{info.content}</p>
-                      <p className="text-sm text-gray-500 mt-1">{info.detail}</p>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-gray-900 text-lg">{info.title}</h3>
+                      <p className="text-blue-600 mt-2 break-all">{info.content}</p>
+                      <p className="text-sm text-gray-500 mt-2">{info.detail}</p>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
+
           </div>
 
           {/* Contact Form */}

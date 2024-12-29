@@ -25,12 +25,12 @@ const values = [
 ];
 
 const keyPoints = [
-  "Installation et maintenance d'équipements à domicile",
+  "Installation et maintenance d'équipements médicaux à domicile",
   "Service d'assistance technique 24/7",
   "Couverture des régions de Sousse, Monastir, Mahdia, Cap Bon et Grand Tunis",
   "Équipe technique hautement qualifiée",
   "Suivi régulier des patients",
-  "Solutions d'oxygénothérapie sur mesure"
+  "Solutions d'oxygénothérapie et ventilation"
 ];
 
 export default function AboutPage() {

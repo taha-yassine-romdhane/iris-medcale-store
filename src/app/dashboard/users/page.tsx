@@ -1,6 +1,6 @@
 'use client';
 
-import { Users as UsersIcon, Plus, Search, Eye, Edit, Trash2 } from 'lucide-react';
+import { Users as UsersIcon, Plus, Search, Eye, Edit, Trash2, Home } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { User } from '@/types/user';
 import AddUserModal from './../../../components/users/AddUserModal';
@@ -17,7 +17,7 @@ export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-  
+
   // Modal states
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -47,7 +47,7 @@ export default function UsersPage() {
   }, []);
 
   // Filter users based on search
-  const filteredUsers = users.filter(user => 
+  const filteredUsers = users.filter(user =>
     user.nom.toLowerCase().includes(searchQuery.toLowerCase()) ||
     user.prenom.toLowerCase().includes(searchQuery.toLowerCase()) ||
     user.email.toLowerCase().includes(searchQuery.toLowerCase())
@@ -87,19 +87,31 @@ export default function UsersPage() {
   };
 
   return (
-    <div className="py-10">
-      <div className="py-10  justify-between items-center mb-6">
-        <div>
-          <h1 className="py-5 text-2xl font-bold text-gray-900">Utilisateurs</h1>
+    <div className="py-10 container mx-auto">
+      <div className="py-10 flex flex-col md:flex-row justify-between items-start md:items-center mb-6 space-y-4 md:space-y-0">
+        {/* Left Section */}
+        <div className="py-14">
+          <h1 className="text-2xl font-bold text-gray-900">Utilisateurs</h1>
           <p className="text-gray-500">Gérez vos utilisateurs</p>
         </div>
-        <Button 
-          onClick={() => setIsAddModalOpen(true)}
-          className="bg-blue-600 hover:bg-blue-700 flex items-center"
-        >
-          <Plus size={20} className="mr-2" />
-          Ajouter un utilisateur
-        </Button>
+
+        {/* Right Section */}
+        <div className="flex space-x-4">
+          <a
+            href="/dashboard"
+            className="flex items-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+          >
+            <Home className="mr-2" />
+            Accueil
+          </a>
+          <button
+            onClick={() => setIsAddModalOpen(true)}
+            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 flex items-center"
+          >
+            <Plus size={20} className="mr-2" />
+            Ajouter un utilisateur
+          </button>
+        </div>
       </div>
 
       <div className="relative mb-6">
@@ -144,19 +156,6 @@ export default function UsersPage() {
                 <tr key={user.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
-                      <div className="h-10 w-10 flex-shrink-0">
-                        {user.photo ? (
-                          <img
-                            src={user.photo}
-                            alt={`${user.prenom} ${user.nom}`}
-                            className="h-10 w-10 rounded-full"
-                          />
-                        ) : (
-                          <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center">
-                            <UsersIcon className="h-5 w-5 text-gray-500" />
-                          </div>
-                        )}
-                      </div>
                       <div className="ml-4">
                         <div className="text-sm font-medium text-gray-900">
                           {user.prenom} {user.nom}
@@ -174,11 +173,10 @@ export default function UsersPage() {
                     {user.role === 'ADMIN' ? 'Admin' : 'Employé'}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                      user.actif 
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-red-100 text-red-800'
-                    }`}>
+                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${user.actif
+                      ? 'bg-green-100 text-green-800'
+                      : 'bg-red-100 text-red-800'
+                      }`}>
                       {user.actif ? 'Actif' : 'Inactif'}
                     </span>
                   </td>

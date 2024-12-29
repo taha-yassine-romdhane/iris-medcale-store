@@ -10,15 +10,13 @@ export async function GET() {
         brand: {
           equals: 'Yuwell',
           mode: 'insensitive'
-        },
-          category: {
-            equals: 'cpap',
-            mode: 'insensitive'
-          },
+        }
       },
+      include: {
+        media: true
+      }
     });
 
-    
     console.log('Raw products from database:', products);
 
     if (!products) {
@@ -30,60 +28,18 @@ export async function GET() {
     const safeProducts = products.map(product => ({
       id: product.id,
       name: product.name,
-      brand: product.brand,
-      type: product.type,
       description: product.description,
-      price: product.price.toString(),
-      features: product.features,
+      brand: product.brand,
       category: product.category,
+      price: product.price,
+      media: product.media
     }));
 
-    console.log('Serialized products:', safeProducts);
-
-    // Get media for these products
-    const productsWithMedia = await Promise.all(
-      safeProducts.map(async (product) => {
-        const media = await prisma.media.findMany({
-          where: { productId: product.id },
-          orderBy: { order: 'asc' },
-          select: {
-            id: true,
-            url: true,
-            type: true,
-            alt: true,
-            order: true,
-          },
-        });
-
-        return {
-          ...product,
-          media,
-        };
-      })
-    );
-
-    console.log('Final response:', productsWithMedia);
-
-    return new NextResponse(JSON.stringify(productsWithMedia), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    console.log('Returning products:', safeProducts);
+    return NextResponse.json(safeProducts);
 
   } catch (error) {
-    console.error('Detailed error:', error);
-    
-    const errorResponse = {
-      error: 'Failed to fetch Yuwell products',
-      details: error instanceof Error ? error.message : 'Unknown error',
-    };
-
-    return new NextResponse(JSON.stringify(errorResponse), {
-      status: 500,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    console.error('Error fetching products:', error);
+    return NextResponse.json({ error: 'Failed to fetch products' }, { status: 500 });
   }
 }

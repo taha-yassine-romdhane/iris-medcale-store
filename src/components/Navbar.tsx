@@ -1,11 +1,12 @@
 'use client';
 
 import Link from "next/link";
-import { Menu, X, ShoppingCart, Heart, Search, User } from 'lucide-react';
+import { ShoppingCart, Menu, X, User, Heart } from "lucide-react";
 import { useState } from "react";
 import { Flags } from "./ui/flags";
 import CategoryNavbar from './CategoryNavbar';
 import Image from 'next/image';
+import SearchBar from "./SearchBar";
 
 const languages = [
   { code: 'fr', name: 'Français', flag: Flags.fr },
@@ -21,7 +22,7 @@ const Navbar = () => {
   return (
     <div>
       <nav className="fixed top-0 left-0 right-0 bg-white z-50 shadow">
-        <div className="max-w-7xl mx-auto px-5">
+        <div className="max-w-[1536px] mx-auto px-5">
           <div className="flex justify-between items-center h-16">
             {/* Left Section */}
             <div className="flex items-center space-x-4">
@@ -37,30 +38,25 @@ const Navbar = () => {
               </Link>
             </div>
 
-            {/* Center Section (Search Bar) */}
-            <div className="flex-grow hidden md:flex justify-center items-center px-4 py-4">
-              <div className="relative w-full max-w-md">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Rechercher..."
-                  className="w-full pl-12 pr-4 py-3 text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-md"
-                />
-              </div>
+            {/* Center Section - Search */}
+            <div className="flex-1 max-w-xl mx-4 hidden md:block">
+              <SearchBar />
             </div>
-
 
             {/* Right Section */}
 
             <div className="hidden md:flex items-center space-x-8">
               <Link href="/services" className="text-gray-700 hover:text-blue-600 text-lg font-bold tracking-wide">
-                Services
+                Nos Services
               </Link>
               <Link href="/a-propos" className="text-gray-700 hover:text-blue-600 text-lg font-bold tracking-wide">
                 À Propos
               </Link>
               <Link href="/contact" className="text-gray-700 hover:text-blue-600 text-lg font-bold tracking-wide">
                 Contact
+              </Link>
+              <Link href="/appointment" className="text-gray-700 hover:text-blue-600 text-lg font-bold tracking-wide">
+                Prenez RDV
               </Link>
 
 
@@ -104,7 +100,7 @@ const Navbar = () => {
               </button>
               <Link href="/login" className="text-gray-700 hover:text-blue-600 flex font-bold items-center gap-2">
                 <User className="h-6 w-6" />
-                <span className="text-sm">Espace Employé</span>
+                <span className="text-sm"></span>
               </Link>
             </div>
 
@@ -121,9 +117,10 @@ const Navbar = () => {
           {isOpen && (
             <div className="md:hidden py-4">
               <div className="flex flex-col space-y-4">
-                <Link href="/services" className="block py-2 text-gray-700 hover:text-blue-600">Services</Link>
+                <Link href="/services" className="block py-2 text-gray-700 hover:text-blue-600">Nos Services</Link>
                 <Link href="/a-propos" className="block py-2 text-gray-700 hover:text-blue-600">À Propos</Link>
                 <Link href="/contact" className="block py-2 text-gray-700 hover:text-blue-600">Contact</Link>
+                <Link href="/appointment" className="block py-2 text-gray-700 hover:text-blue-600">Prenez RDV</Link>
                 <div className="border-t pt-4">
                   <p className="text-sm text-gray-500 mb-2">Changer la langue</p>
                   {languages.map((lang) => (
