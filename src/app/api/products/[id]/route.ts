@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import * as ProductService from '@/lib/services/products';
 import prisma from '@/lib/prisma';
-
-
+import { Media } from '@/types/product'; 
 
 export async function GET(
   request: Request,
@@ -34,7 +33,7 @@ export async function PUT(
   const id = await params.id;
   try {
     const data = await req.json();
-    
+
     // Ensure features is properly formatted for JSON storage
     let features = data.features;
     if (typeof features === 'string') {
@@ -64,18 +63,18 @@ export async function PUT(
         inStock: data.inStock,
         media: data.media ? {
           deleteMany: {},
-          create: data.media.map((m: any) => ({
+          create: data.media.map((m: Media) => ({
             url: m.url,
             type: m.type,
             alt: m.alt,
-            order: m.order
-          }))
-        } : undefined
+            order: m.order,
+          })),
+        } : undefined,
       },
       include: {
         media: true,
-        reviews: true
-      }
+        reviews: true,
+      },
     });
 
     return NextResponse.json(product);
@@ -94,15 +93,15 @@ export async function PATCH(
 ) {
   try {
     const data = await request.json();
-    const {...updateData } = data;
+    const { ...updateData } = data;
     const product = await prisma.product.update({
       where: {
         id: params.id,
       },
       data: updateData,
       include: {
-        media: true
-      }
+        media: true,
+      },
     });
 
     return NextResponse.json(product);

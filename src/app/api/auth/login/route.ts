@@ -50,7 +50,7 @@ export async function POST(request: Request) {
 
     // Try to verify the token immediately to ensure it works
     try {
-      const decoded = verifyToken(token);
+      verifyToken(token); // Verify the token without assigning it to a variable
       console.log('Token verified successfully in login route');
     } catch (verifyError) {
       console.error('Token verification failed in login route:', verifyError);
@@ -61,10 +61,10 @@ export async function POST(request: Request) {
     }
 
     // Retourner le token et les informations de l'utilisateur
-    const { motDePasse, ...userWithoutPassword } = utilisateur;
+    const { motDePasse: _, ...userWithoutPassword } = utilisateur; // Remove unused variable
     const response = NextResponse.json({
       user: userWithoutPassword,
-      token
+      token,
     });
 
     // Set cookies

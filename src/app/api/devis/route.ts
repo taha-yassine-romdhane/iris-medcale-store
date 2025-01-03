@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { verifyToken } from '@/lib/jwt';
+import { CartItem } from '@/types/cart'; // Import the CartItem type
 
 export async function POST(req: NextRequest) {
   try {
@@ -57,20 +58,20 @@ export async function POST(req: NextRequest) {
         utilisateurId: decoded.id,
         total: 0,
         items: {
-          create: items.map((item: any) => ({
+          create: items.map((item: CartItem) => ({
             quantity: item.quantity,
             productId: item.id,
-            price: 0
-          }))
-        }
+            price: item.price, // Use the price from the CartItem
+          })),
+        },
       },
       include: {
         items: {
           include: {
-            product: true
-          }
-        }
-      }
+            product: true,
+          },
+        },
+      },
     });
 
     return NextResponse.json(order);

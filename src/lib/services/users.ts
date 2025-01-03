@@ -9,6 +9,9 @@ type UserUpdateInput = {
   role?: 'ADMIN' | 'EMPLOYE';
   actif?: boolean;
   telephone?: string;
+  adresse?: string;
+  ville?: string;
+  codePostal?: string;
   photo?: string;
 };
 

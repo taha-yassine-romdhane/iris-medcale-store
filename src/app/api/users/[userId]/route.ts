@@ -26,7 +26,7 @@ export async function PATCH(
     const data = await request.json();
 
     // Check if user exists
-    const existingUser = await prisma.user.findUnique({
+    const existingUser = await prisma.utilisateur.findUnique({
       where: { id }
     });
 
@@ -38,23 +38,23 @@ export async function PATCH(
     }
 
     // Prepare update data
-    let updateData = { ...data };
+    const updateData = { ...data }; // Use const instead of let
     if (data.motDePasse) {
       updateData.motDePasse = await hash(data.motDePasse, 10);
     }
 
     // Update user
-    const updatedUser = await prisma.user.update({
+    const updatedUser = await prisma.utilisateur.update({
       where: { id },
       data: updateData,
     });
 
-    const { motDePasse: _, ...userWithoutPassword } = updatedUser;
+    const { motDePasse: _, ...userWithoutPassword } = updatedUser; // eslint-disable-line @typescript-eslint/no-unused-vars
     return NextResponse.json(userWithoutPassword);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error updating user:', error);
-    
-    if (error.code === 'P2025') {
+
+    if (error instanceof Error && 'code' in error && error.code === 'P2025') {
       return NextResponse.json(
         { error: 'User not found' },
         { status: 404 }
@@ -62,7 +62,7 @@ export async function PATCH(
     }
 
     return NextResponse.json(
-      { error: error?.message || 'Failed to update user' },
+      { error: error instanceof Error ? error.message : 'Failed to update user' },
       { status: 500 }
     );
   }
@@ -90,7 +90,7 @@ export async function DELETE(
 
   try {
     // Check if user exists
-    const existingUser = await prisma.user.findUnique({
+    const existingUser = await prisma.utilisateur.findUnique({
       where: { id }
     });
 
@@ -101,15 +101,15 @@ export async function DELETE(
       );
     }
 
-    await prisma.user.delete({
+    await prisma.utilisateur.delete({
       where: { id },
     });
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error deleting user:', error);
-    
-    if (error.code === 'P2025') {
+
+    if (error instanceof Error && 'code' in error && error.code === 'P2025') {
       return NextResponse.json(
         { error: 'User not found' },
         { status: 404 }

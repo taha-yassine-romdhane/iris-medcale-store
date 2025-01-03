@@ -73,7 +73,7 @@ export async function POST(request: Request) {
     });
 
     // Remove password from response
-    const { motDePasse: _, ...userWithoutPassword } = user;
+    const { motDePasse: _, ...userWithoutPassword } = user; // `_` is intentionally unused
 
     return NextResponse.json({
       user: userWithoutPassword,

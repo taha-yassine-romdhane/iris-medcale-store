@@ -53,8 +53,9 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(orders);
   } catch (error) {
     console.error('Error fetching user orders:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Une erreur est survenue lors de la récupération des commandes';
     return NextResponse.json(
-      { error: 'Une erreur est survenue lors de la récupération des commandes' },
+      { error: errorMessage },
       { status: 500 }
     );
   }
