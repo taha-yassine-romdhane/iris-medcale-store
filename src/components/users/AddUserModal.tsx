@@ -1,180 +1,151 @@
 import { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/components/ui/use-toast";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface AddUserModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSuccess: () => void;
+  onSubmit: (userData: any) => void;
 }
 
-interface UserFormData {
-  email: string;
-  motDePasse: string;
-  nom: string;
-  prenom: string;
-  role: 'ADMIN' | 'EMPLOYE';
-  telephone?: string;
-}
+export default function AddUserModal({ isOpen, onClose, onSubmit }: AddUserModalProps) {
+  const [formData, setFormData] = useState({
+    email: '',
+    motDePasse: '',
+    nom: '',
+    prenom: '',
+    role: 'CLIENT',
+    telephone: '',
+  });
 
-const initialFormData: UserFormData = {
-  email: '',
-  motDePasse: '',
-  nom: '',
-  prenom: '',
-  role: 'EMPLOYE',
-  telephone: ''
-};
-
-export default function AddUserModal({ isOpen, onClose, onSuccess }: AddUserModalProps) {
-  const [formData, setFormData] = useState<UserFormData>(initialFormData);
-  const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
-
-  const resetForm = () => {
-    setFormData(initialFormData);
-  };
-
-  const handleClose = () => {
-    resetForm();
-    onClose();
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
+    onSubmit(formData);
+  };
 
-    try {
-      const response = await fetch('/api/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
-      if (!response.ok) {
-        throw new Error('Failed to create user');
-      }
-
-      toast({
-        title: "Succès",
-        description: "L'utilisateur a été créé avec succès",
-      });
-      
-      onSuccess();
-      handleClose();
-    } catch {
-      toast({
-        title: "Erreur",
-        description: "Impossible de créer l'utilisateur",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
+  const handleRoleChange = (value: string) => {
+    setFormData(prev => ({ ...prev, role: value }));
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[425px] bg-white p-6 rounded-md shadow-md">
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold">Ajouter un utilisateur</DialogTitle>
+          <DialogTitle className="text-xl font-semibold text-gray-800">Ajouter un utilisateur</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="prenom">Prénom</Label>
+              <Input
+                id="prenom"
+                name="prenom"
+                value={formData.prenom}
+                onChange={handleChange}
+                required
+                className="border-gray-300"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="nom">Nom</Label>
+              <Input
+                id="nom"
+                name="nom"
+                value={formData.nom}
+                onChange={handleChange}
+                required
+                className="border-gray-300"
+              />
+            </div>
+          </div>
+          
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
+              name="email"
               type="email"
-              required
-              placeholder="email@exemple.com"
               value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="password">Mot de passe</Label>
-            <Input
-              id="password"
-              type="password"
+              onChange={handleChange}
               required
-              placeholder="••••••••"
-              value={formData.motDePasse}
-              onChange={(e) => setFormData({ ...formData, motDePasse: e.target.value })}
+              className="border-gray-300"
             />
           </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="firstName">Prénom</Label>
-              <Input
-                id="firstName"
-                required
-                placeholder="Jean"
-                value={formData.prenom}
-                onChange={(e) => setFormData({ ...formData, prenom: e.target.value })}
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="lastName">Nom</Label>
-              <Input
-                id="lastName"
-                required
-                placeholder="Dupont"
-                value={formData.nom}
-                onChange={(e) => setFormData({ ...formData, nom: e.target.value })}
-              />
-            </div>
-          </div>
-
+          
           <div className="space-y-2">
-            <Label htmlFor="phone">Téléphone</Label>
+            <Label htmlFor="motDePasse">Mot de passe</Label>
             <Input
-              id="phone"
-              type="tel"
-              placeholder="+33 6 12 34 56 78"
-              value={formData.telephone}
-              onChange={(e) => setFormData({ ...formData, telephone: e.target.value })}
+              id="motDePasse"
+              name="motDePasse"
+              type="password"
+              value={formData.motDePasse}
+              onChange={handleChange}
+              required
+              className="border-gray-300"
             />
           </div>
-
+          
+          <div className="space-y-2">
+            <Label htmlFor="telephone">Téléphone</Label>
+            <Input
+              id="telephone"
+              name="telephone"
+              type="tel"
+              value={formData.telephone}
+              onChange={handleChange}
+              className="border-gray-300"
+            />
+          </div>
+          
           <div className="space-y-2">
             <Label htmlFor="role">Rôle</Label>
             <Select
               value={formData.role}
-              onValueChange={(value: 'ADMIN' | 'EMPLOYE') => 
-                setFormData({ ...formData, role: value })
-              }
+              onValueChange={handleRoleChange}
             >
-              <SelectTrigger>
-                <SelectValue placeholder="Sélectionner un rôle" />
+              <SelectTrigger className="border-gray-300">
+                <SelectValue placeholder="Sélectionnez un rôle" />
               </SelectTrigger>
               <SelectContent>
+                <SelectItem value="CLIENT">Client</SelectItem>
                 <SelectItem value="EMPLOYE">Employé</SelectItem>
                 <SelectItem value="ADMIN">Administrateur</SelectItem>
               </SelectContent>
             </Select>
           </div>
-
+          
           <div className="flex justify-end space-x-2 pt-4">
-            <Button
+            <button
               type="button"
-              variant="outline"
-              onClick={handleClose}
-              disabled={isLoading}
+              onClick={onClose}
+              className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
             >
               Annuler
-            </Button>
-            <Button type="submit" disabled={isLoading}>
-              {isLoading ? 'Création...' : 'Créer l\'utilisateur'}
-            </Button>
+            </button>
+            <button
+              type="submit"
+              className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
+            >
+              Ajouter
+            </button>
           </div>
         </form>
       </DialogContent>

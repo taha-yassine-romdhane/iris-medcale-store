@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useCart } from '@/hooks/useCart';
 
 interface Media {
   id: string;
@@ -33,6 +34,7 @@ export default function CPAPAccessoiresPage() {
   const [loading, setLoading] = useState(true);
   const [selectedMedia, setSelectedMedia] = useState<{ [key: string]: number }>({});
   const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(null);
+  const { addToCart } = useCart();
 
   const subCategories = [
     { id: 'FILTRE', name: 'Filtres' },
@@ -66,6 +68,11 @@ export default function CPAPAccessoiresPage() {
 
     fetchProducts();
   }, []);
+
+  const handleAddToCart = (e: React.MouseEvent, product: Product) => {
+    e.preventDefault();
+    addToCart(product);
+  };
 
   const filteredProducts = selectedSubCategory
     ? products.filter(product => product.subCategory === selectedSubCategory)
@@ -209,7 +216,7 @@ export default function CPAPAccessoiresPage() {
 
                 <button 
                   className="w-full mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200"
-                  onClick={() => {/* Add to cart logic */}}
+                   onClick={(e) => handleAddToCart(e, product)}
                 >
                   Ajouter au panier
                 </button>

@@ -13,6 +13,7 @@ datasource db {
 enum RoleUtilisateur {
   ADMIN
   EMPLOYE
+  CLIENT
 }
 
 model Product {
@@ -30,6 +31,7 @@ model Product {
   inStock     Boolean  @default(true)
   reviews     Review[]
   media       Media[]  // Relation to media files
+  orderItems  CommandeItem[]
 }
 
 model Media {
@@ -70,10 +72,76 @@ model Utilisateur {
   dateMiseAJour DateTime        @updatedAt
   email         String          @unique
   motDePasse    String
-  nom           String
-  prenom        String
-  role          RoleUtilisateur @default(EMPLOYE)
+  nom           String?
+  prenom        String?
+  role          RoleUtilisateur @default(CLIENT)
   actif         Boolean         @default(true)
   telephone     String?
+  adresse       String?
+  ville         String?
+  codePostal    String?
   photo         String?
+  commandes     Commande[]
+  contacts      Contact[]       // New relation
+  appointments  Appointment[]   // New relation
+}
+
+enum StatusCommande {
+  EN_ATTENTE
+  CONFIRMEE
+  EN_COURS
+  LIVREE
+  ANNULEE
+  DEVIS
+}
+
+model Commande {
+  id            String         @id @default(cuid())
+  dateCreation  DateTime       @default(now())
+  dateMiseAJour DateTime       @updatedAt
+  status        StatusCommande @default(EN_ATTENTE)
+  total         Decimal        @db.Decimal(10, 2)
+  utilisateur   Utilisateur    @relation(fields: [utilisateurId], references: [id])
+  utilisateurId String
+  items         CommandeItem[]
+  adresse       String?
+  ville         String?
+  codePostal    String?
+  telephone     String?
+}
+
+model CommandeItem {
+  id         String   @id @default(cuid())
+  quantity   Int
+  price      Decimal  @db.Decimal(10, 2)
+  commande   Commande @relation(fields: [commandeId], references: [id])
+  commandeId String
+  product    Product  @relation(fields: [productId], references: [id])
+  productId  String
+}
+
+// New models for Contact and Appointment
+model Contact {
+  id            String      @id @default(cuid())
+  dateCreation  DateTime    @default(now())
+  message       String      @db.Text
+  utilisateur   Utilisateur @relation(fields: [utilisateurId], references: [id])
+  utilisateurId String
+}
+
+enum StatusRdv {
+  EN_ATTENTE
+  CONFIRME
+  ANNULE
+}
+
+model Appointment {
+  id            String      @id @default(cuid())
+  dateCreation  DateTime    @default(now())
+  dateMiseAJour DateTime    @updatedAt
+  dateRdv       DateTime
+  motif         String      @db.Text
+  status        StatusRdv   @default(EN_ATTENTE)
+  utilisateur   Utilisateur @relation(fields: [utilisateurId], references: [id])
+  utilisateurId String
 }

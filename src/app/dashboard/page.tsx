@@ -5,6 +5,8 @@ import {
   Package,
   Users,
   Settings,
+  MessageSquare,
+  Calendar
 } from 'lucide-react';
 
 export default function DashboardPage() {
@@ -36,6 +38,32 @@ export default function DashboardPage() {
             <div>
               <h2 className="text-lg font-semibold text-gray-800">Gérer les Utilisateurs</h2>
               <p className="text-gray-500">Accédez à la gestion des utilisateurs.</p>
+            </div>
+          </div>
+        </Link>
+
+        {/* Card for Messages */}
+        <Link href="/dashboard/messages" className="flex items-center justify-between p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition">
+          <div className="flex items-center space-x-4">
+            <div className="p-3 rounded-full bg-yellow-100">
+              <MessageSquare className="h-8 w-8 text-yellow-600" />
+            </div>
+            <div>
+              <h2 className="text-lg font-semibold text-gray-800">Messages de Contact</h2>
+              <p className="text-gray-500">Gérez les messages des clients.</p>
+            </div>
+          </div>
+        </Link>
+
+        {/* Card for Appointments */}
+        <Link href="/dashboard/appointments" className="flex items-center justify-between p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition">
+          <div className="flex items-center space-x-4">
+            <div className="p-3 rounded-full bg-purple-100">
+              <Calendar className="h-8 w-8 text-purple-600" />
+            </div>
+            <div>
+              <h2 className="text-lg font-semibold text-gray-800">Rendez-vous</h2>
+              <p className="text-gray-500">Gérez les demandes de rendez-vous.</p>
             </div>
           </div>
         </Link>

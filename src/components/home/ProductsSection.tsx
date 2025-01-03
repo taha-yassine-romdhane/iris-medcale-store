@@ -3,6 +3,8 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useCart } from '@/hooks/useCart';
+import { Loader } from 'lucide-react'; // Import the Loader icon from Lucide React
 
 interface Media {
   id: string;
@@ -17,6 +19,8 @@ interface Product {
   price: number | null;
   brand: string;
   category: string;
+  type?: string;
+  features?: string; // JSON string of features
   media: Media[];
 }
 
@@ -48,15 +52,17 @@ export default function ProductsSection() {
           throw new Error('Failed to fetch products');
         }
         const data = await response.json();
-        
-        // Categorize Yuwell products
+
         const categorizedProducts: CategoryProducts = {
           cpap: data.filter((p: Product) => p.category.toLowerCase() === 'cpap' || p.category.toLowerCase() === 'bipap-vni'),
-          masks: data.filter((p: Product) => p.category.toLowerCase() === 'accessoires' || p.category.toLowerCase().includes('mask')),
+          masks: data.filter((p: Product) =>
+            p.category.toLowerCase() === 'accessoires' &&
+            (p.type?.toLowerCase().includes('masque') ||
+              p.name.toLowerCase().includes('masque'))
+          ),
           oxygen: data.filter((p: Product) => p.category.toLowerCase() === 'oxygen' || p.category.toLowerCase().includes('concentrateur'))
         };
-        
-        console.log('Categorized products:', categorizedProducts);
+
         setProducts(categorizedProducts);
         setLoading(false);
       } catch (err) {
@@ -74,8 +80,8 @@ export default function ProductsSection() {
     if (ref.current) {
       const scrollAmount = 250;
       const currentScroll = ref.current.scrollLeft;
-      const newScroll = direction === 'left' 
-        ? currentScroll - scrollAmount 
+      const newScroll = direction === 'left'
+        ? currentScroll - scrollAmount
         : currentScroll + scrollAmount;
       ref.current.scrollTo({
         left: newScroll,
@@ -84,107 +90,142 @@ export default function ProductsSection() {
     }
   };
 
-  if (loading) {
+  const ProductSlider = ({ title, products, refKey }: { title: string, products: Product[], refKey: keyof CategoryProducts }) => {
+    const { addToCart } = useCart();
+
     return (
-      <section className="py-8">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-center items-center h-48">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <section className="mb-14">
+        <h2 className="text-3xl font-bold text-left p-8 text-blue-800 font-spartan">{title}</h2>      
+        <div className="relative overflow-hidden max-w-full">
+          {/* Scroll Buttons */}
+          <button
+            onClick={() => scroll('left', refKey)}
+            aria-label="Scroll Left"
+            className="absolute left-0 top-0 bottom-0 m-auto h-10 w-10 flex items-center justify-center bg-blue-200 hover:bg-blue-300 text-blue-600 rounded-full shadow-md z-10 transition-all duration-200"
+          >
+            &lt;
+          </button>
+          <button
+            onClick={() => scroll('right', refKey)}
+            aria-label="Scroll Right"
+            className="absolute right-0 top-0 bottom-0 m-auto h-10 w-10 flex items-center justify-center bg-blue-200 hover:bg-blue-300 text-blue-600 rounded-full shadow-md z-10 transition-all duration-200"
+          >
+            &gt;
+          </button>
+
+          {/* Products */}
+          <div ref={scrollRefs[refKey]} className="flex space-x-6 overflow-x-auto px-6 hide-scrollbar">
+            {products.map((product) => (
+              <Link
+                href={`/product/${product.id}`}
+                key={product.id}
+                className="flex-shrink-0 w-80 bg-white rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-transform transform hover:scale-105"
+              >
+                {/* Product Image */}
+                <div className="relative h-72 bg-gray-50 rounded-t-lg">
+                  {product.media?.length ? (
+                    <Image
+                      src={product.media[0].url}
+                      alt={product.media[0].alt || product.name}
+                      fill
+                      className="object-cover rounded-t-lg"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full text-gray-400 text-sm">No image</div>
+                  )}
+                </div>
+
+                {/* Product Details */}
+                <div className="p-6">
+                  <h3 className="font-semibold text-lg mb-2 text-blue-800 line-clamp-1 font-spartan">{product.name}</h3>
+                  <p className="text-blue-900 text-sm mb-3 line-clamp-2 font-spartan">{product.description}</p>
+                  {product.features && (
+                    <ul className="text-gray-500 text-xs mb-4 space-y-1 font-spartan">
+                      {JSON.parse(product.features).map((feature: string, index: number) => (
+                        <li key={index}>• {feature}</li>
+                      ))}
+                    </ul>
+                  )}
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      addToCart(product);
+                    }}
+                    className="w-full py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow-sm hover:bg-blue-700 transition-all duration-200 font-spartan"
+                  >
+                    Ajouter au panier
+                  </button>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
+    );
+  };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader className="w-12 h-12 text-blue-600 animate-spin" /> {/* Lucide Loader spinner */}
+      </div>
     );
   }
 
   if (error) {
-    return (
-      <section className="py-8">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="bg-red-50 p-3 rounded-lg">
-            <p className="text-red-600 text-sm">Error: {error}</p>
-          </div>
-        </div>
-      </section>
-    );
+    return <div className="text-center text-red-600">Error: {error}</div>;
   }
 
-  const ProductSlider = ({ title, products, refKey }: { title: string, products: Product[], refKey: keyof CategoryProducts }) => (
-    <div className="mb-8">
-      <h2 className="text-2xl font-bold mb-4 text-center">{title}</h2>
-      <div className="relative overflow-x-auto pb-6">
-        <button
-          onClick={() => scroll('left', refKey)}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full shadow-md hover:bg-blue-700 transition z-10 text-sm"
-        >
-          &lt;
-        </button>
-        <button
-          onClick={() => scroll('right', refKey)}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full shadow-md hover:bg-blue-700 transition z-10 text-sm"
-        >
-          &gt;
-        </button>
-        <div ref={scrollRefs[refKey]} className="flex space-x-4 overflow-x-auto hide-scrollbar px-8">
-          {products.map((product) => (
-            <Link
-              href={`/product/${product.id}`}
-              key={product.id}
-              className="flex-shrink-0 w-56 bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition transform hover:scale-105"
-            >
-              <div className="relative h-48">
-                {product.media && product.media.length > 0 ? (
-                  <Image
-                    src={product.media[0].url}
-                    alt={product.media[0].alt || product.name}
-                    fill
-                    className="object-contain p-2 rounded-t-lg"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gray-50">
-                    <span className="text-gray-400 text-sm">No image</span>
-                  </div>
-                )}
-              </div>
-              <div className="p-3">
-                <h3 className="font-semibold text-base mb-1 line-clamp-1">{product.name}</h3>
-                <p className="text-gray-600 text-xs mb-3 line-clamp-2">{product.description}</p>
-                <button className="w-full py-1.5 px-2 bg-blue-600 text-white text-xs font-medium rounded-md shadow-sm hover:bg-blue-700 transition">
-                  Demander un devis
-                </button>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-
   return (
-    <section className="py-8">
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">Produits de Yuwell</h2>
-        <section className="py-12 ">
-      <div className="max-w-4xl mx-auto text-center px-6">
-        <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
-          Découvrez nos produits Yuwell
-        </h3>
-        <p className="text-gray-700 leading-relaxed">
-          Yuwell propose une gamme de produits innovants conçus pour améliorer
-          votre bien-être et faciliter votre quotidien. Nos produits se
-          distinguent par leur qualité exceptionnelle, leur design ergonomique
-          et leur technologie de pointe. Que ce soit pour des équipements
-          médicaux, des solutions de santé à domicile ou des dispositifs de
-          diagnostic, Yuwell allie fiabilité et performance pour répondre aux
-          besoins variés de ses utilisateurs.
-        </p>
-      </div>
-    </section>
-        <div className="space-y-12">
-          {products.cpap.length > 0 && <ProductSlider title="Machines CPAP" products={products.cpap} refKey="cpap" />}
-          {products.masks.length > 0 && <ProductSlider title="Masques et Accessoires" products={products.masks} refKey="masks" />}
-          {products.oxygen.length > 0 && <ProductSlider title="Concentrateurs d'Oxygène" products={products.oxygen} refKey="oxygen" />}
-        </div>
+    <section className="py-8 px-12 font-spartan">
+      <div className="max-w-8xl mx-auto px-12">
+        <section className="py-12">
+          <div className="max-w-4xl mx-auto text-center">
+            <h3 className="text-2xl md:text-3xl font-bold text-blue-800 mb-6">
+              Découvrez nos produits Yuwell
+            </h3>
+          </div>
+        </section>
+        <section>
+          <div className="space-y-12">
+            {/* CPAP Machines Section */}
+            {products.cpap.length > 0 && (
+              <>
+                <div className="flex items-center mb-6"></div>
+                <ProductSlider
+                  title="Appareils CPAP"
+                  products={products.cpap}
+                  refKey="cpap"
+                />
+              </>
+            )}
+
+            {/* Masks Section */}
+            {products.masks.length > 0 && (
+              <>
+                <div className="flex items-center"></div>
+                <ProductSlider
+                  title="Masques"
+                  products={products.masks}
+                  refKey="masks"
+                />
+              </>
+            )}
+
+            {/* Oxygen Concentrators Section */}
+            {products.oxygen.length > 0 && (
+              <>
+                <div className="flex items-center"></div>
+                <ProductSlider
+                  title="Concentrateurs d&apos;Oxygène"
+                  products={products.oxygen}
+                  refKey="oxygen"
+                />
+              </>
+            )}
+          </div>
+        </section>
       </div>
     </section>
   );

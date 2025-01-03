@@ -14,6 +14,14 @@ interface AuthState {
   token: string | null;
 }
 
+interface RegisterParams {
+  email: string;
+  motDePasse: string;
+  nom: string;
+  prenom: string;
+  role: 'ADMIN' | 'EMPLOYE' | 'CLIENT';
+}
+
 export const useAuth = () => {
   const [authState, setAuthState] = useState<AuthState>({
     user: null,
@@ -36,7 +44,7 @@ export const useAuth = () => {
     setLoading(false);
   }, []);
 
-  const login = async (email: string, password: string) => {
+  const login = async (email: string, password: string): Promise<boolean> => {
     try {
       setError(null);
       setLoading(true);
@@ -63,21 +71,71 @@ export const useAuth = () => {
         token: data.token,
         user: data.user,
       });
-
-      // Rediriger vers le tableau de bord
-      router.push('/dashboard');
+      
+      return true;
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erreur lors de la connexion');
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue');
+      return false;
     } finally {
       setLoading(false);
     }
   };
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    setAuthState({ user: null, token: null });
-    router.push('/login');
+  const register = async (userData: RegisterParams) => {
+    try {
+      setError(null);
+      setLoading(true);
+
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Erreur lors de l\'inscription');
+      }
+
+      // Automatically log in after successful registration
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+
+      setAuthState({
+        token: data.token,
+        user: data.user,
+      });
+
+      router.push('/dashboard');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const logout = async () => {
+    try {
+      // Call logout API endpoint to clear cookies
+      await fetch('/api/auth/logout', {
+        method: 'POST',
+      });
+      
+      // Clear local storage
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      
+      // Clear auth state
+      setAuthState({ user: null, token: null });
+      
+      // Redirect to login page
+      window.location.href = '/login';
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
   };
 
   return {
@@ -87,5 +145,6 @@ export const useAuth = () => {
     error,
     login,
     logout,
+    register
   };
 };

@@ -8,8 +8,9 @@ export async function GET(
   request: Request,
   { params }: { params: { id: string } }
 ) {
+  const id = await params.id;
   try {
-    const product = await ProductService.getProductById(params.id);
+    const product = await ProductService.getProductById(id);
     if (!product) {
       return NextResponse.json(
         { error: 'Product not found' },
@@ -30,23 +31,45 @@ export async function PUT(
   req: Request,
   { params }: { params: { id: string } }
 ) {
+  const id = await params.id;
   try {
     const data = await req.json();
     
     // Ensure features is properly formatted for JSON storage
-    const features = Array.isArray(data.features) ? data.features : [];
+    let features = data.features;
+    if (typeof features === 'string') {
+      try {
+        features = JSON.parse(features);
+      } catch {
+        features = [];
+      }
+    }
+    if (!Array.isArray(features)) {
+      features = [];
+    }
 
     const product = await prisma.product.update({
       where: {
-        id: params.id,
+        id: id,
       },
       data: {
-        ...data,
-        features: features,
+        name: data.name,
+        brand: data.brand,
+        type: data.type,
+        description: data.description,
         price: typeof data.price === 'string' ? parseFloat(data.price) : data.price,
+        features: features,
+        category: data.category,
+        subCategory: data.subCategory,
+        inStock: data.inStock,
         media: data.media ? {
           deleteMany: {},
-          create: data.media
+          create: data.media.map((m: any) => ({
+            url: m.url,
+            type: m.type,
+            alt: m.alt,
+            order: m.order
+          }))
         } : undefined
       },
       include: {
@@ -59,7 +82,7 @@ export async function PUT(
   } catch (error) {
     console.error('Error updating product:', error);
     return NextResponse.json(
-      { error: 'Failed to update product' },
+      { error: 'Failed to update product', details: error },
       { status: 500 }
     );
   }

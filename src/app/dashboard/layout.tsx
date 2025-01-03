@@ -14,7 +14,6 @@ export default function DashboardLayout({
 
       {/* Main Content */}
       <div>
-     
         {children}
       </div>
     </div>

@@ -74,20 +74,27 @@ const categories = [
 export default function CategoryNavbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
+  // Handle dropdown open/close
+  const handleDropdownToggle = (categoryName: string) => {
+    setOpenDropdown(openDropdown === categoryName ? null : categoryName);
+  };
+
   return (
-    <nav className="fixed top-16 left-0 right-0 bg-white z-40 border-t-2 border-t-red-500">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center h-12">
+    <nav className="fixed top-16 left-0 right-0 bg-white z-40 border-t-2 font-spartan shadow-sm">
+      <div className="flex justify-start max-w-8xl mx-auto"> {/* Changed justify-end to justify-start */}
+        <div className="flex items-center h-12 ml-[420px]"> {/* Adjusted margin from ml-[300px] to ml-[250px] */}
           {/* Home Link */}
-          <Link 
+          <Link
             href="/"
-            className="px-5 h-full flex items-center text-gray-700 hover:text-blue-600 font-bold transition-colors border-r border-gray-200"
+            className="px-6 py-4 h-full flex font-bold rounded-xl items-center text-blue-900 hover:text-blue-600 transition-colors border-r border-gray-200 text-lg"
+            aria-label="Accueil"
           >
             Accueil
           </Link>
-          <Link 
-            href="/apne-du-sommeil"
-            className="px-1 h-full flex items-center text-gray-700 hover:text-blue-600 font-bold transition-colors border-r border-gray-200"
+          <Link
+            href="/apnee-du-sommeil"
+            className="px-4 py-4 h-full font-bold flex rounded-xl items-center text-blue-900 hover:text-blue-600 transition-colors border-r border-gray-200 text-lg whitespace-nowrap"
+            aria-label="Apnée du sommeil"
           >
             Apnée du sommeil
           </Link>
@@ -95,26 +102,23 @@ export default function CategoryNavbar() {
           {/* Categories */}
           <div className="flex overflow-x-auto hide-scrollbar">
             {categories.map((category) => (
-              <DropdownMenu 
+              <DropdownMenu
                 key={category.name}
                 open={openDropdown === category.name}
-                onOpenChange={(open) => {
-                  if (open) {
-                    setOpenDropdown(category.name);
-                  } else {
-                    setOpenDropdown(null);
-                  }
-                }}
+                onOpenChange={(open) => handleDropdownToggle(category.name)}
               >
-                <DropdownMenuTrigger 
-                  className="h-12 px-5 flex items-center space-x-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-all border-r border-gray-200 focus:outline-none group"
+                <DropdownMenuTrigger
+                  className="h-12 px-5 flex items-center space-x-2 text-xxl rounded-xl font-bold text-blue-900 hover:text-blue-600 hover:bg-gray-50 transition-all border-r border-blue-200 focus:outline-none group"
                   onMouseEnter={() => setOpenDropdown(category.name)}
+                  aria-label={category.displayName}
                 >
-                  <span className="whitespace-nowrap text-sm font-bold">{category.displayName}</span>
-                  <ChevronDown className="h-4 w-4 text-red-500 transition-transform duration-200 group-hover:rotate-180" />
+                  <span className="whitespace-nowrap space-x-4 text-lg">
+                    {category.displayName}
+                  </span>
+                  <ChevronDown className="h-4 w-4 text-red-700 transition-transform duration-200 group-hover:rotate-180" />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent 
-                  align="start" 
+                <DropdownMenuContent
+                  align="start"
                   className="w-64"
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
@@ -122,7 +126,8 @@ export default function CategoryNavbar() {
                     <DropdownMenuItem key={item.name} asChild>
                       <Link
                         href={item.href}
-                        className="w-full px-3 py-2 text-sm font-bold hover:bg-blue-50 hover:text-blue-600"
+                        className="h-12 px-5 flex items-center font-semibold space-x-4 text-blue-900 hover:text-blue-600 transition-all text-xl focus:outline-none group"
+                        aria-label={item.name}
                       >
                         {item.name}
                       </Link>

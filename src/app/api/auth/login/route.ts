@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import { signToken, verifyToken } from '@/lib/jwt';
 
 export async function POST(request: Request) {
   try {
@@ -36,32 +36,61 @@ export async function POST(request: Request) {
       );
     }
 
-    // Créer le token JWT
-    const token = jwt.sign(
-      {
-        id: utilisateur.id,
-        email: utilisateur.email,
-        role: utilisateur.role,
-      },
-      process.env.JWT_SECRET || 'votre-secret-jwt',
-      { expiresIn: '1d' }
-    );
+    // Create payload and sign token
+    const payload = {
+      id: utilisateur.id,
+      email: utilisateur.email,
+      role: utilisateur.role,
+    };
+    console.log('Creating token with payload:', payload);
+
+    // Sign token using our utility function
+    const token = signToken(payload);
+    console.log('Token created successfully');
+
+    // Try to verify the token immediately to ensure it works
+    try {
+      const decoded = verifyToken(token);
+      console.log('Token verified successfully in login route');
+    } catch (verifyError) {
+      console.error('Token verification failed in login route:', verifyError);
+      return NextResponse.json(
+        { error: 'Error creating authentication token' },
+        { status: 500 }
+      );
+    }
 
     // Retourner le token et les informations de l'utilisateur
-    return NextResponse.json({
-      token,
-      user: {
-        id: utilisateur.id,
-        email: utilisateur.email,
-        nom: utilisateur.nom,
-        prenom: utilisateur.prenom,
-        role: utilisateur.role,
-      },
+    const { motDePasse, ...userWithoutPassword } = utilisateur;
+    const response = NextResponse.json({
+      user: userWithoutPassword,
+      token
     });
+
+    // Set cookies
+    response.cookies.set({
+      name: 'token',
+      value: token,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+    });
+
+    response.cookies.set({
+      name: 'user',
+      value: JSON.stringify(userWithoutPassword),
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+    });
+
+    return response;
   } catch (error) {
-    console.error('Erreur de connexion:', error);
+    console.error('Login error:', error);
     return NextResponse.json(
-      { error: 'Erreur lors de la connexion' },
+      { error: 'Une erreur est survenue lors de la connexion' },
       { status: 500 }
     );
   }

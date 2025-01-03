@@ -1,41 +1,46 @@
-/* import { PrismaClient } from '@prisma/client';
+import { PrismaClient, RoleUtilisateur } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
 async function main() {
-  // Delete existing records
-  await prisma.Utilisateur.deleteMany();
+  try {
+    // Delete existing records in the correct order
+    console.log('Deleting existing records...');
+    // First delete CommandeItem as it references both Commande and Product
+    await prisma.commandeItem.deleteMany();
+    // Then delete Commande as it references Utilisateur
+    await prisma.commande.deleteMany();
+    // Then delete other tables
+    await prisma.media.deleteMany();
+    await prisma.review.deleteMany();
+    await prisma.product.deleteMany();
+    await prisma.category.deleteMany();
+    await prisma.utilisateur.deleteMany();
 
-  // Créer les utilisateurs
-  const adminPassword = await bcrypt.hash('admin123', 10);
-  const employePassword = await bcrypt.hash('employe123', 10);
+    console.log('Creating admin user...');
+    // Create admin user
+    const adminPassword = await bcrypt.hash('Admin123!', 10);
+    const admin = await prisma.utilisateur.create({
+      data: {
+        email: 'admin@elite.com',
+        motDePasse: adminPassword,
+        nom: 'Admin',
+        prenom: 'Elite',
+        role: RoleUtilisateur.ADMIN,
+        actif: true,
+        telephone: '+216 00 000 000',
+        adresse: 'Elite Medical Service',
+        ville: 'Sousse',
+        codePostal: '4000'
+      },
+    });
 
-  const admin = await prisma.Utilisateur.create({
-    data: {
-      email: 'admin@elitemedicale.com',
-      motDePasse: adminPassword,
-      nom: 'Admin',
-      prenom: 'Super',
-      role: 'ADMIN',
-      telephone: '+216 XX XXX XXX',
-      photo: '/avatars/admin.jpg',
-    },
-  });
-
-  const employe = await prisma.Utilisateur.create({
-    data: {
-      email: 'employe@elitemedicale.com',
-      motDePasse: employePassword,
-      nom: 'Dupont',
-      prenom: 'Jean',
-      role: 'EMPLOYE',
-      telephone: '+216 XX XXX XXX',
-      photo: '/avatars/employe.jpg',
-    },
-  });
-
-  console.log('Utilisateurs créés:', { admin, employe });
+    console.log('Admin user created:', admin);
+  } catch (error) {
+    console.error('Error seeding database:', error);
+    throw error;
+  }
 }
 
 main()
@@ -45,5 +50,4 @@ main()
   })
   .finally(async () => {
     await prisma.$disconnect();
-  }); 
-  */
+  });

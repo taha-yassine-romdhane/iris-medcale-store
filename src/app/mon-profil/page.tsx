@@ -1,0 +1,287 @@
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-hot-toast';
+import { User, Mail, Phone, MapPin, Building, Hash } from 'lucide-react';
+
+interface UserProfile {
+  id: string;
+  email: string;
+  nom: string | null;
+  prenom: string | null;
+  telephone: string | null;
+  adresse: string | null;
+  ville: string | null;
+  codePostal: string | null;
+  role: string;
+  createdAt: string;
+}
+
+export default function MonProfilPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [formData, setFormData] = useState<Partial<UserProfile>>({});
+  const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        console.log('Token from localStorage:', token ? 'Present' : 'Not found');
+        
+        if (!token) {
+          toast.error('Veuillez vous connecter pour accéder à votre profil');
+          router.push('/login');
+          return;
+        }
+
+        const response = await fetch('/api/user/profile', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        console.log('Profile response status:', response.status);
+        
+        if (!response.ok) {
+          if (response.status === 401) {
+            toast.error('Session expirée. Veuillez vous reconnecter.');
+            router.push('/login');
+            return;
+          }
+          const errorData = await response.json();
+          console.error('Profile fetch error:', errorData);
+          throw new Error(errorData.error || 'Failed to fetch profile');
+        }
+
+        const data = await response.json();
+        console.log('Profile data received');
+        setProfile(data);
+        setFormData(data);
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+        toast.error('Erreur lors de la récupération du profil');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, [router]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        toast.error('Veuillez vous connecter pour mettre à jour votre profil');
+        router.push('/login');
+        return;
+      }
+
+      const response = await fetch('/api/user/profile', {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to update profile');
+      }
+
+      const updatedProfile = await response.json();
+      setProfile(updatedProfile);
+      setIsEditing(false);
+      toast.success('Profil mis à jour avec succès');
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      toast.error('Erreur lors de la mise à jour du profil');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-[calc(100vh-80px)] flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-[calc(100vh-80px)] py-14 px-4 sm:px-6 lg:px-8">
+      <div className="py-5 max-w-3xl mx-auto">
+        <h1 className="text-2xl font-bold mb-6">Mon Profil</h1>
+        <div className="bg-white shadow-sm rounded-lg p-6">
+          <form onSubmit={handleSubmit}>
+            <div className="space-y-6">
+              {/* Email */}
+              <div>
+                <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
+                  <Mail className="h-4 w-4 mr-2" />
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email || ''}
+                  onChange={handleInputChange}
+                  disabled={!isEditing}
+                  className="w-full px-3 py-2 border rounded-md disabled:bg-gray-50"
+                />
+              </div>
+
+              {/* Nom */}
+              <div>
+                <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
+                  <User className="h-4 w-4 mr-2" />
+                  Nom
+                </label>
+                <input
+                  type="text"
+                  name="nom"
+                  value={formData.nom || ''}
+                  onChange={handleInputChange}
+                  disabled={!isEditing}
+                  className="w-full px-3 py-2 border rounded-md disabled:bg-gray-50"
+                />
+              </div>
+
+              {/* Prénom */}
+              <div>
+                <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
+                  <User className="h-4 w-4 mr-2" />
+                  Prénom
+                </label>
+                <input
+                  type="text"
+                  name="prenom"
+                  value={formData.prenom || ''}
+                  onChange={handleInputChange}
+                  disabled={!isEditing}
+                  className="w-full px-3 py-2 border rounded-md disabled:bg-gray-50"
+                />
+              </div>
+
+              {/* Téléphone */}
+              <div>
+                <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
+                  <Phone className="h-4 w-4 mr-2" />
+                  Téléphone
+                </label>
+                <input
+                  type="tel"
+                  name="telephone"
+                  value={formData.telephone || ''}
+                  onChange={handleInputChange}
+                  disabled={!isEditing}
+                  className="w-full px-3 py-2 border rounded-md disabled:bg-gray-50"
+                />
+              </div>
+
+              {/* Adresse */}
+              <div>
+                <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
+                  <MapPin className="h-4 w-4 mr-2" />
+                  Adresse
+                </label>
+                <input
+                  type="text"
+                  name="adresse"
+                  value={formData.adresse || ''}
+                  onChange={handleInputChange}
+                  disabled={!isEditing}
+                  className="w-full px-3 py-2 border rounded-md disabled:bg-gray-50"
+                />
+              </div>
+
+              {/* Ville */}
+              <div>
+                <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
+                  <Building className="h-4 w-4 mr-2" />
+                  Ville
+                </label>
+                <input
+                  type="text"
+                  name="ville"
+                  value={formData.ville || ''}
+                  onChange={handleInputChange}
+                  disabled={!isEditing}
+                  className="w-full px-3 py-2 border rounded-md disabled:bg-gray-50"
+                />
+              </div>
+
+              {/* Code Postal */}
+              <div>
+                <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
+                  <Hash className="h-4 w-4 mr-2" />
+                  Code Postal
+                </label>
+                <input
+                  type="text"
+                  name="codePostal"
+                  value={formData.codePostal || ''}
+                  onChange={handleInputChange}
+                  disabled={!isEditing}
+                  className="w-full px-3 py-2 border rounded-md disabled:bg-gray-50"
+                />
+              </div>
+
+              <div className="flex justify-end space-x-4 pt-4">
+                {isEditing ? (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsEditing(false);
+                        setFormData(profile || {});
+                      }}
+                      className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+                      disabled={saving}
+                    >
+                      Annuler
+                    </button>
+                    <button
+                      type="submit"
+                      className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 disabled:opacity-50"
+                      disabled={saving}
+                    >
+                      {saving ? 'Enregistrement...' : 'Enregistrer'}
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setIsEditing(true)}
+                    className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
+                  >
+                    Modifier
+                  </button>
+                )}
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}

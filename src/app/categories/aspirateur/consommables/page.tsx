@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useCart } from '@/hooks/useCart';
 
 interface Media {
   id: string;
@@ -31,6 +32,7 @@ export default function AspiratorConsumablesPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedMedia, setSelectedMedia] = useState<{ [key: string]: number }>({});
+  const { addToCart } = useCart();
 
   useEffect(() => {
     async function fetchProducts() {
@@ -70,6 +72,12 @@ export default function AspiratorConsumablesPage() {
       </div>
     );
   }
+
+  const handleAddToCart = (e: React.MouseEvent, product: Product) => {
+    e.preventDefault();
+    addToCart(product);
+  };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 py-28">
@@ -162,7 +170,7 @@ export default function AspiratorConsumablesPage() {
 
                 <button 
                   className="w-full mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200"
-                  onClick={() => {/* Add to cart logic */}}
+                  onClick={(e) => handleAddToCart(e, product)}
                 >
                   Ajouter au panier
                 </button>

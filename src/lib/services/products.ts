@@ -9,9 +9,13 @@ type ProductWhereInput = {
     equals: string;
     mode: 'insensitive';
   };
+  brand?: {
+    equals: string;
+    mode: 'insensitive';
+  };
 };
 
-export async function getAllProducts(category?: string, type?: string) {
+export async function getAllProducts(category?: string, type?: string, brand?: string) {
   const where: ProductWhereInput = {};
 
   if (category) {
@@ -24,6 +28,13 @@ export async function getAllProducts(category?: string, type?: string) {
   if (type) {
     where.type = {
       equals: type,
+      mode: 'insensitive'
+    };
+  }
+
+  if (brand) {
+    where.brand = {
+      equals: brand,
       mode: 'insensitive'
     };
   }

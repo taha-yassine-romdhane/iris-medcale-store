@@ -1,20 +1,24 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { PlusCircle, Edit, Trash, Search, Eye, ChevronLeft, ChevronRight, Home } from 'lucide-react';
+import { PlusCircle, Edit, Trash, Search, Eye, ChevronLeft, ChevronRight } from 'lucide-react';
 import ViewProductModal from '@/components/products/ViewProductModal';
 import EditProductModal from '@/components/products/EditProductModal';
 import DeleteProductModal from '@/components/products/DeleteProductModal';
 import AddProductModal from '@/components/products/AddProductModal';
+import ProductFilters from '@/components/products/ProductFilters';
 import { Product } from '@/types/product';
 import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 
 const ITEMS_PER_PAGE = 5;
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [category] = useState('');
-  const [type] = useState('');
+  const [category, setCategory] = useState('');
+  const [type, setType] = useState('');
+  const [brand, setBrand] = useState('');
 
   // Modal states
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -23,23 +27,28 @@ export default function ProductsPage() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
+  // Fetch products based on filters
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const queryParams = new URLSearchParams({
           ...(category && { category }),
-          ...(type && { type })
+          ...(type && { type }),
+          ...(brand && { brand }),
         });
 
         const response = await fetch(`/api/products?${queryParams}`);
         if (!response.ok) throw new Error('Failed to fetch products');
 
         const data = await response.json();
-        // Ensure price is converted to number
+        console.log('API Response:', data); // Debug log
+        
         const formattedData = Array.isArray(data) ? data.map(product => ({
           ...product,
-          price: Number(product.price)
+          price: Number(product.price),
         })) : [];
+        console.log('Formatted Products:', formattedData); // Debug log
+        
         setProducts(formattedData);
       } catch (error) {
         console.error('Error:', error);
@@ -48,8 +57,9 @@ export default function ProductsPage() {
     };
 
     fetchProducts();
-  }, [category, type]);
+  }, [category, type, brand]);
 
+  // Search and pagination
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -72,6 +82,7 @@ export default function ProductsPage() {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
+  // Product actions
   const handleUpdateProduct = (updatedProduct: Product) => {
     setProducts(products.map(p => p.id === updatedProduct.id ? updatedProduct : p));
   };
@@ -80,25 +91,32 @@ export default function ProductsPage() {
     setProducts(products.filter(p => p.id !== productId));
   };
 
+  const handleFilter = (filters: { category: string; type: string; brand: string }) => {
+    setCategory(filters.category);
+    setType(filters.type);
+    setBrand(filters.brand);
+    setCurrentPage(1); // Reset to the first page when applying new filters
+  };
+
   return (
     <div className="p-10 flex flex-col h-full bg-gray-100">
       <div className="p-10">
         <div className="p-10 flex flex-col md:flex-row justify-between items-start md:items-center mb-6 space-y-4 md:space-y-0">
           {/* Left Section */}
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Produits</h1>
-            <p className="text-gray-500">Gérez vos produits</p>
+            <Link
+              href="/dashboard"
+              className="inline-flex items-center text-gray-600 hover:text-gray-900 py-5"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Retour au tableau de bord
+            </Link>
+            <h1 className="text-2xl font-bold text-gray-900 px-5">Produits</h1>
+            <p className="text-gray-500 px-5">Gérez vos produits</p>
           </div>
 
           {/* Right Section */}
           <div className="flex space-x-4">
-            <a
-              href="/dashboard"
-              className="flex items-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
-            >
-              <Home className="mr-2" />
-              Accueil
-            </a>
             <button
               onClick={() => setIsAddModalOpen(true)}
               className="flex items-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
@@ -109,7 +127,15 @@ export default function ProductsPage() {
           </div>
         </div>
 
+        {/* Filters */}
+        {products.length > 0 && (
+          <ProductFilters 
+            products={products} 
+            onFilter={handleFilter} 
+          />
+        )}
 
+        {/* Search Bar */}
         <div className="relative mb-6">
           <input
             type="text"
@@ -121,6 +147,7 @@ export default function ProductsPage() {
           <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
         </div>
 
+        {/* Products Table */}
         <div className="bg-white rounded-lg shadow overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
@@ -213,6 +240,8 @@ export default function ProductsPage() {
               </tbody>
             </table>
           </div>
+
+          {/* Pagination */}
           <div className="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200">
             <div className="flex items-center">
               <button
@@ -237,6 +266,7 @@ export default function ProductsPage() {
         </div>
       </div>
 
+      {/* Modals */}
       <ViewProductModal
         isOpen={isViewModalOpen}
         closeModal={() => setIsViewModalOpen(false)}

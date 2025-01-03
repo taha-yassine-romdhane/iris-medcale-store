@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { useCart } from '@/hooks/useCart';
 
 interface Media {
   id: string;
@@ -44,6 +45,7 @@ export default function ProductPage() {
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState('');
+  const { addToCart } = useCart();
 
   useEffect(() => {
     async function fetchProduct() {
@@ -126,15 +128,14 @@ export default function ProductPage() {
     );
   }
 
-  const features =  (Array.isArray(product.features) ? product.features : 
-    typeof product.features === 'string' ? JSON.parse(product.features) : 
-    []).slice(0, 3).map((feature: string, index: number) => (
+  const features =  (Array.isArray(product.features) ? product.features :
+      typeof product.features as string === 'string' ? JSON.parse(product.features) :
+          []).slice(0, 3).map((feature: string) => (
       <>
-      <span className="text-blue-500 mr-2"></span>
-      {feature}
+        <span className="text-blue-500 mr-2"></span>
+        {feature}
       </>
   ));
-
   return (
     <div className="min-h-screen bg-gray-50 pt-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -250,7 +251,10 @@ export default function ProductPage() {
             </div>
 
             {/* Add to Cart Button */}
-            <button className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+            <button 
+              onClick={() => product && addToCart(product)}
+              className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            >
               Ajouter au panier
             </button>
 

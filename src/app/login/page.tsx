@@ -9,11 +9,39 @@ import { useAuth } from '@/hooks/useAuth';
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const { login, loading, error } = useAuth();
+
+  const validateEmail = (email: string) => {
+    if (email.toLowerCase() === 'admin@elite.com') {
+      return 'ADMIN';
+    } else if (email.toLowerCase().endsWith('@elite.com')) {
+      return 'EMPLOYE';
+    }
+    return 'CLIENT';
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await login(email, password);
+    setErrorMessage('');
+    
+    if (!email || !password) {
+      setErrorMessage('Veuillez remplir tous les champs');
+      return;
+    }
+    
+    const role = validateEmail(email.toLowerCase());
+    const success = await login(email, password);
+    
+    if (success) {
+      if (role === 'ADMIN' || role === 'EMPLOYE') {
+        window.location.href = '/dashboard';
+      } else {
+        window.location.href = '/';
+      }
+    } else {
+      setErrorMessage('Email ou mot de passe incorrect');
+    }
   };
 
   return (
@@ -54,83 +82,88 @@ export default function LoginPage() {
             />
           </div>
 
-          <div className="text-center">
-            <h2 className="text-3xl font-extrabold text-gray-900 mb-2">
-              Connexion Client
-            </h2>
-            <p className="text-gray-600 text-sm">
-              Veuillez vous connecter avec vos identifiants personnels
-            </p>
+          <div className="w-full max-w-md space-y-8 p-10 rounded-lg shadow-lg bg-white">
+            <div className="text-center">
+              <h2 className="mt-6 text-3xl font-bold text-gray-900">
+                Connexion
+              </h2>
+            </div>
+            
+            {errorMessage && (
+              <div className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg flex items-center" role="alert">
+                <AlertCircle className="w-5 h-5 mr-2" />
+                {errorMessage}
+              </div>
+            )}
+
+            <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+              <div className="space-y-4">
+                <div>
+                  <label htmlFor="email-address" className="block text-sm font-medium text-gray-700 mb-1">
+                    Email
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Mail className="h-5 w-5 text-gray-400" />
+                    </div>
+                    <input
+                      id="email-address"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      required
+                      className="pl-10 appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="votre_email@example.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                    Mot de passe
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Lock className="h-5 w-5 text-gray-400" />
+                    </div>
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      autoComplete="current-password"
+                      required
+                      className="pl-10 appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Votre mot de passe"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <button
+                  type="submit"
+                  className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition"
+                >
+                  Se connecter
+                </button>
+              </div>
+              <div className="text-sm text-center">
+                <p className="mt-2">
+                  Pas encore de compte ?{' '}
+                  <Link href="/signup" className="font-medium text-blue-600 hover:text-blue-500">
+                    Inscrivez-vous
+                  </Link>
+                </p>
+                <Link href="/forgot-password" className="text-blue-600 hover:underline">
+                  Mot de passe oublié ?
+                </Link>
+              </div>
+            </form>
           </div>
-
-          {error && (
-            <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg flex items-center gap-2">
-              <AlertCircle className="h-5 w-5" />
-              <p className="text-sm">{error}</p>
-            </div>
-          )}
-
-          <form className="mt-8 space-y-6 bg-white p-8 rounded-xl shadow-lg" onSubmit={handleSubmit}>
-            <div className="space-y-4">
-              <div>
-                <label htmlFor="email-address" className="block text-sm font-medium text-gray-700 mb-1">
-                  Email
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Mail className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <input
-                    id="email-address"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    required
-                    className="pl-10 appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="votre_email@example.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                  Mot de passe
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Lock className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    autoComplete="current-password"
-                    required
-                    className="pl-10 appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Votre mot de passe"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition"
-              >
-                Se connecter
-              </button>
-            </div>
-            <div className="text-sm text-center">
-              <Link href="/forgot-password" className="text-blue-600 hover:underline">
-                Mot de passe oublié ?
-              </Link>
-            </div>
-          </form>
         </div>
       </div>
     </div>

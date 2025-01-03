@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useCart } from '@/hooks/useCart';
 
 interface Media {
   id: string;
@@ -37,6 +38,7 @@ export default function CPAPMachinesPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedMedia, setSelectedMedia] = useState<{ [key: string]: number }>({});
+  const { addToCart } = useCart();
 
   useEffect(() => {
     async function fetchProducts() {
@@ -66,6 +68,11 @@ export default function CPAPMachinesPage() {
 
     fetchProducts();
   }, []);
+
+  const handleAddToCart = (e: React.MouseEvent, product: Product) => {
+    e.preventDefault();
+    addToCart(product);
+  };
 
   if (loading) {
     return (
@@ -175,7 +182,7 @@ export default function CPAPMachinesPage() {
 
                 <button
                   className="w-full mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200"
-                  onClick={() => {/* Add to cart logic */ }}
+                  onClick={(e) => handleAddToCart(e, product)}
                 >
                   Ajouter au panier
                 </button>
