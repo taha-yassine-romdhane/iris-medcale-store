@@ -33,7 +33,7 @@ export async function GET() {
 
 export async function DELETE(request: Request) {
   try {
-    const { id } = await request.json();
+    const { id } = await request.json() as { id: string };
     await prisma.appointment.delete({
       where: { id }
     });
