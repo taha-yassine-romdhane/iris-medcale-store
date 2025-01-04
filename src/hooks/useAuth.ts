@@ -6,7 +6,11 @@ interface User {
   email: string;
   nom: string;
   prenom: string;
-  role: 'ADMIN' | 'EMPLOYE';
+  telephone?: string;
+  adresse?: string;
+  ville?: string;
+  codePostal?: string;
+  role: 'ADMIN' | 'EMPLOYE' | 'CLIENT';
 }
 
 interface AuthState {

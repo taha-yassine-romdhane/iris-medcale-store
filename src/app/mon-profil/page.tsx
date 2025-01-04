@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
-import { User, Mail, Phone, MapPin, Building, Hash } from 'lucide-react';
+import { User, Mail, Phone, MapPin, Building, Hash, Home } from 'lucide-react';
+import Link from 'next/link';
 
 interface UserProfile {
   id: string;
@@ -128,16 +129,28 @@ export default function MonProfilPage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-80px)] py-14 px-4 sm:px-6 lg:px-8">
-      <div className="py-5 max-w-3xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6">Mon Profil</h1>
-        <div className="bg-white shadow-sm rounded-lg p-6">
+    <div className="min-h-[calc(100vh-80px)] py-14 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <div className="max-w-3xl mx-auto">
+        {/* Return Home Button */}
+        <div className="mb-6">
+          <Link
+            href="/"
+            className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
+          >
+            <Home className="h-5 w-5 mr-2" />
+            Retour à l'accueil
+          </Link>
+        </div>
+
+        {/* Profile Section */}
+        <div className="bg-white shadow-lg rounded-lg p-6">
+          <h1 className="text-2xl font-bold text-gray-900 mb-6">Mon Profil</h1>
           <form onSubmit={handleSubmit}>
             <div className="space-y-6">
               {/* Email */}
               <div>
                 <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <Mail className="h-4 w-4 mr-2" />
+                  <Mail className="h-4 w-4 mr-2 text-blue-600" />
                   Email
                 </label>
                 <input
@@ -146,14 +159,14 @@ export default function MonProfilPage() {
                   value={formData.email || ''}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border rounded-md disabled:bg-gray-50"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
                 />
               </div>
 
               {/* Nom */}
               <div>
                 <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <User className="h-4 w-4 mr-2" />
+                  <User className="h-4 w-4 mr-2 text-blue-600" />
                   Nom
                 </label>
                 <input
@@ -162,14 +175,14 @@ export default function MonProfilPage() {
                   value={formData.nom || ''}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border rounded-md disabled:bg-gray-50"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
                 />
               </div>
 
               {/* Prénom */}
               <div>
                 <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <User className="h-4 w-4 mr-2" />
+                  <User className="h-4 w-4 mr-2 text-blue-600" />
                   Prénom
                 </label>
                 <input
@@ -178,14 +191,14 @@ export default function MonProfilPage() {
                   value={formData.prenom || ''}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border rounded-md disabled:bg-gray-50"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
                 />
               </div>
 
               {/* Téléphone */}
               <div>
                 <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <Phone className="h-4 w-4 mr-2" />
+                  <Phone className="h-4 w-4 mr-2 text-blue-600" />
                   Téléphone
                 </label>
                 <input
@@ -194,14 +207,14 @@ export default function MonProfilPage() {
                   value={formData.telephone || ''}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border rounded-md disabled:bg-gray-50"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
                 />
               </div>
 
               {/* Adresse */}
               <div>
                 <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <MapPin className="h-4 w-4 mr-2" />
+                  <MapPin className="h-4 w-4 mr-2 text-blue-600" />
                   Adresse
                 </label>
                 <input
@@ -210,14 +223,14 @@ export default function MonProfilPage() {
                   value={formData.adresse || ''}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border rounded-md disabled:bg-gray-50"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
                 />
               </div>
 
               {/* Ville */}
               <div>
                 <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <Building className="h-4 w-4 mr-2" />
+                  <Building className="h-4 w-4 mr-2 text-blue-600" />
                   Ville
                 </label>
                 <input
@@ -226,14 +239,14 @@ export default function MonProfilPage() {
                   value={formData.ville || ''}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border rounded-md disabled:bg-gray-50"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
                 />
               </div>
 
               {/* Code Postal */}
               <div>
                 <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <Hash className="h-4 w-4 mr-2" />
+                  <Hash className="h-4 w-4 mr-2 text-blue-600" />
                   Code Postal
                 </label>
                 <input
@@ -242,11 +255,12 @@ export default function MonProfilPage() {
                   value={formData.codePostal || ''}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border rounded-md disabled:bg-gray-50"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
                 />
               </div>
 
-              <div className="flex justify-end space-x-4 pt-4">
+              {/* Buttons */}
+              <div className="flex justify-end space-x-4 pt-6">
                 {isEditing ? (
                   <>
                     <button
@@ -255,14 +269,14 @@ export default function MonProfilPage() {
                         setIsEditing(false);
                         setFormData(profile || {});
                       }}
-                      className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+                      className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
                       disabled={saving}
                     >
                       Annuler
                     </button>
                     <button
                       type="submit"
-                      className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 disabled:opacity-50"
+                      className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50"
                       disabled={saving}
                     >
                       {saving ? 'Enregistrement...' : 'Enregistrer'}
@@ -272,7 +286,7 @@ export default function MonProfilPage() {
                   <button
                     type="button"
                     onClick={() => setIsEditing(true)}
-                    className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
+                    className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors"
                   >
                     Modifier
                   </button>

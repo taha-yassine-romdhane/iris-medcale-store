@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Calendar, Clock, Phone, Send } from 'lucide-react';
+import { Calendar, Clock, Send } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from "@/components/ui/use-toast";
+import type { User } from '@/types/user'; 
 
 export default function AppointmentSection() {
   const [formData, setFormData] = useState({
@@ -39,7 +40,7 @@ export default function AppointmentSection() {
           user: {
             nom: user.nom,
             email: user.email,
-            telephone: user.telephone
+            telephone: user.telephone // Optional property
           }
         }),
       });
@@ -186,7 +187,7 @@ export default function AppointmentSection() {
 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !user} // Disable if user is null
                   className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send className="h-5 w-5" />

@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from '@/hooks/useCart';
-import { Loader } from 'lucide-react'; // Import the Loader icon from Lucide React
+import { ChevronLeft, ChevronRight } from 'lucide-react'; // Import the Chevron icons from Lucide React
 
 interface Media {
   id: string;
@@ -28,66 +28,92 @@ interface CategoryProducts {
   cpap: Product[];
   masks: Product[];
   oxygen: Product[];
+  lits: Product[];
 }
 
 export default function ProductsSection() {
   const [products, setProducts] = useState<CategoryProducts>({
     cpap: [],
     masks: [],
-    oxygen: []
+    oxygen: [],
+    lits: []
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const scrollRefs = {
+
+  const sliderRefs = {
     cpap: useRef<HTMLDivElement | null>(null),
     masks: useRef<HTMLDivElement | null>(null),
-    oxygen: useRef<HTMLDivElement | null>(null)
+    oxygen: useRef<HTMLDivElement | null>(null),
+    lits: useRef<HTMLDivElement | null>(null)
   };
 
   useEffect(() => {
-    async function fetchProducts() {
+    const fetchProducts = async () => {
       try {
-        const response = await fetch('/api/products/brand/yuwell');
-        if (!response.ok) {
-          throw new Error('Failed to fetch products');
-        }
+        setLoading(true);
+        const response = await fetch('/api/products');
+        if (!response.ok) throw new Error('Failed to fetch products');
         const data = await response.json();
 
-        const categorizedProducts: CategoryProducts = {
-          cpap: data.filter((p: Product) => p.category.toLowerCase() === 'cpap' || p.category.toLowerCase() === 'bipap-vni'),
-          masks: data.filter((p: Product) =>
-            p.category.toLowerCase() === 'accessoires' &&
-            (p.type?.toLowerCase().includes('masque') ||
-              p.name.toLowerCase().includes('masque'))
+        console.log('Fetched products:', data); // Debug log
+
+        const categorizedProducts = {
+          cpap: data.filter((p: Product) => 
+            p.category.toLowerCase() === 'cpap' || 
+            p.type?.toLowerCase().includes('cpap') ||
+            p.name.toLowerCase().includes('cpap')
           ),
-          oxygen: data.filter((p: Product) => p.category.toLowerCase() === 'oxygen' || p.category.toLowerCase().includes('concentrateur'))
+          masks: data.filter((p: Product) => 
+            p.category.toLowerCase() === 'masks' || 
+            p.category.toLowerCase() === 'masques' ||
+            p.type?.toLowerCase().includes('masque') ||
+            p.name.toLowerCase().includes('masque')
+          ),
+          oxygen: data.filter((p: Product) => 
+            p.category.toLowerCase() === 'oxygen' || 
+            p.category.toLowerCase() === 'oxygène' ||
+            p.category.toLowerCase().includes('concentrateur') ||
+            p.type?.toLowerCase().includes('concentrateur') ||
+            p.name.toLowerCase().includes('concentrateur') ||
+            p.name.toLowerCase().includes('oxygène')
+          ),
+          lits: data.filter((p: Product) => 
+            p.category.toLowerCase() === 'lits' || 
+            p.category.toLowerCase() === 'lit' ||
+            p.type?.toLowerCase().includes('lit') ||
+            p.name.toLowerCase().includes('lit médicalisé')
+          )
         };
 
+        console.log('Categorized products:', categorizedProducts); // Debug log
+
         setProducts(categorizedProducts);
-        setLoading(false);
+        setError(null);
       } catch (err) {
         console.error('Error fetching products:', err);
-        setError(err instanceof Error ? err.message : 'An error occurred');
+        setError(err instanceof Error ? err.message : 'Failed to fetch products');
+      } finally {
         setLoading(false);
       }
-    }
+    };
 
     fetchProducts();
   }, []);
 
-  const scroll = (direction: 'left' | 'right', category: keyof CategoryProducts) => {
-    const ref = scrollRefs[category];
-    if (ref.current) {
-      const scrollAmount = 250;
-      const currentScroll = ref.current.scrollLeft;
-      const newScroll = direction === 'left'
-        ? currentScroll - scrollAmount
-        : currentScroll + scrollAmount;
-      ref.current.scrollTo({
-        left: newScroll,
-        behavior: 'smooth'
-      });
-    }
+  const handleScroll = (direction: 'left' | 'right', refKey: keyof typeof sliderRefs) => {
+    const container = sliderRefs[refKey].current;
+    if (!container) return;
+
+    const scrollAmount = 300;
+    const targetScroll = direction === 'left' 
+      ? container.scrollLeft - scrollAmount 
+      : container.scrollLeft + scrollAmount;
+
+    container.scrollTo({
+      left: targetScroll,
+      behavior: 'smooth'
+    });
   };
 
   const ProductSlider = ({ title, products, refKey }: { title: string, products: Product[], refKey: keyof CategoryProducts }) => {
@@ -99,22 +125,22 @@ export default function ProductsSection() {
         <div className="relative overflow-hidden max-w-full">
           {/* Scroll Buttons */}
           <button
-            onClick={() => scroll('left', refKey)}
+            onClick={() => handleScroll('left', refKey)}
             aria-label="Scroll Left"
             className="absolute left-0 top-0 bottom-0 m-auto h-10 w-10 flex items-center justify-center bg-blue-200 hover:bg-blue-300 text-blue-600 rounded-full shadow-md z-10 transition-all duration-200"
           >
-            &lt;
+            <ChevronLeft className="w-4 h-4" />
           </button>
           <button
-            onClick={() => scroll('right', refKey)}
+            onClick={() => handleScroll('right', refKey)}
             aria-label="Scroll Right"
             className="absolute right-0 top-0 bottom-0 m-auto h-10 w-10 flex items-center justify-center bg-blue-200 hover:bg-blue-300 text-blue-600 rounded-full shadow-md z-10 transition-all duration-200"
           >
-            &gt;
+            <ChevronRight className="w-4 h-4" />
           </button>
 
           {/* Products */}
-          <div ref={scrollRefs[refKey]} className="flex space-x-6 overflow-x-auto px-6 hide-scrollbar">
+          <div ref={sliderRefs[refKey]} className="flex space-x-6 overflow-x-auto px-6 hide-scrollbar">
             {products.map((product) => (
               <Link
                 href={`/product/${product.id}`}
@@ -142,9 +168,21 @@ export default function ProductsSection() {
                   <p className="text-blue-900 text-sm mb-3 line-clamp-2 font-spartan">{product.description}</p>
                   {product.features && (
                     <ul className="text-gray-500 text-xs mb-4 space-y-1 font-spartan">
-                      {JSON.parse(product.features).map((feature: string, index: number) => (
-                        <li key={index}>• {feature}</li>
-                      ))}
+                      {(() => {
+                        try {
+                          const features = typeof product.features === 'string' 
+                            ? JSON.parse(product.features)
+                            : Array.isArray(product.features)
+                              ? product.features
+                              : [];
+                          return features.map((feature: string, index: number) => (
+                            <li key={index}>• {feature}</li>
+                          ));
+                        } catch (err) {
+                          // If JSON parsing fails, treat it as a single feature
+                          return <li>• {product.features}</li>;
+                        }
+                      })()}
                     </ul>
                   )}
                   <button
@@ -167,14 +205,18 @@ export default function ProductsSection() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <Loader className="w-12 h-12 text-blue-600 animate-spin" /> {/* Lucide Loader spinner */}
+      <div className="flex justify-center items-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
       </div>
     );
   }
 
   if (error) {
-    return <div className="text-center text-red-600">Error: {error}</div>;
+    return (
+      <div className="flex justify-center items-center min-h-[400px]">
+        <p className="text-red-500">Error: {error}</p>
+      </div>
+    );
   }
 
   return (
@@ -183,7 +225,7 @@ export default function ProductsSection() {
         <section className="py-12">
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="text-2xl md:text-3xl font-bold text-blue-800 mb-6">
-              Découvrez nos produits Yuwell
+              Découvrez nos produits
             </h3>
           </div>
         </section>
@@ -194,7 +236,7 @@ export default function ProductsSection() {
               <>
                 <div className="flex items-center mb-6"></div>
                 <ProductSlider
-                  title="Appareils CPAP"
+                  title="Machines CPAP"
                   products={products.cpap}
                   refKey="cpap"
                 />
@@ -218,9 +260,21 @@ export default function ProductsSection() {
               <>
                 <div className="flex items-center"></div>
                 <ProductSlider
-                  title="Concentrateurs d&apos;Oxygène"
+                  title="Concentrateurs d'Oxygène"
                   products={products.oxygen}
                   refKey="oxygen"
+                />
+              </>
+            )}
+
+            {/* Medical Beds Section */}
+            {products.lits.length > 0 && (
+              <>
+                <div className="flex items-center"></div>
+                <ProductSlider
+                  title="Lits Médicalisés"
+                  products={products.lits}
+                  refKey="lits"
                 />
               </>
             )}

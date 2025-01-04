@@ -24,18 +24,18 @@ export default function Footer() {
               Votre source de confiance pour les équipements médicaux et les solutions de santé innovantes.
             </p>
             <div className="flex space-x-4 pt-4">
-              <a href="#" className="text-white hover:text-red-400 transition-colors">
+              <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-400 transition-colors">
                 <Facebook size={24} />
-              </a>
-              <a href="#" className="text-white hover:text-red-400 transition-colors">
+              </Link>
+              <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-400 transition-colors">
                 <Twitter size={24} />
-              </a>
-              <a href="#" className="text-white hover:text-red-400 transition-colors">
+              </Link>
+              <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-400 transition-colors">
                 <Linkedin size={24} />
-              </a>
-              <a href="#" className="text-white hover:text-red-400 transition-colors">
+              </Link>
+              <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-400 transition-colors">
                 <Instagram size={24} />
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -47,10 +47,10 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link 
-                  href="/produits" 
+                  href="/categories/cpap/machines" 
                   className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300"
                 >
-                  Produits
+                  CPAP Machines
                 </Link>
               </li>
               <li>
@@ -69,6 +69,14 @@ export default function Footer() {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link 
+                  href="/apnee-du-sommeil" 
+                  className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300"
+                >
+                  Apnée du Sommeil
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -80,15 +88,21 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center text-blue-100">
                 <Mail className="mr-3 text-red-500" size={20} />
-                eliteMedicaleServices@Gmail.com
+                <Link href="mailto:eliteMedicaleServices@Gmail.com" className="hover:text-white transition-colors">
+                  eliteMedicaleServices@Gmail.com
+                </Link>
               </li>
               <li className="flex items-center text-blue-100">
                 <Phone className="mr-3 text-red-500" size={20} />
-                (+216) 55 820 000
+                <Link href="tel:+21655820000" className="hover:text-white transition-colors">
+                  (+216) 55 820 000
+                </Link>
               </li>
               <li className="flex items-center text-blue-100">
                 <MapPin className="mr-3 text-red-500" size={20} />
-                O Medicale Store M&#39;saken
+                <Link href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  O Medicale Store M&#39;saken
+                </Link>
               </li>
             </ul>
           </div>

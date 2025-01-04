@@ -61,7 +61,7 @@ export async function POST(request: Request) {
     }
 
     // Retourner le token et les informations de l'utilisateur
-    const { motDePasse: _, ...userWithoutPassword } = utilisateur; // Remove unused variable
+    const { motDePasse, ...userWithoutPassword } = utilisateur;
     const response = NextResponse.json({
       user: userWithoutPassword,
       token,

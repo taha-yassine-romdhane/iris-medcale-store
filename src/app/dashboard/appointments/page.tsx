@@ -74,91 +74,119 @@ export default function AppointmentsPage() {
     }
   };
 
-  const ViewModal = ({ appointment }: { appointment: Appointment }) => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg max-w-2xl w-full p-6">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-xl font-semibold">Détails du Rendez-vous</h3>
-          <button
-            onClick={() => setIsViewModalOpen(false)}
-            className="text-gray-500 hover:text-gray-700"
-          >
-            ×
-          </button>
-        </div>
-        <div className="space-y-4">
-          <div>
-            <p className="text-sm font-medium text-gray-500">Nom</p>
-            <p className="text-gray-900">
-              {`${appointment.utilisateur.prenom || ''} ${appointment.utilisateur.nom || ''}`}
-            </p>
+  const handleStatusChange = async (id: string, newStatus: StatusRdv) => {
+    try {
+      const response = await fetch('/api/appointments', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status: newStatus }),
+      });
+
+      if (!response.ok) throw new Error('Failed to update appointment status');
+
+      // Update the appointment status in the local state
+      setAppointments((prevAppointments) =>
+        prevAppointments.map((app) =>
+          app.id === id ? { ...app, status: newStatus } : app
+        )
+      );
+    } catch (error) {
+      console.error('Error updating appointment status:', error);
+    }
+  };
+
+  const ViewModal = ({ appointment }: { appointment: Appointment }) => {
+    const [selectedStatus, setSelectedStatus] = useState<StatusRdv>(appointment.status);
+
+    const handleStatusChangeInModal = async (newStatus: StatusRdv) => {
+      await handleStatusChange(appointment.id, newStatus);
+      setSelectedStatus(newStatus);
+    };
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="bg-white rounded-lg max-w-2xl w-full p-6">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-xl font-semibold">Détails du Rendez-vous</h3>
+            <button
+              onClick={() => setIsViewModalOpen(false)}
+              className="text-gray-500 hover:text-gray-700"
+            >
+              ×
+            </button>
           </div>
-          <div>
-            <p className="text-sm font-medium text-gray-500">Email</p>
-            <p className="text-gray-900">{appointment.utilisateur.email}</p>
-          </div>
-          {appointment.utilisateur.telephone && (
+          <div className="space-y-4">
             <div>
-              <p className="text-sm font-medium text-gray-500">Téléphone</p>
-              <p className="text-gray-900">{appointment.utilisateur.telephone}</p>
-            </div>
-          )}
-          {appointment.utilisateur.adresse && (
-            <div>
-              <p className="text-sm font-medium text-gray-500">Adresse</p>
-              <p className="text-gray-900">{appointment.utilisateur.adresse}</p>
-            </div>
-          )}
-          {appointment.utilisateur.ville && appointment.utilisateur.codePostal && (
-            <div>
-              <p className="text-sm font-medium text-gray-500">Ville</p>
+              <p className="text-sm font-medium text-gray-500">Nom</p>
               <p className="text-gray-900">
-                {appointment.utilisateur.ville}, {appointment.utilisateur.codePostal}
+                {`${appointment.utilisateur.prenom || ''} ${appointment.utilisateur.nom || ''}`}
               </p>
             </div>
-          )}
-          <div>
-            <p className="text-sm font-medium text-gray-500">Date du Rendez-vous</p>
-            <p className="text-gray-900">
-              {format(new Date(appointment.dateRdv), 'PPP', { locale: fr })}
-            </p>
+            <div>
+              <p className="text-sm font-medium text-gray-500">Email</p>
+              <p className="text-gray-900">{appointment.utilisateur.email}</p>
+            </div>
+            {appointment.utilisateur.telephone && (
+              <div>
+                <p className="text-sm font-medium text-gray-500">Téléphone</p>
+                <p className="text-gray-900">{appointment.utilisateur.telephone}</p>
+              </div>
+            )}
+            {appointment.utilisateur.adresse && (
+              <div>
+                <p className="text-sm font-medium text-gray-500">Adresse</p>
+                <p className="text-gray-900">{appointment.utilisateur.adresse}</p>
+              </div>
+            )}
+            {appointment.utilisateur.ville && appointment.utilisateur.codePostal && (
+              <div>
+                <p className="text-sm font-medium text-gray-500">Ville</p>
+                <p className="text-gray-900">
+                  {appointment.utilisateur.ville}, {appointment.utilisateur.codePostal}
+                </p>
+              </div>
+            )}
+            <div>
+              <p className="text-sm font-medium text-gray-500">Date du Rendez-vous</p>
+              <p className="text-gray-900">
+                {format(new Date(appointment.dateRdv), 'PPP', { locale: fr })}
+              </p>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-gray-500">Motif</p>
+              <p className="text-gray-900 whitespace-pre-wrap">{appointment.motif}</p>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-gray-500">Statut</p>
+              <select
+                value={selectedStatus}
+                onChange={(e) => handleStatusChangeInModal(e.target.value as StatusRdv)}
+                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+              >
+                <option value={StatusRdv.EN_ATTENTE}>En attente</option>
+                <option value={StatusRdv.CONFIRME}>Confirmé</option>
+                <option value={StatusRdv.ANNULE}>Annulé</option>
+              </select>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-gray-500">Date de création</p>
+              <p className="text-gray-900">
+                {format(new Date(appointment.dateCreation), 'PPP à HH:mm', { locale: fr })}
+              </p>
+            </div>
           </div>
-          <div>
-            <p className="text-sm font-medium text-gray-500">Motif</p>
-            <p className="text-gray-900 whitespace-pre-wrap">{appointment.motif}</p>
+          <div className="mt-6 flex justify-end">
+            <button
+              onClick={() => setIsViewModalOpen(false)}
+              className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200"
+            >
+              Fermer
+            </button>
           </div>
-          <div>
-            <p className="text-sm font-medium text-gray-500">Statut</p>
-            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-              appointment.status === StatusRdv.EN_ATTENTE
-                ? 'bg-yellow-100 text-yellow-800'
-                : appointment.status === StatusRdv.CONFIRME
-                ? 'bg-green-100 text-green-800'
-                : 'bg-red-100 text-red-800'
-            }`}>
-              {appointment.status === StatusRdv.EN_ATTENTE ? 'En attente' 
-                : appointment.status === StatusRdv.CONFIRME ? 'Confirmé' 
-                : 'Annulé'}
-            </span>
-          </div>
-          <div>
-            <p className="text-sm font-medium text-gray-500">Date de création</p>
-            <p className="text-gray-900">
-              {format(new Date(appointment.dateCreation), 'PPP à HH:mm', { locale: fr })}
-            </p>
-          </div>
-        </div>
-        <div className="mt-6 flex justify-end">
-          <button
-            onClick={() => setIsViewModalOpen(false)}
-            className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200"
-          >
-            Fermer
-          </button>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   if (loading) {
     return (

@@ -116,7 +116,8 @@ export async function createProduct(data: {
 }) {
   // Ensure features is stored as JSON
   const features = Array.isArray(data.features) ? data.features : 
-                  typeof data.features === 'string' ? JSON.parse(data.features) :
+                  typeof data.features === 'string' ? 
+                    (data.features.startsWith('[') ? JSON.parse(data.features) : [data.features]) :
                   [];
 
   return prisma.product.create({
@@ -148,13 +149,25 @@ export async function updateProduct(id: string, data: {
   image?: string;
   description?: string;
   price?: number;
-  features?: string[];
+  features?: string[] | string;
   category?: string;
   inStock?: boolean;
 }) {
+  // Ensure features is stored as JSON if provided
+  const features = data.features ? 
+    (Array.isArray(data.features) ? data.features : 
+     typeof data.features === 'string' ? 
+       (data.features.startsWith('[') ? JSON.parse(data.features) : [data.features]) :
+     []) 
+    : undefined;
+
   return prisma.product.update({
     where: { id },
-    data,
+    data: {
+      ...data,
+      features: features,
+      price: data.price ? Number(data.price) : undefined
+    },
     include: {
       media: true,
       reviews: true
