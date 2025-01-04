@@ -58,8 +58,8 @@ export default function ServicesPage() {
                 </p>
 
                 <p className="text-lg text-gray-700 leading-relaxed mt-4">
-                  Spécialisés dans l'<span className="font-semibold text-gray-700">assistance respiratoire à domicile</span>, nous offrons des services de vente et de location, garantissant que nos patients disposent des dispositifs les mieux adaptés.
-                  Nous sommes <span className="underline">conventionnés avec la Caisse Nationale d'Assurance Maladie (CNAM)</span> et les assurances maladies pour faciliter l’accès aux soins pour tous.
+                  Spécialisés dans l&apos;oxygénothérapie et <span className="font-semibold text-gray-700">assistance respiratoire à domicile</span>, nous offrons des services de vente et de location, garantissant que nos patients disposent des dispositifs les mieux adaptés.
+                  Nous sommes <span className="underline">conventionnés avec la Caisse Nationale d&apos;Assurance Maladie (CNAM)</span> et les assurances maladies pour faciliter l’accès aux soins pour tous.
                 </p>
 
                 <p className="text-lg text-gray-700 leading-relaxed mt-4">

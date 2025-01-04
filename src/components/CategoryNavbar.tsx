@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const categories = [
   {
@@ -73,16 +73,34 @@ const categories = [
 
 export default function CategoryNavbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Handle dropdown open/close
-  const handleDropdownToggle = (categoryName: string) => {
-    setOpenDropdown(openDropdown === categoryName ? null : categoryName);
+  // Handle dropdown open
+  const handleDropdownOpen = (categoryName: string) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current); // Clear any pending close timeout
+    }
+    setOpenDropdown(categoryName); // Open the dropdown immediately
+  };
+
+  // Handle dropdown close with delay
+  const handleDropdownClose = () => {
+    timeoutRef.current = setTimeout(() => {
+      setOpenDropdown(null); // Close the dropdown after a delay
+    }, 150); // 150ms delay for smoother transitions
+  };
+
+  // Clear timeout on unmount
+  const clearTimeoutRef = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
   };
 
   return (
     <nav className="fixed top-16 left-0 right-0 bg-white z-40 border-t-2 font-spartan shadow-sm">
-      <div className="flex justify-start max-w-8xl mx-auto"> {/* Changed justify-end to justify-start */}
-        <div className="flex items-center h-12 ml-[420px]"> {/* Adjusted margin from ml-[300px] to ml-[250px] */}
+      <div className="flex justify-start max-w-8xl mx-auto">
+        <div className="flex items-center h-12 ml-[420px]">
           {/* Home Link */}
           <Link
             href="/"
@@ -105,11 +123,16 @@ export default function CategoryNavbar() {
               <DropdownMenu
                 key={category.name}
                 open={openDropdown === category.name}
-                onOpenChange={(open) => handleDropdownToggle(category.name)}
+                onOpenChange={(open) => {
+                  if (!open) {
+                    handleDropdownClose(); // Close the dropdown if not open
+                  }
+                }}
               >
                 <DropdownMenuTrigger
                   className="h-12 px-5 flex items-center space-x-2 text-xxl rounded-xl font-bold text-blue-900 hover:text-blue-600 hover:bg-gray-50 transition-all border-r border-blue-200 focus:outline-none group"
-                  onMouseEnter={() => setOpenDropdown(category.name)}
+                  onMouseEnter={() => handleDropdownOpen(category.name)} // Open on hover
+                  onMouseLeave={handleDropdownClose} // Close on mouse leave
                   aria-label={category.displayName}
                 >
                   <span className="whitespace-nowrap space-x-4 text-lg">
@@ -120,7 +143,8 @@ export default function CategoryNavbar() {
                 <DropdownMenuContent
                   align="start"
                   className="w-64"
-                  onMouseLeave={() => setOpenDropdown(null)}
+                  onMouseEnter={() => handleDropdownOpen(category.name)} // Keep open when hovering over content
+                  onMouseLeave={handleDropdownClose} // Close when leaving content
                 >
                   {category.items.map((item) => (
                     <DropdownMenuItem key={item.name} asChild>

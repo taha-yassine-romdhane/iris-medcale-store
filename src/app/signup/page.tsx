@@ -6,6 +6,10 @@ import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import { User, Mail, Lock, Phone, MapPin, Building, Hash } from 'lucide-react';
 
+interface ApiError {
+  message: string;
+}
+
 export default function SignUpPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -17,14 +21,14 @@ export default function SignUpPage() {
     telephone: '',
     adresse: '',
     ville: '',
-    codePostal: ''
+    codePostal: '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -52,8 +56,12 @@ export default function SignUpPage() {
 
       toast.success('Inscription réussie !');
       router.push('/');
-    } catch (error:any)  {
-      toast.error(error.message || 'Une erreur est survenue lors de l\'inscription');
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message || "Une erreur est survenue lors de l'inscription");
+      } else {
+        toast.error("Une erreur inconnue est survenue");
+      }
     } finally {
       setLoading(false);
     }
@@ -208,7 +216,7 @@ export default function SignUpPage() {
                 disabled={loading}
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
               >
-                {loading ? 'Inscription en cours...' : 'S\'inscrire'}
+                {loading ? 'Inscription en cours...' : "S'inscrire"}
               </button>
             </div>
           </form>

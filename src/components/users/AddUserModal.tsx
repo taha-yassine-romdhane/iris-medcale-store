@@ -14,15 +14,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { User, RoleUtilisateur } from '@/types/user'; // Import User and RoleUtilisateur
 
 interface AddUserModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (userData: any) => void;
+  onSubmit: (userData: User) => void; // Use `User` type
 }
 
 export default function AddUserModal({ isOpen, onClose, onSubmit }: AddUserModalProps) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<Omit<User, 'id' | 'dateCreation' | 'dateMiseAJour' | 'actif'>>({
     email: '',
     motDePasse: '',
     nom: '',
@@ -33,7 +34,17 @@ export default function AddUserModal({ isOpen, onClose, onSubmit }: AddUserModal
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
+
+    // Add default values for missing properties
+    const userData: User = {
+      ...formData,
+      id: '', // Default value for id
+      dateCreation: new Date().toISOString(), // Default value for dateCreation
+      dateMiseAJour: new Date().toISOString(), // Default value for dateMiseAJour
+      actif: true, // Default value for actif
+    };
+
+    onSubmit(userData);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +52,7 @@ export default function AddUserModal({ isOpen, onClose, onSubmit }: AddUserModal
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleRoleChange = (value: string) => {
+  const handleRoleChange = (value: RoleUtilisateur) => {
     setFormData(prev => ({ ...prev, role: value }));
   };
 

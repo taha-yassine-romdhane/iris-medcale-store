@@ -135,7 +135,7 @@ export default function EditUserModal({ isOpen, onClose, onSubmit, user }: EditU
       <DialogContent className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
         <DialogHeader>
           <DialogTitle className="text-xl font-semibold text-gray-800">
-            Modifier l'utilisateur
+            Modifier l&#39;utilisateur
           </DialogTitle>
         </DialogHeader>
 

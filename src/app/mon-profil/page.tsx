@@ -138,7 +138,7 @@ export default function MonProfilPage() {
             className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
           >
             <Home className="h-5 w-5 mr-2" />
-            Retour à l'accueil
+            Retour à l&apos;accueil
           </Link>
         </div>
 

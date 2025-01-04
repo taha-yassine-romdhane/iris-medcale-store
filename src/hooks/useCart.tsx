@@ -1,12 +1,13 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Cart, CartItem } from '@/types/cart';
+import { Cart, CartItem } from '@/types/cart'; // Import Cart and CartItem types
+import { Product } from '@/types/product'; // Import the Product type
 import { toast } from 'react-hot-toast';
 
 interface CartContextType {
   cart: Cart;
-  addToCart: (product: any) => void;
+  addToCart: (product: Product) => void; // Use `Product` instead of `any`
   removeFromCart: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
@@ -55,20 +56,20 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return items.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
-  const addToCart = (product: any) => {
+  const addToCart = (product: Product) => {
     if (!product || !product.id) {
       console.error('Invalid product:', product);
       return;
     }
-
+  
     setCart((prevCart) => {
       if (!prevCart || !Array.isArray(prevCart.items)) {
         prevCart = defaultCart;
       }
-
+  
       const existingItem = prevCart.items.find((item) => item.id === product.id);
       
-      let newItems;
+      let newItems: CartItem[];
       if (existingItem) {
         newItems = prevCart.items.map((item) =>
           item.id === product.id
@@ -82,15 +83,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
           {
             id: product.id,
             name: product.name,
-            price: parseFloat(product.price),
+            price: parseFloat(product.price.toString()), // Ensure price is a number
             quantity: 1,
             brand: product.brand,
-            image: product.media?.[0]?.url
+            image: product.media?.[0]?.url,
+            inStock: product.inStock // Ensure `inStock` is included
           }
         ];
         toast.success('Produit ajouté au panier');
       }
-
+  
       return {
         items: newItems,
         total: calculateTotal(newItems)

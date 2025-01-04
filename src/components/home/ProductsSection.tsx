@@ -4,24 +4,13 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from '@/hooks/useCart';
-import { ChevronLeft, ChevronRight } from 'lucide-react'; // Import the Chevron icons from Lucide React
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Product } from '@/types/product';
 
 interface Media {
   id: string;
   url: string;
   alt: string | null;
-}
-
-interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: number | null;
-  brand: string;
-  category: string;
-  type?: string;
-  features?: string; // JSON string of features
-  media: Media[];
 }
 
 interface CategoryProducts {
@@ -56,7 +45,7 @@ export default function ProductsSection() {
         if (!response.ok) throw new Error('Failed to fetch products');
         const data = await response.json();
 
-        console.log('Fetched products:', data); // Debug log
+        console.log('Fetched products:', data);
 
         const categorizedProducts = {
           cpap: data.filter((p: Product) => 
@@ -86,13 +75,13 @@ export default function ProductsSection() {
           )
         };
 
-        console.log('Categorized products:', categorizedProducts); // Debug log
+        console.log('Categorized products:', categorizedProducts);
 
         setProducts(categorizedProducts);
         setError(null);
-      } catch (err) {
-        console.error('Error fetching products:', err);
-        setError(err instanceof Error ? err.message : 'Failed to fetch products');
+      } catch {
+        console.error('Error fetching products');
+        setError('Failed to fetch products');
       } finally {
         setLoading(false);
       }
@@ -120,23 +109,23 @@ export default function ProductsSection() {
     const { addToCart } = useCart();
 
     return (
-      <section className="mb-14">
-        <h2 className="text-3xl font-bold text-left p-8 text-blue-800 font-spartan">{title}</h2>      
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold text-left p-6 text-blue-800 font-spartan">{title}</h2>      
         <div className="relative overflow-hidden max-w-full">
           {/* Scroll Buttons */}
           <button
             onClick={() => handleScroll('left', refKey)}
             aria-label="Scroll Left"
-            className="absolute left-0 top-0 bottom-0 m-auto h-10 w-10 flex items-center justify-center bg-blue-200 hover:bg-blue-300 text-blue-600 rounded-full shadow-md z-10 transition-all duration-200"
+            className="absolute left-2 top-1/2 -translate-y-1/2 h-10 w-10 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg z-10 transition-all duration-200"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={() => handleScroll('right', refKey)}
             aria-label="Scroll Right"
-            className="absolute right-0 top-0 bottom-0 m-auto h-10 w-10 flex items-center justify-center bg-blue-200 hover:bg-blue-300 text-blue-600 rounded-full shadow-md z-10 transition-all duration-200"
+            className="absolute right-2 top-1/2 -translate-y-1/2 h-10 w-10 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg z-10 transition-all duration-200"
           >
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className="w-5 h-5" />
           </button>
 
           {/* Products */}
@@ -145,17 +134,18 @@ export default function ProductsSection() {
               <Link
                 href={`/product/${product.id}`}
                 key={product.id}
-                className="flex-shrink-0 w-80 bg-white rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-transform transform hover:scale-105"
+                className="flex-shrink-0 w-72 bg-white rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-200 overflow-hidden group"
               >
                 {/* Product Image */}
-                <div className="relative h-72 bg-gray-50 rounded-t-lg">
+                <div className="relative aspect-square h-64 bg-gray-50 rounded-t-lg overflow-hidden">
                   {product.media?.length ? (
                     <Image
                       src={product.media[0].url}
                       alt={product.media[0].alt || product.name}
                       fill
-                      className="object-cover rounded-t-lg"
+                      className="object-contain p-4 cursor-pointer transition-transform group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority
                     />
                   ) : (
                     <div className="flex items-center justify-center h-full text-gray-400 text-sm">No image</div>
@@ -163,11 +153,13 @@ export default function ProductsSection() {
                 </div>
 
                 {/* Product Details */}
-                <div className="p-6">
-                  <h3 className="font-semibold text-lg mb-2 text-blue-800 line-clamp-1 font-spartan">{product.name}</h3>
-                  <p className="text-blue-900 text-sm mb-3 line-clamp-2 font-spartan">{product.description}</p>
+                <div className="p-4">
+                  <h3 className="font-semibold text-lg mb-2 text-blue-800 line-clamp-1 hover:text-blue-600 transition-colors duration-200">
+                    {product.name}
+                  </h3>
+                  <p className="text-blue-900 text-sm mb-3 line-clamp-2">{product.description}</p>
                   {product.features && (
-                    <ul className="text-gray-500 text-xs mb-4 space-y-1 font-spartan">
+                    <ul className="text-gray-600 text-xs mb-4 space-y-1">
                       {(() => {
                         try {
                           const features = typeof product.features === 'string' 
@@ -178,7 +170,7 @@ export default function ProductsSection() {
                           return features.map((feature: string, index: number) => (
                             <li key={index}>• {feature}</li>
                           ));
-                        } catch (err) {
+                        } catch {
                           // If JSON parsing fails, treat it as a single feature
                           return <li>• {product.features}</li>;
                         }
@@ -190,7 +182,7 @@ export default function ProductsSection() {
                       e.preventDefault();
                       addToCart(product);
                     }}
-                    className="w-full py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow-sm hover:bg-blue-700 transition-all duration-200 font-spartan"
+                    className="w-full py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow-sm hover:bg-blue-700 transition-all duration-200"
                   >
                     Ajouter au panier
                   </button>
@@ -220,63 +212,51 @@ export default function ProductsSection() {
   }
 
   return (
-    <section className="py-8 px-12 font-spartan">
-      <div className="max-w-8xl mx-auto px-12">
-        <section className="py-12">
-          <div className="max-w-4xl mx-auto text-center">
-            <h3 className="text-2xl md:text-3xl font-bold text-blue-800 mb-6">
+    <section className="py-8 px-6 font-spartan">
+      <div className="max-w-8xl mx-auto px-6">
+        <section className="py-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <h3 className="text-2xl md:text-3xl font-bold text-blue-800 mb-4">
               Découvrez nos produits
             </h3>
           </div>
         </section>
         <section>
-          <div className="space-y-12">
+          <div className="space-y-7">
             {/* CPAP Machines Section */}
             {products.cpap.length > 0 && (
-              <>
-                <div className="flex items-center mb-6"></div>
-                <ProductSlider
-                  title="Machines CPAP"
-                  products={products.cpap}
-                  refKey="cpap"
-                />
-              </>
+              <ProductSlider
+                title="Machines CPAP"
+                products={products.cpap}
+                refKey="cpap"
+              />
             )}
 
             {/* Masks Section */}
             {products.masks.length > 0 && (
-              <>
-                <div className="flex items-center"></div>
-                <ProductSlider
-                  title="Masques"
-                  products={products.masks}
-                  refKey="masks"
-                />
-              </>
+              <ProductSlider
+                title="Masques"
+                products={products.masks}
+                refKey="masks"
+              />
             )}
 
             {/* Oxygen Concentrators Section */}
             {products.oxygen.length > 0 && (
-              <>
-                <div className="flex items-center"></div>
-                <ProductSlider
-                  title="Concentrateurs d'Oxygène"
-                  products={products.oxygen}
-                  refKey="oxygen"
-                />
-              </>
+              <ProductSlider
+                title="Concentrateurs d'Oxygène"
+                products={products.oxygen}
+                refKey="oxygen"
+              />
             )}
 
             {/* Medical Beds Section */}
             {products.lits.length > 0 && (
-              <>
-                <div className="flex items-center"></div>
-                <ProductSlider
-                  title="Lits Médicalisés"
-                  products={products.lits}
-                  refKey="lits"
-                />
-              </>
+              <ProductSlider
+                title="Lits Médicalisés"
+                products={products.lits}
+                refKey="lits"
+              />
             )}
           </div>
         </section>

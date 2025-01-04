@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Shield, Lock, Mail, AlertCircle } from 'lucide-react';
+import { Shield, Lock, Mail, AlertCircle, Loader2 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 
 export default function LoginPage() {
@@ -89,10 +89,10 @@ export default function LoginPage() {
               </h2>
             </div>
             
-            {errorMessage && (
+            {(errorMessage || error) && (
               <div className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg flex items-center" role="alert">
                 <AlertCircle className="w-5 h-5 mr-2" />
-                {errorMessage}
+                {errorMessage || error}
               </div>
             )}
 
@@ -146,9 +146,14 @@ export default function LoginPage() {
               <div>
                 <button
                   type="submit"
-                  className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition"
+                  className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition flex items-center justify-center"
+                  disabled={loading}
                 >
-                  Se connecter
+                  {loading ? (
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                  ) : (
+                    'Se connecter'
+                  )}
                 </button>
               </div>
               <div className="text-sm text-center">
