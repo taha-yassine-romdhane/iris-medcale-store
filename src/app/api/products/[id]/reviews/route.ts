@@ -2,17 +2,13 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import * as ProductService from '@/lib/services/products';
 
-interface Context {
-  params: { id: string };
-}
-
 export async function POST(
   request: NextRequest,
-  context: Context
+  { params }: { params: { id: string } }
 ) {
   try {
     const data = await request.json();
-    const { id } = context.params;
+    const { id } = params;
 
     const review = await ProductService.addProductReview(id, data);
 
