@@ -7,14 +7,9 @@ export async function GET(
   request: Request,
   { params }: { params: Promise<{ id: string }> } // params is now a Promise
 ) {
-  console.log('Request URL:', request.url); // Log the request URL
-
   // Await the params object before destructuring
   const { id } = await params;
-  console.log('Params:', { id }); // Log the resolved params
-
   try {
-    console.log('Fetching product with ID:', id); // Log the product ID
     const product = await ProductService.getProductById(id);
 
     if (!product) {
@@ -24,8 +19,7 @@ export async function GET(
         { status: 404 }
       );
     }
-
-    console.log('Product found:', product); // Log the fetched product
+    
     return NextResponse.json(product);
   } catch (error) {
     const errorMessage =

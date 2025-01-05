@@ -102,13 +102,14 @@ export async function PUT(request: Request) {
   }
 }
 
-export async function DELETE(request: Request) {
+export async function DELETE(
+  request: Request,
+  { params }: { params: { userId: string } } // Use params to get userId
+) {
   try {
-    // Get the URL parameters
-    const url = new URL(request.url);
-    const id = url.searchParams.get('id');
+    const { userId } = params; // Extract userId from params
 
-    if (!id) {
+    if (!userId) {
       return NextResponse.json(
         { error: 'User ID is required' },
         { status: 400 },
@@ -116,7 +117,7 @@ export async function DELETE(request: Request) {
     }
 
     await prisma.utilisateur.delete({
-      where: { id },
+      where: { id: userId },
     });
 
     return NextResponse.json({ message: 'User deleted successfully' });
