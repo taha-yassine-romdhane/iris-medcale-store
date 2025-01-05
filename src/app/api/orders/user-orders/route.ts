@@ -19,7 +19,8 @@ export async function GET(request: NextRequest) {
     let decoded;
     try {
       decoded = verifyToken(token);
-    } catch (error) {
+    } catch {
+      // No longer using the `error` parameter
       return NextResponse.json(
         { error: 'Token invalide' },
         { status: 401 }
