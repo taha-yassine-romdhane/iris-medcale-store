@@ -6,9 +6,7 @@ import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import { User, Mail, Lock, Phone, MapPin, Building, Hash } from 'lucide-react';
 
-interface ApiError {
-  message: string;
-}
+
 
 export default function SignUpPage() {
   const router = useRouter();

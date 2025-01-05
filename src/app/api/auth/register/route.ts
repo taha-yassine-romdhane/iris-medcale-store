@@ -73,7 +73,8 @@ export async function POST(request: Request) {
     });
 
     // Remove password from response
-    const { motDePasse: _, ...userWithoutPassword } = user; // `_` is intentionally unused
+    const userWithoutPassword = { ...user, motDePasse: undefined };
+    delete userWithoutPassword.motDePasse;
 
     return NextResponse.json({
       user: userWithoutPassword,

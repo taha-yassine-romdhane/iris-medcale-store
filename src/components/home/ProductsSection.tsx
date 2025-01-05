@@ -7,11 +7,6 @@ import { useCart } from '@/hooks/useCart';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Product } from '@/types/product';
 
-interface Media {
-  id: string;
-  url: string;
-  alt: string | null;
-}
 
 interface CategoryProducts {
   cpap: Product[];

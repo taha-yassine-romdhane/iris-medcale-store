@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Calendar, Clock, Send } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from "@/components/ui/use-toast";
-import type { User } from '@/types/user'; 
 
 export default function AppointmentSection() {
   const [formData, setFormData] = useState({

@@ -90,12 +90,7 @@ export default function CategoryNavbar() {
     }, 150); // 150ms delay for smoother transitions
   };
 
-  // Clear timeout on unmount
-  const clearTimeoutRef = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-  };
+
 
   return (
     <nav className="fixed top-16 left-0 right-0 bg-white z-40 border-t-2 font-spartan shadow-sm">

@@ -6,7 +6,7 @@ export async function GET() {
   try {
     const users = await prisma.utilisateur.findMany({
       orderBy: {
-        dateCreation: 'desc'
+        dateCreation: 'desc',
       },
       select: {
         id: true,
@@ -23,14 +23,14 @@ export async function GET() {
         codePostal: true,
         photo: true,
         // Exclude motDePasse for security
-      }
+      },
     });
     return NextResponse.json(users);
   } catch (error) {
     console.error('Error fetching users:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -38,7 +38,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const data = await request.json();
-    
+
     // Hash the password
     const hashedPassword = await hash(data.motDePasse, 12);
 
@@ -46,17 +46,17 @@ export async function POST(request: Request) {
       data: {
         ...data,
         motDePasse: hashedPassword,
-      }
+      },
     });
 
     // Don't send the password back
-    const {...userWithoutPassword } = user;
+    const { motDePasse: _, ...userWithoutPassword } = user;
     return NextResponse.json(userWithoutPassword);
   } catch (error) {
     console.error('Error creating user:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -69,7 +69,7 @@ export async function PUT(request: Request) {
     if (!id) {
       return NextResponse.json(
         { error: 'User ID is required' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -83,17 +83,17 @@ export async function PUT(request: Request) {
 
     const user = await prisma.utilisateur.update({
       where: { id },
-      data: updateData
+      data: updateData,
     });
 
     // Don't send the password back
-    const { motDePasse, ...userWithoutPassword } = user;
+    const { motDePasse: _, ...userWithoutPassword } = user;
     return NextResponse.json(userWithoutPassword);
   } catch (error) {
     console.error('Error updating user:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -107,20 +107,20 @@ export async function DELETE(request: Request) {
     if (!id) {
       return NextResponse.json(
         { error: 'User ID is required' },
-        { status: 400 }
+        { status: 400 },
       );
     }
-    
+
     await prisma.utilisateur.delete({
-      where: { id }
+      where: { id },
     });
-    
+
     return NextResponse.json({ message: 'User deleted successfully' });
   } catch (error) {
     console.error('Error deleting user:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

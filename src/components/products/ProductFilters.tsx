@@ -1,9 +1,9 @@
-// components/products/ProductFilters.tsx
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { Product } from '@/types/product'; // Import your Product type
 
 interface ProductFiltersProps {
   onFilter: (filters: { category: string; type: string; brand: string }) => void;
-  products?: any[]; // Make products optional
+  products?: Product[]; // Use the Product type instead of any
 }
 
 export default function ProductFilters({ products = [], onFilter }: ProductFiltersProps) {
@@ -21,9 +21,10 @@ export default function ProductFilters({ products = [], onFilter }: ProductFilte
   const types = Array.from(new Set(products.map(product => product.type).filter(Boolean)));
   const brands = Array.from(new Set(products.map(product => product.brand).filter(Boolean)));
 
-  const handleFilter = () => {
+  // Use useCallback to memoize handleFilter
+  const handleFilter = useCallback(() => {
     onFilter({ category, type, brand });
-  };
+  }, [category, type, brand, onFilter]);
 
   const clearFilters = () => {
     setCategory('');
@@ -35,7 +36,7 @@ export default function ProductFilters({ products = [], onFilter }: ProductFilte
   // Apply filters automatically when any filter changes
   useEffect(() => {
     handleFilter();
-  }, [category, type, brand]);
+  }, [handleFilter]);
 
   if (!products || products.length === 0) {
     return null; // Don't render filters if there are no products

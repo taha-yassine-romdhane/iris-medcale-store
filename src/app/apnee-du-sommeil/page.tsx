@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Info, CheckCircle, AlertTriangle, Stethoscope, Clock, Brain, Heart, Plus } from 'lucide-react';
+import Image from 'next/image'; // Import the Image component
 
 export default function SleepApneaPage() {
     const [activeTab, setActiveTab] = useState('symptoms');
@@ -22,10 +23,10 @@ export default function SleepApneaPage() {
                         <p className="text-xl md:text-2xl text-blue-100 mb-8">
                             Comprendre, diagnostiquer et traiter les troubles du sommeil pour retrouver des nuits reposantes
                         </p>
-
                     </div>
                 </div>
             </section>
+
             {/* Main Content */}
             <section className="py-16 bg-gray-50">
                 <div className="max-w-screen-2xl mx-auto px-4">
@@ -36,7 +37,7 @@ export default function SleepApneaPage() {
                             <div className="relative aspect-video rounded-xl overflow-hidden shadow-lg mb-8">
                                 <iframe
                                     src="https://www.youtube.com/embed/depYIECNT2U"
-                                    title="Qu'est-ce que l'apnée du sommeil ?"
+                                    title="Qu&apos;est-ce que l&apos;apnée du sommeil ?"
                                     className="absolute top-0 left-0 w-full h-full"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen
@@ -47,28 +48,27 @@ export default function SleepApneaPage() {
                             <div>
                                 <div className="flex items-center gap-3 mb-6">
                                     <Info className="h-8 w-8 text-blue-600" />
-                                    <h2 className="text-2xl font-bold text-gray-900">Qu'est-ce que l'apnée du sommeil ?</h2>
+                                    <h2 className="text-2xl font-bold text-gray-900">Qu&apos;est-ce que l&apos;apnée du sommeil ?</h2>
                                 </div>
                                 <p className="text-lg text-gray-700 leading-relaxed">
-                                    L'apnée du sommeil est un trouble respiratoire qui se caractérise par des pauses respiratoires répétées pendant le sommeil.
+                                    L&apos;apnée du sommeil est un trouble respiratoire qui se caractérise par des pauses respiratoires répétées pendant le sommeil.
                                     Ces interruptions, qui peuvent durer de quelques secondes à plusieurs minutes, perturbent le cycle naturel du sommeil et
                                     peuvent avoir des conséquences importantes sur la santé et la qualité de vie.
                                 </p>
 
                                 {/* GIF Image */}
                                 <div className="mt-6 w-full max-w-2xl mx-auto">
-                                    <img
+                                    <Image
                                         src="/schlafapnoe-animation-1.gif"
                                         alt="Schlafapnoe Animation"
+                                        width={800}
+                                        height={450}
                                         className="w-full h-auto rounded-xl shadow-lg"
                                     />
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-
 
                     {/* Tabs Navigation */}
                     <div className="flex justify-center mb-12">
@@ -110,11 +110,11 @@ export default function SleepApneaPage() {
                                         </li>
                                         <li className="flex items-start gap-2">
                                             <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
-                                            <span>Pauses respiratoires observées par l'entourage</span>
+                                            <span>Pauses respiratoires observées par l&apos;entourage</span>
                                         </li>
                                         <li className="flex items-start gap-2">
                                             <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
-                                            <span>Réveils en sursaut avec sensation d'étouffement</span>
+                                            <span>Réveils en sursaut avec sensation d&apos;étouffement</span>
                                         </li>
                                         <li className="flex items-start gap-2">
                                             <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
@@ -143,22 +143,23 @@ export default function SleepApneaPage() {
                                         </li>
                                         <li className="flex items-start gap-2">
                                             <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
-                                            <span>Irritabilité et changements d'humeur</span>
+                                            <span>Irritabilité et changements d&apos;humeur</span>
                                         </li>
                                     </ul>
                                 </div>
 
                                 {/* Image from the public folder */}
                                 <div className="flex justify-center col-span-2 mb-8">
-                                    <img
-                                        src="/symtomes.jpg" // Replace with your image file name
+                                    <Image
+                                        src="/symtomes.jpg"
                                         alt="Description of the image"
-                                        className="w-1/2 h-auto rounded-lg shadow-md" // Adjust size as needed
+                                        width={800}
+                                        height={450}
+                                        className="w-1/2 h-auto rounded-lg shadow-md"
                                     />
                                 </div>
                             </div>
                         )}
-
 
                         {activeTab === 'risks' && (
                             <div className="bg-white p-8 rounded-xl shadow-lg">
@@ -172,7 +173,7 @@ export default function SleepApneaPage() {
                                             <Heart className="h-5 w-5 text-red-500 mt-1" />
                                             <div>
                                                 <h4 className="font-medium">Problèmes cardiovasculaires</h4>
-                                                <p className="text-sm text-gray-600">Hypertension, risque d'AVC, troubles du rythme cardiaque</p>
+                                                <p className="text-sm text-gray-600">Hypertension, risque d&apos;AVC, troubles du rythme cardiaque</p>
                                             </div>
                                         </div>
                                         <div className="flex items-start gap-3">
@@ -202,10 +203,12 @@ export default function SleepApneaPage() {
 
                                     {/* Image from the public folder */}
                                     <div className="flex p-8 justify-center col-span-2 mb-8">
-                                        <img
-                                            src="/conséquences.jpg" // Replace with your image file name
+                                        <Image
+                                            src="/conséquences.jpg"
                                             alt="Description of the risks"
-                                            className="w-3/4 h-auto rounded-lg shadow-md" // Adjust size as needed
+                                            width={800}
+                                            height={450}
+                                            className="w-3/4 h-auto rounded-lg shadow-md"
                                         />
                                     </div>
                                 </div>
@@ -224,11 +227,11 @@ export default function SleepApneaPage() {
                                             <h4 className="font-medium mb-2">PPC (Pression Positive Continue)</h4>
                                             <p className="text-gray-700">
                                                 Traitement de référence qui consiste à porter un masque connecté à un appareil
-                                                délivrant de l'air sous pression pendant le sommeil.
+                                                délivrant de l&apos;air sous pression pendant le sommeil.
                                             </p>
                                         </div>
                                         <div className="border-b pb-4">
-                                            <h4 className="font-medium mb-2">Orthèse d'avancée mandibulaire</h4>
+                                            <h4 className="font-medium mb-2">Orthèse d&apos;avancée mandibulaire</h4>
                                             <p className="text-gray-700">
                                                 Dispositif dentaire maintenant la mâchoire inférieure en position avancée
                                                 pour dégager les voies respiratoires.
@@ -247,7 +250,7 @@ export default function SleepApneaPage() {
                                                 </li>
                                                 <li className="flex items-center gap-2">
                                                     <CheckCircle className="h-5 w-5 text-blue-600" />
-                                                    <span>Arrêt du tabac et réduction de l'alcool</span>
+                                                    <span>Arrêt du tabac et réduction de l&apos;alcool</span>
                                                 </li>
                                             </ul>
                                         </div>
@@ -266,21 +269,20 @@ export default function SleepApneaPage() {
                                 </div>
                             </div>
                         )}
-
                     </div>
 
                     {/* Call to Action */}
                     <div className="mt-16 text-center">
-                        <h3 className="text-2xl font-bold mb-4">Vous pensez souffrir d'apnées du sommeil ?</h3>
+                        <h3 className="text-2xl font-bold mb-4">Vous pensez souffrir d&apos;apnées du sommeil ?</h3>
                         <p className="text-lg text-gray-700 mb-6">
-                            N'attendez plus pour consulter nos spécialistes. Un diagnostic précoce permet une meilleure prise en charge.
+                            N&apos;attendez plus pour consulter nos spécialistes. Un diagnostic précoce permet une meilleure prise en charge.
                         </p>
                         <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
                             Prendre rendez-vous
                         </button>
                     </div>
                 </div>
-            </section >
-        </div >
+            </section>
+        </div>
     );
 }
