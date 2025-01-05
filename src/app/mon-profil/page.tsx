@@ -3,28 +3,16 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
-import { User, Mail, Phone, MapPin, Building, Hash, Home } from 'lucide-react';
+import { Users, Mail, Phone, MapPin, Building, Hash, Home } from 'lucide-react';
 import Link from 'next/link';
-
-interface UserProfile {
-  id: string;
-  email: string;
-  nom: string | null;
-  prenom: string | null;
-  telephone: string | null;
-  adresse: string | null;
-  ville: string | null;
-  codePostal: string | null;
-  role: string;
-  createdAt: string;
-}
+import type { User} from '@/types/user';
 
 export default function MonProfilPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [profile, setProfile] = useState<UserProfile | null>(null);
-  const [formData, setFormData] = useState<Partial<UserProfile>>({});
+  const [profile, setProfile] = useState<User | null>(null);
+  const [formData, setFormData] = useState<Partial<User>>({});
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
@@ -166,7 +154,7 @@ export default function MonProfilPage() {
               {/* Nom */}
               <div>
                 <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <User className="h-4 w-4 mr-2 text-blue-600" />
+                  <Users className="h-4 w-4 mr-2 text-blue-600" />
                   Nom
                 </label>
                 <input
@@ -182,7 +170,7 @@ export default function MonProfilPage() {
               {/* Prénom */}
               <div>
                 <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <User className="h-4 w-4 mr-2 text-blue-600" />
+                  <Users className="h-4 w-4 mr-2 text-blue-600" />
                   Prénom
                 </label>
                 <input

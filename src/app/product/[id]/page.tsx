@@ -2,38 +2,11 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useCart } from '@/hooks/useCart';
-
-interface Media {
-  id: string;
-  url: string;
-  type: 'image' | 'video';
-  alt?: string;
-  order: number;
-}
-
-interface Review {
-  id: string;
-  rating: number;
-  comment?: string;
-}
-
-interface Product {
-  id: string;
-  name: string;
-  brand: string;
-  type: string;
-  description: string;
-  price: number;
-  features: string[];
-  category: string;
-  subCategory?: string;
-  media: Media[];
-  reviews: Review[];
-}
+import { Product } from '@/types/product';
 
 export default function ProductPage() {
   const params = useParams();
@@ -42,9 +15,6 @@ export default function ProductPage() {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [showReviewForm, setShowReviewForm] = useState(false);
-  const [rating, setRating] = useState(5);
-  const [comment, setComment] = useState('');
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -75,32 +45,6 @@ export default function ProductPage() {
   const prevImage = () => {
     if (product?.media) {
       setCurrentImageIndex((prev) => (prev - 1 + product.media.length) % product.media.length);
-    }
-  };
-
-  const handleSubmitReview = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!product) return;
-
-    try {
-      const response = await fetch(`/api/products/${id}/reviews`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ rating, comment }),
-      });
-
-      if (!response.ok) throw new Error('Failed to submit review');
-
-      
-      const updatedProduct = await fetch(`/api/products/${id}`).then(res => res.json());
-      setProduct(updatedProduct);
-      setShowReviewForm(false);
-      setRating(5);
-      setComment('');
-    } catch (error) {
-      console.error('Error submitting review:', error);
     }
   };
 
@@ -278,84 +222,6 @@ export default function ProductPage() {
                 )}
               </dl>
             </div>
-          </div>
-        </div>
-
-        {/* Reviews Section */}
-        <div className="mt-16 border-t border-gray-200 pt-8">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-gray-900">Avis clients</h2>
-            <button
-              onClick={() => setShowReviewForm(!showReviewForm)}
-              className="text-blue-600 hover:text-blue-700 font-medium"
-            >
-              Écrire un avis
-            </button>
-          </div>
-
-          {showReviewForm && (
-            <form onSubmit={handleSubmitReview} className="mb-8 bg-white p-6 rounded-lg shadow">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">Votre avis</h3>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Note</label>
-                <div className="flex items-center">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <button
-                      key={star}
-                      type="button"
-                      onClick={() => setRating(star)}
-                      className="p-1"
-                    >
-                      <Star
-                        className={`w-6 h-6 ${
-                          star <= rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
-                        }`}
-                      />
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Commentaire
-                </label>
-                <textarea
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                  rows={4}
-                  className="w-full border border-gray-300 rounded-lg p-2"
-                  placeholder="Partagez votre expérience avec ce produit..."
-                />
-              </div>
-              <button
-                type="submit"
-                className="bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700"
-              >
-                Soumettre
-              </button>
-            </form>
-          )}
-
-          <div className="space-y-8">
-            {product.reviews.map((review) => (
-              <div key={review.id} className="border-b border-gray-200 pb-8">
-                <div className="flex items-center mb-2">
-                  <div className="flex items-center">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star
-                        key={star}
-                        className={`w-4 h-4 ${
-                          star <= review.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
-                {review.comment && (
-                  <p className="text-gray-600">{review.comment}</p>
-                )}
-              </div>
-            ))}
           </div>
         </div>
       </div>

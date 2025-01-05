@@ -61,8 +61,8 @@ export default function SleepApneaPage() {
                                     <Image
                                         src="/schlafapnoe-animation-1.gif"
                                         alt="Schlafapnoe Animation"
-                                        width={800}
-                                        height={450}
+                                        width={300}
+                                        height={300}
                                         className="w-full h-auto rounded-xl shadow-lg"
                                     />
                                 </div>
@@ -155,7 +155,7 @@ export default function SleepApneaPage() {
                                         alt="Description of the image"
                                         width={800}
                                         height={450}
-                                        className="w-1/2 h-auto rounded-lg shadow-md"
+                                        className="w-full h-auto rounded-lg shadow-md"
                                     />
                                 </div>
                             </div>
@@ -208,7 +208,7 @@ export default function SleepApneaPage() {
                                             alt="Description of the risks"
                                             width={800}
                                             height={450}
-                                            className="w-3/4 h-auto rounded-lg shadow-md"
+                                            className="w-full h-auto rounded-lg shadow-md"
                                         />
                                     </div>
                                 </div>

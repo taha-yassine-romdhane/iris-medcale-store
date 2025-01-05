@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server';
 import * as ProductService from '@/lib/services/products';
 import prisma from '@/lib/prisma';
-import { Media } from '@/types/product'; 
+import { Media } from '@/types/product';
 
 export async function GET(
   request: Request,
   { params }: { params: { id: string } }
 ) {
-  const id = await params.id;
+  const { id } = await params; // Await the params object
   try {
     const product = await ProductService.getProductById(id);
     if (!product) {
@@ -30,7 +30,7 @@ export async function PUT(
   req: Request,
   { params }: { params: { id: string } }
 ) {
-  const id = await params.id;
+  const { id } = await params; // Await the params object
   try {
     const data = await req.json();
 
@@ -91,12 +91,13 @@ export async function PATCH(
   request: Request,
   { params }: { params: { id: string } }
 ) {
+  const { id } = await params; // Await the params object
   try {
     const data = await request.json();
     const { ...updateData } = data;
     const product = await prisma.product.update({
       where: {
-        id: params.id,
+        id: id,
       },
       data: updateData,
       include: {
@@ -118,10 +119,11 @@ export async function DELETE(
   request: Request,
   { params }: { params: { id: string } }
 ) {
+  const { id } = await params; // Await the params object
   try {
     await prisma.product.delete({
       where: {
-        id: params.id,
+        id: id,
       },
     });
 

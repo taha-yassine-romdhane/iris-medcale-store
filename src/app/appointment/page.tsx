@@ -115,6 +115,8 @@ export default function AppointmentSection() {
               <Image
                 src="/RDV.jpg" 
                 alt="RDV"
+                width={800}
+                height={600}
                 className="rounded-2xl shadow-xl w-full h-auto relative z-10"
               />
             </div>

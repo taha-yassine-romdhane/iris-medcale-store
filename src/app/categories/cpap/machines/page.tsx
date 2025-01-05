@@ -4,35 +4,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/hooks/useCart';
-
-interface Media {
-  id: string;
-  url: string;
-  type: 'image' | 'video';
-  alt?: string;
-  order: number;
-}
-
-interface Product {
-  id: string;
-  name: string;
-  brand: string;
-  type: string;
-  description: string;
-  price: number;
-  features: string[];
-  category: string;
-  subCategory?: string;
-  inStock: boolean;
-  media: Media[];
-  reviews: Array<{
-    id: string;
-    rating: number;
-    comment?: string;
-    userName: string;
-    createdAt: string;
-  }>;
-}
+import { Product } from '@/types/product';
 
 export default function CPAPMachinesPage() {
   const [products, setProducts] = useState<Product[]>([]);
