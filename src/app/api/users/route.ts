@@ -50,7 +50,9 @@ export async function POST(request: Request) {
     });
 
     // Don't send the password back
-    const { motDePasse: _, ...userWithoutPassword } = user;
+    const userWithoutPassword = { ...user, motDePasse: undefined };
+    delete userWithoutPassword.motDePasse;
+
     return NextResponse.json(userWithoutPassword);
   } catch (error) {
     console.error('Error creating user:', error);
@@ -87,7 +89,9 @@ export async function PUT(request: Request) {
     });
 
     // Don't send the password back
-    const { motDePasse: _, ...userWithoutPassword } = user;
+    const userWithoutPassword = { ...user, motDePasse: undefined };
+    delete userWithoutPassword.motDePasse;
+
     return NextResponse.json(userWithoutPassword);
   } catch (error) {
     console.error('Error updating user:', error);

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Calendar, Clock, Send } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from "@/components/ui/use-toast";
+import Image from 'next/image';
 
 export default function AppointmentSection() {
   const [formData, setFormData] = useState({
@@ -17,7 +18,7 @@ export default function AppointmentSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!user) {
       toast({
         title: "Erreur",
@@ -52,7 +53,7 @@ export default function AppointmentSection() {
         title: "Succès",
         description: "Votre demande de rendez-vous a été envoyée avec succès. Vous recevrez un email de confirmation.",
       });
-      
+
       // Clear form
       setFormData({
         date: '',
@@ -111,9 +112,9 @@ export default function AppointmentSection() {
             <div className="relative">
               <div className="absolute -top-4 -left-4 w-24 h-24 bg-blue-500/10 rounded-full"></div>
               <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-blue-500/10 rounded-full"></div>
-              <img
-                src="RDV.jpg"
-                alt="Rendez-vous illustration"
+              <Image
+                src="/RDV.jpg" 
+                alt="RDV"
                 className="rounded-2xl shadow-xl w-full h-auto relative z-10"
               />
             </div>

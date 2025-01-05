@@ -23,15 +23,22 @@ export async function POST(request: NextRequest) {
       data: {
         dateRdv,
         motif: appointment.reason,
-        utilisateurId: user.id
-      }
+        utilisateurId: user.id,
+      },
     });
 
     return NextResponse.json({ success: true, appointment: newAppointment });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error saving appointment:', error);
+
+    // Handle the error safely
+    let errorMessage = 'Failed to save appointment';
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+
     return NextResponse.json(
-      { error: error?.message || 'Failed to save appointment' },
+      { error: errorMessage },
       { status: 500 }
     );
   }

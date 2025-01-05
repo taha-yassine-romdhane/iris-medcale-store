@@ -1,0 +1,103 @@
+"filename", "language", "TypeScript", "TypeScript JSX", "CSS", "comment", "blank", "total"
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\a-propos\page.tsx", "TypeScript JSX", 0, 165, 0, 5, 8, 178
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\appointment\route.ts", "TypeScript", 30, 0, 0, 2, 7, 39
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\appointments\route.ts", "TypeScript", 73, 0, 0, 2, 7, 82
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\auth\login\route.ts", "TypeScript", 77, 0, 0, 8, 12, 97
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\auth\logout\route.ts", "TypeScript", 25, 0, 0, 1, 5, 31
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\auth\register\route.ts", "TypeScript", 73, 0, 0, 7, 10, 90
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\contact\route.ts", "TypeScript", 34, 0, 0, 4, 7, 45
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\devis\route.ts", "TypeScript", 75, 0, 0, 2, 9, 86
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\messages\route.ts", "TypeScript", 45, 0, 0, 0, 3, 48
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\orders\user-orders\route.ts", "TypeScript", 54, 0, 0, 3, 5, 62
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\products\[id]\reviews\route.ts", "TypeScript", 23, 0, 0, 0, 4, 27
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\products\[id]\route.ts", "TypeScript", 126, 0, 0, 1, 9, 136
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\products\brand\yuwell\route.ts", "TypeScript", 52, 0, 0, 4, 8, 64
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\products\route.ts", "TypeScript", 35, 0, 0, 0, 4, 39
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\products\search\route.ts", "TypeScript", 43, 0, 0, 0, 5, 48
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\upload\route.ts", "TypeScript", 31, 0, 0, 3, 7, 41
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\user\profile\route.ts", "TypeScript", 160, 0, 0, 2, 21, 183
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\users\[userId]\route.ts", "TypeScript", 100, 0, 0, 4, 20, 124
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\api\users\route.ts", "TypeScript", 105, 0, 0, 7, 14, 126
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\apnee-du-sommeil\page.tsx", "TypeScript JSX", 0, 259, 0, 13, 16, 288
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\appointment\page.tsx", "TypeScript JSX", 0, 177, 0, 7, 18, 202
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\categories\aerosol\accessoires\page.tsx", "TypeScript JSX", 0, 161, 0, 8, 14, 183
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\categories\aerosol\nebuliseurs\page.tsx", "TypeScript JSX", 0, 160, 0, 8, 14, 182
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\categories\aspirateur\consommables\page.tsx", "TypeScript JSX", 0, 162, 0, 8, 15, 185
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\categories\aspirateur\machines\page.tsx", "TypeScript JSX", 0, 162, 0, 8, 13, 183
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\categories\bipap\accessoires\page.tsx", "TypeScript JSX", 0, 162, 0, 8, 15, 185
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\categories\bipap\machines\page.tsx", "TypeScript JSX", 0, 162, 0, 8, 14, 184
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\categories\cpap\accessoires\page.tsx", "TypeScript JSX", 0, 203, 0, 8, 20, 231
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\categories\cpap\machines\page.tsx", "TypeScript JSX", 0, 174, 0, 7, 16, 197
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\categories\cpap\pieces\page.tsx", "TypeScript JSX", 0, 159, 0, 8, 14, 181
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\categories\lit\accessoires\page.tsx", "TypeScript JSX", 0, 160, 0, 8, 14, 182
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\categories\lit\medicalise\page.tsx", "TypeScript JSX", 0, 160, 0, 8, 14, 182
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\categories\masques\facial\page.tsx", "TypeScript JSX", 0, 162, 0, 8, 14, 184
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\categories\masques\narinaire\page.tsx", "TypeScript JSX", 0, 162, 0, 8, 14, 184
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\categories\masques\nasal\page.tsx", "TypeScript JSX", 0, 162, 0, 8, 14, 184
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\categories\oxygene\accessoires\page.tsx", "TypeScript JSX", 0, 162, 0, 8, 14, 184
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\categories\oxygene\concentrateurs\page.tsx", "TypeScript JSX", 0, 162, 0, 8, 14, 184
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\checkout\page.tsx", "TypeScript JSX", 0, 173, 0, 5, 13, 191
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\contact\page.tsx", "TypeScript JSX", 0, 180, 0, 6, 15, 201
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\dashboard\appointments\page.tsx", "TypeScript JSX", 0, 281, 0, 1, 22, 304
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\dashboard\layout.tsx", "TypeScript JSX", 0, 14, 0, 1, 6, 21
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\dashboard\messages\page.tsx", "TypeScript JSX", 0, 198, 0, 0, 17, 215
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\dashboard\page.tsx", "TypeScript JSX", 0, 75, 0, 5, 8, 88
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\dashboard\products\page.tsx", "TypeScript JSX", 0, 260, 0, 11, 28, 299
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\dashboard\users\page.tsx", "TypeScript JSX", 0, 223, 0, 6, 17, 246
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\globals.css", "CSS", 0, 0, 91, 3, 12, 106
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\layout.tsx", "TypeScript JSX", 0, 41, 0, 0, 5, 46
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\login\page.tsx", "TypeScript JSX", 0, 159, 0, 3, 14, 176
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\mes-commandes\page.tsx", "TypeScript JSX", 0, 151, 0, 1, 13, 165
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\mon-profil\page.tsx", "TypeScript JSX", 0, 265, 0, 10, 26, 301
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\page.tsx", "TypeScript JSX", 0, 12, 0, 0, 2, 14
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\product\[id]\page.tsx", "TypeScript JSX", 0, 323, 0, 9, 33, 365
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\products\[category]\page.tsx", "TypeScript JSX", 0, 32, 0, 1, 6, 39
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\services\page.tsx", "TypeScript JSX", 0, 117, 0, 5, 11, 133
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\signup\page.tsx", "TypeScript JSX", 0, 195, 0, 9, 21, 225
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\app\ui\switch\page.tsx", "TypeScript JSX", 0, 76, 0, 5, 9, 90
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\CategoryNavbar.tsx", "TypeScript JSX", 0, 150, 0, 4, 9, 163
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\Footer.tsx", "TypeScript JSX", 0, 131, 0, 5, 5, 141
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\Navbar.tsx", "TypeScript JSX", 0, 268, 0, 10, 18, 296
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\SearchBar.tsx", "TypeScript JSX", 0, 124, 0, 2, 11, 137
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\cart\CartDropdown.tsx", "TypeScript JSX", 0, 102, 0, 2, 7, 111
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\home\AboutSection.tsx", "TypeScript JSX", 0, 52, 0, 4, 5, 61
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\home\BrandsSection.tsx", "TypeScript JSX", 0, 101, 0, 2, 13, 116
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\home\FeaturesSection.tsx", "TypeScript JSX", 0, 39, 0, 0, 3, 42
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\home\HeroSection.tsx", "TypeScript JSX", 0, 102, 0, 3, 9, 114
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\home\ProductsSection.tsx", "TypeScript JSX", 0, 228, 0, 9, 24, 261
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\modals\DevisModal.tsx", "TypeScript JSX", 0, 166, 0, 4, 19, 189
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\products\AddProductModal.tsx", "TypeScript JSX", 0, 405, 0, 2, 31, 438
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\products\DeleteProductModal.tsx", "TypeScript JSX", 0, 96, 0, 0, 13, 109
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\products\EditProductModal.tsx", "TypeScript JSX", 0, 417, 0, 4, 39, 460
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\products\ProductFilters.tsx", "TypeScript JSX", 0, 101, 0, 7, 11, 119
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\products\ViewProductModal.tsx", "TypeScript JSX", 0, 119, 0, 0, 14, 133
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\ui\button.tsx", "TypeScript JSX", 0, 52, 0, 0, 6, 58
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\ui\dialog.tsx", "TypeScript JSX", 0, 109, 0, 0, 14, 123
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\ui\dropdown-menu.tsx", "TypeScript JSX", 0, 183, 0, 0, 19, 202
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\ui\flags.tsx", "TypeScript JSX", 0, 26, 0, 0, 1, 27
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\ui\input.tsx", "TypeScript JSX", 0, 19, 0, 0, 4, 23
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\ui\label.tsx", "TypeScript JSX", 0, 21, 0, 0, 6, 27
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\ui\select.tsx", "TypeScript JSX", 0, 146, 0, 0, 14, 160
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\ui\spinner.tsx", "TypeScript JSX", 0, 34, 0, 1, 4, 39
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\ui\switch.tsx", "TypeScript JSX", 0, 49, 0, 1, 8, 58
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\ui\toast.tsx", "TypeScript JSX", 0, 116, 0, 0, 14, 130
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\ui\toaster.tsx", "TypeScript JSX", 0, 32, 0, 0, 4, 36
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\ui\use-toast.ts", "TypeScript", 144, 0, 0, 0, 27, 171
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\users\AddUserModal.tsx", "TypeScript JSX", 0, 151, 0, 1, 13, 165
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\users\DeleteUserModal.tsx", "TypeScript JSX", 0, 70, 0, 0, 8, 78
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\users\EditUserModal.tsx", "TypeScript JSX", 0, 247, 0, 0, 23, 270
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\components\users\ViewUserModal.tsx", "TypeScript JSX", 0, 89, 0, 2, 8, 99
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\hooks\use-toast.ts", "TypeScript", 153, 0, 0, 2, 28, 183
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\hooks\useAuth.ts", "TypeScript", 123, 0, 0, 7, 25, 155
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\hooks\useCart.tsx", "TypeScript JSX", 0, 133, 0, 2, 19, 154
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\lib\db.ts", "TypeScript", 6, 0, 0, 0, 4, 10
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\lib\jwt.ts", "TypeScript", 42, 0, 0, 1, 10, 53
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\lib\prisma.ts", "TypeScript", 14, 0, 0, 0, 5, 19
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\lib\services\products.ts", "TypeScript", 177, 0, 0, 4, 16, 197
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\lib\services\users.ts", "TypeScript", 25, 0, 0, 1, 3, 29
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\lib\utils.ts", "TypeScript", 5, 0, 0, 0, 2, 7
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\middleware.ts", "TypeScript", 61, 0, 0, 5, 11, 77
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\types\cart.ts", "TypeScript", 14, 0, 0, 0, 2, 16
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\types\product.ts", "TypeScript", 20, 0, 0, 0, 2, 22
+"c:\Users\tahar\OneDrive\Bureau\gazzeh travail\health-ecommerce\src\types\user.ts", "TypeScript", 17, 0, 0, 0, 2, 19
+"Total", "-", 1962, 10089, 91, 368, 1243, 13753
