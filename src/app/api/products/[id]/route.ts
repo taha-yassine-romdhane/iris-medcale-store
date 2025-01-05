@@ -5,83 +5,81 @@ import { Media } from '@/types/product';
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> } // params is now a Promise
 ) {
-  const { id } = await params; // Await the params object
+  console.log('Request URL:', request.url); // Log the request URL
+
+  // Await the params object before destructuring
+  const { id } = await params;
+  console.log('Params:', { id }); // Log the resolved params
+
   try {
+    console.log('Fetching product with ID:', id); // Log the product ID
     const product = await ProductService.getProductById(id);
+
     if (!product) {
+      console.warn('Product not found for ID:', id); // Log a warning if product is not found
       return NextResponse.json(
         { error: 'Product not found' },
         { status: 404 }
       );
     }
+
+    console.log('Product found:', product); // Log the fetched product
     return NextResponse.json(product);
   } catch (error) {
-    console.error('Error fetching product:', error);
+    const errorMessage =
+      error instanceof Error ? error.message : 'Internal Server Error';
+    console.error('Error fetching product:', error); // Log the error
     return NextResponse.json(
-      { error: 'Internal Server Error' },
+      { error: errorMessage },
       { status: 500 }
     );
   }
 }
 
 export async function PUT(
-  req: Request,
-  { params }: { params: { id: string } }
+  request: Request,
+  { params }: { params: Promise<{ id: string }> } // params is now a Promise
 ) {
-  const { id } = await params; // Await the params object
+  // Await the params object before destructuring
+  const { id } = await params;
+
   try {
-    const data = await req.json();
-
-    // Ensure features is properly formatted for JSON storage
-    let features = data.features;
-    if (typeof features === 'string') {
-      try {
-        features = JSON.parse(features);
-      } catch {
-        features = [];
-      }
-    }
-    if (!Array.isArray(features)) {
-      features = [];
-    }
-
+    const data = await request.json();
     const product = await prisma.product.update({
-      where: {
-        id: id,
-      },
+      where: { id },
       data: {
         name: data.name,
         brand: data.brand,
         type: data.type,
         description: data.description,
-        price: typeof data.price === 'string' ? parseFloat(data.price) : data.price,
-        features: features,
+        price: parseFloat(data.price),
+        features: Array.isArray(data.features) ? data.features : [],
         category: data.category,
         subCategory: data.subCategory,
         inStock: data.inStock,
-        media: data.media ? {
-          deleteMany: {},
-          create: data.media.map((m: Media) => ({
-            url: m.url,
-            type: m.type,
-            alt: m.alt,
-            order: m.order,
-          })),
-        } : undefined,
-      },
-      include: {
-        media: true,
-        reviews: true,
+        media: data.media
+          ? {
+              deleteMany: {},
+              create: data.media.map((media: Media) => ({
+                url: media.url,
+                type: media.type,
+                alt: media.alt,
+                order: media.order,
+              })),
+            }
+          : undefined,
       },
     });
 
     return NextResponse.json(product);
   } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : 'Failed to update product';
     console.error('Error updating product:', error);
     return NextResponse.json(
-      { error: 'Failed to update product', details: error },
+      { error: errorMessage },
       { status: 500 }
     );
   }
@@ -89,27 +87,25 @@ export async function PUT(
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> } // params is now a Promise
 ) {
-  const { id } = await params; // Await the params object
+  // Await the params object before destructuring
+  const { id } = await params;
+
   try {
     const data = await request.json();
-    const { ...updateData } = data;
     const product = await prisma.product.update({
-      where: {
-        id: id,
-      },
-      data: updateData,
-      include: {
-        media: true,
-      },
+      where: { id },
+      data,
     });
 
     return NextResponse.json(product);
   } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : 'Error updating product';
     console.error('Error updating product:', error);
     return NextResponse.json(
-      { error: 'Error updating product' },
+      { error: errorMessage },
       { status: 500 }
     );
   }
@@ -117,21 +113,23 @@ export async function PATCH(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> } // params is now a Promise
 ) {
-  const { id } = await params; // Await the params object
+  // Await the params object before destructuring
+  const { id } = await params;
+
   try {
     await prisma.product.delete({
-      where: {
-        id: id,
-      },
+      where: { id },
     });
 
     return NextResponse.json({ message: 'Product deleted successfully' });
   } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : 'Error deleting product';
     console.error('Error deleting product:', error);
     return NextResponse.json(
-      { error: 'Error deleting product' },
+      { error: errorMessage },
       { status: 500 }
     );
   }
