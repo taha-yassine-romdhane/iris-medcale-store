@@ -54,8 +54,7 @@ export async function getAllProducts(category?: string, type?: string, brand?: s
     }
   });
 
-  // Parse features for each product
-  return products.map(product => ({
+  return products.map((product) => ({
     ...product,
     features: (() => {
       try {

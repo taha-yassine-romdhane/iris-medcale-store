@@ -19,7 +19,7 @@ import { User, RoleUtilisateur } from '@/types/user'; // Import User and RoleUti
 interface AddUserModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (userData: User) => void; // Use `User` type
+  onSubmit: (userData: Omit<User, 'id' | 'dateCreation' | 'dateMiseAJour' | 'actif'>) => void;
 }
 
 export default function AddUserModal({ isOpen, onClose, onSubmit }: AddUserModalProps) {
@@ -35,16 +35,8 @@ export default function AddUserModal({ isOpen, onClose, onSubmit }: AddUserModal
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Add default values for missing properties
-    const userData: User = {
-      ...formData,
-      id: '', // Default value for id
-      dateCreation: new Date().toISOString(), // Default value for dateCreation
-      dateMiseAJour: new Date().toISOString(), // Default value for dateMiseAJour
-      actif: true, // Default value for actif
-    };
-
-    onSubmit(userData);
+    // Submit only the form data (without id, dateCreation, dateMiseAJour, actif)
+    onSubmit(formData);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

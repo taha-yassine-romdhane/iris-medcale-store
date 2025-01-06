@@ -3,11 +3,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { X } from 'lucide-react';
-
-interface Product {
-  id: string;
-  name: string;
-}
+import type { Product } from '@/types/product';
 
 
 interface DeleteProductModalProps {

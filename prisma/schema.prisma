@@ -82,8 +82,8 @@ model Utilisateur {
   codePostal    String?
   photo         String?
   commandes     Commande[]
-  contacts      Contact[]       // New relation
-  appointments  Appointment[]   // New relation
+  contacts      Contact[]
+  appointments  Appointment[]
 }
 
 enum StatusCommande {

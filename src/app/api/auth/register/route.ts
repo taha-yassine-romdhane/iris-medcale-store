@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import { signToken } from '@/lib/jwt';
 import prisma from '@/lib/prisma';
-import { RoleUtilisateur } from '@prisma/client';
+import { RoleUtilisateur }  from '@prisma/client';
 
 export async function POST(request: Request) {
   try {

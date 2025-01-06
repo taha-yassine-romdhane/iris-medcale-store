@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { hash } from 'bcryptjs';
 
+
 export async function PATCH(
   request: NextRequest,
   { params }: { params: { userId: string } }
@@ -68,57 +69,74 @@ export async function PATCH(
   }
 }
 
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { userId: string } }
-) {
-  const id = params.userId;
 
-  if (!prisma) {
-    return NextResponse.json(
-      { error: 'Database connection failed' },
-      { status: 500 }
-    );
-  }
 
-  if (!id) {
-    return NextResponse.json(
-      { error: 'User ID is required' },
-      { status: 400 }
-    );
-  }
-
+export async function DELETE(request: Request) {
   try {
-    // Check if user exists
+    // Extract userId from the request URL
+    const url = new URL(request.url);
+    const userId = url.pathname.split('/').pop(); // Extract the last segment of the URL
+
+    console.log('DELETE request received for user ID:', userId);
+
+    // Validate userId
+    if (!userId) {
+      console.error('User ID is required');
+      return NextResponse.json(
+        { error: 'User ID is required' },
+        { status: 400 }
+      );
+    }
+
+    // Check if the user exists
     const existingUser = await prisma.utilisateur.findUnique({
-      where: { id }
+      where: { id: userId },
     });
 
     if (!existingUser) {
+      console.error('User not found:', userId);
       return NextResponse.json(
         { error: 'User not found' },
         { status: 404 }
       );
     }
 
+    // Attempt to delete the user
+    console.log('Deleting user:', userId);
     await prisma.utilisateur.delete({
-      where: { id },
+      where: { id: userId },
     });
 
-    return NextResponse.json({ success: true });
-  } catch (error: unknown) {
+    console.log('User deleted successfully:', userId);
+    return NextResponse.json(
+      { message: 'User deleted successfully' },
+      { status: 200 }
+    );
+  } catch (error) {
     console.error('Error deleting user:', error);
 
-    if (error instanceof Error && 'code' in error && error.code === 'P2025') {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
+    // Handle Prisma-specific errors
+    if (error instanceof Error && 'code' in error) {
+      if (error.code === 'P2025') {
+        return NextResponse.json(
+          { error: 'User not found' },
+          { status: 404 }
+        );
+      }
+      if (error.code === 'P2003') {
+        return NextResponse.json(
+          { error: 'Cannot delete user due to related records' },
+          { status: 400 }
+        );
+      }
     }
 
+    // Generic error response
     return NextResponse.json(
       { error: 'Failed to delete user' },
       { status: 500 }
     );
   }
 }
+
+

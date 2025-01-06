@@ -37,28 +37,70 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    console.log('Received request to create user');
+
     const data = await request.json();
+    console.log('Received data:', data);
+
+    // Validate required fields
+    if (!data.email || !data.motDePasse) {
+      console.error('Validation failed: Email and password are required');
+      return NextResponse.json(
+        { error: 'Email and password are required' },
+        { status: 400 }
+      );
+    }
+
+    // Check if the user already exists
+    console.log('Checking for existing user with email:', data.email);
+    const existingUser = await prisma.utilisateur.findUnique({
+      where: { email: data.email },
+    });
+
+    if (existingUser) {
+      console.error('User already exists:', data.email);
+      return NextResponse.json(
+        { error: 'User with this email already exists' },
+        { status: 400 }
+      );
+    }
 
     // Hash the password
+    console.log('Hashing password');
     const hashedPassword = await hash(data.motDePasse, 12);
+    console.log('Password hashed successfully');
 
+    // Create the user
+    console.log('Creating user in database');
     const user = await prisma.utilisateur.create({
       data: {
         ...data,
         motDePasse: hashedPassword,
       },
     });
+    console.log('User created successfully:', user);
 
-    // Don't send the password back
-    const userWithoutPassword = { ...user, motDePasse: undefined };
-    delete userWithoutPassword.motDePasse;
+    // Exclude the password from the response
+    const { motDePasse: _, ...userWithoutPassword } = user;
 
-    return NextResponse.json(userWithoutPassword);
+    return NextResponse.json(userWithoutPassword, { status: 201 });
   } catch (error) {
     console.error('Error creating user:', error);
+
+    // Handle Prisma-specific errors
+    if (error instanceof Error && 'code' in error) {
+      if (error.code === 'P2002') {
+        return NextResponse.json(
+          { error: 'User with this email already exists' },
+          { status: 400 }
+        );
+      }
+    }
+
+    // Generic error response
     return NextResponse.json(
-      { error: 'Internal Server Error' },
-      { status: 500 },
+      { error: 'Failed to create user' },
+      { status: 500 }
     );
   }
 }
@@ -95,34 +137,6 @@ export async function PUT(request: Request) {
     return NextResponse.json(userWithoutPassword);
   } catch (error) {
     console.error('Error updating user:', error);
-    return NextResponse.json(
-      { error: 'Internal Server Error' },
-      { status: 500 },
-    );
-  }
-}
-
-export async function DELETE(
-  request: Request,
-  { params }: { params: { userId: string } } // Use params to get userId
-) {
-  try {
-    const { userId } = params; // Extract userId from params
-
-    if (!userId) {
-      return NextResponse.json(
-        { error: 'User ID is required' },
-        { status: 400 },
-      );
-    }
-
-    await prisma.utilisateur.delete({
-      where: { id: userId },
-    });
-
-    return NextResponse.json({ message: 'User deleted successfully' });
-  } catch (error) {
-    console.error('Error deleting user:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 },

@@ -1,21 +1,23 @@
 'use client';
 
-import { useState, useEffect } from "react";
-import { Plus, Pencil, Trash2, ArrowLeft } from "lucide-react";
-import AddUserModal from "@/components/users/AddUserModal";
-import EditUserModal from "@/components/users/EditUserModal";
-import { Input } from "@/components/ui/input";
-import Spinner from "@/components/ui/spinner";
+import { useState, useEffect } from 'react';
+import { Plus, Pencil, Trash2, ArrowLeft } from 'lucide-react';
+import AddUserModal from '@/components/users/AddUserModal';
+import EditUserModal from '@/components/users/EditUserModal';
+import DeleteUserModal from '@/components/users/DeleteUserModal'; // Import the new modal
+import { Input } from '@/components/ui/input';
+import Spinner from '@/components/ui/spinner';
 import Link from 'next/link';
-import { toast } from "sonner";
+import { toast } from 'sonner';
 import { User } from '@/types/user';
 
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -27,29 +29,38 @@ export default function UsersPage() {
       const response = await fetch('/api/users');
       if (!response.ok) throw new Error('Failed to fetch users');
       const data = await response.json();
+      console.log('Fetched Users:', data); // Log the fetched users
       setUsers(data);
     } catch (error) {
       console.error('Error:', error);
-      toast.error("Erreur lors du chargement des utilisateurs");
+      toast.error('Erreur lors du chargement des utilisateurs');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleAddUser = async (userData: Omit<User, 'id' | 'dateCreation'>) => {
+  const handleAddUser = async (userData: Omit<User, 'id' | 'dateCreation' | 'dateMiseAJour' | 'actif'>) => {
     try {
       const response = await fetch('/api/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData),
       });
-      if (!response.ok) throw new Error('Failed to add user');
-      await fetchUsers();
-      setIsAddModalOpen(false);
-      toast.success("Utilisateur ajouté avec succès");
+  
+      if (!response.ok) {
+        const errorData = await response.text(); // Read the response as text first
+        console.error('Error response:', errorData);
+        throw new Error(errorData || 'Failed to add user');
+      }
+  
+      const responseData = await response.json(); // Parse the response as JSON
+      console.log('User added successfully:', responseData);
+  
+      await fetchUsers(); // Refresh the user list
+      setIsAddModalOpen(false); // Close the modal
+      toast.success('Utilisateur ajouté avec succès');
     } catch (error) {
       console.error('Error:', error);
-      toast.error("Erreur lors de l'ajout de l'utilisateur");
     }
   };
 
@@ -58,38 +69,21 @@ export default function UsersPage() {
       const response = await fetch(`/api/users?id=${userData.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(userData),
       });
-      
+
       if (!response.ok) throw new Error('Failed to update user');
       await fetchUsers();
       setIsEditModalOpen(false);
       setSelectedUser(null);
-      toast.success("Utilisateur mis à jour avec succès");
+      toast.success('Utilisateur mis à jour avec succès');
     } catch (error) {
       console.error('Error:', error);
       toast.error("Erreur lors de la mise à jour de l'utilisateur");
     }
   };
 
-  const handleDeleteUser = async (id: string) => {
-    if (!confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) return;
-    
-    try {
-      const response = await fetch(`/api/users?id=${id}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' }
-      });
-      if (!response.ok) throw new Error('Failed to delete user');
-      await fetchUsers();
-      toast.success("Utilisateur supprimé avec succès");
-    } catch (error) {
-      console.error('Error:', error);
-      toast.error("Erreur lors de la suppression de l'utilisateur");
-    }
-  };
-
-  const filteredUsers = users.filter(user => {
+  const filteredUsers = users.filter((user) => {
     const searchLower = searchTerm.toLowerCase();
     return (
       user.email.toLowerCase().includes(searchLower) ||
@@ -181,13 +175,14 @@ export default function UsersPage() {
                     <div className="text-sm text-gray-500">{user.email}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                      user.role === 'ADMIN' 
+                    <span
+                      className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${user.role === 'ADMIN'
                         ? 'bg-purple-100 text-purple-800'
                         : user.role === 'EMPLOYE'
-                        ? 'bg-blue-100 text-blue-800'
-                        : 'bg-green-100 text-green-800'
-                    }`}>
+                          ? 'bg-blue-100 text-blue-800'
+                          : 'bg-green-100 text-green-800'
+                        }`}
+                    >
                       {user.role}
                     </span>
                   </td>
@@ -207,7 +202,11 @@ export default function UsersPage() {
                       <Pencil className="h-5 w-5" />
                     </button>
                     <button
-                      onClick={() => handleDeleteUser(user.id)}
+                      onClick={() => {
+                        console.log('Selected User:', user); // Log the selected user
+                        setSelectedUser(user);
+                        setIsDeleteModalOpen(true);
+                      }}
                       className="text-red-600 hover:text-red-900"
                     >
                       <Trash2 className="h-5 w-5" />
@@ -239,6 +238,18 @@ export default function UsersPage() {
           }}
           onSubmit={handleEditUser}
           user={selectedUser}
+        />
+      )}
+
+      {/* Delete User Modal */}
+      {isDeleteModalOpen && selectedUser && (
+        <DeleteUserModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          userId={selectedUser.id} // Pass the user ID as a string
+          onSuccess={() => {
+            fetchUsers(); // Refresh the user list after deletion
+          }}
         />
       )}
     </div>
