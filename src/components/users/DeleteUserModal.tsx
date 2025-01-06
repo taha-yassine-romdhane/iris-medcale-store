@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/components/ui/use-toast';
 
 interface DeleteUserModalProps {
   isOpen: boolean;
@@ -65,7 +64,7 @@ export default function DeleteUserModal({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md bg-white p-6 rounded-lg shadow-lg">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold">Supprimer l'utilisateur</DialogTitle>
+          <DialogTitle className="text-xl font-semibold">Supprimer l&apos;utilisateur</DialogTitle>
         </DialogHeader>
         <div className="mt-4">
           <p className="text-gray-700">

@@ -81,7 +81,8 @@ export async function POST(request: Request) {
     console.log('User created successfully:', user);
 
     // Exclude the password from the response
-    const { motDePasse: _, ...userWithoutPassword } = user;
+    const userWithoutPassword = { ...user, motDePasse: undefined };
+    delete userWithoutPassword.motDePasse;
 
     return NextResponse.json(userWithoutPassword, { status: 201 });
   } catch (error) {
