@@ -7,7 +7,6 @@ import { useCart } from '@/hooks/useCart';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Product } from '@/types/product';
 
-
 interface CategoryProducts {
   cpap: Product[];
   masks: Product[];
@@ -129,10 +128,10 @@ export default function ProductsSection() {
               <Link
                 href={`/product/${product.id}`}
                 key={product.id}
-                className="flex-shrink-0 w-72 bg-white rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-200 overflow-hidden group"
+                className="flex-shrink-0 w-96 bg-white rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-200 overflow-hidden group"
               >
                 {/* Product Image */}
-                <div className="relative aspect-square h-64 bg-gray-50 rounded-t-lg overflow-hidden">
+                <div className="relative aspect-square h-80 bg-gray-50 rounded-t-lg overflow-hidden">
                   {product.media?.length ? (
                     <Image
                       src={product.media[0].url}
@@ -148,36 +147,17 @@ export default function ProductsSection() {
                 </div>
 
                 {/* Product Details */}
-                <div className="p-4">
-                  <h3 className="font-semibold text-lg mb-2 text-blue-800 line-clamp-1 hover:text-blue-600 transition-colors duration-200">
+                <div className="p-6">
+                  <h3 className="font-semibold text-xl mb-3 text-blue-800 line-clamp-1 hover:text-blue-600 transition-colors duration-200">
                     {product.name}
                   </h3>
-                  <p className="text-blue-900 text-sm mb-3 line-clamp-2">{product.description}</p>
-                  {product.features && (
-                    <ul className="text-gray-600 text-xs mb-4 space-y-1">
-                      {(() => {
-                        try {
-                          const features = typeof product.features === 'string' 
-                            ? JSON.parse(product.features)
-                            : Array.isArray(product.features)
-                              ? product.features
-                              : [];
-                          return features.map((feature: string, index: number) => (
-                            <li key={index}>• {feature}</li>
-                          ));
-                        } catch {
-                          // If JSON parsing fails, treat it as a single feature
-                          return <li>• {product.features}</li>;
-                        }
-                      })()}
-                    </ul>
-                  )}
+                  <p className="text-blue-900 text-base mb-4 line-clamp-2">{product.description}</p>
                   <button
                     onClick={(e) => {
                       e.preventDefault();
                       addToCart(product);
                     }}
-                    className="w-full py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow-sm hover:bg-blue-700 transition-all duration-200"
+                    className="w-full py-3 bg-blue-600 text-white text-base font-medium rounded-md shadow-sm hover:bg-blue-700 transition-all duration-200"
                   >
                     Ajouter au panier
                   </button>
