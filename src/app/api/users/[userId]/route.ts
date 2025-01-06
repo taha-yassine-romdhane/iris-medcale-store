@@ -1,37 +1,35 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { hash } from 'bcryptjs';
 
-
-export async function PATCH(
-  request: NextRequest,
-  { params }: { params: { userId: string } }
-) {
-  const id = params.userId;
-
-  if (!prisma) {
-    return NextResponse.json(
-      { error: 'Database connection failed' },
-      { status: 500 }
-    );
-  }
-
-  if (!id) {
-    return NextResponse.json(
-      { error: 'User ID is required' },
-      { status: 400 }
-    );
-  }
-
+export async function PATCH(request: Request) {
   try {
+    // Extract userId from the request URL
+    const url = new URL(request.url);
+    const userId = url.pathname.split('/').pop(); // Extract the last segment of the URL
+
+    console.log('PATCH request received for user ID:', userId);
+
+    // Validate userId
+    if (!userId) {
+      console.error('User ID is required');
+      return NextResponse.json(
+        { error: 'User ID is required' },
+        { status: 400 }
+      );
+    }
+
+    // Parse request body
     const data = await request.json();
+    console.log('Received data for update:', data);
 
     // Check if user exists
     const existingUser = await prisma.utilisateur.findUnique({
-      where: { id }
+      where: { id: userId },
     });
 
     if (!existingUser) {
+      console.error('User not found:', userId);
       return NextResponse.json(
         { error: 'User not found' },
         { status: 404 }
@@ -39,36 +37,50 @@ export async function PATCH(
     }
 
     // Prepare update data
-    const updateData = { ...data }; // Use const instead of let
+    const updateData = { ...data };
     if (data.motDePasse) {
+      console.log('Hashing password');
       updateData.motDePasse = await hash(data.motDePasse, 10);
     }
 
     // Update user
+    console.log('Updating user:', userId);
     const updatedUser = await prisma.utilisateur.update({
-      where: { id },
+      where: { id: userId },
       data: updateData,
     });
 
+    // Exclude password from the response
     const { motDePasse: _, ...userWithoutPassword } = updatedUser; // eslint-disable-line @typescript-eslint/no-unused-vars
-    return NextResponse.json(userWithoutPassword);
-  } catch (error: unknown) {
+
+    console.log('User updated successfully:', userId);
+    return NextResponse.json(userWithoutPassword, { status: 200 });
+  } catch (error) {
     console.error('Error updating user:', error);
 
-    if (error instanceof Error && 'code' in error && error.code === 'P2025') {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
+    // Handle Prisma-specific errors
+    if (error instanceof Error && 'code' in error) {
+      if (error.code === 'P2025') {
+        return NextResponse.json(
+          { error: 'User not found' },
+          { status: 404 }
+        );
+      }
+      if (error.code === 'P2002') {
+        return NextResponse.json(
+          { error: 'User with this email already exists' },
+          { status: 400 }
+        );
+      }
     }
 
+    // Generic error response
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Failed to update user' },
+      { error: 'Failed to update user' },
       { status: 500 }
     );
   }
 }
-
 
 
 export async function DELETE(request: Request) {
@@ -76,8 +88,6 @@ export async function DELETE(request: Request) {
     // Extract userId from the request URL
     const url = new URL(request.url);
     const userId = url.pathname.split('/').pop(); // Extract the last segment of the URL
-
-    console.log('DELETE request received for user ID:', userId);
 
     // Validate userId
     if (!userId) {

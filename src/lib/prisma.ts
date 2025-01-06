@@ -1,9 +1,12 @@
 import { PrismaClient } from '@prisma/client';
 
+// Extend the global type to include the `prisma` property
 declare global {
-  let prisma: PrismaClient;
+  // eslint-disable-next-line no-var
+  var prisma: PrismaClient | undefined;
 }
 
+// Initialize Prisma Client
 let prisma: PrismaClient;
 
 if (process.env.NODE_ENV === 'production') {
