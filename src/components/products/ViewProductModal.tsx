@@ -4,18 +4,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { X } from 'lucide-react';
 import Image from 'next/image';
-
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  description?: string;
-  category?: string;
-  type?: string;
-  brand?: string;
-  media?: { url: string; alt?: string }[];
-  inStock?: boolean;
-}
+import type { Product } from '@/types/product';
 
 interface ViewProductModalProps {
   isOpen: boolean;
@@ -82,10 +71,12 @@ export default function ViewProductModal({ isOpen, closeModal, product }: ViewPr
                       <p className="text-base text-gray-900">{product.name}</p>
                     </div>
 
-                    <div>
-                      <h4 className="text-sm font-medium text-gray-500">Prix</h4>
-                      <p className="text-base text-gray-900">TND {Number(product.price).toFixed(2)}</p>
-                    </div>
+                    {product.subCategory && (
+                      <div>
+                        <h4 className="text-sm font-medium text-gray-500">Catégorie</h4>
+                        <p className="text-base text-gray-900">{product.subCategory}</p>
+                      </div>
+                    )}
 
                     {product.brand && (
                       <div>

@@ -13,7 +13,6 @@ interface Order {
   items: {
     id: string;
     quantity: number;
-    price: number;
     product: {
       name: string;
       brand: string;

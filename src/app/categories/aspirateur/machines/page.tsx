@@ -4,9 +4,10 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/hooks/useCart';
-import type { Product } from '@/types/product';
+import { Product } from '@/types/product';
+import { fetchCategoryProducts } from '@/lib/helpers/product-helpers';
 
-export default function AspiratorMachinesPage() {
+export default function AspirateurMachinesPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedMedia, setSelectedMedia] = useState<{ [key: string]: number }>({});
@@ -15,17 +16,13 @@ export default function AspiratorMachinesPage() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        // Fetch only aspirator machines
-        const response = await fetch('/api/products?category=aspirateur&type=Machine');
-        if (!response.ok) throw new Error('Failed to fetch products');
-        const data = await response.json();
-        setProducts(data);
-        // Initialize selected media for each product
-        const initialSelected = data.reduce((acc: { [key: string]: number }, product: Product) => {
-          acc[product.id] = 0;
-          return acc;
-        }, {});
-        setSelectedMedia(initialSelected);
+        const { products, initialSelectedMedia } = await fetchCategoryProducts('aspirateur-machines');
+        if (!Array.isArray(products)) {
+          console.error('Products is not an array:', products);
+          throw new Error('Invalid products data');
+        }
+        setProducts(products);
+        setSelectedMedia(initialSelectedMedia);
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {
@@ -35,6 +32,11 @@ export default function AspiratorMachinesPage() {
 
     fetchProducts();
   }, []);
+
+  const handleAddToCart = (e: React.MouseEvent, product: Product) => {
+    e.preventDefault();
+    addToCart(product);
+  };
 
   if (loading) {
     return (
@@ -50,10 +52,6 @@ export default function AspiratorMachinesPage() {
       </div>
     );
   }
-  const handleAddToCart = (e: React.MouseEvent, product: Product) => {
-    e.preventDefault();
-    addToCart(product);
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 py-28">

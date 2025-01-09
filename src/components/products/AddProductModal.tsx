@@ -2,9 +2,11 @@
 
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
-import { X, Upload, Trash2 } from 'lucide-react';
+import { X, Trash2 } from 'lucide-react';
 import { Product, Media } from '@/types/product';
 import Image from 'next/image';
+import { UploadDropzone } from '@uploadthing/react';
+import type { OurFileRouter } from '@/app/api/uploadthing/core';
 
 interface AddProductModalProps {
   isOpen: boolean;
@@ -17,7 +19,6 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
     name: '',
     brand: '',
     type: '',
-    price: 0,
     description: '',
     category: '',
     subCategory: '',
@@ -25,21 +26,18 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
     features: [],
     media: [],
   });
-  const [uploadingMedia, setUploadingMedia] = useState(false);
   const [newFeature, setNewFeature] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // Prepare the data
       const productData = {
         ...formData,
-        price: Number(formData.price) || 0,
         features: Array.isArray(formData.features) ? formData.features : [],
         media: formData.media.map((m, index) => ({
           ...m,
-          order: index
-        }))
+          order: index,
+        })),
       };
 
       const response = await fetch('/api/products', {
@@ -58,12 +56,10 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
       const result = await response.json();
       onAdd(result);
       closeModal();
-      // Reset form
       setFormData({
         name: '',
         brand: '',
         type: '',
-        price: 0,
         description: '',
         category: '',
         subCategory: '',
@@ -79,74 +75,47 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: type === 'number' ? (value === '' ? 0 : parseFloat(value)) : value,
     }));
   };
 
-  const handleMediaUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (!files) return;
+  const handleMediaUpload = (files: { url: string; type: string; name: string }[]) => {
+    const newMedia: Media[] = files.map((file) => ({
+      url: file.url,
+      type: file.type.startsWith('image/') ? 'image' : 'video',
+      alt: file.name,
+      order: formData.media.length,
+    }));
 
-    setUploadingMedia(true);
-    try {
-      for (const file of Array.from(files)) {
-        const formDataUpload = new FormData();
-        formDataUpload.append('file', file);
-
-        const response = await fetch('/api/upload', {
-          method: 'POST',
-          body: formDataUpload,
-        });
-
-        if (!response.ok) throw new Error('Upload failed');
-
-        const data = await response.json();
-        const newMedia: Media = {
-          url: data.url,
-          type: file.type.startsWith('image/') ? 'image' : 'video',
-          alt: file.name,
-          order: formData.media.length
-        };
-
-        setFormData(prev => ({
-          ...prev,
-          media: [...prev.media, newMedia]
-        }));
-      }
-    } catch (error) {
-      console.error('Error uploading media:', error);
-    } finally {
-      setUploadingMedia(false);
-    }
+    setFormData((prev) => ({
+      ...prev,
+      media: [...prev.media, ...newMedia],
+    }));
   };
 
   const handleMediaDelete = (index: number) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      media: prev.media
-        .filter((_, i) => i !== index)
-        .map((m, i) => ({ ...m, order: i }))
+      media: prev.media.filter((_, i) => i !== index).map((m, i) => ({ ...m, order: i })),
     }));
   };
 
   const handleAddFeature = () => {
     if (newFeature.trim()) {
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
-        features: [...(Array.isArray(prev.features) ? prev.features : []), newFeature.trim()]
+        features: [...(Array.isArray(prev.features) ? prev.features : []), newFeature.trim()],
       }));
       setNewFeature('');
     }
   };
 
   const handleRemoveFeature = (index: number) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      features: Array.isArray(prev.features) 
-        ? prev.features.filter((_, i) => i !== index)
-        : []
+      features: Array.isArray(prev.features) ? prev.features.filter((_, i) => i !== index) : [],
     }));
   };
 
@@ -178,13 +147,8 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
             >
               <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title as="div" className="flex justify-between items-center mb-4">
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">
-                    Ajouter un produit
-                  </h3>
-                  <button
-                    onClick={closeModal}
-                    className="text-gray-400 hover:text-gray-500"
-                  >
+                  <h3 className="text-lg font-medium leading-6 text-gray-900">Ajouter un produit</h3>
+                  <button onClick={closeModal} className="text-gray-400 hover:text-gray-500">
                     <X size={20} />
                   </button>
                 </Dialog.Title>
@@ -201,7 +165,7 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
                         id="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                        className="mt-1 block w-full rounded-md border-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                         required
                       />
                     </div>
@@ -231,23 +195,6 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
                         id="type"
                         value={formData.type}
                         onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                        required
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="price" className="block text-sm font-medium text-gray-700">
-                        Prix
-                      </label>
-                      <input
-                        type="number"
-                        name="price"
-                        id="price"
-                        value={formData.price || ''}
-                        onChange={handleChange}
-                        step="0.01"
-                        min="0"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                         required
                       />
@@ -337,61 +284,57 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
                     </div>
                   </div>
 
-                  <div>
+                  <div className="col-span-2">
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Médias
+                      Images et Vidéos
                     </label>
-                    <div className="mb-4">
-                      <label className="block w-full cursor-pointer">
-                        <div className="px-4 py-6 border-2 border-dashed border-gray-300 rounded-lg text-center hover:border-blue-500">
-                          <Upload className="mx-auto h-12 w-12 text-gray-400" />
-                          <span className="mt-2 block text-sm font-medium text-gray-900">
-                            {uploadingMedia ? 'Téléchargement...' : 'Ajouter des images ou vidéos'}
-                          </span>
-                        </div>
-                        <input
-                          type="file"
-                          className="hidden"
-                          multiple
-                          accept="image/*,video/*"
-                          onChange={handleMediaUpload}
-                          disabled={uploadingMedia}
-                        />
-                      </label>
-                    </div>
-                    <div className="space-y-2">
-                      {formData.media
-                        .sort((a, b) => a.order - b.order)
-                        .map((media, index) => (
-                          <div
-                            key={index}
-                            className="flex items-center gap-2"
+                    <UploadDropzone<OurFileRouter, "mediaUploader">
+                      endpoint="mediaUploader"
+                      onClientUploadComplete={(res) => {
+                        if (res) {
+                          handleMediaUpload(
+                            res.map((file) => ({
+                              url: file.url,
+                              type: file.type,
+                              name: file.name,
+                            }))
+                          );
+                        }
+                      }}
+                      onUploadError={(error: Error) => {
+                        console.error('Upload error:', error);
+                        alert(`Error uploading file: ${error.message}`);
+                      }}
+                    />
+                    
+                    {/* Media Preview */}
+                    <div className="mt-4 grid grid-cols-2 gap-4">
+                      {formData.media.map((media, index) => (
+                        <div key={index} className="relative">
+                          {media.type === 'image' ? (
+                            <Image
+                              src={media.url}
+                              alt={media.alt || `Product image ${index + 1}`}
+                              width={200}
+                              height={200}
+                              className="rounded-lg object-cover"
+                            />
+                          ) : (
+                            <video
+                              src={media.url}
+                              controls
+                              className="rounded-lg w-full h-[200px] object-cover"
+                            />
+                          )}
+                          <button
+                            type="button"
+                            onClick={() => handleMediaDelete(index)}
+                            className="absolute top-2 right-2 p-1 bg-red-500 rounded-full text-white hover:bg-red-600"
                           >
-                            {media.type === 'image' ? (
-                              <Image
-                                src={media.url}
-                                alt={media.alt || 'Media'}
-                                width={100}
-                                height={100}
-                                className="rounded-md"
-                                quality={75}
-                              />
-                            ) : (
-                              <video
-                                src={media.url}
-                                controls
-                                className="rounded-md w-full max-w-[100px]"
-                              />
-                            )}
-                            <button
-                              type="button"
-                              onClick={() => handleMediaDelete(index)}
-                              className="text-red-500 hover:text-red-700"
-                            >
-                              <Trash2 size={16} />
-                            </button>
-                          </div>
-                        ))}
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
@@ -403,10 +346,12 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
                       name="inStock"
                       id="inStock"
                       value={formData.inStock.toString()}
-                      onChange={(e) => setFormData(prev => ({ ...prev, inStock: e.target.value === 'true' }))}
+                      onChange={(e) => setFormData((prev) => ({ ...prev, inStock: e.target.value === 'true' }))}
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                     >
                       <option value="true">En stock</option>
+                      <option value="false">En Arrivage</option>
+                      <option value="false">Sur Commande</option>
                       <option value="false">En rupture</option>
                     </select>
                   </div>

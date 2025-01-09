@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { Calendar, Clock, Send } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Calendar, Clock, Send, CheckCircle } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from "@/components/ui/use-toast";
 import Image from 'next/image';
@@ -13,58 +13,90 @@ export default function AppointmentSection() {
     reason: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const { user } = useAuth();
   const { toast } = useToast();
 
+  const weekDays = [
+    { id: 1, name: 'Lundi' },
+    { id: 2, name: 'Mardi' },
+    { id: 3, name: 'Mercredi' },
+    { id: 4, name: 'Jeudi' },
+    { id: 5, name: 'Vendredi' }
+  ];
+
+  const timeSlots = Array.from({ length: 15 }, (_, i) => {
+    const hour = 9 + Math.floor(i / 2);
+    const minute = i % 2 === 0 ? '00' : '30';
+    return `${hour}:${minute}`;
+  });
+
+  const handleDaySelect = (day: string) => {
+    setSelectedDay(day);
+    setFormData(prev => ({ ...prev, date: day }));
+  };
+
+  const handleTimeSelect = (time: string) => {
+    setFormData(prev => ({ ...prev, time }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!user) {
-      toast({
-        title: "Erreur",
-        description: "Vous devez être connecté pour prendre un rendez-vous",
-        variant: "destructive",
-      });
-      return;
-    }
-
     setIsSubmitting(true);
+
     try {
-      const response = await fetch('/api/appointment', {
+      if (!user) {
+        toast({
+          title: "Erreur",
+          description: "Veuillez vous connecter pour prendre un rendez-vous",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      if (!user.id) {
+        toast({
+          title: "Erreur",
+          description: "Informations utilisateur incomplètes",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const response = await fetch('/api/appointments', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          appointment: formData,
+          appointment: {
+            time: formData.time,
+            reason: formData.reason,
+          },
           user: {
-            nom: user.nom,
-            email: user.email,
-            telephone: user.telephone // Optional property
-          }
+            id: user.id,
+          },
         }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Failed to send appointment request');
+        throw new Error(data.error || 'Échec de la demande de rendez-vous');
       }
 
       toast({
         title: "Succès",
-        description: "Votre demande de rendez-vous a été envoyée avec succès. Vous recevrez un email de confirmation.",
+        description: "Rendez-vous demandé avec succès",
       });
-
-      // Clear form
-      setFormData({
-        date: '',
-        time: '',
-        reason: ''
-      });
+      
+      setFormData({ date: '', time: '', reason: '' });
+      setSelectedDay('');
     } catch (error) {
-      console.error('Error sending appointment request:', error);
+      console.error('Error:', error);
       toast({
         title: "Erreur",
-        description: "Une erreur est survenue lors de l'envoi de votre demande",
+        description: error instanceof Error ? error.message : 'Une erreur est survenue',
         variant: "destructive",
       });
     } finally {
@@ -72,130 +104,162 @@ export default function AppointmentSection() {
     }
   };
 
-  // Get today's date in YYYY-MM-DD format for min date attribute
-  const today = new Date().toISOString().split('T')[0];
-
   return (
-    <div className="min-h-screen">
-      {/* Spacer for fixed navbars */}
+    <div className="min-h-screen bg-gray-50">
       <div className="h-32"></div>
 
-      {/* Hero Section */}
-      <section className="relative bg-blue-700 text-white py-20">
-        <div className="absolute inset-0 bg-black/30"></div>
-        <div className="relative max-w-screen-2xl mx-auto px-4">
+      <section className="relative bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="relative max-w-7xl mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Votre Santé, Notre Priorité
+              Prenez Rendez-vous
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-8">
-              Prenez rendez-vous en quelques clics pour recevoir les meilleurs soins adaptés à vos besoins
+            <p className="text-xl text-blue-100 mb-8">
+              Choisissez un créneau qui vous convient pour une consultation personnalisée
             </p>
           </div>
         </div>
       </section>
 
-      {/* Appointment Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-screen-2xl mx-auto px-4">
-          <div className="mb-16">
-            <p className="text-xl text-gray-800 mb-4 text-center max-w-4xl mx-auto">
-              Chez Elite Medicale Service, nous nous engageons à vous offrir des soins personnalisés
-              dans les plus brefs délais. Notre équipe de professionnels qualifiés est à votre
-              disposition pour répondre à tous vos besoins médicaux. Profitez de notre système
-              de réservation simple et rapide pour choisir le créneau qui vous convient le mieux.
-            </p>
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="bg-white rounded-2xl shadow-xl p-8">
+            <form onSubmit={handleSubmit} className="space-y-8">
+              {/* User Information */}
+              {user && (
+                <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Vos informations</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-gray-600">Nom</p>
+                      <p className="font-medium text-gray-900">{user.nom}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600">Email</p>
+                      <p className="font-medium text-gray-900">{user.email}</p>
+                    </div>
+                    {user.telephone && (
+                      <div>
+                        <p className="text-sm text-gray-600">Téléphone</p>
+                        <p className="font-medium text-gray-900">{user.telephone}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Days Selection */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                  <Calendar className="w-5 h-5 text-blue-600" />
+                  Sélectionnez un jour
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                  {weekDays.map((day) => (
+                    <button
+                      key={day.id}
+                      type="button"
+                      onClick={() => handleDaySelect(day.name)}
+                      className={`p-4 rounded-lg text-center transition-colors ${
+                        selectedDay === day.name
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                      }`}
+                    >
+                      {day.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Time Selection */}
+              {selectedDay && (
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                    <Clock className="w-5 h-5 text-blue-600" />
+                    Choisissez une heure
+                  </h3>
+                  <div className="relative">
+                    <select
+                      value={formData.time}
+                      onChange={(e) => handleTimeSelect(e.target.value)}
+                      className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white"
+                      required
+                    >
+                      <option value="">Sélectionnez une heure</option>
+                      {Array.from({ length: 15 }, (_, i) => {
+                        const hour = 9 + Math.floor(i / 2);
+                        const minute = i % 2 === 0 ? '00' : '30';
+                        const time = `${hour}:${minute}`;
+                        return (
+                          <option key={time} value={time}>
+                            {time}
+                          </option>
+                        );
+                      })}
+                    </select>
+                    <Clock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                  </div>
+                </div>
+              )}
+
+              {/* Reason Input */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-900">Motif du rendez-vous</h3>
+                <textarea
+                  value={formData.reason}
+                  onChange={(e) => setFormData(prev => ({ ...prev, reason: e.target.value }))}
+                  className="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                  rows={4}
+                  placeholder="Décrivez brièvement la raison de votre rendez-vous..."
+                  required
+                />
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={isSubmitting || !formData.date || !formData.time || !formData.reason || !user}
+                className="w-full bg-blue-600 text-white py-4 px-8 rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Envoi en cours...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    Confirmer le rendez-vous
+                  </>
+                )}
+              </button>
+            </form>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Image Section */}
-            <div className="relative">
-              <div className="absolute -top-4 -left-4 w-24 h-24 bg-blue-500/10 rounded-full"></div>
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-blue-500/10 rounded-full"></div>
-              <Image
-                src="/RDV.jpg" 
-                alt="RDV"
-                width={800}
-                height={600}
-                className="rounded-2xl shadow-xl w-full h-auto relative z-10"
-              />
+          {/* Information Cards */}
+          <div className="grid md:grid-cols-3 gap-6 mt-12">
+            <div className="bg-white p-6 rounded-xl shadow-lg">
+              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                <Clock className="w-6 h-6 text-blue-600" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Horaires flexibles</h3>
+              <p className="text-gray-600">Du lundi au vendredi, de 9h à 16h</p>
             </div>
-
-            {/* Form Section */}
-            <div>
-              <form onSubmit={handleSubmit} className="space-y-6 bg-white border border-gray-200 p-8 rounded-xl shadow-xl">
-                {user && (
-                  <div className="mb-6 space-y-4">
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <p className="text-sm text-gray-600">Vous prenez rendez-vous en tant que:</p>
-                      <p className="font-medium text-gray-900">{user.nom}</p>
-                      <p className="text-gray-600">{user.email}</p>
-                      {user.telephone && <p className="text-gray-600">{user.telephone}</p>}
-                    </div>
-                  </div>
-                )}
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">
-                      Date souhaitée
-                    </label>
-                    <div className="relative">
-                      <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                      <input
-                        type="date"
-                        id="date"
-                        required
-                        min={today}
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                        value={formData.date}
-                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="time" className="block text-sm font-medium text-gray-700 mb-1">
-                      Heure souhaitée
-                    </label>
-                    <div className="relative">
-                      <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                      <input
-                        type="time"
-                        id="time"
-                        required
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                        value={formData.time}
-                        onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="reason" className="block text-sm font-medium text-gray-700 mb-1">
-                    Motif du rendez-vous
-                  </label>
-                  <textarea
-                    id="reason"
-                    required
-                    rows={4}
-                    placeholder="Décrivez brièvement la raison de votre rendez-vous..."
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    value={formData.reason}
-                    onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting || !user} // Disable if user is null
-                  className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <Send className="h-5 w-5" />
-                  {isSubmitting ? 'Envoi en cours...' : 'Envoyer la demande'}
-                </button>
-              </form>
+            <div className="bg-white p-6 rounded-xl shadow-lg">
+              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                <CheckCircle className="w-6 h-6 text-blue-600" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Confirmation rapide</h3>
+              <p className="text-gray-600">Recevez une confirmation par email</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-lg">
+              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                <Calendar className="w-6 h-6 text-blue-600" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Suivi personnalisé</h3>
+              <p className="text-gray-600">Un accompagnement adapté à vos besoins</p>
             </div>
           </div>
         </div>

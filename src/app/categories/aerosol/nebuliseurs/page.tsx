@@ -4,13 +4,10 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/hooks/useCart';
-import type { Product } from '@/types/product';
+import { Product } from '@/types/product';
+import { fetchCategoryProducts } from '@/lib/helpers/product-helpers';
 
-
-
-
-
-export default function NebulizersPage() {
+export default function AerosolNebuliseursPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedMedia, setSelectedMedia] = useState<{ [key: string]: number }>({});
@@ -19,17 +16,13 @@ export default function NebulizersPage() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        // Fetch only nebulizers
-        const response = await fetch('/api/products?category=aerosol&type=Nebuliseur');
-        if (!response.ok) throw new Error('Failed to fetch products');
-        const data = await response.json();
-        setProducts(data);
-        // Initialize selected media for each product
-        const initialSelected = data.reduce((acc: { [key: string]: number }, product: Product) => {
-          acc[product.id] = 0;
-          return acc;
-        }, {});
-        setSelectedMedia(initialSelected);
+        const { products, initialSelectedMedia } = await fetchCategoryProducts('aerosol-nebuliseurs');
+        if (!Array.isArray(products)) {
+          console.error('Products is not an array:', products);
+          throw new Error('Invalid products data');
+        }
+        setProducts(products);
+        setSelectedMedia(initialSelectedMedia);
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {
@@ -71,13 +64,13 @@ export default function NebulizersPage() {
               Nébuliseurs
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              Découvrez notre gamme de nébuliseurs de haute qualité.
-              Des solutions efficaces pour l&apos;administration de médicaments par aérosol.
+              Découvrez notre gamme de nébuliseurs de haute qualité pour l'aérosolthérapie.
+              Des solutions efficaces pour vos traitements respiratoires.
             </p>
           </div>
         </div>
         {/* Decorative SVG divider */}
-        <div className="absolute bottom-0 w-full ">
+        <div className="absolute bottom-0 w-full">
           <svg className="w-full h-15 sm:h-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path fill="#f3f4f6" fillOpacity="1" d="M0,160L1440,320L1440,320L0,320Z"></path>
           </svg>
@@ -137,14 +130,14 @@ export default function NebulizersPage() {
 
                 {/* Features List */}
                 <div className="mt-4">
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    {product.features.slice(0, 3).map((feature: string, index: number) => (
+                  {(Array.isArray(product.features) ? product.features : [])
+                    .slice(0, 3)
+                    .map((feature: string, index: number) => (
                       <li key={index} className="flex items-start">
                         <span className="text-blue-500 mr-2">•</span>
                         {feature}
                       </li>
                     ))}
-                  </ul>
                 </div>
 
                 <button

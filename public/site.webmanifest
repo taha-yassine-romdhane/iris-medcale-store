@@ -1,0 +1,16 @@
+{
+  "name": "Matériel Médical - Votre Santé, Notre Priorité",
+  "short_name": "Matériel Médical",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "description": "Votre boutique en ligne spécialisée en matériel médical et équipements de santé"
+}

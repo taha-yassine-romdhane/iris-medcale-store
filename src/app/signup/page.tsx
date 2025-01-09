@@ -53,7 +53,7 @@ export default function SignUpPage() {
       localStorage.setItem('token', data.token);
 
       toast.success('Inscription réussie !');
-      router.push('/');
+      router.push('/login');
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message || "Une erreur est survenue lors de l'inscription");

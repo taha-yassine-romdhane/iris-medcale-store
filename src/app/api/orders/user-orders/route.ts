@@ -39,7 +39,6 @@ export async function GET(request: NextRequest) {
               select: {
                 name: true,
                 brand: true,
-                price: true,
                 media: true,
               },
             },

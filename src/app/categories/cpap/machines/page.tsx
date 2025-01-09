@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/hooks/useCart';
 import { Product } from '@/types/product';
+import { fetchCategoryProducts } from '@/lib/helpers/product-helpers';
 
 export default function CPAPMachinesPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -15,22 +16,9 @@ export default function CPAPMachinesPage() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await fetch('/api/products?category=cpap');
-        if (!response.ok) {
-          const error = await response.text();
-          throw new Error(error || 'Failed to fetch products');
-        }
-        const data = await response.json();
-        if (!Array.isArray(data)) {
-          throw new Error('Invalid data format received from server');
-        }
-        setProducts(data);
-        // Initialize selected media for each product
-        const initialSelected = data.reduce((acc: { [key: string]: number }, product: Product) => {
-          acc[product.id] = 0;
-          return acc;
-        }, {});
-        setSelectedMedia(initialSelected);
+        const { products, initialSelectedMedia } = await fetchCategoryProducts('machines');
+        setProducts(products);
+        setSelectedMedia(initialSelectedMedia);
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {

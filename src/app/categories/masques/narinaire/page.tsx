@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/hooks/useCart';
 import { Product } from '@/types/product';
+import { fetchCategoryProducts } from '@/lib/helpers/product-helpers';
 
 export default function NarinaireMasksPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -15,17 +16,13 @@ export default function NarinaireMasksPage() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        // Fetch only narinaire masks
-        const response = await fetch('/api/products?type=Masque Narinaire');
-        if (!response.ok) throw new Error('Failed to fetch products');
-        const data = await response.json();
-        setProducts(data);
-        // Initialize selected media for each product
-        const initialSelected = data.reduce((acc: { [key: string]: number }, product: Product) => {
-          acc[product.id] = 0;
-          return acc;
-        }, {});
-        setSelectedMedia(initialSelected);
+        const { products, initialSelectedMedia } = await fetchCategoryProducts('narinaire');
+        if (!Array.isArray(products)) {
+          console.error('Products is not an array:', products);
+          throw new Error('Invalid products data');
+        }
+        setProducts(products);
+        setSelectedMedia(initialSelectedMedia);
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {

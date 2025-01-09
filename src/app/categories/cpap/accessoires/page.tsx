@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/hooks/useCart';
 import { Product } from '@/types/product';
+import { fetchCategoryProducts } from '@/lib/helpers/product-helpers';
 
 export default function CPAPAccessoiresPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -13,29 +14,27 @@ export default function CPAPAccessoiresPage() {
   const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(null);
   const { addToCart } = useCart();
 
+  // Predefined subcategories with proper display names
   const subCategories = [
-    { id: 'FILTRE', name: 'Filtres' },
-    { id: 'TUYAU-CIRCUIT', name: 'Tuyaux et Circuits' },
-    { id: 'TUYAU-STANDARD', name: 'Tuyaux standard' },
-    { id: 'HUMIDIFICATEUR', name: 'Humidificateurs' },
-    { id: 'ALIMENTATION', name: 'Alimentations' },
-    { id: 'CARTE SD', name: 'Cartes SD' },
-    { id: 'HARNAIS MASQUE', name: 'Harnais de Masque' },
+    { id: 'FILTRE', name: 'Filtre' },
+    { id: 'TUYAU', name: 'Tuyau' },
+    { id: 'HUMIDIFICATEUR', name: 'Humidificateur' },
+    { id: 'ALIMENTATION', name: 'Alimentation' },
+    { id: 'CARTE SD', name: 'Carte SD' },
+    { id: 'HARNAIS MASQUE', name: 'Harnais Masque' }
   ];
 
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await fetch('/api/products?category=accessoires');
-        if (!response.ok) throw new Error('Failed to fetch products');
-        const data = await response.json();
-        setProducts(data);
-        // Initialize selected media for each product
-        const initialSelected = data.reduce((acc: { [key: string]: number }, product: Product) => {
-          acc[product.id] = 0;
-          return acc;
-        }, {});
-        setSelectedMedia(initialSelected);
+        const { products, initialSelectedMedia } = await fetchCategoryProducts('accessoires-cpap');
+        if (!Array.isArray(products)) {
+          console.error('Products is not an array:', products);
+          throw new Error('Invalid products data');
+        }
+        
+        setProducts(products);
+        setSelectedMedia(initialSelectedMedia);
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {
@@ -97,7 +96,7 @@ export default function CPAPAccessoiresPage() {
   
 
       {/* Sub-categories Filter */}
-      <div className="bg-white shadow ">
+      <div className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex space-x-4 py-4 overflow-x-auto">
             <button
@@ -108,21 +107,27 @@ export default function CPAPAccessoiresPage() {
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
             >
-              Tous
+              Tous les accessoires CPAP
             </button>
-            {subCategories.map((subCat) => (
-              <button
-                key={subCat.id}
-                onClick={() => setSelectedSubCategory(subCat.id)}
-                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors
-                  ${selectedSubCategory === subCat.id
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-              >
-                {subCat.name}
-              </button>
-            ))}
+            {subCategories.map((subCat) => {
+              // Only show subcategory if there are products in it
+              const hasProducts = products.some(product => product.subCategory === subCat.id);
+              if (!hasProducts) return null;
+
+              return (
+                <button
+                  key={subCat.id}
+                  onClick={() => setSelectedSubCategory(subCat.id)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors
+                    ${selectedSubCategory === subCat.id
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                >
+                  {subCat.name}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -162,7 +167,7 @@ export default function CPAPAccessoiresPage() {
                   </div>
                 )}
                 <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                  {product.subCategory}
+                  {product.type}
                 </div>
               </div>
 

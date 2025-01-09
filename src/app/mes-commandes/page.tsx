@@ -14,7 +14,6 @@ interface Order {
   items: {
     id: string;
     quantity: number;
-    price: number;
     product: {
       name: string;
       brand: string;
@@ -131,8 +130,8 @@ export default function MesCommandesPage() {
                           <Image
                               src={item.product.media[0].url}
                               alt={item.product.name}
-                              width={16}
-                              height={16}
+                              width={120}
+                              height={120}
                               className="object-cover rounded"
                           />
                       )}
@@ -146,14 +145,6 @@ export default function MesCommandesPage() {
                     </div>
                   ))}
                 </div>
-                {order.status !== 'DEVIS' && (
-                  <div className="mt-4 pt-4 border-t border-gray-200">
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium">Total</span>
-                      <span className="font-medium">{order.total} DT</span>
-                    </div>
-                  </div>
-                )}
               </div>
             ))}
           </div>

@@ -35,47 +35,43 @@ export default function ProductsSection() {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/api/products');
-        if (!response.ok) throw new Error('Failed to fetch products');
+        const response = await fetch('/api/products?limit=100');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
 
-        console.log('Fetched products:', data);
+        if (!data || !data.products || !Array.isArray(data.products)) {
+          throw new Error('Invalid data format received from API');
+        }
 
         const categorizedProducts = {
-          cpap: data.filter((p: Product) => 
-            p.category.toLowerCase() === 'cpap' || 
-            p.type?.toLowerCase().includes('cpap') ||
-            p.name.toLowerCase().includes('cpap')
-          ),
-          masks: data.filter((p: Product) => 
-            p.category.toLowerCase() === 'masks' || 
-            p.category.toLowerCase() === 'masques' ||
-            p.type?.toLowerCase().includes('masque') ||
-            p.name.toLowerCase().includes('masque')
-          ),
-          oxygen: data.filter((p: Product) => 
-            p.category.toLowerCase() === 'oxygen' || 
-            p.category.toLowerCase() === 'oxygène' ||
-            p.category.toLowerCase().includes('concentrateur') ||
-            p.type?.toLowerCase().includes('concentrateur') ||
-            p.name.toLowerCase().includes('concentrateur') ||
-            p.name.toLowerCase().includes('oxygène')
-          ),
-          lits: data.filter((p: Product) => 
-            p.category.toLowerCase() === 'lits' || 
-            p.category.toLowerCase() === 'lit' ||
-            p.type?.toLowerCase().includes('lit') ||
-            p.name.toLowerCase().includes('lit médicalisé')
-          )
+          cpap: data.products.filter((p: Product) => 
+            p.category?.toLowerCase() === 'cpap' || 
+            p.type?.toLowerCase()?.includes('cpap')
+          ).slice(0, 10),
+          
+          masks: data.products.filter((p: Product) => 
+            p.category?.toLowerCase() === 'masques' || 
+            p.type?.toLowerCase()?.includes('masque')
+          ).slice(0, 10),
+          
+          oxygen: data.products.filter((p: Product) => 
+            p.category?.toLowerCase() === 'oxygene' || 
+            p.type?.toLowerCase()?.includes('concentrateur')
+          ).slice(0, 10),
+          
+          lits: data.products.filter((p: Product) => 
+            p.category?.toLowerCase() === 'lit' || 
+            p.type?.toLowerCase()?.includes('médicalisé')
+          ).slice(0, 10)
         };
-
-        console.log('Categorized products:', categorizedProducts);
 
         setProducts(categorizedProducts);
         setError(null);
-      } catch {
-        console.error('Error fetching products');
-        setError('Failed to fetch products');
+      } catch (err) {
+        console.error('Error fetching products:', err);
+        setError(err instanceof Error ? err.message : 'Failed to fetch products');
       } finally {
         setLoading(false);
       }

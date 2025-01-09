@@ -109,6 +109,51 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+         {/* CNAM Collaboration Section */}
+         <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h2 className="text-3xl font-bold text-gray-900">
+                Collaboration avec la CNAM
+              </h2>
+              <p className="text-lg text-gray-700">
+                En tant que partenaire agréé de la Caisse Nationale d&apos;Assurance Maladie (CNAM), 
+                nous facilitons l&apos;accès aux équipements médicaux essentiels pour nos patients.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
+                  <span className="text-gray-700">Prise en charge directe avec la CNAM</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
+                  <span className="text-gray-700">Processus simplifié de remboursement</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
+                  <span className="text-gray-700">Équipements conformes aux normes CNAM</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
+                  <span className="text-gray-700">Assistance pour les formalités administratives</span>
+                </div>
+              </div>
+              <div className="pt-4">
+              </div>
+            </div>
+            <div className="relative h-[400px] rounded-lg overflow-hidden shadow-lg bg-white p-8">
+              <Image
+                src="/CNAM_Tunisie.jpg"
+                alt="Logo CNAM Tunisie"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Coverage Section */}
       <section className="bg-gray-50 py-16">
@@ -127,28 +172,94 @@ export default function AboutPage() {
                 <div className="grid grid-cols-2 gap-4 pt-4">
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <h4 className="font-semibold text-gray-900">Régions Nord</h4>
-                    <ul className="mt-2 space-y-2 text-gray-600">
-                      <li>Grand Tunis</li>
-                      <li>Cap Bon</li>
+                    <ul className="mt-2 space-y-2">
+                      <li className="flex items-center space-x-2">
+                        <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                        <span className="text-gray-700">Grand Tunis</span>
+                      </li>
+                      <li className="flex items-center space-x-2">
+                        <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                        <span className="text-gray-700">Cap Bon</span>
+                      </li>
                     </ul>
                   </div>
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <h4 className="font-semibold text-gray-900">Régions Centre</h4>
-                    <ul className="mt-2 space-y-2 text-gray-600">
-                      <li>Sousse</li>
-                      <li>Monastir</li>
-                      <li>Mahdia</li>
+                    <ul className="mt-2 space-y-2">
+                      <li className="flex items-center space-x-2">
+                        <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                        <span className="text-gray-700">Sousse</span>
+                      </li>
+                      <li className="flex items-center space-x-2">
+                        <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                        <span className="text-gray-700">Monastir</span>
+                      </li>
+                      <li className="flex items-center space-x-2">
+                        <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                        <span className="text-gray-700">Mahdia</span>
+                      </li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div className="relative h-[400px]">
-                <Image
-                  src="https://images.unsplash.com/photo-1584362917165-526a968579e8?q=80&w=800"
-                  alt="Service Coverage"
-                  fill
-                  className="object-cover"
-                />
+              <div className="relative h-[500px] p-8 flex items-center justify-center bg-white">
+                <div className="relative w-full h-full max-w-[500px]">
+                  <Image
+                    src="/tn-04.png"
+                    alt="Carte de couverture en Tunisie"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                  {/* Interactive Markers */}
+                  <div className="absolute w-full h-full">
+                    {/* Tunis Marker */}
+                    <div className="absolute top-[17%] left-[53%] group">
+                      <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse">
+                        <div className="absolute -inset-2 bg-blue-500 rounded-full opacity-20"></div>
+                      </div>
+                      <span className="absolute left-6 top-0 bg-blue-600 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                        Grand Tunis
+                      </span>
+                    </div>
+                    {/* Cap Bon Marker */}
+                    <div className="absolute top-[14%] right-[37%] group">
+                      <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse">
+                        <div className="absolute -inset-2 bg-blue-500 rounded-full opacity-20"></div>
+                      </div>
+                      <span className="absolute right-6 top-0 bg-blue-600 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                        Cap Bon
+                      </span>
+                    </div>
+                    {/* Sousse Marker */}
+                    <div className="absolute top-[23%] right-[42%] group">
+                      <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse">
+                        <div className="absolute -inset-2 bg-blue-500 rounded-full opacity-20"></div>
+                      </div>
+                      <span className="absolute right-6 top-0 bg-blue-600 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                        Sousse
+                      </span>
+                    </div>
+                    {/* Monastir Marker */}
+                    <div className="absolute top-[28%] right-[40%] group">
+                      <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse">
+                        <div className="absolute -inset-2 bg-blue-500 rounded-full opacity-20"></div>
+                      </div>
+                      <span className="absolute right-6 top-0 bg-blue-600 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                        Monastir
+                      </span>
+                    </div>
+                    {/* Mahdia Marker */}
+                    <div className="absolute top-[32%] right-[40%] group">
+                      <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse">
+                        <div className="absolute -inset-2 bg-blue-500 rounded-full opacity-20"></div>
+                      </div>
+                      <span className="absolute right-6 top-0 bg-blue-600 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                        Mahdia
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

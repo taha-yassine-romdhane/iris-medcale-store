@@ -4,9 +4,8 @@ import { hash } from 'bcryptjs';
 
 export async function PATCH(request: Request) {
   try {
-    // Extract userId from the request URL
     const url = new URL(request.url);
-    const userId = url.pathname.split('/').pop(); // Extract the last segment of the URL
+    const userId = url.pathname.split('/').pop(); 
 
     console.log('PATCH request received for user ID:', userId);
 

@@ -17,7 +17,6 @@ CREATE TABLE "Commande" (
 CREATE TABLE "CommandeItem" (
     "id" TEXT NOT NULL,
     "quantity" INTEGER NOT NULL,
-    "price" DECIMAL(10,2) NOT NULL,
     "commandeId" TEXT NOT NULL,
     "productId" TEXT NOT NULL,
 

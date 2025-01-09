@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/hooks/useCart';
 import { Product } from '@/types/product';
+import { fetchCategoryProducts } from '@/lib/helpers/product-helpers';
 
 export default function OxygenAccessoriesPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -15,17 +16,13 @@ export default function OxygenAccessoriesPage() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        // Fetch only oxygen accessories
-        const response = await fetch('/api/products?category=oxygen&type=Accessoire');
-        if (!response.ok) throw new Error('Failed to fetch products');
-        const data = await response.json();
-        setProducts(data);
-        // Initialize selected media for each product
-        const initialSelected = data.reduce((acc: { [key: string]: number }, product: Product) => {
-          acc[product.id] = 0;
-          return acc;
-        }, {});
-        setSelectedMedia(initialSelected);
+        const { products, initialSelectedMedia } = await fetchCategoryProducts('oxygene-accessoires');
+        if (!Array.isArray(products)) {
+          console.error('Products is not an array:', products);
+          throw new Error('Invalid products data');
+        }
+        setProducts(products);
+        setSelectedMedia(initialSelectedMedia);
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {
@@ -115,7 +112,7 @@ export default function OxygenAccessoriesPage() {
                   </div>
                 )}
                 <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                  {product.type}
+                  {product.subCategory}
                 </div>
               </div>
 

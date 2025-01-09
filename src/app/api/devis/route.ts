@@ -60,8 +60,8 @@ export async function POST(req: NextRequest) {
         items: {
           create: items.map((item: CartItem) => ({
             quantity: item.quantity,
+            price: 0,
             productId: item.id,
-            price: item.price, // Use the price from the CartItem
           })),
         },
       },

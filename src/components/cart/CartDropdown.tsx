@@ -1,7 +1,7 @@
 'use client';
 
 import { useCart } from '@/hooks/useCart';
-import { ShoppingBag, X, Plus, Minus } from 'lucide-react';
+import { ShoppingBag, X, Plus, Minus, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -84,7 +84,7 @@ export default function CartDropdown() {
                           onClick={() => removeFromCart(item.id)}
                           className="text-xs text-red-500 hover:text-red-600"
                         >
-                          Supprimer
+                          <Trash2  className="h-4 w-4" />
                         </button>
                       </div>
                     </div>
@@ -97,7 +97,7 @@ export default function CartDropdown() {
                     className="w-full bg-blue-600 text-white py-2 px-4 rounded-md text-center text-sm font-medium hover:bg-blue-700 transition"
                     onClick={() => setIsOpen(false)}
                   >
-                    Réserver un devis
+                    Demander un devis
                   </Link>
                 </div>
               </>

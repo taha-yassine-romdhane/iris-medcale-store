@@ -1,0 +1,1069 @@
+[
+    {
+        "id": "cm5mw7fua0002bqwk2tu0xuhj",
+        "createdAt": "2025-01-07 19:57:52.327",
+        "updatedAt": "2025-01-07 23:15:28.78",
+        "name": "Auto Prisma Smart",
+        "brand": "Löwenstein",
+        "type": "Auto-pilotée",
+        "description": "Machine à PPC auto-pilotée intégrant une technologie innovante pour un traitement sur mesure de l'apnée du sommeil. Grâce à son système d'ajustement automatique de la pression, elle optimise la thérapie en temps réel, assurant une efficacité maximale et un confort inégalé. Conçue pour les patients exigeants, elle combine performance, fiabilité et simplicité d'utilisation, favorisant ainsi une amélioration durable de la santé respiratoire et du bien-être général.",
+        "features": [
+            "Humidificateur intégré",
+            "Connexion sans fil",
+            "Écran couleur intuitif",
+            "'Ajustement automatique de la pression"
+        ],
+        "category": "cpap",
+        "subCategory": "cpap machine",
+        "inStock": true
+    },
+    {
+        "id": "cm5n3e9xf000fbqwkifzzilnt",
+        "createdAt": "2025-01-07 23:19:07.999",
+        "updatedAt": "2025-01-07 23:19:07.999",
+        "name": "AirSense 10 AutoSet",
+        "brand": "Resmed",
+        "type": "Auto-pilotée",
+        "description": "Découvrez la nouvelle génération de CPAP auto-pilotée, dotée de fonctionnalités intelligentes pour un traitement du sommeil optimal. Cette technologie avancée ajuste automatiquement la pression en fonction de vos besoins, assurant un confort personnalisé et une efficacité maximale. Profitez d’une expérience de sommeil inégalée grâce à des réglages automatiques, offrant ainsi une solution de santé sur mesure pour chaque utilisateur.",
+        "features": [
+            "Technologie AutoRamp",
+            "'Détection des événements respiratoires",
+            "Application myAir",
+            "Design compact"
+        ],
+        "category": "cpap",
+        "subCategory": "cpap machine",
+        "inStock": true
+    },
+    {
+        "id": "cm5n3l6wo000hbqwkwqenubcg",
+        "createdAt": "2025-01-07 23:24:30.235",
+        "updatedAt": "2025-01-08 23:17:06.73",
+        "name": "YH-550",
+        "brand": "Yuwell",
+        "type": "Auto-pilotée",
+        "description": "Découvrez la CPAP YH-550, une solution de traitement du sommeil auto-pilotée qui combine fiabilité, performance et un excellent rapport qualité-prix. Conçue pour offrir un confort optimal, elle ajuste automatiquement la pression selon vos besoins, vous garantissant ainsi un sommeil réparateur chaque nuit. Une technologie de pointe à un prix accessible pour une qualité de vie améliorée.",
+        "features": [
+            "Système auto-adaptatif",
+            "Écran LCD",
+            "'Mode confort",
+            "Ultra silencieux"
+        ],
+        "category": "cpap",
+        "subCategory": "cpap machine",
+        "inStock": true
+    },
+    {
+        "id": "cm5n408ot000jbqwknvyr1mea",
+        "createdAt": "2025-01-07 23:36:11.7",
+        "updatedAt": "2025-01-07 23:36:44.443",
+        "name": "Prisma Smart Basic",
+        "brand": "Löwenstein",
+        "type": "Fixe",
+        "description": "La CPAP à pression fixe Prisma Smart Basic de la marque Löwenstein est conçue pour offrir un traitement du sommeil fiable et performant. Avec ses fonctionnalités essentielles, elle garantit une gestion optimale de la pression pour un sommeil réparateur. Simple à utiliser et efficace, cette CPAP constitue une solution idéale pour ceux qui recherchent une prise en charge du sommeil pratique et accessible.",
+        "features": [
+            "Pression constante",
+            "Interface simple",
+            "Compact et léger",
+            "Filtre hypoallergénique"
+        ],
+        "category": "cpap",
+        "subCategory": "cpap machine",
+        "inStock": true
+    },
+    {
+        "id": "cm5n7p0ix000lbqwk029urcoy",
+        "createdAt": "2025-01-08 01:19:28.065",
+        "updatedAt": "2025-01-08 01:22:14.515",
+        "name": "YH-680",
+        "brand": "Yuwell",
+        "type": "Auto-pilotée",
+        "description": "La CPAP YH-680 offre une prise en charge optimale de votre traitement du sommeil. Fiable et performante, elle assure une pression constante pour un confort maximal et un sommeil réparateur. Avec ses fonctionnalités avancées, cette CPAP est conçue pour améliorer votre qualité de vie tout en offrant une expérience de traitement simple et efficace.",
+        "features": [
+            "Pression constante",
+            "Confort optimal",
+            "Facilité d’utilisation"
+        ],
+        "category": "cpap",
+        "subCategory": "cpap machine",
+        "inStock": true
+    },
+    {
+        "id": "cm5n7qvs1000nbqwkubmd10e2",
+        "createdAt": "2025-01-08 01:20:55.228",
+        "updatedAt": "2025-01-08 01:22:46.705",
+        "name": "YH 450",
+        "brand": "Yuwell",
+        "type": "Auto-pilotée",
+        "description": "La CPAP YH-450 offre une prise en charge efficace du sommeil avec un design compact et des fonctionnalités essentielles. Idéale pour ceux qui recherchent une solution simple et fiable, elle vous assure une qualité de sommeil optimale grâce à son système de pression constante.",
+        "features": [
+            "Utilisation simplifiée",
+            "Pression constante et fiable",
+            "Conception compacte"
+        ],
+        "category": "cpap",
+        "subCategory": "cpap machine",
+        "inStock": true
+    },
+    {
+        "id": "cm5n9lli4000rbqwkgxtam7fa",
+        "createdAt": "2025-01-08 02:12:46.264",
+        "updatedAt": "2025-01-08 23:13:44.243",
+        "name": "AirSense 10 Elite",
+        "brand": "ResMed",
+        "type": "Fixe",
+        "description": "L'AirSense 10 Elite combine performance, confort et technologie avancée pour offrir un traitement du sommeil de qualité supérieure. Conçu pour les utilisateurs à la recherche d'une solution fiable, cette CPAP à pression fixe ajuste automatiquement la pression pour garantir une respiration fluide tout au long de la nuit, tout en étant silencieuse et facile à utiliser.",
+        "features": [
+            "Technologie EPR",
+            "Données détaillées",
+            "Humidificateur intégré",
+            "Fonctionnement silencieux"
+        ],
+        "category": "cpap",
+        "subCategory": "cpap machine",
+        "inStock": true
+    },
+    {
+        "id": "cm5n9wm5g000tbqwkux40c89l",
+        "createdAt": "2025-01-08 02:21:20.873",
+        "updatedAt": "2025-01-08 02:21:20.873",
+        "name": "YH-350",
+        "brand": "Yuwell",
+        "type": "Fixe",
+        "description": "La CPAP YH-350 offre une solution fiable et économique pour ceux qui recherchent un traitement du sommeil simple mais efficace. Dotée de caractéristiques essentielles, elle assure une pression stable tout au long de la nuit pour garantir une meilleure qualité de sommeil et une respiration fluide.",
+        "features": [
+            "Pression stable",
+            "Facile à utiliser",
+            "Compact",
+            "Économique"
+        ],
+        "category": "cpap",
+        "subCategory": "cpap machine",
+        "inStock": true
+    },
+    {
+        "id": "cm5n9zvfu000vbqwkh67u7pb2",
+        "createdAt": "2025-01-08 02:23:53.932",
+        "updatedAt": "2025-01-08 02:23:53.932",
+        "name": "Filtre Standard",
+        "brand": "Löwenstein",
+        "type": "Filtre ",
+        "description": "Filtre standard pour machines CPAP Löwenstein, garantissant une filtration optimale de l'air.",
+        "features": [
+            "Filtration haute efficacité",
+            "Compatible avec tous les modèles Löwenstein",
+            "Durée de vie : 3 mois",
+            "Facile à remplacer"
+        ],
+        "category": "accessoires",
+        "subCategory": "accessoires cpap",
+        "inStock": true
+    },
+    {
+        "id": "cm5oc6oob0000bqtg30xjdzft",
+        "createdAt": "2025-01-08 20:12:57.154",
+        "updatedAt": "2025-01-08 20:12:57.154",
+        "name": "Filtre ResMed AirSense",
+        "brand": "Resmed",
+        "type": "Filtre",
+        "description": "Filtre hypoallergénique pour machines CPAP ResMed AirSense.",
+        "features": [
+            "Filtration hypoallergénique",
+            "Compatible AirSense 10 et 11",
+            "Pack de 2 filtres",
+            "Protection contre les allergènes"
+        ],
+        "category": "accessoires",
+        "subCategory": "accessoires cpap",
+        "inStock": true
+    },
+    {
+        "id": "cm5oclc1g0002bqtghk3ag95r",
+        "createdAt": "2025-01-08 20:24:20.63",
+        "updatedAt": "2025-01-08 20:24:20.63",
+        "name": "Filtre Yuwell",
+        "brand": "Yuwell",
+        "type": "Filtre",
+        "description": "Filtre de rechange pour machines CPAP Yuwell.",
+        "features": [
+            "Filtration efficace",
+            "Compatible avec modèles Yuwell",
+            "Installation facile",
+            "Matériaux de qualité"
+        ],
+        "category": "accessoires",
+        "subCategory": "accessoires cpap",
+        "inStock": true
+    },
+    {
+        "id": "cm5ocqqhl0004bqtgo0cecj3x",
+        "createdAt": "2025-01-08 20:28:31.578",
+        "updatedAt": "2025-01-08 20:28:31.578",
+        "name": "Tuyau Chauffant ClimateLineAir",
+        "brand": "Resmed",
+        "type": "Tuyau",
+        "description": "Tuyau chauffant pour un confort optimal et une réduction de la condensation.",
+        "features": [
+            "'Chauffage intégré",
+            "Contrôle automatique de la température",
+            "Compatible avec AirSense",
+            "Longueur : 2m"
+        ],
+        "category": "accessoires",
+        "subCategory": "",
+        "inStock": true
+    },
+    {
+        "id": "cm5odb74u0006bqtgdytcfkcz",
+        "createdAt": "2025-01-08 20:44:27.332",
+        "updatedAt": "2025-01-08 20:44:27.332",
+        "name": "Tuyau Standard 15mm",
+        "brand": "Universel",
+        "type": "Tuyau",
+        "description": "Tuyau standard 15mm compatible avec la plupart des machines CPAP.",
+        "features": [
+            "Diamètre : 15mm",
+            "Longueur : 1.8m",
+            "Compatible toutes marques",
+            "Léger et flexible"
+        ],
+        "category": "accessoires",
+        "subCategory": "accessoires cpap",
+        "inStock": true
+    },
+    {
+        "id": "cm5odp7nh0008bqtgur8gd5ij",
+        "createdAt": "2025-01-08 20:55:19.738",
+        "updatedAt": "2025-01-08 20:55:19.738",
+        "name": "Tuyau Standard 22mm",
+        "brand": "Universel",
+        "type": "Tuyau",
+        "description": "Tuyau standard 22mm pour un débit d\\air optimal",
+        "features": [
+            "Diamètre : 22mm",
+            "Longueur : 1.8m",
+            "Débit d'air optimisé",
+            "Haute durabilité"
+        ],
+        "category": "accessoires",
+        "subCategory": "TUYAU-STANDARD",
+        "inStock": true
+    },
+    {
+        "id": "cm5oducjl000abqtguxggt5fz",
+        "createdAt": "2025-01-08 20:59:20.793",
+        "updatedAt": "2025-01-08 20:59:20.793",
+        "name": "Humidificateur  Prisma",
+        "brand": "Löwenstein",
+        "type": "Humidificateur",
+        "description": "Humidificateur chauffant pour machines CPAP Löwenstein Prisma.",
+        "features": [
+            "Réservoir grande capacité",
+            "Contrôle précis de l'humidité",
+            "Facile à nettoyer",
+            "Installation simple"
+        ],
+        "category": "accessoires",
+        "subCategory": "HUMIDIFICATEUR",
+        "inStock": true
+    },
+    {
+        "id": "cm5oe1916000cbqtgs8vavydh",
+        "createdAt": "2025-01-08 21:04:41.807",
+        "updatedAt": "2025-01-08 21:04:41.807",
+        "name": "Humidificateur HumidAir",
+        "brand": "ResMed",
+        "type": "Humidificateur",
+        "description": "Humidificateur intégré pour machines CPAP ResMed AirSense.",
+        "features": [
+            "Technologie HumidAir",
+            "Réservoir lavable",
+            "Ajustement automatique",
+            "Design compact"
+        ],
+        "category": "accessoires",
+        "subCategory": "HUMIDIFICATEUR",
+        "inStock": true
+    },
+    {
+        "id": "cm5oe6jac000ebqtg671htmil",
+        "createdAt": "2025-01-08 21:08:49.413",
+        "updatedAt": "2025-01-08 21:08:49.413",
+        "name": "Humidificateur Yuwell",
+        "brand": "Yuwell",
+        "type": "Humidificateur",
+        "description": "Humidificateur pour machines CPAP Yuwell.",
+        "features": [
+            "Capacité optimale",
+            "Fonctionnement silencieux",
+            "Nettoyage facile",
+            "Design ergonomique"
+        ],
+        "category": "accessoires",
+        "subCategory": "HUMIDIFICATEUR",
+        "inStock": true
+    },
+    {
+        "id": "cm5ohdrze000hbqtgabagdknp",
+        "createdAt": "2025-01-08 22:38:26.121",
+        "updatedAt": "2025-01-08 22:38:26.121",
+        "name": "Alimentation Löwenstein",
+        "brand": "Löwenstein",
+        "type": "Alimentation",
+        "description": "Bloc d'alimentation officiel pour machines CPAP Löwenstein.",
+        "features": [
+            "Tension stable",
+            "Protection contre les surtensions",
+            "Compatible tous modèles Löwenstein",
+            "Longue durée de vie"
+        ],
+        "category": "accessoires",
+        "subCategory": "ALIMENTATION",
+        "inStock": true
+    },
+    {
+        "id": "cm5ohfkb0000jbqtggrh5sar6",
+        "createdAt": "2025-01-08 22:39:49.484",
+        "updatedAt": "2025-01-08 22:39:49.484",
+        "name": "Alimentation ResMed",
+        "brand": "ResMed",
+        "type": "Alimentation",
+        "description": "Adaptateur secteur original pour appareils CPAP ResMed.",
+        "features": [
+            "Certification officielle ResMed",
+            "Protection thermique",
+            "Câble détachable",
+            "Voyant LED"
+        ],
+        "category": "accessoires",
+        "subCategory": "ALIMENTATION",
+        "inStock": true
+    },
+    {
+        "id": "cm5ohi1zs000lbqtghjwzdtmx",
+        "createdAt": "2025-01-08 22:41:44.487",
+        "updatedAt": "2025-01-08 22:41:44.487",
+        "name": "Alimentation Yuwell",
+        "brand": "Yuwell",
+        "type": "Alimentation",
+        "description": "Bloc d'alimentation pour machines CPAP Yuwell.",
+        "features": [
+            "Tension stable",
+            "Compact et léger",
+            "Protection intégrée",
+            "Garantie constructeur"
+        ],
+        "category": "accessoires",
+        "subCategory": "ALIMENTATION",
+        "inStock": true
+    },
+    {
+        "id": "cm5okt0qk0004bqysevx6wqvq",
+        "createdAt": "2025-01-09 00:14:16.145",
+        "updatedAt": "2025-01-09 00:14:16.145",
+        "name": "Carte SD Löwenstein",
+        "brand": "Löwenstein",
+        "type": "Carte SD",
+        "description": "Carte SD haute performance pour machines CPAP Löwenstein.",
+        "features": [
+            "Stockage sécurisé",
+            "Compatible Prisma",
+            "Lecture rapide",
+            "Pré-formatée"
+        ],
+        "category": "accessoires",
+        "subCategory": "CARTE SD",
+        "inStock": true
+    },
+    {
+        "id": "cm5okunxa0006bqysv3x1wifp",
+        "createdAt": "2025-01-09 00:15:32.855",
+        "updatedAt": "2025-01-09 00:15:32.855",
+        "name": "Carte SD ResMed",
+        "brand": "ResMed",
+        "type": "Carte SD",
+        "description": "Carte SD officielle pour appareils CPAP ResMed.",
+        "features": [
+            "Compatible AirSense",
+            "Capacité optimisée",
+            "Données cryptées",
+            "Format propriétaire"
+        ],
+        "category": "accessoires",
+        "subCategory": "CARTE SD",
+        "inStock": true
+    },
+    {
+        "id": "cm5okxjow0008bqystk6u0qgl",
+        "createdAt": "2025-01-09 00:17:46.275",
+        "updatedAt": "2025-01-09 00:17:46.275",
+        "name": "Carte SD Yuwell",
+        "brand": "Yuwell",
+        "type": "Carte SD",
+        "description": "Carte SD pour l'enregistrement des données CPAP Yuwell.",
+        "features": [
+            "Stockage fiable",
+            "Format compatible",
+            "Installation facile",
+            "Suivi des données"
+        ],
+        "category": "accessoires",
+        "subCategory": "CARTE SD",
+        "inStock": true
+    },
+    {
+        "id": "cm5ol115q000abqys8rpefubr",
+        "createdAt": "2025-01-09 00:20:29.932",
+        "updatedAt": "2025-01-09 00:20:29.932",
+        "name": "Harnais de Masque Universel",
+        "brand": "Universel",
+        "type": "Harnais",
+        "description": "Harnais de masque CPAP confortable et ajustable.",
+        "features": [
+            "Matériau doux",
+            "Ajustement universel",
+            "Sangles réglables",
+            "Lavable en machine"
+        ],
+        "category": "accessoires",
+        "subCategory": "HARNAIS MASQUE",
+        "inStock": true
+    },
+    {
+        "id": "cm5ol7fn4000cbqys7t0r8d7e",
+        "createdAt": "2025-01-09 00:25:27.553",
+        "updatedAt": "2025-01-09 00:25:27.553",
+        "name": "AirFit F30",
+        "brand": "Resmed",
+        "type": "Masque Facial",
+        "description": "Masque facial avec connexion supérieure pour plus de liberté de mouvement",
+        "features": [
+            "'Design minimaliste",
+            "Connexion au tube sur le dessus",
+            "Coussin ultra-doux",
+            "Harnais magnétique"
+        ],
+        "category": "masques",
+        "subCategory": "Masque Facial ",
+        "inStock": true
+    },
+    {
+        "id": "cm5oll87c000fbqys2xaljnsk",
+        "createdAt": "2025-01-09 00:36:12.195",
+        "updatedAt": "2025-01-09 00:36:12.195",
+        "name": "AirFit F20",
+        "brand": "Resmed",
+        "type": "Masque Facial",
+        "description": "Masque facial complet avec coussin InfinitySeal",
+        "features": [
+            "Technologie InfinitySeal",
+            "Cadre flexible",
+            "Clips magnétiques",
+            "Vision dégagée"
+        ],
+        "category": "masques",
+        "subCategory": "Masque Facial ",
+        "inStock": true
+    },
+    {
+        "id": "cm5olqeog000ibqysq7g5iodd",
+        "createdAt": "2025-01-09 00:40:13.866",
+        "updatedAt": "2025-01-09 00:40:13.866",
+        "name": " YF-01",
+        "brand": "Yuwell",
+        "type": "Masque Facial",
+        "description": "Masque facial complet avec coussin en silicone",
+        "features": [
+            "Silicone médicale",
+            "Harnais ajustable",
+            "Design ergonomique",
+            "Léger et confortable"
+        ],
+        "category": "masques",
+        "subCategory": "Masque Facial",
+        "inStock": true
+    },
+    {
+        "id": "cm5ols673000kbqysmejh06ik",
+        "createdAt": "2025-01-09 00:41:36.211",
+        "updatedAt": "2025-01-09 00:41:36.211",
+        "name": "YF-02",
+        "brand": "Yuwell",
+        "type": "Masque Facial",
+        "description": "Découvrez le masque facial YH-02, conçu pour allier confort, praticité et performance. Idéal pour une utilisation quotidienne, ce masque offre une protection optimale tout en garantissant un port agréable et ergonomique.",
+        "features": [],
+        "category": "masques",
+        "subCategory": "Masque Facial",
+        "inStock": true
+    },
+    {
+        "id": "cm5olyz7d000mbqysxck5nc35",
+        "createdAt": "2025-01-09 00:46:53.733",
+        "updatedAt": "2025-01-09 00:46:53.733",
+        "name": " AirFit N30i",
+        "brand": "Resmed",
+        "type": "Masque Nasal",
+        "description": "Le Masque Nasal AirFit N30i est une solution innovante et confortable pour les utilisateurs de dispositifs de ventilation à pression positive continue (CPAP). Conçu pour offrir une expérience de sommeil optimale, ce masque nasal allie légèreté, discrétion et performance, tout en garantissant un ajustement parfait et une respiration naturelle.",
+        "features": [
+            "Design compact",
+            "Tube en position haute",
+            "Coussin auto-ajustable",
+            "Harnais QuickFit"
+        ],
+        "category": "masques",
+        "subCategory": "Masque Nasal",
+        "inStock": true
+    },
+    {
+        "id": "cm5omdv4v000pbqysr1te0jn4",
+        "createdAt": "2025-01-09 00:58:28.288",
+        "updatedAt": "2025-01-09 01:14:21.42",
+        "name": "Masque ResMed AirFit N20",
+        "brand": "Resmed",
+        "type": "Masque Nasal",
+        "description": "Masque nasal confortable et performant pour une thérapie CPAP optimale",
+        "features": [
+            "Design ergonomique et léger",
+            "Coussin nasal en silicone doux",
+            "Ajustement stable et personnalisable",
+            "Respiration naturelle et silencieuse",
+            "Compatible avec les appareils ResMed CPAP"
+        ],
+        "category": "masques",
+        "subCategory": "Masque Nasal",
+        "inStock": true
+    },
+    {
+        "id": "cm5omj1zf000rbqysr11p8zg0",
+        "createdAt": "2025-01-09 01:02:30.448",
+        "updatedAt": "2025-01-09 01:02:30.448",
+        "name": "Masque ResMed Mirage FX",
+        "brand": "Resmed",
+        "type": "Masque Nasal",
+        "description": "Masque nasal compact et confortable pour une thérapie CPAP efficace",
+        "features": [
+            "Design compact et discret",
+            "Coussin nasal en silicone doux et hypoallergénique",
+            "Ajustement facile et stable",
+            "Respiration naturelle et silencieuse"
+        ],
+        "category": "masques",
+        "subCategory": "Masque Nasal",
+        "inStock": true
+    },
+    {
+        "id": "cm5omm83a000tbqys5y8ohkhb",
+        "createdAt": "2025-01-09 01:04:57.161",
+        "updatedAt": "2025-01-09 01:04:57.161",
+        "name": " YN-03",
+        "brand": "Yuwell",
+        "type": "Masque Nasal",
+        "description": "Masque nasal confortable et pratique",
+        "features": [
+            "Design ergonomique",
+            "Silicone douce",
+            "Harnais ajustable",
+            "Respiration naturelle"
+        ],
+        "category": "masques",
+        "subCategory": "Masque Nasal",
+        "inStock": true
+    },
+    {
+        "id": "cm5on0qm6000wbqys6zjh56wf",
+        "createdAt": "2025-01-09 01:16:15.535",
+        "updatedAt": "2025-01-09 01:16:15.535",
+        "name": "YH-02",
+        "brand": "Yuwell",
+        "type": "Masque Nasal",
+        "description": "Masque nasal confortable et pratique",
+        "features": [
+            "Design ergonomique",
+            "Silicone douce",
+            "Harnais ajustable",
+            "Respiration naturelle"
+        ],
+        "category": "masques",
+        "subCategory": "Masque Nasal",
+        "inStock": true
+    },
+    {
+        "id": "cm5on32kg000ybqyskz12w2gp",
+        "createdAt": "2025-01-09 01:18:04.322",
+        "updatedAt": "2025-01-09 01:18:04.322",
+        "name": " AirFit P10",
+        "brand": "Resmed",
+        "type": "Masque Narinaire",
+        "description": "Masque narinaire ultra-léger et silencieux",
+        "features": [
+            "Ultra-léger",
+            "QuietAir technology",
+            "Harnais ajustable",
+            "Design minimaliste"
+        ],
+        "category": "masques",
+        "subCategory": "Masque Narinaire",
+        "inStock": true
+    },
+    {
+        "id": "cm5on8gvp0011bqyscxelnttr",
+        "createdAt": "2025-01-09 01:22:15.02",
+        "updatedAt": "2025-01-09 01:22:15.02",
+        "name": "YP-01",
+        "brand": "Yuwell",
+        "type": "Masque Narinaire",
+        "description": "Masque narinaire compact et confortable",
+        "features": [
+            "Design ergonomique",
+            "Silicone douce",
+            "Léger et discret",
+            "Installation facile"
+        ],
+        "category": "masques",
+        "subCategory": "Masque Narinaire",
+        "inStock": true
+    },
+    {
+        "id": "cm5onmilm0014bqysm0in0df8",
+        "createdAt": "2025-01-09 01:33:09.969",
+        "updatedAt": "2025-01-09 14:21:10.879",
+        "name": "Masque Sans Fuite Yuwell",
+        "brand": "Yuwell",
+        "type": "Masque Sans Fuite",
+        "description": "Masque facial sans fuite pour une therapie optimale",
+        "features": [
+            "Système anti-fuite",
+            "Joint étanche",
+            "Confort optimal",
+            "Compatible ventilation"
+        ],
+        "category": "masques",
+        "subCategory": "Masque Sans Fuite",
+        "inStock": true
+    },
+    {
+        "id": "cm5oo0q6x0015bqys9jt2nqsg",
+        "createdAt": "2025-01-09 01:44:14.581",
+        "updatedAt": "2025-01-09 01:44:14.581",
+        "name": "7F-5",
+        "brand": "Yuwell",
+        "type": "Concentrateur",
+        "description": "Concentrateur d'oxygène fixe pour l'oxygénothérapie à domicile",
+        "features": [
+            "Faible niveau sonore",
+            "Écran LCD",
+            "Alarmes intégrées"
+        ],
+        "category": "oxygene",
+        "subCategory": "5L",
+        "inStock": true
+    },
+    {
+        "id": "cm5oo6gy80017bqysb4brtcn9",
+        "createdAt": "2025-01-09 01:48:40.513",
+        "updatedAt": "2025-01-09 01:48:40.513",
+        "name": "8F-5",
+        "brand": "Yuwell",
+        "type": "Concentrateur",
+        "description": "Concentrateur d'oxygène fixe pour l'oxygénothérapie à domicile",
+        "features": [
+            "Faible niveau sonore",
+            "Écran LCD",
+            "Alarmes intégrées"
+        ],
+        "category": "oxygene",
+        "subCategory": "5L",
+        "inStock": true
+    },
+    {
+        "id": "cm5ooecdv001abqysy5ofxin1",
+        "createdAt": "2025-01-09 01:54:48.341",
+        "updatedAt": "2025-01-09 01:54:48.341",
+        "name": "7F-10",
+        "brand": "Yuwell",
+        "type": "Concentrateur",
+        "description": "Concentrateur d'oxygène fixe pour l'oxygénothérapie à domicile",
+        "features": [
+            "Débit jusqu'à 10L/min",
+            "Faible niveau sonore",
+            "Écran LCD",
+            "Alarmes intégrées"
+        ],
+        "category": "oxygene",
+        "subCategory": "10L",
+        "inStock": true
+    },
+    {
+        "id": "cm5p9yvjf001dbqysoh4owuxq",
+        "createdAt": "2025-01-09 11:58:38.083",
+        "updatedAt": "2025-01-09 11:58:38.083",
+        "name": "8F-10",
+        "brand": "Yuwell",
+        "type": "Concentrateur",
+        "description": "Concentrateur d'oxygène fixe pour l'oxygénothérapie à domicile",
+        "features": [
+            "Faible niveau sonore",
+            "Débit jusqu'à 10L/min",
+            "Écran LCD",
+            "Alarmes intégrées"
+        ],
+        "category": "oxygene",
+        "subCategory": "10L",
+        "inStock": true
+    },
+    {
+        "id": "cm5pa819e001fbqys62f3ani4",
+        "createdAt": "2025-01-09 12:05:47.078",
+        "updatedAt": "2025-01-09 12:05:47.078",
+        "name": "Concentrateur d'oxygène DeVilbiss",
+        "brand": "DeVilbiss",
+        "type": "Concentrateur",
+        "description": "Concentrateur d'oxygène fixe DeVilbiss pour usage médical",
+        "features": [
+            "Technologie OSD®",
+            "Maintenance réduite",
+            "Systèm  de filtration avancé",
+            "Design compact"
+        ],
+        "category": "oxygene",
+        "subCategory": "5L",
+        "inStock": true
+    },
+    {
+        "id": "cm5paoqwg001hbqysxrgcusta",
+        "createdAt": "2025-01-09 12:18:45.264",
+        "updatedAt": "2025-01-09 12:18:45.264",
+        "name": "Spirit 3",
+        "brand": "Spirit",
+        "type": "Concentrateur Portable",
+        "description": "Concentrateur d'oxygène portable compact pour une mobilité optimale",
+        "features": [
+            "Débit jusqu'à 3L/min",
+            "Ultra-portable",
+            "'Batterie longue durée",
+            "'Silencieux"
+        ],
+        "category": "oxygene",
+        "subCategory": "3L",
+        "inStock": true
+    },
+    {
+        "id": "cm5paruu1001jbqys954slpgg",
+        "createdAt": "2025-01-09 12:21:11.863",
+        "updatedAt": "2025-01-09 12:21:11.863",
+        "name": "Spirit 6",
+        "brand": "Spirit",
+        "type": "Concentrateur",
+        "description": "Concentrateur d'oxygène portable léger et performant, conçu pour une utilisation quotidienne à domicile ou en déplacement",
+        "features": [
+            "Léger et compact, facile à transporter",
+            "Débit d'oxygène réglable jusqu'à 6 L/min",
+            "Fonctionnement silencieux pour un confort optimal",
+            "Interface utilisateur intuitive avec écran LCD",
+            "Batterie longue durée pour une autonomie prolongée"
+        ],
+        "category": "oxygene",
+        "subCategory": "6L",
+        "inStock": true
+    },
+    {
+        "id": "cm5pavxej001lbqysf99p1umv",
+        "createdAt": "2025-01-09 12:24:20.79",
+        "updatedAt": "2025-01-09 12:24:20.79",
+        "name": "Barboteur pour Oxygène",
+        "brand": " Medical",
+        "type": "Accessoire",
+        "description": "Barboteur pour humidification de l'oxygène",
+        "features": [
+            "Compatible avec tous les concentrateurs",
+            "Facile à nettoyer",
+            "Graduation visible",
+            "Matériau médical"
+        ],
+        "category": "oxygene",
+        "subCategory": "Barboteur",
+        "inStock": true
+    },
+    {
+        "id": "cm5pb03we001nbqys6c4tfs12",
+        "createdAt": "2025-01-09 12:27:36.866",
+        "updatedAt": "2025-01-09 12:27:36.866",
+        "name": "Lunettes à Oxygène",
+        "brand": "Medical",
+        "type": "Accessoire",
+        "description": "Lunettes nasales pour l'administration d'oxygène",
+        "features": [
+            "Confortable",
+            "Ajustable",
+            "Usage unique",
+            "Tubulure souple"
+        ],
+        "category": "oxygene",
+        "subCategory": "Lunettes",
+        "inStock": true
+    },
+    {
+        "id": "cm5pb3jmd001pbqysgc42ix5e",
+        "createdAt": "2025-01-09 12:30:16.088",
+        "updatedAt": "2025-01-09 12:30:16.088",
+        "name": "Masque à Haute Concentration",
+        "brand": "Medical",
+        "type": "Accessoire",
+        "description": "Masque à oxygène haute concentration avec réservoir",
+        "features": [
+            "Haute concentration en O2",
+            "Avec réservoir",
+            "Élastique ajustable",
+            "Usage unique"
+        ],
+        "category": "oxygene",
+        "subCategory": "Masque",
+        "inStock": true
+    },
+    {
+        "id": "cm5pbado4001rbqys07iwkjh9",
+        "createdAt": "2025-01-09 12:35:34.102",
+        "updatedAt": "2025-01-09 12:35:34.102",
+        "name": "AirCurve 10",
+        "brand": "Resmed",
+        "type": "Machine",
+        "description": "Appareil de ventilation non invasive bi-niveau",
+        "features": [
+            "Modes VAuto et S",
+            "Technologie Easy-Breathe",
+            "Humidificateur intégré",
+            "Connexion sans fil"
+        ],
+        "category": "bipap",
+        "subCategory": "bipap",
+        "inStock": true
+    },
+    {
+        "id": "cm5pbeiwx001tbqyswm41kopj",
+        "createdAt": "2025-01-09 12:38:49.505",
+        "updatedAt": "2025-01-09 12:38:49.505",
+        "name": "batterie spirit 3",
+        "brand": "Spirit",
+        "type": "Accessoire",
+        "description": "Batterie rechargeable haute performance conçue pour le concentrateur d'oxygène portable Spirit 3",
+        "features": [
+            "Compatible avec le concentrateur Spirit 3",
+            "Longue durée de vie pour une autonomie prolongée",
+            "Léger et facile à transporter",
+            "Recharge rapide et efficace"
+        ],
+        "category": "oxygene",
+        "subCategory": "batterie",
+        "inStock": true
+    },
+    {
+        "id": "cm5pc8oa2001vbqysw9qd99f8",
+        "createdAt": "2025-01-09 13:02:12.355",
+        "updatedAt": "2025-01-09 13:02:12.355",
+        "name": "Prolongateur",
+        "brand": "Medical",
+        "type": "Accessoire",
+        "description": "Prolongateur pratique pour augmenter la portée de votre concentrateur d'oxygène, idéal pour un confort d'utilisation optimal",
+        "features": [
+            "Matériau durable et résistant",
+            "Léger et facile à installer",
+            "Conçu pour une utilisation sûre et fiable"
+        ],
+        "category": "oxygene",
+        "subCategory": "Prolongateur",
+        "inStock": true
+    },
+    {
+        "id": "cm5pcbsx3001xbqysn05fk9yw",
+        "createdAt": "2025-01-09 13:04:42.119",
+        "updatedAt": "2025-01-09 13:04:42.119",
+        "name": "Raccord",
+        "brand": "Medical",
+        "type": "Accessoire",
+        "description": "Le raccord d'oxygène est un accessoire essentiel qui permet de connecter les différents dispositifs du système d'oxygénothérapie, CONCENTRATEUR, VNI, lunettes à oxygène.",
+        "features": [
+            "Plastique médical ou métal (selon le modèle)",
+            "Standard, généralement de 5 mm ou 8 mm",
+            "Fileté ou à clip, pour un montage facile et sécurisé"
+        ],
+        "category": "oxygene",
+        "subCategory": "Raccord",
+        "inStock": true
+    },
+    {
+        "id": "cm5pcfhel0021bqysnwe60xax",
+        "createdAt": "2025-01-09 13:07:32.716",
+        "updatedAt": "2025-01-09 13:07:32.716",
+        "name": "SY-42L ",
+        "brand": "Yuwell",
+        "type": "Accessoire",
+        "description": "Le sac d'oxygène Yuwell YS-42L facilite le transport des bouteilles d'oxygène tout en offrant une solution pratique pour les situations d'urgence. Conçu pour être léger et durable, il permet aux utilisateurs de déplacer facilement leur source d'oxygène, que ce soit à domicile ou en déplacement",
+        "features": [
+            "Tissu résistant et imperméable",
+            "Léger, pour un transport aisé",
+            "Adapté aux bouteilles d'oxygène de 2 à 5 litres"
+        ],
+        "category": "oxygene",
+        "subCategory": "sac oxygene",
+        "inStock": true
+    },
+    {
+        "id": "cm5pcjaqs0023bqys6pycbk9y",
+        "createdAt": "2025-01-09 13:10:31.818",
+        "updatedAt": "2025-01-09 13:13:09.382",
+        "name": "Lumis",
+        "brand": "Resmed",
+        "type": "Machine",
+        "description": "Appareil de VNI avancé avec modes thérapeutiques intelligents",
+        "features": [
+            "Technologie iVAPS",
+            "Trigger automatique",
+            "Écran couleur tactile",
+            "Suivi des données en temps réel"
+        ],
+        "category": "bipap",
+        "subCategory": "BIPAP",
+        "inStock": true
+    },
+    {
+        "id": "cm5pcmbf50025bqysab71ewyx",
+        "createdAt": "2025-01-09 13:12:51.607",
+        "updatedAt": "2025-01-09 13:12:51.607",
+        "name": "VNI S9",
+        "brand": "Resmed",
+        "type": "Machine",
+        "description": "Solution de VNI compacte et efficace",
+        "features": [
+            "'Design compact",
+            "Interface intuitive",
+            "Modes thérapeutiques multiples",
+            "Faible niveau sonore"
+        ],
+        "category": "bipap",
+        "subCategory": "VNI",
+        "inStock": true
+    },
+    {
+        "id": "cm5pcs0sy0028bqysfket98y5",
+        "createdAt": "2025-01-09 13:17:18.833",
+        "updatedAt": "2025-01-09 13:17:42.077",
+        "name": "Aérosol",
+        "brand": "Rossmax",
+        "type": "Nebuliseur",
+        "description": "Le Rossmax Aerosole est un nébuliseur conçu pour administrer des médicaments en aérosol, facilitant le traitement des affections respiratoires comme l'asthme et la bronchite. Cet appareil est idéal pour une utilisation à domicile et offre une administration efficace des médicaments.",
+        "features": [
+            "Environ 0,3 ml/min (selon le modèle",
+            "Moins de 5 microns pour une meilleure pénétration pulmonaire",
+            "Environ 5-7 ml",
+            "Léger, facile à transporter"
+        ],
+        "category": "aerosol-nebuliseurs",
+        "subCategory": "Nebuliseur ",
+        "inStock": true
+    },
+    {
+        "id": "cm5pcy2m0002abqysw38zizej",
+        "createdAt": "2025-01-09 13:22:01.117",
+        "updatedAt": "2025-01-09 14:52:13.133",
+        "name": "accessoires Rossmax",
+        "brand": "Rossmax",
+        "type": "Accessoire",
+        "description": "Optimisez votre nébuliseur avec des accessoires conçus pour une administration efficace et hygiénique des médicaments. Le masque facial, en tailles adulte et enfant, offre un confort optimal. L’embout buccal ergonomique garantit une administration directe et précise. Le tube de connexion flexible (1-2 m) facilite l’utilisation, tandis que la chambre de nébulisation (5-7 ml) assure une diffusion efficace des médicaments.",
+        "features": [
+            "Masque Facial",
+            "Embout Buccal",
+            "Tube de Connexion"
+        ],
+        "category": "aerosol",
+        "subCategory": "accessoires aerosol",
+        "inStock": true
+    },
+    {
+        "id": "cm5pexpfe002cbqyspzrentkw",
+        "createdAt": "2025-01-09 14:17:41.569",
+        "updatedAt": "2025-01-09 14:17:41.569",
+        "name": "Aspirateur Chirurgical",
+        "brand": "Yuwell",
+        "type": "Machine",
+        "description": "Aspirateur chirurgical professionnel pour usage médical",
+        "features": [
+            "Chambre de Nébulisation",
+            "Réglage précis du vide",
+            "Bocal autoclavable",
+            "iltre antibactérien inclus"
+        ],
+        "category": "aspirateur",
+        "subCategory": "Aspirateur ",
+        "inStock": true
+    },
+    {
+        "id": "cm5pf4wl7002gbqyswidbhvuz",
+        "createdAt": "2025-01-09 14:23:19.126",
+        "updatedAt": "2025-01-09 14:23:19.126",
+        "name": "Lit Médicalisé Électrique",
+        "brand": "Medical",
+        "type": "Médicalisé",
+        "description": "Lit médicalisé électrique avec télécommande pour le confort du patient",
+        "features": [
+            "Réglage électrique de la hauteur",
+            "Position Trendelenburg",
+            "Barrières de sécurité",
+            "Télécommande ergonomique"
+        ],
+        "category": "lit",
+        "subCategory": "Électrique",
+        "inStock": true
+    },
+    {
+        "id": "cm5pff5fh002ibqys8dupjdko",
+        "createdAt": "2025-01-09 14:31:17.164",
+        "updatedAt": "2025-01-09 14:32:34.094",
+        "name": "Lit Médicalisé ",
+        "brand": "Medical",
+        "type": "Médicalisé",
+        "description": "Lit médicalisé manuel robuste et fonctionnel, conçu pour offrir confort et sécurité aux patients à domicile ou en établissement de santé",
+        "features": [
+            "Matelas confortable et hypoallergénique",
+            "Facile à assembler et à utiliser",
+            "Réglage positions (tête, pieds, hauteur)"
+        ],
+        "category": "lit",
+        "subCategory": "lLit Médicalisé manuelle",
+        "inStock": true
+    },
+    {
+        "id": "cm5pghb87002mbqys0xc7l9mb",
+        "createdAt": "2025-01-09 15:00:57.586",
+        "updatedAt": "2025-01-09 15:00:57.586",
+        "name": "VNI Sleep Cube",
+        "brand": "DeVilbiss",
+        "type": "Machine",
+        "description": "Les dispositifs VNI DeVilbiss Sleep Cube S et ST sont conçus pour offrir un soutien respiratoire efficace aux patients souffrant d'insuffisance respiratoire. Ces appareils sont adaptés pour une utilisation à domicile, offrant confort et facilité d'utilisation.",
+        "features": [
+            "Cube S : Mode pression fixe",
+            "Dispositif de ventilation non invasive (VNI)",
+            "Écran LCD avec rétroéclairage",
+            "Ajustable, de 4 à 20 cm H2O"
+        ],
+        "category": "bipap",
+        "subCategory": "VNI",
+        "inStock": true
+    },
+    {
+        "id": "cm5pgk3lg002obqys6bwxb4dw",
+        "createdAt": "2025-01-09 15:03:07.663",
+        "updatedAt": "2025-01-09 15:03:07.663",
+        "name": "YH-830",
+        "brand": "Yuwell",
+        "type": "Machine",
+        "description": "Le BiPAP YH-830 est un appareil avancé conçu pour le traitement de l'apnée du sommeil et d'autres troubles respiratoires. Il offre un soutien respiratoire personnalisé grâce à sa capacité à fournir des pressions différentes lors de l'inhalation et de l'exhalation. Ce modèle est idéal pour les patients qui nécessitent une thérapie plus sophistiquée, offrant à la fois confort et efficacité pour un sommeil réparateur",
+        "features": [
+            "Système de pressions distinctes (IPAP et EPAP)",
+            "IPAP : 4 à 25 cmH2O",
+            "Design compact et léger, facile à transporter"
+        ],
+        "category": "bipap",
+        "subCategory": "VNI",
+        "inStock": true
+    }
+]

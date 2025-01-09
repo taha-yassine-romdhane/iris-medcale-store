@@ -66,7 +66,6 @@ async function main() {
       brand: 'Löwenstein',
       type: 'Auto-pilotée',
       description: 'Machine à PPC auto-pilotée avec technologie avancée pour un traitement optimal de l\'apnée du sommeil.',
-      price: 2499.99,
       features: [
         'Ajustement automatique de la pression',
         'Écran couleur intuitif',
@@ -88,7 +87,6 @@ async function main() {
       brand: 'ResMed',
       type: 'Auto-pilotée',
       description: 'La nouvelle génération de CPAP auto-pilotée avec des fonctionnalités intelligentes.',
-      price: 2699.99,
       features: [
         'Technologie AutoRamp',
         'Détection des événements respiratoires',
@@ -116,7 +114,6 @@ async function main() {
       brand: 'Yuwell',
       type: 'Auto-pilotée',
       description: 'CPAP auto-pilotée fiable avec un excellent rapport qualité-prix.',
-      price: 1999.99,
       features: [
         'Système auto-adaptatif',
         'Écran LCD',
@@ -150,7 +147,6 @@ async function main() {
       brand: 'Löwenstein',
       type: 'Fixe',
       description: 'CPAP à pression fixe avec des fonctionnalités essentielles pour un traitement efficace.',
-      price: 1899.99,
       features: [
         'Pression constante',
         'Interface simple',
@@ -172,7 +168,6 @@ async function main() {
       brand: 'ResMed',
       type: 'Fixe',
       description: 'CPAP fixe de qualité supérieure avec technologie éprouvée.',
-      price: 1999.99,
       features: [
         'Technologie EPR',
         'Données détaillées',
@@ -194,7 +189,6 @@ async function main() {
       brand: 'Yuwell',
       type: 'Fixe',
       description: 'CPAP fixe abordable avec toutes les fonctionnalités essentielles.',
-      price: 1599.99,
       features: [
         'Pression stable',
         'Facile à utiliser',
@@ -216,12 +210,11 @@ async function main() {
   // Create Accessory products
   const accessoryProducts = [
     // Filters
-    {
+    {   
       name: 'Filtre Standard Löwenstein',
       brand: 'Löwenstein',
       type: 'Filtre',
       description: 'Filtre standard pour machines CPAP Löwenstein, garantissant une filtration optimale de l\'air.',
-      price: 29.99,
       features: [
         'Filtration haute efficacité',
         'Compatible avec tous les modèles Löwenstein',
@@ -244,7 +237,6 @@ async function main() {
       brand: 'ResMed',
       type: 'Filtre',
       description: 'Filtre hypoallergénique pour machines CPAP ResMed AirSense.',
-      price: 34.99,
       features: [
         'Filtration hypoallergénique',
         'Compatible AirSense 10 et 11',
@@ -267,7 +259,6 @@ async function main() {
       brand: 'Yuwell',
       type: 'Filtre',
       description: 'Filtre de rechange pour machines CPAP Yuwell.',
-      price: 24.99,
       features: [
         'Filtration efficace',
         'Compatible avec modèles Yuwell',
@@ -291,7 +282,6 @@ async function main() {
       brand: 'ResMed',
       type: 'Tuyau',
       description: 'Tuyau chauffant pour un confort optimal et une réduction de la condensation.',
-      price: 89.99,
       features: [
         'Chauffage intégré',
         'Contrôle automatique de la température',
@@ -314,7 +304,6 @@ async function main() {
       brand: 'Universel',
       type: 'Tuyau',
       description: 'Tuyau standard 15mm compatible avec la plupart des machines CPAP.',
-      price: 29.99,
       features: [
         'Diamètre : 15mm',
         'Longueur : 1.8m',
@@ -337,7 +326,6 @@ async function main() {
       brand: 'Universel',
       type: 'Tuyau',
       description: 'Tuyau standard 22mm pour un débit d\'air optimal.',
-      price: 34.99,
       features: [
         'Diamètre : 22mm',
         'Longueur : 1.8m',
@@ -361,7 +349,6 @@ async function main() {
       brand: 'Löwenstein',
       type: 'Humidificateur',
       description: 'Humidificateur chauffant pour machines CPAP Löwenstein Prisma.',
-      price: 149.99,
       features: [
         'Réservoir grande capacité',
         'Contrôle précis de l\'humidité',
@@ -384,7 +371,6 @@ async function main() {
       brand: 'ResMed',
       type: 'Humidificateur',
       description: 'Humidificateur intégré pour machines CPAP ResMed AirSense.',
-      price: 159.99,
       features: [
         'Technologie HumidAir',
         'Réservoir lavable',
@@ -407,7 +393,6 @@ async function main() {
       brand: 'Yuwell',
       type: 'Humidificateur',
       description: 'Humidificateur pour machines CPAP Yuwell.',
-      price: 129.99,
       features: [
         'Capacité optimale',
         'Fonctionnement silencieux',
@@ -431,7 +416,6 @@ async function main() {
       brand: 'Löwenstein',
       type: 'Alimentation',
       description: 'Bloc d\'alimentation officiel pour machines CPAP Löwenstein.',
-      price: 69.99,
       features: [
         'Tension stable',
         'Protection contre les surtensions',
@@ -454,7 +438,6 @@ async function main() {
       brand: 'ResMed',
       type: 'Alimentation',
       description: 'Adaptateur secteur original pour appareils CPAP ResMed.',
-      price: 74.99,
       features: [
         'Certification officielle ResMed',
         'Protection thermique',
@@ -477,7 +460,6 @@ async function main() {
       brand: 'Yuwell',
       type: 'Alimentation',
       description: 'Bloc d\'alimentation pour machines CPAP Yuwell.',
-      price: 59.99,
       features: [
         'Tension stable',
         'Compact et léger',
@@ -501,7 +483,6 @@ async function main() {
       brand: 'Löwenstein',
       type: 'Carte SD',
       description: 'Carte SD haute performance pour machines CPAP Löwenstein.',
-      price: 19.99,
       features: [
         'Stockage sécurisé',
         'Compatible Prisma',
@@ -524,7 +505,6 @@ async function main() {
       brand: 'ResMed',
       type: 'Carte SD',
       description: 'Carte SD officielle pour appareils CPAP ResMed.',
-      price: 24.99,
       features: [
         'Compatible AirSense',
         'Capacité optimisée',
@@ -547,7 +527,6 @@ async function main() {
       brand: 'Yuwell',
       type: 'Carte SD',
       description: 'Carte SD pour l\'enregistrement des données CPAP Yuwell.',
-      price: 17.99,
       features: [
         'Stockage fiable',
         'Format compatible',
@@ -571,7 +550,6 @@ async function main() {
       brand: 'Universel',
       type: 'Harnais',
       description: 'Harnais de masque CPAP confortable et ajustable.',
-      price: 39.99,
       features: [
         'Matériau doux',
         'Ajustement universel',
@@ -599,7 +577,6 @@ async function main() {
       brand: 'Resmed',
       type: 'Masque Facial',
       description: 'Masque facial avec connexion supérieure pour plus de liberté de mouvement',
-      price: 149.99,
       features: [
         'Design minimaliste',
         'Connexion au tube sur le dessus',
@@ -627,7 +604,6 @@ async function main() {
       brand: 'Resmed',
       type: 'Masque Facial',
       description: 'Masque facial complet avec coussin InfinitySeal',
-      price: 139.99,
       features: [
         'Technologie InfinitySeal',
         'Cadre flexible',
@@ -656,7 +632,6 @@ async function main() {
       brand: 'Yuwell',
       type: 'Masque Facial',
       description: 'Masque facial complet avec coussin en silicone',
-      price: 119.99,
       features: [
         'Silicone médicale',
         'Harnais ajustable',
@@ -678,7 +653,6 @@ async function main() {
       brand: 'Yuwell',
       type: 'Masque Facial',
       description: 'Masque facial confortable et pratique',
-      price: 99.99,
       features: [
         'Silicone douce',
         'Harnais ajustable',
@@ -701,7 +675,6 @@ async function main() {
       brand: 'Resmed',
       type: 'Masque Nasal',
       description: 'Masque nasal avec connexion supérieure pour plus de confort',
-      price: 129.99,
       features: [
         'Design compact',
         'Tube en position haute',
@@ -729,8 +702,7 @@ async function main() {
       name: 'Masque Nasal Yuwell YN-02',
       brand: 'Yuwell',
       type: 'Masque Nasal',
-      description: 'Masque nasal léger et confortable',
-      price: 99.99,
+      description: 'Masque nasal légère et confortable',
       features: [
         'Design minimaliste',
         'Silicone douce',
@@ -752,7 +724,6 @@ async function main() {
       brand: 'Yuwell',
       type: 'Masque Nasal',
       description: 'Masque nasal confortable et pratique',
-      price: 109.99,
       features: [
         'Design ergonomique',
         'Silicone douce',
@@ -775,7 +746,6 @@ async function main() {
       brand: 'Resmed',
       type: 'Masque Narinaire',
       description: 'Masque narinaire ultra-léger et silencieux',
-      price: 109.99,
       features: [
         'Ultra-léger',
         'QuietAir technology',
@@ -804,7 +774,6 @@ async function main() {
       brand: 'Yuwell',
       type: 'Masque Narinaire',
       description: 'Masque narinaire compact et confortable',
-      price: 89.99,
       features: [
         'Design ergonomique',
         'Silicone douce',
@@ -826,8 +795,7 @@ async function main() {
       name: 'Masque Sans Fuite Yuwell',
       brand: 'Yuwell',
       type: 'Masque Sans Fuite',
-      description: 'Masque facial sans fuite pour une thérapie optimale',
-      price: 159.99,
+      description: 'Masque facial sans fuite pour une therapie optimale',
       features: [
         'Système anti-fuite',
         'Joint étanche',
@@ -853,7 +821,6 @@ async function main() {
       brand: 'Yuwell',
       type: 'Concentrateur',
       description: 'Concentrateur d\'oxygène fixe pour l\'oxygénothérapie à domicile',
-      price: 1999.99,
       features: [
         'Débit jusqu\'à 5L/min',
         'Faible niveau sonore',
@@ -875,12 +842,11 @@ async function main() {
       brand: 'Yuwell',
       type: 'Concentrateur',
       description: 'Concentrateur d\'oxygène fixe pour l\'oxygénothérapie à domicile',
-      price: 1999.99,
       features: [
         'Débit jusqu\'à 5L/min ',
         'Faible niveau sonore',
         'Écran LCD',
-        'Alarmes integrees'
+        'Alarmes intégrées'
       ],
       category: 'oxygen',
       media: [
@@ -909,7 +875,6 @@ async function main() {
       brand: 'Yuwell',
       type: 'Concentrateur',
       description: 'Concentrateur d\'oxygène fixe pour l\'oxygénothérapie à domicile',
-      price: 1999.99,
       features: [
         'Débit jusqu\'à 10L/min',
         'Faible niveau sonore',
@@ -937,7 +902,6 @@ async function main() {
       brand: 'Yuwell',
       type: 'Concentrateur',
       description: 'Concentrateur d\'oxygène fixe pour l\'oxygénothérapie à domicile',
-      price: 1999.99,
       features: [
         'Débit jusqu\'à 10L/min',
         'Faible niveau sonore',
@@ -959,11 +923,10 @@ async function main() {
       brand: 'DeVilbiss',
       type: 'Concentrateur',
       description: 'Concentrateur d\'oxygène fixe DeVilbiss pour usage médical',
-      price: 2199.99,
       features: [
         'Technologie OSD®',
         'Maintenance réduite',
-        'Système de filtration avancé',
+        'Systèm  de filtration avancé',
         'Design compact'
       ],
       category: 'oxygen',
@@ -981,7 +944,6 @@ async function main() {
       brand: 'Spirit',
       type: 'Concentrateur Portable',
       description: 'Concentrateur d\'oxygène portable compact pour une mobilité optimale',
-      price: 2499.99,
       features: [
         'Débit jusqu\'à 3L/min',
         'Ultra-portable',
@@ -1003,11 +965,10 @@ async function main() {
       brand: 'Spirit',
       type: 'Concentrateur Portable',
       description: 'Concentrateur d\'oxygène portable haute capacité',
-      price: 2799.99,
       features: [
         'Débit jusqu\'à 6L/min',
         'Idéal pour les voyages',
-        'Mode économie d\'énergie',
+        'Mode economie d\'energie',
         'Interface intuitive'
       ],
       category: 'oxygen',
@@ -1029,7 +990,6 @@ async function main() {
       brand: 'Medical',
       type: 'Accessoire',
       description: 'Barboteur pour humidification de l\'oxygène',
-      price: 29.99,
       features: [
         'Compatible avec tous les concentrateurs',
         'Facile à nettoyer',
@@ -1051,7 +1011,6 @@ async function main() {
       brand: 'Medical',
       type: 'Accessoire',
       description: 'Lunettes nasales pour l\'administration d\'oxygène',
-      price: 9.99,
       features: [
         'Confortable',
         'Ajustable',
@@ -1073,7 +1032,6 @@ async function main() {
       brand: 'Medical',
       type: 'Accessoire',
       description: 'Masque à oxygène haute concentration avec réservoir',
-      price: 19.99,
       features: [
         'Haute concentration en O2',
         'Avec réservoir',
@@ -1099,7 +1057,6 @@ async function main() {
       brand: 'Resmed',
       type: 'Machine',
       description: 'Appareil de ventilation non invasive bi-niveau',
-      price: 3499.99,
       features: [
         'Modes VAuto et S',
         'Technologie Easy-Breathe',
@@ -1121,7 +1078,6 @@ async function main() {
       brand: 'Resmed',
       type: 'Machine',
       description: 'Appareil de VNI avancé avec modes thérapeutiques intelligents',
-      price: 3799.99,
       features: [
         'Technologie iVAPS',
         'Trigger automatique',
@@ -1143,7 +1099,6 @@ async function main() {
       brand: 'Resmed',
       type: 'Machine',
       description: 'Solution de VNI compacte et efficace',
-      price: 3299.99,
       features: [
         'Design compact',
         'Interface intuitive',
@@ -1169,7 +1124,6 @@ async function main() {
       brand: 'Rossmax',
       type: 'Nebuliseur',
       description: 'Appareil d\'aérosolthérapie professionnel',
-      price: 129.99,
       features: [
         'Technologie de nébulisation avancée',
         'Utilisation silencieuse',
@@ -1195,7 +1149,6 @@ async function main() {
       brand: 'Yuwell',
       type: 'Machine',
       description: 'Aspirateur chirurgical professionnel pour usage médical',
-      price: 899.99,
       features: [
         'Puissance d\'aspiration élevée',
         'Réglage précis du vide',
@@ -1221,7 +1174,6 @@ async function main() {
       brand: 'Medical Bed',
       type: 'Lit Médicalisé',
       description: 'Lit médicalisé électrique avec télécommande pour le confort du patient',
-      price: 1299.99,
       features: [
         'Réglage électrique de la hauteur',
         'Position Trendelenburg',

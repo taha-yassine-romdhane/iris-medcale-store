@@ -7,7 +7,8 @@ import {
   Facebook, 
   Twitter, 
   Linkedin, 
-  Instagram 
+  Instagram,
+  Locate, // Icône pour les zones de couverture
 } from "lucide-react";
 
 export default function Footer() {
@@ -101,31 +102,56 @@ export default function Footer() {
               <li className="flex items-center text-blue-100">
                 <MapPin className="mr-3 text-red-500" size={20} />
                 <Link href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                  O Medicale Store M&#39;saken
+                  011 Rue tayeb el hedi 4070 M&#39;saken
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Newsletter */}
+          {/* Zones de Couverture */}
           <div>
-            <h3 className="text-xl font-bold text-white mb-4 border-b-2 border-red-600 pb-2">
-              Newsletter
+            <h3 className="text-xl font-bold text-white mb-4 border-b-2 border-red-500 pb-2">
+              Zones de Couverture
             </h3>
-            <form className="space-y-4">
-              <input
-                type="email"
-                placeholder="Votre email"
-                className="w-full px-4 py-2 rounded bg-blue-800 text-white border border-blue-700 focus:outline-none focus:ring-2 focus:ring-red-400"
-              />
-              <button
-                type="submit"
-                className="w-full bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors flex items-center justify-center"
-              >
-                <Send className="mr-2" size={20} />
-                S&#39;abonner
-              </button>
-            </form>
+            <div className="space-y-4">
+              {/* Région Nord */}
+              <div>
+                <div className="flex items-center space-x-2">
+                  <Locate className="text-red-500" size={20} />
+                  <h4 className="font-semibold text-white">Région Nord</h4>
+                </div>
+                <ul className="mt-2 pl-7 space-y-2 text-blue-100">
+                  <li>Grand Tunis</li>
+                  <li>Cap Bon</li>
+                </ul>
+              </div>
+
+              {/* Régions Centre */}
+              <div>
+                <div className="flex items-center space-x-2">
+                  <Locate className="text-red-500" size={20} />
+                  <h4 className="font-semibold text-white">Régions Centre</h4>
+                </div>
+                <ul className="mt-2 pl-7 space-y-2 text-blue-100">
+                  <li>Sousse</li>
+                  <li>Monastir</li>
+                  <li>Mahdia</li>
+                </ul>
+              </div>
+
+              {/* Autres Zones */}
+              <div>
+                <div className="flex items-center space-x-2">
+                  <Locate className="text-red-500" size={20} />
+                  <h4 className="font-semibold text-white">Autres Zones</h4>
+                </div>
+                <ul className="mt-2 pl-7 space-y-2 text-blue-100">
+                  <li>Sfax</li>
+                  <li>Gabès</li>
+                  <li>Djerba</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 

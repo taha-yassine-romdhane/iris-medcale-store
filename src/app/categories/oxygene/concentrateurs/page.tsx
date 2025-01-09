@@ -5,27 +5,27 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/hooks/useCart';
 import { Product } from '@/types/product';
+import { fetchCategoryProducts } from '@/lib/helpers/product-helpers';
 
 export default function OxygenConcentratorsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedMedia, setSelectedMedia] = useState<{ [key: string]: number }>({});
+  const [selectedCapacity, setSelectedCapacity] = useState<string>('all');
   const { addToCart } = useCart();
+
+  const capacityOptions = [ '5L', '6L', '10L'];
 
   useEffect(() => {
     async function fetchProducts() {
       try {
-        // Fetch only oxygen concentrators
-        const response = await fetch('/api/products?category=oxygen&type=Concentrateur');
-        if (!response.ok) throw new Error('Failed to fetch products');
-        const data = await response.json();
-        setProducts(data);
-        // Initialize selected media for each product
-        const initialSelected = data.reduce((acc: { [key: string]: number }, product: Product) => {
-          acc[product.id] = 0;
-          return acc;
-        }, {});
-        setSelectedMedia(initialSelected);
+        const { products, initialSelectedMedia } = await fetchCategoryProducts('concentrateurs');
+        if (!Array.isArray(products)) {
+          console.error('Products is not an array:', products);
+          throw new Error('Invalid products data');
+        }
+        setProducts(products);
+        setSelectedMedia(initialSelectedMedia);
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {
@@ -56,6 +56,12 @@ export default function OxygenConcentratorsPage() {
     );
   }
 
+  const filteredProducts = selectedCapacity === 'all' 
+    ? products 
+    : products.filter(product => 
+        product.subCategory?.includes(selectedCapacity)
+      );
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 py-28">
       {/* Hero Section */}
@@ -64,10 +70,10 @@ export default function OxygenConcentratorsPage() {
         <div className="relative max-w-screen-xl mx-auto px-6 sm:px-8 lg:px-12 py-20">
           <div className="text-center">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-300">
-              Concentrateurs d&apos;Oxygène
+              Concentrateurs d'Oxygène
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              Découvrez notre gamme de concentrateurs d&apos;oxygène fixes et portables.
+              Découvrez notre gamme de concentrateurs d'oxygène fixes et portables.
               Des solutions fiables et performantes pour votre oxygénothérapie à domicile.
             </p>
           </div>
@@ -80,10 +86,39 @@ export default function OxygenConcentratorsPage() {
         </div>
       </div>
 
+      {/* Capacity Filter */}
+      <div className="max-w-7xl mx-auto px-4 mb-8">
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <button
+            onClick={() => setSelectedCapacity('all')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors
+              ${selectedCapacity === 'all'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+          >
+            Tous
+          </button>
+          {capacityOptions.map((capacity) => (
+            <button
+              key={capacity}
+              onClick={() => setSelectedCapacity(capacity)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors
+                ${selectedCapacity === capacity
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+            >
+              {capacity}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Products Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <div
               key={product.id}
               className="group relative bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
@@ -115,7 +150,7 @@ export default function OxygenConcentratorsPage() {
                   </div>
                 )}
                 <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                  {product.type}
+                  {product.category}
                 </div>
               </div>
 

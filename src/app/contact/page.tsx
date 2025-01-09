@@ -51,6 +51,15 @@ export default function ContactPage() {
 
     setIsSubmitting(true);
     try {
+      if (!user.id) {
+        toast({
+          title: "Erreur",
+          description: "Informations utilisateur incomplètes",
+          variant: "destructive",
+        });
+        return;
+      }
+
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -59,6 +68,7 @@ export default function ContactPage() {
         body: JSON.stringify({
           message,
           user: {
+            id: user.id,
             nom: user.nom,
             email: user.email,
             telephone: user.telephone
@@ -67,7 +77,8 @@ export default function ContactPage() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to send message');
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to send message');
       }
 
       toast({

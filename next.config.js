@@ -8,11 +8,17 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'utfs.io', // Add this for UploadThing images
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   env: {
     JWT_SECRET: process.env.JWT_SECRET,
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

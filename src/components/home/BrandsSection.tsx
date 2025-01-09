@@ -17,14 +17,6 @@ const brands = [
     logo: '/brands/Yuwell.png',
   },
   {
-    name: 'Philips Healthcare',
-    logo: '/brands/Philips Healthcare.png',
-  },
-  {
-    name: 'Fisher & Paykel',
-    logo: '/brands/Fisher & Paykel.png',
-  },
-  {
     name: 'DeVilbiss Healthcare',
     logo: '/brands/DeVilbiss Healthcare.png',
   },

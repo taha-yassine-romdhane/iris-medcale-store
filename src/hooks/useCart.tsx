@@ -53,7 +53,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [cart]);
 
   const calculateTotal = (items: CartItem[]): number => {
-    return items.reduce((total, item) => total + item.price * item.quantity, 0);
+    return items.reduce((total) => total , 0);
   };
 
   const addToCart = (product: Product) => {
@@ -83,7 +83,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
           {
             id: product.id,
             name: product.name,
-            price: parseFloat(product.price.toString()), // Ensure price is a number
             quantity: 1,
             brand: product.brand,
             image: product.media?.[0]?.url,

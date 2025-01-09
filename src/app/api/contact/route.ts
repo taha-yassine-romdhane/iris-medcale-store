@@ -8,9 +8,9 @@ export async function POST(request: NextRequest) {
     const data = await request.json();
     const { message, user } = data;
 
-    if (!message || !user) {
+    if (!message || !user || !user.id) {
       return NextResponse.json(
-        { error: 'Message and user information are required' },
+        { error: 'Le message et les informations utilisateur sont requis' },
         { status: 400 }
       );
     }
@@ -25,20 +25,11 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, contact });
   } catch (error: unknown) {
-    // Handle the error safely
     console.error('Error saving contact:', error);
 
-    // Check if the error is an instance of Error
-    if (error instanceof Error) {
-      return NextResponse.json(
-        { error: error.message || 'Failed to save message' },
-        { status: 500 }
-      );
-    }
-
-    // Fallback for unknown errors
+    // Return a user-friendly error message
     return NextResponse.json(
-      { error: 'Failed to save message' },
+      { error: "Une erreur est survenue lors de l'envoi du message" },
       { status: 500 }
     );
   }

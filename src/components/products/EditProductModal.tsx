@@ -2,9 +2,11 @@
 
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState, useEffect } from 'react';
-import { X, Upload, Trash2 } from 'lucide-react';
+import { X, Trash2 } from 'lucide-react';
 import { Product, Media } from '@/types/product';
 import Image from 'next/image';
+import { UploadDropzone } from '@uploadthing/react';
+import type { OurFileRouter } from '@/app/api/uploadthing/core';
 
 interface EditProductModalProps {
   isOpen: boolean;
@@ -14,8 +16,17 @@ interface EditProductModalProps {
 }
 
 export default function EditProductModal({ isOpen, closeModal, product, onUpdate }: EditProductModalProps) {
-  const [formData, setFormData] = useState<Product | null>(null);
-  const [uploadingMedia, setUploadingMedia] = useState(false);
+  const [formData, setFormData] = useState<Omit<Product, 'id'>>({
+    name: '',
+    brand: '',
+    type: '',
+    description: '',
+    category: '',
+    subCategory: '',
+    inStock: true,
+    features: [],
+    media: [],
+  });
   const [newFeature, setNewFeature] = useState('');
 
   useEffect(() => {
@@ -36,33 +47,26 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
 
       setFormData({
         ...product,
-        features: parsedFeatures
+        features: parsedFeatures,
       });
     }
   }, [product]);
 
-  if (!formData) return null;
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData) return;
+    if (!product) return;
 
     try {
-      // Prepare the data
       const productData = {
         ...formData,
-        price: Number(formData.price),
-        // Ensure features is an array before sending to API
         features: Array.isArray(formData.features) ? formData.features : [],
         media: formData.media.map((m, index) => ({
           ...m,
-          order: index
-        }))
+          order: index,
+        })),
       };
 
-      console.log('Submitting product data:', productData); // Debug log
-
-      const response = await fetch(`/api/products/${formData.id}`, {
+      const response = await fetch(`/api/products/${product.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +75,8 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
       });
 
       if (!response.ok) {
-        throw new Error('Failed to update product');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to update product');
       }
 
       const result = await response.json();
@@ -79,99 +84,57 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
       closeModal();
     } catch (error) {
       console.error('Error updating product:', error);
+      alert(error instanceof Error ? error.message : 'Failed to update product. Please try again.');
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
-    setFormData(prev => {
-      if (!prev) return prev;
-      return {
-        ...prev,
-        [name]: type === 'number' ? parseFloat(value) : value,
-      };
-    });
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'number' ? (value === '' ? 0 : parseFloat(value)) : value,
+    }));
   };
 
-  const handleMediaUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (!files || !formData) return;
+  const handleMediaUpload = (files: { url: string; type: string; name: string }[]) => {
+    const newMedia: Media[] = files.map((file) => ({
+      url: file.url,
+      type: file.type.startsWith('image/') ? 'image' : 'video',
+      alt: file.name,
+      order: formData.media.length,
+    }));
 
-    setUploadingMedia(true);
-    try {
-      for (const file of Array.from(files)) {
-
-        const formDataUpload = new FormData();
-        formDataUpload.append('file', file);
-
-        const response = await fetch('/api/upload', {
-          method: 'POST',
-          body: formDataUpload,
-        });
-
-        if (!response.ok) throw new Error('Upload failed');
-
-        const data = await response.json();
-        const newMedia: Media = {
-          url: data.url,
-          type: file.type.startsWith('image/') ? 'image' : 'video',
-          alt: file.name,
-          order: formData.media.length
-        };
-
-        setFormData(prev => {
-          if (!prev) return prev;
-          return {
-            ...prev,
-            media: [...prev.media, newMedia]
-          };
-        });
-      }
-    } catch (error) {
-      console.error('Error uploading media:', error);
-    } finally {
-      setUploadingMedia(false);
-    }
+    setFormData((prev) => ({
+      ...prev,
+      media: [...prev.media, ...newMedia],
+    }));
   };
 
   const handleMediaDelete = (index: number) => {
-    setFormData(prev => {
-      if (!prev) return prev;
-      const newMedia = [...prev.media];
-      newMedia.splice(index, 1);
-      return {
-        ...prev,
-        media: newMedia.map((m, i) => ({ ...m, order: i }))
-      };
-    });
+    setFormData((prev) => ({
+      ...prev,
+      media: prev.media.filter((_, i) => i !== index),
+    }));
   };
 
   const handleAddFeature = () => {
-    if (!formData || !newFeature.trim()) return;
-
-    setFormData(prev => {
-      if (!prev) return prev;
-      const currentFeatures = Array.isArray(prev.features) ? prev.features : [];
-      return {
+    if (newFeature.trim()) {
+      setFormData((prev) => ({
         ...prev,
-        features: [...currentFeatures, newFeature.trim()]
-      };
-    });
-    setNewFeature('');
+        features: [...(Array.isArray(prev.features) ? prev.features : []), newFeature.trim()],
+      }));
+      setNewFeature('');
+    }
   };
 
   const handleRemoveFeature = (index: number) => {
-    if (!formData) return;
-
-    setFormData(prev => {
-      if (!prev) return prev;
-      const currentFeatures = Array.isArray(prev.features) ? prev.features : [];
-      return {
-        ...prev,
-        features: currentFeatures.filter((_, i) => i !== index)
-      };
-    });
+    setFormData((prev) => ({
+      ...prev,
+      features: Array.isArray(prev.features) ? prev.features.filter((_, i) => i !== index) : [],
+    }));
   };
+
+  if (!product) return null;
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -201,13 +164,8 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
             >
               <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title as="div" className="flex justify-between items-center mb-4">
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">
-                    Modifier le produit
-                  </h3>
-                  <button
-                    onClick={closeModal}
-                    className="text-gray-400 hover:text-gray-500"
-                  >
+                  <h3 className="text-lg font-medium leading-6 text-gray-900">Modifier le produit</h3>
+                  <button onClick={closeModal} className="text-gray-400 hover:text-gray-500">
                     <X size={20} />
                   </button>
                 </Dialog.Title>
@@ -260,22 +218,6 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
                     </div>
 
                     <div>
-                      <label htmlFor="price" className="block text-sm font-medium text-gray-700">
-                        Prix
-                      </label>
-                      <input
-                        type="number"
-                        name="price"
-                        id="price"
-                        value={formData.price}
-                        onChange={handleChange}
-                        step="0.01"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                        required
-                      />
-                    </div>
-
-                    <div>
                       <label htmlFor="category" className="block text-sm font-medium text-gray-700">
                         Catégorie
                       </label>
@@ -320,64 +262,6 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
                     />
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Médias
-                    </label>
-                    <div className="mb-4">
-                      <label className="block w-full cursor-pointer">
-                        <div className="px-4 py-6 border-2 border-dashed border-gray-300 rounded-lg text-center hover:border-blue-500">
-                          <Upload className="mx-auto h-12 w-12 text-gray-400" />
-                          <span className="mt-2 block text-sm font-medium text-gray-900">
-                            {uploadingMedia ? 'Téléchargement...' : 'Ajouter des images ou vidéos'}
-                          </span>
-                        </div>
-                        <input
-                          type="file"
-                          className="hidden"
-                          multiple
-                          accept="image/*,video/*"
-                          onChange={handleMediaUpload}
-                          disabled={uploadingMedia}
-                        />
-                      </label>
-                    </div>
-                    <div className="space-y-2">
-                      {formData.media
-                        .sort((a, b) => a.order - b.order)
-                        .map((media, index) => (
-                          <div
-                            key={media.id || index}
-                            className="flex items-center gap-2"
-                          >
-                            {media.type === 'image' ? (
-                              <Image
-                                src={media.url}
-                                alt={media.alt || 'Media'}
-                                width={100}
-                                height={100}
-                                className="rounded-md"
-                                quality={75}
-                              />
-                            ) : (
-                              <video
-                                src={media.url}
-                                controls
-                                className="rounded-md w-full max-w-[100px]"
-                              />
-                            )}
-                            <button
-                              type="button"
-                              onClick={() => handleMediaDelete(index)}
-                              className="text-red-500 hover:text-red-700"
-                            >
-                              <Trash2 size={16} />
-                            </button>
-                          </div>
-                        ))}
-                    </div>
-                  </div>
-
                   <div className="col-span-2">
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Caractéristiques
@@ -401,7 +285,7 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
                         </button>
                       </div>
                       <ul className="space-y-2">
-                        {formData && Array.isArray(formData.features) && formData.features.map((feature, index) => (
+                        {Array.isArray(formData.features) && formData.features.map((feature, index) => (
                           <li key={index} className="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-md">
                             <span className="text-sm text-gray-700">{feature}</span>
                             <button
@@ -417,6 +301,60 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
                     </div>
                   </div>
 
+                  <div className="col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Images et Vidéos
+                    </label>
+                    <UploadDropzone<OurFileRouter, "mediaUploader">
+                      endpoint="mediaUploader"
+                      onClientUploadComplete={(res) => {
+                        if (res) {
+                          handleMediaUpload(
+                            res.map((file) => ({
+                              url: file.url,
+                              type: file.type,
+                              name: file.name,
+                            }))
+                          );
+                        }
+                      }}
+                      onUploadError={(error: Error) => {
+                        console.error('Upload error:', error);
+                        alert(`Error uploading file: ${error.message}`);
+                      }}
+                    />
+                    
+                    {/* Media Preview */}
+                    <div className="mt-4 grid grid-cols-2 gap-4">
+                      {formData.media.map((media, index) => (
+                        <div key={index} className="relative">
+                          {media.type === 'image' ? (
+                            <Image
+                              src={media.url}
+                              alt={media.alt || `Product image ${index + 1}`}
+                              width={200}
+                              height={200}
+                              className="rounded-lg object-cover"
+                            />
+                          ) : (
+                            <video
+                              src={media.url}
+                              controls
+                              className="rounded-lg w-full h-[200px] object-cover"
+                            />
+                          )}
+                          <button
+                            type="button"
+                            onClick={() => handleMediaDelete(index)}
+                            className="absolute top-2 right-2 p-1 bg-red-500 rounded-full text-white hover:bg-red-600"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
                   <div>
                     <label htmlFor="inStock" className="block text-sm font-medium text-gray-700">
                       Statut
@@ -425,10 +363,12 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
                       name="inStock"
                       id="inStock"
                       value={formData.inStock.toString()}
-                      onChange={(e) => setFormData({ ...formData, inStock: e.target.value === 'true' })}
+                      onChange={(e) => setFormData((prev) => ({ ...prev, inStock: e.target.value === 'true' }))}
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                     >
                       <option value="true">En stock</option>
+                      <option value="false">En Arrivage</option>
+                      <option value="false">Sur Commande</option>
                       <option value="false">En rupture</option>
                     </select>
                   </div>

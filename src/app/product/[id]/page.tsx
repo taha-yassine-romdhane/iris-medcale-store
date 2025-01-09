@@ -81,8 +81,8 @@ export default function ProductPage() {
       </>
   ));
   return (
-    <div className="min-h-screen bg-gray-50 pt-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         {/* Breadcrumb */}
         <nav className="mb-8">
           <ol className="flex items-center space-x-2 text-sm">
@@ -106,10 +106,11 @@ export default function ProductPage() {
           </ol>
         </nav>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Product Images */}
-          <div className="relative">
-            <div className="aspect-w-1 aspect-h-1 w-full rounded-lg overflow-hidden bg-gray-100">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 min-h-[600px]">
+          {/* Product Images and Video */}
+          <div className="relative space-y-6">
+            {/* Main Image Display */}
+            <div className="aspect-w-1 aspect-h-1 w-full rounded-lg overflow-hidden bg-gray-100 min-h-[400px]">
               {product.media[currentImageIndex]?.type === 'image' ? (
                 <Image
                   src={product.media[currentImageIndex].url}
@@ -117,45 +118,41 @@ export default function ProductPage() {
                   width={600}
                   height={600}
                   className="object-cover object-center"
+                  priority
                 />
-              ) : (
-                <video
-                  src={product.media[currentImageIndex].url}
-                  controls
-                  className="w-full h-full object-cover"
-                />
-              )}
+              ) : null}
             </div>
 
-            {/* Navigation arrows */}
-            {product.media.length > 1 && (
+            {/* Navigation arrows for images */}
+            {product.media.filter(m => m.type === 'image').length > 1 && (
               <>
                 <button
                   onClick={prevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 rounded-full p-2 hover:bg-white"
+                  className="absolute left-4 top-[200px] bg-white/80 rounded-full p-2 hover:bg-white shadow-lg"
                 >
                   <ChevronLeft className="w-6 h-6" />
                 </button>
                 <button
                   onClick={nextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 rounded-full p-2 hover:bg-white"
+                  className="absolute right-4 top-[200px] bg-white/80 rounded-full p-2 hover:bg-white shadow-lg"
                 >
                   <ChevronRight className="w-6 h-6" />
                 </button>
               </>
             )}
 
-            {/* Thumbnail grid */}
+            {/* Thumbnail grid for images */}
             <div className="grid grid-cols-4 gap-4 mt-4">
-              {product.media.map((media, index) => (
-                <button
-                  key={media.id}
-                  onClick={() => setCurrentImageIndex(index)}
-                  className={`relative aspect-w-1 aspect-h-1 rounded-lg overflow-hidden ${
-                    currentImageIndex === index ? 'ring-2 ring-blue-500' : ''
-                  }`}
-                >
-                  {media.type === 'image' ? (
+              {product.media
+                .filter(media => media.type === 'image')
+                .map((media, index) => (
+                  <button
+                    key={media.id}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`relative aspect-w-1 aspect-h-1 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow ${
+                      currentImageIndex === index ? 'ring-2 ring-blue-500' : ''
+                    }`}
+                  >
                     <Image
                       src={media.url}
                       alt={media.alt || `${product.name} thumbnail ${index + 1}`}
@@ -163,20 +160,27 @@ export default function ProductPage() {
                       height={100}
                       className="object-cover"
                     />
-                  ) : (
-                    <video src={media.url} className="object-cover" />
-                  )}
-                </button>
-              ))}
+                  </button>
+                ))}
             </div>
+
+            {/* Video Display */}
+            {product.media.filter(media => media.type === 'video').map((video, index) => (
+              <div key={video.id} className="w-full rounded-lg overflow-hidden bg-gray-100 shadow-lg mt-8">
+                <video
+                  src={video.url}
+                  controls
+                  className="w-full aspect-video object-cover"
+                  poster={product.media.find(m => m.type === 'image')?.url}
+                />
+              </div>
+            ))}
           </div>
 
           {/* Product Info */}
-          <div>
+          <div className="flex flex-col min-h-[600px]">
             <h1 className="text-3xl font-bold text-gray-900 mb-4">{product.name}</h1>
             <div className="flex items-center mb-4">
-             
-              
             </div>
            
             <p className="text-gray-600 mb-6">{product.description}</p>
@@ -194,33 +198,14 @@ export default function ProductPage() {
               </ul>
             </div>
 
-            {/* Add to Cart Button */}
-            <button 
-              onClick={() => product && addToCart(product)}
-              className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-            >
-              Ajouter au panier
-            </button>
-
-            {/* Technical Details */}
-            <div className="mt-8 border-t border-gray-200 pt-8">
-              <h2 className="text-lg font-bold text-gray-900 mb-4">Détails techniques</h2>
-              <dl className="grid grid-cols-1 gap-4">
-                <div>
-                  <dt className="text-sm font-medium text-gray-500">Marque</dt>
-                  <dd className="mt-1 text-sm text-gray-900">{product.brand}</dd>
-                </div>
-                <div>
-                  <dt className="text-sm font-medium text-gray-500">Type</dt>
-                  <dd className="mt-1 text-sm text-gray-900">{product.type}</dd>
-                </div>
-                {product.subCategory && (
-                  <div>
-                    <dt className="text-sm font-medium text-gray-500">Catégorie</dt>
-                    <dd className="mt-1 text-sm text-gray-900">{product.subCategory}</dd>
-                  </div>
-                )}
-              </dl>
+            {/* Add to Cart Button - Moved to bottom */}
+            <div className="mt-auto">
+              <button 
+                onClick={() => product && addToCart(product)}
+                className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
+              >
+                Ajouter au panier
+              </button>
             </div>
           </div>
         </div>

@@ -24,7 +24,6 @@ model Product {
   brand       String
   type        String
   description String   @db.Text
-  price       Decimal  @db.Decimal(10, 2)
   features    Json
   category    String
   subCategory String?  // For accessories: FILTRE, TUYAU, etc.
@@ -113,7 +112,6 @@ model Commande {
 model CommandeItem {
   id         String   @id @default(cuid())
   quantity   Int
-  price      Decimal  @db.Decimal(10, 2)
   commande   Commande @relation(fields: [commandeId], references: [id])
   commandeId String
   product    Product  @relation(fields: [productId], references: [id])
@@ -127,6 +125,24 @@ model Contact {
   message       String      @db.Text
   utilisateur   Utilisateur @relation(fields: [utilisateurId], references: [id])
   utilisateurId String
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
+
+model Appointment {
+  id        String            @id @default(cuid())
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+  dateRdv   DateTime
+  motif     String
+  nom       String
+  email     String
+  telephone String
+  status    AppointmentStatus @default(PENDING)
 }
 
 enum StatusRdv {

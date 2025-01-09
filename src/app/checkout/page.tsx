@@ -168,7 +168,7 @@ export default function CheckoutPage() {
                     Traitement en cours...
                   </>
                 ) : (
-                  'Réserver un devis'
+                  'Demander un devis'
                 )}
               </button>
 

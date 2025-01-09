@@ -10,20 +10,25 @@ export async function POST(request: NextRequest) {
 
     if (!appointment || !user) {
       return NextResponse.json(
-        { error: 'Appointment and user information are required' },
+        { error: 'Les informations de rendez-vous et utilisateur sont requises' },
         { status: 400 }
       );
     }
 
+    // Create a proper date string from the selected day
+    const [day, month, year] = new Date().toLocaleDateString('fr-FR').split('/');
+    const dateString = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+
     // Create the appointment date by combining date and time
-    const dateRdv = new Date(appointment.date + 'T' + appointment.time);
+    const dateRdv = new Date(`${dateString}T${appointment.time}`);
 
     // Save appointment to database
     const newAppointment = await prisma.appointment.create({
       data: {
         dateRdv,
         motif: appointment.reason,
-        utilisateurId: user.id,
+        status: 'EN_ATTENTE',
+        utilisateurId: user.id
       },
     });
 
@@ -32,7 +37,7 @@ export async function POST(request: NextRequest) {
     console.error('Error saving appointment:', error);
 
     // Handle the error safely
-    let errorMessage = 'Failed to save appointment';
+    let errorMessage = 'Échec de la sauvegarde du rendez-vous';
     if (error instanceof Error) {
       errorMessage = error.message;
     }

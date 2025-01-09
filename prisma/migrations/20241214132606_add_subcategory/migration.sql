@@ -7,7 +7,6 @@ CREATE TABLE "Product" (
     "brand" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "description" TEXT NOT NULL,
-    "price" DECIMAL(10,2) NOT NULL,
     "features" JSONB NOT NULL,
     "category" TEXT NOT NULL,
     "subCategory" TEXT,

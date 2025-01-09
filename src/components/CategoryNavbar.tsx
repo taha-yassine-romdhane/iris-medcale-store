@@ -27,6 +27,7 @@ const categories = [
       { name: 'Masques nasaux', href: '/categories/masques/nasal' },
       { name: 'Masques faciaux', href: '/categories/masques/facial' },
       { name: 'Masques narinaires', href: '/categories/masques/narinaire' },
+      { name: 'Masques sans fuite', href: '/categories/masques/sans-fuite' },
     ]
   },
   {

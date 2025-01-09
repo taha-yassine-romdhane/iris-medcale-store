@@ -51,7 +51,6 @@ export async function GET() {
       description: product.description,
       brand: product.brand,
       category: product.category,
-      price: product.price,
       media: product.media,
     }));
 

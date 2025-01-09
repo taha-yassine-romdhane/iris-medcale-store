@@ -1,73 +1,72 @@
 import { prisma } from '../db';
+import { Prisma } from '@prisma/client';
 
-type ProductWhereInput = {
-  category?: {
-    equals: string;
-    mode: 'insensitive';
-  };
-  type?: {
-    equals: string;
-    mode: 'insensitive';
-  };
-  brand?: {
-    equals: string;
-    mode: 'insensitive';
-  };
+type SearchFilter = {
+  contains: string;
+  mode: 'insensitive';
 };
 
-export async function getAllProducts(category?: string, type?: string, brand?: string) {
-  const where: ProductWhereInput = {};
+const buildSearchFilter = (search: string): Prisma.ProductWhereInput => ({
+  OR: [
+    { name: { contains: search, mode: 'insensitive' } },
+    { description: { contains: search, mode: 'insensitive' } },
+    { brand: { contains: search, mode: 'insensitive' } },
+    { type: { contains: search, mode: 'insensitive' } },
+    { category: { contains: search, mode: 'insensitive' } }
+  ]
+});
 
-  if (category) {
-    where.category = {
-      equals: category,
-      mode: 'insensitive'
-    };
-  }
-  
-  if (type) {
-    where.type = {
-      equals: type,
-      mode: 'insensitive'
-    };
-  }
+export async function getAllProducts(
+  category?: string,
+  type?: string,
+  brand?: string,
+  offset: number = 0,
+  limit: number = 5,
+  search?: string
+) {
+  // Build where clause
+  const where: Prisma.ProductWhereInput = {
+    ...(category ? { category } : {}),
+    ...(type ? { type } : {}),
+    ...(brand ? { brand } : {}),
+    ...(search ? buildSearchFilter(search) : {})
+  };
 
-  if (brand) {
-    where.brand = {
-      equals: brand,
-      mode: 'insensitive'
-    };
-  }
-
-  const products = await prisma.product.findMany({
-    where,
-    include: {
-      reviews: true,
-      media: {
-        orderBy: {
-          order: 'asc'
-        }
+  // Get products with pagination
+  const [products, total] = await Promise.all([
+    prisma.product.findMany({
+      where,
+      skip: offset,
+      take: limit,
+      orderBy: {
+        createdAt: 'desc'
+      },
+      include: {
+        media: {
+          orderBy: {
+            order: 'asc'
+          }
+        },
+        reviews: true
       }
-    },
-    orderBy: {
-      createdAt: 'desc'
-    }
-  });
+    }),
+    prisma.product.count({ where })
+  ]);
 
-  return products.map((product) => ({
+  // Format products
+  const formattedProducts = products.map(product => ({
     ...product,
-    features: (() => {
-      try {
-        if (typeof product.features === 'string') {
-          return JSON.parse(product.features);
-        }
-        return Array.isArray(product.features) ? product.features : [];
-      } catch {
-        console.error('Error parsing features for product:', product.id);
-        return [];
-      }
-    })()
+    media: product.media.map(media => ({
+      ...media,
+      type: media.type || 'image',
+      alt: media.alt || product.name,
+    }))
   }));
+
+  return {
+    products: formattedProducts,
+    total
+  };
 }
 
 export async function getProductById(id: string) {
@@ -101,7 +100,6 @@ export async function createProduct(data: {
   brand: string;
   type: string;
   description: string;
-  price: number;
   category: string;
   subCategory?: string;
   inStock?: boolean;
@@ -125,7 +123,6 @@ export async function createProduct(data: {
       brand: data.brand,
       type: data.type,
       description: data.description,
-      price: data.price,
       category: data.category,
       subCategory: data.subCategory,
       inStock: data.inStock ?? true,
@@ -135,7 +132,11 @@ export async function createProduct(data: {
       } : undefined
     },
     include: {
-      media: true,
+      media: {
+        orderBy: {
+          order: 'asc'
+        }
+      },
       reviews: true
     }
   });
@@ -147,7 +148,6 @@ export async function updateProduct(id: string, data: {
   type?: string;
   image?: string;
   description?: string;
-  price?: number;
   features?: string[] | string;
   category?: string;
   inStock?: boolean;
@@ -164,11 +164,14 @@ export async function updateProduct(id: string, data: {
     where: { id },
     data: {
       ...data,
-      features: features,
-      price: data.price ? Number(data.price) : undefined
+      features: features
     },
     include: {
-      media: true,
+      media: {
+        orderBy: {
+          order: 'asc'
+        }
+      },
       reviews: true
     }
   });

@@ -12,7 +12,6 @@ export interface Product {
   brand: string;
   type: string;
   description: string;
-  price: number;
   category: string;
   subCategory?: string;
   features: string[];
