@@ -111,8 +111,11 @@ export default function MedicalBedAccessoriesPage() {
                     <span className="text-gray-400">No image available</span>
                   </div>
                 )}
-                <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                <div className="absolute top-7 right-4 bg-blue-600 text-white px-1 rounded-full text-sm font-medium">
                   {product.type}
+                </div>
+                <div className="absolute top-1 right-4 bg-green-500 text-white px-1 rounded-full text-sm font-medium">
+                  {product.inStock === true ? 'En stock' : 'Rupture de stock'}
                 </div>
               </div>
 
@@ -130,9 +133,9 @@ export default function MedicalBedAccessoriesPage() {
 
                 {/* Features List */}
                 <div className="mt-4">
-                {(Array.isArray(product.features) ? product.features : [])
-                      .slice(0, 3)
-                      .map((feature: string, index: number) => (
+                  {(Array.isArray(product.features) ? product.features : [])
+                    .slice(0, 3)
+                    .map((feature: string, index: number) => (
                       <li key={index} className="flex items-start">
                         <span className="text-blue-500 mr-2">•</span>
                         {feature}
@@ -140,7 +143,7 @@ export default function MedicalBedAccessoriesPage() {
                     ))}
                 </div>
 
-                <button 
+                <button
                   className="w-full mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200"
                   onClick={(e) => handleAddToCart(e, product)}
                 >

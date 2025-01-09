@@ -150,7 +150,10 @@ export default function OxygenConcentratorsPage() {
                   </div>
                 )}
                 <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                  {product.category}
+                  {product.subCategory}
+                </div>
+                <div className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                  {product.inStock === true ? 'En stock' : 'Rupture de stock'}
                 </div>
               </div>
 

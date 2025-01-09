@@ -13,8 +13,6 @@ import { useAuth } from "@/hooks/useAuth";
 
 const languages = [
   { code: 'fr', name: 'Français', flag: Flags.fr },
-  { code: 'ar', name: 'العربية', flag: Flags.ar },
-  { code: 'en', name: 'English', flag: Flags.en }
 ];
 
 const Navbar = () => {

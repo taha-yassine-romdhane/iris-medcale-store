@@ -108,8 +108,11 @@ export default function CPAPMachinesPage() {
                     <span className="text-gray-400">No image available</span>
                   </div>
                 )}
-                <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                <div className="absolute top-7 right-4 bg-blue-600 text-white px-1 rounded-full text-sm font-medium">
                   {product.type}
+                </div>
+                <div className="absolute top-1 right-4 bg-green-500 text-white px-1 rounded-full text-sm font-medium">
+                  {product.inStock === true ? 'En stock' : 'Rupture de stock'}
                 </div>
               </div>
 
@@ -129,14 +132,14 @@ export default function CPAPMachinesPage() {
                 {/* Features List */}
                 <div className="mt-4">
                   <ul className="text-sm text-gray-600 space-y-1">
-                    {(Array.isArray(product.features) ? product.features : 
-                      typeof product.features === 'string' ? JSON.parse(product.features) : 
-                      []).slice(0, 3).map((feature: string, index: number) => (
-                      <li key={index} className="flex items-start">
-                        <span className="text-blue-500 mr-2">•</span>
-                        {feature}
-                      </li>
-                    ))}
+                    {(Array.isArray(product.features) ? product.features :
+                      typeof product.features === 'string' ? JSON.parse(product.features) :
+                        []).slice(0, 3).map((feature: string, index: number) => (
+                          <li key={index} className="flex items-start">
+                            <span className="text-blue-500 mr-2">•</span>
+                            {feature}
+                          </li>
+                        ))}
                   </ul>
                 </div>
 

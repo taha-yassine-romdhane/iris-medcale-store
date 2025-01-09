@@ -3,7 +3,7 @@
 import { useCart } from '@/hooks/useCart';
 import { useState } from 'react';
 import Image from 'next/image';
-import { ShoppingBag, Package, Truck, Phone, Plus, Minus } from 'lucide-react';
+import { ShoppingBag, Package, Truck, Phone, Plus, Minus, Trash2 } from 'lucide-react';
 import DevisModal from '@/components/modals/DevisModal';
 
 export default function CheckoutPage() {
@@ -115,12 +115,14 @@ export default function CheckoutPage() {
                             </button>
                           </div>
                         </div>
-                        <button
+                        
+                        
+                        
+                          <Trash2
                           onClick={() => removeFromCart(item.id)}
-                          className="text-sm text-red-500 hover:text-red-600"
-                        >
-                          Supprimer
-                        </button>
+                          className="h-5 w-5 text-gray-500 hover:text-red-500"
+                          />
+                        
                       </div>
                     </div>
                   </div>

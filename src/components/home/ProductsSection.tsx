@@ -14,6 +14,12 @@ interface CategoryProducts {
   lits: Product[];
 }
 
+const orderedProducts = {
+  cpap: ['YH-680', 'YH 450', 'YH 550', 'AirSense 10 Elite', 'Auto Prisma Smart'],
+  masks: ['YF-02', 'YN-03', 'YP-01', 'AirFit F20', 'AirFit F30'],
+  oxygen: ['8F-5', '8F-10', 'Spirit 6', 'Spirit 3'],
+};
+
 export default function ProductsSection() {
   const [products, setProducts] = useState<CategoryProducts>({
     cpap: [],
@@ -46,25 +52,31 @@ export default function ProductsSection() {
         }
 
         const categorizedProducts = {
-          cpap: data.products.filter((p: Product) => 
-            p.category?.toLowerCase() === 'cpap' || 
-            p.type?.toLowerCase()?.includes('cpap')
-          ).slice(0, 10),
+          cpap: orderedProducts.cpap
+            .map(name => data.products.find((p: Product) => 
+              p.name.toLowerCase().includes(name.toLowerCase()) &&
+              (p.category?.toLowerCase() === 'cpap' || p.type?.toLowerCase()?.includes('cpap'))
+            ))
+            .filter((p): p is Product => p !== undefined),
           
-          masks: data.products.filter((p: Product) => 
-            p.category?.toLowerCase() === 'masques' || 
-            p.type?.toLowerCase()?.includes('masque')
-          ).slice(0, 10),
+          masks: orderedProducts.masks
+            .map(name => data.products.find((p: Product) => 
+              p.name.toLowerCase().includes(name.toLowerCase()) &&
+              (p.category?.toLowerCase() === 'masques' || p.type?.toLowerCase()?.includes('masque'))
+            ))
+            .filter((p): p is Product => p !== undefined),
           
-          oxygen: data.products.filter((p: Product) => 
-            p.category?.toLowerCase() === 'oxygene' || 
-            p.type?.toLowerCase()?.includes('concentrateur')
-          ).slice(0, 10),
+          oxygen: orderedProducts.oxygen
+            .map(name => data.products.find((p: Product) => 
+              p.name.toLowerCase().includes(name.toLowerCase()) &&
+              (p.category?.toLowerCase() === 'oxygene' || p.type?.toLowerCase()?.includes('concentrateur'))
+            ))
+            .filter((p): p is Product => p !== undefined),
           
           lits: data.products.filter((p: Product) => 
             p.category?.toLowerCase() === 'lit' || 
             p.type?.toLowerCase()?.includes('médicalisé')
-          ).slice(0, 10)
+          ),
         };
 
         setProducts(categorizedProducts);
@@ -99,139 +111,108 @@ export default function ProductsSection() {
     const { addToCart } = useCart();
 
     return (
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold text-left p-6 text-blue-800 font-spartan">{title}</h2>      
-        <div className="relative overflow-hidden max-w-full">
-          {/* Scroll Buttons */}
-          <button
-            onClick={() => handleScroll('left', refKey)}
-            aria-label="Scroll Left"
-            className="absolute left-2 top-1/2 -translate-y-1/2 h-10 w-10 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg z-10 transition-all duration-200"
+      <div className="mb-12 px-6 last:mb-0">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold text-blue-900">{title}</h2>
+          <div className="flex gap-3">
+            <button
+              onClick={() => handleScroll('left', refKey)}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-50 border border-blue-200 shadow-sm hover:bg-blue-100 hover:border-blue-300 transition-all duration-200"
+              aria-label="Scroll Left"
+            >
+              <ChevronLeft className="w-5 h-5 text-blue-900" />
+            </button>
+            <button
+              onClick={() => handleScroll('right', refKey)}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-50 border border-blue-200 shadow-sm hover:bg-blue-100 hover:border-blue-300 transition-all duration-200"
+              aria-label="Scroll Right"
+            >
+              <ChevronRight className="w-5 h-5 text-blue-900" />
+            </button>
+          </div>
+        </div>
+        
+        <div className="relative">
+          <div className="absolute left-0 top-0 bottom-0 w-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 pointer-events-none" />
+          
+          <div 
+            ref={sliderRefs[refKey]}
+            className="flex gap-6 overflow-x-auto pb-6 pt-2 px-1 hide-scrollbar scroll-smooth"
           >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={() => handleScroll('right', refKey)}
-            aria-label="Scroll Right"
-            className="absolute right-2 top-1/2 -translate-y-1/2 h-10 w-10 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg z-10 transition-all duration-200"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-
-          {/* Products */}
-          <div ref={sliderRefs[refKey]} className="flex space-x-6 overflow-x-auto px-6 hide-scrollbar">
             {products.map((product) => (
-              <Link
-                href={`/product/${product.id}`}
+              <div
                 key={product.id}
-                className="flex-shrink-0 w-96 bg-white rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-200 overflow-hidden group"
+                className="flex-none w-72 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group"
               >
-                {/* Product Image */}
-                <div className="relative aspect-square h-80 bg-gray-50 rounded-t-lg overflow-hidden">
-                  {product.media?.length ? (
-                    <Image
-                      src={product.media[0].url}
-                      alt={product.media[0].alt || product.name}
-                      fill
-                      className="object-contain p-4 cursor-pointer transition-transform group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      priority
-                    />
-                  ) : (
-                    <div className="flex items-center justify-center h-full text-gray-400 text-sm">No image</div>
-                  )}
-                </div>
+                <Link href={`/products/${product.id}`} className="block">
+                  <div className="relative h-56">
+                    {product.media && product.media[0] && (
+                      <Image
+                        src={product.media[0].url}
+                        alt={product.name}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    )}
+                    <div className="absolute top-3 right-3">
+                      <span className={`px-3 py-1.5 rounded-full text-sm font-medium shadow-sm ${
+                        product.inStock 
+                          ? 'bg-green-100 text-green-800 border border-green-200'
+                          : 'bg-red-100 text-red-800 border border-red-200'
+                      }`}>
+                        {product.inStock ? 'En stock' : 'Rupture de stock'}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
 
-                {/* Product Details */}
-                <div className="p-6">
-                  <h3 className="font-semibold text-xl mb-3 text-blue-800 line-clamp-1 hover:text-blue-600 transition-colors duration-200">
-                    {product.name}
-                  </h3>
-                  <p className="text-blue-900 text-base mb-4 line-clamp-2">{product.description}</p>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      addToCart(product);
-                    }}
-                    className="w-full py-3 bg-blue-600 text-white text-base font-medium rounded-md shadow-sm hover:bg-blue-700 transition-all duration-200"
-                  >
-                    Ajouter au panier
-                  </button>
+                <div className="p-5">
+                  <Link href={`/products/${product.id}`} className="block group-hover:text-blue-700 transition-colors duration-200">
+                    <h3 className="font-semibold text-lg mb-2 text-blue-900">{product.name}</h3>
+                  </Link>
+                  <p className="text-sm text-blue-800/70 mb-4 line-clamp-2">
+                    {product.description}
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <Link
+                      href={`/product/${product.id}`}
+                      className="text-blue-700 hover:text-blue-800 font-medium text-sm transition-colors duration-200"
+                    >
+                      Voir détails
+                    </Link>
+                    <button
+                      onClick={() => addToCart(product)}
+                      className="px-4 py-2 bg-blue-900 text-white text-sm font-medium rounded-lg hover:bg-blue-800 transform hover:-translate-y-0.5 transition-all duration-200"
+                    >
+                      Ajouter
+                    </button>
+                  </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
-      </section>
+      </div>
     );
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="flex justify-center items-center min-h-[400px]">
-        <p className="text-red-500">Error: {error}</p>
-      </div>
-    );
-  }
-
   return (
-    <section className="py-8 px-6 font-spartan">
-      <div className="max-w-8xl mx-auto px-6">
-        <section className="py-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h3 className="text-2xl md:text-3xl font-bold text-blue-800 mb-4">
-              Découvrez nos produits
-            </h3>
-          </div>
-        </section>
-        <section>
-          <div className="space-y-7">
-            {/* CPAP Machines Section */}
-            {products.cpap.length > 0 && (
-              <ProductSlider
-                title="Machines CPAP"
-                products={products.cpap}
-                refKey="cpap"
-              />
-            )}
-
-            {/* Masks Section */}
-            {products.masks.length > 0 && (
-              <ProductSlider
-                title="Masques"
-                products={products.masks}
-                refKey="masks"
-              />
-            )}
-
-            {/* Oxygen Concentrators Section */}
-            {products.oxygen.length > 0 && (
-              <ProductSlider
-                title="Concentrateurs d'Oxygène"
-                products={products.oxygen}
-                refKey="oxygen"
-              />
-            )}
-
-            {/* Medical Beds Section */}
-            {products.lits.length > 0 && (
-              <ProductSlider
-                title="Lits Médicalisés"
-                products={products.lits}
-                refKey="lits"
-              />
-            )}
-          </div>
-        </section>
-      </div>
-    </section>
+    <div className="max-w-[1400px] mx-auto bg-white  rounded-2xl p-8 my-12">
+      {loading ? (
+        <div className="text-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto"></div>
+        </div>
+      ) : error ? (
+        <div className="text-center text-red-600 py-12">{error}</div>
+      ) : (
+        <>
+          <ProductSlider title="CPAP" products={products.cpap} refKey="cpap" />
+          <ProductSlider title="Masques" products={products.masks} refKey="masks" />
+          <ProductSlider title="Concentrateurs d'oxygène" products={products.oxygen} refKey="oxygen" />
+          <ProductSlider title="Lits Médicalisés" products={products.lits} refKey="lits" />
+        </>
+      )}
+    </div>
   );
 }

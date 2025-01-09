@@ -94,14 +94,6 @@ export default function ProductPage() {
             <li>
               <span className="text-gray-500">/</span>
             </li>
-            <li>
-              <Link href={`/categories/${product.category.toLowerCase()}`} className="text-gray-500 hover:text-gray-700">
-                {product.category}
-              </Link>
-            </li>
-            <li>
-              <span className="text-gray-500">/</span>
-            </li>
             <li className="text-gray-900 font-medium">{product.name}</li>
           </ol>
         </nav>
@@ -180,31 +172,79 @@ export default function ProductPage() {
           {/* Product Info */}
           <div className="flex flex-col min-h-[600px]">
             <h1 className="text-3xl font-bold text-gray-900 mb-4">{product.name}</h1>
-            <div className="flex items-center mb-4">
+            
+            {/* Product Meta Information */}
+            <div className="flex flex-wrap items-center gap-4 mb-6">
+              <div className="flex items-center">
+                <span className="text-gray-600 font-medium">Marque:</span>
+                <span className="ml-2 text-blue-900 font-bold">{product.brand}</span>
+              </div>
+              <div className="flex items-center">
+                <span className="text-gray-600 font-medium">Catégorie:</span>
+                <span className="ml-2 text-blue-900">{product.category}</span>
+              </div>
+              {product.subCategory && (
+                <div className="flex items-center">
+                  <span className="text-gray-600 font-medium">Sous-catégorie:</span>
+                  <span className="ml-2 text-blue-900">{product.subCategory}</span>
+                </div>
+              )}
+              <div className="flex items-center">
+                <span className="text-gray-600 font-medium">Type:</span>
+                <span className="ml-2 text-blue-900">{product.type}</span>
+              </div>
+            </div>
+
+            {/* Stock Status */}
+            <div className="mb-6">
+              <div className={`inline-flex items-center px-4 py-2 rounded-full ${
+                product.inStock 
+                  ? 'bg-green-100 text-green-800 border border-green-200'
+                  : 'bg-red-100 text-red-800 border border-red-200'
+              }`}>
+                <div className={`w-2 h-2 rounded-full mr-2 ${
+                  product.inStock ? 'bg-green-500' : 'bg-red-500'
+                }`}></div>
+                <span className="font-medium">
+                  {product.inStock ? 'En stock' : 'Rupture de stock'}
+                </span>
+              </div>
             </div>
            
-            <p className="text-gray-600 mb-6">{product.description}</p>
-
-            {/* Features */}
-            <div className="mb-8">
-              <h2 className="text-lg font-bold text-gray-900 mb-4">Caractéristiques</h2>
-              <ul className="space-y-2">
-                {features.map((feature: string, index: number) => (
-                  <li key={index} className="flex items-start">
-                    <span className="mr-2">•</span>
-                    <span className="text-gray-600">{feature}</span>
-                  </li>
-                ))}
-              </ul>
+            {/* Description */}
+            <div className="mb-6">
+              <h2 className="text-lg font-bold text-gray-900 mb-2">Description</h2>
+              <p className="text-gray-600">{product.description}</p>
             </div>
 
-            {/* Add to Cart Button - Moved to bottom */}
-            <div className="mt-auto">
-              <button 
-                onClick={() => product && addToCart(product)}
-                className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
+            {/* Features */}
+            {features.length > 0 && (
+              <div className="mb-8">
+                <h2 className="text-lg font-bold text-gray-900 mb-4">Caractéristiques</h2>
+                <ul className="space-y-3">
+                  {features.map((feature: string, index: number) => (
+                    <li key={index} className="flex items-start">
+                      <span className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-blue-500 mr-3"></span>
+                      <span className="text-gray-600">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+
+            {/* Add to Cart Section */}
+            <div className="mt-auto pt-6 border-t border-gray-200">
+              <button
+                onClick={() => addToCart(product)}
+                disabled={!product.inStock}
+                className={`w-full py-4 px-6 rounded-lg text-white font-bold text-lg transition-all ${
+                  product.inStock
+                    ? 'bg-blue-600 hover:bg-blue-700'
+                    : 'bg-gray-400 cursor-not-allowed'
+                }`}
               >
-                Ajouter au panier
+                {product.inStock ? 'Ajouter au panier' : 'Produit indisponible'}
               </button>
             </div>
           </div>
