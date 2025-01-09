@@ -127,24 +127,6 @@ model Contact {
   utilisateurId String
 }
 
-enum AppointmentStatus {
-  PENDING
-  CONFIRMED
-  CANCELLED
-}
-
-model Appointment {
-  id        String            @id @default(cuid())
-  createdAt DateTime          @default(now())
-  updatedAt DateTime          @updatedAt
-  dateRdv   DateTime
-  motif     String
-  nom       String
-  email     String
-  telephone String
-  status    AppointmentStatus @default(PENDING)
-}
-
 enum StatusRdv {
   EN_ATTENTE
   CONFIRME
