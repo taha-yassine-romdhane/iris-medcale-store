@@ -64,7 +64,7 @@ export default function BipapAccessoiresPage() {
               Accessoires BiPAP
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              Découvrez notre gamme complète d'accessoires pour appareils BiPAP.
+              Découvrez notre gamme complète d&lsquo;accessoires pour appareils BiPAP.
               Des solutions essentielles pour optimiser votre traitement.
             </p>
           </div>

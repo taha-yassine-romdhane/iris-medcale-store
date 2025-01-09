@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Product } from '@/types/product';
 
 interface ProductFiltersProps {
   onFilter: (filters: { category: string; type: string; brand: string }) => void;

@@ -57,9 +57,9 @@ export default function AspirateurConsommablesPage() {
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 pt-32">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Consommables d'Aspiration</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Consommables d&lsquo;Aspiration</h1>
           <p className="text-gray-600">
-            Découvrez notre gamme de consommables pour machines d'aspiration
+            Découvrez notre gamme de consommables pour machines d&lsquo;aspiration
           </p>
         </div>
 

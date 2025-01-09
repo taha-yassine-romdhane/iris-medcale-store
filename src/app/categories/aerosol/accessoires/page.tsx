@@ -64,7 +64,7 @@ export default function AerosolAccessoiresPage() {
               Accessoires pour Aérosol
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              Découvrez notre gamme complète d'accessoires pour l'aérosolthérapie.
+              Découvrez notre gamme complète d&lsquo;accessoires pour l&lsquo;aérosolthérapie.
               Des solutions adaptées pour optimiser vos traitements.
             </p>
           </div>

@@ -3,7 +3,6 @@ import {
   MapPin, 
   Mail, 
   Phone, 
-  Send, 
   Facebook, 
   Twitter, 
   Linkedin, 

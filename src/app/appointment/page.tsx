@@ -1,10 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Calendar, Clock, Send, CheckCircle } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from "@/components/ui/use-toast";
-import Image from 'next/image';
 
 export default function AppointmentSection() {
   const [formData, setFormData] = useState({
@@ -25,11 +24,7 @@ export default function AppointmentSection() {
     { id: 5, name: 'Vendredi' }
   ];
 
-  const timeSlots = Array.from({ length: 15 }, (_, i) => {
-    const hour = 9 + Math.floor(i / 2);
-    const minute = i % 2 === 0 ? '00' : '30';
-    return `${hour}:${minute}`;
-  });
+
 
   const handleDaySelect = (day: string) => {
     setSelectedDay(day);
@@ -63,7 +58,7 @@ export default function AppointmentSection() {
         return;
       }
 
-      const response = await fetch('/api/appointments', {
+      const response = await fetch('/api/appointment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

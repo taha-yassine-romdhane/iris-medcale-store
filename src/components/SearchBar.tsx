@@ -72,15 +72,6 @@ export default function SearchBar() {
     }
   };
 
-  // Function to format price
-  const formatPrice = (price?: number) => {
-    if (!price) return '';
-    return new Intl.NumberFormat('fr-FR', {
-      style: 'currency',
-      currency: 'EUR'
-    }).format(price);
-  };
-
   return (
     <div className="relative w-full max-w-2xl" ref={searchRef}>
       <form onSubmit={handleSearch} className="relative">
@@ -162,7 +153,7 @@ export default function SearchBar() {
           ) : (
             <div className="p-6 text-center">
               <Search className="h-8 w-8 text-gray-400 mx-auto mb-2" />
-              <p className="text-gray-500 text-lg">Aucun résultat trouvé pour "{searchQuery}"</p>
+              <p className="text-gray-500 text-lg">Aucun résultat trouvé pour &quot;{searchQuery}&quot;</p>
               <p className="text-sm text-gray-400 mt-1">Essayez avec des termes différents</p>
             </div>
           )}

@@ -165,7 +165,7 @@ export default function ProductPage() {
             </div>
 
             {/* Video Display */}
-            {product.media.filter(media => media.type === 'video').map((video, index) => (
+            {product.media.filter(media => media.type === 'video').map((video) => (
               <div key={video.id} className="w-full rounded-lg overflow-hidden bg-gray-100 shadow-lg mt-8">
                 <video
                   src={video.url}

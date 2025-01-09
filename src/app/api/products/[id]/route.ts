@@ -152,7 +152,7 @@ export async function PATCH(
         media: data.media
           ? {
               deleteMany: {}, // Delete all existing media
-              create: data.media.map((media: any, index: number) => ({
+              create: data.media.map((media: Media, index: number) => ({
                 url: media.url,
                 type: media.type,
                 alt: media.alt || `Media ${index + 1}`,

@@ -1,10 +1,6 @@
 import { prisma } from '../db';
 import { Prisma } from '@prisma/client';
 
-type SearchFilter = {
-  contains: string;
-  mode: 'insensitive';
-};
 
 const buildSearchFilter = (search: string): Prisma.ProductWhereInput => ({
   OR: [

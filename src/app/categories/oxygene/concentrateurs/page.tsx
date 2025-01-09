@@ -70,10 +70,10 @@ export default function OxygenConcentratorsPage() {
         <div className="relative max-w-screen-xl mx-auto px-6 sm:px-8 lg:px-12 py-20">
           <div className="text-center">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-300">
-              Concentrateurs d'Oxygène
+              Concentrateurs d&lsquo;Oxygène
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              Découvrez notre gamme de concentrateurs d'oxygène fixes et portables.
+              Découvrez notre gamme de concentrateurs d&lsquo;oxygène fixes et portables.
               Des solutions fiables et performantes pour votre oxygénothérapie à domicile.
             </p>
           </div>

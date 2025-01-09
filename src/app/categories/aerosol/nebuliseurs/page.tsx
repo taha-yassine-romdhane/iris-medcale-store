@@ -64,7 +64,7 @@ export default function AerosolNebuliseursPage() {
               Nébuliseurs
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              Découvrez notre gamme de nébuliseurs de haute qualité pour l'aérosolthérapie.
+              Découvrez notre gamme de nébuliseurs de haute qualité pour l&lsquo;aérosolthérapie.
               Des solutions efficaces pour vos traitements respiratoires.
             </p>
           </div>
