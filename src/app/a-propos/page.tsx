@@ -211,54 +211,7 @@ export default function AboutPage() {
                     className="object-contain"
                     priority
                   />
-                  {/* Interactive Markers */}
-                  <div className="absolute w-full h-full">
-                    {/* Tunis Marker */}
-                    <div className="absolute top-[17%] left-[53%] group">
-                      <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse">
-                        <div className="absolute -inset-2 bg-blue-500 rounded-full opacity-20"></div>
-                      </div>
-                      <span className="absolute left-6 top-0 bg-blue-600 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                        Grand Tunis
-                      </span>
-                    </div>
-                    {/* Cap Bon Marker */}
-                    <div className="absolute top-[14%] right-[37%] group">
-                      <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse">
-                        <div className="absolute -inset-2 bg-blue-500 rounded-full opacity-20"></div>
-                      </div>
-                      <span className="absolute right-6 top-0 bg-blue-600 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                        Cap Bon
-                      </span>
-                    </div>
-                    {/* Sousse Marker */}
-                    <div className="absolute top-[23%] right-[42%] group">
-                      <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse">
-                        <div className="absolute -inset-2 bg-blue-500 rounded-full opacity-20"></div>
-                      </div>
-                      <span className="absolute right-6 top-0 bg-blue-600 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                        Sousse
-                      </span>
-                    </div>
-                    {/* Monastir Marker */}
-                    <div className="absolute top-[28%] right-[40%] group">
-                      <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse">
-                        <div className="absolute -inset-2 bg-blue-500 rounded-full opacity-20"></div>
-                      </div>
-                      <span className="absolute right-6 top-0 bg-blue-600 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                        Monastir
-                      </span>
-                    </div>
-                    {/* Mahdia Marker */}
-                    <div className="absolute top-[32%] right-[40%] group">
-                      <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse">
-                        <div className="absolute -inset-2 bg-blue-500 rounded-full opacity-20"></div>
-                      </div>
-                      <span className="absolute right-6 top-0 bg-blue-600 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                        Mahdia
-                      </span>
-                    </div>
-                  </div>
+                 
                 </div>
               </div>
             </div>

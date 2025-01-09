@@ -145,7 +145,7 @@ export default function ProductsSection() {
                 key={product.id}
                 className="flex-none w-72 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group"
               >
-                <Link href={`/products/${product.id}`} className="block">
+                <Link href={`/product/${product.id}`} className="block">
                   <div className="relative h-56">
                     {product.media && product.media[0] && (
                       <Image
@@ -168,7 +168,7 @@ export default function ProductsSection() {
                 </Link>
 
                 <div className="p-5">
-                  <Link href={`/products/${product.id}`} className="block group-hover:text-blue-700 transition-colors duration-200">
+                  <Link href={`/product/${product.id}`} className="block group-hover:text-blue-700 transition-colors duration-200">
                     <h3 className="font-semibold text-lg mb-2 text-blue-900">{product.name}</h3>
                   </Link>
                   <p className="text-sm text-blue-800/70 mb-4 line-clamp-2">

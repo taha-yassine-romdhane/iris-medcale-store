@@ -6,19 +6,23 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const heroProducts = [
   {
     id: 1,
-    image: "/hero section/Untitled Project.png", // Fixed image path
+    image: "/hero section/Untitled Project.png",
+    position: "center", // Custom position for each image
   },
   {
     id: 2,
-    image: "/hero section/Untitled Project 2.png", // Fixed image path
+    image: "/hero section/test.png",
+    position: "top", // Custom position for each image
   },
   {
     id: 3,
-    image: "/hero section/Untitled Project 3.png", // Fixed image path
+    image: "/hero section/Untitled Project 3.png",
+    position: "bottom", // Custom position for each image
   },
   {
     id: 4,
-    image: "/hero section/Untitled Project 4.png", // Fixed image path
+    image: "/hero section/Untitled Project 4.png",
+    position: "left", // Custom position for each image
   },
 ];
 
@@ -52,7 +56,7 @@ export default function HeroSection() {
   };
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 5000);
+    const timer = setInterval(nextSlide, 7000);
     return () => clearInterval(timer);
   }, [nextSlide]);
 
@@ -73,6 +77,7 @@ export default function HeroSection() {
               alt="Hero Image"
               fill
               className="object-cover w-full h-full"
+              style={{ objectPosition: product.position }} // Adjust image position
               priority={index === 0}
               sizes="100vw"
             />

@@ -109,14 +109,12 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
-        {/* Add the NextSSRPlugin for UploadThing */}
         <NextSSRPlugin
           routerConfig={extractRouterConfig(ourFileRouter)}
         />
-
-        <CartProvider>
+       <CartProvider>
           <div className="min-h-screen flex flex-col">
             <Navbar />
             <main className="flex-grow">
