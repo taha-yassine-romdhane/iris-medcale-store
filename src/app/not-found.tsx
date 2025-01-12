@@ -1,10 +1,9 @@
 'use client';
 
-import { Suspense } from 'react';
 import Link from 'next/link';
 import { Home } from 'lucide-react';
 
-function NotFoundContent() {
+export default function NotFound() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 text-center">
@@ -28,13 +27,5 @@ function NotFoundContent() {
         </div>
       </div>
     </div>
-  );
-}
-
-export default function NotFound() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <NotFoundContent />
-    </Suspense>
   );
 }
