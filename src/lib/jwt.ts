@@ -57,11 +57,13 @@ export function verifyToken(token: string): TokenPayload {
       throw new Error('Invalid token structure');
     }
 
-    // Type guard function
-    function isTokenPayload(obj: any): obj is TokenPayload {
+    function isTokenPayload(obj: unknown): obj is TokenPayload {
       return (
-        obj &&
         typeof obj === 'object' &&
+        obj !== null &&
+        'id' in obj &&
+        'email' in obj &&
+        'role' in obj &&
         typeof obj.id === 'string' &&
         typeof obj.email === 'string' &&
         typeof obj.role === 'string'

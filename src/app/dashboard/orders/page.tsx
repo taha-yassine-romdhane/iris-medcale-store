@@ -4,18 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { StatusCommande } from '@prisma/client';
 import Image from 'next/image';
 import { Trash2 } from 'lucide-react';
-
-interface Product {
-  id: string;
-  name: string;
-  brand: string;
-  type: string;
-  description: string;
-  features: any;
-  category: string;
-  subCategory?: string;
-  media: { url: string; type: string; }[];
-}
+import { Product } from '@/types/product';
 
 interface OrderItem {
   quantity: number;

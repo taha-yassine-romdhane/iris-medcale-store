@@ -38,7 +38,7 @@ export default function CategoryNavbar() {
           throw new Error('Failed to fetch category types');
         }
         const data = await response.json();
-        const processedData = data.map((cat: any) => ({
+        const processedData = data.map((cat: { category: string; types: string[]; subcategories: string[] }) => ({
           category: cat.category || '',
           types: Array.isArray(cat.types) ? cat.types : [],
           subcategories: Array.isArray(cat.subcategories) ? cat.subcategories : []
@@ -57,17 +57,17 @@ export default function CategoryNavbar() {
 
   const handleCategoryClick = (category: string) => {
     if (pathname !== '/products') return; // Only update filters on products page
-    updateFilters({ category, type: null, subcategory: null });
+    updateFilters({ category, type: null, subCategory: null });
   };
 
   const handleTypeClick = (category: string, type: string) => {
     if (pathname !== '/products') return;
-    updateFilters({ category, type, subcategory: null });
+    updateFilters({ category, type, subCategory: null });
   };
 
-  const handleSubcategoryClick = (category: string, subcategory: string) => {
+  const handleSubcategoryClick = (category: string, subCategory: string) => {
     if (pathname !== '/products') return;
-    updateFilters({ category, type: null, subcategory });
+    updateFilters({ category, type: null, subCategory });
   };
 
   return (
