@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { verifyToken } from '@/lib/jwt';
 
-
-
 export async function DELETE(req: NextRequest): Promise<NextResponse> {
   try {
     const token = req.cookies.get('token')?.value;
