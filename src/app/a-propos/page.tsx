@@ -73,10 +73,11 @@ export default function AboutPage() {
             </div>
             <div className="relative h-[400px] rounded-lg overflow-hidden shadow-lg">
               <Image
-                src="https://images.unsplash.com/photo-1631815587646-b85a1bb027e1?q=80&w=800"
+                src="/Respiratoire-2-1024x811.jpg" 
                 alt="Medical Equipment"
                 fill
                 className="object-cover"
+                priority 
               />
             </div>
           </div>
@@ -109,16 +110,16 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-         {/* CNAM Collaboration Section */}
-         <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+      {/* CNAM Collaboration Section */}
+      <section className="py-16 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h2 className="text-3xl font-bold text-gray-900">
-                Collaboration avec la CNAM
+                Convention avec CNAM
               </h2>
               <p className="text-lg text-gray-700">
-                En tant que partenaire agréé de la Caisse Nationale d&apos;Assurance Maladie (CNAM), 
+                En tant que partenaire agréé de la Caisse Nationale d&apos;Assurance Maladie (CNAM),
                 nous facilitons l&apos;accès aux équipements médicaux essentiels pour nos patients.
               </p>
               <div className="space-y-4">
@@ -211,7 +212,7 @@ export default function AboutPage() {
                     className="object-contain"
                     priority
                   />
-                 
+
                 </div>
               </div>
             </div>

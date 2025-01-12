@@ -15,7 +15,7 @@ interface CategoryProducts {
 }
 
 const orderedProducts = {
-  cpap: ['YH-680', 'YH 450', 'YH 550', 'AirSense 10 Elite', 'Auto Prisma Smart'],
+  cpap: ['YH-680', 'YH 450', 'YH-550', 'AirSense 10 Elite', 'Auto Prisma Smart'],
   masks: ['YF-02', 'YN-03', 'YP-01', 'AirFit F20', 'AirFit F30'],
   oxygen: ['8F-5', '8F-10', 'Spirit 6', 'Spirit 3'],
 };
@@ -69,7 +69,7 @@ export default function ProductsSection() {
           oxygen: orderedProducts.oxygen
             .map(name => data.products.find((p: Product) => 
               p.name.toLowerCase().includes(name.toLowerCase()) &&
-              (p.category?.toLowerCase() === 'oxygene' || p.type?.toLowerCase()?.includes('concentrateur'))
+              (p.category?.toLowerCase() === 'concentrateur' || p.type?.toLowerCase()?.includes('concentrateur'))
             ))
             .filter((p): p is Product => p !== undefined),
           
@@ -143,7 +143,7 @@ export default function ProductsSection() {
             {products.map((product) => (
               <div
                 key={product.id}
-                className="flex-none w-72 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group"
+                className="flex-none w-56 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group"
               >
                 <Link href={`/product/${product.id}`} className="block">
                   <div className="relative h-56">

@@ -99,7 +99,6 @@ model Commande {
   dateCreation  DateTime       @default(now())
   dateMiseAJour DateTime       @updatedAt
   status        StatusCommande @default(EN_ATTENTE)
-  total         Decimal        @db.Decimal(10, 2)
   utilisateur   Utilisateur    @relation(fields: [utilisateurId], references: [id])
   utilisateurId String
   items         CommandeItem[]

@@ -35,8 +35,8 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 pt-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 ">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
         {/* Title Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Demande de Devis</h1>
@@ -134,7 +134,7 @@ export default function CheckoutPage() {
           {/* Summary Card */}
           <div className="mt-16 lg:mt-0 lg:col-span-5">
             <div className="bg-white rounded-lg shadow-sm p-6 sticky top-32">
-              <h2 className="text-xl font-bold text-gray-900 mb-6">Demander un Devis</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-6">Demander un Devis</h2> 
               <div className="space-y-4 mb-6">
                 <p className="text-gray-600">
                   En cliquant sur le bouton ci-dessous, vous recevrez :

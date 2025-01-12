@@ -1,9 +1,20 @@
 'use client';
 
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const contactInfo = [
   {
@@ -35,31 +46,21 @@ const contactInfo = [
 export default function ContactPage() {
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showLoginDialog, setShowLoginDialog] = useState(false);
   const { user } = useAuth();
   const { toast } = useToast();
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
     if (!user) {
-      toast({
-        title: "Erreur",
-        description: "Vous devez être connecté pour envoyer un message",
-        variant: "destructive",
-      });
+      setShowLoginDialog(true);
       return;
     }
 
     setIsSubmitting(true);
     try {
-      if (!user.id) {
-        toast({
-          title: "Erreur",
-          description: "Informations utilisateur incomplètes",
-          variant: "destructive",
-        });
-        return;
-      }
-
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -101,98 +102,94 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="pt-16 min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Contactez-nous
-          </h1>
-          <p className="text-xl text-white/90 max-w-2xl">
-            Notre équipe est là pour répondre à toutes vos questions et vous accompagner dans vos besoins en matière de santé respiratoire.
-          </p>
-        </div>
-      </section>
-
-      {/* Contact Info & Form Section */}
-      <section className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">
-              Informations de Contact
-            </h2>
-            <div className="flex flex-wrap gap-6">
-              {contactInfo.map((info, index) => (
+    <>
+      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-32">
+        <div className="max-w-7xl mx-auto px-4 space-y-16">
+          {/* Contact Info Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {contactInfo.map((info, index) => {
+              const Icon = info.icon;
+              return (
                 <div
                   key={index}
-                  className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow flex-1 min-w-[500px] max-w-[300px]"
+                  className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
                 >
-                  <div className="flex items-start space-x-6">
-                    <div className="bg-blue-100 p-4 rounded-full">
-                      <info.icon className="h-8 w-8 text-blue-600" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-gray-900 text-lg">{info.title}</h3>
-                      <p className="text-blue-600 mt-2 break-all">{info.content}</p>
-                      <p className="text-sm text-gray-500 mt-2">{info.detail}</p>
-                    </div>
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-blue-600" />
                   </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{info.title}</h3>
+                  <p className="text-blue-600 font-medium mb-1">{info.content}</p>
+                  <p className="text-gray-500 text-sm">{info.detail}</p>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Envoyez-nous un message
-            </h2>
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-xl p-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">Envoyez-nous un message</h2>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {user && (
+                  <div className="bg-gray-50 p-4 rounded-lg mb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Vos informations</h3>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-sm text-gray-600">Nom</p>
+                        <p className="font-medium text-gray-900">{user.nom}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-600">Email</p>
+                        <p className="font-medium text-gray-900">{user.email}</p>
+                      </div>
+                      {user.telephone && (
+                        <div>
+                          <p className="text-sm text-gray-600">Téléphone</p>
+                          <p className="font-medium text-gray-900">{user.telephone}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
 
-            {user && (
-              <div className="mb-6 space-y-4">
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <p className="text-sm text-gray-600">Vous envoyez ce message en tant que:</p>
-                  <p className="font-medium text-gray-900">{user.nom}</p>
-                  <p className="text-gray-600">{user.email}</p>
-                  {user.telephone && <p className="text-gray-600">{user.telephone}</p>}
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Votre message
+                  </label>
+                  <Textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="Comment pouvons-nous vous aider ?"
+                    className="h-32"
+                    required
+                  />
                 </div>
-              </div>
-            )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  required
-                  placeholder="Écrivez votre message ici..."
-                />
-              </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'}
-              </button>
-            </form>
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={isSubmitting || !message.trim()}
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center gap-2">
+                      <Clock className="animate-spin" size={20} />
+                      En cours...
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-2">
+                      <Send size={20} />
+                      Envoyer le message
+                    </span>
+                  )}
+                </Button>
+              </form>
+            </div>
           </div>
-        </div>
-      </section>
 
-      {/* Map Section */}
-      <section className="bg-gray-100 py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="bg-white p-4 rounded-lg shadow-md">
-            <div className="w-full h-[600px] overflow-hidden rounded-lg">
+          {/* Map Section */}
+          <div className="w-full bg-white rounded-2xl shadow-xl p-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8">Notre emplacement</h2>
+            <div className="w-full h-[500px] rounded-xl overflow-hidden">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d240.10481402433365!2d10.573908195586109!3d35.73488462620345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fdf5d82cc1ff89%3A0x327231a45eeeab57!2s%C3%94%20Medical%20Store!5e1!3m2!1sfr!2stn!4v1734970851542!5m2!1sfr!2stn"
                 width="100%"
@@ -201,11 +198,44 @@ export default function ContactPage() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
+                className="rounded-xl"
               ></iframe>
             </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+
+      {/* Login Dialog */}
+      <Dialog open={showLoginDialog} onOpenChange={setShowLoginDialog}>
+        <DialogContent className="bg-white border border-blue-100 rounded-lg shadow-lg">
+          <DialogHeader className="space-y-4">
+            <DialogTitle className="text-blue-900 text-xl font-bold">
+              Connexion requise
+            </DialogTitle>
+            <DialogDescription className="text-blue-800">
+              Vous devez être connecté pour envoyer un message. Voulez-vous vous connecter maintenant ?
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="flex justify-end space-x-2">
+            <Button
+              variant="outline"
+              onClick={() => setShowLoginDialog(false)}
+              className="text-blue-900 border-blue-200 hover:bg-blue-50 hover:border-blue-300"
+            >
+              Annuler
+            </Button>
+            <Button
+              onClick={() => {
+                setShowLoginDialog(false);
+                router.push('/login');
+              }}
+              className="bg-blue-900 text-white hover:bg-blue-800"
+            >
+              Se connecter
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }

@@ -22,23 +22,7 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
 
   const handleConfirmDevis = async () => {
     try {
-      // Get token from localStorage
-      const token = localStorage.getItem('token');
-      if (!token) {
-        toast.error('Veuillez vous connecter pour créer un devis');
-        router.push('/login');
-        return;
-      }
-
-      // Debug logs
-      console.log('Token from localStorage:', token);
-      try {
-        const tokenPayload = JSON.parse(atob(token.split('.')[1]));
-        console.log('Token payload:', tokenPayload);
-      } catch (e) {
-        console.error('Error decoding token:', e);
-      }
-
+      // No need to check for token since it's in httpOnly cookie
       setIsSubmitting(true);
       
       // Format items for the API
@@ -47,19 +31,38 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
         quantity: item.quantity
       }));
 
+      console.log('Sending request with items:', formattedItems);
+
       const response = await fetch('/api/devis', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ items: formattedItems }),
+        // Include credentials to send cookies
+        credentials: 'include'
       });
 
-      const responseData = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(responseData.error || 'Failed to create devis');
+      console.log('Response status:', response.status);
+
+      let responseData;
+      try {
+        const textData = await response.text(); // Get response as text first
+        console.log('Raw response:', textData);
+        
+        if (!textData) {
+          throw new Error('Empty response received');
+        }
+        
+        responseData = JSON.parse(textData); // Then parse it as JSON
+        console.log('Parsed response data:', responseData);
+      } catch (parseError) {
+        console.error('Error parsing response:', parseError);
+        throw new Error('Failed to parse server response');
+      }
+
+      if (!response.ok || !responseData.success) {
+        throw new Error(responseData?.error || 'Failed to create devis');
       }
 
       setIsConfirmed(true);

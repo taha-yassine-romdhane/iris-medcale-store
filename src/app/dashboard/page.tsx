@@ -6,12 +6,13 @@ import {
   Users,
   Settings,
   MessageSquare,
-  Calendar
+  Calendar,
+  ShoppingBag
 } from 'lucide-react';
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8 bg-gray-50">
+    <div className="min-h-screen flex flex-col items-center justify-center p-8 bg-gray-50 pt-32">
       <h1 className="text-3xl font-bold text-gray-900 mb-6">Tableau de bord</h1>
       <p className="text-gray-600 mb-12">Sélectionnez une option ci-dessous pour continuer.</p>
       
@@ -38,6 +39,19 @@ export default function DashboardPage() {
             <div>
               <h2 className="text-lg font-semibold text-gray-800">Gérer les Utilisateurs</h2>
               <p className="text-gray-500">Accédez à la gestion des utilisateurs.</p>
+            </div>
+          </div>
+        </Link>
+
+        {/* Card for Orders */}
+        <Link href="/dashboard/orders" className="flex items-center justify-between p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition">
+          <div className="flex items-center space-x-4">
+            <div className="p-3 rounded-full bg-green-100">
+              <ShoppingBag className="h-8 w-8 text-green-600" />
+            </div>
+            <div>
+              <h2 className="text-lg font-semibold text-gray-800">Gestion des Commandes</h2>
+              <p className="text-gray-500">Gérer les commandes des clients</p>
             </div>
           </div>
         </Link>

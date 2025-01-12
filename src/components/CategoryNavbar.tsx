@@ -1,162 +1,209 @@
 'use client';
 
 import Link from 'next/link';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Menu, Home, Heart } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuPortal,
+  DropdownMenuSubContent,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { useState, useRef } from 'react';
+import { Button } from "@/components/ui/button";
+import { useEffect, useState } from 'react';
+import { useFilters } from '@/contexts/FilterContext';
+import { usePathname } from 'next/navigation';
 
-const categories = [
-  {
-    name: 'CPAP/PPC',
-    displayName: 'CPAP/PPC',
-    items: [
-      { name: 'Machines CPAP', href: '/categories/cpap/machines' },
-      { name: 'Accessoires CPAP', href: '/categories/cpap/accessoires' },
-      { name: 'Pièces de rechange', href: '/categories/cpap/pieces' },
-    ]
-  },
-  {
-    name: 'MASQUE',
-    displayName: 'Masques',
-    items: [
-      { name: 'Masques nasaux', href: '/categories/masques/nasal' },
-      { name: 'Masques faciaux', href: '/categories/masques/facial' },
-      { name: 'Masques narinaires', href: '/categories/masques/narinaire' },
-      { name: 'Masques sans fuite', href: '/categories/masques/sans-fuite' },
-    ]
-  },
-  {
-    name: 'OXYGENE',
-    displayName: 'Oxygène',
-    items: [
-      { name: 'Concentrateurs', href: '/categories/oxygene/concentrateurs' },
-      { name: 'Accessoires', href: '/categories/oxygene/accessoires' },
-    ]
-  },
-  {
-    name: 'BIPAP/VNI',
-    displayName: 'BiPAP/VNI',
-    items: [
-      { name: 'Machines BiPAP', href: '/categories/bipap/machines' },
-      { name: 'Accessoires BiPAP', href: '/categories/bipap/accessoires' },
-    ]
-  },
-  {
-    name: 'AEROSOLE-THERAPIE',
-    displayName: 'Aérosol-thérapie',
-    items: [
-      { name: 'Nébuliseurs', href: '/categories/aerosol/nebuliseurs' },
-      { name: 'Accessoires', href: '/categories/aerosol/accessoires' },
-    ]
-  },
-  {
-    name: 'ASPIRATEUR-THERAPIE',
-    displayName: 'Aspirateur-thérapie',
-    items: [
-      { name: 'Aspirateurs', href: '/categories/aspirateur/machines' },
-      { name: 'Consommables', href: '/categories/aspirateur/consommables' },
-    ]
-  },
-  {
-    name: 'LIT',
-    displayName: 'Lits',
-    items: [
-      { name: 'Lits médicalisés', href: '/categories/lit/medicalise' },
-      { name: 'Accessoires de lit', href: '/categories/lit/accessoires' },
-    ]
-  },
-];
+interface CategoryType {
+  category: string;
+  types: string[];
+  subcategories: string[];
+}
 
 export default function CategoryNavbar() {
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [categoryTypes, setCategoryTypes] = useState<CategoryType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { updateFilters } = useFilters();
+  const pathname = usePathname();
 
-  // Handle dropdown open
-  const handleDropdownOpen = (categoryName: string) => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current); // Clear any pending close timeout
-    }
-    setOpenDropdown(categoryName); // Open the dropdown immediately
+  useEffect(() => {
+    const fetchCategoryTypes = async () => {
+      try {
+        const response = await fetch('/api/category-types');
+        if (!response.ok) {
+          throw new Error('Failed to fetch category types');
+        }
+        const data = await response.json();
+        const processedData = data.map((cat: any) => ({
+          category: cat.category || '',
+          types: Array.isArray(cat.types) ? cat.types : [],
+          subcategories: Array.isArray(cat.subcategories) ? cat.subcategories : []
+        }));
+        setCategoryTypes(processedData);
+      } catch (error) {
+        console.error('Error fetching category types:', error);
+        setCategoryTypes([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCategoryTypes();
+  }, []);
+
+  const handleCategoryClick = (category: string) => {
+    if (pathname !== '/products') return; // Only update filters on products page
+    updateFilters({ category, type: null, subcategory: null });
   };
 
-  // Handle dropdown close with delay
-  const handleDropdownClose = () => {
-    timeoutRef.current = setTimeout(() => {
-      setOpenDropdown(null); // Close the dropdown after a delay
-    }, 150); // 150ms delay for smoother transitions
+  const handleTypeClick = (category: string, type: string) => {
+    if (pathname !== '/products') return;
+    updateFilters({ category, type, subcategory: null });
   };
 
-
+  const handleSubcategoryClick = (category: string, subcategory: string) => {
+    if (pathname !== '/products') return;
+    updateFilters({ category, type: null, subcategory });
+  };
 
   return (
-    <nav className="fixed top-16 left-0 right-0 bg-white z-40 border-t-2 font-spartan shadow-sm">
+    <nav className="fixed top-16 left-0 right-0 bg-white z-40 border-t border-blue-100 font-spartan shadow-md">
       <div className="flex justify-start max-w-8xl mx-auto">
-        <div className="flex items-center h-12 ml-[20%]">
+        <div className="flex items-center h-14 space-x-8 ml-[22%]">
           {/* Home Link */}
           <Link
             href="/"
-            className="px-6 py-4 h-full flex font-bold rounded-xl items-center text-blue-900 hover:text-blue-600 transition-colors border-r border-gray-200 text-lg"
-            aria-label="Accueil"
+            className=" flex items-center text-blue-900 hover:text-blue-600 transition-colors px-3 py-2 font-bold"
           >
+            <Home className="h-5 w-5 mr-2" />
             Accueil
           </Link>
+          {/* Sleep Apnea Link */}
           <Link
             href="/apnee-du-sommeil"
-            className="px-4 py-4 h-full font-bold flex rounded-xl items-center text-blue-900 hover:text-blue-600 transition-colors border-r border-gray-200 text-lg whitespace-nowrap"
-            aria-label="Apnée du sommeil"
+            className=" flex items-center text-blue-900 hover:text-blue-600 transition-colors px-3 py-2 font-bold"
           >
-            Apnée du sommeil
+            <Heart className="h-5 w-5 mr-2" />
+            Apnée de sommeil
           </Link>
-
-          {/* Categories */}
-          <div className="flex overflow-x-auto hide-scrollbar">
-            {categories.map((category) => (
-              <DropdownMenu
-                key={category.name}
-                open={openDropdown === category.name}
-                onOpenChange={(open) => {
-                  if (!open) {
-                    handleDropdownClose(); // Close the dropdown if not open
-                  }
-                }}
+          {/* Categories Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                className="flex items-center space-x-2 text-blue-900 hover:text-blue-600 hover:bg-blue-50 transition-colors font-semibold"
               >
-                <DropdownMenuTrigger
-                  className="h-12 px-5 flex items-center space-x-2 text-xxl rounded-xl font-bold text-blue-900 hover:text-blue-600 hover:bg-gray-50 transition-all border-r border-blue-200 focus:outline-none group"
-                  onMouseEnter={() => handleDropdownOpen(category.name)} // Open on hover
-                  onMouseLeave={handleDropdownClose} // Close on mouse leave
-                  aria-label={category.displayName}
-                >
-                  <span className="whitespace-nowrap space-x-4 text-lg">
-                    {category.displayName}
-                  </span>
-                  <ChevronDown className="h-4 w-4 text-red-700 transition-transform duration-200 group-hover:rotate-180" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  align="start"
-                  className="w-64"
-                  onMouseEnter={() => handleDropdownOpen(category.name)} // Keep open when hovering over content
-                  onMouseLeave={handleDropdownClose} // Close when leaving content
-                >
-                  {category.items.map((item) => (
-                    <DropdownMenuItem key={item.name} asChild>
-                      <Link
-                        href={item.href}
-                        className="h-12 px-5 flex items-center font-semibold space-x-4 text-blue-900 hover:text-blue-600 transition-all text-xl focus:outline-none group"
-                        aria-label={item.name}
+                <Menu className="h-5 w-5" />
+                <span className="font-bold" >Catégories</span>
+                <ChevronDown className="h-4 w-4 text-red-600" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              className="w-72 bg-white rounded-lg shadow-lg border border-blue-100"
+              align="start"
+            >
+              {isLoading ? (
+                <DropdownMenuItem disabled>
+                  <span className="text-gray-500">Chargement...</span>
+                </DropdownMenuItem>
+              ) : categoryTypes.length === 0 ? (
+                <DropdownMenuItem disabled>
+                  <span className="text-gray-500">Aucune catégorie trouvée</span>
+                </DropdownMenuItem>
+              ) : (
+                categoryTypes.map((cat) => (
+                  <DropdownMenuSub key={cat.category}>
+                    <DropdownMenuSubTrigger className="flex items-center justify-between py-3 px-4 hover:bg-blue-50 focus:bg-blue-50">
+                      <span className="font-semibold text-blue-900">{cat.category}</span>
+
+                    </DropdownMenuSubTrigger>
+                    <DropdownMenuPortal>
+                      <DropdownMenuSubContent
+                        className="min-w-[200px] bg-white rounded-lg shadow-lg border border-blue-100"
                       >
-                        {item.name}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ))}
-          </div>
+                        {pathname === '/products' ? (
+                          <DropdownMenuItem
+                            className="py-2 px-4 hover:bg-blue-50 text-blue-900 font-medium"
+                            onClick={() => handleCategoryClick(cat.category)}
+                          >
+                            Tous les produits
+                          </DropdownMenuItem>
+                        ) : (
+                          <Link href={`/products?category=${encodeURIComponent(cat.category)}`}>
+                            <DropdownMenuItem className="py-2 px-4 hover:bg-blue-50 text-blue-900 font-medium">
+                              Tous les produits
+                            </DropdownMenuItem>
+                          </Link>
+                        )}
+
+                        {cat.types && cat.types.length > 0 && (
+                          <>
+                            <DropdownMenuSeparator className="bg-blue-100" />
+                            <div className="py-1 px-4">
+                              <span className="text-xs font-semibold text-blue-600 uppercase">Types</span>
+                            </div>
+                            {cat.types.map((type) => (
+                              pathname === '/products' ? (
+                                <DropdownMenuItem
+                                  key={type}
+                                  className="py-2 px-4 hover:bg-blue-50 text-gray-700"
+                                  onClick={() => handleTypeClick(cat.category, type)}
+                                >
+                                  {type}
+                                </DropdownMenuItem>
+                              ) : (
+                                <Link
+                                  key={type}
+                                  href={`/products?category=${encodeURIComponent(cat.category)}&type=${encodeURIComponent(type)}`}
+                                >
+                                  <DropdownMenuItem className="py-2 px-4 hover:bg-blue-50 text-gray-700">
+                                    {type}
+                                  </DropdownMenuItem>
+                                </Link>
+                              )
+                            ))}
+                          </>
+                        )}
+
+                        {cat.subcategories && cat.subcategories.length > 0 && (
+                          <>
+                            <DropdownMenuSeparator className="bg-blue-100" />
+                            <div className="py-1 px-4">
+                              <span className="text-xs font-semibold text-red-600 uppercase">Other Types</span>
+                            </div>
+                            {cat.subcategories.map((subcat) => (
+                              pathname === '/products' ? (
+                                <DropdownMenuItem
+                                  key={subcat}
+                                  className="py-2 px-4 hover:bg-blue-50 text-gray-700"
+                                  onClick={() => handleSubcategoryClick(cat.category, subcat)}
+                                >
+                                  {subcat}
+                                </DropdownMenuItem>
+                              ) : (
+                                <Link
+                                  key={subcat}
+                                  href={`/products?category=${encodeURIComponent(cat.category)}&subcategory=${encodeURIComponent(subcat)}`}
+                                >
+                                  <DropdownMenuItem className="py-2 px-4 hover:bg-blue-50 text-gray-700">
+                                    {subcat}
+                                  </DropdownMenuItem>
+                                </Link>
+                              )
+                            ))}
+                          </>
+                        )}
+                      </DropdownMenuSubContent>
+                    </DropdownMenuPortal>
+                  </DropdownMenuSub>
+                ))
+              )}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </nav>

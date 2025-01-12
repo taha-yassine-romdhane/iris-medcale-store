@@ -10,22 +10,31 @@ import Image from 'next/image';
 import SearchBar from "./SearchBar";
 import CartDropdown from './cart/CartDropdown'; // Import the CartDropdown component
 import { useAuth } from "@/hooks/useAuth";
+import { usePathname, useRouter } from 'next/navigation';
 
 const languages = [
   { code: 'fr', name: 'Français', flag: Flags.fr },
+  { code: 'en', name: 'English', flag: Flags.en },
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState('fr');
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false); // State for cart dropdown
   const { user, logout } = useAuth();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleLogout = () => {
     logout();
     setIsUserMenuOpen(false);
+  };
+
+  const handleLanguageChange = (langCode: string) => {
+    const newPath = pathname.replace(`/${'fr'}`, `/${langCode}`);
+    router.push(newPath);
+    setIsLangMenuOpen(false);
   };
 
   // User menu items based on role
@@ -169,34 +178,28 @@ const Navbar = () => {
                 </Link>
               )}
 
-              {/* Language Picker */}
+              {/* Language Selector */}
               <div className="relative">
                 <button
                   onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                  className="flex items-center space-x-2 text-blue-900 hover:text-blue-600 px-3 py-2 rounded-md hover:bg-gray-50"
+                  className="flex items-center space-x-2 px-3 py-2 text-gray-700 hover:text-blue-600"
                 >
-                  <span className="flex items-center gap-2">
-                    {languages.find(lang => lang.code === currentLang)?.flag}
-                    <span className="font-bold text-sm hidden lg:inline-block">
-                      {languages.find(lang => lang.code === currentLang)?.name}
-                    </span>
-                  </span>
+                  <span>{languages.find(lang => lang.code === 'fr')?.flag}</span>
                 </button>
                 {isLangMenuOpen && (
-                  <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl z-20 border border-gray-100">
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => {
-                          setCurrentLang(lang.code);
-                          setIsLangMenuOpen(false);
-                        }}
-                        className="flex items-center space-x-3 w-full px-4 py-2 font-bold text-sm text-blue-900 hover:bg-blue-50 hover:text-blue-600"
-                      >
-                        {lang.flag}
-                        <span>{lang.name}</span>
-                      </button>
-                    ))}
+                  <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                    <div className="py-1">
+                      {languages.map((lang) => (
+                        <button
+                          key={lang.code}
+                          onClick={() => handleLanguageChange(lang.code)}
+                          className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        >
+                          <span>{lang.flag}</span>
+                          <span>{lang.name}</span>
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>

@@ -15,17 +15,21 @@ const buildSearchFilter = (search: string): Prisma.ProductWhereInput => ({
 export async function getAllProducts(
   category?: string,
   type?: string,
+  subcategory?: string,
   brand?: string,
   offset: number = 0,
-  limit: number = 5,
+  limit: number = 12,
   search?: string
 ) {
   // Build where clause
   const where: Prisma.ProductWhereInput = {
-    ...(category ? { category } : {}),
-    ...(type ? { type } : {}),
-    ...(brand ? { brand } : {}),
-    ...(search ? buildSearchFilter(search) : {})
+    AND: [
+      ...(category ? [{ category }] : []),
+      ...(type ? [{ type }] : []),
+      ...(subcategory ? [{ subCategory: subcategory }] : []),
+      ...(brand ? [{ brand }] : []),
+      ...(search ? [buildSearchFilter(search)] : [])
+    ]
   };
 
   // Get products with pagination

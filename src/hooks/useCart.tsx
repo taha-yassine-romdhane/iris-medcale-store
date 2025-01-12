@@ -57,45 +57,36 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const addToCart = (product: Product) => {
-    if (!product || !product.id) {
-      console.error('Invalid product:', product);
-      return;
-    }
-  
-    setCart((prevCart) => {
-      if (!prevCart || !Array.isArray(prevCart.items)) {
-        prevCart = defaultCart;
-      }
-  
-      const existingItem = prevCart.items.find((item) => item.id === product.id);
+    setCart((currentCart) => {
+      const existingItem = currentCart.items.find(item => item.id === product.id);
       
-      let newItems: CartItem[];
       if (existingItem) {
-        newItems = prevCart.items.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-        toast.success('Quantité mise à jour dans le panier');
+        // If item exists, increment quantity
+        return {
+          ...currentCart,
+          items: currentCart.items.map(item =>
+            item.id === product.id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          )
+        };
       } else {
-        newItems = [
-          ...prevCart.items,
-          {
-            id: product.id,
-            name: product.name,
-            quantity: 1,
-            brand: product.brand,
-            image: product.media?.[0]?.url,
-            inStock: product.inStock // Ensure `inStock` is included
-          }
-        ];
-        toast.success('Produit ajouté au panier');
+        // If item doesn't exist, add it with the first media URL as image
+        const cartItem: CartItem = {
+          id: product.id,
+          name: product.name,
+          brand: product.brand,
+          quantity: 1,
+          inStock: product.inStock,
+          features: product.features,
+          image: product.media[0]?.url // Use the first media item's URL as the image
+        };
+        
+        return {
+          ...currentCart,
+          items: [...currentCart.items, cartItem]
+        };
       }
-  
-      return {
-        items: newItems,
-        total: calculateTotal(newItems)
-      };
     });
   };
 
