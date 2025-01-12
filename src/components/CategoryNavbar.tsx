@@ -91,7 +91,7 @@ export default function CategoryNavbar() {
                 className="flex items-center space-x-2 text-blue-900 hover:text-blue-600 hover:bg-blue-50 transition-colors font-semibold"
               >
                 <Menu className="h-5 w-5" />
-                <span className="font-bold" >Catégories</span>
+                <span className="font-bold" >Nos Produits</span>
                 <ChevronDown className="h-4 w-4 text-red-600" />
               </Button>
             </DropdownMenuTrigger>

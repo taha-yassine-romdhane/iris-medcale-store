@@ -1,6 +1,7 @@
 'use client';
 
 import Link from "next/link";
+import { Suspense } from 'react';
 import { ShoppingCart, Menu, X, User, LogOut, Settings } from "lucide-react";
 import { useState } from "react";
 import { Flags } from "./ui/flags";
@@ -270,7 +271,9 @@ const Navbar = () => {
         )}
       </nav>
       <div className="h-16"></div>
-      <CategoryNavbar />
+      <Suspense fallback={<div>Loading...</div>}>
+        <CategoryNavbar />
+      </Suspense>
     </div>
   );
 };
