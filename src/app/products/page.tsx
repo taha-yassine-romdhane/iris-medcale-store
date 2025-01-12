@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Product } from '@/types/product';
 import { Button } from '@/components/ui/button';
@@ -77,23 +77,23 @@ export default function ProductsPage() {
         if (type) queryParams.append('type', type);
         if (subCategory) queryParams.append('subCategory', subCategory);
         if (brand && brand !== 'all') queryParams.append('brand', brand);
-  
+
         const response = await fetch(`/api/products?${queryParams.toString()}`);
         if (!response.ok) {
           throw new Error('Failed to fetch products');
         }
         const data = await response.json();
-  
+
         if (!data || !Array.isArray(data.products)) {
           console.error('Invalid data format:', data);
           setProducts([]);
           setFilteredProducts([]);
           return;
         }
-  
+
         setProducts(data.products);
         setFilteredProducts(data.products);
-  
+
         if (data.products.length > 0) {
           const uniqueFilters: Filters = {
             categories: [
@@ -158,8 +158,8 @@ export default function ProductsPage() {
         product.description.toLowerCase().includes(query) ||
         product.brand.toLowerCase().includes(query) ||
         product.type.toLowerCase().includes(query) ||
-        (product.features && Array.isArray(product.features) && 
-          product.features.some(feature => 
+        (product.features && Array.isArray(product.features) &&
+          product.features.some(feature =>
             feature.toLowerCase().includes(query)
           ))
       );
@@ -168,13 +168,13 @@ export default function ProductsPage() {
     setFilteredProducts(filtered);
   }, [products, brand, searchQuery]);
 
-  const handleAddToCart = (product: Product) => {
+  const handleAddToCart = useCallback((product: Product) => {
     if (!product.inStock) return;
     addToCart(product);
     toast.success('Product added to cart');
-  };
+  }, [addToCart]);
 
-  const handleMediaNavigation = (productId: string, direction: 'prev' | 'next') => {
+  const handleMediaNavigation = useCallback((productId: string, direction: 'prev' | 'next') => {
     const currentIndex = selectedMedia[productId] || 0;
     const product = products.find(p => p.id === productId);
     if (!product) return;
@@ -189,7 +189,7 @@ export default function ProductsPage() {
     }
 
     setSelectedMedia(prev => ({ ...prev, [productId]: newIndex }));
-  };
+  }, [products, selectedMedia]);
 
   if (isLoading) {
     return (

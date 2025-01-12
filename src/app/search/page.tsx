@@ -15,7 +15,7 @@ function SearchResults({ query }: { query: string }) {
   useEffect(() => {
     async function fetchSearchResults() {
       if (!query) return;
-      
+
       setIsLoading(true);
       try {
         const response = await fetch(`/api/products/search?q=${encodeURIComponent(query)}`);
@@ -138,14 +138,6 @@ function SearchPageFallback() {
   );
 }
 
-export default function SearchPage() {
-  return (
-    <Suspense>
-      <SearchPageContent />
-    </Suspense>
-  );
-}
-
 function SearchPageContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
@@ -166,10 +158,16 @@ function SearchPageContent() {
           </h1>
         </div>
 
-        <Suspense fallback={<SearchPageFallback />}>
-          <SearchResults query={query} />
-        </Suspense>
+        <SearchResults query={query} />
       </div>
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<SearchPageFallback />}>
+      <SearchPageContent />
+    </Suspense>
   );
 }

@@ -71,21 +71,27 @@ function FooterFallback() {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode; 
+  children: React.ReactNode;
 }) {
   return (
     <html lang="fr">
-      
       <body>
         <CartProvider>
           <FilterProvider>
+            {/* Ensure NextSSRPlugin is used in a Client Component */}
             <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+            
+            {/* Wrap Navbar in Suspense */}
             <Suspense fallback={<NavbarFallback />}>
               <Navbar />
             </Suspense>
+
+            {/* Wrap main content in Suspense */}
             <Suspense fallback={<MainFallback />}>
               <main>{children}</main>
             </Suspense>
+
+            {/* Wrap Footer in Suspense */}
             <Suspense fallback={<FooterFallback />}>
               <Footer />
             </Suspense>
