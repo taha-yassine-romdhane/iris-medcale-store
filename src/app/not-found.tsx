@@ -2,13 +2,10 @@
 
 import { Suspense } from 'react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import { Home } from 'lucide-react';
 
+// Separate the content that uses useSearchParams into its own component
 function NotFoundContent() {
-  const searchParams = useSearchParams();
-  const from = searchParams.get('from') || '';
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 text-center">
@@ -18,7 +15,7 @@ function NotFoundContent() {
             Page introuvable
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            {from ? `La page "${from}" n'existe pas.` : "La page que vous recherchez n'existe pas."}
+            La page que vous recherchez n&apos;existe pas.
           </p>
         </div>
         <div className="mt-8">
@@ -35,15 +32,20 @@ function NotFoundContent() {
   );
 }
 
+// Loading fallback component
+function LoadingFallback() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 flex items-center justify-center">
+      <div className="animate-pulse">
+        <div className="h-32 w-32 bg-blue-200 rounded-full"></div>
+      </div>
+    </div>
+  );
+}
+
 export default function NotFound() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 flex items-center justify-center">
-        <div className="animate-pulse">
-          <div className="h-32 w-32 bg-blue-200 rounded-full"></div>
-        </div>
-      </div>
-    }>
+    <Suspense fallback={<LoadingFallback />}>
       <NotFoundContent />
     </Suspense>
   );

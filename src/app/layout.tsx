@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from 'react';
 import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin';
 import { extractRouterConfig } from 'uploadthing/server';
 import { ourFileRouter } from '@/app/api/uploadthing/core';
@@ -48,20 +49,46 @@ export const metadata: Metadata = {
   },
 };
 
+// Loading fallback components
+function NavbarFallback() {
+  return <div className="h-24 bg-white shadow animate-pulse" />;
+}
+
+function MainFallback() {
+  return (
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="animate-pulse">
+        <div className="h-32 w-32 bg-blue-200 rounded-full" />
+      </div>
+    </div>
+  );
+}
+
+function FooterFallback() {
+  return <div className="h-64 bg-gray-100 animate-pulse" />;
+}
+
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode; 
 }) {
   return (
     <html lang="fr">
+      
       <body>
         <CartProvider>
           <FilterProvider>
             <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-            <Navbar />
-            <main>{children}</main>
-            <Footer />
+            <Suspense fallback={<NavbarFallback />}>
+              <Navbar />
+            </Suspense>
+            <Suspense fallback={<MainFallback />}>
+              <main>{children}</main>
+            </Suspense>
+            <Suspense fallback={<FooterFallback />}>
+              <Footer />
+            </Suspense>
           </FilterProvider>
         </CartProvider>
       </body>
