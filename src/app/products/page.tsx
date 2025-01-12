@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { Product } from '@/types/product';
 import { Button } from '@/components/ui/button';
 import {
@@ -30,7 +29,28 @@ interface Filters {
 
 export default function ProductsPage() {
   const { category, type, subCategory, updateFilters } = useFilters();
-  const searchParams = useSearchParams();
+  const [params, setParams] = useState<{
+    category: string | null;
+    type: string | null;
+    subCategory: string | null;
+    brand: string | null;
+  }>({
+    category: null,
+    type: null,
+    subCategory: null,
+    brand: null
+  });
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    setParams({
+      category: urlParams.get('category'),
+      type: urlParams.get('type'),
+      subCategory: urlParams.get('subCategory'),
+      brand: urlParams.get('brand')
+    });
+  }, []);
+
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [filters, setFilters] = useState<Filters>({
@@ -43,29 +63,21 @@ export default function ProductsPage() {
   const { addToCart } = useCart();
   const [selectedMedia, setSelectedMedia] = useState<{ [key: string]: number }>({});
   const [searchQuery, setSearchQuery] = useState('');
-  const [brand, setBrand] = useState('all');
 
   // Initialize filters from URL on mount
   useEffect(() => {
-    if (searchParams) {
-      const categoryParam = searchParams.get('category');
-      const typeParam = searchParams.get('type');
-      const subCategoryParam = searchParams.get('subCategory');
-      const brandParam = searchParams.get('brand');
-
-      if (categoryParam || typeParam || subCategoryParam) {
-        updateFilters({
-          category: categoryParam || '',
-          type: typeParam || '',
-          subCategory: subCategoryParam || '',
-        });
-      }
-
-      if (brandParam) {
-        setBrand(brandParam);
-      }
+    if (params.category || params.type || params.subCategory) {
+      updateFilters({
+        category: params.category || '',
+        type: params.type || '',
+        subCategory: params.subCategory || '',
+      });
     }
-  }, [searchParams, updateFilters]);
+
+    if (params.brand) {
+      setParams(prev => ({ ...prev, brand: params.brand }));
+    }
+  }, [params, updateFilters]);
 
   // Fetch products only when filters change (not search)
   useEffect(() => {
@@ -76,7 +88,7 @@ export default function ProductsPage() {
         if (category) queryParams.append('category', category);
         if (type) queryParams.append('type', type);
         if (subCategory) queryParams.append('subCategory', subCategory);
-        if (brand && brand !== 'all') queryParams.append('brand', brand);
+        if (params.brand && params.brand !== 'all') queryParams.append('brand', params.brand);
 
         const response = await fetch(`/api/products?${queryParams.toString()}`);
         if (!response.ok) {
@@ -139,15 +151,15 @@ export default function ProductsPage() {
     };
 
     fetchProducts();
-  }, [category, type, subCategory, brand]);
+  }, [category, type, subCategory, params.brand]);
 
   // Local search and filter
   useEffect(() => {
     let filtered = [...products];
 
     // Apply brand filter
-    if (brand && brand !== 'all') {
-      filtered = filtered.filter(product => product.brand === brand);
+    if (params.brand && params.brand !== 'all') {
+      filtered = filtered.filter(product => product.brand === params.brand);
     }
 
     // Apply search filter locally
@@ -166,7 +178,7 @@ export default function ProductsPage() {
     }
 
     setFilteredProducts(filtered);
-  }, [products, brand, searchQuery]);
+  }, [products, params.brand, searchQuery]);
 
   const handleAddToCart = useCallback((product: Product) => {
     if (!product.inStock) return;
@@ -258,7 +270,10 @@ export default function ProductsPage() {
                   className="pl-10"
                 />
               </div>
-              <Select value={brand} onValueChange={setBrand}>
+              <Select
+                value={params.brand ?? undefined}
+                onValueChange={(value) => setParams(prev => ({ ...prev, brand: value }))}
+              >
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Select brand" />
                 </SelectTrigger>
@@ -291,9 +306,9 @@ export default function ProductsPage() {
                 Subcategory: {subCategory}
               </Badge>
             )}
-            {brand && brand !== 'all' && (
+            {params.brand && params.brand !== 'all' && (
               <Badge variant="secondary" className="flex items-center gap-1">
-                Brand: {brand}
+                Brand: {params.brand}
               </Badge>
             )}
           </div>

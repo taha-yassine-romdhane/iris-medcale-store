@@ -1,7 +1,6 @@
 'use client';
 
 import { Suspense, useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { Product } from '@/types/product';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -139,27 +138,25 @@ function SearchPageFallback() {
 }
 
 function SearchPageContent() {
-  const searchParams = useSearchParams();
-  const query = searchParams.get('q') || '';
+  const [query, setQuery] = useState<string>('');
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const searchQuery = params.get('q') || '';
+    setQuery(searchQuery);
+  }, []);
 
   return (
-    <div className="min-h-screen pt-32 px-4 sm:px-6 lg:px-8 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <Link
-            href="/"
-            className="inline-flex items-center text-gray-600 hover:text-gray-900"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Retour à l&apos;accueil
-          </Link>
-          <h1 className="text-3xl font-bold text-gray-900 mt-4">
-            {query ? `Résultats pour "${query}"` : 'Recherche'}
-          </h1>
-        </div>
-
-        <SearchResults query={query} />
+    <div className="container mx-auto px-4 py-8">
+      <div className="mb-8">
+        <Link href="/" className="inline-flex items-center text-blue-600 hover:text-blue-800">
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Retour à l&apos;accueil
+        </Link>
       </div>
+      <Suspense fallback={<SearchPageFallback />}>
+        <SearchResults query={query} />
+      </Suspense>
     </div>
   );
 }

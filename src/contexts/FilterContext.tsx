@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useCallback, useEffect, useMemo } from 'react';
-import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 interface FilterContextType {
   category: string | null;
@@ -22,14 +22,22 @@ const FilterContext = createContext<FilterContextType | undefined>(undefined);
 export function FilterProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+
+  const [filters, setFilters] = useState<FilterState>({
+    category: null,
+    type: null,
+    subCategory: null,
+  });
 
   // Initialize filters from URL search params
-  const [filters, setFilters] = useState<FilterState>({
-    category: searchParams.get('category'),
-    type: searchParams.get('type'),
-    subCategory: searchParams.get('subCategory'),
-  });
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search); // Use browser's URLSearchParams
+    setFilters({
+      category: params.get('category'),
+      type: params.get('type'),
+      subCategory: params.get('subCategory'),
+    });
+  }, []);
 
   // Update URL when filters change
   useEffect(() => {
@@ -40,14 +48,14 @@ export function FilterProvider({ children }: { children: React.ReactNode }) {
 
     const newUrl = `${pathname}${params.toString() ? `?${params.toString()}` : ''}`;
     router.push(newUrl, { scroll: false });
-  }, [filters, pathname]); // Removed `router` from dependencies
+  }, [filters, pathname, router]);
 
-  // Memoize the updateFilters function to avoid unnecessary re-renders
+  // Function to update filters
   const updateFilters = useCallback((newFilters: Partial<FilterState>) => {
     setFilters((prev) => ({ ...prev, ...newFilters }));
   }, []);
 
-  // Memoize the clearFilters function to avoid unnecessary re-renders
+  // Function to clear filters
   const clearFilters = useCallback(() => {
     setFilters({
       category: null,
@@ -56,7 +64,7 @@ export function FilterProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  // Memoize the context value to avoid unnecessary re-renders
+  // Memoize the context value
   const contextValue = useMemo(
     () => ({
       ...filters,
@@ -66,11 +74,7 @@ export function FilterProvider({ children }: { children: React.ReactNode }) {
     [filters, updateFilters, clearFilters]
   );
 
-  return (
-    <FilterContext.Provider value={contextValue}>
-      {children}
-    </FilterContext.Provider>
-  );
+  return <FilterContext.Provider value={contextValue}>{children}</FilterContext.Provider>;
 }
 
 export function useFilters() {
