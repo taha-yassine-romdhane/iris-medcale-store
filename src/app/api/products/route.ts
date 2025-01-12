@@ -57,8 +57,8 @@ export async function GET(request: Request) {
     };
 
     const pagination = {
-      ...(limit && { limit }),
-      ...(page && { page }),
+      limit,
+      page, // page is guaranteed to have a value due to the default above
     };
 
     const { products, total } = await ProductService.getAllProducts(
@@ -66,7 +66,7 @@ export async function GET(request: Request) {
       filters.type,
       filters.subcategory,
       filters.brand,
-      pagination.page - 1,
+      pagination.page - 1, // Now TypeScript knows pagination.page is a number
       pagination.limit,
       filters.search
     );
