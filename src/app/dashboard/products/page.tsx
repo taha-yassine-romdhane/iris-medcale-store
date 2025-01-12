@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import { PlusCircle, Edit, Trash, Search, Eye, ChevronLeft, ChevronRight } from 'lucide-react';
 import ViewProductModal from '@/components/products/ViewProductModal';
 import EditProductModal from '@/components/products/EditProductModal';
