@@ -6,7 +6,6 @@ async function main() {
   // Delete existing records
   await prisma.media.deleteMany();
   await prisma.review.deleteMany();
-  await prisma.product.deleteMany();
   await prisma.category.deleteMany();
 
   // Create categories

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { ShoppingCart, Menu, X, User, LogOut, Settings } from "lucide-react";
-import { FileText, Info, Phone, Calendar } from 'lucide-react';
 import { useState } from "react";
 import { Flags } from "./ui/flags";
 import CategoryNavbar from './CategoryNavbar';
@@ -105,39 +104,21 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className="flex justify-end items-center h-16 pr-4">
+          <div className="flex justify-between items-center h-16 px-4">
             {/* Search Bar */}
-            <div className="flex-1 max-w-xl mx-4 hidden md:block">
+            <div className="absolute left-1/2 transform -translate-x-1/2 hidden lg:block w-[600px]"> {/* Increased width */}
               <SearchBar />
             </div>
 
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-4">
-              <Link href="/services" className="text-blue-900 hover:text-blue-600 text-lg font-bold tracking-wide flex items-center space-x-2">
-                <FileText className="w-5 h-5" />
-                <span>Nos Services</span>
-              </Link>
-              <Link href="/a-propos" className="text-blue-900 hover:text-blue-600 text-lg font-bold tracking-wide flex items-center space-x-2">
-                <Info className="w-5 h-5" />
-                <span>À Propos</span>
-              </Link>
-              <Link href="/contact" className="text-blue-900 hover:text-blue-600 text-lg font-bold tracking-wide flex items-center space-x-2">
-                <Phone className="w-5 h-5" /> {/* Icon for Contact */}
-                <span>Contact</span>
-              </Link>
-
-              <Link href="/appointment" className="text-blue-900 hover:text-blue-600 text-lg font-bold tracking-wide flex items-center space-x-2">
-                <Calendar className="w-5 h-5" /> {/* Icon for Prenez RDV */}
-                <span>Prenez RDV</span>
-              </Link>
-
+            {/* Desktop Menu (Buttons at the End) */}
+            <div className="flex items-center space-x-4 ml-auto">
               {/* Cart Dropdown */}
               <div className="relative">
                 <div
                   onClick={() => setIsCartOpen(!isCartOpen)}
                   className="text-blue-900 hover:text-blue-600 flex items-center space-x-2"
                 >
-                  <CartDropdown  />
+                  <CartDropdown />
                 </div>
               </div>
 

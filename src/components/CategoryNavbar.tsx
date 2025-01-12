@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { ChevronDown, Menu, Home, Heart } from 'lucide-react';
+import { FileText, Info, Phone, Calendar } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -82,16 +83,8 @@ export default function CategoryNavbar() {
             <Home className="h-5 w-5 mr-2" />
             Accueil
           </Link>
-          {/* Sleep Apnea Link */}
-          <Link
-            href="/apnee-du-sommeil"
-            className=" flex items-center text-blue-900 hover:text-blue-600 transition-colors px-3 py-2 font-bold"
-          >
-            <Heart className="h-5 w-5 mr-2" />
-            Apnée de sommeil
-          </Link>
-          {/* Categories Dropdown */}
-          <DropdownMenu>
+             {/* Categories Dropdown */}
+             <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
@@ -204,6 +197,32 @@ export default function CategoryNavbar() {
               )}
             </DropdownMenuContent>
           </DropdownMenu>
+          {/* Sleep Apnea Link */}
+          <Link
+            href="/apnee-du-sommeil"
+            className=" flex items-center text-blue-900 hover:text-blue-600 transition-colors px-3 py-2 font-bold"
+          >
+            <Heart className="h-5 w-5 mr-2" />
+            Apnée de sommeil
+          </Link>
+          <Link href="/services" className="text-blue-900 hover:text-blue-600 text-lg font-bold tracking-wide flex items-center space-x-2">
+            <FileText className="w-5 h-5" />
+            <span>Nos Services</span>
+          </Link>
+          <Link href="/a-propos" className="text-blue-900 hover:text-blue-600 text-lg font-bold tracking-wide flex items-center space-x-2">
+            <Info className="w-5 h-5" />
+            <span>À Propos</span>
+          </Link>
+          <Link href="/contact" className="text-blue-900 hover:text-blue-600 text-lg font-bold tracking-wide flex items-center space-x-2">
+            <Phone className="w-5 h-5" /> {/* Icon for Contact */}
+            <span>Contact</span>
+          </Link>
+
+          <Link href="/appointment" className="text-blue-900 hover:text-blue-600 text-lg font-bold tracking-wide flex items-center space-x-2">
+            <Calendar className="w-5 h-5" /> {/* Icon for Prenez RDV */}
+            <span>Prenez RDV</span>
+          </Link>
+       
         </div>
       </div>
     </nav>

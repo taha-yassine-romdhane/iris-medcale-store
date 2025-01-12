@@ -42,7 +42,6 @@ export async function GET(req: NextRequest) {
         id: true,
         dateCreation: true,
         status: true,
-        total: true,
         items: {
           select: {
             quantity: true,
