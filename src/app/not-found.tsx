@@ -4,7 +4,6 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 import { Home } from 'lucide-react';
 
-// Separate the content that uses useSearchParams into its own component
 function NotFoundContent() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 flex items-center justify-center px-4 sm:px-6 lg:px-8">
@@ -32,20 +31,9 @@ function NotFoundContent() {
   );
 }
 
-// Loading fallback component
-function LoadingFallback() {
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 flex items-center justify-center">
-      <div className="animate-pulse">
-        <div className="h-32 w-32 bg-blue-200 rounded-full"></div>
-      </div>
-    </div>
-  );
-}
-
 export default function NotFound() {
   return (
-    <Suspense fallback={<LoadingFallback />}>
+    <Suspense>
       <NotFoundContent />
     </Suspense>
   );

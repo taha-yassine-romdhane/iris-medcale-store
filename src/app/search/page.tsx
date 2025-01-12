@@ -139,6 +139,14 @@ function SearchPageFallback() {
 }
 
 export default function SearchPage() {
+  return (
+    <Suspense>
+      <SearchPageContent />
+    </Suspense>
+  );
+}
+
+function SearchPageContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
 
