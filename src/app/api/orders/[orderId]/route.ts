@@ -76,13 +76,10 @@ export async function PATCH(
   }
 }
 
-export async function DELETE(
-  req: NextRequest,
-  { params }: { params: { orderId: string } }
-) {
+export async function DELETE(req: NextRequest): Promise<NextResponse> {
   try {
     const token = req.cookies.get('token')?.value;
-    
+
     if (!token) {
       return NextResponse.json(
         { success: false, message: 'Authentication required' },
@@ -101,7 +98,7 @@ export async function DELETE(
     // Get user role
     const user = await prisma.utilisateur.findUnique({
       where: { id: decoded.id },
-      select: { role: true }
+      select: { role: true },
     });
 
     if (!user || (user.role !== 'ADMIN' && user.role !== 'EMPLOYE')) {
@@ -111,19 +108,30 @@ export async function DELETE(
       );
     }
 
-    const { orderId } = params;
+    // Extract orderId from the URL
+    const orderId = req.nextUrl.pathname.split('/').pop();
+
+    if (!orderId) {
+      return NextResponse.json(
+        { success: false, message: 'Order ID is required' },
+        { status: 400 }
+      );
+    }
 
     // First delete all order items
     await prisma.commandeItem.deleteMany({
-      where: { commandeId: orderId }
+      where: { commandeId: orderId },
     });
 
     // Then delete the order
     await prisma.commande.delete({
-      where: { id: orderId }
+      where: { id: orderId },
     });
 
-    return NextResponse.json({ success: true, message: 'Order deleted successfully' });
+    return NextResponse.json({
+      success: true,
+      message: 'Order deleted successfully',
+    });
   } catch (error) {
     console.error('Error deleting order:', error);
     return NextResponse.json(
