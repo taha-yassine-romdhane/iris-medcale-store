@@ -1,49 +1,53 @@
+'use client';
 import Image from 'next/image';
 import { Heart, Users, Trophy, Target, CheckCircle } from 'lucide-react';
+import { useTranslation } from '@/context/TranslationContext';
 
 const values = [
   {
     icon: Heart,
-    title: "Engagement envers les patients",
-    description: "Notre priorité absolue est le bien-être et le confort de nos patients"
+    title: "patientCommitment",
+    description: "patientCommitmentDescription"
   },
   {
     icon: Users,
-    title: "Équipe expérimentée",
-    description: "Des techniciens qualifiés et un personnel médical dévoué"
+    title: "experiencedTeam",
+    description: "experiencedTeamDescription"
   },
   {
     icon: Trophy,
-    title: "Excellence médicale",
-    description: "Équipements de pointe et services de haute qualité"
+    title: "medicalExcellence",
+    description: "medicalExcellenceDescription"
   },
   {
     icon: Target,
-    title: "Service personnalisé",
-    description: "Solutions adaptées aux besoins spécifiques de chaque patient"
+    title: "personalizedService",
+    description: "personalizedServiceDescription"
   }
 ];
 
 const keyPoints = [
-  "Installation et maintenance d'équipements médicaux à domicile",
-  "Service d'assistance technique 24/7",
-  "Couverture des régions de Sousse, Monastir, Mahdia, Cap Bon et Grand Tunis",
-  "Équipe technique hautement qualifiée",
-  "Suivi régulier des patients",
-  "Solutions d'oxygénothérapie et ventilation"
+  "keyPoint1",
+  "keyPoint2",
+  "keyPoint3",
+  "keyPoint4",
+  "keyPoint5",
+  "keyPoint6"
 ];
 
 export default function AboutPage() {
+  const { t } = useTranslation();
+
   return (
     <main className="pt-16 min-h-screen bg-gray-50">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
         <div className="max-w-7xl mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            À Propos de Elite Medicale Service
+            {t('aboutPage.hero.title')}
           </h1>
           <p className="text-xl text-white/90 max-w-2xl">
-            Leader en solutions d&apos;oxygénothérapie et d&apos;assistance respiratoire en Tunisie
+            {t('aboutPage.hero.subtitle')}
           </p>
         </div>
       </section>
@@ -54,30 +58,27 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h2 className="text-3xl font-bold text-gray-900">
-                Notre Mission
+                {t('aboutPage.mission.title')}
               </h2>
               <p className="text-lg text-gray-700">
-                Nous sommes une société spécialisée en oxygénothérapie, offrant des solutions
-                médicales pour les patients nécessitant une assistance respiratoire. Notre engagement
-                est d&apos;assurer un service à domicile personnalisé pour garantir le confort et le
-                bien-être de nos patients.
+                {t('aboutPage.mission.description')}
               </p>
               <div className="space-y-4">
                 {keyPoints.map((point, index) => (
                   <div key={index} className="flex items-start space-x-3">
                     <CheckCircle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">{point}</span>
+                    <span className="text-gray-700">{t(`aboutPage.mission.keyPoints.${point}`)}</span>
                   </div>
                 ))}
               </div>
             </div>
             <div className="relative h-[400px] rounded-lg overflow-hidden shadow-lg">
               <Image
-                src="/Respiratoire-2-1024x811.jpg" 
-                alt="Medical Equipment"
+                src="/Respiratoire-2-1024x811.jpg"
+                alt={t('aboutPage.mission.imageAlt')}
                 fill
                 className="object-cover"
-                priority 
+                priority
               />
             </div>
           </div>
@@ -88,7 +89,7 @@ export default function AboutPage() {
       <section className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-            Nos Valeurs
+            {t('aboutPage.values.title')}
           </h2>
           <div className="grid md:grid-cols-4 gap-8">
             {values.map((value, index) => (
@@ -100,53 +101,43 @@ export default function AboutPage() {
                   <value.icon className="h-6 w-6 text-blue-600" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {value.title}
+                  {t(`aboutPage.values.${value.title}.title`)}
                 </h3>
                 <p className="text-gray-600">
-                  {value.description}
+                  {t(`aboutPage.values.${value.title}.description`)}
                 </p>
               </div>
             ))}
           </div>
         </div>
       </section>
+
       {/* CNAM Collaboration Section */}
       <section className="py-16 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h2 className="text-3xl font-bold text-gray-900">
-                Convention avec CNAM
+                {t('aboutPage.cnam.title')}
               </h2>
               <p className="text-lg text-gray-700">
-                En tant que partenaire agréé de la Caisse Nationale d&apos;Assurance Maladie (CNAM),
-                nous facilitons l&apos;accès aux équipements médicaux essentiels pour nos patients.
+                {t('aboutPage.cnam.description')}
               </p>
               <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
-                  <span className="text-gray-700">Prise en charge directe avec la CNAM</span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
-                  <span className="text-gray-700">Processus simplifié de remboursement</span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
-                  <span className="text-gray-700">Équipements conformes aux normes CNAM</span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
-                  <span className="text-gray-700">Assistance pour les formalités administratives</span>
-                </div>
-              </div>
-              <div className="pt-4">
+                {[1, 2, 3, 4].map((index) => (
+                  <div key={index} className="flex items-start space-x-3">
+                    <CheckCircle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">
+                      {t(`aboutPage.cnam.bullet${index}`)}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
             <div className="relative h-[400px] rounded-lg overflow-hidden shadow-lg bg-white p-8">
               <Image
                 src="/CNAM_Tunisie.jpg"
-                alt="Logo CNAM Tunisie"
+                alt={t('aboutPage.cnam.imageAlt')}
                 fill
                 className="object-contain"
                 priority
@@ -163,42 +154,40 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2">
               <div className="p-8 space-y-6">
                 <h2 className="text-3xl font-bold text-gray-900">
-                  Notre Couverture
+                  {t('aboutPage.coverage.title')}
                 </h2>
                 <p className="text-lg text-gray-700">
-                  Nos techniciens qualifiés couvrent les régions de Sousse, Monastir, Mahdia,
-                  Cap Bon et le Grand Tunis, assurant une installation rapide et un suivi
-                  technique rigoureux.
+                  {t('aboutPage.coverage.description')}
                 </p>
                 <div className="grid grid-cols-2 gap-4 pt-4">
                   <div className="bg-gray-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-gray-900">Régions Nord</h4>
+                    <h4 className="font-semibold text-gray-900">
+                      {t('aboutPage.coverage.northRegion')}
+                    </h4>
                     <ul className="mt-2 space-y-2">
-                      <li className="flex items-center space-x-2">
-                        <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                        <span className="text-gray-700">Grand Tunis</span>
-                      </li>
-                      <li className="flex items-center space-x-2">
-                        <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                        <span className="text-gray-700">Cap Bon</span>
-                      </li>
+                      {['grandTunis', 'capBon'].map((region, index) => (
+                        <li key={index} className="flex items-center space-x-2">
+                          <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                          <span className="text-gray-700">
+                            {t(`aboutPage.coverage.regions.${region}`)}
+                          </span>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                   <div className="bg-gray-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-gray-900">Régions Centre</h4>
+                    <h4 className="font-semibold text-gray-900">
+                      {t('aboutPage.coverage.centerRegion')}
+                    </h4>
                     <ul className="mt-2 space-y-2">
-                      <li className="flex items-center space-x-2">
-                        <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                        <span className="text-gray-700">Sousse</span>
-                      </li>
-                      <li className="flex items-center space-x-2">
-                        <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                        <span className="text-gray-700">Monastir</span>
-                      </li>
-                      <li className="flex items-center space-x-2">
-                        <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                        <span className="text-gray-700">Mahdia</span>
-                      </li>
+                      {['sousse', 'monastir', 'mahdia'].map((region, index) => (
+                        <li key={index} className="flex items-center space-x-2">
+                          <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                          <span className="text-gray-700">
+                            {t(`aboutPage.coverage.regions.${region}`)}
+                          </span>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -207,12 +196,11 @@ export default function AboutPage() {
                 <div className="relative w-full h-full max-w-[500px]">
                   <Image
                     src="/tn-04.png"
-                    alt="Carte de couverture en Tunisie"
+                    alt={t('aboutPage.coverage.imageAlt')}
                     fill
                     className="object-contain"
                     priority
                   />
-
                 </div>
               </div>
             </div>
@@ -224,16 +212,16 @@ export default function AboutPage() {
       <section className="bg-blue-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">
-            Besoin de nos services ?
+            {t('aboutPage.cta.title')}
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Contactez-nous dès aujourd&apos;hui pour discuter de vos besoins en matière de santé respiratoire
+            {t('aboutPage.cta.subtitle')}
           </p>
           <a
             href="/contact"
             className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors"
           >
-            Contactez-nous
+            {t('aboutPage.cta.button')}
           </a>
         </div>
       </section>

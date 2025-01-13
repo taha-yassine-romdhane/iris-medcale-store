@@ -5,12 +5,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Shield, Lock, Mail, AlertCircle, Loader2 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
+import { useTranslation } from '@/context/TranslationContext';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const { login, loading, error } = useAuth();
+  const { t } = useTranslation();
 
   const validateEmail = (email: string) => {
     if (email.toLowerCase() === 'admin@elite.com') {
@@ -26,7 +28,7 @@ export default function LoginPage() {
     setErrorMessage('');
     
     if (!email || !password) {
-      setErrorMessage('Veuillez remplir tous les champs');
+      setErrorMessage(t('login.error.fillAllFields'));
       return;
     }
     
@@ -40,7 +42,7 @@ export default function LoginPage() {
         window.location.href = '/';
       }
     } else {
-      setErrorMessage('Email ou mot de passe incorrect');
+      setErrorMessage(t('login.error.invalidCredentials'));
     }
   };
 
@@ -50,20 +52,20 @@ export default function LoginPage() {
       <div className="hidden md:flex md:w-1/2 bg-blue-600 text-white p-12 flex-col justify-between relative">
         <div>
           <h1 className="py-10 text-4xl font-bold mb-6">
-            Espace Client Elite Medicale Service
+            {t('login.leftSide.title')}
           </h1>
           <p className="text-xl text-blue-100 mb-8">
-            Connectez-vous pour accéder à vos informations et services personnalisés.
+            {t('login.leftSide.description')}
           </p>
         </div>
         <div className="space-y-4">
           <div className="flex items-center space-x-3">
             <Shield className="h-6 w-6" />
-            <span>Accès sécurisé aux données de l&apos;entreprise</span>
+            <span>{t('login.leftSide.bullet1')}</span>
           </div>
           <div className="flex items-center space-x-3">
             <Lock className="h-6 w-6" />
-            <span>Double authentification pour plus de sécurité</span>
+            <span>{t('login.leftSide.bullet2')}</span>
           </div>
         </div>
       </div>
@@ -85,7 +87,7 @@ export default function LoginPage() {
           <div className="w-full max-w-md space-y-8 p-10 rounded-lg shadow-lg bg-white">
             <div className="text-center">
               <h2 className="mt-6 text-3xl font-bold text-gray-900">
-                Connexion
+                {t('login.form.title')}
               </h2>
             </div>
             
@@ -100,7 +102,7 @@ export default function LoginPage() {
               <div className="space-y-4">
                 <div>
                   <label htmlFor="email-address" className="block text-sm font-medium text-gray-700 mb-1">
-                    Email
+                    {t('login.form.emailLabel')}
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -113,7 +115,7 @@ export default function LoginPage() {
                       autoComplete="email"
                       required
                       className="pl-10 appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="votre_email@example.com"
+                      placeholder={t('login.form.emailPlaceholder')}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
@@ -122,7 +124,7 @@ export default function LoginPage() {
 
                 <div>
                   <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                    Mot de passe
+                    {t('login.form.passwordLabel')}
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -135,7 +137,7 @@ export default function LoginPage() {
                       autoComplete="current-password"
                       required
                       className="pl-10 appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Votre mot de passe"
+                      placeholder={t('login.form.passwordPlaceholder')}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                     />
@@ -152,19 +154,19 @@ export default function LoginPage() {
                   {loading ? (
                     <Loader2 className="h-5 w-5 animate-spin" />
                   ) : (
-                    'Se connecter'
+                    t('login.form.submitButton')
                   )}
                 </button>
               </div>
               <div className="text-sm text-center">
                 <p className="mt-2">
-                  Pas encore de compte ?{' '}
+                  {t('login.form.noAccount')}{' '}
                   <Link href="/signup" className="font-medium text-blue-600 hover:text-blue-500">
-                    Inscrivez-vous
+                    {t('login.form.signupLink')}
                   </Link>
                 </p>
                 <Link href="/forgot-password" className="text-blue-600 hover:underline">
-                  Mot de passe oublié ?
+                  {t('login.form.forgotPassword')}
                 </Link>
               </div>
             </form>

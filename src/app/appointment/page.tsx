@@ -17,6 +17,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useTranslation } from '@/context/TranslationContext';
 
 export default function AppointmentSection() {
   const [formData, setFormData] = useState({
@@ -31,6 +32,7 @@ export default function AppointmentSection() {
   const { user } = useAuth();
   const { toast } = useToast();
   const router = useRouter();
+  const { t } = useTranslation();
 
   // Get available months (current month + next 2 months)
   const availableMonths = Array.from({ length: 3 }, (_, i) =>
@@ -101,12 +103,12 @@ export default function AppointmentSection() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Échec de la demande de rendez-vous');
+        throw new Error(data.error || t('appointmentSection.error.failedToRequestAppointment'));
       }
 
       toast({
-        title: "Succès",
-        description: "Rendez-vous demandé avec succès",
+        title: t('appointmentSection.success.title'),
+        description: t('appointmentSection.success.description'),
       });
 
       setFormData({ date: '', time: '', reason: '' });
@@ -114,8 +116,8 @@ export default function AppointmentSection() {
     } catch (error) {
       console.error('Error:', error);
       toast({
-        title: "Erreur",
-        description: error instanceof Error ? error.message : 'Une erreur est survenue',
+        title: t('appointmentSection.error.title'),
+        description: error instanceof Error ? error.message : t('appointmentSection.error.generic'),
         variant: "destructive",
       });
     } finally {
@@ -128,13 +130,15 @@ export default function AppointmentSection() {
       <div className="min-h-screen bg-blue-50 py-16 from-white to-blue-900 pt-32">
         <div className="max-w-4xl mx-auto px-4">
           <div className="bg-white rounded-2xl shadow-xl p-8">
-            <h1 className="text-3xl font-bold text-blue-900 mb-8">Prendre un rendez-vous</h1>
+            <h1 className="text-3xl font-bold text-blue-900 mb-8">
+              {t('appointmentSection.title')}
+            </h1>
 
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* Month Selection */}
               <div className="space-y-4">
                 <label className="block text-sm font-medium text-blue-900">
-                  Sélectionnez un mois
+                  {t('appointmentSection.selectMonth')}
                 </label>
                 <div className="flex gap-4">
                   {availableMonths.map((month) => (
@@ -158,7 +162,7 @@ export default function AppointmentSection() {
               {/* Day Selection */}
               <div className="space-y-4">
                 <label className="block text-sm font-medium text-blue-900">
-                  Sélectionnez un jour
+                  {t('appointmentSection.selectDay')}
                 </label>
                 <div className="grid grid-cols-7 gap-2">
                   {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((day) => {
@@ -191,7 +195,7 @@ export default function AppointmentSection() {
               {selectedDay && (
                 <div className="space-y-4">
                   <label className="block text-sm font-medium text-blue-900">
-                    Sélectionnez une heure
+                    {t('appointmentSection.selectTime')}
                   </label>
                   <div className="grid grid-cols-4 gap-2">
                     {timeSlots.map((time) => {
@@ -222,12 +226,12 @@ export default function AppointmentSection() {
               {/* Reason Input */}
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-blue-900">
-                  Raison du rendez-vous
+                  {t('appointmentSection.reasonLabel')}
                 </label>
                 <Textarea
                   value={formData.reason}
                   onChange={(e) => setFormData(prev => ({ ...prev, reason: e.target.value }))}
-                  placeholder="Décrivez brièvement la raison de votre rendez-vous..."
+                  placeholder={t('appointmentSection.reasonPlaceholder')}
                   className="h-32 border-blue-900 focus:border-blue-900 focus:ring-blue-900"
                   required
                 />
@@ -242,12 +246,12 @@ export default function AppointmentSection() {
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">
                     <Clock className="animate-spin" size={20} />
-                    En cours...
+                    {t('appointmentSection.submitting')}
                   </span>
                 ) : (
                   <span className="flex items-center gap-2">
                     <Send size={20} />
-                    Demander le rendez-vous
+                    {t('appointmentSection.submitButton')}
                   </span>
                 )}
               </Button>
@@ -261,10 +265,10 @@ export default function AppointmentSection() {
         <DialogContent className="bg-white border border-blue-900 rounded-lg shadow-lg">
           <DialogHeader className="space-y-4">
             <DialogTitle className="text-blue-900 text-xl font-bold">
-              Connexion requise
+              {t('appointmentSection.loginDialog.title')}
             </DialogTitle>
             <DialogDescription className="text-blue-800">
-              Vous devez être connecté pour prendre un rendez-vous. Voulez-vous vous connecter maintenant ?
+              {t('appointmentSection.loginDialog.description')}
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="flex justify-end space-x-2">
@@ -273,7 +277,7 @@ export default function AppointmentSection() {
               onClick={() => setShowLoginDialog(false)}
               className="text-blue-900 border-blue-900 hover:bg-blue-50 hover:border-blue-800"
             >
-              Annuler
+              {t('appointmentSection.loginDialog.cancelButton')}
             </Button>
             <Button
               onClick={() => {
@@ -282,7 +286,7 @@ export default function AppointmentSection() {
               }}
               className="bg-blue-900 text-white hover:bg-blue-800"
             >
-              Se connecter
+              {t('appointmentSection.loginDialog.loginButton')}
             </Button>
           </DialogFooter>
         </DialogContent>

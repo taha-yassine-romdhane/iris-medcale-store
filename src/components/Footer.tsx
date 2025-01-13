@@ -1,16 +1,20 @@
+'use client';
+
 import Link from "next/link";
-import { 
-  MapPin, 
-  Mail, 
-  Phone, 
-  Facebook, 
-  Twitter, 
-  Linkedin, 
+import {
+  MapPin,
+  Mail,
+  Phone,
+  Facebook,
+  Twitter,
+  Linkedin,
   Instagram,
   Locate, // Icône pour les zones de couverture
 } from "lucide-react";
+import { useTranslation } from "@/context/TranslationContext";
 
 export default function Footer() {
+  const { t } = useTranslation();
   return (
     <footer className="bg-blue-900 text-white">
       <div className="max-w-7xl mx-auto px-4 py-16">
@@ -18,10 +22,10 @@ export default function Footer() {
           {/* Company Description */}
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-white mb-4 border-b-2 border-red-500 pb-2">
-              Elite Medicale Service
+              {t('footer.companyName')}
             </h3>
             <p className="text-blue-100 leading-relaxed">
-              Votre source de confiance pour les équipements médicaux et les solutions de santé innovantes.
+              {t('footer.description')}
             </p>
             <div className="flex space-x-4 pt-4">
               <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-400 transition-colors">
@@ -42,39 +46,39 @@ export default function Footer() {
           {/* Quick Links */}
           <div>
             <h3 className="text-xl font-bold text-white mb-4 border-b-2 border-red-500 pb-2">
-              Liens Rapides
+              {t('footer.quickLinks')}
             </h3>
             <ul className="space-y-3">
               <li>
-                <Link 
-                  href="/categories/cpap/machines" 
+                <Link
+                  href="/categories/cpap/machines"
                   className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300"
                 >
-                  CPAP Machines
+                  {t('footer.cpapMachines')}
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/a-propos" 
+                <Link
+                  href="/a-propos"
                   className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300"
                 >
-                  À Propos
+                  {t('footer.aboutUs')}
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/contact" 
+                <Link
+                  href="/contact"
                   className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300"
                 >
-                  Contact
+                  {t('footer.contact')}
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/apnee-du-sommeil" 
+                <Link
+                  href="/apnee-du-sommeil"
                   className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300"
                 >
-                  Apnée du Sommeil
+                  {t('footer.sleepApnea')}
                 </Link>
               </li>
             </ul>
@@ -83,7 +87,7 @@ export default function Footer() {
           {/* Contact Information */}
           <div>
             <h3 className="text-xl font-bold text-white mb-4 border-b-2 border-red-500 pb-2">
-              Contactez-Nous
+              {t('footer.contactUs')}
             </h3>
             <ul className="space-y-3">
               <li className="flex items-center text-blue-100">
@@ -107,47 +111,34 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Zones de Couverture */}
+          {/* Coverage Areas */}
           <div>
             <h3 className="text-xl font-bold text-white mb-4 border-b-2 border-red-500 pb-2">
-              Zones de Couverture
+              {t('footer.coverageAreas')}
             </h3>
             <div className="space-y-4">
-              {/* Région Nord */}
+              {/* North Region */}
               <div>
                 <div className="flex items-center space-x-2">
                   <Locate className="text-red-500" size={20} />
-                  <h4 className="font-semibold text-white">Région Nord</h4>
+                  <h4 className="font-semibold text-white">{t('footer.northRegion')}</h4>
                 </div>
                 <ul className="mt-2 pl-7 space-y-2 text-blue-100">
-                  <li>Grand Tunis</li>
-                  <li>Cap Bon</li>
+                  <li>{t('footer.grandTunis')}</li>
+                  <li>{t('footer.capBon')}</li>
                 </ul>
               </div>
 
-              {/* Régions Centre */}
+              {/* Center Region */}
               <div>
                 <div className="flex items-center space-x-2">
                   <Locate className="text-red-500" size={20} />
-                  <h4 className="font-semibold text-white">Régions Centre</h4>
+                  <h4 className="font-semibold text-white">{t('footer.centerRegion')}</h4>
                 </div>
                 <ul className="mt-2 pl-7 space-y-2 text-blue-100">
-                  <li>Sousse</li>
-                  <li>Monastir</li>
-                  <li>Mahdia</li>
-                </ul>
-              </div>
-
-              {/* Autres Zones */}
-              <div>
-                <div className="flex items-center space-x-2">
-                  <Locate className="text-red-500" size={20} />
-                  <h4 className="font-semibold text-white">Autres Zones</h4>
-                </div>
-                <ul className="mt-2 pl-7 space-y-2 text-blue-100">
-                  <li>Sfax</li>
-                  <li>Gabès</li>
-                  <li>Djerba</li>
+                  <li>{t('footer.sousse')}</li>
+                  <li>{t('footer.monastir')}</li>
+                  <li>{t('footer.mahdia')}</li>
                 </ul>
               </div>
             </div>
@@ -157,7 +148,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-blue-500 mt-12 pt-8 text-center">
           <p className="text-blue-200">
-            &copy; 2024 Elite Medicale Service. Tous droits r&#233;serv&#233;s.
+            {t('footer.copyright')}
           </p>
         </div>
       </div>

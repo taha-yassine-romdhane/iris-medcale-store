@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { useTranslation } from '@/context/TranslationContext';
 
 const brands = [
   {
@@ -24,6 +25,7 @@ const brands = [
 
 export default function BrandsSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
@@ -72,7 +74,7 @@ export default function BrandsSection() {
     <section className="py-12 bg-white">
       <div className="max-w-5xl mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold text-blue-900 mb-8">
-          Nos Marques Partenaires
+          {t('home.brands.title')}
         </h2>
         <div className="relative">
           <div

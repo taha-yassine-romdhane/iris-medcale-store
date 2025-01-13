@@ -15,31 +15,32 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useTranslation } from '@/context/TranslationContext';
 
 const contactInfo = [
   {
     icon: Phone,
-    title: "Téléphone",
+    title: "phone",
     content: "+216 55 820 000",
-    detail: "Disponible 24/7"
+    detail: "available24_7"
   },
   {
     icon: Mail,
-    title: "Email",
+    title: "email",
     content: "eliteMedicaleServices@Gmail.com",
-    detail: "Réponse sous 24h"
+    detail: "responseWithin24h"
   },
   {
     icon: MapPin,
-    title: "Adresse",
-    content: "11 Rue tayeb el hedi 4070 M'Saken Sousse ",
-    detail: "Bureaux principaux"
+    title: "address",
+    content: "11 Rue tayeb el hedi 4070 M'Saken Sousse",
+    detail: "mainOffice"
   },
   {
     icon: Clock,
-    title: "Heures d'ouverture",
-    content: "Lun - Ven: 9h - 17h",
-    detail: "Service d'urgence 24/7"
+    title: "openingHours",
+    content: "mon_fri_9am_5pm",
+    detail: "emergencyService24_7"
   }
 ];
 
@@ -50,6 +51,7 @@ export default function ContactPage() {
   const { user } = useAuth();
   const { toast } = useToast();
   const router = useRouter();
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,12 +81,12 @@ export default function ContactPage() {
 
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(data.error || 'Failed to send message');
+        throw new Error(data.error || t('error.failedToSendMessage'));
       }
 
       toast({
-        title: "Succès",
-        description: "Votre message a été envoyé avec succès",
+        title: t('contactPage.success.title'),
+        description: t('contactPage.success.description'),
       });
       
       // Clear form
@@ -92,8 +94,8 @@ export default function ContactPage() {
     } catch (error) {
       console.error('Error sending message:', error);
       toast({
-        title: "Erreur",
-        description: "Une erreur est survenue lors de l'envoi du message",
+        title: t('error.title'),
+        description: t('error.generic'),
         variant: "destructive",
       });
     } finally {
@@ -117,9 +119,13 @@ export default function ContactPage() {
                   <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
                     <Icon className="w-6 h-6 text-blue-600" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{info.title}</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    {t(`contactPage.contactInfo.${info.title}.title`)}
+                  </h3>
                   <p className="text-blue-600 font-medium mb-1">{info.content}</p>
-                  <p className="text-gray-500 text-sm">{info.detail}</p>
+                  <p className="text-gray-500 text-sm">
+                    {t(`contactPage.contactInfo.${info.title}.detail`)}
+                  </p>
                 </div>
               );
             })}
@@ -128,23 +134,27 @@ export default function ContactPage() {
           {/* Contact Form */}
           <div className="max-w-2xl mx-auto">
             <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Envoyez-nous un message</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                {t('contactPage.form.title')}
+              </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 {user && (
                   <div className="bg-gray-50 p-4 rounded-lg mb-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Vos informations</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                      {t('contactPage.form.userInfo')}
+                    </h3>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <p className="text-sm text-gray-600">Nom</p>
+                        <p className="text-sm text-gray-600">{t('contactPage.form.name')}</p>
                         <p className="font-medium text-gray-900">{user.nom}</p>
                       </div>
                       <div>
-                        <p className="text-sm text-gray-600">Email</p>
+                        <p className="text-sm text-gray-600">{t('contactPage.form.email')}</p>
                         <p className="font-medium text-gray-900">{user.email}</p>
                       </div>
                       {user.telephone && (
                         <div>
-                          <p className="text-sm text-gray-600">Téléphone</p>
+                          <p className="text-sm text-gray-600">{t('contactPage.form.phone')}</p>
                           <p className="font-medium text-gray-900">{user.telephone}</p>
                         </div>
                       )}
@@ -154,12 +164,12 @@ export default function ContactPage() {
 
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
-                    Votre message
+                    {t('contactPage.form.messageLabel')}
                   </label>
                   <Textarea
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Comment pouvons-nous vous aider ?"
+                    placeholder={t('contactPage.form.messagePlaceholder')}
                     className="h-32"
                     required
                   />
@@ -173,12 +183,12 @@ export default function ContactPage() {
                   {isSubmitting ? (
                     <span className="flex items-center gap-2">
                       <Clock className="animate-spin" size={20} />
-                      En cours...
+                      {t('contactPage.form.submitting')}
                     </span>
                   ) : (
                     <span className="flex items-center gap-2">
                       <Send size={20} />
-                      Envoyer le message
+                      {t('contactPage.form.submitButton')}
                     </span>
                   )}
                 </Button>
@@ -188,7 +198,9 @@ export default function ContactPage() {
 
           {/* Map Section */}
           <div className="w-full bg-white rounded-2xl shadow-xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Notre emplacement</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-8">
+              {t('contactPage.map.title')}
+            </h2>
             <div className="w-full h-[500px] rounded-xl overflow-hidden">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d240.10481402433365!2d10.573908195586109!3d35.73488462620345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fdf5d82cc1ff89%3A0x327231a45eeeab57!2s%C3%94%20Medical%20Store!5e1!3m2!1sfr!2stn!4v1734970851542!5m2!1sfr!2stn"
@@ -210,10 +222,10 @@ export default function ContactPage() {
         <DialogContent className="bg-white border border-blue-100 rounded-lg shadow-lg">
           <DialogHeader className="space-y-4">
             <DialogTitle className="text-blue-900 text-xl font-bold">
-              Connexion requise
+              {t('contactPage.loginDialog.title')}
             </DialogTitle>
             <DialogDescription className="text-blue-800">
-              Vous devez être connecté pour envoyer un message. Voulez-vous vous connecter maintenant ?
+              {t('contactPage.loginDialog.description')}
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="flex justify-end space-x-2">
@@ -222,7 +234,7 @@ export default function ContactPage() {
               onClick={() => setShowLoginDialog(false)}
               className="text-blue-900 border-blue-200 hover:bg-blue-50 hover:border-blue-300"
             >
-              Annuler
+              {t('contactPage.loginDialog.cancelButton')}
             </Button>
             <Button
               onClick={() => {
@@ -231,7 +243,7 @@ export default function ContactPage() {
               }}
               className="bg-blue-900 text-white hover:bg-blue-800"
             >
-              Se connecter
+              {t('contactPage.loginDialog.loginButton')}
             </Button>
           </DialogFooter>
         </DialogContent>

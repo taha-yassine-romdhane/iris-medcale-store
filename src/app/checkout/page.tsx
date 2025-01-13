@@ -5,11 +5,13 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { ShoppingBag, Package, Truck, Phone, Plus, Minus, Trash2 } from 'lucide-react';
 import DevisModal from '@/components/modals/DevisModal';
+import { useTranslation } from '@/context/TranslationContext';
 
 export default function CheckoutPage() {
   const { cart, updateQuantity, removeFromCart } = useCart();
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useTranslation();
 
   if (!cart || !cart.items || cart.items.length === 0) {
     return (
@@ -17,8 +19,12 @@ export default function CheckoutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <ShoppingBag className="mx-auto h-12 w-12 text-gray-400" />
-            <h2 className="mt-2 text-lg font-medium text-gray-900">Panier vide</h2>
-            <p className="mt-1 text-sm text-gray-500">Votre panier est actuellement vide.</p>
+            <h2 className="mt-2 text-lg font-medium text-gray-900">
+              {t('checkoutPage.emptyCart.title')}
+            </h2>
+            <p className="mt-1 text-sm text-gray-500">
+              {t('checkoutPage.emptyCart.description')}
+            </p>
           </div>
         </div>
       </div>
@@ -39,9 +45,11 @@ export default function CheckoutPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
         {/* Title Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Demande de Devis</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            {t('checkoutPage.title')}
+          </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Nous vous fournirons un devis personnalisé pour vos produits sélectionnés. Notre équipe vous contactera dans les plus brefs délais.
+            {t('checkoutPage.subtitle')}
           </p>
         </div>
 
@@ -49,25 +57,39 @@ export default function CheckoutPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div className="bg-white p-6 rounded-lg shadow-sm text-center">
             <Package className="h-8 w-8 text-blue-600 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold mb-2">Produits de Qualité</h3>
-            <p className="text-gray-600">Tous nos produits sont certifiés et proviennent de marques reconnues</p>
+            <h3 className="text-lg font-semibold mb-2">
+              {t('checkoutPage.features.qualityProducts.title')}
+            </h3>
+            <p className="text-gray-600">
+              {t('checkoutPage.features.qualityProducts.description')}
+            </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm text-center">
             <Truck className="h-8 w-8 text-blue-600 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold mb-2">Livraison Rapide</h3>
-            <p className="text-gray-600">Service de livraison professionnel dans toute la Tunisie</p>
+            <h3 className="text-lg font-semibold mb-2">
+              {t('checkoutPage.features.fastDelivery.title')}
+            </h3>
+            <p className="text-gray-600">
+              {t('checkoutPage.features.fastDelivery.description')}
+            </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm text-center">
             <Phone className="h-8 w-8 text-blue-600 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold mb-2">Support Personnalisé</h3>
-            <p className="text-gray-600">Une équipe dédiée pour répondre à toutes vos questions</p>
+            <h3 className="text-lg font-semibold mb-2">
+              {t('checkoutPage.features.personalizedSupport.title')}
+            </h3>
+            <p className="text-gray-600">
+              {t('checkoutPage.features.personalizedSupport.description')}
+            </p>
           </div>
         </div>
 
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start xl:gap-x-16">
           {/* Cart Items */}
           <div className="lg:col-span-7">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Produits Sélectionnés</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              {t('checkoutPage.selectedProducts.title')}
+            </h2>
             <div className="space-y-6">
               {cart.items.map((item) => (
                 <div key={item.id} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
@@ -92,7 +114,9 @@ export default function CheckoutPage() {
                       <p className="mt-1 text-sm text-gray-500">{item.brand}</p>
                       <div className="mt-2 flex items-center justify-between">
                         <div className="flex items-center space-x-4">
-                          <span className="text-sm text-gray-600">Quantité:</span>
+                          <span className="text-sm text-gray-600">
+                            {t('checkoutPage.selectedProducts.quantity')}
+                          </span>
                           <div className="flex items-center space-x-2">
                             <button
                               onClick={() => {
@@ -115,14 +139,10 @@ export default function CheckoutPage() {
                             </button>
                           </div>
                         </div>
-                        
-                        
-                        
-                          <Trash2
+                        <Trash2
                           onClick={() => removeFromCart(item.id)}
                           className="h-5 w-5 text-gray-500 hover:text-red-500"
-                          />
-                        
+                        />
                       </div>
                     </div>
                   </div>
@@ -134,23 +154,25 @@ export default function CheckoutPage() {
           {/* Summary Card */}
           <div className="mt-16 lg:mt-0 lg:col-span-5">
             <div className="bg-white rounded-lg shadow-sm p-6 sticky top-32">
-              <h2 className="text-xl font-bold text-gray-900 mb-6">Demander un Devis</h2> 
+              <h2 className="text-xl font-bold text-gray-900 mb-6">
+                {t('checkoutPage.summary.title')}
+              </h2>
               <div className="space-y-4 mb-6">
                 <p className="text-gray-600">
-                  En cliquant sur le bouton ci-dessous, vous recevrez :
+                  {t('checkoutPage.summary.description')}
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-center text-sm text-gray-600">
                     <span className="mr-2">•</span>
-                    Un devis personnalisé
+                    {t('checkoutPage.summary.bullet1')}
                   </li>
                   <li className="flex items-center text-sm text-gray-600">
                     <span className="mr-2">•</span>
-                    Un appel de notre équipe commerciale
+                    {t('checkoutPage.summary.bullet2')}
                   </li>
                   <li className="flex items-center text-sm text-gray-600">
                     <span className="mr-2">•</span>
-                    Des conseils d&apos;experts sur vos produits
+                    {t('checkoutPage.summary.bullet3')}
                   </li>
                 </ul>
               </div>
@@ -167,15 +189,15 @@ export default function CheckoutPage() {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    Traitement en cours...
+                    {t('checkoutPage.summary.loading')}
                   </>
                 ) : (
-                  'Demander un devis'
+                  t('checkoutPage.summary.requestButton')
                 )}
               </button>
 
               <p className="mt-4 text-sm text-gray-500 text-center">
-                Notre équipe vous contactera sous 24-48h
+                {t('checkoutPage.summary.footer')}
               </p>
             </div>
           </div>

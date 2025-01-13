@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from 'react';
 import { useFilters } from '@/contexts/FilterContext';
 import { usePathname } from 'next/navigation';
+import { useTranslation } from '@/context/TranslationContext';
 
 interface CategoryType {
   category: string;
@@ -30,6 +31,7 @@ export default function CategoryNavbar() {
   const [isLoading, setIsLoading] = useState(true);
   const { updateFilters } = useFilters();
   const pathname = usePathname();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchCategoryTypes = async () => {
@@ -78,20 +80,20 @@ export default function CategoryNavbar() {
           {/* Home Link */}
           <Link
             href="/"
-            className=" flex items-center text-blue-900 hover:text-blue-600 transition-colors px-3 py-2 font-bold"
+            className="flex items-center text-blue-900 hover:text-blue-600 transition-colors px-3 py-2 font-bold"
           >
             <Home className="h-5 w-5 mr-2" />
-            Accueil
+            {t('CategoryNavbar.home')}
           </Link>
-             {/* Categories Dropdown */}
-             <DropdownMenu>
+          {/* Categories Dropdown */}
+          <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
                 className="flex items-center space-x-2 text-blue-900 hover:text-blue-600 hover:bg-blue-50 transition-colors font-semibold"
               >
                 <Menu className="h-5 w-5" />
-                <span className="font-bold" >Nos Produits</span>
+                <span className="font-bold">{t('navbar.ourProducts')}</span>
                 <ChevronDown className="h-4 w-4 text-red-600" />
               </Button>
             </DropdownMenuTrigger>
@@ -101,11 +103,11 @@ export default function CategoryNavbar() {
             >
               {isLoading ? (
                 <DropdownMenuItem disabled>
-                  <span className="text-gray-500">Chargement...</span>
+                  <span className="text-gray-500">{t('CategoryNavbar.loading')}</span>
                 </DropdownMenuItem>
               ) : categoryTypes.length === 0 ? (
                 <DropdownMenuItem disabled>
-                  <span className="text-gray-500">Aucune catégorie trouvée</span>
+                  <span className="text-gray-500">{t('CategoryNavbar.noCategories')}</span>
                 </DropdownMenuItem>
               ) : (
                 categoryTypes.map((cat) => (
@@ -123,12 +125,12 @@ export default function CategoryNavbar() {
                             className="py-2 px-4 hover:bg-blue-50 text-blue-900 font-medium"
                             onClick={() => handleCategoryClick(cat.category)}
                           >
-                            Tous les produits
+                            {t('navbar.allProducts')}
                           </DropdownMenuItem>
                         ) : (
                           <Link href={`/products?category=${encodeURIComponent(cat.category)}`}>
                             <DropdownMenuItem className="py-2 px-4 hover:bg-blue-50 text-blue-900 font-medium">
-                              Tous les produits
+                              {t('navbar.allProducts')}
                             </DropdownMenuItem>
                           </Link>
                         )}
@@ -166,7 +168,7 @@ export default function CategoryNavbar() {
                           <>
                             <DropdownMenuSeparator className="bg-blue-100" />
                             <div className="py-1 px-4">
-                              <span className="text-xs font-semibold text-red-600 uppercase">Other Types</span>
+                              <span className="text-xs font-semibold text-red-600 uppercase">Autres types</span>
                             </div>
                             {cat.subcategories.map((subcat) => (
                               pathname === '/products' ? (
@@ -200,29 +202,35 @@ export default function CategoryNavbar() {
           {/* Sleep Apnea Link */}
           <Link
             href="/apnee-du-sommeil"
-            className=" flex items-center text-blue-900 hover:text-blue-600 transition-colors px-3 py-2 font-bold"
+            className="flex items-center text-blue-900 hover:text-blue-600 transition-colors px-3 font-semibold"
           >
             <Heart className="h-5 w-5 mr-2" />
-            Apnée de sommeil
+            {t('navbar.sleepApnea')}
           </Link>
-          <Link href="/services" className="text-blue-900 hover:text-blue-600 text-lg font-bold tracking-wide flex items-center space-x-2">
+          <Link href="/services" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
             <FileText className="w-5 h-5" />
-            <span>Nos Services</span>
+            <span>{t('navbar.ourServices')}</span>
           </Link>
-          <Link href="/a-propos" className="text-blue-900 hover:text-blue-600 text-lg font-bold tracking-wide flex items-center space-x-2">
+          <Link href="/a-propos" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
             <Info className="w-5 h-5" />
-            <span>À Propos</span>
+            <span>{t('navbar.aboutUs')}</span>
           </Link>
-          <Link href="/contact" className="text-blue-900 hover:text-blue-600 text-lg font-bold tracking-wide flex items-center space-x-2">
-            <Phone className="w-5 h-5" /> {/* Icon for Contact */}
-            <span>Contact</span>
+          <Link
+            href="/contact"
+            className="flex items-center text-blue-900 hover:text-blue-600 transition-colors px-3 font-bold"
+          >
+            <Phone className="w-5 h-5 mr-2" />
+            {t('navbar.contact')}
           </Link>
 
-          <Link href="/appointment" className="text-blue-900 hover:text-blue-600 text-lg font-bold tracking-wide flex items-center space-x-2">
-            <Calendar className="w-5 h-5" /> {/* Icon for Prenez RDV */}
-            <span>Prenez RDV</span>
+          <Link
+            href="/appointment"
+            className="flex items-center text-blue-900 hover:text-blue-600 transition-colors px-3 font-bold"
+          >
+            <Calendar className="w-5 h-5 mr-2" />
+            <span>{t('navbar.makeAnAppointment')}</span>
           </Link>
-       
+
         </div>
       </div>
     </nav>

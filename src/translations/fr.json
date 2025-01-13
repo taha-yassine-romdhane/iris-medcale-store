@@ -1,0 +1,393 @@
+{
+  "navbar": {
+    "home": "Accueil",
+    "ourProducts": "Nos Produits",
+    "allProducts": "Tous les produits",
+    "types": "Types",
+    "otherTypes": "Autres Types",
+    "loading": "Chargement...",
+    "noCategories": "Aucune catégorie trouvée",
+    "services": "Nos Services",
+    "about": "À Propos",
+    "contact": "Contact",
+    "appointment": "Prenez RDV",
+    "login": "Se connecter",
+    "logout": "Se déconnecter",
+    "dashboard": "Dashboard",
+    "myOrders": "Mes Commandes",
+    "myProfile": "Mon Profil",
+    "search": "Rechercher",
+    "sleepApnea": "Apnée du Sommeil",
+    "makeAnAppointment": "Prenez RDV",
+    "ourServices": "Nos Services",
+    "aboutUs": "À Propos"
+  },
+  "CategoryNavbar": {
+    "home": "Accueil",
+    "allProducts": "Tous les produits",
+    "loading": "Chargement...",
+    "noCategories": "Aucune catégorie trouvée"
+  },
+  "search": {
+    "placeholder": "Rechercher un produit...",
+    "loading": "Chargement...",
+    "noResult": "Aucun résultat trouvé pour",
+    "tryDifferent": "Essayez avec des termes différents"
+  },
+  "footer": {
+    "companyName": "Elite Medicale Service",
+    "description": "Votre source de confiance pour les équipements médicaux et les solutions de santé innovantes.",
+    "quickLinks": "Liens Rapides",
+    "cpapMachines": "CPAP Machines",
+    "aboutUs": "À Propos",
+    "contact": "Contact",
+    "sleepApnea": "Apnée du Sommeil",
+    "contactUs": "Contactez-Nous",
+    "coverageAreas": "Zones de Couverture",
+    "northRegion": "Région Nord",
+    "grandTunis": "Grand Tunis",
+    "capBon": "Cap Bon",
+    "centerRegion": "Régions Centre",
+    "sousse": "Sousse",
+    "monastir": "Monastir",
+    "mahdia": "Mahdia",
+    "copyright": " 2024 Elite Medicale Service. Tous droits réservés."
+  },
+  "login": {
+    "leftSide": {
+      "title": "Espace Client Elite Medicale Service",
+      "description": "Connectez-vous pour accéder à vos informations et services personnalisés.",
+      "bullet1": "Accès sécurisé aux données de l'entreprise",
+      "bullet2": "Double authentification pour plus de sécurité"
+    },
+    "form": {
+      "title": "Connexion",
+      "emailLabel": "Email",
+      "emailPlaceholder": "votre_email@example.com",
+      "passwordLabel": "Mot de passe",
+      "passwordPlaceholder": "Votre mot de passe",
+      "submitButton": "Se connecter",
+      "noAccount": "Pas encore de compte ?",
+      "signupLink": "Inscrivez-vous",
+      "forgotPassword": "Mot de passe oublié ?"
+    },
+    "error": {
+      "fillAllFields": "Veuillez remplir tous les champs",
+      "invalidCredentials": "Email ou mot de passe incorrect"
+    }
+  },
+  "apneeDuSommeil": {
+    "apnéesDuSommeil": "Apnée du Sommeil",
+    "comprendreDiagnostiquerEtTraiterLesTroublesDuSommeil": "Comprendre, diagnostiquer et traiter les troubles du sommeil pour retrouver des nuits reposantes",
+    "question": "Qu'est-ce que l'apnée du sommeil ?",
+    "reponse": "L'apnée du sommeil est un trouble respiratoire caractérisé par des pauses respiratoires fréquentes et prolongées pendant le sommeil, perturbant le cycle naturel du sommeil et affectant la santé et la qualité de vie.",
+    "symptoms": "Symptômes",
+    "risks": "Risques",
+    "treatment": "Traitements",
+    "etouffement": "Étouffement",
+    "reveils": "Réveils",
+    "pausesRespiratoires": "Pauses Respiratoires",
+    "ronflements": "Ronflements",
+    "pendantLaNuit": "Pendant la Nuit",
+    "pendantLaJournee": "Pendant la Journée",
+    "fatigueEtSomnolenceExcessive": "Fatigue et Somnolence Excessive",
+    "mauxDeTeteMatinaux": "Maux de Tête Matinaux",
+    "difficultesDeConcentration": "Difficultés de Concentration",
+    "irritabiliteEtChangementsDHumeur": "Irritabilité et Changements d'Humeur",
+    "complicationsPossibles": "Complications Possibles",
+    "problemesCardiovasculaires": "Problèmes Cardiovasculaires",
+    "hypertensionRisqueDavcTroublesDuRythmeCardiaque": "Hypertension, Risque d'AVC, Troubles du Rythme Cardiaque",
+    "troublesCognitifs": "Troubles Cognitifs",
+    "perteDeMemoireDifficultesDeConcentration": "Perte de Mémoire, Difficultés de Concentration",
+    "complicationsMetaboliques": "Complications Métaboliques",
+    "diabetePriseDePoidsSyndromeMetabolique": "Diabète, Prise de Poids, Syndrome Métabolique",
+    "autresRisques": "Autres Risques",
+    "accidentsDeLaRouteDepressionProblemesRelationnels": "Accidents de la Route, Dépression, Problèmes Relationnels",
+    "solutionsTherapeutiques": "Solutions Thérapeutiques",
+    "ppcPressionPositiveContinue": "PPC (Pression Positive Continue)",
+    "descriptionPpc": "Le traitement de référence consistant à porter un masque connecté à un appareil délivrant de l'air sous pression pendant le sommeil.",
+    "ortheseDavanceeMandibulaire": "Orthèse d'Avancée Mandibulaire",
+    "descriptionOrthèse": "Un dispositif dentaire maintenant la mâchoire inférieure en position avancée pour dégager les voies respiratoires.",
+    "changementsDeModeDeVie": "Changements de Mode de Vie",
+    "perteDePoidsSiNecessaire": "Perte de Poids si Nécessaire",
+    "positionDeSommeilAdaptee": "Position de Sommeil Adaptée",
+    "arretDuTabacEtReductionDeLalcool": "Arrêt du Tabac et Réduction de l'Alcool",
+    "vousPensezSouffrirDApneesDuSommeil": "Vous pensez souffrir d'apnées du sommeil ?",
+    "diagnosticPrecoce": "Un diagnostic précoce permet une meilleure prise en charge.",
+    "prendreRendezVous": "Prendre Rendez-vous"
+  },
+  "appointmentSection": {
+    "title": "Prendre un rendez-vous",
+    "selectMonth": "Sélectionnez un mois",
+    "selectDay": "Sélectionnez un jour",
+    "selectTime": "Sélectionnez une heure",
+    "reasonLabel": "Raison du rendez-vous",
+    "reasonPlaceholder": "Décrivez brièvement la raison de votre rendez-vous...",
+    "submitButton": "Demander le rendez-vous",
+    "submitting": "En cours...",
+    "success": {
+      "title": "Succès",
+      "description": "Rendez-vous demandé avec succès"
+    },
+    "error": {
+      "title": "Erreur",
+      "description": "Une erreur est survenue",
+      "failedToRequestAppointment": "Échec de la demande de rendez-vous",
+      "generic": "Quelque chose s'est mal passé"
+    },
+    "loginDialog": {
+      "title": "Connexion requise",
+      "description": "Vous devez être connecté pour prendre un rendez-vous. Voulez-vous vous connecter maintenant ?",
+      "cancelButton": "Annuler",
+      "loginButton": "Se connecter"
+    }
+  },
+  "error": {
+    "fillAllFields": "Veuillez remplir tous les champs",
+    "invalidCredentials": "Email ou mot de passe incorrect",
+    "failedToRequestAppointment": "Échec de la demande de rendez-vous",
+    "generic": "Quelque chose s'est mal passé",
+    "loginRequired": "Vous devez être connecté pour effectuer cette action.",
+    "invalidDate": "Date sélectionnée invalide.",
+    "invalidTime": "Heure sélectionnée invalide.",
+    "appointmentConflict": "Ce créneau horaire est déjà réservé. Veuillez choisir un autre horaire.",
+    "networkError": "Erreur réseau. Veuillez vérifier votre connexion et réessayer."
+  },
+  "contactPage": {
+    "contactInfo": {
+      "phone": {
+        "title": "Téléphone",
+        "detail": "Disponible 24/7"
+      },
+      "email": {
+        "title": "Email",
+        "detail": "Réponse sous 24h"
+      },
+      "address": {
+        "title": "Adresse",
+        "detail": "Bureaux principaux"
+      },
+      "openingHours": {
+        "title": "Heures d'ouverture",
+        "detail": "Service d'urgence 24/7"
+      }
+    },
+    "form": {
+      "title": "Envoyez-nous un message",
+      "userInfo": "Vos informations",
+      "name": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "messageLabel": "Votre message",
+      "messagePlaceholder": "Comment pouvons-nous vous aider ?",
+      "submitButton": "Envoyer le message",
+      "submitting": "En cours..."
+    },
+    "map": {
+      "title": "Notre emplacement"
+    },
+    "loginDialog": {
+      "title": "Connexion requise",
+      "description": "Vous devez être connecté pour envoyer un message. Voulez-vous vous connecter maintenant ?",
+      "cancelButton": "Annuler",
+      "loginButton": "Se connecter"
+    },
+    "success": {
+      "title": "Succès",
+      "description": "Votre message a été envoyé avec succès."
+    }
+  },
+  "checkoutPage": {
+    "emptyCart": {
+      "title": "Panier vide",
+      "description": "Votre panier est actuellement vide."
+    },
+    "title": "Demande de Devis",
+    "subtitle": "Nous vous fournirons un devis personnalisé pour vos produits sélectionnés. Notre équipe vous contactera dans les plus brefs délais.",
+    "features": {
+      "qualityProducts": {
+        "title": "Produits de Qualité",
+        "description": "Tous nos produits sont certifiés et proviennent de marques reconnues."
+      },
+      "fastDelivery": {
+        "title": "Livraison Rapide",
+        "description": "Service de livraison professionnel dans toute la Tunisie."
+      },
+      "personalizedSupport": {
+        "title": "Support Personnalisé",
+        "description": "Une équipe dédiée pour répondre à toutes vos questions."
+      }
+    },
+    "selectedProducts": {
+      "title": "Produits Sélectionnés",
+      "quantity": "Quantité :"
+    },
+    "summary": {
+      "title": "Demander un Devis",
+      "description": "En cliquant sur le bouton ci-dessous, vous recevrez :",
+      "bullet1": "Un devis personnalisé",
+      "bullet2": "Un appel de notre équipe commerciale",
+      "bullet3": "Des conseils d'experts sur vos produits",
+      "requestButton": "Demander un devis",
+      "loading": "Traitement en cours...",
+      "footer": "Notre équipe vous contactera sous 24-48h."
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "À Propos de Elite Medicale Service",
+      "subtitle": "Leader en solutions d'oxygénothérapie et d'assistance respiratoire en Tunisie"
+    },
+    "mission": {
+      "title": "Notre Mission",
+      "description": "Nous sommes une société spécialisée en oxygénothérapie, offrant des solutions médicales pour les patients nécessitant une assistance respiratoire. Notre engagement est d'assurer un service à domicile personnalisé pour garantir le confort et le bien-être de nos patients.",
+      "keyPoints": {
+        "keyPoint1": "Installation et maintenance d'équipements médicaux à domicile",
+        "keyPoint2": "Service d'assistance technique 24/7",
+        "keyPoint3": "Couverture des régions de Sousse, Monastir, Mahdia, Cap Bon et Grand Tunis",
+        "keyPoint4": "Équipe technique hautement qualifiée",
+        "keyPoint5": "Suivi régulier des patients",
+        "keyPoint6": "Solutions d'oxygénothérapie et ventilation"
+      },
+      "imageAlt": "Équipement médical"
+    },
+    "values": {
+      "title": "Nos Valeurs",
+      "patientCommitment": {
+        "title": "Engagement envers les patients",
+        "description": "Notre priorité absolue est le bien-être et le confort de nos patients."
+      },
+      "experiencedTeam": {
+        "title": "Équipe expérimentée",
+        "description": "Des techniciens qualifiés et un personnel médical dévoué."
+      },
+      "medicalExcellence": {
+        "title": "Excellence médicale",
+        "description": "Équipements de pointe et services de haute qualité."
+      },
+      "personalizedService": {
+        "title": "Service personnalisé",
+        "description": "Solutions adaptées aux besoins spécifiques de chaque patient."
+      }
+    },
+    "cnam": {
+      "title": "Convention avec CNAM",
+      "description": "En tant que partenaire agréé de la Caisse Nationale d'Assurance Maladie (CNAM), nous facilitons l'accès aux équipements médicaux essentiels pour nos patients.",
+      "bullet1": "Prise en charge directe avec la CNAM",
+      "bullet2": "Processus simplifié de remboursement",
+      "bullet3": "Équipements conformes aux normes CNAM",
+      "bullet4": "Assistance pour les formalités administratives",
+      "imageAlt": "Logo CNAM Tunisie"
+    },
+    "coverage": {
+      "title": "Notre Couverture",
+      "description": "Nos techniciens qualifiés couvrent les régions de Sousse, Monastir, Mahdia, Cap Bon et le Grand Tunis, assurant une installation rapide et un suivi technique rigoureux.",
+      "northRegion": "Régions Nord",
+      "centerRegion": "Régions Centre",
+      "regions": {
+        "grandTunis": "Grand Tunis",
+        "capBon": "Cap Bon",
+        "sousse": "Sousse",
+        "monastir": "Monastir",
+        "mahdia": "Mahdia"
+      },
+      "imageAlt": "Carte de couverture en Tunisie"
+    },
+    "cta": {
+      "title": "Besoin de nos services ?",
+      "subtitle": "Contactez-nous dès aujourd'hui pour discuter de vos besoins en matière de santé respiratoire.",
+      "button": "Contactez-nous"
+    }
+  },
+  "ordersPage": {
+    "title": "Mes Commandes",
+    "emptyOrders": {
+      "title": "Aucune commande",
+      "description": "Vous n'avez pas encore passé de commande."
+    },
+    "quantity": "Quantité",
+    "status": {
+      "pending": "En attente",
+      "confirmed": "Confirmée",
+      "inProgress": "En cours",
+      "delivered": "Livrée",
+      "cancelled": "Annulée",
+      "quote": "Devis"
+    },
+    "errors": {
+      "loginRequired": "Veuillez vous connecter pour voir vos commandes.",
+      "sessionExpired": "Session expirée. Veuillez vous reconnecter.",
+      "fetchFailed": "Échec de la récupération des commandes.",
+      "fetchError": "Une erreur est survenue lors de la récupération des commandes."
+    }
+  },
+  "servicesPage": {
+    "hero": {
+      "title": "Services Professionnels d'Oxygénothérapie",
+      "description": "Solutions médicales spécialisées pour les patients nécessitant une assistance respiratoire, avec un service personnalisé à domicile pour votre confort et bien-être."
+    },
+    "mainContent": {
+      "title": "Notre Expertise à Votre Service",
+      "description1": "Bienvenue chez Elite Médicale Services, votre partenaire de confiance en oxygénothérapie, ventilation et services à domicile. Depuis notre fondation en 2018",
+      "description2": "Spécialisés dans l'oxygénothérapie et l'assistance respiratoire à domicile, nous offrons des services de vente et de location, garantissant que nos patients disposent des dispositifs les mieux adaptés. Nous sommes conventionnés avec la Caisse Nationale d'Assurance Maladie (CNAM) et les assurances maladies pour faciliter l’accès aux soins pour tous.",
+      "description3": "Notre équipe dévouée et professionnelle s’engage à fournir une assistance rapide, sécurisée et chaleureuse, assurant un service humain, professionnel et de qualité, conçu pour accompagner votre santé au quotidien, ainsi que le bien-être et la tranquillité d’esprit pour chaque patient et sa famille.",
+      "coverageTitle": "Zones de Couverture"
+    },
+    "services": {
+      "service1": {
+        "title": "Service à Domicile",
+        "description": "Installation et maintenance d'équipements médicaux directement chez vous"
+      },
+      "service2": {
+        "title": "Support Technique 24/7",
+        "description": "Une équipe technique qualifiée disponible en permanence"
+      },
+      "service3": {
+        "title": "Suivi Personnalisé",
+        "description": "Un accompagnement adapté à vos besoins spécifiques"
+      }
+    },
+    "regions": [
+      "Sousse",
+      "Monastir",
+      "Mahdia",
+      "Cap Bon",
+      "Grand Tunis"
+    ],
+    "contact": {
+      "title": "Besoin d'Assistance ?",
+      "description": "Notre équipe est disponible 24/7 pour répondre à vos besoins."
+    }
+  },
+  "productsPage": {
+    "hero": {
+      "title": "Nos Produits",
+      "description": "Découvrez notre large gamme d'équipements et de fournitures médicales de haute qualité. Nous proposons les meilleures marques et produits pour vos besoins en matière de santé."
+    },
+    "filters": {
+      "title": "Filtres",
+      "searchPlaceholder": "Rechercher des produits...",
+      "selectBrand": "Sélectionner une marque",
+      "allBrands": "Toutes les marques",
+      "activeFilters": {
+        "category": "Catégorie",
+        "type": "Type",
+        "subcategory": "Sous-catégorie",
+        "brand": "Marque"
+      }
+    },
+    "products": {
+      "noProducts": "Aucun produit trouvé",
+      "noImage": "Aucune image disponible",
+      "inStock": "En Stock",
+      "outOfStock": "Rupture de Stock",
+      "addToCart": "Ajouter au Panier",
+      "features": "Caractéristiques"
+    }
+  },
+  "home" : {
+    "brands" : {
+      "title" : "Nos Marques Partenaires"
+    }
+  }
+}

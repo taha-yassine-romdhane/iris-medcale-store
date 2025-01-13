@@ -5,6 +5,7 @@ import { Search } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useTranslation } from '@/context/TranslationContext';
 
 interface Product {
   id: string;
@@ -27,6 +28,8 @@ export default function SearchBar() {
   const [showResults, setShowResults] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const { t } = useTranslation();
+
 
   useEffect(() => {
     // Close search results when clicking outside
@@ -80,7 +83,7 @@ export default function SearchBar() {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Rechercher un produit..."
+            placeholder={t('search.placeholder')}
             className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 text-lg"
           />
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -95,7 +98,7 @@ export default function SearchBar() {
           {isLoading ? (
             <div className="p-6 text-center">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
-              <p className="mt-2 text-gray-500">Recherche en cours...</p>
+              <p className="mt-2 text-gray-500">{t('search.loading')}</p>
             </div>
           ) : products.length > 0 ? (
             <div className="py-2">
@@ -153,8 +156,8 @@ export default function SearchBar() {
           ) : (
             <div className="p-6 text-center">
               <Search className="h-8 w-8 text-gray-400 mx-auto mb-2" />
-              <p className="text-gray-500 text-lg">Aucun résultat trouvé pour &quot;{searchQuery}&quot;</p>
-              <p className="text-sm text-gray-400 mt-1">Essayez avec des termes différents</p>
+              <p className="text-gray-500 text-lg">{t('search.noResult')}</p>
+              <p className="text-sm text-gray-400 mt-1">{t('search.tryDifferent')}</p>
             </div>
           )}
         </div>

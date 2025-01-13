@@ -1,0 +1,393 @@
+{
+  "navbar": {
+    "home": "Home",
+    "ourProducts": "Our Products",
+    "allProducts": "All Products",
+    "types": "Types",
+    "otherTypes": "Other Types",
+    "loading": "Loading...",
+    "noCategories": "No categories found",
+    "services": "Our Services",
+    "about": "About",
+    "contact": "Contact",
+    "appointment": "Book Appointment",
+    "login": "Login",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "myOrders": "My Orders",
+    "myProfile": "My Profile",
+    "search": "Search",
+    "sleepApnea": "Sleep Apnea",
+    "makeAnAppointment": "Book Appointment",
+    "ourServices": "Our Services",
+    "aboutUs": "About Us"
+  },
+  "CategoryNavbar": {
+    "home": "Home",
+    "allProducts": "All Products",
+    "loading": "Loading...",
+    "noCategories": "No categories found"
+  },
+  "search": {
+    "placeholder": "Search for products...",
+    "loading": "Loading...",
+    "noResult": "No results found for",
+    "tryDifferent": "Try searching with different keywords"
+  },
+  "footer": {
+    "companyName": "Elite Medicale Service",
+    "description": "Your trusted source for medical equipment and innovative healthcare solutions.",
+    "quickLinks": "Quick Links",
+    "cpapMachines": "CPAP Machines",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "sleepApnea": "Sleep Apnea",
+    "contactUs": "Contact Us",
+    "coverageAreas": "Coverage Areas",
+    "northRegion": "North Region",
+    "grandTunis": "Grand Tunis",
+    "capBon": "Cap Bon",
+    "centerRegion": "Center Region",
+    "sousse": "Sousse",
+    "monastir": "Monastir",
+    "mahdia": "Mahdia",
+    "copyright": " 2024 Elite Medicale Service. All rights reserved."
+  },
+  "login": {
+    "leftSide": {
+      "title": "Elite Medicale Service Client Area",
+      "description": "Log in to access your personalized information and services.",
+      "bullet1": "Secure access to company data",
+      "bullet2": "Two-factor authentication for added security"
+    },
+    "form": {
+      "title": "Login",
+      "emailLabel": "Email",
+      "emailPlaceholder": "your_email@example.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Your password",
+      "submitButton": "Log In",
+      "noAccount": "Don't have an account?",
+      "signupLink": "Sign up",
+      "forgotPassword": "Forgot password?"
+    },
+    "error": {
+      "fillAllFields": "Please fill in all fields",
+      "invalidCredentials": "Incorrect email or password"
+    }
+  },
+ "apneeDuSommeil": {
+    "apnéesDuSommeil": "Sleep Apnea",
+    "comprendreDiagnostiquerEtTraiterLesTroublesDuSommeil": "Understanding, Diagnosing, and Treating Sleep Apnea",
+    "question": "What is Sleep Apnea?",
+    "reponse": "Sleep apnea is a respiratory disorder characterized by frequent and prolonged respiratory pauses during sleep, disrupting the natural sleep cycle and impacting health and quality of life.",
+    "symptoms": "Symptoms",
+    "risks": "Risks",
+    "treatment": "Treatment",
+    "etouffement": "Choking",
+    "reveils": "Awakenings",
+    "pausesRespiratoires": "Breathing Pauses",
+    "ronflements": "Snoring",
+    "pendantLaNuit": "During the Night",
+    "pendantLaJournee": "During the Day",
+    "fatigueEtSomnolenceExcessive": "Fatigue and Excessive Sleepiness",
+    "mauxDeTeteMatinaux": "Morning Headaches",
+    "difficultesDeConcentration": "Difficulty Concentrating",
+    "irritabiliteEtChangementsDHumeur": "Irritability and Mood Swings",
+    "complicationsPossibles": "Possible Complications",
+    "problemesCardiovasculaires": "Cardiovascular Problems",
+    "hypertensionRisqueDavcTroublesDuRythmeCardiaque": "Hypertension, Risk of Stroke, Heart Rhythm Disorders",
+    "troublesCognitifs": "Cognitive Disorders",
+    "perteDeMemoireDifficultesDeConcentration": "Memory Loss, Difficulty Concentrating",
+    "complicationsMetaboliques": "Metabolic Complications",
+    "diabetePriseDePoidsSyndromeMetabolique": "Diabetes, Weight Gain, Metabolic Syndrome",
+    "autresRisques": "Other Risks",
+    "accidentsDeLaRouteDepressionProblemesRelationnels": "Road Accidents, Depression, Relationship Problems",
+    "solutionsTherapeutiques": "Therapeutic Solutions",
+    "ppcPressionPositiveContinue": "CPAP (Continuous Positive Airway Pressure)",
+    "descriptionPpc": "The gold standard treatment involving wearing a mask connected to a device that delivers pressurized air during sleep.",
+    "ortheseDavanceeMandibulaire": "Mandibular Advancement Device",
+    "descriptionOrthèse": "A dental device that keeps the lower jaw in a forward position to open the airways.",
+    "changementsDeModeDeVie": "Lifestyle Changes",
+    "perteDePoidsSiNecessaire": "Weight Loss if Necessary",
+    "positionDeSommeilAdaptee": "Adapted Sleeping Position",
+    "arretDuTabacEtReductionDeLalcool": "Quitting Smoking and Reducing Alcohol",
+    "vousPensezSouffrirDApneesDuSommeil": "Do You Think You Suffer from Sleep Apnea?",
+    "diagnosticPrecoce": "Early diagnosis allows for better management.",
+    "prendreRendezVous": "Book an Appointment"
+  },
+  "appointmentSection": {
+    "title": "Book an Appointment",
+    "selectMonth": "Select a Month",
+    "selectDay": "Select a Day",
+    "selectTime": "Select a Time",
+    "reasonLabel": "Reason for Appointment",
+    "reasonPlaceholder": "Briefly describe the reason for your appointment...",
+    "submitButton": "Request Appointment",
+    "submitting": "Submitting...",
+    "success": {
+      "title": "Success",
+      "description": "Appointment requested successfully"
+    },
+    "error": {
+      "title": "Error",
+      "description": "An error occurred",
+      "failedToRequestAppointment": "Failed to request appointment",
+      "generic": "Something went wrong"
+    },
+    "loginDialog": {
+      "title": "Login Required",
+      "description": "You must be logged in to book an appointment. Would you like to log in now?",
+      "cancelButton": "Cancel",
+      "loginButton": "Log In"
+    }
+  },
+  "error": {
+    "fillAllFields": "Please fill in all fields",
+    "invalidCredentials": "Incorrect email or password",
+    "failedToRequestAppointment": "Failed to request appointment",
+    "generic": "Something went wrong",
+    "loginRequired": "You must be logged in to perform this action.",
+    "invalidDate": "Invalid date selected.",
+    "invalidTime": "Invalid time selected.",
+    "appointmentConflict": "This time slot is already booked. Please choose another time.",
+    "networkError": "Network error. Please check your connection and try again."
+  },
+  "contactPage": {
+    "contactInfo": {
+      "phone": {
+        "title": "Phone",
+        "detail": "Available 24/7"
+      },
+      "email": {
+        "title": "Email",
+        "detail": "Response within 24h"
+      },
+      "address": {
+        "title": "Address",
+        "detail": "Main Office"
+      },
+      "openingHours": {
+        "title": "Opening Hours",
+        "detail": "Emergency Service 24/7"
+      }
+    },
+    "form": {
+      "title": "Send us a message",
+      "userInfo": "Your Information",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "messageLabel": "Your Message",
+      "messagePlaceholder": "How can we help you?",
+      "submitButton": "Send Message",
+      "submitting": "Submitting..."
+    },
+    "map": {
+      "title": "Our Location"
+    },
+    "loginDialog": {
+      "title": "Login Required",
+      "description": "You must be logged in to send a message. Would you like to log in now?",
+      "cancelButton": "Cancel",
+      "loginButton": "Log In"
+    },
+    "success": {
+      "title": "Success",
+      "description": "Your message has been sent successfully."
+    }
+  },
+  "checkoutPage": {
+    "emptyCart": {
+      "title": "Empty Cart",
+      "description": "Your cart is currently empty."
+    },
+    "title": "Request a Quote",
+    "subtitle": "We will provide you with a personalized quote for your selected products. Our team will contact you shortly.",
+    "features": {
+      "qualityProducts": {
+        "title": "Quality Products",
+        "description": "All our products are certified and come from recognized brands."
+      },
+      "fastDelivery": {
+        "title": "Fast Delivery",
+        "description": "Professional delivery service across Tunisia."
+      },
+      "personalizedSupport": {
+        "title": "Personalized Support",
+        "description": "A dedicated team to answer all your questions."
+      }
+    },
+    "selectedProducts": {
+      "title": "Selected Products",
+      "quantity": "Quantity:"
+    },
+    "summary": {
+      "title": "Request a Quote",
+      "description": "By clicking the button below, you will receive:",
+      "bullet1": "A personalized quote",
+      "bullet2": "A call from our sales team",
+      "bullet3": "Expert advice on your products",
+      "requestButton": "Request a Quote",
+      "loading": "Processing...",
+      "footer": "Our team will contact you within 24-48 hours."
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "About Elite Medicale Service",
+      "subtitle": "Leader in oxygen therapy and respiratory assistance solutions in Tunisia"
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "We are a company specialized in oxygen therapy, offering medical solutions for patients requiring respiratory assistance. Our commitment is to ensure personalized home service to guarantee the comfort and well-being of our patients.",
+      "keyPoints": {
+        "keyPoint1": "Installation and maintenance of medical equipment at home",
+        "keyPoint2": "24/7 technical support service",
+        "keyPoint3": "Coverage of Sousse, Monastir, Mahdia, Cap Bon, and Grand Tunis regions",
+        "keyPoint4": "Highly qualified technical team",
+        "keyPoint5": "Regular patient follow-up",
+        "keyPoint6": "Oxygen therapy and ventilation solutions"
+      },
+      "imageAlt": "Medical Equipment"
+    },
+    "values": {
+      "title": "Our Values",
+      "patientCommitment": {
+        "title": "Patient Commitment",
+        "description": "Our top priority is the well-being and comfort of our patients."
+      },
+      "experiencedTeam": {
+        "title": "Experienced Team",
+        "description": "Qualified technicians and dedicated medical staff."
+      },
+      "medicalExcellence": {
+        "title": "Medical Excellence",
+        "description": "State-of-the-art equipment and high-quality services."
+      },
+      "personalizedService": {
+        "title": "Personalized Service",
+        "description": "Solutions tailored to the specific needs of each patient."
+      }
+    },
+    "cnam": {
+      "title": "Partnership with CNAM",
+      "description": "As an approved partner of the National Health Insurance Fund (CNAM), we facilitate access to essential medical equipment for our patients.",
+      "bullet1": "Direct coverage with CNAM",
+      "bullet2": "Simplified reimbursement process",
+      "bullet3": "CNAM-compliant equipment",
+      "bullet4": "Assistance with administrative formalities",
+      "imageAlt": "CNAM Tunisia Logo"
+    },
+    "coverage": {
+      "title": "Our Coverage",
+      "description": "Our qualified technicians cover the regions of Sousse, Monastir, Mahdia, Cap Bon, and Grand Tunis, ensuring quick installation and rigorous technical follow-up.",
+      "northRegion": "North Regions",
+      "centerRegion": "Center Regions",
+      "regions": {
+        "grandTunis": "Grand Tunis",
+        "capBon": "Cap Bon",
+        "sousse": "Sousse",
+        "monastir": "Monastir",
+        "mahdia": "Mahdia"
+      },
+      "imageAlt": "Coverage Map of Tunisia"
+    },
+    "cta": {
+      "title": "Need our services?",
+      "subtitle": "Contact us today to discuss your respiratory health needs.",
+      "button": "Contact Us"
+    }
+  },
+  "ordersPage": {
+    "title": "My Orders",
+    "emptyOrders": {
+      "title": "No Orders",
+      "description": "You haven't placed any orders yet."
+    },
+    "quantity": "Quantity",
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "inProgress": "In Progress",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled",
+      "quote": "Quote"
+    },
+    "errors": {
+      "loginRequired": "Please log in to view your orders.",
+      "sessionExpired": "Session expired. Please log in again.",
+      "fetchFailed": "Failed to fetch orders.",
+      "fetchError": "An error occurred while fetching orders."
+    }
+  },
+  "servicesPage": {
+    "hero": {
+      "title": "Professional Oxygen Therapy Services",
+      "description": "Specialized medical solutions for patients requiring respiratory assistance, with personalized home service for your comfort and well-being."
+    },
+    "mainContent": {
+      "title": "Our Expertise at Your Service",
+      "description1": "Welcome to Elite Médicale Services, your trusted partner in oxygen therapy, ventilation, and home services. Since our founding in 2018",
+      "description2": "Specializing in oxygen therapy and home respiratory assistance, we offer sales and rental services, ensuring our patients have the most suitable devices. We are contracted with the National Health Insurance Fund (CNAM) and health insurance companies to facilitate access to care for all.",
+      "description3": "Our dedicated and professional team is committed to providing fast, secure, and warm assistance, ensuring a human, professional, and quality service designed to support your daily health, as well as the well-being and peace of mind for each patient and their family.",
+      "coverageTitle": "Coverage Areas"
+    },
+    "services": {
+      "service1": {
+        "title": "Home Service",
+        "description": "Installation and maintenance of medical equipment directly at your home"
+      },
+      "service2": {
+        "title": "24/7 Technical Support",
+        "description": "A qualified technical team available at all times"
+      },
+      "service3": {
+        "title": "Personalized Follow-up",
+        "description": "Support tailored to your specific needs"
+      }
+    },
+    "regions": [
+      "Sousse",
+      "Monastir",
+      "Mahdia",
+      "Cap Bon",
+      "Grand Tunis"
+    ],
+    "contact": {
+      "title": "Need Assistance?",
+      "description": "Our team is available 24/7 to meet your needs."
+    }
+  },
+  "productsPage": {
+    "hero": {
+      "title": "Our Products",
+      "description": "Discover our wide range of high-quality medical equipment and supplies. We offer the best brands and products for your healthcare needs."
+    },
+    "filters": {
+      "title": "Filters",
+      "searchPlaceholder": "Search products...",
+      "selectBrand": "Select brand",
+      "allBrands": "All Brands",
+      "activeFilters": {
+        "category": "Category",
+        "type": "Type",
+        "subcategory": "Subcategory",
+        "brand": "Brand"
+      }
+    },
+    "products": {
+      "noProducts": "No products found",
+      "noImage": "No image available",
+      "inStock": "In Stock",
+      "outOfStock": "Out of Stock",
+      "addToCart": "Add to Cart",
+      "features": "Features"
+    }
+  },
+  "home" : {
+    "brands" : {
+      "title" : "Our Brands Partners"
+    }
+  }
+}

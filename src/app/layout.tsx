@@ -6,7 +6,8 @@ import { ourFileRouter } from '@/app/api/uploadthing/core';
 import { CartProvider } from '@/hooks/useCart';
 import { FilterProvider } from '@/contexts/FilterContext';
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import FooterClient from '@/components/client/FooterClient';
+import { Providers } from '@/components/Providers';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -76,8 +77,9 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
-        <CartProvider>
-          <FilterProvider>
+        <Providers>
+          <CartProvider>
+            <FilterProvider>
             {/* Ensure NextSSRPlugin is used in a Client Component */}
             <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
             
@@ -93,10 +95,11 @@ export default function RootLayout({
 
             {/* Wrap Footer in Suspense */}
             <Suspense fallback={<FooterFallback />}>
-              <Footer />
+              <FooterClient />
             </Suspense>
           </FilterProvider>
         </CartProvider>
+        </Providers>
       </body>
     </html>
   );

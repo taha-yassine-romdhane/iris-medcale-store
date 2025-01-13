@@ -19,6 +19,7 @@ import { ShoppingCart, ChevronLeft, ChevronRight, Search, Filter } from 'lucide-
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import { useFilters } from '@/contexts/FilterContext';
+import { useTranslation } from '@/context/TranslationContext';
 
 interface Filters {
   categories: string[];
@@ -28,6 +29,7 @@ interface Filters {
 }
 
 export default function ProductsPage() {
+  const { t } = useTranslation();
   const { category, type, subCategory, updateFilters } = useFilters();
   const [params, setParams] = useState<{
     category: string | null;
@@ -235,11 +237,10 @@ export default function ProductsPage() {
         <div className="relative max-w-screen-xl mx-auto px-6 sm:px-8 lg:px-12 py-20">
           <div className="text-center">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-300">
-              Our Products
+              {t('productsPage.hero.title')}
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              Discover our wide range of high-quality medical equipment and supplies.
-              We offer the best brands and products for your healthcare needs.
+              {t('productsPage.hero.description')}
             </p>
           </div>
         </div>
@@ -257,14 +258,14 @@ export default function ProductsPage() {
           <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
             <div className="flex items-center gap-2">
               <Filter className="h-5 w-5 text-blue-600" />
-              <h2 className="text-xl font-semibold text-gray-900">Filters</h2>
+              <h2 className="text-xl font-semibold text-gray-900">{t('productsPage.filters.title')}</h2>
             </div>
             <div className="flex flex-wrap gap-4 items-center flex-1 md:justify-end">
               <div className="relative flex-grow md:max-w-xs">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <Input
                   type="text"
-                  placeholder="Search products..."
+                  placeholder={t('productsPage.filters.searchPlaceholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10"
@@ -275,10 +276,10 @@ export default function ProductsPage() {
                 onValueChange={(value) => setParams(prev => ({ ...prev, brand: value }))}
               >
                 <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Select brand" />
+                  <SelectValue placeholder={t('productsPage.filters.selectBrand')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Brands</SelectItem>
+                  <SelectItem value="all">{t('productsPage.filters.allBrands')}</SelectItem>
                   {filters.brands.map((brand) => (
                     <SelectItem key={brand} value={brand}>
                       {brand}
@@ -293,22 +294,22 @@ export default function ProductsPage() {
           <div className="mt-4 flex flex-wrap gap-2">
             {category && (
               <Badge variant="secondary" className="flex items-center gap-1">
-                Category: {category}
+                {t('productsPage.filters.activeFilters.category')}: {category}
               </Badge>
             )}
             {type && (
               <Badge variant="secondary" className="flex items-center gap-1">
-                Type: {type}
+                {t('productsPage.filters.activeFilters.type')}: {type}
               </Badge>
             )}
             {subCategory && (
               <Badge variant="secondary" className="flex items-center gap-1">
-                Subcategory: {subCategory}
+                {t('productsPage.filters.activeFilters.subcategory')}: {subCategory}
               </Badge>
             )}
             {params.brand && params.brand !== 'all' && (
               <Badge variant="secondary" className="flex items-center gap-1">
-                Brand: {params.brand}
+                {t('productsPage.filters.activeFilters.brand')}: {params.brand}
               </Badge>
             )}
           </div>
@@ -317,7 +318,7 @@ export default function ProductsPage() {
         {/* Products Grid */}
         {filteredProducts.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-lg text-gray-600">No products found</p>
+            <p className="text-lg text-gray-600">{t('productsPage.products.noProducts')}</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -353,7 +354,7 @@ export default function ProductsPage() {
                       )
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                        <span className="text-gray-400">No image available</span>
+                        <span className="text-gray-400">{t('productsPage.products.noImage')}</span>
                       </div>
                     )}
 
@@ -389,7 +390,7 @@ export default function ProductsPage() {
                       "absolute top-1 right-4 px-2 rounded-full text-sm font-medium",
                       product.inStock ? "bg-green-500 text-white" : "bg-red-500 text-white"
                     )}>
-                      {product.inStock ? 'In Stock' : 'Out of Stock'}
+                      {product.inStock ? t('productsPage.products.inStock') : t('productsPage.products.outOfStock')}
                     </div>
                   </div>
 
@@ -435,7 +436,7 @@ export default function ProductsPage() {
                       disabled={!product.inStock}
                     >
                       <ShoppingCart className="h-4 w-4" />
-                      {product.inStock ? "Add to Cart" : "Out of Stock"}
+                      {product.inStock ? t('productsPage.products.addToCart') : t('productsPage.products.outOfStock')}
                     </Button>
                   </div>
                 </div>

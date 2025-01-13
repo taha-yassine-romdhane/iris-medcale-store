@@ -22,6 +22,7 @@ const defaultCart: Cart = {
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<Cart>(defaultCart);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -31,18 +32,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
         const parsedCart = JSON.parse(savedCart);
         if (parsedCart && Array.isArray(parsedCart.items)) {
           setCart(parsedCart);
-        } else {
-          setCart(defaultCart);
         }
       }
     } catch (error) {
       console.error('Error parsing cart from localStorage:', error);
-      setCart(defaultCart);
     }
+    setIsInitialized(true);
   }, []);
 
   // Save cart to localStorage whenever it changes
   useEffect(() => {
+    if (!isInitialized) return;
+    
     try {
       if (cart && Array.isArray(cart.items)) {
         localStorage.setItem('cart', JSON.stringify(cart));
@@ -50,7 +51,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     } catch (error) {
       console.error('Error saving cart to localStorage:', error);
     }
-  }, [cart]);
+  }, [cart, isInitialized]);
 
   const calculateTotal = (items: CartItem[]): number => {
     return items.reduce((total) => total , 0);

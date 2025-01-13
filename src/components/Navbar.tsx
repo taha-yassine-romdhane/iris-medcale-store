@@ -1,43 +1,29 @@
 'use client';
 
 import Link from "next/link";
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { Suspense } from 'react';
 import { ShoppingCart, Menu, X, User, LogOut, Settings } from "lucide-react";
 import { useState } from "react";
-import { Flags } from "./ui/flags";
 import CategoryNavbar from './CategoryNavbar';
 import Image from 'next/image';
 import SearchBar from "./SearchBar";
-import CartDropdown from './cart/CartDropdown'; // Import the CartDropdown component
+import CartDropdown from './cart/CartDropdown';
 import { useAuth } from "@/hooks/useAuth";
-import { usePathname, useRouter } from 'next/navigation';
-
-const languages = [
-  { code: 'fr', name: 'Français', flag: Flags.fr },
-  { code: 'en', name: 'English', flag: Flags.en },
-];
+import { useTranslation } from '@/context/TranslationContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false); // State for cart dropdown
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const { user, logout } = useAuth();
-  const router = useRouter();
-  const pathname = usePathname();
+  const { t } = useTranslation();
 
   const handleLogout = () => {
     logout();
     setIsUserMenuOpen(false);
   };
 
-  const handleLanguageChange = (langCode: string) => {
-    const newPath = pathname.replace(`/${'fr'}`, `/${langCode}`);
-    router.push(newPath);
-    setIsLangMenuOpen(false);
-  };
-
-  // User menu items based on role
   const getMenuItems = () => {
     if (!user) return null;
 
@@ -58,12 +44,11 @@ const Navbar = () => {
           onClick={() => setIsUserMenuOpen(false)}
         >
           <Settings className="h-4 w-4" />
-          <span>Dashboard</span>
+          <span>{t('navbar.dashboard')}</span>
         </Link>
       ];
     }
 
-    // Client menu items
     return [
       ...commonItems,
       <Link
@@ -73,7 +58,7 @@ const Navbar = () => {
         onClick={() => setIsUserMenuOpen(false)}
       >
         <ShoppingCart className="h-4 w-4" />
-        <span>Mes Commandes</span>
+        <span>{t('navbar.myOrders')}</span>
       </Link>,
       <Link
         key="user-profile"
@@ -82,7 +67,7 @@ const Navbar = () => {
         onClick={() => setIsUserMenuOpen(false)}
       >
         <User className="h-4 w-4" />
-        <span>Mon Profil</span>
+        <span>{t('navbar.myProfile')}</span>
       </Link>
     ];
   };
@@ -91,7 +76,6 @@ const Navbar = () => {
     <div>
       <nav className="fixed top-0 left-0 right-0 bg-white z-50 shadow-sm">
         <div className="max-w-[1836px] mx-auto relative">
-          {/* Logo Section */}
           <div className="absolute left-1 -bottom-12 z-50 bg-white rounded-b-lg p-2">
             <Link href="/" className="flex items-center">
               <Image
@@ -106,14 +90,11 @@ const Navbar = () => {
           </div>
 
           <div className="flex justify-between items-center h-16 px-4">
-            {/* Search Bar */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 hidden lg:block w-[600px]"> {/* Increased width */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 hidden lg:block w-[600px]">
               <SearchBar />
             </div>
 
-            {/* Desktop Menu (Buttons at the End) */}
             <div className="flex items-center space-x-4 ml-auto">
-              {/* Cart Dropdown */}
               <div className="relative">
                 <div
                   onClick={() => setIsCartOpen(!isCartOpen)}
@@ -123,7 +104,6 @@ const Navbar = () => {
                 </div>
               </div>
 
-              {/* User Menu */}
               {user ? (
                 <div className="relative">
                   <button
@@ -145,7 +125,7 @@ const Navbar = () => {
                         className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50"
                       >
                         <LogOut className="h-4 w-4" />
-                        <span>Se déconnecter</span>
+                        <span>{t('navbar.logout')}</span>
                       </button>
                     </div>
                   )}
@@ -156,38 +136,13 @@ const Navbar = () => {
                   className="text-blue-900 hover:text-blue-600 flex font-bold items-center gap-2"
                 >
                   <User className="h-6 w-6" />
-                  <span>Se connecter</span>
+                  <span>{t('navbar.login')}</span>
                 </Link>
               )}
 
-              {/* Language Selector */}
-              <div className="relative">
-                <button
-                  onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                  className="flex items-center space-x-2 px-3 py-2 text-gray-700 hover:text-blue-600"
-                >
-                  <span>{languages.find(lang => lang.code === 'fr')?.flag}</span>
-                </button>
-                {isLangMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                    <div className="py-1">
-                      {languages.map((lang) => (
-                        <button
-                          key={lang.code}
-                          onClick={() => handleLanguageChange(lang.code)}
-                          className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        >
-                          <span>{lang.flag}</span>
-                          <span>{lang.name}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+              <LanguageSwitcher />
             </div>
 
-            {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center">
               <button
                 onClick={() => setIsOpen(!isOpen)}
@@ -199,7 +154,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
@@ -208,28 +162,28 @@ const Navbar = () => {
                 href="/services"
                 className="block px-3 py-2 text-base font-medium text-blue-900 hover:text-blue-600"
               >
-                Nos Services
+                {t('navbar.services')}
               </Link>
               <Link
                 href="/a-propos"
                 className="block px-3 py-2 text-base font-medium text-blue-900 hover:text-blue-600"
               >
-                À Propos
+                {t('navbar.about')}
               </Link>
               <Link
                 href="/contact"
                 className="block px-3 py-2 text-base font-medium text-blue-900 hover:text-blue-600"
               >
-                Contact
+                {t('navbar.contact')}
               </Link>
               <Link
                 href="/appointment"
                 className="block px-3 py-2 text-base font-medium text-blue-900 hover:text-blue-600"
               >
-                Prenez RDV
+                {t('navbar.appointment')}
               </Link>
               {user ? (
-                <>
+                <div>
                   <div className="px-3 py-2 border-t border-gray-200">
                     <p className="text-sm font-semibold text-blue-900">{user.prenom} {user.nom}</p>
                     <p className="text-xs text-gray-500">{user.email}</p>
@@ -239,31 +193,31 @@ const Navbar = () => {
                       href="/dashboard"
                       className="block px-3 py-2 text-base font-medium text-blue-900 hover:text-blue-600"
                     >
-                      Dashboard
+                      {t('navbar.dashboard')}
                     </Link>
                   ) : (
-                    <>
+                    <div>
                       <Link
                         href="/mon-profil"
                         className="block px-3 py-2 text-base font-medium text-blue-900 hover:text-blue-600"
                       >
-                        Mon Profil
+                        {t('navbar.myProfile')}
                       </Link>
-                    </>
+                    </div>
                   )}
                   <button
                     onClick={handleLogout}
                     className="block w-full text-left px-3 py-2 text-base font-medium text-red-600 hover:bg-red-50"
                   >
-                    Se déconnecter
+                    {t('navbar.logout')}
                   </button>
-                </>
+                </div>
               ) : (
                 <Link
                   href="/login"
                   className="block px-3 py-2 text-base font-medium text-blue-900 hover:text-blue-600"
                 >
-                  Se connecter
+                  {t('navbar.login')}
                 </Link>
               )}
             </div>
