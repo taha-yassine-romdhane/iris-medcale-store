@@ -5,7 +5,9 @@ import en from '@/translations/en.json';
 import fr from '@/translations/fr.json';
 
 type Language = 'en' | 'fr';
-type Translations = typeof en;
+type NestedTranslations = {
+  [key: string]: string | string[] | NestedTranslations;
+};
 
 interface TranslationContextType {
   language: Language;
@@ -15,7 +17,7 @@ interface TranslationContextType {
 
 const TranslationContext = createContext<TranslationContextType | undefined>(undefined);
 
-const translations: Record<Language, Translations> = {
+const translations: Record<Language, NestedTranslations> = {
   en,
   fr,
 };
@@ -45,15 +47,18 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
     }
   }, [language, isInitialized]);
 
-  const t = (key: string) => {
+  const t = (key: string): string => {
     const keys = key.split('.');
-    let value: any = translations[language];
+    let value: NestedTranslations | string = translations[language];
     
     for (const k of keys) {
-      value = value?.[k];
+      if (typeof value === 'string') {
+        return value;
+      }
+      value = value[k] as NestedTranslations | string;
     }
     
-    return value || key;
+    return typeof value === 'string' ? value : key;
   };
 
   if (!isInitialized) {
