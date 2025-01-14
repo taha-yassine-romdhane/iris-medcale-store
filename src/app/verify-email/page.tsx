@@ -41,9 +41,10 @@ export default function VerifyEmailPage() {
             router.push('/login');
           }, 3000);
         }
-      } catch (error) {
+      } catch {
+        console.error('Error verifying email:');
         setStatus('error');
-        setMessage('An error occurred while verifying your email');
+        setMessage('An error occurred while verifying email');
       }
     };
 
