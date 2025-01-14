@@ -3,6 +3,8 @@ import bcrypt from 'bcryptjs';
 import { signToken } from '@/lib/jwt';
 import prisma from '@/lib/prisma';
 import { RoleUtilisateur }  from '@prisma/client';
+import { sendVerificationEmail } from '@/lib/email';
+import crypto from 'crypto';
 
 export async function POST(request: Request) {
   try {
@@ -50,7 +52,11 @@ export async function POST(request: Request) {
     // Hash password
     const hashedPassword = await bcrypt.hash(motDePasse, 10);
 
-    // Create user with optional fields
+    // Generate verification token
+    const verificationToken = crypto.randomBytes(32).toString('hex');
+    const tokenExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours from now
+
+    // Create user with verification token
     const user = await prisma.utilisateur.create({
       data: {
         email,
@@ -61,27 +67,43 @@ export async function POST(request: Request) {
         telephone: telephone || null,
         adresse: adresse || null,
         ville: ville || null,
-        codePostal: codePostal || null
+        codePostal: codePostal || null,
+        emailVerified: false,
+        verificationToken: {
+          create: {
+            token: verificationToken,
+            expires: tokenExpiry,
+          },
+        },
       },
     });
 
-    // Generate JWT token using the same structure as login
+    // Send verification email
+    let emailSent = false;
+    try {
+      await sendVerificationEmail(email, verificationToken);
+      emailSent = true;
+    } catch (error) {
+      console.error('Failed to send verification email:', error);
+      // Continue with registration but inform the user about email issue
+    }
+
+    // Generate JWT token
     const token = signToken({
       id: user.id,
       email: user.email,
-      role: user.role
+      role: user.role,
     });
-
-    // Remove password from response
-    const userWithoutPassword = { ...user, motDePasse: undefined };
-    delete userWithoutPassword.motDePasse;
 
     return NextResponse.json({
-      user: userWithoutPassword,
+      message: emailSent 
+        ? 'Registration successful. Please check your email to verify your account.'
+        : 'Registration successful but we could not send the verification email. Please contact support.',
       token,
+      emailSent,
     });
   } catch (error) {
-    console.error('Registration error details:', error);
+    console.error('Registration error:', error);
     return NextResponse.json(
       { error: 'Une erreur est survenue lors de l\'inscription' },
       { status: 500 }

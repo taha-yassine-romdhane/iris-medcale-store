@@ -389,5 +389,16 @@
     "brands" : {
       "title" : "Our Brands Partners"
     }
+  },
+  "verifyEmail": {
+    "title": "Email Verification",
+    "redirecting": "Redirecting to login page...",
+    "goToLogin": "Go to Login"
+  },
+  "checkEmail": {
+    "title": "Check Your Email",
+    "description": "We've sent you a verification email. Please check your inbox and click the link to verify your account.",
+    "spam": "If you don't see the email, please check your spam folder.",
+    "goToLogin": "Return to Login"
   }
 }

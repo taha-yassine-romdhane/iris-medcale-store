@@ -6,8 +6,6 @@ import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import { User, Mail, Lock, Phone, MapPin, Building, Hash } from 'lucide-react';
 
-
-
 export default function SignUpPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -52,14 +50,15 @@ export default function SignUpPage() {
       // Store token
       localStorage.setItem('token', data.token);
 
-      toast.success('Inscription réussie !');
-      router.push('/login');
-    } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message || "Une erreur est survenue lors de l'inscription");
+      if (data.emailSent) {
+        toast.success('Inscription réussie ! Veuillez vérifier votre email pour activer votre compte.');
+        router.push('/check-email');
       } else {
-        toast.error("Une erreur inconnue est survenue");
+        toast.error('Inscription réussie mais l\'envoi de l\'email a échoué. Veuillez contacter le support.');
+        router.push('/login');
       }
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Une erreur est survenue');
     } finally {
       setLoading(false);
     }

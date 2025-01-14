@@ -22,6 +22,7 @@ export async function GET() {
         ville: true,
         codePostal: true,
         photo: true,
+        emailVerified: true,
         // Exclude motDePasse for security
       },
     });

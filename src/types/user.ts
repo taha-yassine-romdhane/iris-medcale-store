@@ -9,6 +9,7 @@ export interface User {
   role: RoleUtilisateur;
   adresse?: string;
   ville?: string;
+  emailVerified : boolean;
   codePostal?: string;
   actif: boolean;
   telephone?: string;

@@ -385,9 +385,20 @@
       "features": "Caractéristiques"
     }
   },
-  "home" : {
-    "brands" : {
-      "title" : "Nos Marques Partenaires"
+  "home": {
+    "brands": {
+      "title": "Nos Marques Partenaires"
     }
+  },
+  "verifyEmail": {
+    "title": "Email Verification",
+    "redirecting": "Redirecting to login page...",
+    "goToLogin": "Go to Login"
+  },
+  "checkEmail": {
+    "title": "Check Your Email",
+    "description": "We've sent you a verification email. Please check your inbox and click the link to verify your account.",
+    "spam": "If you don't see the email, please check your spam folder.",
+    "goToLogin": "Return to Login"
   }
 }

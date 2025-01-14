@@ -66,20 +66,22 @@ model Category {
 }
 
 model Utilisateur {
-  id            String          @id @default(cuid())
-  dateCreation  DateTime        @default(now())
-  dateMiseAJour DateTime        @updatedAt
-  email         String          @unique
-  motDePasse    String
-  nom           String?
-  prenom        String?
-  role          RoleUtilisateur @default(CLIENT)
-  actif         Boolean         @default(true)
-  telephone     String?
-  adresse       String?
-  ville         String?
-  codePostal    String?
-  photo         String?
+  id             String           @id @default(cuid())
+  dateCreation   DateTime         @default(now())
+  dateMiseAJour  DateTime        @updatedAt
+  email          String          @unique
+  motDePasse     String
+  nom            String
+  prenom         String
+  role           RoleUtilisateur @default(CLIENT)
+  adresse        String?
+  ville          String?
+  codePostal     String?
+  actif          Boolean         @default(true)
+  telephone      String?
+  photo          String?
+  emailVerified  Boolean         @default(false)
+  verificationToken VerificationToken?
   commandes     Commande[]
   contacts      Contact[]
   appointments  Appointment[]
@@ -141,4 +143,13 @@ model Appointment {
   status        StatusRdv   @default(EN_ATTENTE)
   utilisateur   Utilisateur @relation(fields: [utilisateurId], references: [id])
   utilisateurId String
+}
+
+model VerificationToken {
+  id        String      @id @default(cuid())
+  token     String      @unique
+  expires   DateTime
+  user      Utilisateur @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String      @unique
+  createdAt DateTime    @default(now())
 }
