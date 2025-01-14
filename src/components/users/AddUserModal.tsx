@@ -30,6 +30,7 @@ export default function AddUserModal({ isOpen, onClose, onSubmit }: AddUserModal
     prenom: '',
     role: 'CLIENT',
     telephone: '',
+    emailVerified: false 
   });
 
   const handleSubmit = (e: React.FormEvent) => {
