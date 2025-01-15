@@ -6,23 +6,13 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const heroProducts = [
   {
     id: 1,
-    image: "/hero section/Untitled Project.png",
+    image: "/hero section/slider1.jpeg",
     position: "center", // Custom position for each image
   },
   {
     id: 2,
-    image: "/hero section/test.png",
+    image: "/hero section/slider2.jpeg",
     position: "top", // Custom position for each image
-  },
-  {
-    id: 3,
-    image: "/hero section/Untitled Project 3.png",
-    position: "bottom", // Custom position for each image
-  },
-  {
-    id: 4,
-    image: "/hero section/Untitled Project 4.png",
-    position: "left", // Custom position for each image
   },
 ];
 
@@ -61,7 +51,7 @@ export default function HeroSection() {
   }, [nextSlide]);
 
   return (
-    <section className="relative w-full h-[500px] sm:h-[500px] md:h-[600px] overflow-hidden">
+    <section className="relative w-full h-[400px] sm:h-[400px] md:h-[500px] overflow-hidden">
       {/* Slides */}
       <div
         className="flex transition-transform duration-700 ease-out"
@@ -70,7 +60,7 @@ export default function HeroSection() {
         {heroProducts.map((product, index) => (
           <div
             key={product.id}
-            className="relative w-full h-[500px] sm:h-[500px] md:h-[600px] flex-shrink-0"
+            className="relative w-full h-[400px] sm:h-[400px] md:h-[500px] flex-shrink-0"
           >
             <Image
               src={product.image}
