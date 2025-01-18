@@ -12,10 +12,7 @@ async function main() {
     // Then delete Commande as it references Utilisateur
     await prisma.commande.deleteMany();
     // Then delete other tables
-    await prisma.media.deleteMany();
-    await prisma.review.deleteMany();
-    await prisma.product.deleteMany();
-    await prisma.category.deleteMany();
+   
     await prisma.utilisateur.deleteMany();
 
     console.log('Creating admin user...');

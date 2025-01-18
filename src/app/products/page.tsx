@@ -28,30 +28,36 @@ interface Filters {
   subCategories: string[];
 }
 
+interface FilterParams {
+  category: string | null;
+  type: string | null;
+  subCategory: string | null;
+  brand: string | null;
+}
+
+interface ApiResponse {
+  products: Product[];
+}
+
+interface Media {
+  url: string;
+  alt?: string;
+  type: 'image' | 'video';
+}
+
+interface ProductFeatures {
+  features: string[] | string;
+}
+
 export default function ProductsPage() {
   const { t } = useTranslation();
   const { category, type, subCategory, updateFilters } = useFilters();
-  const [params, setParams] = useState<{
-    category: string | null;
-    type: string | null;
-    subCategory: string | null;
-    brand: string | null;
-  }>({
+  const [params, setParams] = useState<FilterParams>({
     category: null,
     type: null,
     subCategory: null,
     brand: null
   });
-
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    setParams({
-      category: urlParams.get('category'),
-      type: urlParams.get('type'),
-      subCategory: urlParams.get('subCategory'),
-      brand: urlParams.get('brand')
-    });
-  }, []);
 
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
@@ -63,40 +69,52 @@ export default function ProductsPage() {
   });
   const [isLoading, setIsLoading] = useState(true);
   const { addToCart } = useCart();
-  const [selectedMedia, setSelectedMedia] = useState<{ [key: string]: number }>({});
+  const [selectedMedia, setSelectedMedia] = useState<Record<string, number>>({});
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Initialize filters from URL on mount
+  // Initialize params from URL only once on mount
   useEffect(() => {
-    if (params.category || params.type || params.subCategory) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialParams = {
+      category: urlParams.get('category'),
+      type: urlParams.get('type'),
+      subCategory: urlParams.get('subCategory'),
+      brand: urlParams.get('brand')
+    };
+    setParams(initialParams);
+
+    // Initialize filters from URL params
+    if (initialParams.category || initialParams.type || initialParams.subCategory) {
       updateFilters({
-        category: params.category || '',
-        type: params.type || '',
-        subCategory: params.subCategory || '',
+        category: initialParams.category || '',
+        type: initialParams.type || '',
+        subCategory: initialParams.subCategory || '',
       });
     }
+  }, []); // Empty dependency array as this should only run once on mount
 
-    if (params.brand) {
-      setParams(prev => ({ ...prev, brand: params.brand }));
-    }
-  }, [params, updateFilters]);
-
-  // Fetch products only when filters change (not search)
+  // Fetch products when filters change
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchProducts = async (): Promise<void> => {
       try {
         setIsLoading(true);
         const queryParams = new URLSearchParams();
-        if (category) queryParams.append('category', category);
-        if (type) queryParams.append('type', type);
-        if (subCategory) queryParams.append('subCategory', subCategory);
+        
+        // Use both context filters and URL params
+        const effectiveCategory = category || params.category;
+        const effectiveType = type || params.type;
+        const effectiveSubCategory = subCategory || params.subCategory;
+        
+        if (effectiveCategory) queryParams.append('category', effectiveCategory);
+        if (effectiveType) queryParams.append('type', effectiveType);
+        if (effectiveSubCategory) queryParams.append('subCategory', effectiveSubCategory);
         if (params.brand && params.brand !== 'all') queryParams.append('brand', params.brand);
 
         const response = await fetch(`/api/products?${queryParams.toString()}`);
         if (!response.ok) {
           throw new Error('Failed to fetch products');
         }
-        const data = await response.json();
+        const data = await response.json() as ApiResponse;
 
         if (!data || !Array.isArray(data.products)) {
           console.error('Invalid data format:', data);
@@ -105,45 +123,21 @@ export default function ProductsPage() {
           return;
         }
 
-        setProducts(data.products);
-        setFilteredProducts(data.products);
+        const fetchedProducts = data.products;
+        setProducts(fetchedProducts);
 
-        if (data.products.length > 0) {
+        // Update available filters
+        if (fetchedProducts.length > 0) {
           const uniqueFilters: Filters = {
-            categories: [
-              ...new Set(
-                data.products
-                  .map((p: Product) => String(p.category)) // Convert to string explicitly
-                  .filter((s: string) => s !== '') // Remove empty strings
-              ),
-            ] as string[],
-            brands: [
-              ...new Set(
-                data.products
-                  .map((p: Product) => String(p.brand)) // Convert to string explicitly
-                  .filter((s: string) => s !== '') // Remove empty strings
-              ),
-            ] as string[],
-            types: [
-              ...new Set(
-                data.products
-                  .map((p: Product) => String(p.type)) // Convert to string explicitly
-                  .filter((s: string) => s !== '') // Remove empty strings
-              ),
-            ] as string[],
-            subCategories: [
-              ...new Set(
-                data.products
-                  .filter((p: Product) => p.subCategory) // Filter out undefined subCategories
-                  .map((p: Product) => String(p.subCategory)) // Convert to string explicitly
-                  .filter((s: string) => s !== '') // Remove empty strings
-              ),
-            ] as string[],
+            categories: [...new Set(fetchedProducts.map(p => p.category).filter(Boolean))],
+            brands: [...new Set(fetchedProducts.map(p => p.brand).filter(Boolean))],
+            types: [...new Set(fetchedProducts.map(p => p.type).filter(Boolean))],
+            subCategories: [...new Set(fetchedProducts.filter(p => p.subCategory).map(p => p.subCategory as string))],
           };
           setFilters(uniqueFilters);
         }
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error('Error fetching products:', error instanceof Error ? error.message : 'Unknown error');
         toast.error('Error fetching products');
         setProducts([]);
         setFilteredProducts([]);
@@ -153,34 +147,29 @@ export default function ProductsPage() {
     };
 
     fetchProducts();
-  }, [category, type, subCategory, params.brand]);
+  }, [category, type, subCategory, params.brand]); // Only re-fetch when filters change
 
-  // Local search and filter
+  // Apply local search filter whenever products or search query changes
   useEffect(() => {
+    if (!products.length) return;
+
     let filtered = [...products];
-
-    // Apply brand filter
-    if (params.brand && params.brand !== 'all') {
-      filtered = filtered.filter(product => product.brand === params.brand);
-    }
-
-    // Apply search filter locally
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase().trim();
-      filtered = filtered.filter(product =>
+      filtered = filtered.filter((product: Product) =>
         product.name.toLowerCase().includes(query) ||
         product.description.toLowerCase().includes(query) ||
         product.brand.toLowerCase().includes(query) ||
         product.type.toLowerCase().includes(query) ||
         (product.features && Array.isArray(product.features) &&
-          product.features.some(feature =>
+          product.features.some((feature: string) =>
             feature.toLowerCase().includes(query)
           ))
       );
     }
 
     setFilteredProducts(filtered);
-  }, [products, params.brand, searchQuery]);
+  }, [products, searchQuery]); // Only update filtered products when products or search query changes
 
   const handleAddToCart = useCallback((product: Product) => {
     if (!product.inStock) return;
@@ -273,8 +262,7 @@ export default function ProductsPage() {
               </div>
               <Select
                 value={params.brand ?? undefined}
-                onValueChange={(value) => setParams(prev => ({ ...prev, brand: value }))}
-              >
+                onValueChange={(value) => setParams(prev => ({ ...prev, brand: value }))}>
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder={t('productsPage.filters.selectBrand')} />
                 </SelectTrigger>

@@ -15,7 +15,7 @@ interface CategoryProducts {
 }
 
 const orderedProducts = {
-  cpap: ['CPAP YH-680', 'CPAP YH-450', 'CPAP YH-550', 'AirSense 10 Elite', 'Auto Prisma Smart'],
+  cpap: ['YH-680', 'YH-450', 'YH-550', 'AirSense 10 Elite', 'Prisma Smart Basic'],
   masks: ['YF-02', 'YN-03', 'YP-01', 'AirFit F20', 'AirFit F30'],
   oxygen: ['8F-5', '8F-10', 'Spirit 6', 'Spirit 3'],
 };
@@ -26,7 +26,7 @@ export default function ProductsSection() {
     masks: [],
     oxygen: [],
     lits: []
-  });
+  }); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -55,7 +55,7 @@ export default function ProductsSection() {
           cpap: orderedProducts.cpap
             .map(name => data.products.find((p: Product) => 
               p.name.toLowerCase().includes(name.toLowerCase()) &&
-              (p.category?.toLowerCase() === 'appareils cpap/ppc' || p.type?.toLowerCase()?.includes('cpap'))
+              (p.type?.toLowerCase() === 'fixe' || p.type?.toLowerCase()?.includes('auto-pilote'))
             ))
             .filter((p): p is Product => p !== undefined),
           
@@ -69,7 +69,7 @@ export default function ProductsSection() {
           oxygen: orderedProducts.oxygen
             .map(name => data.products.find((p: Product) => 
               p.name.toLowerCase().includes(name.toLowerCase()) &&
-              (p.category?.toLowerCase() === 'concentrateur d\'oxygene' || p.type?.toLowerCase()?.includes('concentrateur d\'oxygene'))
+              (p.category?.toLowerCase() === 'concentrateur d\'oxygene' || p.type == '5 LITRES' || p.type == '10 LITRES' || p.type?.toLowerCase()?.includes('portable'))
             ))
             .filter((p): p is Product => p !== undefined),
           
