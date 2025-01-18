@@ -2,7 +2,7 @@
 
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState, useEffect } from 'react';
-import { X, Trash2 } from 'lucide-react';
+import { X, Trash2, ArrowUp, ArrowDown } from 'lucide-react';
 import { Product, Media } from '@/types/product';
 import Image from 'next/image';
 import { UploadDropzone } from '@uploadthing/react';
@@ -131,6 +131,31 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
     setFormData((prev) => ({
       ...prev,
       features: Array.isArray(prev.features) ? prev.features.filter((_, i) => i !== index) : [],
+    }));
+  };
+
+  const handleMediaMove = (index: number, direction: 'up' | 'down') => {
+    if (
+      (direction === 'up' && index === 0) || 
+      (direction === 'down' && index === formData.media.length - 1)
+    ) {
+      return;
+    }
+
+    const newMedia = [...formData.media];
+    const newIndex = direction === 'up' ? index - 1 : index + 1;
+    
+    // Swap the media items
+    [newMedia[index], newMedia[newIndex]] = [newMedia[newIndex], newMedia[index]];
+    
+    // Update the order property
+    newMedia.forEach((media, i) => {
+      media.order = i;
+    });
+
+    setFormData(prev => ({
+      ...prev,
+      media: newMedia
     }));
   };
 
@@ -327,29 +352,62 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
                     {/* Media Preview */}
                     <div className="mt-4 grid grid-cols-2 gap-4">
                       {formData.media.map((media, index) => (
-                        <div key={index} className="relative">
-                          {media.type === 'image' ? (
-                            <Image
-                              src={media.url}
-                              alt={media.alt || `Product image ${index + 1}`}
-                              width={200}
-                              height={200}
-                              className="rounded-lg object-cover"
-                            />
-                          ) : (
-                            <video
-                              src={media.url}
-                              controls
-                              className="rounded-lg w-full h-[200px] object-cover"
-                            />
-                          )}
-                          <button
-                            type="button"
-                            onClick={() => handleMediaDelete(index)}
-                            className="absolute top-2 right-2 p-1 bg-red-500 rounded-full text-white hover:bg-red-600"
-                          >
-                            <Trash2 size={16} />
-                          </button>
+                        <div key={index} className="relative group bg-gray-50 p-2 rounded-lg">
+                          <div className="relative">
+                            {media.type === 'image' ? (
+                              <Image
+                                src={media.url}
+                                alt={media.alt || `Product image ${index + 1}`}
+                                width={200}
+                                height={200}
+                                className="rounded-lg object-cover"
+                              />
+                            ) : (
+                              <video
+                                src={media.url}
+                                controls
+                                className="rounded-lg w-full h-[200px] object-cover"
+                              />
+                            )}
+                            <div className="absolute top-2 right-2 flex gap-2">
+                              <button
+                                type="button"
+                                onClick={() => handleMediaDelete(index)}
+                                className="p-1 bg-red-500 rounded-full text-white hover:bg-red-600"
+                              >
+                                <Trash2 size={16} />
+                              </button>
+                            </div>
+                          </div>
+                          <div className="mt-2 flex justify-between items-center">
+                            <span className="text-sm text-gray-500">Order: {media.order + 1}</span>
+                            <div className="flex gap-2">
+                              <button
+                                type="button"
+                                onClick={() => handleMediaMove(index, 'up')}
+                                disabled={index === 0}
+                                className={`p-1 rounded-full ${
+                                  index === 0 
+                                    ? 'bg-gray-300 cursor-not-allowed' 
+                                    : 'bg-blue-500 hover:bg-blue-600'
+                                } text-white`}
+                              >
+                                <ArrowUp size={16} />
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => handleMediaMove(index, 'down')}
+                                disabled={index === formData.media.length - 1}
+                                className={`p-1 rounded-full ${
+                                  index === formData.media.length - 1
+                                    ? 'bg-gray-300 cursor-not-allowed'
+                                    : 'bg-blue-500 hover:bg-blue-600'
+                                } text-white`}
+                              >
+                                <ArrowDown size={16} />
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       ))}
                     </div>

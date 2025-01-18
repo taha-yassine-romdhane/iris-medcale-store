@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect} from 'react';
-import { PlusCircle, Edit, Trash, Search, Eye, ChevronLeft, ChevronRight } from 'lucide-react';
+import { PlusCircle, Edit, Trash, Search, Eye } from 'lucide-react';
 import ViewProductModal from '@/components/products/ViewProductModal';
 import EditProductModal from '@/components/products/EditProductModal';
 import DeleteProductModal from '@/components/products/DeleteProductModal';
@@ -12,15 +12,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
-const ITEMS_PER_PAGE = 5;
-
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [category, setCategory] = useState('');
   const [type, setType] = useState('');
   const [brand, setBrand] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
   // Search state
@@ -33,7 +29,7 @@ export default function ProductsPage() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-  // Fetch products based on filters and pagination
+  // Fetch all products based on filters
   useEffect(() => {
     const fetchProducts = async () => {
       setIsLoading(true);
@@ -43,16 +39,12 @@ export default function ProductsPage() {
           ...(type && { type }),
           ...(brand && { brand }),
           ...(searchQuery && { search: searchQuery }),
-          page: currentPage.toString(),
-          limit: ITEMS_PER_PAGE.toString(),
         });
 
         const response = await fetch(`/api/products?${queryParams}`);
         if (!response.ok) throw new Error('Failed to fetch products');
-
         const data = await response.json();
-        setProducts(data.products || []);
-        setTotalPages(data.pagination.totalPages);
+        setProducts(data.products);
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {
@@ -61,37 +53,26 @@ export default function ProductsPage() {
     };
 
     fetchProducts();
-  }, [category, type, brand, currentPage, searchQuery]);
+  }, [category, type, brand, searchQuery]);
 
+  // Filter handlers
   const handleFilter = ({ category, type, brand }: { category: string; type: string; brand: string }) => {
     setCategory(category);
     setType(type);
     setBrand(brand);
-    setCurrentPage(1); // Reset to first page when filters change
   };
 
   const handleResetPage = () => {
-    setCurrentPage(1);
+    setCategory('');
+    setType('');
+    setBrand('');
+    setSearchQuery('');
   };
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    setCurrentPage(1); // Reset to first page when search changes
   };
 
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(prev => prev - 1);
-    }
-  };
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(prev => prev + 1);
-    }
-  };
-
-  // Product actions
   const handleUpdateProduct = (updatedProduct: Product) => {
     setProducts(products.map(p => p.id === updatedProduct.id ? updatedProduct : p));
   };
@@ -250,54 +231,6 @@ export default function ProductsPage() {
                   )}
                 </tbody>
               </table>
-            </div>
-
-            {/* Pagination */}
-            <div className="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200">
-              <div className="flex-1 flex justify-between sm:hidden">
-                <button
-                  onClick={handlePrevPage}
-                  disabled={currentPage === 1}
-                  className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-                >
-                  Previous
-                </button>
-                <button
-                  onClick={handleNextPage}
-                  disabled={currentPage === totalPages}
-                  className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-                >
-                  Next
-                </button>
-              </div>
-              <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-                <div>
-                  <p className="text-sm text-gray-700">
-                    Affichage de la page <span className="font-medium">{currentPage}</span> sur{' '}
-                    <span className="font-medium">{totalPages}</span>
-                  </p>
-                </div>
-                <div>
-                  <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                    <button
-                      onClick={handlePrevPage}
-                      disabled={currentPage === 1}
-                      className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                    >
-                      <span className="sr-only">Previous</span>
-                      <ChevronLeft className="h-5 w-5" aria-hidden="true" />
-                    </button>
-                    <button
-                      onClick={handleNextPage}
-                      disabled={currentPage === totalPages}
-                      className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                    >
-                      <span className="sr-only">Next</span>
-                      <ChevronRight className="h-5 w-5" aria-hidden="true" />
-                    </button>
-                  </nav>
-                </div>
-              </div>
             </div>
           </div>
         </div>

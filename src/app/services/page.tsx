@@ -24,8 +24,9 @@ const ServicesPage = () => {
     },
   ];
 
-  const regions: string[] = t('servicesPage.regions') as unknown as string[];
-
+  const regions = t('servicesPage.regions', { returnObjects: true }) || [];
+  console.log('Regions data:', regions, 'Type:', typeof regions);
+  
   return (
     <main className="pt-16">
       {/* Hero Section */}

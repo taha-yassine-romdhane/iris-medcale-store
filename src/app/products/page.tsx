@@ -42,11 +42,23 @@ interface ApiResponse {
 export default function ProductsPage() {
   const { t } = useTranslation();
   const { category, type, subCategory, updateFilters } = useFilters();
-  const [params, setParams] = useState<FilterParams>({
-    category: null,
-    type: null,
-    subCategory: null,
-    brand: null
+  const [params, setParams] = useState<FilterParams>(() => {
+    // Initialize params synchronously from URL
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      return {
+        category: urlParams.get('category'),
+        type: urlParams.get('type'),
+        subCategory: urlParams.get('subCategory'),
+        brand: urlParams.get('brand')
+      };
+    }
+    return {
+      category: null,
+      type: null,
+      subCategory: null,
+      brand: null
+    };
   });
 
   const [products, setProducts] = useState<Product[]>([]);
@@ -62,26 +74,16 @@ export default function ProductsPage() {
   const [selectedMedia, setSelectedMedia] = useState<Record<string, number>>({});
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Initialize params from URL only once on mount
+  // Initialize filters from URL params only once
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const initialParams = {
-      category: urlParams.get('category'),
-      type: urlParams.get('type'),
-      subCategory: urlParams.get('subCategory'),
-      brand: urlParams.get('brand')
-    };
-    setParams(initialParams);
-
-    // Initialize filters from URL params
-    if (initialParams.category || initialParams.type || initialParams.subCategory) {
+    if (params.category || params.type || params.subCategory) {
       updateFilters({
-        category: initialParams.category || '',
-        type: initialParams.type || '',
-        subCategory: initialParams.subCategory || '',
+        category: params.category || '',
+        type: params.type || '',
+        subCategory: params.subCategory || '',
       });
     }
-  }, [updateFilters]); // Include updateFilters in dependency array
+  }); // Empty dependency array since we only want this to run once
 
   // Fetch products when filters change
   useEffect(() => {
@@ -90,15 +92,19 @@ export default function ProductsPage() {
         setIsLoading(true);
         const queryParams = new URLSearchParams();
         
-        // Use both context filters and URL params
-        const effectiveCategory = category || params.category;
-        const effectiveType = type || params.type;
-        const effectiveSubCategory = subCategory || params.subCategory;
+        // Use URL params first, then fall back to context filters
+        const effectiveCategory = params.category || category;
+        const effectiveType = params.type || type;
+        const effectiveSubCategory = params.subCategory || subCategory;
         
         if (effectiveCategory) queryParams.append('category', effectiveCategory);
         if (effectiveType) queryParams.append('type', effectiveType);
         if (effectiveSubCategory) queryParams.append('subCategory', effectiveSubCategory);
         if (params.brand && params.brand !== 'all') queryParams.append('brand', params.brand);
+
+        // Update the URL to match the current filters
+        const newUrl = `${window.location.pathname}?${queryParams.toString()}`;
+        window.history.replaceState({}, '', newUrl);
 
         const response = await fetch(`/api/products?${queryParams.toString()}`);
         if (!response.ok) {
@@ -245,7 +251,7 @@ export default function ProductsPage() {
                 <Input
                   type="text"
                   placeholder={t('productsPage.filters.searchPlaceholder')}
-                  value={searchQuery}
+                  value={typeof searchQuery === 'string' ? searchQuery : ''}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10"
                 />

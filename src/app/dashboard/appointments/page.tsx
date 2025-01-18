@@ -149,7 +149,14 @@ export default function AppointmentsPage() {
             <div>
               <p className="text-sm font-medium text-gray-500">Date du Rendez-vous</p>
               <p className="text-gray-900">
-                {format(new Date(appointment.dateRdv), 'PPP', { locale: fr })}
+              {new Date(appointment.dateRdv).toLocaleString('fr-FR', {
+                          year: 'numeric',
+                          month: '2-digit',
+                          day: '2-digit',
+                          hour: '2-digit',
+                          minute: '2-digit',
+                          timeZone: 'UTC'
+                        })}
               </p>
             </div>
             <div>
@@ -250,7 +257,14 @@ export default function AppointmentsPage() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-500">
-                        {format(new Date(appointment.dateRdv), 'PPP', { locale: fr })}
+                        {new Date(appointment.dateRdv).toLocaleString('fr-FR', {
+                          year: 'numeric',
+                          month: '2-digit',
+                          day: '2-digit',
+                          hour: '2-digit',
+                          minute: '2-digit',
+                          timeZone: 'UTC'
+                        })}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">

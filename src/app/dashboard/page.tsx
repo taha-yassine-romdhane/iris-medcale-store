@@ -4,7 +4,6 @@ import Link from 'next/link';
 import {
   Package,
   Users,
-  Settings,
   MessageSquare,
   Calendar,
   ShoppingBag
@@ -80,20 +79,6 @@ export default function DashboardPage() {
               <p className="text-gray-500">Gérez les demandes de rendez-vous.</p>
             </div>
           </div>
-        </Link>
-      </div>
-
-      {/* Management Dashboard Card */}
-      <div className="mt-12 flex justify-center w-full">
-        <Link 
-          href="/dashboard/management" 
-          className="flex flex-col items-center justify-center p-10 bg-white rounded-lg shadow-lg hover:shadow-xl transition w-full max-w-lg"
-        >
-          <div className="p-6 rounded-full bg-purple-100 mb-6">
-            <Settings className="h-12 w-12 text-purple-600" />
-          </div>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Tableau de Gestion</h2>
-          <p className="text-gray-500 text-center">Accédez au tableau de gestion principal pour une vue complète et un contrôle facile.</p>
         </Link>
       </div>
     </div>

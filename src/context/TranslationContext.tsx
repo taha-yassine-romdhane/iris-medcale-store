@@ -5,14 +5,20 @@ import en from '@/translations/en.json';
 import fr from '@/translations/fr.json';
 
 type Language = 'en' | 'fr';
+
+type TranslationValue = string | string[] | { [key: string]: TranslationValue };
+
 type NestedTranslations = {
-  [key: string]: string | string[] | NestedTranslations;
+  [key: string]: TranslationValue;
 };
 
 interface TranslationContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
+  t: <T extends boolean = false>(
+    key: string,
+    options?: { returnObjects?: T }
+  ) => T extends true ? string[] : string;
 }
 
 const TranslationContext = createContext<TranslationContextType | undefined>(undefined);
@@ -47,18 +53,29 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
     }
   }, [language, isInitialized]);
 
-  const t = (key: string): string => {
+  const t = <T extends boolean = false>(
+    key: string,
+    options?: { returnObjects?: T }
+  ): T extends true ? string[] : string => {
     const keys = key.split('.');
-    let value: NestedTranslations | string = translations[language];
+    let value: TranslationValue = translations[language];
     
     for (const k of keys) {
-      if (typeof value === 'string') {
-        return value;
+      if (value === undefined || typeof value === 'string' || Array.isArray(value)) {
+        return (key as T extends true ? string[] : string);
       }
-      value = value[k] as NestedTranslations | string;
+      value = value[k];
     }
     
-    return typeof value === 'string' ? value : key;
+    if (options?.returnObjects && Array.isArray(value)) {
+      return (value as T extends true ? string[] : string);
+    }
+    
+    if (typeof value === 'string') {
+      return (value as T extends true ? string[] : string);
+    }
+    
+    return (key as T extends true ? string[] : string);
   };
 
   if (!isInitialized) {
