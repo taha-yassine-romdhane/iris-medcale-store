@@ -39,16 +39,6 @@ interface ApiResponse {
   products: Product[];
 }
 
-interface Media {
-  url: string;
-  alt?: string;
-  type: 'image' | 'video';
-}
-
-interface ProductFeatures {
-  features: string[] | string;
-}
-
 export default function ProductsPage() {
   const { t } = useTranslation();
   const { category, type, subCategory, updateFilters } = useFilters();
@@ -91,7 +81,7 @@ export default function ProductsPage() {
         subCategory: initialParams.subCategory || '',
       });
     }
-  }, []); // Empty dependency array as this should only run once on mount
+  }, [updateFilters]); // Include updateFilters in dependency array
 
   // Fetch products when filters change
   useEffect(() => {
@@ -147,7 +137,7 @@ export default function ProductsPage() {
     };
 
     fetchProducts();
-  }, [category, type, subCategory, params.brand]); // Only re-fetch when filters change
+  }, [category, type, subCategory, params]); // Include all params in dependency array
 
   // Apply local search filter whenever products or search query changes
   useEffect(() => {
@@ -169,7 +159,7 @@ export default function ProductsPage() {
     }
 
     setFilteredProducts(filtered);
-  }, [products, searchQuery]); // Only update filtered products when products or search query changes
+  }, [products, searchQuery]);
 
   const handleAddToCart = useCallback((product: Product) => {
     if (!product.inStock) return;
