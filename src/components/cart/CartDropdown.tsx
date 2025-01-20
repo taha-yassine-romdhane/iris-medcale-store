@@ -4,11 +4,15 @@ import { useCart } from '@/hooks/useCart';
 import { ShoppingBag, X, Plus, Minus, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function CartDropdown() {
   const [isOpen, setIsOpen] = useState(false);
-  const { cart, removeFromCart, updateQuantity } = useCart();
+  const { cart, removeFromCart, updateQuantity, setCartOpen } = useCart();
+
+  useEffect(() => {
+    setCartOpen?.(setIsOpen);
+  }, [setCartOpen]);
 
   return (
     <div className="relative">

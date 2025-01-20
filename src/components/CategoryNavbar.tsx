@@ -18,7 +18,9 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from 'react';
 import { useFilters } from '@/contexts/FilterContext';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useTranslation } from '@/context/TranslationContext';
+import { useSearchParams } from 'next/navigation';
 
 interface CategoryType {
   category: string;
@@ -31,7 +33,50 @@ export default function CategoryNavbar() {
   const [isLoading, setIsLoading] = useState(true);
   const { updateFilters } = useFilters();
   const pathname = usePathname();
+  const router = useRouter();
   const { t } = useTranslation();
+  const searchParams = useSearchParams();
+
+  const categoryOrder = [
+    'APPAREILS CPAP/PPC',
+    'ACCESSOIRES CPAP/PPC',
+    'MASQUES',
+    'CONCENTRATEURS D\'OXYGENE',
+    'ACCESSOIRES D\'OXYGENE',
+    'APPAREILS BIPAP/VNI',
+    'APPAREILS NEBULISEUR',
+    'APPAREILS ASPIRATUER',
+    'LIT MEDICALISE'
+  ];
+
+  const sortCategories = (categories: CategoryType[]): CategoryType[] => {
+    // Create a map for quick lookup of order, with trimmed categories
+    const orderMap = new Map(categoryOrder.map((cat, index) => [cat.trim(), index]));
+    
+    return [...categories].sort((a, b) => {
+      // Trim whitespace from categories before comparison
+      const categoryA = a.category.trim();
+      const categoryB = b.category.trim();
+      
+      const orderA = orderMap.get(categoryA);
+      const orderB = orderMap.get(categoryB);
+      
+      // If both categories have a defined order
+      if (orderA !== undefined && orderB !== undefined) {
+        return orderA - orderB;
+      }
+      // If only a has a defined order
+      if (orderA !== undefined) {
+        return -1;
+      }
+      // If only b has a defined order
+      if (orderB !== undefined) {
+        return 1;
+      }
+      // If neither has a defined order
+      return 0;
+    });
+  };
 
   useEffect(() => {
     const fetchCategoryTypes = async () => {
@@ -41,12 +86,18 @@ export default function CategoryNavbar() {
           throw new Error('Failed to fetch category types');
         }
         const data = await response.json();
+        
         const processedData = data.map((cat: { category: string; types: string[]; subcategories: string[] }) => ({
-          category: cat.category || '',
+          category: (cat.category || '').trim(), // Trim whitespace here too
           types: Array.isArray(cat.types) ? cat.types : [],
           subcategories: Array.isArray(cat.subcategories) ? cat.subcategories : []
         }));
-        setCategoryTypes(processedData);
+        
+        const sortedData = sortCategories(processedData);
+        console.log('Raw data from API:', data);
+        console.log('Processed data:', processedData);
+        console.log('Sorted data:', sortedData);
+        setCategoryTypes(sortedData);
       } catch (error) {
         console.error('Error fetching category types:', error);
         setCategoryTypes([]);
@@ -59,18 +110,33 @@ export default function CategoryNavbar() {
   }, []);
 
   const handleCategoryClick = (category: string) => {
-    if (pathname !== '/products') return; // Only update filters on products page
-    updateFilters({ category, type: null, subCategory: null });
+    const url = `/products?category=${encodeURIComponent(category)}`;
+    
+    if (pathname === '/products') {
+      router.push(url);
+    } else {
+      window.location.href = url;
+    }
   };
 
   const handleTypeClick = (category: string, type: string) => {
-    if (pathname !== '/products') return;
-    updateFilters({ category, type, subCategory: null });
+    const url = `/products?category=${encodeURIComponent(category)}&type=${encodeURIComponent(type)}`;
+    
+    if (pathname === '/products') {
+      router.push(url);
+    } else {
+      window.location.href = url;
+    }
   };
 
   const handleSubcategoryClick = (category: string, subCategory: string) => {
-    if (pathname !== '/products') return;
-    updateFilters({ category, type: null, subCategory });
+    const url = `/products?category=${encodeURIComponent(category)}&subCategory=${encodeURIComponent(subCategory)}`;
+    
+    if (pathname === '/products') {
+      router.push(url);
+    } else {
+      window.location.href = url;
+    }
   };
 
   return (
@@ -80,7 +146,7 @@ export default function CategoryNavbar() {
           {/* Home Link */}
           <Link
             href="/"
-            className="flex items-center text-blue-900 hover:text-blue-600 transition-colors px-3 py-2 font-bold"
+            className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2"
           >
             <Home className="h-5 w-5 mr-2" />
             {t('CategoryNavbar.home')}
@@ -90,10 +156,10 @@ export default function CategoryNavbar() {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="flex items-center space-x-2 text-blue-900 hover:text-blue-600 hover:bg-blue-50 transition-colors font-semibold"
+                className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2"
               >
-                <Menu className="h-5 w-5" />
-                <span className="font-bold">{t('navbar.ourProducts')}</span>
+                <Menu className="h-5 zw-5" />
+                <span className="flex items-center text-blue-900 hover:text-blue-600 transition-colors px-3 py-2 font-bold">{t('navbar.ourProducts')}</span>
                 <ChevronDown className="h-4 w-4 text-red-600" />
               </Button>
             </DropdownMenuTrigger>
@@ -120,20 +186,12 @@ export default function CategoryNavbar() {
                       <DropdownMenuSubContent
                         className="min-w-[200px] bg-white rounded-lg shadow-lg border border-blue-100"
                       >
-                        {pathname === '/products' ? (
-                          <DropdownMenuItem
-                            className="py-2 px-4 hover:bg-blue-50 text-blue-900 font-medium"
-                            onClick={() => handleCategoryClick(cat.category)}
-                          >
-                            {t('navbar.allProducts')}
-                          </DropdownMenuItem>
-                        ) : (
-                          <Link href={`/products?category=${encodeURIComponent(cat.category)}`}>
-                            <DropdownMenuItem className="py-2 px-4 hover:bg-blue-50 text-blue-900 font-medium">
-                              {t('navbar.allProducts')}
-                            </DropdownMenuItem>
-                          </Link>
-                        )}
+                        <DropdownMenuItem
+                          className="py-2 px-4 hover:bg-blue-50 text-blue-900 font-medium"
+                          onClick={() => handleCategoryClick(cat.category)}
+                        >
+                          {t('navbar.allProducts')}
+                        </DropdownMenuItem>
 
                         {cat.types && cat.types.length > 0 && (
                           <>
@@ -142,24 +200,13 @@ export default function CategoryNavbar() {
                               <span className="text-xs font-semibold text-blue-600 uppercase">Types</span>
                             </div>
                             {cat.types.map((type) => (
-                              pathname === '/products' ? (
-                                <DropdownMenuItem
-                                  key={type}
-                                  className="py-2 px-4 hover:bg-blue-50 text-gray-700"
-                                  onClick={() => handleTypeClick(cat.category, type)}
-                                >
-                                  {type}
-                                </DropdownMenuItem>
-                              ) : (
-                                <Link
-                                  key={type}
-                                  href={`/products?category=${encodeURIComponent(cat.category)}&type=${encodeURIComponent(type)}`}
-                                >
-                                  <DropdownMenuItem className="py-2 px-4 hover:bg-blue-50 text-gray-700">
-                                    {type}
-                                  </DropdownMenuItem>
-                                </Link>
-                              )
+                              <DropdownMenuItem
+                                key={type}
+                                className="py-2 px-4 hover:bg-blue-50 text-gray-700"
+                                onClick={() => handleTypeClick(cat.category, type)}
+                              >
+                                {type}
+                              </DropdownMenuItem>
                             ))}
                           </>
                         )}
@@ -171,24 +218,13 @@ export default function CategoryNavbar() {
                               <span className="text-xs font-semibold text-red-600 uppercase">Autres types</span>
                             </div>
                             {cat.subcategories.map((subcat) => (
-                              pathname === '/products' ? (
-                                <DropdownMenuItem
-                                  key={subcat}
-                                  className="py-2 px-4 hover:bg-blue-50 text-gray-700"
-                                  onClick={() => handleSubcategoryClick(cat.category, subcat)}
-                                >
-                                  {subcat}
-                                </DropdownMenuItem>
-                              ) : (
-                                <Link
-                                  key={subcat}
-                                  href={`/products?category=${encodeURIComponent(cat.category)}&subcategory=${encodeURIComponent(subcat)}`}
-                                >
-                                  <DropdownMenuItem className="py-2 px-4 hover:bg-blue-50 text-gray-700">
-                                    {subcat}
-                                  </DropdownMenuItem>
-                                </Link>
-                              )
+                              <DropdownMenuItem
+                                key={subcat}
+                                className="py-2 px-4 hover:bg-blue-50 text-gray-700"
+                                onClick={() => handleSubcategoryClick(cat.category, subcat)}
+                              >
+                                {subcat}
+                              </DropdownMenuItem>
                             ))}
                           </>
                         )}
@@ -202,7 +238,7 @@ export default function CategoryNavbar() {
           {/* Sleep Apnea Link */}
           <Link
             href="/apnee-du-sommeil"
-            className="flex items-center text-blue-900 hover:text-blue-600 transition-colors px-3 font-semibold"
+            className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2"
           >
             <Heart className="h-5 w-5 mr-2" />
             {t('navbar.sleepApnea')}
@@ -217,7 +253,7 @@ export default function CategoryNavbar() {
           </Link>
           <Link
             href="/contact"
-            className="flex items-center text-blue-900 hover:text-blue-600 transition-colors px-3 font-bold"
+            className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2"
           >
             <Phone className="w-5 h-5 mr-2" />
             {t('navbar.contact')}
@@ -225,7 +261,7 @@ export default function CategoryNavbar() {
 
           <Link
             href="/appointment"
-            className="flex items-center text-blue-900 hover:text-blue-600 transition-colors px-3 font-bold"
+            className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2"
           >
             <Calendar className="w-5 h-5 mr-2" />
             <span>{t('navbar.makeAnAppointment')}</span>

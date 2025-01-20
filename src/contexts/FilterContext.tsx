@@ -1,7 +1,7 @@
 'use client';
 
-import React, { createContext, useContext, useState, useCallback, useEffect, useMemo } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 interface FilterContextType {
   category: string | null;
@@ -20,42 +20,40 @@ interface FilterState {
 const FilterContext = createContext<FilterContextType | undefined>(undefined);
 
 export function FilterProvider({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  
+  const [filters, setFilters] = useState<FilterState>(() => ({
+    category: searchParams?.get('category') ?? null,
+    type: searchParams?.get('type') ?? null,
+    subCategory: searchParams?.get('subCategory') ?? null,
+  }));
 
-  const [filters, setFilters] = useState<FilterState>({
-    category: null,
-    type: null,
-    subCategory: null,
-  });
-
-  // Initialize filters from URL search params
+  // Update filters when URL changes
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search); // Use browser's URLSearchParams
-    setFilters({
-      category: params.get('category'),
-      type: params.get('type'),
-      subCategory: params.get('subCategory'),
+    const newFilters = {
+      category: searchParams?.get('category') ?? null,
+      type: searchParams?.get('type') ?? null,
+      subCategory: searchParams?.get('subCategory') ?? null,
+    };
+
+    setFilters(newFilters);
+  }, [searchParams]);
+
+  const updateFilters = useCallback((newFilters: Partial<FilterState>) => {
+    setFilters(prev => {
+      const updated = { ...prev, ...newFilters };
+      
+      // Reset dependent filters when category changes
+      if (newFilters.category && newFilters.category !== prev.category) {
+        updated.type = null;
+        updated.subCategory = null;
+      }
+      
+      return updated;
     });
   }, []);
 
-  // Update URL when filters change
-  useEffect(() => {
-    const params = new URLSearchParams();
-    if (filters.category) params.set('category', filters.category);
-    if (filters.type) params.set('type', filters.type);
-    if (filters.subCategory) params.set('subCategory', filters.subCategory);
-
-    const newUrl = `${pathname}${params.toString() ? `?${params.toString()}` : ''}`;
-    router.push(newUrl, { scroll: false });
-  }, [filters, pathname, router]);
-
-  // Function to update filters
-  const updateFilters = useCallback((newFilters: Partial<FilterState>) => {
-    setFilters((prev) => ({ ...prev, ...newFilters }));
-  }, []);
-
-  // Function to clear filters
   const clearFilters = useCallback(() => {
     setFilters({
       category: null,
@@ -64,17 +62,13 @@ export function FilterProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  // Memoize the context value
-  const contextValue = useMemo(
-    () => ({
-      ...filters,
-      updateFilters,
-      clearFilters,
-    }),
-    [filters, updateFilters, clearFilters]
-  );
+  const value = {
+    ...filters,
+    updateFilters,
+    clearFilters,
+  };
 
-  return <FilterContext.Provider value={contextValue}>{children}</FilterContext.Provider>;
+  return <FilterContext.Provider value={value}>{children}</FilterContext.Provider>;
 }
 
 export function useFilters() {

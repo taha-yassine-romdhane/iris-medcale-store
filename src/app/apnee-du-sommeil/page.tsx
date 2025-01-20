@@ -12,7 +12,7 @@ export default function SleepApneaPage() {
     return (
         <div className="min-h-screen">
             {/* Spacer for navbar */}
-            <div className="h-32"></div>
+            <div className="pt-16"></div>
 
             {/* Hero Section */}
             <section className="relative bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
@@ -30,7 +30,7 @@ export default function SleepApneaPage() {
             </section>
 
             {/* Main Content */}
-            <section className="py-16 bg-gray-50">
+            <section className="pt-12 bg-gray-50">
                 <div className="max-w-screen-2xl mx-auto px-4">
                     {/* Introduction */}
                     <div className="max-w-5xl mx-auto mb-16">
@@ -270,7 +270,7 @@ export default function SleepApneaPage() {
                     </div>
 
                     {/* Call to Action */}
-                    <div className="mt-16 text-center">
+                    <div className="mt-16 text-center py-12 bg-gray-100  ">
                         <h3 className="text-2xl font-bold mb-4">{t('apneeDuSommeil.vousPensezSouffrirDApneesDuSommeil')}</h3>
                         <p className="text-lg text-gray-700 mb-6">
                             {t('apneeDuSommeil.diagnosticPrecoce')}

@@ -39,7 +39,7 @@ const contactInfo = [
   {
     icon: Clock,
     title: "openingHours",
-    content: "mon_fri_9am_5pm",
+    content: "09H - 18H du lundi au vendredi",
     detail: "emergencyService24_7"
   }
 ];

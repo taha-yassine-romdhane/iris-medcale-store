@@ -9,6 +9,11 @@ const heroProducts = [
     image: "/hero section/slider3.jpeg",
     position: "center", // Custom position for each image
   },
+  {
+    id: 2,
+    image: "/hero section/slider4.jpeg",
+    position: "center", // Custom position for each image
+  },
 ];
 
 export default function HeroSection() {

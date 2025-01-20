@@ -147,11 +147,10 @@ export default function AppointmentSection() {
                       type="button"
                       variant={selectedMonth.getMonth() === month.getMonth() ? "default" : "outline"}
                       onClick={() => setSelectedMonth(month)}
-                      className={`flex-1 ${
-                        selectedMonth.getMonth() === month.getMonth()
+                      className={`flex-1 ${selectedMonth.getMonth() === month.getMonth()
                           ? 'bg-blue-900 text-white hover:bg-blue-800'
                           : 'bg-white text-blue-900 border-blue-900 hover:bg-blue-50'
-                      }`}
+                        }`}
                     >
                       {format(month, 'MMMM yyyy', { locale: fr })}
                     </Button>
@@ -167,8 +166,8 @@ export default function AppointmentSection() {
                 <div className="grid grid-cols-7 gap-2">
                   {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((day) => {
                     const date = new Date(selectedMonth.getFullYear(), selectedMonth.getMonth(), day);
-                    const dayOfWeek = date.getDay();
-                    const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+                    const dayOfWeek = format(date, 'EEE', { locale: fr }); // Get the abbreviated day of the week
+                    const isWeekend = date.getDay() === 0 || date.getDay() === 6; // Check if it's a weekend
                     const isDisabled = isDayDisabled(day, selectedMonth) || isWeekend;
 
                     return (
@@ -178,13 +177,13 @@ export default function AppointmentSection() {
                         variant={selectedDay === day ? "default" : "outline"}
                         onClick={() => !isDisabled && handleDaySelect(day)}
                         disabled={isDisabled}
-                        className={`h-12 ${
-                          selectedDay === day
+                        className={`h-16 flex flex-col items-center justify-center ${selectedDay === day
                             ? 'bg-blue-900 text-white hover:bg-blue-800'
                             : 'bg-white text-blue-900 border-blue-900 hover:bg-blue-50'
-                        } ${isDisabled ? 'opacity-50' : ''}`}
+                          } ${isDisabled ? 'opacity-50' : ''}`}
                       >
-                        {day}
+                        <span className="text-sm font-medium">{dayOfWeek}</span>
+                        <span className="text-lg font-bold">{day}</span>
                       </Button>
                     );
                   })}
@@ -209,11 +208,10 @@ export default function AppointmentSection() {
                           variant={formData.time === time ? "default" : "outline"}
                           onClick={() => !isDisabled && handleTimeSelect(time)}
                           disabled={isDisabled}
-                          className={`h-12 ${
-                            formData.time === time
+                          className={`h-12 ${formData.time === time
                               ? 'bg-blue-900 text-white hover:bg-blue-800'
                               : 'bg-white text-blue-900 border-blue-900 hover:bg-blue-50'
-                          } ${isDisabled ? 'opacity-50' : ''}`}
+                            } ${isDisabled ? 'opacity-50' : ''}`}
                         >
                           {time}
                         </Button>

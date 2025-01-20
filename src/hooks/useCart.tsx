@@ -11,6 +11,7 @@ interface CartContextType {
   removeFromCart: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
+  setCartOpen?: (setter: (isOpen: boolean) => void) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -23,6 +24,7 @@ const defaultCart: Cart = {
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<Cart>(defaultCart);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [setIsOpen, setSetIsOpen] = useState<((isOpen: boolean) => void) | null>(null);
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -58,14 +60,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const addToCart = (product: Product) => {
-    setCart((currentCart) => {
-      const existingItem = currentCart.items.find(item => item.id === product.id);
+    setCart((prevCart) => {
+      const existingItem = prevCart.items.find(item => item.id === product.id);
       
       if (existingItem) {
         // If item exists, increment quantity
         return {
-          ...currentCart,
-          items: currentCart.items.map(item =>
+          ...prevCart,
+          items: prevCart.items.map(item =>
             item.id === product.id
               ? { ...item, quantity: item.quantity + 1 }
               : item
@@ -84,11 +86,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
         };
         
         return {
-          ...currentCart,
-          items: [...currentCart.items, cartItem]
+          ...prevCart,
+          items: [...prevCart.items, cartItem]
         };
       }
     });
+    setIsOpen?.(true);
   };
 
   const removeFromCart = (productId: string) => {
@@ -122,15 +125,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <CartContext.Provider
-      value={{
-        cart,
-        addToCart,
-        removeFromCart,
-        updateQuantity,
-        clearCart
-      }}
-    >
+    <CartContext.Provider value={{
+      cart,
+      addToCart,
+      removeFromCart,
+      updateQuantity,
+      clearCart,
+      setCartOpen: (setter) => setSetIsOpen(() => setter)
+    }}>
       {children}
     </CartContext.Provider>
   );
