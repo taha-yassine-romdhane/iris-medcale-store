@@ -16,11 +16,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from 'react';
-import { useFilters } from '@/contexts/FilterContext';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from '@/context/TranslationContext';
-import { useSearchParams } from 'next/navigation';
 
 interface CategoryType {
   category: string;
@@ -31,11 +29,9 @@ interface CategoryType {
 export default function CategoryNavbar() {
   const [categoryTypes, setCategoryTypes] = useState<CategoryType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { updateFilters } = useFilters();
   const pathname = usePathname();
   const router = useRouter();
   const { t } = useTranslation();
-  const searchParams = useSearchParams();
 
   const categoryOrder = [
     'APPAREILS CPAP/PPC',
@@ -107,7 +103,7 @@ export default function CategoryNavbar() {
     };
 
     fetchCategoryTypes();
-  }, []);
+  }, [sortCategories]);
 
   const handleCategoryClick = (category: string) => {
     const url = `/products?category=${encodeURIComponent(category)}`;

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 interface FilterContextType {
   category: string | null;
@@ -20,7 +20,6 @@ interface FilterState {
 const FilterContext = createContext<FilterContextType | undefined>(undefined);
 
 export function FilterProvider({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
   const searchParams = useSearchParams();
   
   const [filters, setFilters] = useState<FilterState>(() => ({
