@@ -71,24 +71,24 @@ export default function BrandsSection() {
   }, []);
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-8 sm:py-12 bg-white">
       <div className="max-w-5xl mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold text-blue-900 mb-8">
+        <h2 className="text-2xl sm:text-3xl font-bold text-blue-900 mb-6 sm:mb-8">
           {t('home.brands.title')}
         </h2>
         <div className="relative">
           <div
             ref={scrollRef}
-            className="flex overflow-x-hidden gap-12 items-center scroll-smooth"
+            className="flex overflow-x-auto gap-6 sm:gap-12 items-center scroll-smooth hide-scrollbar"
             aria-label="Brand logos carousel"
           >
             {brands.map((brand, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center min-w-[200px] px-4 py-4 group transition-transform hover:scale-105"
+                className="flex flex-col items-center min-w-[120px] sm:min-w-[200px] px-2 sm:px-4 py-2 sm:py-4 group transition-transform hover:scale-105"
                 role="listitem"
               >
-                <div className="relative w-24 h-24 mb-4 bg-white rounded shadow">
+                <div className="relative w-16 h-16 sm:w-24 sm:h-24 mb-2 sm:mb-4 bg-white rounded shadow">
                   <Image
                     src={brand.logo}
                     alt={`${brand.name} logo`}
@@ -97,7 +97,7 @@ export default function BrandsSection() {
                     priority={index === 0} // Prioritize loading the first image
                   />
                 </div>
-                <h3 className="text-lg font-medium text-blue-900">
+                <h3 className="text-sm sm:text-lg font-medium text-blue-900">
                   {brand.name}
                 </h3>
               </div>

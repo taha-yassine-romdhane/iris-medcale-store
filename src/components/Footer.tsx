@@ -51,7 +51,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link
-                  href="/categories/cpap/machines"
+                  href="/services"
                   className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300"
                 >
                   {t('footer.cpapMachines')}

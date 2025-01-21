@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { Suspense } from 'react';
-import { ShoppingCart, Menu, X, User, LogOut, Settings } from "lucide-react";
+import { ShoppingCart, Search, X, User, LogOut, Settings } from "lucide-react";
 import { useState } from "react";
 import CategoryNavbar from './CategoryNavbar';
 import Image from 'next/image';
@@ -76,7 +76,8 @@ const Navbar = () => {
     <div>
       <nav className="fixed top-0 left-0 right-0 bg-white z-50 shadow-sm">
         <div className="max-w-[1836px] mx-auto relative">
-          <div className="absolute left-1 -bottom-12 z-50 bg-white rounded-b-lg p-2">
+          {/* Hide logo on mobile, show on larger screens */}
+          <div className="absolute left-1 -bottom-12 z-50 bg-white rounded-b-lg p-2 hidden md:block">
             <Link href="/" className="flex items-center">
               <Image
                 src="/logo_No_BG.png"
@@ -148,7 +149,7 @@ const Navbar = () => {
                 onClick={() => setIsOpen(!isOpen)}
                 className="text-blue-900 hover:text-blue-600"
               >
-                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {isOpen ? <X className="h-6 w-6" /> : <Search className="h-6 w-6" />}
               </button>
             </div>
           </div>
@@ -158,68 +159,6 @@ const Navbar = () => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
               <SearchBar />
-              <Link
-                href="/services"
-                className="block px-3 py-2 text-base font-medium text-blue-900 hover:text-blue-600"
-              >
-                {t('navbar.services')}
-              </Link>
-              <Link
-                href="/a-propos"
-                className="block px-3 py-2 text-base font-medium text-blue-900 hover:text-blue-600"
-              >
-                {t('navbar.about')}
-              </Link>
-              <Link
-                href="/contact"
-                className="block px-3 py-2 text-base font-medium text-blue-900 hover:text-blue-600"
-              >
-                {t('navbar.contact')}
-              </Link>
-              <Link
-                href="/appointment"
-                className="block px-3 py-2 text-base font-medium text-blue-900 hover:text-blue-600"
-              >
-                {t('navbar.appointment')}
-              </Link>
-              {user ? (
-                <div>
-                  <div className="px-3 py-2 border-t border-gray-200">
-                    <p className="text-sm font-semibold text-blue-900">{user.prenom} {user.nom}</p>
-                    <p className="text-xs text-gray-500">{user.email}</p>
-                  </div>
-                  {user.role === 'ADMIN' || user.role === 'EMPLOYE' ? (
-                    <Link
-                      href="/dashboard"
-                      className="block px-3 py-2 text-base font-medium text-blue-900 hover:text-blue-600"
-                    >
-                      {t('navbar.dashboard')}
-                    </Link>
-                  ) : (
-                    <div>
-                      <Link
-                        href="/mon-profil"
-                        className="block px-3 py-2 text-base font-medium text-blue-900 hover:text-blue-600"
-                      >
-                        {t('navbar.myProfile')}
-                      </Link>
-                    </div>
-                  )}
-                  <button
-                    onClick={handleLogout}
-                    className="block w-full text-left px-3 py-2 text-base font-medium text-red-600 hover:bg-red-50"
-                  >
-                    {t('navbar.logout')}
-                  </button>
-                </div>
-              ) : (
-                <Link
-                  href="/login"
-                  className="block px-3 py-2 text-base font-medium text-blue-900 hover:text-blue-600"
-                >
-                  {t('navbar.login')}
-                </Link>
-              )}
             </div>
           </div>
         )}

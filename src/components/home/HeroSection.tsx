@@ -51,7 +51,7 @@ export default function HeroSection() {
   }, [nextSlide]);
 
   return (
-    <section className="relative w-full h-[380px] sm:h-[380px] md:h-[380px] overflow-hidden">
+    <section className="relative w-full h-[30vh] sm:h-[380px] md:h-[380px] overflow-hidden mb-2 sm:mb-8">
       {/* Slides */}
       <div
         className="flex transition-transform duration-700 ease-out"
@@ -60,13 +60,13 @@ export default function HeroSection() {
         {heroProducts.map((product, index) => (
           <div
             key={product.id}
-            className="relative w-full h-[380px] sm:h-[380px] md:h-[380px] flex-shrink-0"
+            className="relative w-full h-[30vh] sm:h-[380px] md:h-[380px] flex-shrink-0"
           >
             <Image
               src={product.image}
               alt="Hero Image"
               fill
-              className="object-cover w-full h-full"
+              className="object-contain w-full h-full" // Use object-contain to ensure full visibility
               style={{ objectPosition: product.position }} // Adjust image position
               priority={index === 0}
               sizes="100vw"
@@ -75,29 +75,29 @@ export default function HeroSection() {
         ))}
       </div>
 
-      {/* Navigation Buttons */}
+      {/* Navigation Buttons - Hidden on Mobile */}
       <button
         onClick={prevSlide}
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/30 p-2 rounded-full hover:bg-white/50 transition-colors"
+        className="hidden sm:block absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/30 p-2 rounded-full hover:bg-white/50 transition-colors"
         aria-label="Previous Slide"
       >
         <ChevronLeft className="h-6 w-6 text-white" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/30 p-2 rounded-full hover:bg-white/50 transition-colors"
+        className="hidden sm:block absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/30 p-2 rounded-full hover:bg-white/50 transition-colors"
         aria-label="Next Slide"
       >
         <ChevronRight className="h-6 w-6 text-white" />
       </button>
 
-      {/* Pagination Dots */}
-      <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-2">
+      {/* Pagination Dots - Improved for Mobile */}
+      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {heroProducts.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-colors ${
+            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors ${
               index === currentIndex ? "bg-white" : "bg-white/50"
             }`}
             aria-label={`Go to slide ${index + 1}`}

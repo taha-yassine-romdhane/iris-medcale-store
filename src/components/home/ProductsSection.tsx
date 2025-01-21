@@ -74,7 +74,7 @@ export default function ProductsSection() {
             .filter((p): p is Product => p !== undefined),
           
           lits: data.products.filter((p: Product) => 
-            p.category?.toLowerCase() === 'lit' || 
+            p.category?.toLowerCase() === 'lit medicalise' || 
             p.type?.toLowerCase()?.includes('LIT MEDICALISE')
           ),
         };
@@ -109,12 +109,13 @@ export default function ProductsSection() {
 
   const ProductSlider = ({ title, products, refKey }: { title: string, products: Product[], refKey: keyof CategoryProducts }) => {
     const { addToCart } = useCart();
-
+  
     return (
-      <div className="mb-12 px-6 last:mb-0">
+      <div className="mb-12 px-4 sm:px-6 last:mb-0">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-blue-900">{title}</h2>
-          <div className="flex gap-3">
+          <h2 className="text-xl sm:text-2xl font-bold text-blue-900">{title}</h2>
+          {/* Hide arrows on mobile, show on larger screens */}
+          <div className="hidden sm:flex gap-3">
             <button
               onClick={() => handleScroll('left', refKey)}
               className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-50 border border-blue-200 shadow-sm hover:bg-blue-100 hover:border-blue-300 transition-all duration-200"
@@ -133,20 +134,20 @@ export default function ProductsSection() {
         </div>
         
         <div className="relative">
-          <div className="absolute left-0 top-0 bottom-0 w-20 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-10 sm:w-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-10 sm:w-20 pointer-events-none" />
           
           <div 
             ref={sliderRefs[refKey]}
-            className="flex gap-6 overflow-x-auto pb-6 pt-2 px-1 hide-scrollbar scroll-smooth"
+            className="flex gap-4 sm:gap-6 overflow-x-auto pb-6 pt-2 px-1 hide-scrollbar scroll-smooth"
           >
             {products.map((product) => (
               <div
                 key={product.id}
-                className="flex-none w-56 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group"
+                className="flex-none w-48 sm:w-56 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group"
               >
                 <Link href={`/product/${product.id}`} className="block">
-                  <div className="relative h-56">
+                  <div className="relative h-48 sm:h-56">
                     {product.media && product.media[0] && (
                       <Image
                         src={product.media[0].url}
@@ -155,8 +156,8 @@ export default function ProductsSection() {
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     )}
-                    <div className="absolute top-3 right-3">
-                      <span className={`px-3 py-1.5 rounded-full text-sm font-medium shadow-sm ${
+                    <div className="absolute top-2 right-2 sm:top-3 sm:right-3">
+                      <span className={`px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium shadow-sm ${
                         product.inStock 
                           ? 'bg-green-100 text-green-800 border border-green-200'
                           : 'bg-red-100 text-red-800 border border-red-200'
@@ -166,24 +167,24 @@ export default function ProductsSection() {
                     </div>
                   </div>
                 </Link>
-
-                <div className="p-5">
+  
+                <div className="p-4 sm:p-5">
                   <Link href={`/product/${product.id}`} className="block group-hover:text-blue-700 transition-colors duration-200">
-                    <h3 className="font-semibold text-lg mb-2 text-blue-900">{product.name}</h3>
+                    <h3 className="font-semibold text-base sm:text-lg mb-2 text-blue-900">{product.name}</h3>
                   </Link>
-                  <p className="text-sm text-blue-800/70 mb-4 line-clamp-2">
+                  <p className="text-xs sm:text-sm text-blue-800/70 mb-4 line-clamp-2">
                     {product.description}
                   </p>
                   <div className="flex justify-between items-center">
                     <Link
                       href={`/product/${product.id}`}
-                      className="text-blue-700 hover:text-blue-800 font-medium text-sm transition-colors duration-200"
+                      className="text-blue-700 hover:text-blue-800 font-medium text-xs sm:text-sm transition-colors duration-200"
                     >
                       Voir détails
                     </Link>
                     <button
                       onClick={() => addToCart(product)}
-                      className="px-4 py-2 bg-blue-900 text-white text-sm font-medium rounded-lg hover:bg-blue-800 transform hover:-translate-y-0.5 transition-all duration-200"
+                      className="px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-900 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-blue-800 transform hover:-translate-y-0.5 transition-all duration-200"
                     >
                       Ajouter
                     </button>
@@ -198,7 +199,7 @@ export default function ProductsSection() {
   };
 
   return (
-    <div className="max-w-[1400px] mx-auto bg-white  rounded-2xl p-8 my-12">
+    <div className="max-w-[1400px] mx-auto bg-white rounded-2xl p-4 sm:p-8 my-8 sm:my-12">
       {loading ? (
         <div className="text-center py-12">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto"></div>
