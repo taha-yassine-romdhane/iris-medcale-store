@@ -73,8 +73,8 @@ const Navbar = () => {
   };
 
   return (
-    <div>
-      <nav className="fixed top-0 left-0 right-0 bg-white z-50 shadow-sm">
+    <div className="flex flex-col gap-0">
+      <nav className=" bg-white z-50 shadow-sm">
         <div className="max-w-[1836px] mx-auto relative">
           {/* Hide logo on mobile, show on larger screens */}
           <div className="absolute left-1 -bottom-12 z-50 bg-white rounded-b-lg p-2 hidden md:block">
@@ -163,7 +163,6 @@ const Navbar = () => {
           </div>
         )}
       </nav>
-      <div className="h-16"></div>
       <Suspense fallback={<div>Loading...</div>}>
         <CategoryNavbar />
       </Suspense>

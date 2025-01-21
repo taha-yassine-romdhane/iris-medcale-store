@@ -5,8 +5,14 @@ import BrandsSection from "@/components/home/BrandsSection";
 
 export default function HomePage() {
     return (
-        <div className="pt-20">
+        // <div className="pt-20">
 
+        // <HeroSection />
+        // <ProductsSection />
+        // <BrandsSection />
+
+        // </div>
+        <div className="flex flex-col gap-12">
             <HeroSection />
             <ProductsSection />
             <BrandsSection />

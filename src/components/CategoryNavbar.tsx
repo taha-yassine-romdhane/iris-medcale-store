@@ -108,7 +108,7 @@ export default function CategoryNavbar() {
   };
 
   return (
-    <nav className="fixed top-16 left-0 right-0 bg-white z-40 border-t border-blue-100 font-spartan shadow-md">
+    <nav className=" bg-white z-40 border-t border-blue-100 font-spartan shadow-md">
       {/* Desktop Navbar */}
       <div className="hidden sm:flex justify-start max-w-8xl mx-auto">
         <div className="flex items-center h-14 space-x-8 ml-[22%]">
@@ -231,7 +231,7 @@ export default function CategoryNavbar() {
 
       {/* Mobile Menu with Backdrop */}
       <div 
-        className={`fixed inset-0 bg-black transition-opacity duration-300 sm:hidden ${
+        className={`inset-0 bg-black transition-opacity duration-300 sm:hidden ${
           isMobileMenuOpen ? 'opacity-50 z-30' : 'opacity-0 -z-10'
         }`}
         onClick={() => setIsMobileMenuOpen(false)}
@@ -240,7 +240,7 @@ export default function CategoryNavbar() {
       {/* Mobile Menu Content */}
       <div 
         className={`fixed top-14 left-0 right-0 bg-white z-40 shadow-lg sm:hidden transform transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
+          isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full hidden'
         }`}
       >
         <div className="flex flex-col max-h-[calc(100vh-3.5rem)] overflow-y-auto">
@@ -337,7 +337,7 @@ export default function CategoryNavbar() {
             </Link>
             
             <Link 
-              href="#" 
+              href="/services " 
               className="flex items-center space-x-3 text-blue-900 hover:text-blue-700 transition-colors py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >

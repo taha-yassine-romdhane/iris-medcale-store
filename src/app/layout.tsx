@@ -84,19 +84,22 @@ export default function RootLayout({
             <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
             
             {/* Wrap Navbar in Suspense */}
+            <div className="w-full h-screen">
+
             <Suspense fallback={<NavbarFallback />}>
               <Navbar />
             </Suspense>
 
             {/* Wrap main content in Suspense */}
             <Suspense fallback={<MainFallback />}>
-              <main>{children}</main>
+              <>{children}</>
             </Suspense>
 
             {/* Wrap Footer in Suspense */}
             <Suspense fallback={<FooterFallback />}>
               <FooterClient />
             </Suspense>
+            </div>
           </FilterProvider>
         </CartProvider>
         </Providers>

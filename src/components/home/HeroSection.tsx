@@ -51,7 +51,7 @@ export default function HeroSection() {
   }, [nextSlide]);
 
   return (
-    <section className="relative w-full h-[30vh] sm:h-[380px] md:h-[380px] overflow-hidden mb-2 sm:mb-8">
+    <section className="relative w-full overflow-hidden mb-2 sm:mb-8">
       {/* Slides */}
       <div
         className="flex transition-transform duration-700 ease-out"
@@ -60,15 +60,15 @@ export default function HeroSection() {
         {heroProducts.map((product, index) => (
           <div
             key={product.id}
-            className="relative w-full h-[30vh] sm:h-[380px] md:h-[380px] flex-shrink-0"
+            className="relative w-full flex-shrink-0"
           >
-            <Image
+            <img
               src={product.image}
               alt="Hero Image"
-              fill
-              className="object-contain w-full h-full" // Use object-contain to ensure full visibility
+              
+              className="object-contain w-full h-fit   " // Use object-contain to ensure full visibility
               style={{ objectPosition: product.position }} // Adjust image position
-              priority={index === 0}
+              // priority={index === 0}
               sizes="100vw"
             />
           </div>
