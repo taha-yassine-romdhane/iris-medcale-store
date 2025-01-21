@@ -62,13 +62,14 @@ export default function HeroSection() {
             key={product.id}
             className="relative w-full flex-shrink-0"
           >
-            <img
+            <Image
               src={product.image}
               alt="Hero Image"
-              
+              width={0}
+              height={0}
               className="object-contain w-full h-fit   " // Use object-contain to ensure full visibility
               style={{ objectPosition: product.position }} // Adjust image position
-              // priority={index === 0}
+              priority={index === 0}
               sizes="100vw"
             />
           </div>
