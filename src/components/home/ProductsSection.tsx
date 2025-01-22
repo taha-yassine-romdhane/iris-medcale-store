@@ -117,9 +117,6 @@ export default function ProductsSection() {
         
         {/* Slider Container */}
         <div className="relative">
-          {/* Mobile arrows - on the left side */}
-        
-  
           {/* Desktop arrows - above the slider */}
           <div className="hidden sm:flex gap-3 absolute -top-12 right-6">
             <button

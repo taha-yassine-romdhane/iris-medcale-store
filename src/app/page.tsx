@@ -9,7 +9,6 @@ export default function HomePage() {
             <HeroSection />
             <ProductsSection />
             <BrandsSection />
-
         </div>
     );
 }
