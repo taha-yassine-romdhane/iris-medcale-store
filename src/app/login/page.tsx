@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Shield, Lock, Mail, AlertCircle, Loader2 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useTranslation } from '@/context/TranslationContext';
+import { useRouter } from 'next/router';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -13,6 +14,7 @@ export default function LoginPage() {
   const [errorMessage, setErrorMessage] = useState('');
   const { login, loading, error } = useAuth();
   const { t } = useTranslation();
+  const router = useRouter();
 
   const validateEmail = (email: string) => {
     if (email.toLowerCase() === 'admin@elite.com') {
@@ -36,10 +38,13 @@ export default function LoginPage() {
     const success = await login(email, password);
     
     if (success) {
+      // Add a small delay to ensure cookies are set
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
       if (role === 'ADMIN' || role === 'EMPLOYE') {
-        window.location.href = '/dashboard';
+        router.push('/dashboard');
       } else {
-        window.location.href = '/';
+        router.push('/');
       }
     } else {
       setErrorMessage(t('login.error.invalidCredentials'));

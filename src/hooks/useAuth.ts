@@ -59,6 +59,7 @@ export const useAuth = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
+        credentials: 'include', // This is important for cookie handling
       });
 
       const data = await response.json();
@@ -75,6 +76,10 @@ export const useAuth = () => {
         token: data.token,
         user: data.user,
       });
+      
+      // Set cookie manually as fallback
+      document.cookie = `token=${data.token}; path=/; max-age=86400; samesite=strict`;
+      document.cookie = `user=${encodeURIComponent(JSON.stringify(data.user))}; path=/; max-age=86400; samesite=strict`;
       
       return true;
     } catch (err) {
