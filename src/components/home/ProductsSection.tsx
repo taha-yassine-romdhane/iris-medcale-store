@@ -118,22 +118,7 @@ export default function ProductsSection() {
         {/* Slider Container */}
         <div className="relative">
           {/* Mobile arrows - on the left side */}
-          <div className="sm:hidden absolute left-2 top-1/2 -translate-y-1/2 z-30 flex gap-3">
-            <button
-              onClick={() => handleScroll('left', refKey)}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-50 border border-blue-200 shadow-sm hover:bg-blue-100 hover:border-blue-300 transition-all duration-200"
-              aria-label="Scroll Left"
-            >
-              <ChevronLeft className="w-5 h-5 text-blue-900" />
-            </button>
-            <button
-              onClick={() => handleScroll('right', refKey)}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-50 border border-blue-200 shadow-sm hover:bg-blue-100 hover:border-blue-300 transition-all duration-200"
-              aria-label="Scroll Right"
-            >
-              <ChevronRight className="w-5 h-5 text-blue-900" />
-            </button>
-          </div>
+        
   
           {/* Desktop arrows - above the slider */}
           <div className="hidden sm:flex gap-3 absolute -top-12 right-6">
