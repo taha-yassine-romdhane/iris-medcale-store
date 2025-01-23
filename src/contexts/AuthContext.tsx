@@ -35,6 +35,21 @@ const initialAuthState: AuthState = {
   token: null,
 };
 
+// Helper function to get auth headers
+const getAuthHeaders = () => {
+  if (typeof window === 'undefined') return {};
+  
+  const token = localStorage.getItem('token');
+  const userStr = localStorage.getItem('user');
+  
+  if (!token || !userStr) return {};
+  
+  return {
+    'Authorization': `Bearer ${token}`,
+    'Authorization-User': encodeURIComponent(userStr),
+  };
+};
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
   const [authState, setAuthState] = useState<AuthState>(initialAuthState);
@@ -61,24 +76,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // Set up request interceptor to add auth headers
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const originalFetch = window.fetch;
-      window.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
-        const token = localStorage.getItem('token');
-        const userStr = localStorage.getItem('user');
+    if (typeof window === 'undefined') return;
 
-        if (token && userStr && init) {
-          init.headers = {
-            ...init.headers,
-            'Authorization': `Bearer ${token}`,
-            'Authorization-User': encodeURIComponent(userStr),
-          };
-        }
+    const originalFetch = window.fetch;
+    window.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
+      // Always create a new init object if it doesn't exist
+      const modifiedInit: RequestInit = { ...init } ;
+      
+      // Always create headers object if it doesn't exist
+      modifiedInit.headers = {
+        ...modifiedInit.headers,
+        ...getAuthHeaders(), // Add auth headers to every request
+      } as any;
+
+      try {
+        const response = await originalFetch(input, modifiedInit);
         
-        const response = await originalFetch(input, init);
-        
-        // If we get a 401 or 403, clear auth state and redirect to login
+        // Handle authentication errors
         if (response.status === 401 || response.status === 403) {
+          console.log('Authentication error, clearing state...');
           localStorage.removeItem('token');
           localStorage.removeItem('user');
           setAuthState(initialAuthState);
@@ -86,8 +102,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
         
         return response;
-      };
-    }
+      } catch (error) {
+        console.error('Fetch error:', error);
+        throw error;
+      }
+    };
+
+    // Cleanup function to restore original fetch
+    return () => {
+      window.fetch = originalFetch;
+    };
   }, [router]);
 
   const login = async (email: string, password: string) => {
