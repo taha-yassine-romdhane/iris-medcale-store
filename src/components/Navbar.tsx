@@ -4,7 +4,7 @@ import Link from "next/link";
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { Suspense } from 'react';
 import { ShoppingCart, Search, X, User, LogOut, Settings } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CategoryNavbar from './CategoryNavbar';
 import Image from 'next/image';
 import SearchBar from "./SearchBar";
@@ -16,16 +16,46 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const { user, logout } = useAuth();
+  const { user, token, loading, logout } = useAuth();
   const { t } = useTranslation();
 
-  const handleLogout = () => {
-    logout();
+  // Debug log for auth state changes
+  useEffect(() => {
+    console.log('[Navbar] Auth state changed:', { user, token, loading });
+  }, [user, token, loading]);
+
+  const handleLogout = async () => {
+    console.log('[Navbar] Initiating logout...');
+    await logout();
     setIsUserMenuOpen(false);
+    console.log('[Navbar] Logout complete');
   };
 
+  // Don't render user-specific content while loading
+  if (loading) {
+    return (
+      <nav className="bg-white shadow-lg">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            {/* Basic navbar structure without user-specific content */}
+            <div className="flex">
+              <Link href="/" className="flex items-center">
+                <Image src="/logo.png" alt="Logo" width={40} height={40} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </nav>
+    );
+  }
+
   const getMenuItems = () => {
-    if (!user) return null;
+    if (!user) {
+      console.log('[Navbar] No user in auth state');
+      return null;
+    }
+
+    console.log('[Navbar] Rendering menu items for user:', user);
 
     const commonItems = [
       <div key="user-info" className="px-4 py-2 border-b border-gray-100">
@@ -109,9 +139,9 @@ const Navbar = () => {
                 <div className="relative">
                   <button
                     onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                    className="flex items-center space-x-2 text-blue-900 hover:text-blue-600"
+                    className="flex items-center space-x-1 focus:outline-none"
                   >
-                    <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                    <div className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-100">
                       <User className="h-5 w-5 text-blue-600" />
                     </div>
                     <span className="font-bold text-sm hidden lg:inline-block">

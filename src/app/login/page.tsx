@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Shield, Lock, Mail, AlertCircle, Loader2 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useTranslation } from '@/context/TranslationContext';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -15,6 +15,8 @@ export default function LoginPage() {
   const { login, loading, error } = useAuth();
   const { t } = useTranslation();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectPath = searchParams?.get('redirect') || '/';
 
   const validateEmail = (email: string) => {
     if (email.toLowerCase() === 'admin@elite.com') {
@@ -28,25 +30,39 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage('');
-    
+  
     if (!email || !password) {
       setErrorMessage(t('login.error.fillAllFields'));
       return;
     }
-    
+  
     const role = validateEmail(email.toLowerCase());
-    const success = await login(email, password);
+    console.log('[LoginPage] Attempting login...', { email, role });
     
-    if (success) {
-      // Add a small delay to ensure cookies are set
-      await new Promise(resolve => setTimeout(resolve, 100));
+    try {
+      await login(email, password);
+      console.log('[LoginPage] Login successful');
       
-      if (role === 'ADMIN' || role === 'EMPLOYE') {
-        router.push('/dashboard');
-      } else {
-        router.push('/');
-      }
-    } else {
+      // Determine the target route
+      const targetRoute =
+        role === 'ADMIN' || role === 'EMPLOYE'
+          ? '/dashboard'
+          : redirectPath || '/';
+      
+      console.log('[LoginPage] Navigation details:', {
+        role,
+        redirectPath,
+        targetRoute,
+      });
+
+      // Use replace to navigate and force a refresh
+      console.log('[LoginPage] Starting navigation...');
+      router.replace(targetRoute);
+      console.log('[LoginPage] Refreshing router...');
+      router.refresh();
+      console.log('[LoginPage] Navigation complete');
+    } catch (error) {
+      console.log('[LoginPage] Login failed:', error);
       setErrorMessage(t('login.error.invalidCredentials'));
     }
   };
@@ -95,9 +111,12 @@ export default function LoginPage() {
                 {t('login.form.title')}
               </h2>
             </div>
-            
+
             {(errorMessage || error) && (
-              <div className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg flex items-center" role="alert">
+              <div
+                className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg flex items-center"
+                role="alert"
+              >
                 <AlertCircle className="w-5 h-5 mr-2" />
                 {errorMessage || error}
               </div>
@@ -106,7 +125,10 @@ export default function LoginPage() {
             <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
               <div className="space-y-4">
                 <div>
-                  <label htmlFor="email-address" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="email-address"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     {t('login.form.emailLabel')}
                   </label>
                   <div className="relative">
@@ -128,7 +150,10 @@ export default function LoginPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     {t('login.form.passwordLabel')}
                   </label>
                   <div className="relative">
@@ -166,11 +191,17 @@ export default function LoginPage() {
               <div className="text-sm text-center">
                 <p className="mt-2">
                   {t('login.form.noAccount')}{' '}
-                  <Link href="/signup" className="font-medium text-blue-600 hover:text-blue-500">
+                  <Link
+                    href="/signup"
+                    className="font-medium text-blue-600 hover:text-blue-500"
+                  >
                     {t('login.form.signupLink')}
                   </Link>
                 </p>
-                <Link href="/forgot-password" className="text-blue-600 hover:underline">
+                <Link
+                  href="/forgot-password"
+                  className="text-blue-600 hover:underline"
+                >
                   {t('login.form.forgotPassword')}
                 </Link>
               </div>

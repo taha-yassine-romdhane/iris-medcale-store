@@ -3,17 +3,18 @@
 import { TranslationProvider } from '@/context/TranslationContext';
 import { CartProvider } from '@/hooks/useCart';
 import { FilterProvider } from '@/contexts/FilterContext';
+import { AuthProvider } from '@/contexts/AuthContext';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <TranslationProvider>
-      <CartProvider>
-        <FilterProvider>
-          <div className="touch-action-manipulation tap-highlight-transparent relative">
+    <AuthProvider>
+      <TranslationProvider>
+        <CartProvider>
+          <FilterProvider>
             {children}
-          </div>
-        </FilterProvider>
-      </CartProvider>
-    </TranslationProvider>
+          </FilterProvider>
+        </CartProvider>
+      </TranslationProvider>
+    </AuthProvider>
   );
 }
