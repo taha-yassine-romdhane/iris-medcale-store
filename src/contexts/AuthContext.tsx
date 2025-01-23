@@ -28,6 +28,11 @@ interface AuthContextType {
   logout: () => void;
 }
 
+type AuthHeaders = {
+  'Authorization': string;
+  'Authorization-User': string;
+};
+
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const initialAuthState: AuthState = {
@@ -36,7 +41,7 @@ const initialAuthState: AuthState = {
 };
 
 // Helper function to get auth headers
-const getAuthHeaders = () => {
+const getAuthHeaders = (): Partial<AuthHeaders> => {
   if (typeof window === 'undefined') return {};
   
   const token = localStorage.getItem('token');
@@ -80,14 +85,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const originalFetch = window.fetch;
     window.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
-      // Always create a new init object if it doesn't exist
-      const modifiedInit: RequestInit = { ...init } ;
-      
-      // Always create headers object if it doesn't exist
-      modifiedInit.headers = {
-        ...modifiedInit.headers,
-        ...getAuthHeaders(), // Add auth headers to every request
-      } as any;
+      // Create a new init object with proper typing
+      const modifiedInit: RequestInit = {
+        ...init,
+        headers: {
+          ...(init?.headers || {}),
+          ...getAuthHeaders(),
+        } as HeadersInit,
+      };
 
       try {
         const response = await originalFetch(input, modifiedInit);
