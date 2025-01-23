@@ -50,7 +50,7 @@ export async function POST(request: Request) {
 
     // Try to verify the token immediately to ensure it works
     try {
-      verifyToken(token); // Verify the token without assigning it to a variable
+      verifyToken(token);
       console.log('Token verified successfully in login route');
     } catch (verifyError) {
       console.error('Token verification failed in login route:', verifyError);
@@ -64,31 +64,12 @@ export async function POST(request: Request) {
     const userWithoutPassword = { ...utilisateur, motDePasse: undefined };
     delete userWithoutPassword.motDePasse;
 
-    const response = NextResponse.json({
+    // Simply return the token and user data
+    return NextResponse.json({
       user: userWithoutPassword,
       token,
     });
-
-    // Set cookies
-    response.cookies.set({
-      name: 'token',
-      value: token,
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      path: '/',
-    });
-
-    response.cookies.set({
-      name: 'user',
-      value: JSON.stringify(userWithoutPassword),
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      path: '/',
-    });
-
-    return response;
+    
   } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json(

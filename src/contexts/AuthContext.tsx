@@ -1,7 +1,6 @@
 'use client';
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
-import Loading from '../components/Loading';
 
 interface User {
   id: string;
@@ -42,6 +41,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // Initialize auth state from localStorage
   useEffect(() => {
     const token = localStorage.getItem('token');
     const userStr = localStorage.getItem('user');
@@ -52,90 +52,102 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setAuthState({ user, token });
       } catch (err) {
         console.error('Error parsing user data:', err);
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
       }
     }
     setLoading(false);
   }, []);
 
+  // Set up request interceptor to add auth headers
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const originalFetch = window.fetch;
+      window.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
+        const token = localStorage.getItem('token');
+        const userStr = localStorage.getItem('user');
+
+        if (token && userStr && init) {
+          init.headers = {
+            ...init.headers,
+            'Authorization': `Bearer ${token}`,
+            'Authorization-User': encodeURIComponent(userStr),
+          };
+        }
+        
+        const response = await originalFetch(input, init);
+        
+        // If we get a 401 or 403, clear auth state and redirect to login
+        if (response.status === 401 || response.status === 403) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          setAuthState(initialAuthState);
+          router.push('/login');
+        }
+        
+        return response;
+      };
+    }
+  }, [router]);
+
   const login = async (email: string, password: string) => {
     try {
       setLoading(true);
       setError(null);
+      
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
-        credentials: 'include', // This ensures cookies are sent/received
       });
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        console.error('[AuthContext] Login failed:', {
-          status: response.status,
-          statusText: response.statusText,
-          error: errorData
-        });
+        const errorData = await response.json();
         throw new Error(errorData.message || 'Login failed');
       }
 
       const data = await response.json();
-      console.log('[AuthContext] Login successful, setting up session...');
-
-      // Ensure we received the expected data
+      
       if (!data.token || !data.user) {
-        console.error('[AuthContext] Invalid response data:', data);
         throw new Error('Invalid response data');
       }
 
-      // Update localStorage
-      try {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-      } catch (storageError) {
-        console.error('[AuthContext] LocalStorage error:', storageError);
-        // Continue even if localStorage fails - cookies should handle auth
-      }
+      // Store auth data in localStorage
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
 
       // Update state
       setAuthState({
         token: data.token,
         user: data.user,
       });
-      console.log('[AuthContext] Auth state updated successfully');
+
+      console.log('Login successful');
     } catch (err) {
-      console.error('[AuthContext] Login error:', err);
+      console.error('Login error:', err);
       setError(err instanceof Error ? err.message : 'An error occurred during login');
-      throw err; // Re-throw to handle in the component
+      throw err;
     } finally {
       setLoading(false);
     }
   };
 
   const logout = () => {
-    setLoading(true);
+    // Clear localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    
+    // Reset state
     setAuthState(initialAuthState);
-    router.push('/login');
-    setLoading(false);
+    
+    // Redirect to home
+    router.push('/');
   };
 
-  if (loading) {
-    return <Loading />;
-  }
-
   return (
-    <AuthContext.Provider
-      value={{
-        ...authState,
-        loading,
-        error,
-        login,
-        logout,
-      }}
-    >
+    <AuthContext.Provider value={{ ...authState, loading, error, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
