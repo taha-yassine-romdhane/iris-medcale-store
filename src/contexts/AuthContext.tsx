@@ -67,28 +67,47 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
-        credentials: 'include',
+        credentials: 'include', // This ensures cookies are sent/received
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.message || 'Login failed');
+        const errorData = await response.json().catch(() => ({}));
+        console.error('[AuthContext] Login failed:', {
+          status: response.status,
+          statusText: response.statusText,
+          error: errorData
+        });
+        throw new Error(errorData.message || 'Login failed');
       }
 
-      console.log('[AuthContext] Updating localStorage and state...');
+      const data = await response.json();
+      console.log('[AuthContext] Login successful, setting up session...');
+
+      // Ensure we received the expected data
+      if (!data.token || !data.user) {
+        console.error('[AuthContext] Invalid response data:', data);
+        throw new Error('Invalid response data');
+      }
+
       // Update localStorage
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
+      try {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+      } catch (storageError) {
+        console.error('[AuthContext] LocalStorage error:', storageError);
+        // Continue even if localStorage fails - cookies should handle auth
+      }
 
       // Update state
       setAuthState({
         token: data.token,
         user: data.user,
       });
-      console.log('[AuthContext] Auth state updated:', { user: data.user });
+      console.log('[AuthContext] Auth state updated successfully');
     } catch (err) {
+      console.error('[AuthContext] Login error:', err);
       setError(err instanceof Error ? err.message : 'An error occurred during login');
+      throw err; // Re-throw to handle in the component
     } finally {
       setLoading(false);
     }

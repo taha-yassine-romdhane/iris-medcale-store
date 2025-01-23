@@ -11,7 +11,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <TranslationProvider>
         <CartProvider>
           <FilterProvider>
+          <div className="touch-action-manipulation tap-highlight-transparent relative">
             {children}
+          </div>
           </FilterProvider>
         </CartProvider>
       </TranslationProvider>
