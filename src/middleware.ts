@@ -5,22 +5,23 @@ import type { NextRequest } from 'next/server';
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
+  console.log(pathname);
+  console.log( request.cookies.get('token')?.value);
+
   // Skip middleware for API routes that handle their own auth
   if (pathname.startsWith('/api/')) {
     return NextResponse.next();
   }
 
   // Check if trying to access protected routes
-  if (pathname.includes('/dashboard') || 
-      pathname.includes('/mes-commandes') || 
-      pathname.includes('/mon-profil')) {
+  if (pathname.includes('/dashboard') || pathname.includes('/mes-commandes') || pathname.includes('/mon-profil')) {
     const token = request.cookies.get('token')?.value;
     
     if (!token) {
       return NextResponse.redirect(new URL('/login', request.url));
     }
 
-    try {
+    try{
       const user = request.cookies.get('user')?.value;
       if (!user) {
         return NextResponse.redirect(new URL('/login', request.url));

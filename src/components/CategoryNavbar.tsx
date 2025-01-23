@@ -206,17 +206,8 @@ export default function CategoryNavbar() {
 
       {/* Mobile Navbar */}
       <div className="sm:hidden flex justify-between items-center h-14 px-4 bg-white">
-        {/* Mobile Menu Toggle */}
-        <Button 
-          variant="ghost" 
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-2 -ml-2 hover:bg-blue-50 transition-colors"
-        >
-          {isMobileMenuOpen ? 
-            <X className="h-6 w-6 text-blue-900" /> : 
-            <Menu className="h-6 w-6 text-blue-900" />
-          }
-        </Button>
+       
+      
         {/* Home Link */}
         <Link href="/" className="text-blue-900 font-semibold">
           <Image
@@ -227,6 +218,17 @@ export default function CategoryNavbar() {
             className="object-contain"
           />
         </Link>
+         {/* Mobile Menu Toggle */}
+        <Button 
+          variant="ghost" 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="p-2 -ml-2 hover:bg-blue-50 transition-colors"
+        >
+          {isMobileMenuOpen ? 
+            <X className="h-6 w-6 text-blue-900" /> : 
+            <Menu className="h-6 w-6 text-blue-900" />
+          }
+        </Button>
       </div>
 
       {/* Mobile Menu with Backdrop */}
@@ -337,7 +339,7 @@ export default function CategoryNavbar() {
             </Link>
             
             <Link 
-              href="/services " 
+              href="#" 
               className="flex items-center space-x-3 text-blue-900 hover:text-blue-700 transition-colors py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
