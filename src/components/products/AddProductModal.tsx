@@ -1,7 +1,7 @@
 'use client';
 
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useState, useEffect } from 'react';
+import { Fragment, useState } from 'react';
 import { X, Trash2, ArrowUp, ArrowDown } from 'lucide-react';
 import { Product, Media } from '@/types/product';
 import Image from 'next/image';
@@ -15,11 +15,10 @@ interface AddProductModalProps {
 }
 
 export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProductModalProps) {
-  const [token, setToken] = useState<string | null>(null);
-
-  useEffect(() => {
-    setToken(localStorage.getItem('token'));
-  }, []);
+  // Helper function to ensure array type for features
+  const ensureArray = (value: any): string[] => {
+    return Array.isArray(value) ? value : [];
+  };
 
   const [formData, setFormData] = useState<Omit<Product, 'id'>>({
     name: '',
@@ -31,6 +30,7 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
     inStock: true,
     features: [],
     media: [],
+
   });
   const [newFeature, setNewFeature] = useState('');
 
@@ -39,7 +39,7 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
     try {
       const productData = {
         ...formData,
-        features: Array.isArray(formData.features) ? formData.features : [],
+        features: ensureArray(formData.features),
         media: formData.media.map((m, index) => ({
           ...m,
           order: index,
@@ -74,7 +74,7 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
         subCategory: '',
         inStock: true,
         features: [],
-        media: [],
+        media: []
       });
 
       // Show success message
@@ -96,20 +96,6 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
     }));
   };
 
-  const handleMediaUpload = (files: { url: string; type: string; name: string }[]) => {
-    const newMedia: Media[] = files.map((file) => ({
-      url: file.url,
-      type: file.type.startsWith('image/') ? 'image' : 'video',
-      alt: file.name,
-      order: formData.media.length,
-    }));
-
-    setFormData((prev) => ({
-      ...prev,
-      media: [...prev.media, ...newMedia],
-    }));
-  };
-
   const handleMediaDelete = (index: number) => {
     setFormData((prev) => ({
       ...prev,
@@ -121,7 +107,7 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
     if (newFeature.trim()) {
       setFormData((prev) => ({
         ...prev,
-        features: [...(Array.isArray(prev.features) ? prev.features : []), newFeature.trim()],
+        features: [...(ensureArray(prev.features)), newFeature.trim()],
       }));
       setNewFeature('');
     }
@@ -130,7 +116,7 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
   const handleRemoveFeature = (index: number) => {
     setFormData((prev) => ({
       ...prev,
-      features: Array.isArray(prev.features) ? prev.features.filter((_, i) => i !== index) : [],
+      features: ensureArray(prev.features).filter((_, i) => i !== index),
     }));
   };
 
@@ -308,7 +294,7 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
                         </button>
                       </div>
                       <ul className="space-y-2">
-                        {Array.isArray(formData.features) && formData.features.map((feature, index) => (
+                        {ensureArray(formData.features).map((feature, index) => (
                           <li key={index} className="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-md">
                             <span className="text-sm text-gray-700">{feature}</span>
                             <button
@@ -328,17 +314,20 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Images et Vidéos
                     </label>
-                    <UploadDropzone<OurFileRouter>
+                    <UploadDropzone<OurFileRouter, "mediaUploader">
                       endpoint="mediaUploader"
                       onClientUploadComplete={(res) => {
                         if (res) {
-                          handleMediaUpload(
-                            res.map((file) => ({
-                              url: file.url,
-                              type: file.type,
-                              name: file.name,
-                            }))
-                          );
+                          const newMedia: Media[] = res.map((file) => ({
+                            url: file.url,
+                            type: file.type.startsWith('image/') ? 'image' : 'video',
+                            alt: file.name,
+                            order: formData.media.length,
+                          }));
+                          setFormData(prev => ({
+                            ...prev,
+                            media: [...prev.media, ...newMedia],
+                          }));
                         }
                       }}
                       onUploadError={(error: Error) => {
@@ -346,10 +335,7 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
                         alert(`Error uploading file: ${error.message}`);
                       }}
                       config={{
-                        mode: 'auto',
-                        headers: token ? {
-                          Authorization: `Bearer ${token}`
-                        } : undefined
+                        mode: "auto"
                       }}
                     />
                     
@@ -416,7 +402,6 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
                       ))}
                     </div>
                   </div>
-
                   <div>
                     <label htmlFor="inStock" className="block text-sm font-medium text-gray-700">
                       Statut

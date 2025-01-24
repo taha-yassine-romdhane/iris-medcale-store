@@ -16,38 +16,41 @@ interface EditProductModalProps {
 }
 
 export default function EditProductModal({ isOpen, closeModal, product, onUpdate }: EditProductModalProps) {
-  const [token, setToken] = useState<string | null>(null);
+  // Helper function to parse features
+  const parseFeatures = (features: any): string[] => {
+    try {
+      if (typeof features === 'string') {
+        return JSON.parse(features);
+      } else if (Array.isArray(features)) {
+        return features;
+      } else if (typeof features === 'object') {
+        return [];
+      }
+    } catch (error) {
+      console.error('Error parsing features:', error);
+    }
+    return [];
+  };
 
-  useEffect(() => {
-    setToken(localStorage.getItem('token'));
-  }, []);
-
-  const [formData, setFormData] = useState<Product>({ ...product });
+  // Initialize with default values for all fields
+  const [formData, setFormData] = useState<Product>({
+    ...product,
+    name: product?.name || '',
+    description: product?.description || '',
+    media: Array.isArray(product?.media) ? product.media : [],
+    inStock: product?.inStock ?? true,
+    features: parseFeatures(product?.features),
+    category: product?.category || '',
+  });
   const [newFeature, setNewFeature] = useState('');
 
   useEffect(() => {
     if (product) {
-      // Ensure media and features are arrays
-      const media = Array.isArray(product.media) ? product.media : [];
-           
-      // Parse features if it's a string or JSON object
-      let parsedFeatures: string[] = [];
-      try {
-        if (typeof product.features === 'string') {
-          parsedFeatures = JSON.parse(product.features);
-        } else if (typeof product.features === 'object') {
-          // If it's already a JSON object from Prisma
-          parsedFeatures = Array.isArray(product.features) ? product.features : [];
-        }
-      } catch (error) {
-        console.error('Error parsing features:', error);
-        parsedFeatures = [];
-      }
-
       setFormData({
         ...product,
-        media,
-        features: parsedFeatures,
+        media: Array.isArray(product.media) ? product.media : [],
+        features: parseFeatures(product.features),
+        inStock: product.inStock ?? true,
       });
     }
   }, [product]);
@@ -346,12 +349,16 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
                       onClientUploadComplete={handleMediaUpload}
                       onUploadError={(error: Error) => {
                         console.error('Upload error:', error);
+                        alert(`Error uploading file: ${error.message}`);
+                      }}
+                      config={{
+                        mode: "auto"
                       }}
                     />
                     
                     {/* Media Preview */}
                     <div className="mt-4 grid grid-cols-2 gap-4">
-                      {formData.media.map((media, index) => (
+                      {formData?.media?.map((media, index) => (
                         <div key={index} className="relative group bg-gray-50 p-2 rounded-lg">
                           <div className="relative">
                             {media.type === 'image' ? (
@@ -420,7 +427,7 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
                     <select
                       name="inStock"
                       id="inStock"
-                      value={formData.inStock.toString()}
+                      value={(formData?.inStock ?? true).toString()}
                       onChange={(e) => setFormData((prev) => ({ ...prev, inStock: e.target.value === 'true' }))}
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                     >

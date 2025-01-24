@@ -253,15 +253,17 @@ export default function ProductsPage() {
           product={selectedProduct}
         />
 
-        <EditProductModal
-          isOpen={isEditModalOpen}
-          closeModal={() => {
-            setIsEditModalOpen(false);
-            setSelectedProduct(null);
-          }}
-          product={selectedProduct}
-          onUpdate={handleUpdateProduct}
-        />
+        {selectedProduct && (
+          <EditProductModal
+            isOpen={isEditModalOpen}
+            closeModal={() => {
+              setIsEditModalOpen(false);
+              setSelectedProduct(null);
+            }}
+            product={selectedProduct}
+            onUpdate={handleUpdateProduct}
+          />
+        )}
 
         <DeleteProductModal
           isOpen={isDeleteModalOpen}
