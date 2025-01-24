@@ -12,7 +12,9 @@ export async function middleware(request: NextRequest) {
     '/api/auth/login',
     '/api/auth/verify',
     '/api/category-types',
-    '/api/products'
+    '/api/products',
+    '/verify-email',
+    '/api/auth/verify-email'
   ];
 
   // Check if the current path is a public route
@@ -23,32 +25,26 @@ export async function middleware(request: NextRequest) {
   }
 
   // Get token from Authorization header
-  const authHeader = request.headers.get('Authorization');
-  const userHeader = request.headers.get('Authorization-User');
+  const authHeader = request.headers.get('authorization');
   
-  if (!authHeader || !userHeader) {
-    console.log('❌ Access Denied: Missing authentication headers');
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
+  const token = authHeader.split(' ')[1];
+  
   try {
-    const token = authHeader.replace('Bearer ', '');
-    const userData = JSON.parse(decodeURIComponent(userHeader));
-    
     const decoded = await verifyToken(token);
     if (!decoded) {
-      console.log('❌ Access Denied: Invalid token');
       return NextResponse.redirect(new URL('/login', request.url));
     }
 
-    // Only allow ADMIN and EMPLOYE roles to access dashboard
+    // Check role for dashboard access
     if (pathname.includes('/dashboard') && 
-        !['ADMIN', 'EMPLOYE'].includes(userData.role)) {
-      console.log('❌ Access Denied: Unauthorized role for dashboard');
+        !['ADMIN', 'EMPLOYE'].includes(decoded.role)) {
       return NextResponse.redirect(new URL('/', request.url));
     }
 
-    console.log('✅ Access Granted: User authenticated');
     return NextResponse.next();
   } catch (error) {
     console.error('⚠️ Middleware error:', error);

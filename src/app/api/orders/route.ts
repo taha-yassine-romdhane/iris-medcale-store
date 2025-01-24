@@ -4,15 +4,17 @@ import { verifyToken } from '@/lib/jwt';
 
 export async function GET(req: NextRequest) {
   try {
-    // Get token from cookie
-    const token = req.cookies.get('token')?.value;
+    // Get token from Authorization header
+    const authHeader = req.headers.get('authorization');
     
-    if (!token) {
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return NextResponse.json(
         { success: false, message: 'Authentication required' },
         { status: 401 }
       );
     }
+
+    const token = authHeader.split(' ')[1];
 
     // Verify JWT token
     const decoded = verifyToken(token);

@@ -38,10 +38,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    console.log('Received request to create user');
-
     const data = await request.json();
-    console.log('Received data:', data);
 
     // Validate required fields
     if (!data.email || !data.motDePasse) {
@@ -53,7 +50,6 @@ export async function POST(request: Request) {
     }
 
     // Check if the user already exists
-    console.log('Checking for existing user with email:', data.email);
     const existingUser = await prisma.utilisateur.findUnique({
       where: { email: data.email },
     });
@@ -67,19 +63,17 @@ export async function POST(request: Request) {
     }
 
     // Hash the password
-    console.log('Hashing password');
     const hashedPassword = await hash(data.motDePasse, 12);
-    console.log('Password hashed successfully');
+
 
     // Create the user
-    console.log('Creating user in database');
+
     const user = await prisma.utilisateur.create({
       data: {
         ...data,
         motDePasse: hashedPassword,
       },
     });
-    console.log('User created successfully:', user);
 
     // Exclude the password from the response
     const userWithoutPassword = { ...user, motDePasse: undefined };

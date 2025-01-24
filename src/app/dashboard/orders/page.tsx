@@ -37,7 +37,17 @@ export default function OrdersManagementPage() {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch('/api/orders');
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('Not authenticated');
+      }
+
+      const response = await fetch('/api/orders', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        }
+      });
+      
       if (!response.ok) {
         throw new Error('Failed to fetch orders');
       }
@@ -57,8 +67,16 @@ export default function OrdersManagementPage() {
 
     setDeletingOrder(orderId);
     try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('Not authenticated');
+      }
+
       const response = await fetch(`/api/orders/${orderId}`, {
         method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        }
       });
 
       if (!response.ok) {

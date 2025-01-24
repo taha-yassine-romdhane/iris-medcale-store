@@ -11,13 +11,8 @@ interface DecodedToken {
 }
 
 export async function verifyToken(token: string): Promise<DecodedToken | null> {
-  try {
-    console.log('Starting token verification...');
-    console.log('Verifying token with jwt.verify...');
-    
+  try {    
     const decoded = jwt.verify(token, JWT_SECRET) as DecodedToken;
-    
-    console.log('Raw decoded token:', decoded);
     
     // Extract only the necessary fields
     const cleanedToken = {
@@ -26,7 +21,6 @@ export async function verifyToken(token: string): Promise<DecodedToken | null> {
       role: decoded.role
     };
     
-    console.log('Token verified successfully:', cleanedToken);
     return cleanedToken;
   } catch (error) {
     console.error('Token verification failed:', error);

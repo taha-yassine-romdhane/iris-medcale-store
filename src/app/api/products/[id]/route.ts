@@ -60,8 +60,6 @@ export async function PUT(
     if (oldMediaUrls.length > 0) {
       const deleteResults = await utapi.deleteFiles(oldMediaUrls);
 
-      // Log delete results for debugging
-      console.log('UploadThing delete results:', deleteResults);
 
       if (!deleteResults.success) {
         throw new Error('Failed to delete old media files from UploadThing');
@@ -133,8 +131,6 @@ export async function PATCH(
     if (oldMediaUrls.length > 0) {
       const deleteResults = await utapi.deleteFiles(oldMediaUrls);
 
-      // Log delete results for debugging
-      console.log('UploadThing delete results:', deleteResults);
 
       if (!deleteResults.success) {
         throw new Error('Failed to delete old media files from UploadThing');
@@ -195,8 +191,7 @@ export async function DELETE(
     // Extract media URLs
     const mediaUrls = product.media.map((media) => media.url);
 
-    // Log media URLs for debugging
-    console.log('Media URLs to delete:', mediaUrls);
+
 
     // Extract file keys from URLs
     const fileKeys = mediaUrls.map((url) => {
@@ -204,8 +199,7 @@ export async function DELETE(
       return parts[parts.length - 1]; // Extract the file key
     });
 
-    // Log file keys for debugging
-    console.log('File keys to delete:', fileKeys);
+
 
     // Delete the product from the database
     await prisma.product.delete({
@@ -216,8 +210,6 @@ export async function DELETE(
     if (fileKeys.length > 0) {
       const deleteResults = await utapi.deleteFiles(fileKeys);
 
-      // Log delete results for debugging
-      console.log('UploadThing delete results:', deleteResults);
 
       if (!deleteResults.success) {
         throw new Error('Failed to delete files from UploadThing');

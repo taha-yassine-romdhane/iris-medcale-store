@@ -130,7 +130,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if ((response.status === 401 || response.status === 403) && 
             !window.location.pathname.includes('/login') && 
             !url.includes('/api/auth/verify')) {
-          console.log('Authentication error, clearing state...');
           localStorage.removeItem('token');
           localStorage.removeItem('user');
           setAuthState(initialAuthState);
@@ -184,7 +183,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         user: data.user,
       });
 
-      console.log('Login successful');
     } catch (err) {
       console.error('Login error:', err);
       setError(err instanceof Error ? err.message : 'An error occurred during login');

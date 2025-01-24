@@ -25,24 +25,27 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
   const handleConfirmDevis = async () => {
     try {
       setIsSubmitting(true);
-      
+
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setIsSubmitting(false);
+        setShowLoginDialog(true);
+        return;
+      }
+
       const formattedItems = items.map(item => ({
         id: item.id,
         quantity: item.quantity
       }));
 
-      console.log('Sending request with items:', formattedItems);
-
       const response = await fetch('/api/devis', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ items: formattedItems }),
-        credentials: 'include'
       });
-
-      console.log('Response status:', response.status);
 
       if (response.status === 401) {
         setIsSubmitting(false);
@@ -53,7 +56,6 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
       let responseData;
       try {
         const textData = await response.text();
-        console.log('Raw response:', textData);
         responseData = JSON.parse(textData);
       } catch (error) {
         console.error('Error parsing response:', error);

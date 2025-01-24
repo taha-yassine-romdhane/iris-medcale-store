@@ -19,7 +19,6 @@ export default function MonProfilPage() {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem('token');
-        console.log('Token from localStorage:', token ? 'Present' : 'Not found');
         
         if (!token) {
           toast.error('Veuillez vous connecter pour accéder à votre profil');
@@ -34,7 +33,6 @@ export default function MonProfilPage() {
           }
         });
 
-        console.log('Profile response status:', response.status);
         
         if (!response.ok) {
           if (response.status === 401) {
@@ -48,7 +46,6 @@ export default function MonProfilPage() {
         }
 
         const data = await response.json();
-        console.log('Profile data received');
         setProfile(data);
         setFormData(data);
       } catch (error) {

@@ -37,32 +37,21 @@ export default function LoginPage() {
     }
   
     const role = validateEmail(email.toLowerCase());
-    console.log('[LoginPage] Attempting login...', { email, role });
     
     try {
       await login(email, password);
-      console.log('[LoginPage] Login successful');
       
       // Determine the target route
       const targetRoute =
         role === 'ADMIN' || role === 'EMPLOYE'
           ? '/dashboard'
           : redirectPath || '/';
-      
-      console.log('[LoginPage] Navigation details:', {
-        role,
-        redirectPath,
-        targetRoute,
-      });
 
       // Use replace to navigate and force a refresh
-      console.log('[LoginPage] Starting navigation...');
+     
       router.replace(targetRoute);
-      console.log('[LoginPage] Refreshing router...');
       router.refresh();
-      console.log('[LoginPage] Navigation complete');
     } catch (error) {
-      console.log('[LoginPage] Login failed:', error);
       setErrorMessage(t('login.error.invalidCredentials'));
     }
   };

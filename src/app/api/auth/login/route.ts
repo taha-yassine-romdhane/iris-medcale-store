@@ -42,16 +42,13 @@ export async function POST(request: Request) {
       email: utilisateur.email,
       role: utilisateur.role,
     };
-    console.log('Creating token with payload:', payload);
 
     // Sign token using our utility function
     const token = signToken(payload);
-    console.log('Token created successfully');
 
     // Try to verify the token immediately to ensure it works
     try {
       verifyToken(token);
-      console.log('Token verified successfully in login route');
     } catch (verifyError) {
       console.error('Token verification failed in login route:', verifyError);
       return NextResponse.json(

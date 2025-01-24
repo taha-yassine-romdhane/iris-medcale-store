@@ -3,7 +3,6 @@ import prisma from '@/lib/prisma';
 
 export async function GET() {
   try {
-    console.log('Fetching messages...');
     const messages = await prisma.contact.findMany({
       orderBy: {
         dateCreation: 'desc'
@@ -19,7 +18,6 @@ export async function GET() {
         }
       }
     });
-    console.log('Messages fetched:', messages);
     return NextResponse.json(messages);
   } catch (error) {
     console.error('Error in messages API:', error);

@@ -36,8 +36,7 @@ export async function sendVerificationEmail(email: string, token: string) {
         </div>
       `,
     });
-
-    console.log('Verification email sent successfully:', data);
+    
     return true;
   } catch (error) {
     console.error('Error sending verification email:', error);

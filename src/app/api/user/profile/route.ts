@@ -4,13 +4,10 @@ import { verifyToken } from '@/lib/jwt';
 
 export async function GET(request: NextRequest) {
   try {
-    console.log('Profile GET request received');
     
     const authHeader = request.headers.get('authorization');
-    console.log('Auth header present:', !!authHeader);
     
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      console.log('No valid auth header found');
       return NextResponse.json(
         { error: 'Non autorisé' },
         { status: 401 }
@@ -18,16 +15,12 @@ export async function GET(request: NextRequest) {
     }
 
     const token = authHeader.split(' ')[1];
-    console.log('Token extracted from header');
     
     let decoded;
     try {
-      console.log('Attempting to verify token');
       decoded = verifyToken(token);
-      console.log('Token verified, decoded payload:', decoded);
       
       if (!decoded || !decoded.id) {
-        console.log('Decoded token missing required fields');
         return NextResponse.json(
           { error: 'Token invalide ou expiré' },
           { status: 401 }
@@ -41,7 +34,6 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    console.log('Fetching user from database with ID:', decoded.id);
     try {
       const user = await prisma.utilisateur.findUnique({
         where: {
@@ -50,14 +42,12 @@ export async function GET(request: NextRequest) {
       });
 
       if (!user) {
-        console.log('No user found with ID:', decoded.id);
         return NextResponse.json(
           { error: 'Utilisateur non trouvé' },
           { status: 404 }
         );
       }
 
-      // Convert dates to ISO strings and handle optional fields
       const sanitizedUser = {
         id: user.id,
         email: user.email,
@@ -72,7 +62,6 @@ export async function GET(request: NextRequest) {
         updatedAt: user.dateMiseAJour.toISOString()
       };
 
-      console.log('User found, returning data:', sanitizedUser);
       return NextResponse.json(sanitizedUser);
     } catch (dbError) {
       console.error('Database error:', dbError);
@@ -92,13 +81,11 @@ export async function GET(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
-    console.log('Profile PUT request received');
+   
     
     const authHeader = request.headers.get('authorization');
-    console.log('Auth header present:', !!authHeader);
     
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      console.log('No valid auth header found');
       return NextResponse.json(
         { error: 'Non autorisé' },
         { status: 401 }
@@ -106,16 +93,13 @@ export async function PUT(request: NextRequest) {
     }
 
     const token = authHeader.split(' ')[1];
-    console.log('Token extracted from header');
     
     let decoded;
     try {
-      console.log('Attempting to verify token');
+     
       decoded = verifyToken(token);
-      console.log('Token verified, decoded payload:', decoded);
-      
+     
       if (!decoded || !decoded.id) {
-        console.log('Decoded token missing required fields');
         return NextResponse.json(
           { error: 'Token invalide ou expiré' },
           { status: 401 }
@@ -130,7 +114,6 @@ export async function PUT(request: NextRequest) {
     }
 
     const data = await request.json();
-    console.log('Update data received:', data);
     
     try {
       const updatedUser = await prisma.utilisateur.update({
@@ -163,7 +146,6 @@ export async function PUT(request: NextRequest) {
         updatedAt: updatedUser.dateMiseAJour.toISOString()
       };
 
-      console.log('User updated successfully:', sanitizedUser);
       return NextResponse.json(sanitizedUser);
     } catch (dbError) {
       console.error('Database error:', dbError);

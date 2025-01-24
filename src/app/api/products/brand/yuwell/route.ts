@@ -3,7 +3,6 @@ import prisma from '../../../../../lib/prisma';
 
 export async function GET() {
   try {
-    console.log('Attempting to fetch products...');
 
     // Fetch all CPAP products (regardless of brand)
     const cpapProducts = await prisma.product.findMany({
@@ -34,13 +33,11 @@ export async function GET() {
       },
     });
 
-    console.log('Raw products from database:', { cpapProducts, yuwellProducts });
 
     // Combine the results
     const products = [...cpapProducts, ...yuwellProducts];
 
     if (!products.length) {
-      console.log('No products found - returning empty array');
       return NextResponse.json([], { status: 200 });
     }
 
@@ -54,7 +51,6 @@ export async function GET() {
       media: product.media,
     }));
 
-    console.log('Returning products:', safeProducts);
     return NextResponse.json(safeProducts);
   } catch (error) {
     console.error('Error fetching products:', error);

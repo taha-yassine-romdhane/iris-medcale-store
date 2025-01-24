@@ -21,14 +21,11 @@ const Navbar = () => {
 
   // Debug log for auth state changes
   useEffect(() => {
-    console.log('[Navbar] Auth state changed:', { user, token, loading });
   }, [user, token, loading]);
 
   const handleLogout = async () => {
-    console.log('[Navbar] Initiating logout...');
     await logout();
     setIsUserMenuOpen(false);
-    console.log('[Navbar] Logout complete');
   };
 
   // Don't render user-specific content while loading
@@ -51,11 +48,9 @@ const Navbar = () => {
 
   const getMenuItems = () => {
     if (!user) {
-      console.log('[Navbar] No user in auth state');
       return null;
     }
 
-    console.log('[Navbar] Rendering menu items for user:', user);
 
     const commonItems = [
       <div key="user-info" className="px-4 py-2 border-b border-gray-100">

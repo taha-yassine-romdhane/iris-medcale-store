@@ -21,14 +21,11 @@ export default function DeleteUserModal({
   const [isLoading, setIsLoading] = useState(false);
 
   const handleDelete = async () => {
-    console.log('Delete button clicked');
-  
     setIsLoading(true);
   
     try {
       // Construct the API endpoint
       const requestUrl = `/api/users/${userId}`;
-      console.log(`Sending DELETE request to: ${requestUrl}`);
   
       // Perform the DELETE request
       const response = await fetch(requestUrl, { method: 'DELETE' });
@@ -44,7 +41,6 @@ export default function DeleteUserModal({
   
       // Successfully deleted
       const successData = await response.json();
-      console.log('User deleted successfully:', successData);
   
       // Trigger success callback and close the modal
       if (onSuccess) onSuccess();

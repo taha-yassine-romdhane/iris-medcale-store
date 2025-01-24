@@ -9,7 +9,6 @@ import crypto from 'crypto';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    console.log('Registration attempt - Request body:', body);
     const { 
       email, 
       motDePasse, 

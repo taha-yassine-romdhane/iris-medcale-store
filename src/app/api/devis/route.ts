@@ -13,27 +13,25 @@ if (!JWT_SECRET) {
 
 export async function POST(req: NextRequest) {
   try {
-    console.log('=== Starting devis creation process ===');
 
-    // Get token from cookie
-    const token = req.cookies.get('token')?.value;
-    console.log('Token from cookie:', token ? 'Present' : 'Missing');
-
-    if (!token) {
-      console.error('No token found in cookies');
+    // Get token from Authorization header
+    const authHeader = req.headers.get('authorization');
+    
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return NextResponse.json(
         { success: false, message: 'Authentication required' },
-        { status: 401, headers: { 'Content-Type': 'application/json' } }
+        { status: 401 }
       );
     }
+
+    const token = authHeader.split(' ')[1];
 
     // Verify JWT token
     const decoded = verifyToken(token);
     if (!decoded || !decoded.id) {
-      console.error('Invalid token payload:', decoded);
       return NextResponse.json(
         { success: false, message: 'Invalid token' },
-        { status: 401, headers: { 'Content-Type': 'application/json' } }
+        { status: 401 }
       );
     }
 
@@ -42,10 +40,9 @@ export async function POST(req: NextRequest) {
     const { items } = data;
 
     if (!items?.length) {
-      console.error('Invalid items data:', items);
       return NextResponse.json(
         { success: false, message: 'No items provided' },
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+        { status: 400 }
       );
     }
 
@@ -58,18 +55,12 @@ export async function POST(req: NextRequest) {
     );
 
     if (!validItems) {
-      console.error('Invalid item structure in request');
       return NextResponse.json(
         { success: false, message: 'Invalid items format' },
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+        { status: 400 }
       );
     }
 
-    console.log('Creating order for user:', decoded.id);
-    console.log('Items:', items);
-
-    // Fetch user information
-    console.log('Fetching user information...');
     const user = await prisma.utilisateur.findUnique({
       where: { id: decoded.id },
       select: {
@@ -82,18 +73,14 @@ export async function POST(req: NextRequest) {
     });
 
     if (!user) {
-      console.error('User not found:', decoded.id);
       return NextResponse.json(
         { success: false, message: 'User not found' },
-        { status: 404, headers: { 'Content-Type': 'application/json' } }
+        { status: 404 }
       );
     }
 
-    console.log('User found:', user);
-
     // Validate product IDs
     const productIds = items.map((item: CartItem) => item.id);
-    console.log('Checking if products exist in the database...');
     const existingProducts = await prisma.product.findMany({
       where: {
         id: { in: productIds },
@@ -104,7 +91,6 @@ export async function POST(req: NextRequest) {
     });
 
     if (existingProducts.length !== items.length) {
-      console.log('Some products do not exist in the database');
       return NextResponse.json(
         { success: false, message: 'Some products do not exist in the database' },
         { status: 400 }
@@ -160,8 +146,6 @@ export async function POST(req: NextRequest) {
         }
       }
     });
-
-    console.log('Order created successfully:', order.id);
 
     return NextResponse.json(
       { success: true, data: order },

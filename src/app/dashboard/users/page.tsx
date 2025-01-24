@@ -29,7 +29,6 @@ export default function UsersPage() {
       const response = await fetch('/api/users');
       if (!response.ok) throw new Error('Failed to fetch users');
       const data = await response.json();
-      console.log('Fetched Users:', data); // Log the fetched users
       setUsers(data);
     } catch (error) {
       console.error('Error:', error);
@@ -54,7 +53,6 @@ export default function UsersPage() {
       }
   
       const responseData = await response.json(); // Parse the response as JSON
-      console.log('User added successfully:', responseData);
   
       await fetchUsers(); // Refresh the user list
       setIsAddModalOpen(false); // Close the modal
@@ -216,7 +214,6 @@ export default function UsersPage() {
                     </button>
                     <button
                       onClick={() => {
-                        console.log('Selected User:', user); // Log the selected user
                         setSelectedUser(user);
                         setIsDeleteModalOpen(true);
                       }}

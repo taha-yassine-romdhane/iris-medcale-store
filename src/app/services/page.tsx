@@ -25,7 +25,6 @@ const ServicesPage = () => {
   ];
 
   const regions = t('servicesPage.regions', { returnObjects: true }) || [];
-  console.log('Regions data:', regions, 'Type:', typeof regions);
   
   return (
     <main className="pt-16">
