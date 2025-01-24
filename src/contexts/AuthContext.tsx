@@ -28,10 +28,7 @@ interface AuthContextType {
   logout: () => void;
 }
 
-type AuthHeaders = {
-  'Authorization': string;
-  'Authorization-User': string;
-};
+
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -40,18 +37,7 @@ const initialAuthState: AuthState = {
   token: null,
 };
 
-// Helper function to get auth headers
-const getAuthHeaders = (): Partial<AuthHeaders> => {
-  const token = localStorage.getItem('token');
-  const userStr = localStorage.getItem('user');
-  
-  if (!token || !userStr) return {};
-  
-  return {
-    'Authorization': `Bearer ${token}`,
-    'Authorization-User': encodeURIComponent(userStr),
-  };
-};
+
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const router = useRouter();

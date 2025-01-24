@@ -33,8 +33,7 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
     if (product) {
       // Ensure media and features are arrays
       const media = Array.isArray(product.media) ? product.media : [];
-      const features = Array.isArray(product.features) ? product.features : [];
-      
+           
       // Parse features if it's a string or JSON object
       let parsedFeatures: string[] = [];
       try {
