@@ -1,7 +1,7 @@
 'use client';
 
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { X, Trash2, ArrowUp, ArrowDown } from 'lucide-react';
 import { Product, Media } from '@/types/product';
 import Image from 'next/image';
@@ -15,6 +15,12 @@ interface AddProductModalProps {
 }
 
 export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProductModalProps) {
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    setToken(localStorage.getItem('token'));
+  }, []);
+
   const [formData, setFormData] = useState<Omit<Product, 'id'>>({
     name: '',
     brand: '',
@@ -322,7 +328,7 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Images et Vidéos
                     </label>
-                    <UploadDropzone<OurFileRouter, "mediaUploader">
+                    <UploadDropzone<OurFileRouter>
                       endpoint="mediaUploader"
                       onClientUploadComplete={(res) => {
                         if (res) {
@@ -338,6 +344,12 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
                       onUploadError={(error: Error) => {
                         console.error('Upload error:', error);
                         alert(`Error uploading file: ${error.message}`);
+                      }}
+                      config={{
+                        mode: 'auto',
+                        headers: token ? {
+                          Authorization: `Bearer ${token}`
+                        } : undefined
                       }}
                     />
                     

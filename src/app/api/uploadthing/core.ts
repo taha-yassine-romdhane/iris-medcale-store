@@ -12,23 +12,25 @@ export const ourFileRouter = {
   })
     .middleware(async ({ req }) => {
       try {
-        // Extract the token from the request cookies
-        const cookies = req.headers.get('cookie');
-        const token = cookies
-          ?.split('; ')
-          .find((row) => row.startsWith('token='))
-          ?.split('=')[1];
-
-        if (!token) {
+        // Get token from Authorization header
+        const authHeader = req.headers.get('authorization');
+        
+        if (!authHeader || !authHeader.startsWith('Bearer ')) {
           throw new UploadThingError("Unauthorized: No token provided");
         }
 
+        const token = authHeader.split(' ')[1];
+
         // Verify the token and extract the user ID
         const user = await verifyToken(token);
+        if (!user || !user.id) {
+          throw new UploadThingError("Unauthorized: Invalid token");
+        }
+
         return { userId: user.id };
       } catch (error) {
-        console.error('Authentication error:', error); // Log the error
-        throw new UploadThingError("Unauthorized");
+        console.error('Authentication error:', error);
+        throw new UploadThingError("Unauthorized: Invalid authentication");
       }
     })
     .onUploadComplete(async ({ metadata }) => {

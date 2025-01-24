@@ -11,22 +11,18 @@ import type { OurFileRouter } from '@/app/api/uploadthing/core';
 interface EditProductModalProps {
   isOpen: boolean;
   closeModal: () => void;
-  product: Product | null;
+  product: Product;
   onUpdate: (updatedProduct: Product) => void;
 }
 
 export default function EditProductModal({ isOpen, closeModal, product, onUpdate }: EditProductModalProps) {
-  const [formData, setFormData] = useState<Omit<Product, 'id'>>({
-    name: '',
-    brand: '',
-    type: '',
-    description: '',
-    category: '',
-    subCategory: '',
-    inStock: true,
-    features: [],
-    media: [],
-  });
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    setToken(localStorage.getItem('token'));
+  }, []);
+
+  const [formData, setFormData] = useState<Product>({ ...product });
   const [newFeature, setNewFeature] = useState('');
 
   useEffect(() => {
@@ -343,24 +339,13 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
 
                   <div className="col-span-2">
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Images et Vidéos
+                      Images du produit
                     </label>
-                    <UploadDropzone<OurFileRouter, "mediaUploader">
+                    <UploadDropzone<OurFileRouter,"mediaUploader">
                       endpoint="mediaUploader"
-                      onClientUploadComplete={(res) => {
-                        if (res) {
-                          handleMediaUpload(
-                            res.map((file) => ({
-                              url: file.url,
-                              type: file.type,
-                              name: file.name,
-                            }))
-                          );
-                        }
-                      }}
+                      onClientUploadComplete={handleMediaUpload}
                       onUploadError={(error: Error) => {
                         console.error('Upload error:', error);
-                        alert(`Error uploading file: ${error.message}`);
                       }}
                     />
                     
