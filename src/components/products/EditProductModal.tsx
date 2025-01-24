@@ -31,6 +31,10 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
 
   useEffect(() => {
     if (product) {
+      // Ensure media and features are arrays
+      const media = Array.isArray(product.media) ? product.media : [];
+      const features = Array.isArray(product.features) ? product.features : [];
+      
       // Parse features if it's a string or JSON object
       let parsedFeatures: string[] = [];
       try {
@@ -47,6 +51,7 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
 
       setFormData({
         ...product,
+        media,
         features: parsedFeatures,
       });
     }
@@ -80,7 +85,18 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
       }
 
       const result = await response.json();
-      onUpdate(result);
+      
+      // Call onUpdate with the complete updated product
+      onUpdate({
+        ...result,
+        media: result.media || [],  // Ensure media is always an array
+        features: result.features || []  // Ensure features is always an array
+      });
+
+      // Show success message
+      alert('Product updated successfully!');
+      
+      // Close modal
       closeModal();
     } catch (error) {
       console.error('Error updating product:', error);

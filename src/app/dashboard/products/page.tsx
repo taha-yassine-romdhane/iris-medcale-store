@@ -18,6 +18,7 @@ export default function ProductsPage() {
   const [type, setType] = useState('');
   const [brand, setBrand] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   // Search state
   const [searchQuery, setSearchQuery] = useState('');
@@ -53,7 +54,7 @@ export default function ProductsPage() {
     };
 
     fetchProducts();
-  }, [category, type, brand, searchQuery]);
+  }, [category, type, brand, searchQuery, refreshTrigger]);
 
   // Filter handlers
   const handleFilter = ({ category, type, brand }: { category: string; type: string; brand: string }) => {
@@ -74,11 +75,21 @@ export default function ProductsPage() {
   };
 
   const handleUpdateProduct = (updatedProduct: Product) => {
-    setProducts(products.map(p => p.id === updatedProduct.id ? updatedProduct : p));
+    // First update the local state
+    setProducts(prevProducts => 
+      prevProducts.map(p => p.id === updatedProduct.id ? updatedProduct : p)
+    );
+    // Then trigger a refresh to ensure we have the latest data
+    setRefreshTrigger(prev => prev + 1);
   };
 
   const handleDeleteProduct = (productId: string) => {
     setProducts(products.filter(p => p.id !== productId));
+  };
+
+  const handleAddProduct = (newProduct: Product) => {
+    setProducts(prevProducts => [...prevProducts, newProduct]);
+    setRefreshTrigger(prev => prev + 1);
   };
 
   return (
@@ -244,7 +255,10 @@ export default function ProductsPage() {
 
         <EditProductModal
           isOpen={isEditModalOpen}
-          closeModal={() => setIsEditModalOpen(false)}
+          closeModal={() => {
+            setIsEditModalOpen(false);
+            setSelectedProduct(null);
+          }}
           product={selectedProduct}
           onUpdate={handleUpdateProduct}
         />
@@ -259,9 +273,7 @@ export default function ProductsPage() {
         <AddProductModal
           isOpen={isAddModalOpen}
           closeModal={() => setIsAddModalOpen(false)}
-          onAdd={(newProduct) => {
-            setProducts([...products, newProduct]);
-          }}
+          onAdd={handleAddProduct}
         />
       </div>
     </div>

@@ -54,8 +54,11 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
       }
 
       const result = await response.json();
+      
+      // Call onAdd with the new product
       onAdd(result);
-      closeModal();
+
+      // Reset form data
       setFormData({
         name: '',
         brand: '',
@@ -67,6 +70,12 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
         features: [],
         media: [],
       });
+
+      // Show success message
+      alert('Product added successfully!');
+      
+      // Close modal
+      closeModal();
     } catch (error) {
       console.error('Error adding product:', error);
       alert(error instanceof Error ? error.message : 'Failed to add product. Please try again.');

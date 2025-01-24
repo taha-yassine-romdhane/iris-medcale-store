@@ -42,8 +42,6 @@ const initialAuthState: AuthState = {
 
 // Helper function to get auth headers
 const getAuthHeaders = (): Partial<AuthHeaders> => {
-  if (typeof window === 'undefined') return {};
-  
   const token = localStorage.getItem('token');
   const userStr = localStorage.getItem('user');
   
@@ -63,21 +61,52 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // Initialize auth state from localStorage
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const userStr = localStorage.getItem('user');
-    
-    if (token && userStr) {
-      try {
-        const user = JSON.parse(userStr);
-        setAuthState({ user, token });
-      } catch (err) {
-        console.error('Error parsing user data:', err);
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
+    const initializeAuth = async () => {
+      const token = localStorage.getItem('token');
+      const userStr = localStorage.getItem('user');
+      
+      if (token && userStr) {
+        try {
+          const user = JSON.parse(userStr);
+          
+          // Create headers exactly as they would be used in requests
+          const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Authorization-User': encodeURIComponent(userStr)
+          };
+
+          // Verify token is still valid
+          const response = await fetch('/api/auth/verify', {
+            headers: headers
+          });
+          
+          if (response.ok) {
+            setAuthState({ user, token });
+          } else {
+            console.error('Token verification failed:', await response.json());
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            setAuthState(initialAuthState);
+            router.push('/login');
+          }
+        } catch (err) {
+          console.error('Error during auth initialization:', err);
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          setAuthState(initialAuthState);
+          router.push('/login');
+        }
+      } else {
+        setAuthState(initialAuthState);
+        if (window.location.pathname !== '/login') {
+          router.push('/login');
+        }
       }
-    }
-    setLoading(false);
-  }, []);
+      setLoading(false);
+    };
+
+    initializeAuth();
+  }, [router]);
 
   // Set up request interceptor to add auth headers
   useEffect(() => {
@@ -85,20 +114,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const originalFetch = window.fetch;
     window.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = input.toString();
+      
+      // Skip auth headers for public routes
+      const isPublicRoute = url.includes('/api/auth/login') ||
+                           url.includes('/api/category-types') ||
+                           url.includes('/api/products');
+                           
+      const token = localStorage.getItem('token');
+      const userStr = localStorage.getItem('user');
+      
       // Create a new init object with proper typing
       const modifiedInit: RequestInit = {
         ...init,
         headers: {
           ...(init?.headers || {}),
-          ...getAuthHeaders(),
-        } as HeadersInit,
+          ...((!isPublicRoute && token && userStr) ? {
+            'Authorization': `Bearer ${token}`,
+            'Authorization-User': encodeURIComponent(userStr)
+          } : {})
+        } as HeadersInit
       };
 
       try {
         const response = await originalFetch(input, modifiedInit);
         
-        // Handle authentication errors
-        if (response.status === 401 || response.status === 403) {
+        // Handle authentication errors, but only if we're not already on the login page
+        // and it's not a verification request (to avoid loops)
+        if ((response.status === 401 || response.status === 403) && 
+            !window.location.pathname.includes('/login') && 
+            !url.includes('/api/auth/verify')) {
           console.log('Authentication error, clearing state...');
           localStorage.removeItem('token');
           localStorage.removeItem('user');
