@@ -139,7 +139,7 @@ export default function ProductsSection() {
           <div className="w-full overflow-hidden px-4">
             <div 
               ref={sliderRefs[refKey]}
-              className="flex w-full gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar"
+              className="flex w-full gap-6 overflow-x-auto snap-x snap-mandatory  no-scrollbar py-5 px-2"
               style={{
                 WebkitOverflowScrolling: 'touch',
                 scrollBehavior: 'smooth',
@@ -150,16 +150,17 @@ export default function ProductsSection() {
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className="flex-none w-[75vw] max-w-[300px] min-w-[260px] bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group snap-start"
+                  className="flex-none w-[75vw] max-w-[240px] min-w-[120px] bg-gradient-to-r from-blue-50 to-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group snap-start"
                 >
                   <Link href={`/product/${product.id}`} className="block">
-                    <div className="relative h-48 sm:h-56">
+                    <div className="relative aspect-square w-full overflow-hidden rounded-lg">
                       {product.media && product.media[0] && (
                         <Image
                           src={product.media[0].url}
                           alt={product.name}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          className="object-contain p-8 group-hover:scale-105 transition-transform duration-300"
                         />
                       )}
                       <div className="absolute top-2 right-2 sm:top-3 sm:right-3">
@@ -190,7 +191,7 @@ export default function ProductsSection() {
                       </Link>
                       <button
                         onClick={() => addToCart(product)}
-                        className="px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-900 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-blue-800 transform hover:-translate-y-0.5 transition-all duration-200"
+                        className="px-3 py-2 sm:px-4 sm:py-2 bg-blue-900 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-blue-800 transform hover:-translate-y-0.5 transition-all duration-200"
                       >
                         Ajouter
                       </button>
