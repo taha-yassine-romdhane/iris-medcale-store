@@ -15,7 +15,7 @@ export async function sendVerificationEmail(email: string, token: string) {
   const verificationUrl = `${process.env.NEXT_PUBLIC_APP_URL}/verify-email?token=${token}`;
 
   try {
-    const data = await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: 'Elite Medicale <onboarding@resend.dev>',
       to: email,
       subject: 'Verify your email address - Elite Medicale Service',
@@ -36,10 +36,15 @@ export async function sendVerificationEmail(email: string, token: string) {
         </div>
       `,
     });
+
+    if (error) {
+      console.error('Resend API error:', error);
+      throw new Error(error.message);
+    }
     
-    return true;
-  } catch (error) {
-    console.error('Error sending verification email:', error);
+    return data;
+  } catch  {
+    console.error('Error sending verification email:');
     throw new Error('Failed to send verification email. Please try again later.');
   }
 }

@@ -52,7 +52,6 @@ export default function UsersPage() {
         throw new Error(errorData || 'Failed to add user');
       }
   
-      const responseData = await response.json(); // Parse the response as JSON
   
       await fetchUsers(); // Refresh the user list
       setIsAddModalOpen(false); // Close the modal

@@ -28,7 +28,7 @@ export function signToken(payload: TokenPayload): string {
 
   try {
     return jwt.sign(payload, JWT_SECRET, { expiresIn: '1d' });
-  } catch (error) {
+  } catch  {
     throw new Error('Failed to sign token');
   }
 }

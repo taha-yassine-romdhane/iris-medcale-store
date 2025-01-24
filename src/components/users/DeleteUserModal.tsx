@@ -32,24 +32,17 @@ export default function DeleteUserModal({
   
       // Handle the response
       if (!response.ok) {
-        // Extract the error message from the response
         const errorData = await response.json();
         const errorMessage = errorData.error || 'Failed to delete user';
         console.error(`Error: ${errorMessage}`);
         throw new Error(errorMessage);
       }
   
-      // Successfully deleted
-      const successData = await response.json();
-  
-      // Trigger success callback and close the modal
       if (onSuccess) onSuccess();
       if (onClose) onClose();
     } catch (error) {
-      // Log and display the error message
       console.error('Error occurred during user deletion:', error);
     } finally {
-      // Always reset the loading state
       setIsLoading(false);
     }
   };

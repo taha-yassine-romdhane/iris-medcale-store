@@ -51,7 +51,7 @@ export default function LoginPage() {
      
       router.replace(targetRoute);
       router.refresh();
-    } catch (error) {
+    } catch {
       setErrorMessage(t('login.error.invalidCredentials'));
     }
   };
