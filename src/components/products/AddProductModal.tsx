@@ -16,7 +16,7 @@ interface AddProductModalProps {
 
 export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProductModalProps) {
   // Helper function to ensure array type for features
-  const ensureArray = (value: any): string[] => {
+  const ensureArray = (value: string | string[]): string[] => {
     return Array.isArray(value) ? value : [];
   };
 

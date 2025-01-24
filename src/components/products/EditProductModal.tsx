@@ -17,7 +17,7 @@ interface EditProductModalProps {
 
 export default function EditProductModal({ isOpen, closeModal, product, onUpdate }: EditProductModalProps) {
   // Helper function to parse features
-  const parseFeatures = (features: any): string[] => {
+  const parseFeatures = (features: string | string[]): string[] => {
     try {
       if (typeof features === 'string') {
         return JSON.parse(features);
