@@ -1,3 +1,4 @@
+import { StockStatus } from '@/types/product';
 import { prisma } from '../db';
 import { Prisma } from '@prisma/client';
 
@@ -42,12 +43,12 @@ export async function getAllProducts(
         createdAt: 'desc'
       },
       include: {
+        reviews: true,
         media: {
           orderBy: {
             order: 'asc'
           }
-        },
-        reviews: true
+        }
       }
     }),
     prisma.product.count({ where })
@@ -102,7 +103,7 @@ export async function createProduct(data: {
   description: string;
   category: string;
   subCategory?: string;
-  inStock?: boolean;
+  stock?: StockStatus;
   features?: string[] | string;
   media?: {
     url: string;
@@ -111,11 +112,14 @@ export async function createProduct(data: {
     order: number;
   }[];
 }) {
-  // Ensure features is stored as JSON
-  const features = Array.isArray(data.features) ? data.features : 
-                  typeof data.features === 'string' ? 
-                    (data.features.startsWith('[') ? JSON.parse(data.features) : [data.features]) :
-                  [];
+  // Handle features array
+  const features = Array.isArray(data.features) 
+    ? data.features 
+    : typeof data.features === 'string'
+      ? data.features.startsWith('[') 
+        ? JSON.parse(data.features)
+        : [data.features]
+      : [];
 
   return prisma.product.create({
     data: {
@@ -125,11 +129,16 @@ export async function createProduct(data: {
       description: data.description,
       category: data.category,
       subCategory: data.subCategory,
-      inStock: data.inStock ?? true,
-      features: features,
+      stock: data.stock || StockStatus.IN_STOCK,
+      features,
       media: data.media ? {
-        create: data.media
-      } : undefined
+        create: data.media.map(m => ({
+          url: m.url,
+          type: m.type,
+          alt: m.alt,
+          order: m.order
+        }))
+      } : undefined,
     },
     include: {
       media: {

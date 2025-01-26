@@ -30,8 +30,10 @@ interface CategoryType {
 // Move categoryOrder outside the component as a constant
 const CATEGORY_ORDER = [
   'APPAREILS CPAP/PPC',
+  'ACCESSOIRES CPAP/PPC',
   'CONCENTRATEURS D\'OXYGENE',
   'ACCESSOIRES D\'OXYGENE',
+  'MASQUES',
   'APPAREILS BIPAP/VNI',
   'APPAREILS NEBULISEUR',
   'APPAREILS ASPIRATUER',

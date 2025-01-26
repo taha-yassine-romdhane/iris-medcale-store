@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 import { useCart } from '@/hooks/useCart';
 import LoginDialog from './LoginDialog';
+import { useTranslation } from '@/context/TranslationContext';
 
 interface DevisModalProps {
   isOpen: boolean;
@@ -21,6 +22,7 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
   const [showLoginDialog, setShowLoginDialog] = useState(false);
   const router = useRouter();
   const { clearCart } = useCart();
+  const { t } = useTranslation();
 
   const handleConfirmDevis = async () => {
     try {
@@ -126,20 +128,20 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
                       className="text-2xl font-semibold leading-6 text-gray-900 mt-4"
                     >
                       {isConfirmed 
-                        ? 'Demande de devis confirmée !'
-                        : 'Confirmer votre demande de devis'}
+                        ? t('devisModal.confirmedMessage')
+                        : t('devisModal.confirmationMessage')}
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-gray-500">
                         {isConfirmed 
-                          ? 'Votre demande a été enregistrée. Notre équipe vous contactera très prochainement.'
-                          : 'Veuillez vérifier les détails de votre demande avant de confirmer.'}
+                          ? t('devisModal.confirmedMessage')
+                          : t('devisModal.confirmationMessage')}
                       </p>
                     </div>
                   </div>
 
                   <div className="mt-6">
-                    <h4 className="text-lg font-medium text-gray-900 mb-4">Récapitulatif de votre demande :</h4>
+                    <h4 className="text-lg font-medium text-gray-900 mb-4">{t('devisModal.title')}</h4>
                     <div className="bg-gray-50 rounded-lg p-4 space-y-4">
                       {items.map((item) => (
                         <div key={item.id} className="flex items-center justify-between">
@@ -148,7 +150,7 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
                             <p className="text-sm text-gray-500">{item.brand}</p>
                           </div>
                           <div className="text-sm text-gray-500">
-                            Quantité: {item.quantity}
+                            {t('devisModal.quantity')} {item.quantity}
                           </div>
                         </div>
                       ))}
@@ -157,9 +159,9 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
 
                   <div className="mt-8">
                     <p className="text-sm text-gray-500 text-center">
-                      Si vous avez des questions, n&apos;hésitez pas à nous contacter au{' '}
-                      <a href="tel:+21655792605" className="text-blue-600 font-medium">
-                        +216 55 792 605
+                      {t('devisModal.message')}
+                      <a href="tel:+21655820000" className="text-blue-600 font-medium">
+                        +216 55 820 000
                       </a>
                     </p>
                   </div>
@@ -175,10 +177,10 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
                         {isSubmitting ? (
                           <>
                             <Loader2 className="animate-spin -ml-1 mr-2 h-4 w-4" />
-                            Confirmation en cours...
+                            {t('devisModal.confirming')}
                           </>
                         ) : (
-                          'Confirmer le devis'
+                          t('devisModal.confirm')
                         )}
                       </button>
                     )}

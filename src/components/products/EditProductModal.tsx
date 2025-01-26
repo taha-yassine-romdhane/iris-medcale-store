@@ -3,7 +3,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState, useEffect } from 'react';
 import { X, Trash2, ArrowUp, ArrowDown } from 'lucide-react';
-import { Product, Media } from '@/types/product';
+import { Product, Media, StockStatus } from '@/types/product';
 import Image from 'next/image';
 import { UploadDropzone } from '@uploadthing/react';
 import type { OurFileRouter } from '@/app/api/uploadthing/core';
@@ -17,7 +17,7 @@ interface EditProductModalProps {
 
 export default function EditProductModal({ isOpen, closeModal, product, onUpdate }: EditProductModalProps) {
   // Helper function to parse features
-  const parseFeatures = (features: string | string[]): string[] => {
+  const parseFeatures = (features: Product['features']): string[] => {
     try {
       if (typeof features === 'string') {
         return JSON.parse(features);
@@ -38,7 +38,7 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
     name: product?.name || '',
     description: product?.description || '',
     media: Array.isArray(product?.media) ? product.media : [],
-    inStock: product?.inStock ?? true,
+    stock: product.stock ?? StockStatus.IN_STOCK,
     features: parseFeatures(product?.features),
     category: product?.category || '',
   });
@@ -50,7 +50,7 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
         ...product,
         media: Array.isArray(product.media) ? product.media : [],
         features: parseFeatures(product.features),
-        inStock: product.inStock ?? true,
+        stock: product.stock ?? StockStatus.IN_STOCK,
       });
     }
   }, [product]);
@@ -63,10 +63,12 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
       const productData = {
         ...formData,
         features: Array.isArray(formData.features) ? formData.features : [],
+        subCategory: formData.subCategory || null,
         media: formData.media.map((m, index) => ({
           ...m,
           order: index,
         })),
+        stock: formData.stock || StockStatus.IN_STOCK
       };
 
       const response = await fetch(`/api/products/${product.id}`, {
@@ -88,7 +90,8 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
       onUpdate({
         ...result,
         media: result.media || [],  // Ensure media is always an array
-        features: result.features || []  // Ensure features is always an array
+        features: result.features || [],  // Ensure features is always an array
+        subCategory: result.subCategory || null  // Ensure subCategory is properly handled
       });
 
       // Show success message
@@ -421,20 +424,21 @@ export default function EditProductModal({ isOpen, closeModal, product, onUpdate
                   </div>
 
                   <div>
-                    <label htmlFor="inStock" className="block text-sm font-medium text-gray-700">
-                      Statut
+                    <label htmlFor="stock" className="block text-sm font-medium text-gray-700">
+                      Status du stock
                     </label>
                     <select
-                      name="inStock"
-                      id="inStock"
-                      value={(formData?.inStock ?? true).toString()}
-                      onChange={(e) => setFormData((prev) => ({ ...prev, inStock: e.target.value === 'true' }))}
+                      name="stock"
+                      id="stock"
+                      value={formData?.stock || StockStatus.IN_STOCK}
+                      onChange={(e) => setFormData((prev) => ({ ...prev, stock: e.target.value as StockStatus }))}
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                     >
-                      <option value="true">En stock</option>
-                      <option value="false">En Arrivage</option>
-                      <option value="false">Sur Commande</option>
-                      <option value="false">En rupture</option>
+                      <option value={StockStatus.IN_STOCK}>En stock</option>
+                      <option value={StockStatus.LOW_STOCK}>Stock faible</option>
+                      <option value={StockStatus.PRE_ORDER}>Pré-commande</option>
+                      <option value={StockStatus.COMING_SOON}>En Arrivage</option>
+                      <option value={StockStatus.OUT_OF_STOCK}>En rupture</option>
                     </select>
                   </div>
 

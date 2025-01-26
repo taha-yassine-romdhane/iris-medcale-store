@@ -3,7 +3,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 import { X, Trash2, ArrowUp, ArrowDown } from 'lucide-react';
-import { Product, Media } from '@/types/product';
+import { Product, Media, StockStatus } from '@/types/product';
 import Image from 'next/image';
 import { UploadDropzone } from '@uploadthing/react';
 import type { OurFileRouter } from '@/app/api/uploadthing/core';
@@ -27,10 +27,11 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
     description: '',
     category: '',
     subCategory: '',
-    inStock: true,
+    stock: StockStatus.IN_STOCK,
     features: [],
     media: [],
-
+    createdAt: new Date(),
+    updatedAt: new Date()
   });
   const [newFeature, setNewFeature] = useState('');
 
@@ -44,6 +45,7 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
           ...m,
           order: index,
         })),
+        stock: formData.stock, // Update the form submission to use the correct stock field
       };
 
       const response = await fetch('/api/products', {
@@ -72,9 +74,11 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
         description: '',
         category: '',
         subCategory: '',
-        inStock: true,
+        stock: StockStatus.IN_STOCK,
         features: [],
-        media: []
+        media: [],
+        createdAt: new Date(),
+        updatedAt: new Date()
       });
 
       // Show success message
@@ -403,20 +407,27 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="inStock" className="block text-sm font-medium text-gray-700">
-                      Statut
+                    <label htmlFor="stockStatus" className="block text-sm font-medium text-gray-700">
+                      État du stock
                     </label>
                     <select
-                      name="inStock"
-                      id="inStock"
-                      value={formData.inStock.toString()}
-                      onChange={(e) => setFormData((prev) => ({ ...prev, inStock: e.target.value === 'true' }))}
+                      name="stockStatus"
+                      id="stockStatus"
+                      value={formData.stock}
+                      onChange={(e) => {
+                        const newStatus = e.target.value as StockStatus;
+                        setFormData((prev) => ({ 
+                          ...prev, 
+                          stock: newStatus
+                        }));
+                      }}
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                     >
-                      <option value="true">En stock</option>
-                      <option value="false">En Arrivage</option>
-                      <option value="false">Sur Commande</option>
-                      <option value="false">En rupture</option>
+                      <option value="IN_STOCK">En stock</option>
+                      <option value="OUT_OF_STOCK">Rupture de stock</option>
+                      <option value="LOW_STOCK">Stock faible</option>
+                      <option value="PRE_ORDER">Pré-commande</option>
+                      <option value="COMING_SOON">Bientôt disponible</option>
                     </select>
                   </div>
 

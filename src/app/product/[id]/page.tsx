@@ -2,16 +2,18 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useCart } from '@/hooks/useCart';
 import { Product } from '@/types/product';
+import { useTranslation } from '@/context/TranslationContext';
 
 export default function ProductPage() {
+  const { t } = useTranslation();
   const params = useParams();
   const id = params?.id as string;
-  
+
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -20,7 +22,7 @@ export default function ProductPage() {
   useEffect(() => {
     async function fetchProduct() {
       if (!id) return;
-      
+
       try {
         const response = await fetch(`/api/products/${id}`);
         if (!response.ok) throw new Error('Failed to fetch product');
@@ -72,14 +74,14 @@ export default function ProductPage() {
     );
   }
 
-  const features =  (Array.isArray(product.features) ? product.features :
-      typeof product.features as string === 'string' ? JSON.parse(product.features) :
-          []).slice(0, 3).map((feature: string) => (
-      <>
-        <span className="text-blue-500 mr-2"></span>
-        {feature}
-      </>
-  ));
+  const features = (Array.isArray(product.features) ? product.features :
+    typeof product.features as string === 'string' ? JSON.parse(product.features) :
+      []).slice(0, 3).map((feature: string) => (
+        <>
+          <span className="text-blue-500 mr-2"></span>
+          {feature}
+        </>
+      ));
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
@@ -141,9 +143,8 @@ export default function ProductPage() {
                   <button
                     key={media.id}
                     onClick={() => setCurrentImageIndex(index)}
-                    className={`relative aspect-w-1 aspect-h-1 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow ${
-                      currentImageIndex === index ? 'ring-2 ring-blue-500' : ''
-                    }`}
+                    className={`relative aspect-w-1 aspect-h-1 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow ${currentImageIndex === index ? 'ring-2 ring-blue-500' : ''
+                      }`}
                   >
                     <Image
                       src={media.url}
@@ -172,7 +173,7 @@ export default function ProductPage() {
           {/* Product Info */}
           <div className="flex flex-col min-h-[600px]">
             <h1 className="text-3xl font-bold text-gray-900 mb-4">{product.name}</h1>
-            
+
             {/* Product Meta Information */}
             <div className="flex flex-wrap items-center gap-4 mb-6">
               <div className="flex items-center">
@@ -198,19 +199,41 @@ export default function ProductPage() {
             {/* Stock Status */}
             <div className="mb-6">
               <div className={`inline-flex items-center px-4 py-2 rounded-full ${
-                product.inStock 
-                  ? 'bg-green-100 text-green-800 border border-green-200'
-                  : 'bg-red-100 text-red-800 border border-red-200'
-              }`}>
+                product.stock === 'IN_STOCK'
+                  ? 'bg-green-100 text-green-800'
+                  : product.stock === 'LOW_STOCK'
+                  ? 'bg-yellow-100 text-yellow-800'
+                  : product.stock === 'PRE_ORDER'
+                  ? 'bg-orange-100 text-orange-800'
+                  : product.stock === 'COMING_SOON'
+                  ? 'bg-blue-100 text-blue-800'
+                  : 'bg-red-100 text-red-800'
+              } border`}>
                 <div className={`w-2 h-2 rounded-full mr-2 ${
-                  product.inStock ? 'bg-green-500' : 'bg-red-500'
+                  product.stock === 'IN_STOCK'
+                  ? "bg-green-500"
+                  : product.stock === 'LOW_STOCK'
+                  ? "bg-yellow-500"
+                  : product.stock === 'PRE_ORDER'
+                  ? "bg-orange-500"
+                  : product.stock === 'COMING_SOON'
+                  ? "bg-blue-500"
+                  : "bg-red-500"
                 }`}></div>
                 <span className="font-medium">
-                  {product.inStock ? 'En stock' : 'Rupture de stock'}
+                  {product.stock === 'IN_STOCK'
+                    ? t('productsPage.products.inStock')
+                    : product.stock === 'LOW_STOCK'
+                    ? t('productsPage.products.lowStock')
+                    : product.stock === 'PRE_ORDER'
+                    ? t('productsPage.products.preOrder')
+                    : product.stock === 'COMING_SOON'
+                    ? t('productsPage.products.comingSoon')
+                    : t('productsPage.products.outOfStock')}
                 </span>
               </div>
             </div>
-           
+
             {/* Description */}
             <div className="mb-6">
               <h2 className="text-lg font-bold text-gray-900 mb-2">Description</h2>
@@ -237,14 +260,29 @@ export default function ProductPage() {
             <div className="mt-auto pt-6 border-t border-gray-200">
               <button
                 onClick={() => addToCart(product)}
-                disabled={!product.inStock}
-                className={`w-full py-4 px-6 rounded-lg text-white font-bold text-lg transition-all ${
-                  product.inStock
-                    ? 'bg-blue-600 hover:bg-blue-700'
-                    : 'bg-gray-400 cursor-not-allowed'
+                disabled={product.stock === 'OUT_OF_STOCK' || product.stock === 'COMING_SOON'}
+                className={`w-full py-4 px-6 rounded-lg font-bold text-lg transition-all flex items-center justify-center gap-2 ${
+                  product.stock === 'IN_STOCK'
+                    ? "bg-green-600 hover:bg-green-700 text-white"
+                    : product.stock === 'LOW_STOCK'
+                    ? "bg-yellow-500 hover:bg-yellow-600 text-white"
+                    : product.stock === 'PRE_ORDER'
+                    ? "bg-orange-500 hover:bg-orange-600 text-white"
+                    : product.stock === 'COMING_SOON'
+                    ? "bg-blue-500 text-white cursor-not-allowed opacity-60"
+                    : "bg-gray-400 text-white cursor-not-allowed opacity-60"
                 }`}
               >
-                {product.inStock ? 'Ajouter au panier' : 'Produit indisponible'}
+                <ShoppingCart className="h-5 w-5" />
+                {product.stock === 'IN_STOCK'
+                  ? t('productsPage.products.addToCart')
+                  : product.stock === 'LOW_STOCK'
+                  ? t('productsPage.products.addToCart')
+                  : product.stock === 'PRE_ORDER'
+                  ? t('productsPage.products.preOrder')
+                  : product.stock === 'COMING_SOON'
+                  ? t('productsPage.products.comingSoon')
+                  : t('productsPage.products.outOfStock')}
               </button>
             </div>
           </div>

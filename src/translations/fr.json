@@ -382,7 +382,9 @@
       "inStock": "En Stock",
       "outOfStock": "Rupture de Stock",
       "addToCart": "Ajouter au Panier",
-      "features": "Caractéristiques"
+      "features": "Caractéristiques",
+      "preOrder": "Pré-commande",
+      "comingSoon": "Bientôt disponible"
     }
   },
   "home": {
@@ -400,5 +402,35 @@
     "description": "We've sent you a verification email. Please check your inbox and click the link to verify your account.",
     "spam": "If you don't see the email, please check your spam folder.",
     "goToLogin": "Return to Login"
+  },
+  "devisModal": {
+    "confirmationMessage": "Veuillez vérifier les détails de votre demande avant de confirmer.",
+    "confirmedMessage": "Votre demande a été enregistrée. Notre équipe vous contactera dans 48 heurs par Email.",
+    "title": "Récapitulatif de votre demande :",
+    "quantity": "Quantité :",
+    "message": "Si vous avez des questions, n'hésitez pas à nous contacter au ",
+    "confirming": "Confirmation en cours...",
+    "confirm": "Confirmer le devis"
+  },
+  "productsSection": {
+    "products": {
+      "noProducts": "Aucun produit trouvé",
+      "noImage": "Aucune image disponible",
+      "inStock": "En stock",
+      "outOfStock": "En rupture de stock",
+      "lowStock": "Stock faible",
+      "preOrder": "Pré-commande",
+      "comingSoon": "En Arrivage",
+      "addToCart": "Ajouter ",
+      "features": "Caractéristiques"
+      
+    },
+    "masks":"Masques",
+    "cpap":"CPAP",
+    "oxygen":"oxygénothérapie",
+    "lits":"Lits",
+    "scrollLeft": "Défiler à gauche",
+    "scrollRight": "Défiler à droite",
+    "viewDetails" : "Plus de detail"
   }
 }

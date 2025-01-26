@@ -42,6 +42,7 @@ export default function ProductsPage() {
   });
   const [selectedMedia, setSelectedMedia] = useState<Record<string, number>>({});
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedBrand, setSelectedBrand] = useState<string>('');
 
   // Fetch products when URL params change
   useEffect(() => {
@@ -127,30 +128,30 @@ export default function ProductsPage() {
     window.history.replaceState({}, '', newUrl);
   }, [searchParams]);
 
-  // Apply local search filter whenever products or search query changes
+  // Update filtered products when search query or brand changes
   useEffect(() => {
-    if (!products.length) return;
-
+    if (!products) return;
+    
     let filtered = [...products];
+    
+    // Apply search filter
     if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase().trim();
-      filtered = filtered.filter((product: Product) =>
-        product.name.toLowerCase().includes(query) ||
-        product.description.toLowerCase().includes(query) ||
-        product.brand.toLowerCase().includes(query) ||
-        product.type.toLowerCase().includes(query) ||
-        (product.features && Array.isArray(product.features) &&
-          product.features.some((feature: string) =>
-            feature.toLowerCase().includes(query)
-          ))
+      filtered = filtered.filter(product => 
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
-
+    
+    // Apply brand filter
+    if (selectedBrand && selectedBrand !== 'all') {
+      filtered = filtered.filter(product => product.brand === selectedBrand);
+    }
+    
     setFilteredProducts(filtered);
-  }, [products, searchQuery]);
+  }, [products, searchQuery, selectedBrand]);
 
   const handleAddToCart = useCallback((product: Product) => {
-    if (!product.inStock) return;
+    if (product.stock !== 'IN_STOCK') return;
     addToCart(product);
     toast.success('Product added to cart');
   }, [addToCart]);
@@ -199,26 +200,6 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       {/* Hero Section */}
-      <div className="relative bg-blue-600 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-500 opacity-75"></div>
-        <div className="relative max-w-screen-xl mx-auto px-6 sm:px-8 lg:px-12 py-20">
-          <div className="text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-300">
-              {t('productsPage.hero.title')}
-            </h1>
-            <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              {t('productsPage.hero.description')}
-            </p>
-          </div>
-        </div>
-        {/* Decorative SVG divider */}
-        <div className="absolute bottom-0 w-full">
-          <svg className="w-full h-15 sm:h-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#f3f4f6" fillOpacity="1" d="M0,160L1440,320L1440,320L0,320Z"></path>
-          </svg>
-        </div>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Filters Section */}
         <div className="mb-8 bg-white rounded-lg shadow-lg p-6">
@@ -239,8 +220,8 @@ export default function ProductsPage() {
                 />
               </div>
               <Select
-                value={undefined} // Use undefined instead of null
-                onValueChange={(value) => console.log(value)}
+                value={selectedBrand}
+                onValueChange={(value) => setSelectedBrand(value)}
               >
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder={t('productsPage.filters.selectBrand')} />
@@ -259,6 +240,28 @@ export default function ProductsPage() {
 
           {/* Active Filters */}
           <div className="mt-4 flex flex-wrap gap-2">
+            {searchQuery && (
+              <Badge variant="secondary" className="flex items-center gap-1">
+                Search: {searchQuery}
+                <button 
+                  onClick={() => setSearchQuery('')}
+                  className="ml-1 hover:text-red-500"
+                >
+                  ×
+                </button>
+              </Badge>
+            )}
+            {selectedBrand && selectedBrand !== 'all' && (
+              <Badge variant="secondary" className="flex items-center gap-1">
+                Brand: {selectedBrand}
+                <button 
+                  onClick={() => setSelectedBrand('all')}
+                  className="ml-1 hover:text-red-500"
+                >
+                  ×
+                </button>
+              </Badge>
+            )}
             {searchParams?.get('category') && (
               <Badge variant="secondary" className="flex items-center gap-1">
                 {t('productsPage.filters.activeFilters.category')}: {searchParams.get('category')}
@@ -350,9 +353,25 @@ export default function ProductsPage() {
                     </div>
                     <div className={cn(
                       "absolute top-1 right-4 px-2 rounded-full text-sm font-medium",
-                      product.inStock ? "bg-green-500 text-white" : "bg-red-500 text-white"
+                      product.stock === 'IN_STOCK' 
+                        ? "bg-green-500 text-white" 
+                        : product.stock === 'LOW_STOCK'
+                        ? "bg-yellow-500 text-white"
+                        : product.stock === 'PRE_ORDER'
+                        ? "bg-orange-500 text-white"
+                        : product.stock === 'COMING_SOON'
+                        ? "bg-blue-500 text-white"
+                        : "bg-red-500 text-white"
                     )}>
-                      {product.inStock ? t('productsPage.products.inStock') : t('productsPage.products.outOfStock')}
+                      {product.stock === 'IN_STOCK' 
+                        ? t('productsPage.products.inStock')
+                        : product.stock === 'LOW_STOCK'
+                        ? t('productsPage.products.lowStock')
+                        : product.stock === 'PRE_ORDER'
+                        ? t('productsPage.products.preOrder')
+                        : product.stock === 'COMING_SOON'
+                        ? t('productsPage.products.comingSoon')
+                        : t('productsPage.products.outOfStock')}
                     </div>
                   </div>
 
@@ -392,13 +411,21 @@ export default function ProductsPage() {
                       size="lg"
                       className={cn(
                         "w-full mt-4 bg-blue-600 hover:bg-blue-700 flex items-center justify-center gap-2",
-                        !product.inStock && "opacity-50 cursor-not-allowed"
+                        product.stock !== 'IN_STOCK' && "opacity-50 cursor-not-allowed"
                       )}
-                      onClick={() => product.inStock && handleAddToCart(product)}
-                      disabled={!product.inStock}
+                      onClick={() => product.stock === 'IN_STOCK' && handleAddToCart(product)}
+                      disabled={product.stock !== 'IN_STOCK'}
                     >
                       <ShoppingCart className="h-4 w-4" />
-                      {product.inStock ? t('productsPage.products.addToCart') : t('productsPage.products.outOfStock')}
+                      {product.stock === 'IN_STOCK' 
+                        ? t('productsPage.products.addToCart')
+                        : product.stock === 'LOW_STOCK'
+                        ? t('productsPage.products.lowStock')
+                        : product.stock === 'PRE_ORDER'
+                        ? t('productsPage.products.preOrder')
+                        : product.stock === 'COMING_SOON'
+                        ? t('productsPage.products.comingSoon')
+                        : t('productsPage.products.outOfStock')}
                     </Button>
                   </div>
                 </div>

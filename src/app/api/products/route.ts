@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
     const product = await ProductService.createProduct({
       ...data,
-      inStock: data.inStock !== undefined ? Boolean(data.inStock) : true, 
+      stock: data.stock || 'IN_STOCK',
       features: Array.isArray(data.features) ? data.features : [], 
       media: data.media || [], 
     });

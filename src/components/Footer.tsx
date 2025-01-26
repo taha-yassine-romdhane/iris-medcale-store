@@ -6,7 +6,6 @@ import {
   Mail,
   Phone,
   Facebook,
-  Twitter,
   Linkedin,
   Instagram,
   Locate, // Icône pour les zones de couverture
@@ -28,16 +27,13 @@ export default function Footer() {
               {t('footer.description')}
             </p>
             <div className="flex space-x-4 pt-4">
-              <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-400 transition-colors">
+              <Link href="#" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-400 transition-colors">
                 <Facebook size={24} />
               </Link>
-              <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-400 transition-colors">
-                <Twitter size={24} />
-              </Link>
-              <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-400 transition-colors">
+              <Link href="#" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-400 transition-colors">
                 <Linkedin size={24} />
               </Link>
-              <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-400 transition-colors">
+              <Link href="#" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-400 transition-colors">
                 <Instagram size={24} />
               </Link>
             </div>

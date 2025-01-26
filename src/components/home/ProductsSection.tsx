@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useCart } from '@/hooks/useCart';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Product } from '@/types/product';
+import { useTranslation } from '@/context/TranslationContext';
 
 interface CategoryProducts {
   cpap: Product[];
@@ -26,7 +27,7 @@ export default function ProductsSection() {
     masks: [],
     oxygen: [],
     lits: []
-  }); 
+  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -36,6 +37,8 @@ export default function ProductsSection() {
     oxygen: useRef<HTMLDivElement | null>(null),
     lits: useRef<HTMLDivElement | null>(null)
   };
+
+  const { t } = useTranslation(); // Use the translation hook
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -53,28 +56,28 @@ export default function ProductsSection() {
 
         const categorizedProducts = {
           cpap: orderedProducts.cpap
-            .map(name => data.products.find((p: Product) => 
+            .map(name => data.products.find((p: Product) =>
               p.name.toLowerCase().includes(name.toLowerCase()) &&
               (p.type?.toLowerCase() === 'fixe' || p.type?.toLowerCase()?.includes('auto-pilote'))
             ))
             .filter((p): p is Product => p !== undefined),
-          
+
           masks: orderedProducts.masks
-            .map(name => data.products.find((p: Product) => 
+            .map(name => data.products.find((p: Product) =>
               p.name.toLowerCase().includes(name.toLowerCase()) &&
               (p.category?.toLowerCase() === 'masques' || p.type?.toLowerCase()?.includes('masque'))
             ))
             .filter((p): p is Product => p !== undefined),
-          
+
           oxygen: orderedProducts.oxygen
-            .map(name => data.products.find((p: Product) => 
+            .map(name => data.products.find((p: Product) =>
               p.name.toLowerCase().includes(name.toLowerCase()) &&
               (p.category?.toLowerCase() === 'concentrateur d\'oxygene' || p.type == '5 LITRES' || p.type == '10 LITRES' || p.type?.toLowerCase()?.includes('portable'))
             ))
             .filter((p): p is Product => p !== undefined),
-          
-          lits: data.products.filter((p: Product) => 
-            p.category?.toLowerCase() === 'lit medicalise' || 
+
+          lits: data.products.filter((p: Product) =>
+            p.category?.toLowerCase() === 'lit medicalise' ||
             p.type?.toLowerCase()?.includes('LIT MEDICALISE')
           ),
         };
@@ -107,14 +110,14 @@ export default function ProductsSection() {
 
   const ProductSlider = ({ title, products, refKey }: { title: string, products: Product[], refKey: keyof CategoryProducts }) => {
     const { addToCart } = useCart();
-  
+
     return (
       <div className="mb-12 last:mb-0 overflow-hidden">
         {/* Title */}
         <div className="flex justify-between items-center mb-6 px-4 sm:px-6">
-          <h2 className="text-xl sm:text-2xl font-bold text-blue-900">{title}</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-blue-900">{t(`productsSection.${title}`)}</h2> {/* Translate the title */}
         </div>
-        
+
         {/* Slider Container */}
         <div className="relative">
           {/* Desktop arrows - above the slider */}
@@ -122,24 +125,24 @@ export default function ProductsSection() {
             <button
               onClick={() => handleScroll('left', refKey)}
               className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-50 border border-blue-200 shadow-sm hover:bg-blue-100 hover:border-blue-300 transition-all duration-200"
-              aria-label="Scroll Left"
+              aria-label={t('productsSection.scrollLeft')}
             >
               <ChevronLeft className="w-5 h-5 text-blue-900" />
             </button>
             <button
               onClick={() => handleScroll('right', refKey)}
               className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-50 border border-blue-200 shadow-sm hover:bg-blue-100 hover:border-blue-300 transition-all duration-200"
-              aria-label="Scroll Right"
+              aria-label={t('productsSection.scrollRight')}
             >
               <ChevronRight className="w-5 h-5 text-blue-900" />
             </button>
           </div>
-          
+
           {/* Product Slider */}
           <div className="w-full overflow-hidden px-4">
-            <div 
+            <div
               ref={sliderRefs[refKey]}
-              className="flex w-full gap-6 overflow-x-auto snap-x snap-mandatory  no-scrollbar py-5 px-2"
+              className="flex w-full gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar py-5 px-2"
               style={{
                 WebkitOverflowScrolling: 'touch',
                 scrollBehavior: 'smooth',
@@ -164,17 +167,42 @@ export default function ProductsSection() {
                         />
                       )}
                       <div className="absolute top-2 right-2 sm:top-3 sm:right-3">
-                        <span className={`px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium shadow-sm ${
-                          product.inStock 
-                            ? 'bg-green-100 text-green-800 border border-green-200'
-                            : 'bg-red-100 text-red-800 border border-red-200'
+                        <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold ${
+                          product.stock === 'IN_STOCK'
+                            ? 'bg-green-100 text-green-800'
+                            : product.stock === 'LOW_STOCK'
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : product.stock === 'PRE_ORDER'
+                            ? 'bg-orange-100 text-orange-800'
+                            : product.stock === 'COMING_SOON'
+                            ? 'bg-blue-100 text-blue-800'
+                            : 'bg-red-100 text-red-800'
                         }`}>
-                          {product.inStock ? 'En stock' : 'Rupture de stock'}
+                          <div className={`w-1.5 h-1.5 rounded-full mr-1 ${
+                            product.stock === 'IN_STOCK'
+                            ? "bg-green-500"
+                            : product.stock === 'LOW_STOCK'
+                            ? "bg-yellow-500"
+                            : product.stock === 'PRE_ORDER'
+                            ? "bg-orange-500"
+                            : product.stock === 'COMING_SOON'
+                            ? "bg-blue-500"
+                            : "bg-red-500"
+                          }`} />
+                          {product.stock === 'IN_STOCK' 
+                            ? t('productsSection.products.inStock') 
+                            : product.stock === 'LOW_STOCK'
+                            ? t('productsSection.products.lowStock')
+                            : product.stock === 'PRE_ORDER'
+                            ? t('productsSection.products.preOrder')
+                            : product.stock === 'COMING_SOON'
+                            ? t('productsSection.products.comingSoon')
+                            : t('productsSection.products.outOfStock')}
                         </span>
                       </div>
                     </div>
                   </Link>
-  
+
                   <div className="p-4 sm:p-5">
                     <Link href={`/product/${product.id}`} className="block group-hover:text-blue-700 transition-colors duration-200">
                       <h3 className="font-semibold text-base sm:text-lg mb-2 text-blue-900">{product.name}</h3>
@@ -187,13 +215,33 @@ export default function ProductsSection() {
                         href={`/product/${product.id}`}
                         className="text-blue-700 hover:text-blue-800 font-medium text-xs sm:text-sm transition-colors duration-200"
                       >
-                        Voir détails
+                        {t('productsSection.viewDetails')}
                       </Link>
                       <button
-                        onClick={() => addToCart(product)}
-                        className="px-3 py-2 sm:px-4 sm:py-2 bg-blue-900 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-blue-800 transform hover:-translate-y-0.5 transition-all duration-200"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          addToCart(product);
+                        }}
+                        disabled={product.stock === 'OUT_OF_STOCK' || product.stock === 'COMING_SOON'}
+                        className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all ${
+                          product.stock === 'IN_STOCK'
+                            ? "bg-blue-800 hover:bg-blue-900 text-white"
+                            : product.stock === 'LOW_STOCK'
+                            ? "bg-blue-800 hover:bg-blue-900 text-white"
+                            : product.stock === 'PRE_ORDER'
+                            ? "bg-blue-800 hover:bg-blue-900 text-white"
+                            : product.stock === 'COMING_SOON'
+                            ? "bg-blue-500 text-white cursor-not-allowed opacity-60"
+                            : "bg-blue-500 text-white cursor-not-allowed opacity-60"
+                        }`}
                       >
-                        Ajouter
+                        {product.stock === 'IN_STOCK' || product.stock === 'LOW_STOCK'
+                          ? t('productsSection.products.addToCart')
+                          : product.stock === 'PRE_ORDER'
+                          ? t('productsSection.products.preOrder')
+                          : product.stock === 'COMING_SOON'
+                          ? t('productsSection.products.comingSoon')
+                          : t('productsSection.products.outOfStock')}
                       </button>
                     </div>
                   </div>
@@ -207,7 +255,7 @@ export default function ProductsSection() {
   };
 
   return (
-    <div className="max-w-[1400px] mx-auto bg-white rounded-2xl p-4 sm:p-8 my-8 sm:my-12 w-full"> {/* Debug border */}
+    <div className="max-w-[1400px] mx-auto bg-white rounded-2xl p-4 sm:p-8 my-8 sm:my-12 w-full">
       {loading ? (
         <div className="text-center py-12">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto"></div>
@@ -216,10 +264,10 @@ export default function ProductsSection() {
         <div className="text-center text-red-600 py-12">{error}</div>
       ) : (
         <>
-          <ProductSlider title="CPAP" products={products.cpap} refKey="cpap" />
-          <ProductSlider title="Masques" products={products.masks} refKey="masks" />
-          <ProductSlider title="Concentrateurs d'oxygène" products={products.oxygen} refKey="oxygen" />
-          <ProductSlider title="Lits Médicalisés" products={products.lits} refKey="lits" />
+          <ProductSlider title="cpap" products={products.cpap} refKey="cpap" />
+          <ProductSlider title="masks" products={products.masks} refKey="masks" />
+          <ProductSlider title="oxygen" products={products.oxygen} refKey="oxygen" />
+          <ProductSlider title="lits" products={products.lits} refKey="lits" />
         </>
       )}
     </div>

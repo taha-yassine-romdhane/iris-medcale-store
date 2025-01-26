@@ -80,9 +80,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
           name: product.name,
           brand: product.brand,
           quantity: 1,
-          inStock: product.inStock,
+          stock: product.stock,
           features: product.features,
-          image: product.media[0]?.url // Use the first media item's URL as the image
+          image: product.media[0]?.url,
+          media: product.media
         };
         
         return {
@@ -143,4 +144,5 @@ export function useCart() {
   if (!context) {
     throw new Error('useCart must be used within a CartProvider');
   }
-  return context;}
+  return context;
+}

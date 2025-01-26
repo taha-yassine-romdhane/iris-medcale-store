@@ -1,11 +1,32 @@
 import { NextResponse } from 'next/server';
 import * as ProductService from '@/lib/services/products';
 import prisma from '@/lib/prisma';
-import { Media } from '@/types/product';
+import {  StockStatus } from '@/types/product';
 import { UTApi } from 'uploadthing/server';
+import { z } from 'zod';
 
-// Initialize UploadThing with the API key from .env
 const utapi = new UTApi();
+
+// Validation schema for media
+const mediaSchema = z.object({
+  url: z.string().url(),
+  type: z.enum(['image', 'video']),
+  alt: z.string().optional(),
+  order: z.number().int().nonnegative()
+});
+
+// Validation schema for product updates
+const productUpdateSchema = z.object({
+  name: z.string().min(1).optional(),
+  brand: z.string().min(1).optional(),
+  type: z.string().min(1).optional(),
+  description: z.string().optional(),
+  features: z.array(z.string()).optional(),
+  category: z.string().min(1).optional(),
+  subCategory: z.string().nullish(), // Allow null or undefined
+  stock: z.nativeEnum(StockStatus).optional(),
+  media: z.array(mediaSchema).optional()
+});
 
 export async function GET(
   request: Request,
@@ -40,132 +61,68 @@ export async function PUT(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  // Await the params object before destructuring
   const { id } = await params;
-
   try {
-    // Fetch the existing product and its associated media
     const existingProduct = await prisma.product.findUnique({
       where: { id },
-      include: { media: true }, // Include related media
+      include: { media: true }
     });
 
     if (!existingProduct) {
-      return NextResponse.json({ error: 'Product not found' }, { status: 404 });
+      return NextResponse.json(
+        { error: 'Product not found' },
+        { status: 404 }
+      );
     }
 
-    // Extract old media URLs
-    const oldMediaUrls = existingProduct.media.map((media) => media.url);
+    const data = await request.json();
 
-    // Delete old media files from UploadThing
-    if (oldMediaUrls.length > 0) {
-      const deleteResults = await utapi.deleteFiles(oldMediaUrls);
+    // Validate input data
+    const validatedData = productUpdateSchema.parse(data);
 
-
-      if (!deleteResults.success) {
-        throw new Error('Failed to delete old media files from UploadThing');
+    // Handle media updates if present
+    if (validatedData.media && existingProduct.media.length > 0) {
+      const oldMediaUrls = existingProduct.media.map((media) => media.url);
+      try {
+        await utapi.deleteFiles(oldMediaUrls);
+      } catch (error) {
+        console.error('Failed to delete old media files:', error);
+        // Continue with update even if media deletion fails
       }
     }
 
-    // Parse the request body
-    const data = await request.json();
-
-    // Update the product in the database
     const updatedProduct = await prisma.product.update({
       where: { id },
       data: {
-        name: data.name,
-        brand: data.brand,
-        type: data.type,
-        description: data.description,
-        features: Array.isArray(data.features) ? data.features : [],
-        category: data.category,
-        subCategory: data.subCategory,
-        inStock: data.inStock,
-        media: data.media
-          ? {
-              deleteMany: {}, // Delete all existing media
-              create: data.media.map((media: Media, index: number) => ({
-                url: media.url,
-                type: media.type,
-                alt: media.alt || `Media ${index + 1}`,
-                order: index,
-              })),
-            }
-          : undefined,
+        ...validatedData,
+        media: validatedData.media ? {
+          deleteMany: {},
+          create: validatedData.media.map((media) => ({
+            url: media.url,
+            type: media.type,
+            alt: media.alt || '',
+            order: media.order
+          }))
+        } : undefined,
+        updatedAt: new Date()
       },
+      include: {
+        media: true
+      }
     });
 
     return NextResponse.json(updatedProduct);
   } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error.message : 'Failed to update product';
     console.error('Error updating product:', error);
-    return NextResponse.json(
-      { error: errorMessage },
-      { status: 500 }
-    );
-  }
-}
-
-export async function PATCH(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const { id } = await params;
-
-  try {
-    // Fetch the existing product and its associated media
-    const existingProduct = await prisma.product.findUnique({
-      where: { id },
-      include: { media: true }, // Include related media
-    });
-
-    if (!existingProduct) {
-      return NextResponse.json({ error: 'Product not found' }, { status: 404 });
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(
+        { error: 'Invalid input data', details: error.errors },
+        { status: 400 }
+      );
     }
-
-    // Extract old media URLs
-    const oldMediaUrls = existingProduct.media.map((media) => media.url);
-
-    // Delete old media files from UploadThing
-    if (oldMediaUrls.length > 0) {
-      const deleteResults = await utapi.deleteFiles(oldMediaUrls);
-
-
-      if (!deleteResults.success) {
-        throw new Error('Failed to delete old media files from UploadThing');
-      }
-    }
-
-    // Parse the request body
-    const data = await request.json();
-
-    // Update the product in the database
-    const updatedProduct = await prisma.product.update({
-      where: { id },
-      data: {
-        ...data,
-        media: data.media
-          ? {
-              deleteMany: {}, // Delete all existing media
-              create: data.media.map((media: Media, index: number) => ({
-                url: media.url,
-                type: media.type,
-                alt: media.alt || `Media ${index + 1}`,
-                order: index,
-              })),
-            }
-          : undefined,
-      },
-    });
-
-    return NextResponse.json(updatedProduct);
-  } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error.message : 'Error updating product';
-    console.error('Error updating product:', error);
     return NextResponse.json(
-      { error: errorMessage },
+      { error: 'Failed to update product' },
       { status: 500 }
     );
   }
@@ -175,56 +132,45 @@ export async function DELETE(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  // Await the params object before destructuring
   const { id } = await params;
-
   try {
-    // Fetch the product and its associated media
-    const product = await prisma.product.findUnique({
+    const existingProduct = await prisma.product.findUnique({
       where: { id },
-      include: { media: true }, // Include related media
+      include: { media: true }
     });
 
-    if (!product) {
-      return NextResponse.json({ error: 'Product not found' }, { status: 404 });
+    if (!existingProduct) {
+      return NextResponse.json(
+        { error: 'Product not found' },
+        { status: 404 }
+      );
     }
 
-    // Extract media URLs
-    const mediaUrls = product.media.map((media) => media.url);
-
-
-
-    // Extract file keys from URLs
-    const fileKeys = mediaUrls.map((url) => {
-      const parts = url.split('/');
-      return parts[parts.length - 1]; // Extract the file key
-    });
-
-
-
-    // Delete the product from the database
-    await prisma.product.delete({
-      where: { id },
-    });
-
-    // Delete associated images from UploadThing
-    if (fileKeys.length > 0) {
-      const deleteResults = await utapi.deleteFiles(fileKeys);
-
-
-      if (!deleteResults.success) {
-        throw new Error('Failed to delete files from UploadThing');
+    // Delete media files from UploadThing
+    if (existingProduct.media.length > 0) {
+      const mediaUrls = existingProduct.media.map((media) => media.url);
+      try {
+        await utapi.deleteFiles(mediaUrls);
+      } catch (error) {
+        console.error('Failed to delete media files:', error);
+        // Continue with deletion even if media deletion fails
       }
     }
 
-    return NextResponse.json({
-      message: 'Product and associated media deleted successfully',
+    // Delete the product and all related data
+    await prisma.product.delete({
+      where: { id }
     });
+
+    return NextResponse.json(
+      { message: 'Product deleted successfully' },
+      { status: 200 }
+    );
   } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error.message : 'Error deleting product';
     console.error('Error deleting product:', error);
     return NextResponse.json(
-      { error: errorMessage },
+      { error: 'Failed to delete product' },
       { status: 500 }
     );
   }

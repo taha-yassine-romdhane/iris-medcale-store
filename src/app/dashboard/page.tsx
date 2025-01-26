@@ -11,7 +11,7 @@ import {
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8 bg-gray-50 pt-32">
+    <div className="min-h-screen flex flex-col items-center justify-center  bg-gray-50 ">
       <h1 className="text-3xl font-bold text-gray-900 mb-6">Tableau de bord</h1>
       <p className="text-gray-600 mb-12">Sélectionnez une option ci-dessous pour continuer.</p>
       

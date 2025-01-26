@@ -73,26 +73,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
             setAuthState(initialAuthState);
-            router.push('/login');
           }
         } catch (err) {
           console.error('Error during auth initialization:', err);
           localStorage.removeItem('token');
           localStorage.removeItem('user');
           setAuthState(initialAuthState);
-          router.push('/login');
         }
       } else {
         setAuthState(initialAuthState);
-        if (window.location.pathname !== '/login') {
-          router.push('/login');
-        }
       }
       setLoading(false);
     };
 
     initializeAuth();
-  }, [router]);
+  }, []);
 
   // Set up request interceptor to add auth headers
   useEffect(() => {

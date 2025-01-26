@@ -27,10 +27,18 @@ model Product {
   features    Json
   category    String
   subCategory String?  // For accessories: FILTRE, TUYAU, etc.
-  inStock     Boolean  @default(true)
+  stock       StockStatus @default(IN_STOCK)
   reviews     Review[]
   media       Media[]  // Relation to media files
   orderItems  CommandeItem[]
+}
+
+enum StockStatus {
+  IN_STOCK
+  OUT_OF_STOCK
+  LOW_STOCK
+  PRE_ORDER
+  COMING_SOON
 }
 
 model Media {

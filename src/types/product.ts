@@ -6,15 +6,25 @@ export interface Media {
   order: number;
 }
 
+export enum StockStatus {
+  IN_STOCK = 'IN_STOCK',
+  OUT_OF_STOCK = 'OUT_OF_STOCK',
+  LOW_STOCK = 'LOW_STOCK',
+  PRE_ORDER = 'PRE_ORDER',
+  COMING_SOON = 'COMING_SOON',
+}
+
 export interface Product {
   id: string;
+  createdAt: Date;
+  updatedAt: Date;
   name: string;
-  brand: string; // Ensure this is explicitly typed as string
-  type: string; // Ensure this is explicitly typed as string
+  brand: string;
+  type: string;
   description: string;
-  category: string; // Ensure this is explicitly typed as string
-  subCategory?: string; // Optional, so it can be undefined
-  features: string[]; // Ensure this is explicitly typed as string[]
-  inStock: boolean;
+  features: string[];
+  category: string;
+  subCategory?: string;
+  stock: StockStatus;
   media: Media[];
 }

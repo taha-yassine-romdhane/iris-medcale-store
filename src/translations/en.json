@@ -382,7 +382,9 @@
       "inStock": "In Stock",
       "outOfStock": "Out of Stock",
       "addToCart": "Add to Cart",
-      "features": "Features"
+      "features": "Features",
+      "preOrder": "Pre-Order",
+      "comingSoon": "Coming Soon"
     }
   },
   "home" : {
@@ -400,5 +402,35 @@
     "description": "We've sent you a verification email. Please check your inbox and click the link to verify your account.",
     "spam": "If you don't see the email, please check your spam folder.",
     "goToLogin": "Return to Login"
+  },
+  "devisModal": {
+    "confirmationMessage": "Please verify the details of your request before confirming.",
+    "confirmedMessage": "Your request has been recorded. Our team will contact you with email in 48 hours for a personalized quote.",
+    "title": "Summary of your request:",
+    "quantity": "Quantity:",
+    "message": "If you have any questions, do not hesitate to contact us at ",
+    "confirming": "Confirming...",
+    "confirm": "Confirm the quote"
+  },
+  "productsSection": {
+    "products": {
+      "noProducts": "No products found",
+      "noImage": "No image available",
+      "inStock": "In Stock",
+      "outOfStock": "Out of Stock",
+      "lowStock": "Low Stock",
+      "preOrder": "Pre-Order",
+      "comingSoon": "Coming Soon",
+      "addToCart": "Add to Cart",
+      "features": "Features"
+      
+    },
+    "masks":"Masks",
+    "cpap":"CPAP",
+    "oxygen":"Oxygen",
+    "lits":"Lits",
+    "scrollLeft": "Scroll Left",
+    "scrollRight": "Scroll Right",
+    "viewDetails": "View Details"
   }
 }

@@ -102,13 +102,18 @@ export default function ViewProductModal({ isOpen, closeModal, product }: ViewPr
                     <div>
                       <h4 className="text-sm font-medium text-gray-500">Statut</h4>
                       <span
-                        className={`inline-flex px-2 text-xs font-semibold leading-5 rounded-full ${
-                          product.inStock
+                        className={`inline-flex px-2 text-xs font-semibold leading-5 rounded-full ${product.stock === 'IN_STOCK'
                             ? 'bg-green-100 text-green-800'
-                            : 'bg-red-100 text-red-800'
-                        }`}
+                            : product.stock === 'LOW_STOCK'
+                              ? 'bg-blue-100 text-blue-800'
+                              : product.stock === 'OUT_OF_STOCK'
+                                ? 'bg-red-100 text-red-800'
+                                : product.stock === 'COMING_SOON'
+                                  ? 'bg-yellow-100 text-yellow-800'
+                                  : ''
+                          }`}
                       >
-                        {product.inStock ? 'En stock' : 'En rupture'}
+                        {product.stock === 'IN_STOCK' ? 'En stock' : product.stock === 'LOW_STOCK' ? 'Stock faible' : product.stock === 'OUT_OF_STOCK' ? 'En rupture' : product.stock === 'COMING_SOON' ? 'En Arrivage' : ''}
                       </span>
                     </div>
                   </div>
