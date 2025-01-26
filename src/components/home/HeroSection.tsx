@@ -1,18 +1,21 @@
 'use client';
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const heroProducts = [
   {
     id: 1,
     image: "/hero section/slider3.jpeg",
-    position: "center", // Custom position for each image
+    position: "center",
+    alt: "cm5y5bbek0004l103t3bmd9dn",
   },
   {
     id: 2,
     image: "/hero section/slider4.jpeg",
-    position: "center", // Custom position for each image
+    position: "center",
+    alt: "cm5y5zi2g0000mn03a508mb4y",
   },
 ];
 
@@ -62,16 +65,20 @@ export default function HeroSection() {
             key={product.id}
             className="relative w-full flex-shrink-0"
           >
-            <Image
-              src={product.image}
-              alt="Hero Image"
-              width={0}
-              height={0}
-              className="object-contain w-full h-fit   " // Use object-contain to ensure full visibility
-              style={{ objectPosition: product.position }} // Adjust image position
-              priority={index === 0}
-              sizes="100vw"
-            />
+            <Link href={`/product/${product.alt}`}>
+              <div className="relative w-full h-full cursor-pointer">
+                <Image
+                  src={product.image}
+                  alt={product.alt}
+                  width={0}
+                  height={0}
+                  className="object-contain w-full h-fit"
+                  style={{ objectPosition: product.position }} // Adjust image position
+                  priority={index === 0}
+                  sizes="100vw"
+                />
+              </div>
+            </Link>
           </div>
         ))}
       </div>

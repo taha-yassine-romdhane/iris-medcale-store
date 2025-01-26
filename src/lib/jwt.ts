@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 // Load JWT_SECRET from environment variable
 const JWT_SECRET = process.env.JWT_SECRET;
 
-if (!JWT_SECRET) { 
+if (!JWT_SECRET) {
   throw new Error('JWT_SECRET is not defined');
 }
 
@@ -17,7 +17,7 @@ export function signToken(payload: TokenPayload): string {
   if (!JWT_SECRET) {
     throw new Error('Server configuration error: JWT_SECRET is missing');
   }
-  
+
   if (!payload || typeof payload !== 'object') {
     throw new Error('Invalid payload provided');
   }
@@ -28,7 +28,7 @@ export function signToken(payload: TokenPayload): string {
 
   try {
     return jwt.sign(payload, JWT_SECRET, { expiresIn: '1d' });
-  } catch  {
+  } catch {
     throw new Error('Failed to sign token');
   }
 }

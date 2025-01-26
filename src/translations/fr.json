@@ -432,5 +432,11 @@
     "scrollLeft": "Défiler à gauche",
     "scrollRight": "Défiler à droite",
     "viewDetails" : "Plus de detail"
+  },
+  "cart": {
+    "title": "Mon Panier",
+    "empty": "Votre panier est vide",
+    "continue": "Continuer vos achats",
+    "requestQuote": "Demander un devis"
   }
 }

@@ -432,5 +432,11 @@
     "scrollLeft": "Scroll Left",
     "scrollRight": "Scroll Right",
     "viewDetails": "View Details"
+  },
+  "cart": {
+    "title": "My Cart",
+    "empty": "Your cart is empty",
+    "continue": "Continue Shopping",
+    "requestQuote": "Request a Quote"
   }
 }
