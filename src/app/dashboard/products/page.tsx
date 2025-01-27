@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { PlusCircle, Edit, Trash, Search, Eye } from 'lucide-react';
 import ViewProductModal from '@/components/products/ViewProductModal';
 import EditProductModal from '@/components/products/EditProductModal';
@@ -9,10 +9,11 @@ import AddProductModal from '@/components/products/AddProductModal';
 import ProductFilters from '@/components/products/ProductFilters';
 import { Product } from '@/types/product';
 import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { Home } from 'lucide-react';
 
 export default function ProductsPage() {
+  const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
   const [category, setCategory] = useState('');
   const [type, setType] = useState('');
@@ -70,95 +71,93 @@ export default function ProductsPage() {
     setSearchQuery('');
   };
 
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-  };
-
   const handleUpdateProduct = (updatedProduct: Product) => {
     // First update the local state
-    setProducts(prevProducts => 
-      prevProducts.map(p => p.id === updatedProduct.id ? updatedProduct : p)
+    setProducts((prevProducts) =>
+      prevProducts.map((p) => (p.id === updatedProduct.id ? updatedProduct : p))
     );
     // Then trigger a refresh to ensure we have the latest data
-    setRefreshTrigger(prev => prev + 1);
+    setRefreshTrigger((prev) => prev + 1);
   };
 
   const handleDeleteProduct = (productId: string) => {
-    setProducts(products.filter(p => p.id !== productId));
+    setProducts(products.filter((p) => p.id !== productId));
   };
 
   const handleAddProduct = (newProduct: Product) => {
-    setProducts(prevProducts => [...prevProducts, newProduct]);
-    setRefreshTrigger(prev => prev + 1);
+    setProducts((prevProducts) => [...prevProducts, newProduct]);
+    setRefreshTrigger((prev) => prev + 1);
   };
 
   return (
-    <div className="py-10 flex flex-col h-full bg-gray-100">
-      <div className="mx-auto sm:px-6 lg:px-8">
-        <div className="px-4 py-6 sm:px-0">
-          <div className="flex justify-between items-center mb-6">
-            <div className="flex items-center space-x-4">
-              <Link
-                href="/dashboard"
-                className="inline-flex items-center text-gray-600 hover:text-gray-900"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Retour au tableau de bord
-              </Link>
-              <h1 className="text-2xl font-bold text-gray-900">Produits</h1>
-            </div>
-            <button
-              onClick={() => setIsAddModalOpen(true)}
-              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            >
-              <PlusCircle className="h-5 w-5 mr-2" />
-              Ajouter un produit
-            </button>
-          </div>
+    <div className="container mx-auto px-4 py-8">
+      <div className="space-y-6">
+        {/* Header Section */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+          <h1 className="text-2xl font-bold text-gray-900">Gestion des produits</h1>
+          <button
+            onClick={() => router.push('/dashboard')}
+            className="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            <Home className="h-5 w-5 mr-2" />
+            retour au panneau de configuration
+          </button>
+          <button
+            onClick={() => setIsAddModalOpen(true)}
+            className="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            <PlusCircle className="h-5 w-5 mr-2" />
+            Ajouter un produit
+          </button>
+        </div>
 
-          {/* Always show filters */}
+        {/* Filters and Search Section */}
+        <div className="bg-white rounded-lg shadow p-4 space-y-4">
           <ProductFilters
             onFilter={handleFilter}
             onResetPage={handleResetPage}
+            className="w-full overflow-x-auto"
           />
 
           {/* Search Bar */}
-          <div className="relative mb-6">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
               type="text"
               placeholder="Rechercher un produit..."
               value={searchQuery}
-              onChange={(e) => handleSearch(e.target.value)}
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
             />
-            <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
           </div>
+        </div>
 
-          {/* Products Table */}
-          <div className="bg-white rounded-lg shadow overflow-hidden">
-            <div className="overflow-x-auto">
+        {/* Products Table */}
+        <div className="bg-white rounded-lg shadow">
+          <div className="max-w-full overflow-x-auto">
+            <div className="inline-block min-w-full align-middle">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Image
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Nom
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Marque
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Type
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Categorie
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      En stock
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Stock
                     </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -180,26 +179,35 @@ export default function ProductsPage() {
                     </tr>
                   ) : (
                     products.map((product) => (
-                      <tr key={product.id} className="hover:bg-gray-50 transition-colors">
+                      <tr key={product.id} className="hover:bg-gray-50">
                         <td className="px-6 py-4 whitespace-nowrap">
-                          {product.media && product.media[0] ? (
-                            <Image
-                              src={product.media[0].url}
-                              alt={product.media[0].alt || product.name}
-                              width={64}
-                              height={64}
-                              className="object-cover rounded-md"
-                            />
-                          ) : (
-                            <div className="h-16 w-16 bg-gray-100 rounded-md flex items-center justify-center">
-                              <span className="text-gray-400 text-xs">No image</span>
-                            </div>
-                          )}
+                          <div className="h-10 w-10 relative rounded-lg overflow-hidden bg-gray-100">
+                            {product.media && product.media[0] ? (
+                              <Image
+                                src={product.media[0].url}
+                                alt={product.name}
+                                fill
+                                className="object-cover"
+                              />
+                            ) : (
+                              <div className="flex items-center justify-center h-full w-full bg-gray-100">
+                                <span className="text-gray-400">No image</span>
+                              </div>
+                            )}
+                          </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">{product.name}</td>
-                        <td className="px-6 py-4 whitespace-nowrap">{product.brand}</td>
-                        <td className="px-6 py-4 whitespace-nowrap">{product.type}</td>
-                        <td className="px-6 py-4 whitespace-nowrap">{product.category}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm font-medium text-gray-900">{product.name}</div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-500">{product.brand}</div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-500">{product.type}</div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-500">{product.category}</div>
+                        </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span
                             className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
@@ -207,52 +215,44 @@ export default function ProductsPage() {
                                 ? 'bg-green-100 text-green-800'
                                 : product.stock === 'LOW_STOCK'
                                 ? 'bg-yellow-100 text-yellow-800'
-                                : product.stock === 'PRE_ORDER'
-                                ? 'bg-blue-100 text-blue-800'
-                                : product.stock === 'COMING_SOON'
-                                ? 'bg-purple-100 text-purple-800'
-                                : 'bg-red-100 text-red-800'
+                                : product.stock === 'OUT_OF_STOCK'
+                                ? 'bg-red-100 text-red-800'
+                                : 'bg-gray-100 text-gray-800'
                             }`}
                           >
-                            {product.stock === 'IN_STOCK'
-                              ? 'En stock'
-                              : product.stock === 'LOW_STOCK'
-                              ? 'Stock faible'
-                              : product.stock === 'PRE_ORDER'
-                              ? 'Pré-commande'
-                              : product.stock === 'COMING_SOON'
-                              ? 'En Arrivage'
-                              : 'Rupture de stock'}
+                            {product.stock}
                           </span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                          <button
-                            className="text-blue-600 hover:text-blue-900 mr-2 transition-colors"
-                            onClick={() => {
-                              setSelectedProduct(product);
-                              setIsViewModalOpen(true);
-                            }}
-                          >
-                            <Eye size={18} />
-                          </button>
-                          <button
-                            className="text-gray-600 hover:text-gray-900 mr-2 transition-colors"
-                            onClick={() => {
-                              setSelectedProduct(product);
-                              setIsEditModalOpen(true);
-                            }}
-                          >
-                            <Edit size={18} />
-                          </button>
-                          <button
-                            className="text-red-600 hover:text-red-900 transition-colors"
-                            onClick={() => {
-                              setSelectedProduct(product);
-                              setIsDeleteModalOpen(true);
-                            }}
-                          >
-                            <Trash size={18} />
-                          </button>
+                          <div className="flex justify-end items-center space-x-2">
+                            <button
+                              onClick={() => {
+                                setSelectedProduct(product);
+                                setIsViewModalOpen(true);
+                              }}
+                              className="text-gray-600 hover:text-gray-900"
+                            >
+                              <Eye className="h-5 w-5" />
+                            </button>
+                            <button
+                              onClick={() => {
+                                setSelectedProduct(product);
+                                setIsEditModalOpen(true);
+                              }}
+                              className="text-blue-600 hover:text-blue-900"
+                            >
+                              <Edit className="h-5 w-5" />
+                            </button>
+                            <button
+                              onClick={() => {
+                                setSelectedProduct(product);
+                                setIsDeleteModalOpen(true);
+                              }}
+                              className="text-red-600 hover:text-red-900"
+                            >
+                              <Trash className="h-5 w-5" />
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))
@@ -262,39 +262,39 @@ export default function ProductsPage() {
             </div>
           </div>
         </div>
-
-        {/* Modals */}
-        <ViewProductModal
-          isOpen={isViewModalOpen}
-          closeModal={() => setIsViewModalOpen(false)}
-          product={selectedProduct}
-        />
-
-        {selectedProduct && (
-          <EditProductModal
-            isOpen={isEditModalOpen}
-            closeModal={() => {
-              setIsEditModalOpen(false);
-              setSelectedProduct(null);
-            }}
-            product={selectedProduct}
-            onUpdate={handleUpdateProduct}
-          />
-        )}
-
-        <DeleteProductModal
-          isOpen={isDeleteModalOpen}
-          closeModal={() => setIsDeleteModalOpen(false)}
-          product={selectedProduct}
-          onDelete={handleDeleteProduct}
-        />
-
-        <AddProductModal
-          isOpen={isAddModalOpen}
-          closeModal={() => setIsAddModalOpen(false)}
-          onAdd={handleAddProduct}
-        />
       </div>
+
+      {/* Modals */}
+      <ViewProductModal
+        isOpen={isViewModalOpen}
+        closeModal={() => setIsViewModalOpen(false)}
+        product={selectedProduct}
+      />
+
+      {selectedProduct && (
+        <EditProductModal
+          isOpen={isEditModalOpen}
+          closeModal={() => {
+            setIsEditModalOpen(false);
+            setSelectedProduct(null);
+          }}
+          product={selectedProduct}
+          onUpdate={handleUpdateProduct}
+        />
+      )}
+
+      <DeleteProductModal
+        isOpen={isDeleteModalOpen}
+        closeModal={() => setIsDeleteModalOpen(false)}
+        product={selectedProduct}
+        onDelete={handleDeleteProduct}
+      />
+
+      <AddProductModal
+        isOpen={isAddModalOpen}
+        closeModal={() => setIsAddModalOpen(false)}
+        onAdd={handleAddProduct}
+      />
     </div>
   );
 }

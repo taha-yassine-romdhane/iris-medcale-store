@@ -5,9 +5,10 @@ import { useState, useEffect } from 'react';
 interface ProductFiltersProps {
   onFilter: (filters: { category: string; type: string; brand: string }) => void;
   onResetPage: () => void;
+  className?: string;
 }
 
-export default function ProductFilters({ onFilter, onResetPage }: ProductFiltersProps) {
+export default function ProductFilters({ onFilter, onResetPage, className }: ProductFiltersProps) {
   const [category, setCategory] = useState('');
   const [type, setType] = useState('');
   const [brand, setBrand] = useState('');
@@ -74,7 +75,7 @@ export default function ProductFilters({ onFilter, onResetPage }: ProductFilters
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow mb-6">
+    <div className={`${className} bg-white p-6 rounded-lg shadow mb-6`}>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold text-gray-900">Filtrer les produits</h2>
         <button
