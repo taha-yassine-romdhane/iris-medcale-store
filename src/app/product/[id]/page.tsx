@@ -263,11 +263,11 @@ export default function ProductPage() {
                 disabled={product.stock === 'OUT_OF_STOCK' || product.stock === 'COMING_SOON'}
                 className={`w-full py-4 px-6 rounded-lg font-bold text-lg transition-all flex items-center justify-center gap-2 ${
                   product.stock === 'IN_STOCK'
-                    ? "bg-green-600 hover:bg-green-700 text-white"
+                    ? "bg-blue-800 hover:bg-blue-900 text-white"
                     : product.stock === 'LOW_STOCK'
-                    ? "bg-yellow-500 hover:bg-yellow-600 text-white"
+                    ? "bg-blue-900 hover:bg-blue-900 text-white"
                     : product.stock === 'PRE_ORDER'
-                    ? "bg-orange-500 hover:bg-orange-600 text-white"
+                    ? "bg-blue-900 hover:bg-blue-900 text-white"
                     : product.stock === 'COMING_SOON'
                     ? "bg-blue-500 text-white cursor-not-allowed opacity-60"
                     : "bg-gray-400 text-white cursor-not-allowed opacity-60"

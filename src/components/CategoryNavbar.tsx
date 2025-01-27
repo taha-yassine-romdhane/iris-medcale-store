@@ -15,7 +15,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState, useCallback } from 'react'; 
+import { useEffect, useState, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from '@/context/TranslationContext';
@@ -43,7 +43,7 @@ const CATEGORY_ORDER = [
 export default function CategoryNavbar() {
   const [categoryTypes, setCategoryTypes] = useState<CategoryType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openCategory, setOpenCategory] = useState<string | null>(null);
   const pathname = usePathname();
   const router = useRouter();
@@ -62,7 +62,7 @@ export default function CategoryNavbar() {
       if (orderB !== undefined) return 1;
       return 0;
     });
-  }, []); 
+  }, []);
 
   useEffect(() => {
     const fetchCategoryTypes = async () => {
@@ -86,27 +86,27 @@ export default function CategoryNavbar() {
     };
 
     fetchCategoryTypes();
-  }, [sortCategories]); 
+  }, [sortCategories]);
 
   const handleCategoryClick = (category: string) => {
     const url = `/products?category=${encodeURIComponent(category)}`;
     if (pathname === '/products') router.push(url);
     else window.location.href = url;
-    setIsMobileMenuOpen(false); 
+    setIsMobileMenuOpen(false);
   };
 
   const handleTypeClick = (category: string, type: string) => {
     const url = `/products?category=${encodeURIComponent(category)}&type=${encodeURIComponent(type)}`;
     if (pathname === '/products') router.push(url);
     else window.location.href = url;
-    setIsMobileMenuOpen(false); 
+    setIsMobileMenuOpen(false);
   };
 
   const handleSubcategoryClick = (category: string, subCategory: string) => {
     const url = `/products?category=${encodeURIComponent(category)}&subCategory=${encodeURIComponent(subCategory)}`;
     if (pathname === '/products') router.push(url);
     else window.location.href = url;
-    setIsMobileMenuOpen(false); 
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -186,7 +186,7 @@ export default function CategoryNavbar() {
             <Heart className="h-5 w-5 mr-2" />
             {t('navbar.sleepApnea')}
           </Link>
-         
+
           <Link href="/a-propos" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
             <Info className="w-5 h-5" />
             <span>{t('navbar.aboutUs')}</span>
@@ -199,7 +199,7 @@ export default function CategoryNavbar() {
             <Calendar className="w-5 h-5 mr-2" />
             <span>{t('navbar.makeAnAppointment')}</span>
           </Link>
-          <Link href="#" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
+          <Link href="/space-pro" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
             <User className="w-5 h-5" />
             <span>{t('navbar.ourServices')}</span>
           </Link>
@@ -208,8 +208,8 @@ export default function CategoryNavbar() {
 
       {/* Mobile Navbar */}
       <div className="sm:hidden flex justify-between items-center h-14 px-4 bg-white">
-       
-      
+
+
         {/* Home Link */}
         <Link href="/" className="text-blue-900 font-semibold">
           <Image
@@ -220,32 +220,30 @@ export default function CategoryNavbar() {
             className="object-contain"
           />
         </Link>
-         {/* Mobile Menu Toggle */}
-        <Button 
-          variant="ghost" 
+        {/* Mobile Menu Toggle */}
+        <Button
+          variant="ghost"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="p-2 -ml-2 hover:bg-blue-50 transition-colors"
         >
-          {isMobileMenuOpen ? 
-            <X className="h-6 w-6 text-blue-900" /> : 
+          {isMobileMenuOpen ?
+            <X className="h-6 w-6 text-blue-900" /> :
             <Menu className="h-6 w-6 text-blue-900" />
           }
         </Button>
       </div>
 
       {/* Mobile Menu with Backdrop */}
-      <div 
-        className={`inset-0 bg-black transition-opacity duration-300 sm:hidden ${
-          isMobileMenuOpen ? 'opacity-50 z-30' : 'opacity-0 -z-10'
-        }`}
+      <div
+        className={`inset-0 bg-black transition-opacity duration-300 sm:hidden ${isMobileMenuOpen ? 'opacity-50 z-30' : 'opacity-0 -z-10'
+          }`}
         onClick={() => setIsMobileMenuOpen(false)}
       />
-      
+
       {/* Mobile Menu Content */}
-      <div 
-        className={`fixed top-14 left-0 right-0 bg-white z-40 shadow-lg sm:hidden transform transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full hidden'
-        }`}
+      <div
+        className={`fixed top-14 left-0 right-0 bg-white z-40 shadow-lg sm:hidden transform transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full hidden'
+          }`}
       >
         <div className="flex flex-col max-h-[calc(100vh-3.5rem)] overflow-y-auto">
           {/* Categories Section */}
@@ -279,19 +277,17 @@ export default function CategoryNavbar() {
                       onClick={() => setOpenCategory(openCategory === cat.category ? null : cat.category)}
                       className="p-2 hover:bg-blue-50 rounded-full transition-colors"
                     >
-                      <ChevronDown 
-                        className={`h-5 w-5 text-blue-900 transition-transform duration-200 ${
-                          openCategory === cat.category ? 'transform rotate-180' : ''
-                        }`}
+                      <ChevronDown
+                        className={`h-5 w-5 text-blue-900 transition-transform duration-200 ${openCategory === cat.category ? 'transform rotate-180' : ''
+                          }`}
                       />
                     </button>
                   )}
                 </div>
-                
-                <div 
-                  className={`overflow-hidden transition-all duration-300 ${
-                    openCategory === cat.category ? 'max-h-96' : 'max-h-0'
-                  }`}
+
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${openCategory === cat.category ? 'max-h-96' : 'max-h-0'
+                    }`}
                 >
                   {/* Types */}
                   {cat.types && cat.types.length > 0 && (
@@ -308,7 +304,7 @@ export default function CategoryNavbar() {
                       ))}
                     </div>
                   )}
-                  
+
                   {/* Subcategories */}
                   {cat.subcategories && cat.subcategories.length > 0 && (
                     <div className="ml-4 py-2 space-y-2">
@@ -331,35 +327,28 @@ export default function CategoryNavbar() {
 
           {/* Navigation Links */}
           <div className="p-4 space-y-4 bg-gray-50">
-            <Link 
-              href="/apnee-du-sommeil" 
+            <Link
+              href="/apnee-du-sommeil"
               className="flex items-center space-x-3 text-blue-900 hover:text-blue-700 transition-colors py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <Heart className="h-5 w-5" />
               <span className="font-medium">{t('navbar.sleepApnea')}</span>
             </Link>
-            
-            <Link 
-              href="#" 
-              className="flex items-center space-x-3 text-blue-900 hover:text-blue-700 transition-colors py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <FileText className="h-5 w-5" />
-              <span className="font-medium">{t('navbar.ourServices')}</span>
-            </Link>
-            
-            <Link 
-              href="/a-propos" 
+
+
+
+            <Link
+              href="/a-propos"
               className="flex items-center space-x-3 text-blue-900 hover:text-blue-700 transition-colors py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <Info className="h-5 w-5" />
               <span className="font-medium">{t('navbar.aboutUs')}</span>
             </Link>
-            
-            <Link 
-              href="/contact" 
+
+            <Link
+              href="/contact"
               className="flex items-center space-x-3 text-blue-900 hover:text-blue-700 transition-colors py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -367,8 +356,17 @@ export default function CategoryNavbar() {
               <span className="font-medium">{t('navbar.contact')}</span>
             </Link>
             
-            <Link 
-              href="/appointment" 
+            <Link
+              href="/space-pro"
+              className="flex items-center space-x-3 text-blue-900 hover:text-blue-700 transition-colors py-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <FileText className="h-5 w-5" />
+              <span className="font-medium">{t('navbar.ourServices')}</span>
+            </Link>
+
+            <Link
+              href="/appointment"
               className="flex items-center space-x-3 text-blue-900 hover:text-blue-700 transition-colors py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
