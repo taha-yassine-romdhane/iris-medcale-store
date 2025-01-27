@@ -117,7 +117,7 @@ export default function ComingSoonPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8 }}
         >
-          Nous construisons une plateforme professionnelle pour gérer tous vos services. Restez à l'écoute !
+          Nous construisons une plateforme professionnelle pour gérer tous vos services. Restez à l&ecirc;crois !
         </motion.p>
 
         {/* Countdown Timer */}
