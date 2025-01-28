@@ -160,6 +160,20 @@ const Navbar = () => {
                             <p className="text-sm font-semibold text-blue-900">{user.prenom} {user.nom}</p>
                             <p className="text-xs text-gray-500">{user.email}</p>
                           </div>
+                          <Link
+                            href="/profile"
+                            className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-blue-900 hover:bg-blue-50"
+                            onClick={() => setIsUserMenuOpen(false)}
+                          >
+                            <span>{t('navbar.myProfile')}</span>
+                          </Link>
+                          <Link
+                            href="/mes-commandes"
+                            className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-blue-900 hover:bg-blue-50"
+                            onClick={() => setIsUserMenuOpen(false)}
+                          >
+                            <span>{t('navbar.myOrders')}</span>
+                          </Link>
                           {(user.role === 'ADMIN' || user.role === 'EMPLOYE') && (
                             <Link
                               href="/dashboard"

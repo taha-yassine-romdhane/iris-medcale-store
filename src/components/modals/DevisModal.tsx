@@ -16,20 +16,56 @@ interface DevisModalProps {
   items: CartItem[];
 }
 
+interface GuestInfo {
+  name: string;
+  email: string;
+  phone: string;
+}
+
 export default function DevisModal({ isOpen, closeModal, items }: DevisModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [showLoginDialog, setShowLoginDialog] = useState(false);
+  const [isGuestMode, setIsGuestMode] = useState(false);
+  const [guestInfo, setGuestInfo] = useState<GuestInfo>({
+    name: '',
+    email: '',
+    phone: ''
+  });
   const router = useRouter();
   const { clearCart } = useCart();
   const { t } = useTranslation();
+
+  const handleGuestInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setGuestInfo(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const validateGuestInfo = () => {
+    if (!guestInfo.name.trim()) {
+      toast.error('Le nom est requis');
+      return false;
+    }
+    if (!guestInfo.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(guestInfo.email)) {
+      toast.error('Email invalide');
+      return false;
+    }
+    if (!guestInfo.phone.trim() || !/^[0-9+\s-]{8,}$/.test(guestInfo.phone)) {
+      toast.error('Numéro de téléphone invalide');
+      return false;
+    }
+    return true;
+  };
 
   const handleConfirmDevis = async () => {
     try {
       setIsSubmitting(true);
 
       const token = localStorage.getItem('token');
-      if (!token) {
+      if (!token && !isGuestMode) {
         setIsSubmitting(false);
         setShowLoginDialog(true);
         return;
@@ -40,49 +76,59 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
         quantity: item.quantity
       }));
 
+      if (isGuestMode && !validateGuestInfo()) {
+        setIsSubmitting(false);
+        return;
+      }
+
+      const requestData = {
+        items: formattedItems,
+        ...(isGuestMode && { 
+          guestInfo: {
+            ...guestInfo,
+            adresse: null,
+            ville: null,
+            codePostal: null
+          }
+        })
+      };
+
+      console.log('Sending request:', requestData);
+
       const response = await fetch('/api/devis', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          ...(token && !isGuestMode ? { 'Authorization': `Bearer ${token}` } : {})
         },
-        body: JSON.stringify({ items: formattedItems }),
+        body: JSON.stringify(requestData),
       });
 
-      if (response.status === 401) {
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Error creating devis');
+      }
+
+      if (response.status === 401 && !isGuestMode) {
         setIsSubmitting(false);
         setShowLoginDialog(true);
         return;
       }
 
-      let responseData;
-      try {
-        const textData = await response.text();
-        responseData = JSON.parse(textData);
-      } catch (error) {
-        console.error('Error parsing response:', error);
-        throw new Error('Invalid response format');
-      }
-
-      if (!response.ok) {
-        throw new Error(responseData.message || 'Failed to create devis');
-      }
-
       setIsConfirmed(true);
       clearCart();
-
-      // Show success message
-      toast.success('Votre demande de devis a été envoyée avec succès!');
-
-      // Redirect after a delay
+      
+      // Wait a bit before redirecting
       setTimeout(() => {
         closeModal();
-        router.push('/mes-commandes');
+        router.push('/account/orders');
       }, 2000);
 
     } catch (error) {
-      console.error('Error creating devis:', error);
-      toast.error(error instanceof Error ? error.message : 'Failed to create devis');
+      console.error('Error:', error);
+      toast.error(error instanceof Error ? error.message : 'Une erreur est survenue');
+    } finally {
       setIsSubmitting(false);
     }
   };
@@ -91,8 +137,11 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
     <>
       <LoginDialog 
         isOpen={showLoginDialog} 
-        closeModal={() => setShowLoginDialog(false)}
-        message="Vous devez être connecté pour créer un devis. Connectez-vous pour continuer."
+        closeModal={() => {
+          setShowLoginDialog(false);
+          setIsGuestMode(true);
+        }}
+        message="Vous pouvez vous connecter ou continuer en tant qu'invité."
       />
       
       <Transition appear show={isOpen} as={Fragment}>
@@ -156,6 +205,59 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
                       ))}
                     </div>
                   </div>
+
+                  {isGuestMode && !isConfirmed && (
+                    <div className="mt-6">
+                      <h4 className="text-lg font-medium text-gray-900 mb-4">Vos informations</h4>
+                      <div className="space-y-4">
+                        <div>
+                          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                            Nom complet *
+                          </label>
+                          <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={guestInfo.name}
+                            onChange={handleGuestInfoChange}
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                            placeholder="Votre nom complet"
+                            required
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                            Email *
+                          </label>
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={guestInfo.email}
+                            onChange={handleGuestInfoChange}
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                            placeholder="votre@email.com"
+                            required
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                            Téléphone *
+                          </label>
+                          <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            value={guestInfo.phone}
+                            onChange={handleGuestInfoChange}
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                            placeholder="+216 XX XXX XXX"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
                   <div className="mt-8">
                     <p className="text-sm text-gray-500 text-center">

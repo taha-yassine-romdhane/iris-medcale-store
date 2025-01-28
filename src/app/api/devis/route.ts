@@ -13,31 +13,9 @@ if (!JWT_SECRET) {
 
 export async function POST(req: NextRequest) {
   try {
-
-    // Get token from Authorization header
-    const authHeader = req.headers.get('authorization');
-    
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json(
-        { success: false, message: 'Authentication required' },
-        { status: 401 }
-      );
-    }
-
-    const token = authHeader.split(' ')[1];
-
-    // Verify JWT token
-    const decoded = verifyToken(token);
-    if (!decoded || !decoded.id) {
-      return NextResponse.json(
-        { success: false, message: 'Invalid token' },
-        { status: 401 }
-      );
-    }
-
-    // Parse request body
+    // Parse request body first
     const data = await req.json();
-    const { items } = data;
+    const { items, guestInfo } = data;
 
     if (!items?.length) {
       return NextResponse.json(
@@ -61,24 +39,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const user = await prisma.utilisateur.findUnique({
-      where: { id: decoded.id },
-      select: {
-        id: true,
-        adresse: true,
-        ville: true,
-        codePostal: true,
-        telephone: true,
-      },
-    });
-
-    if (!user) {
-      return NextResponse.json(
-        { success: false, message: 'User not found' },
-        { status: 404 }
-      );
-    }
-
     // Validate product IDs
     const productIds = items.map((item: CartItem) => item.id);
     const existingProducts = await prisma.product.findMany({
@@ -97,6 +57,94 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    let user;
+    // Check if it's an authenticated request
+    const authHeader = req.headers.get('authorization');
+    if (authHeader?.startsWith('Bearer ')) {
+      const token = authHeader.split(' ')[1];
+      try {
+        const decoded = verifyToken(token);
+        if (decoded?.id) {
+          user = await prisma.utilisateur.findUnique({
+            where: { id: decoded.id },
+            select: {
+              id: true,
+              email: true,
+              nom: true,
+              prenom: true,
+              adresse: true,
+              ville: true,
+              codePostal: true,
+              telephone: true,
+            },
+          });
+        }
+      } catch (error) {
+        console.log('Token verification failed:', error);
+      }
+    }
+
+    // Handle guest order if no valid authenticated user
+    if (!user) {
+      if (!guestInfo) {
+        return NextResponse.json(
+          { success: false, message: 'Guest information is required for non-authenticated users' },
+          { status: 400 }
+        );
+      }
+
+      // Validate guest info
+      if (!guestInfo.name || !guestInfo.email || !guestInfo.phone) {
+        return NextResponse.json(
+          { success: false, message: 'All guest information fields (name, email, phone) are required' },
+          { status: 400 }
+        );
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(guestInfo.email)) {
+        return NextResponse.json(
+          { success: false, message: 'Invalid email format' },
+          { status: 400 }
+        );
+      }
+
+      try {
+        // Check if a user with this email already exists
+        const existingUser = await prisma.utilisateur.findUnique({
+          where: { email: guestInfo.email },
+        });
+
+        if (existingUser) {
+          user = existingUser;
+        } else {
+          // Create a temporary user for the guest
+          user = await prisma.utilisateur.create({
+            data: {
+              email: guestInfo.email,
+              motDePasse: '', // Empty password since it's a guest account
+              nom: guestInfo.name.split(' ').slice(1).join(' ') || '',
+              prenom: guestInfo.name.split(' ')[0] || guestInfo.name,
+              telephone: guestInfo.phone,
+              role: 'CLIENT',
+            },
+          });
+        }
+      } catch (userError) {
+        console.log('Error creating/finding user:', userError);
+        return NextResponse.json(
+          { success: false, message: 'Error processing user information' },
+          { status: 500 }
+        );
+      }
+    }
+
+    if (!user) {
+      return NextResponse.json(
+        { success: false, message: 'Unable to process user information' },
+        { status: 400 }
+      );
+    }
+
     // Ensure optional fields are not undefined
     if (!user.adresse) user.adresse = null;
     if (!user.ville) user.ville = null;
@@ -108,12 +156,12 @@ export async function POST(req: NextRequest) {
       data: {
         status: StatusCommande.DEVIS,
         utilisateur: {
-          connect: { id: decoded.id }
+          connect: { id: user.id }
         },
-        adresse: user.adresse ?? null,
-        ville: user.ville ?? null,
-        codePostal: user.codePostal ?? null,
-        telephone: user.telephone ?? null,
+        adresse: user.adresse,
+        ville: user.ville,
+        codePostal: user.codePostal,
+        telephone: user.telephone,
         items: {
           create: items.map((item: CartItem) => ({
             quantity: item.quantity,

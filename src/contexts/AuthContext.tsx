@@ -102,22 +102,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const originalFetch = window.fetch;
     window.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
       const url = input.toString();
+      const currentPath = window.location.pathname;
       
       // Skip auth headers only for login and public API endpoints
       const isPublicRoute = url.includes('/api/auth/login');
+      const isDashboardRoute = currentPath.startsWith('/dashboard');
                            
       const token = localStorage.getItem('token');
-      const userStr = localStorage.getItem('user');
       
       // Create a new init object with proper typing
       const modifiedInit: RequestInit = {
         ...init,
         headers: {
           ...(init?.headers || {}),
-          // Always add Authorization header if token exists, except for login
-          ...(token && !isPublicRoute ? {
+          // Always add Authorization header for dashboard routes or if token exists and not public route
+          ...(token && (isDashboardRoute || !isPublicRoute) ? {
             'Authorization': `Bearer ${token}`,
-            'Authorization-User': encodeURIComponent(JSON.stringify(authState.user))
           } : {})
         } as HeadersInit
       };
@@ -125,11 +125,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       try {
         const response = await originalFetch(input, modifiedInit);
         
-        // Handle authentication errors, but only if we're not already on the login page
-        // and it's not a verification request (to avoid loops)
-        if ((response.status === 401 || response.status === 403) && 
-            !window.location.pathname.includes('/login') && 
-            !url.includes('/api/auth/verify')) {
+        // Handle authentication errors
+        if (response.status === 401 && isDashboardRoute) {
           localStorage.removeItem('token');
           localStorage.removeItem('user');
           setAuthState(initialAuthState);

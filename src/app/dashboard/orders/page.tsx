@@ -109,7 +109,7 @@ export default function OrdersManagementPage() {
   }
 
   return (
-    <div className="min-h-screen pt-32 p-8 bg-gray-50 container mx-auto">
+    <div className="flex-1 pt-32 p-8 bg-gray-50 container mx-auto">
       <h1 className="text-3xl font-bold mb-8 text-gray-900">Gestion des Commandes</h1>
       <div className="mb-6">
         <Link
