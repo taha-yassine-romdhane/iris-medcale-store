@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import * as jose from 'jose';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
@@ -12,13 +12,14 @@ interface DecodedToken {
 
 export async function verifyToken(token: string): Promise<DecodedToken | null> {
   try {    
-    const decoded = jwt.verify(token, JWT_SECRET) as DecodedToken;
+    const secret = new TextEncoder().encode(JWT_SECRET);
+    const { payload } = await jose.jwtVerify(token, secret);
     
     // Extract only the necessary fields
     const cleanedToken = {
-      id: decoded.id,
-      email: decoded.email,
-      role: decoded.role
+      id: payload.id as string,
+      email: payload.email as string,
+      role: payload.role as string
     };
     
     return cleanedToken;

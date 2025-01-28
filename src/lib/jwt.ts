@@ -18,12 +18,9 @@ export function signToken(payload: TokenPayload): string {
     throw new Error('Server configuration error: JWT_SECRET is missing');
   }
 
-  if (!payload || typeof payload !== 'object') {
-    throw new Error('Invalid payload provided');
-  }
-
+  // Validate payload
   if (!payload.id || !payload.email || !payload.role) {
-    throw new Error('Missing required fields in payload');
+    throw new Error('Invalid token payload: missing required fields');
   }
 
   try {
@@ -34,13 +31,12 @@ export function signToken(payload: TokenPayload): string {
 }
 
 export function verifyToken(token: string): TokenPayload {
-
   if (!JWT_SECRET) {
     throw new Error('Server configuration error: JWT_SECRET is missing');
   }
 
-  if (!token || typeof token !== 'string') {
-    throw new Error('Invalid token format');
+  if (!token) {
+    throw new Error('Token is required');
   }
 
   try {
@@ -49,6 +45,7 @@ export function verifyToken(token: string): TokenPayload {
       throw new Error('Invalid token structure');
     }
 
+    // Type guard function
     function isTokenPayload(obj: unknown): obj is TokenPayload {
       return (
         typeof obj === 'object' &&

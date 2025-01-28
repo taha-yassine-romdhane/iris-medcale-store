@@ -26,6 +26,7 @@ interface AuthContextType {
   error: string | null;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
+  userData: User | null;
 }
 
 
@@ -35,7 +36,12 @@ export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 const initialAuthState: AuthState = {
   user: null,
   token: null,
+
+
+
 };
+
+
 
 
 
@@ -97,10 +103,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     window.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
       const url = input.toString();
       
-      // Skip auth headers for public routes
-      const isPublicRoute = url.includes('/api/auth/login') ||
-                           url.includes('/api/category-types') ||
-                           url.includes('/api/products');
+      // Skip auth headers only for login and public API endpoints
+      const isPublicRoute = url.includes('/api/auth/login');
                            
       const token = localStorage.getItem('token');
       const userStr = localStorage.getItem('user');
@@ -110,9 +114,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         ...init,
         headers: {
           ...(init?.headers || {}),
-          ...((!isPublicRoute && token && userStr) ? {
+          // Always add Authorization header if token exists, except for login
+          ...(token && !isPublicRoute ? {
             'Authorization': `Bearer ${token}`,
-            'Authorization-User': encodeURIComponent(userStr)
+            'Authorization-User': encodeURIComponent(JSON.stringify(authState.user))
           } : {})
         } as HeadersInit
       };
@@ -142,7 +147,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => {
       window.fetch = originalFetch;
     };
-  }, [router]);
+  }, [router, authState.user]);
 
   const login = async (email: string, password: string) => {
     try {
@@ -200,7 +205,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ ...authState, loading, error, login, logout }}>
+    <AuthContext.Provider value={{ ...authState, loading, error, login, logout, userData: authState.user }}>
       {children}
     </AuthContext.Provider>
   );

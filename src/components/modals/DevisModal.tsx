@@ -77,7 +77,7 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
       // Redirect after a delay
       setTimeout(() => {
         closeModal();
-        router.push('/dashboard');
+        router.push('/mes-commandes');
       }, 2000);
 
     } catch (error) {

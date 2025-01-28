@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
-import { signToken, verifyToken } from '@/lib/jwt';
+import { signToken } from '@/lib/jwt';
 
 export async function POST(request: Request) {
   try {
@@ -36,6 +36,14 @@ export async function POST(request: Request) {
       );
     }
 
+    // Verify user role
+    if (!utilisateur.role || !['ADMIN', 'EMPLOYE', 'CLIENT'].includes(utilisateur.role)) {
+      return NextResponse.json(
+        { error: 'Role utilisateur invalide' },
+        { status: 403 }
+      );
+    }
+
     // Create payload and sign token
     const payload = {
       id: utilisateur.id,
@@ -45,17 +53,6 @@ export async function POST(request: Request) {
 
     // Sign token using our utility function
     const token = signToken(payload);
-
-    // Try to verify the token immediately to ensure it works
-    try {
-      verifyToken(token);
-    } catch (verifyError) {
-      console.error('Token verification failed in login route:', verifyError);
-      return NextResponse.json(
-        { error: 'Error creating authentication token' },
-        { status: 500 }
-      );
-    }
 
     // Retourner le token et les informations de l'utilisateur
     const userWithoutPassword = { ...utilisateur, motDePasse: undefined };
