@@ -16,8 +16,16 @@ interface AddProductModalProps {
 
 export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProductModalProps) {
   // Helper function to ensure array type for features
-  const ensureArray = (value: string | string[]): string[] => {
-    return Array.isArray(value) ? value : [];
+  const ensureArray = (value: string[] | Record<string, string | number | boolean> | string): string[] => {
+    if (Array.isArray(value)) {
+      return value;
+    } else if (typeof value === 'string') {
+      return [value];
+    } else if (typeof value === 'object' && value !== null) {
+      // Convert Record to array of strings
+      return Object.entries(value).map(([key, val]) => `${key}: ${val}`);
+    }
+    return [];
   };
 
   const [formData, setFormData] = useState<Omit<Product, 'id'>>({
@@ -28,69 +36,69 @@ export default function AddProductModal({ isOpen, closeModal, onAdd }: AddProduc
     category: '',
     subCategory: '',
     stock: StockStatus.IN_STOCK,
-    features: [],
+    features: [] ,
     media: [],
     createdAt: new Date(),
-    updatedAt: new Date()
+    updatedAt: new Date(),
+    translations: [], // Add this
+    orderItems: [], // Add this
   });
   const [newFeature, setNewFeature] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const productData = {
-        ...formData,
-        features: ensureArray(formData.features),
-        media: formData.media.map((m, index) => ({
-          ...m,
-          order: index,
-        })),
-        stock: formData.stock, // Update the form submission to use the correct stock field
-      };
+ // Update the handleSubmit function
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  try {
+    const productData = {
+      ...formData,
+      features: ensureArray(formData.features), // Now this will handle both types
+      media: formData.media.map((m, index) => ({
+        ...m,
+        order: index,
+      })),
+      stock: formData.stock,
+    };
 
-      const response = await fetch('/api/products', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(productData),
-      });
+    // Rest of your handleSubmit function remains the same
+    const response = await fetch('/api/products', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(productData),
+    });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to add product');
-      }
-
-      const result = await response.json();
-      
-      // Call onAdd with the new product
-      onAdd(result);
-
-      // Reset form data
-      setFormData({
-        name: '',
-        brand: '',
-        type: '',
-        description: '',
-        category: '',
-        subCategory: '',
-        stock: StockStatus.IN_STOCK,
-        features: [],
-        media: [],
-        createdAt: new Date(),
-        updatedAt: new Date()
-      });
-
-      // Show success message
-      alert('Product added successfully!');
-      
-      // Close modal
-      closeModal();
-    } catch (error) {
-      console.error('Error adding product:', error);
-      alert(error instanceof Error ? error.message : 'Failed to add product. Please try again.');
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to add product');
     }
-  };
+
+    const result = await response.json();
+    onAdd(result);
+
+    setFormData({
+      name: '',
+      brand: '',
+      type: '',
+      description: '',
+      category: '',
+      subCategory: '',
+      stock: StockStatus.IN_STOCK,
+      features: [], // This will now be properly typed
+      media: [],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      translations: [],
+      orderItems: [],
+    });
+
+    alert('Product added successfully!');
+    closeModal();
+  } catch (error) {
+    console.error('Error adding product:', error);
+    alert(error instanceof Error ? error.message : 'Failed to add product. Please try again.');
+  }
+};
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;

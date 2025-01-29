@@ -5,7 +5,7 @@ export interface CartItem {
   media: { url: string }[];
   quantity: number;
   image?: string;
-  features?: string[];
+  features?: Record<string, string | number | boolean>;
   stock?: StockStatus;
 }
 

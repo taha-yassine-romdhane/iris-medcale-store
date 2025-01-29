@@ -4,9 +4,7 @@ export interface Media {
   type: 'image' | 'video';
   alt?: string;
   order: number;
-  product: {
-    connect: { id: string };
-  };
+
 }
 
 export enum StockStatus {
@@ -25,7 +23,7 @@ export interface Product {
   brand: string;
   type: string;
   description: string; // Default description
-  features: Record<string, any>; // JSON object for features
+  features: Record<string, string | number | boolean> | string[]; // JSON object for features
   category: string;
   subCategory?: string; // For accessories: FILTRE, TUYAU, etc.
   stock: StockStatus; // Enum: IN_STOCK, OUT_OF_STOCK, etc.
@@ -41,7 +39,6 @@ export interface ProductTranslation {
   name: string;
   description: string;
   features: Record<string, string | number | boolean>;// JSON object for translated features
-  [key: string]: any;
   createdAt: Date;
   updatedAt: Date;
 }

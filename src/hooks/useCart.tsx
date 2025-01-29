@@ -81,7 +81,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
           brand: product.brand,
           quantity: 1,
           stock: product.stock,
-          features: product.features,
+          features: product.features as Record<string, string | number | boolean>,
           image: product.media[0]?.url,
           media: product.media
         };

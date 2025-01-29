@@ -44,7 +44,7 @@ export default function ProductsPage() {
     types: [],
     subCategories: [],
   });
-  const [selectedMedia, setSelectedMedia] = useState<Record<string, number>>({});
+  const [selectedMedia] = useState<Record<string, number>>({});
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedBrand, setSelectedBrand] = useState<string>('');
 

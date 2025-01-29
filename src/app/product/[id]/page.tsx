@@ -54,19 +54,38 @@ export default function ProductPage() {
     fetchProduct();
   }, [id]);
  
-
-  const getTranslatedContent = (field: keyof Product) => {
-    if (!translations) return product?.[field] || '';
-    
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const getTranslatedContent = (field: keyof Product): any => {
+    if (!product) return '';
+  
+    // Define which fields are translatable
+    const translatableFields = ['name', 'description', 'features'] as const;
+    type TranslatableField = typeof translatableFields[number];
+  
+    // Check if the field is translatable
+    const isTranslatableField = (field: keyof Product): field is TranslatableField => {
+      return translatableFields.includes(field as TranslatableField);
+    };
+  
+    // If field is not translatable, return directly from product
+    if (!isTranslatableField(field)) {
+      return product[field];
+    }
+  
+    // Handle translatable fields
+    if (!translations) return product[field];
+  
     const translation = translations.find((t: ProductTranslation) => 
       t.language.toLowerCase() === language.toLowerCase()
     );
-    
+  
+    // Special handling for features
     if (field === 'features') {
-      return translation?.features || product?.features || {};
+      return translation?.features || product.features || {};
     }
-    
-    return translation?.[field] || product?.[field] || '';
+  
+    // Handle other translatable fields (name and description)
+    return translation?.[field] || product[field] || '';
   };
 
   const nextImage = () => {
@@ -271,7 +290,7 @@ export default function ProductPage() {
               <div className="mb-8">
                 <h2 className="text-lg font-bold text-gray-900 mb-4">{t('productsPage.products.features')}</h2>
                 <ul className="space-y-3">
-                  {featureEntries.map(([key, value], index) => (
+                  {featureEntries.map(([key, value]) => (
                     <li key={key} className="flex items-start">
                       <span className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-blue-500 mr-3"></span>
                       <div>
