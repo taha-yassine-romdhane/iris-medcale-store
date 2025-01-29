@@ -5,7 +5,7 @@ import { Package, Calendar } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 import Image from 'next/image';
-import { useTranslation } from '@/context/TranslationContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 
 interface Order {
   id: string;

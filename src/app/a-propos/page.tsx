@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { Heart, Users, Trophy, Target, CheckCircle } from 'lucide-react';
-import { useTranslation } from '@/context/TranslationContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 
 const values = [
   {

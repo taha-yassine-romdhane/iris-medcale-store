@@ -3,8 +3,9 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import en from '@/translations/en.json';
 import fr from '@/translations/fr.json';
+import ar from '@/translations/ar.json';
 
-type Language = 'en' | 'fr';
+type Language = 'en' | 'fr' | 'ar';
 
 type TranslationValue = string | string[] | { [key: string]: TranslationValue };
 
@@ -26,6 +27,7 @@ const TranslationContext = createContext<TranslationContextType | undefined>(und
 const translations: Record<Language, NestedTranslations> = {
   en,
   fr,
+  ar,
 };
 
 export function TranslationProvider({ children }: { children: ReactNode }) {
@@ -35,7 +37,7 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const savedLanguage = localStorage.getItem('language');
-      if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'fr')) {
+      if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'fr' || savedLanguage === 'ar')) {
         setLanguage(savedLanguage as Language);
       }
     } catch (error) {

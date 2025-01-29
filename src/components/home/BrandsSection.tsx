@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { useTranslation } from '@/context/TranslationContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 
 const brands = [
   {

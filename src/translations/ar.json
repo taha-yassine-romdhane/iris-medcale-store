@@ -1,0 +1,448 @@
+{
+    "navbar": {
+        "home": "الرئيسية",
+        "ourProducts": "منتجاتنا",
+        "allProducts": "جميع المنتجات",
+        "types": "الأنواع",
+        "otherTypes": "أنواع أخرى",
+        "loading": "جار التحميل...",
+        "noCategories": "لم يتم العثور على فئات",
+        "services": "خدماتنا",
+        "about": "حول",
+        "contact": "اتصل",
+        "appointment": "حجز موعد",
+        "login": "تسجيل الدخول",
+        "logout": "تسجيل الخروج",
+        "dashboard": "لوحة التحكم",
+        "myOrders": "طلباتي",
+        "myProfile": "ملفي الشخصي",
+        "search": "بحث",
+        "sleepApnea": "انقطاع النفس أثناء النوم",
+        "makeAnAppointment": "حجز موعد",
+        "ourServices": "الخدمات المهنية",
+        "aboutUs": "من نحن"
+    },
+    "CategoryNavbar": {
+        "home": "الرئيسية",
+        "allProducts": "جميع المنتجات",
+        "loading": "جار التحميل...",
+        "noCategories": "لم يتم العثور على فئات"
+    },
+    "search": {
+        "placeholder": "ابحث عن المنتجات...",
+        "loading": "جار التحميل...",
+        "noResult": "لم يتم العثور على نتائج لـ",
+        "tryDifferent": "حاول البحث بكلمات مفتاحية مختلفة"
+    },
+    "footer": {
+        "companyName": "خدمة النخبة الطبية",
+        "description": "مصدر موثوق لمعدات الرعاية الصحية المبتكرة.",
+        "quickLinks": "روابط سريعة",
+        "cpapMachines": "خدماتنا",
+        "aboutUs": "من نحن",
+        "contact": "اتصل",
+        "sleepApnea": "انقطاع النفس أثناء النوم",
+        "contactUs": "اتصل بنا",
+        "coverageAreas": "مناطق التغطية",
+        "northRegion": "المنطقة الشمالية",
+        "grandTunis": "تونس الكبرى",
+        "capBon": "كاب بون",
+        "centerRegion": "المنطقة الوسطى",
+        "sousse": "سوسة",
+        "monastir": "المنستير",
+        "mahdia": "المهدية",
+        "copyright": " 2024 خدمة النخبة الطبية. جميع الحقوق محفوظة."
+    },
+    "login": {
+        "leftSide": {
+            "title": "منطقة العملاء لخدمة النخبة الطبية",
+            "description": "سجل الدخول للوصول إلى معلوماتك وخدماتك الشخصية.",
+            "bullet1": "الوصول الآمن إلى بيانات الشركة",
+            "bullet2": "التحقق الثنائي لتحسين الأمان"
+        },
+        "form": {
+            "title": "تسجيل الدخول",
+            "emailLabel": "البريد الإلكتروني",
+            "emailPlaceholder": "your_email@example.com",
+            "passwordLabel": "كلمة المرور",
+            "passwordPlaceholder": "كلمة المرور الخاصة بك",
+            "submitButton": "تسجيل الدخول",
+            "noAccount": "ليس لديك حساب؟",
+            "signupLink": "اشترك",
+            "forgotPassword": "نسيت كلمة المرور؟"
+        },
+        "error": {
+            "fillAllFields": "يرجى ملء جميع الحقول",
+            "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة"
+        }
+    },
+    "apneeDuSommeil": {
+        "apnéesDuSommeil": "انقطاع النفس أثناء النوم",
+        "comprendreDiagnostiquerEtTraiterLesTroublesDuSommeil": "فهم وتشخيص وعلاج اضطرابات النوم",
+        "question": "ما هو انقطاع النفس أثناء النوم؟",
+        "reponse": "انقطاع النفس أثناء النوم هو اضطراب في الجهاز التنفسي يتميز بتوقفات وتنفس متكرر وطويل أثناء النوم، مما يعطل دورة النوم الطبيعية ويؤثر على الصحة ونوعية الحياة.",
+        "symptoms": "الأعراض",
+        "risks": "المخاطر",
+        "treatment": "العلاج",
+        "etouffement": "الاختناق",
+        "reveils": "الاستيقاظ",
+        "pausesRespiratoires": "توقف التنفس",
+        "ronflements": "الشخير",
+        "pendantLaNuit": "أثناء الليل",
+        "pendantLaJournee": "أثناء النهار",
+        "fatigueEtSomnolenceExcessive": "التعب والنعاس المفرط",
+        "mauxDeTeteMatinaux": "الصداع الصباحي",
+        "difficultesDeConcentration": "صعوبة التركيز",
+        "irritabiliteEtChangementsDHumeur": "التهيج وتغيرات المزاج",
+        "complicationsPossibles": "المضاعفات المحتملة",
+        "problemesCardiovasculaires": "مشاكل القلب والأوعية الدموية",
+        "hypertensionRisqueDavcTroublesDuRythmeCardiaque": "ارتفاع ضغط الدم وخطر السكتة الدماغية واضطرابات ضربات القلب",
+        "troublesCognitifs": "الاضطرابات الإدراكية",
+        "perteDeMemoireDifficultesDeConcentration": "فقدان الذاكرة وصعوبة التركيز",
+        "complicationsMetaboliques": "المضاعفات الأيضية",
+        "diabetePriseDePoidsSyndromeMetabolique": "داء السكري وزيادة الوزن ومتلازمة التمثيل الغذائي",
+        "autresRisques": "مخاطر أخرى",
+        "accidentsDeLaRouteDepressionProblemesRelationnels": "حوادث الطرق والاكتئاب والمشاكل العلاقية",
+        "solutionsTherapeutiques": "الحلول العلاجية",
+        "ppcPressionPositiveContinue": "ضغط الهواء الإيجابي المستمر",
+        "descriptionPpc": "العلاج القياسي الذي يتضمن ارتداء قناع متصل بجهاز يوفر هواءً مضغوطًا أثناء النوم.",
+        "ortheseDavanceeMandibulaire": "جهاز تقديم الفك السفلي",
+        "descriptionOrthèse": "جهاز طبي يبقي الفك السفلي في وضع متقدم لفتح مجرى الهواء.",
+        "changementsDeModeDeVie": "تغييرات في نمط الحياة",
+        "perteDePoidsSiNecessaire": "فقدان الوزن إذا لزم الأمر",
+        "positionDeSommeilAdaptee": "وضعية نوم مناسبة",
+        "arretDuTabacEtReductionDeLalcool": "الإقلاع عن التدخين وتقليل الكحول",
+        "vousPensezSouffrirDApneesDuSommeil": "هل تعتقد أنك تعاني من انقطاع النفس أثناء النوم؟",
+        "diagnosticPrecoce": "التشخيص المبكر يسمح بإدارة أفضل.",
+        "prendreRendezVous": "حجز موعد"
+    },
+    "appointmentSection": {
+        "title": "حجز موعد",
+        "selectMonth": "اختر شهرًا",
+        "selectDay": "اختر يومًا",
+        "selectTime": "اختر وقتًا",
+        "reasonLabel": "سبب الموعد",
+        "reasonPlaceholder": "صف بإيجاز سبب موعدك...",
+        "submitButton": "طلب موعد",
+        "submitting": "جارٍ الإرسال...",
+        "success": {
+            "title": "نجاح",
+            "description": "تم طلب الموعد بنجاح"
+        },
+        "error": {
+            "title": "خطأ",
+            "description": "حدث خطأ",
+            "failedToRequestAppointment": "فشل في طلب الموعد",
+            "generic": "حدث خطأ ما"
+        },
+        "loginDialog": {
+            "title": "تسجيل الدخول مطلوب",
+            "description": "يجب أن تكون مسجلاً لتحديد موعد. هل ترغب في تسجيل الدخول الآن؟",
+            "cancelButton": "إلغاء",
+            "loginButton": "تسجيل الدخول"
+        }
+    },
+    "error": {
+        "fillAllFields": "يرجى ملء جميع الحقول",
+        "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+        "failedToRequestAppointment": "فشل في طلب الموعد",
+        "generic": "حدث خطأ ما",
+        "loginRequired": "يجب تسجيل الدخول لتنفيذ هذا الإجراء.",
+        "invalidDate": "تم اختيار تاريخ غير صالح.",
+        "invalidTime": "تم اختيار وقت غير صالح.",
+        "appointmentConflict": "تم حجز هذا الوقت بالفعل. يرجى اختيار وقت آخر.",
+        "networkError": "خطأ في الشبكة. يرجى التحقق من اتصالك والمحاولة مرة أخرى."
+    },
+    "contactPage": {
+        "contactInfo": {
+            "phone": {
+                "title": "الهاتف",
+                "detail": "متاح 24/7"
+            },
+            "email": {
+                "title": "البريد الإلكتروني",
+                "detail": "الرد خلال 24 ساعة"
+            },
+            "address": {
+                "title": "العنوان",
+                "detail": "المكتب الرئيسي"
+            },
+            "openingHours": {
+                "title": "ساعات العمل",
+                "detail": "خدمة الطوارئ 24/7"
+            }
+        },
+        "form": {
+            "title": "أرسل لنا رسالة",
+            "userInfo": "معلوماتك",
+            "name": "الاسم",
+            "email": "البريد الإلكتروني",
+            "phone": "الهاتف",
+            "messageLabel": "رسالتك",
+            "messagePlaceholder": "كيف يمكننا مساعدتك؟",
+            "submitButton": "إرسال الرسالة",
+            "submitting": "جارٍ الإرسال..."
+        },
+        "map": {
+            "title": "موقعنا"
+        },
+        "loginDialog": {
+            "title": "تسجيل الدخول مطلوب",
+            "description": "يجب أن تكون مسجلاً لإرسال رسالة. هل ترغب في تسجيل الدخول الآن؟",
+            "cancelButton": "إلغاء",
+            "loginButton": "تسجيل الدخول"
+        },
+        "success": {
+            "title": "نجاح",
+            "description": "تم إرسال رسالتك بنجاح."
+        }
+    },
+    "checkoutPage": {
+        "emptyCart": {
+            "title": "السلة فارغة",
+            "description": "سلتك فارغة حاليًا."
+        },
+        "title": "طلب عرض أسعار",
+        "subtitle": "سنقدم لك عرض أسعار مخصص لمنتجاتك المختارة. سيتصل بك فريقنا قريبًا.",
+        "features": {
+            "qualityProducts": {
+                "title": "منتجات عالية الجودة",
+                "description": "جميع منتجاتنا معتمدة وتأتي من علامات تجارية معترف بها."
+            },
+            "fastDelivery": {
+                "title": "توصيل سريع",
+                "description": "خدمة توصيل احترافية في جميع أنحاء تونس."
+            },
+            "personalizedSupport": {
+                "title": "دعم مخصص",
+                "description": "فريق مخصص للإجابة على جميع أسئلتك."
+            }
+        },
+        "selectedProducts": {
+            "title": "المنتجات المختارة",
+            "quantity": "الكمية:"
+        },
+        "summary": {
+            "title": "طلب عرض أسعار",
+            "description": "بالنقر على الزر أدناه، ستتلقى:",
+            "bullet1": "عرض أسعار مخصص",
+            "bullet2": "مكالمة من فريق المبيعات لدينا",
+            "bullet3": "نصائح الخبراء حول المنتجات الخاصة بك",
+            "requestButton": "طلب عرض أسعار",
+            "loading": "جارٍ المعالجة...",
+            "footer": "سيتصل بك فريقنا خلال 24-48 ساعة."
+        }
+    },
+    "aboutPage": {
+        "hero": {
+            "title": "حول خدمة النخبة الطبية",
+            "subtitle": "الريادة في حلول الأكسجين والعلاج التنفسي في تونس"
+        },
+        "mission": {
+            "title": "مهمتنا",
+            "description": "نحن شركة متخصصة في علاج الأكسجين، نقدم حلولًا طبية للمرضى الذين يحتاجون إلى مساعدة تنفسية. التزامنا هو ضمان خدمة منزلية مخصصة لضمان راحة ورفاهية مرضانا.",
+            "keyPoints": {
+                "keyPoint1": "تركيب وصيانة المعدات الطبية في المنزل",
+                "keyPoint2": "خدمة الدعم الفني على مدار الساعة",
+                "keyPoint3": "تغطية مناطق سوسة، المنستير، المهدية، كاب بون، وتونس الكبرى",
+                "keyPoint4": "فريق فني عالي الكفاءة",
+                "keyPoint5": "متابعة منتظمة للمرضى",
+                "keyPoint6": "حلول العلاج بالأكسجين والتهوية"
+            },
+            "imageAlt": "معدات طبية"
+        },
+        "values": {
+            "title": "قيمنا",
+            "patientCommitment": {
+                "title": "الالتزام بالمرضى",
+                "description": "أولويتنا القصوى هي راحة ورفاهية مرضانا."
+            },
+            "experiencedTeam": {
+                "title": "فريق ذو خبرة",
+                "description": "فنيين مؤهلين وموظفين طبيين مكرسين."
+            },
+            "medicalExcellence": {
+                "title": "التميز الطبي",
+                "description": "معدات حديثة وخدمات عالية الجودة."
+            },
+            "personalizedService": {
+                "title": "خدمة مخصصة",
+                "description": "حلول مصممة لتلبية احتياجات كل مريض."
+            }
+        },
+        "cnam": {
+            "title": "الشراكة مع CNAM",
+            "description": "كشريك معتمد لصندوق التأمين الصحي الوطني (CNAM)، نسهل الوصول إلى المعدات الطبية الأساسية لمرضانا.",
+            "bullet1": "تغطية مباشرة مع CNAM",
+            "bullet2": "عملية سداد مبسطة",
+            "bullet3": "معدات متوافقة مع CNAM",
+            "bullet4": "المساعدة في الإجراءات الإدارية",
+            "imageAlt": "شعار CNAM تونس"
+        },
+        "coverage": {
+            "title": "تغطيتنا",
+            "description": "يغطي فنينا المؤهلون مناطق سوسة، المنستير، المهدية، كاب بون، وتونس الكبرى، مما يضمن التركيب السريع والمتابعة الفنية الدقيقة.",
+            "northRegion": "المناطق الشمالية",
+            "centerRegion": "المناطق الوسطى",
+            "regions": {
+                "grandTunis": "تونس الكبرى",
+                "capBon": "كاب بون",
+                "sousse": "سوسة",
+                "monastir": "المنستير",
+                "mahdia": "المهدية"
+            },
+            "imageAlt": "خريطة تغطية تونس"
+        },
+        "cta": {
+            "title": "تحتاج إلى خدماتنا؟",
+            "subtitle": "اتصل بنا اليوم لمناقشة احتياجاتك الصحية التنفسية.",
+            "button": "اتصل بنا"
+        }
+    },
+    "ordersPage": {
+        "title": "طلباتي",
+        "emptyOrders": {
+            "title": "لا توجد طلبات",
+            "description": "لم تقم بأي طلبات بعد."
+        },
+        "quantity": "الكمية",
+        "status": {
+            "pending": "قيد الانتظار",
+            "confirmed": "مؤكد",
+            "inProgress": "قيد التنفيذ",
+            "delivered": "تم التوصيل",
+            "cancelled": "ملغى",
+            "quote": "عرض سعر"
+        },
+        "errors": {
+            "loginRequired": "يرجى تسجيل الدخول لعرض طلباتك.",
+            "sessionExpired": "انتهت الجلسة. يرجى تسجيل الدخول مرة أخرى.",
+            "fetchFailed": "فشل في جلب الطلبات.",
+            "fetchError": "حدث خطأ أثناء جلب الطلبات."
+        }
+    },
+    "servicesPage": {
+        "hero": {
+            "title": "خدمات العلاج بالأكسجين المهنية",
+            "description": "حلول طبية متخصصة للمرضى الذين يحتاجون إلى مساعدة تنفسية، مع خدمة منزلية مخصصة لراحتك ورفاهيتك."
+        },
+        "mainContent": {
+            "title": "خبرتنا في خدمتك",
+            "description1": "مرحبًا بكم في خدمات النخبة الطبية، شريككم الموثوق في العلاج بالأكسجين والتهوية والخدمات المنزلية. منذ تأسيسنا في عام 2018",
+            "description2": "نحن متخصصون في العلاج بالأكسجين والمساعدة التنفسية المنزلية، نقدم خدمات البيع والتأجير، مما يضمن أن يحصل مرضانا على الأجهزة الأنسب. نحن متعاقدون مع صندوق التأمين الصحي الوطني (CNAM) وشركات التأمين الصحي لتسهيل الوصول إلى الرعاية للجميع.",
+            "description3": "فريقنا المخصص والمحترف ملتزم بتقديم المساعدة بسرعة وأمان ودافئ، مما يضمن خدمة إنسانية ومهنية وعالية الجودة مصممة لدعم صحتك اليومية، وكذلك رفاهية وراحة البال لكل مريض وعائلته.",
+            "coverageTitle": "مناطق التغطية"
+        },
+        "services": {
+            "service1": {
+                "title": "خدمة منزلية",
+                "description": "تركيب وصيانة المعدات الطبية مباشرة في منزلك"
+            },
+            "service2": {
+                "title": "دعم فني 24/7",
+                "description": "فريق فني مؤهل متاح في جميع الأوقات"
+            },
+            "service3": {
+                "title": "متابعة مخصصة",
+                "description": "دعم مصمم خصيصًا لتلبية احتياجاتك الخاصة"
+            }
+        },
+        "regions": [
+            "سوسة",
+            "المنستير",
+            "المهدية",
+            "كاب بون",
+            "تونس الكبرى"
+        ],
+        "contact": {
+            "title": "تحتاج إلى مساعدة؟",
+            "description": "فريقنا متاح على مدار الساعة لتلبية احتياجاتك."
+        }
+    },
+        "productsPage": {
+          "hero": {
+            "title": "منتجاتنا",
+            "description": "اكتشف مجموعة واسعة من المعدات الطبية والإمدادات عالية الجودة. نقدم أفضل العلامات التجارية والمنتجات لتلبية احتياجاتك الصحية."
+          },
+          "filters": {
+            "title": "فلاتر",
+            "searchPlaceholder": "ابحث عن المنتجات...",
+            "selectBrand": "اختر العلامة التجارية",
+            "allBrands": "جميع العلامات التجارية",
+            "activeFilters": {
+              "category": "الفئة",
+              "type": "النوع",
+              "subcategory": "الفئة الفرعية",
+              "brand": "العلامة التجارية"
+            }
+          },
+          "products": {
+            "home": "الرئيسية",
+            "brand": "العلامة التجارية",
+            "category": "الفئة",
+            "subCategory": "الفئة الفرعية",
+            "type": "النوع",
+            "noProducts": "لا توجد منتجات",
+            "noImage": "لا توجد صورة",
+            "inStock": "متوفر",
+            "outOfStock": "غير متوفر",
+            "lowStock": "كمية محدودة",
+            "addToCart": "إضافة إلى السلة",
+            "features": "المواصفات",
+            "preOrder": "الطلب المسبق",
+            "comingSoon": "قريبا",
+            "description": "الوصف"
+          }
+        },
+    "home": {
+        "brands": {
+            "title": "شركاتنا"
+        }
+    },
+    "verifyEmail": {
+        "title": "تحقق من البريد الإلكتروني",
+        "redirecting": "العودة إلى صفحة الدخول...",
+        "goToLogin": "العودة إلى الدخول"
+    },
+    "checkEmail": {
+        "title": "تحقق من البريد الإلكتروني",
+        "description": "لقد قمنا بإرسال رسالة تحقق للبريد الإلكتروني الخاص بك. يرجى التحقق من صندوق الوارد والنقر على الرابط لتأكيد حسابك.",
+        "spam": "اذا لم ترى البريد، يرجى التحقق من مجموعة البريد الخمي.",
+        "goToLogin": "العودة إلى الدخول"
+    },
+    "devisModal": {
+        "confirmationMessage": "يرجى التحقق من صندوق الوارد والنقر على الرابط لتأكيد حسابك.",
+        "confirmedMessage": "تم الاستلام وتأكيد الطلب. سنتوقع الأمر في غضون 48 ساعات لاستلام الطلب بشكل صحيح.",
+        "title": "ملخص طلبك:",
+        "quantity": "الكميات:",
+        "message": "اذا كنت لديك اي استفسارات، لا تتردد في التواصل معنا في ",
+        "confirming": "جاري التحقق...",
+        "confirm": "تأكيد الطلب"
+    },
+    "productsSection": {
+        "products": {
+            "noProducts": "لا توجد منتجات",
+            "noImage": "لا توجد صورة",
+            "inStock": "متوفر",
+            "outOfStock": "غير متوفر",
+            "lowStock": "منتجات قليلة",
+            "preOrder": "الطلب المسبق",
+            "comingSoon": "قريبا",
+            "addToCart": "إضافة إلى السلة",
+            "features": "المواصفات"
+        },
+        "masks": "ماسكات",
+        "cpap": "CPAP",
+        "oxygen": "Oxygen",
+        "lits": "Lits",
+        "scrollLeft": "العودة إلى الأول",
+        "scrollRight": "العودة إلى الأخير",
+        "viewDetails": "اظهار التفاصيل"
+    },
+    "cart": {
+        "title": "سلة التسوق",
+        "empty": "سلة التسوق فارغة",
+        "continue": "متابعة التسوق",
+        "requestQuote": "طلب عرض"
+    }
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslation } from '@/context/TranslationContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 import { useRouter } from 'next/navigation';
 
 export default function CheckEmailPage() {

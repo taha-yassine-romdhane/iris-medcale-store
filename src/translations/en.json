@@ -76,7 +76,7 @@
       "invalidCredentials": "Incorrect email or password"
     }
   },
- "apneeDuSommeil": {
+  "apneeDuSommeil": {
     "apnéesDuSommeil": "Sleep Apnea",
     "comprendreDiagnostiquerEtTraiterLesTroublesDuSommeil": "Understanding, Diagnosing, and Treating Sleep Apnea",
     "question": "What is Sleep Apnea?",
@@ -377,19 +377,26 @@
       }
     },
     "products": {
+      "home": "Home",
+      "brand": "Brand",
+      "category": "Category",
+      "subCategory": "Sub-category",
+      "type": "Type",
       "noProducts": "No products found",
       "noImage": "No image available",
       "inStock": "In Stock",
       "outOfStock": "Out of Stock",
+      "lowStock": "Low Stock",
       "addToCart": "Add to Cart",
       "features": "Features",
       "preOrder": "Pre-Order",
-      "comingSoon": "Coming Soon"
+      "comingSoon": "Coming Soon",
+      "description": "Description"
     }
   },
-  "home" : {
-    "brands" : {
-      "title" : "Our Brands Partners"
+  "home": {
+    "brands": {
+      "title": "Our Brands Partners"
     }
   },
   "verifyEmail": {
@@ -423,12 +430,11 @@
       "comingSoon": "Coming Soon",
       "addToCart": "Add to Cart",
       "features": "Features"
-      
     },
-    "masks":"Masks",
-    "cpap":"CPAP",
-    "oxygen":"Oxygen",
-    "lits":"Lits",
+    "masks": "Masks",
+    "cpap": "CPAP",
+    "oxygen": "Oxygen",
+    "lits": "Lits",
     "scrollLeft": "Scroll Left",
     "scrollRight": "Scroll Right",
     "viewDetails": "View Details"

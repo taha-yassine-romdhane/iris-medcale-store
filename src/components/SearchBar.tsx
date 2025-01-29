@@ -5,7 +5,7 @@ import { Search } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useTranslation } from '@/context/TranslationContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 
 interface Product {
   id: string;

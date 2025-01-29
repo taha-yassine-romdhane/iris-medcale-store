@@ -362,12 +362,12 @@
   "productsPage": {
     "hero": {
       "title": "Nos Produits",
-      "description": "Découvrez notre large gamme d'équipements et de fournitures médicales de haute qualité. Nous proposons les meilleures marques et produits pour vos besoins en matière de santé."
+      "description": "Découvrez notre large gamme d'équipements médicaux et de fournitures de haute qualité. Nous offrons les meilleures marques et produits pour vos besoins en matière de santé."
     },
     "filters": {
       "title": "Filtres",
       "searchPlaceholder": "Rechercher des produits...",
-      "selectBrand": "Sélectionner une marque",
+      "selectBrand": "Sélectionnez la marque",
       "allBrands": "Toutes les marques",
       "activeFilters": {
         "category": "Catégorie",
@@ -377,14 +377,21 @@
       }
     },
     "products": {
+      "home": "Accueil",
+      "brand": "Marque",
+      "category": "Catégorie",
+      "subCategory": "Sous-catégorie",
+      "type": "Type",
       "noProducts": "Aucun produit trouvé",
       "noImage": "Aucune image disponible",
       "inStock": "En Stock",
       "outOfStock": "Rupture de Stock",
+      "lowStock": "Stock Faible",
       "addToCart": "Ajouter au Panier",
       "features": "Caractéristiques",
-      "preOrder": "Pré-commande",
-      "comingSoon": "Bientôt disponible"
+      "preOrder": "Précommande",
+      "comingSoon": "Bientôt disponible",
+      "description": "Description"
     }
   },
   "home": {

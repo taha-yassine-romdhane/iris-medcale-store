@@ -10,7 +10,7 @@ import Image from 'next/image';
 import SearchBar from "./SearchBar";
 import CartDropdown from './cart/CartDropdown';
 import { useAuth } from "@/hooks/useAuth";
-import { useTranslation } from '@/context/TranslationContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 import { motion, AnimatePresence } from "framer-motion";
 import MobileNavbar from "./MobileNavbar";
 

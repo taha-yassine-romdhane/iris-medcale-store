@@ -18,7 +18,7 @@ import Link from 'next/link';
 import { ShoppingCart, ChevronLeft, ChevronRight, Search, Filter } from 'lucide-react';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
-import { useTranslation } from '@/context/TranslationContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 import { useSearchParams } from 'next/navigation';
 
 interface Filters {

@@ -1,4 +1,4 @@
-import { useTranslation } from '@/context/TranslationContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 import Image from 'next/image';
 import { ChevronDown } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
@@ -7,18 +7,27 @@ interface Language {
   code: string;
   name: string;
   flag: string;
+  dir?: 'ltr' | 'rtl';
 }
 
 const languages: Language[] = [
   {
     code: 'en',
     name: 'English',
-    flag: '/flags/en.svg'
+    flag: '/flags/en.svg',
+    dir: 'ltr'
   },
   {
     code: 'fr',
     name: 'Français',
-    flag: '/flags/fr.svg'
+    flag: '/flags/fr.svg',
+    dir: 'ltr'
+  },
+  {
+    code: 'ar',
+    name: 'العربية',
+    flag: '/flags/ar.svg',
+    dir: 'rtl'
   }
 ];
 
@@ -54,7 +63,7 @@ export function LanguageSwitcher() {
             className="object-cover"
           />
         </div>
-        <span className="text-sm font-medium">{currentLanguage.name}</span>
+        <span className="text-sm font-medium" dir={currentLanguage.dir}>{currentLanguage.name}</span>
         <ChevronDown
           className={`w-4 h-4 transition-transform duration-200 ${
             isOpen ? 'transform rotate-180' : ''
@@ -68,7 +77,7 @@ export function LanguageSwitcher() {
             <button
               key={lang.code}
               onClick={() => {
-                setLanguage(lang.code as 'en' | 'fr');
+                setLanguage(lang.code as 'en' | 'fr' | 'ar');
                 setIsOpen(false);
               }}
               className={`w-full flex items-center gap-3 px-4 py-2 text-sm ${
@@ -85,7 +94,7 @@ export function LanguageSwitcher() {
                   className="object-cover"
                 />
               </div>
-              <span className="font-medium">{lang.name}</span>
+              <span className="font-medium" dir={lang.dir}>{lang.name}</span>
             </button>
           ))}
         </div>

@@ -6,8 +6,10 @@ import {
   Users,
   MessageSquare,
   Calendar,
-  ShoppingBag
+  ShoppingBag,
+  JapaneseYen
 } from 'lucide-react';
+import TranslationsPage from './translations/page';
 
 export default function DashboardPage() {
   return (
@@ -64,6 +66,19 @@ export default function DashboardPage() {
             <div>
               <h2 className="text-lg font-semibold text-gray-800">Messages de Contact</h2>
               <p className="text-gray-500">Gérez les messages des clients.</p>
+            </div>
+          </div>
+        </Link>
+
+        {/* Card for Messages */}
+        <Link href="/dashboard/translations" className="flex items-center justify-between p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition">
+          <div className="flex items-center space-x-4">
+            <div className="p-3 rounded-full bg-yellow-100">
+              <JapaneseYen className="h-8 w-8 text-yellow-600" />
+            </div>
+            <div>
+              <h2 className="text-lg font-semibold text-gray-800">Traductions</h2>
+              <p className="text-gray-500">Gérez les traductions des produits.</p>
             </div>
           </div>
         </Link>

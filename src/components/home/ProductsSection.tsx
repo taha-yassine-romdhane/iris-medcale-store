@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useCart } from '@/hooks/useCart';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Product } from '@/types/product';
-import { useTranslation } from '@/context/TranslationContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 
 interface CategoryProducts {
   cpap: Product[];

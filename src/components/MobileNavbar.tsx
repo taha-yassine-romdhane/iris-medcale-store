@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { LogOut, User, X, Heart, Info, Phone, ChevronDown, ShoppingCart, Settings2, User2, LucideSquareActivity, SquareChevronRight } from 'lucide-react';
-import { useTranslation } from '@/context/TranslationContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 import SearchBar from './SearchBar';
 import { useState, useEffect } from 'react';
 

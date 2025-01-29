@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Info, CheckCircle, AlertTriangle, Stethoscope, Clock, Brain, Heart, Plus } from 'lucide-react';
 import Image from 'next/image';
-import { useTranslation } from '@/context/TranslationContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 
 export default function SleepApneaPage() {
     const [activeTab, setActiveTab] = useState('symptoms');

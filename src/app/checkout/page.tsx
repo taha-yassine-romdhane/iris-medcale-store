@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { ShoppingBag, Package, Truck, Phone, Plus, Minus, Trash2 } from 'lucide-react';
 import DevisModal from '@/components/modals/DevisModal';
-import { useTranslation } from '@/context/TranslationContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 
 export default function CheckoutPage() {
   const { cart, updateQuantity, removeFromCart } = useCart();

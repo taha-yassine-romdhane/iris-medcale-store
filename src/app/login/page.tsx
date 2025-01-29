@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Shield, Lock, Mail, AlertCircle, Loader2 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
-import { useTranslation } from '@/context/TranslationContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function LoginPage() {

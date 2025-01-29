@@ -1,7 +1,7 @@
 'use client';
 
 import { MapPin, Wrench, Truck, HeartPulse } from 'lucide-react';
-import { useTranslation } from '@/context/TranslationContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 
 const ServicesPage = () => {
   const { t } = useTranslation();

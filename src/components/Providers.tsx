@@ -1,6 +1,6 @@
 'use client';
 
-import { TranslationProvider } from '@/context/TranslationContext';
+import { TranslationProvider } from '@/contexts/TranslationContext';
 import { CartProvider } from '@/hooks/useCart';
 import { FilterProvider } from '@/contexts/FilterContext';
 import { AuthProvider } from '@/contexts/AuthContext';

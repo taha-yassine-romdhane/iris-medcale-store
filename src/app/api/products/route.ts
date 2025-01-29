@@ -1,39 +1,41 @@
 import { NextResponse } from 'next/server';
-import * as ProductService from '@/lib/services/products';
+import { prisma } from '@/lib/db';
+import { Language } from '@/types/product';
 
 export async function POST(request: Request) {
   try {
-    let data;
-    try {
-      data = await request.json(); 
-    } catch (error) {
-      console.error('Failed to parse request body:', { error: error instanceof Error ? error.message : 'Unknown error' });
-      return NextResponse.json(
-        { error: 'Invalid JSON in request body' },
-        { status: 400 }
-      );
-    }
 
-    if (data.media && !Array.isArray(data.media)) {
-      return NextResponse.json(
-        { error: 'Media must be an array of objects with `url` and `type` properties' },
-        { status: 400 }
-      );
-    }
+    const data = await request.json();
 
-    const product = await ProductService.createProduct({
-      ...data,
-      stock: data.stock || 'IN_STOCK',
-      features: Array.isArray(data.features) ? data.features : [], 
-      media: data.media || [], 
+    const product = await prisma.product.create({
+      data: {
+        name: data.name,
+        brand: data.brand,
+        type: data.type,
+        description: data.description,
+        features: data.features || {},
+        category: data.category,
+        subCategory: data.subCategory,
+        stock: data.stock,
+        translations: {
+          create: data.translations?.map((translation: any) => ({
+            language: translation.language as Language,
+            name: translation.name,
+            description: translation.description,
+            features: translation.features || {}
+          }))
+        }
+      },
+      include: {
+        translations: true,
+        media: true
+      }
     });
-    return NextResponse.json(product, { status: 201 });
+
+    return NextResponse.json(product);
   } catch (error) {
-    console.error('Error creating product:', { error: error instanceof Error ? error.message : 'Unknown error' });
-    return NextResponse.json(
-      { error: 'Internal Server Error' },
-      { status: 500 }
-    );
+    console.error('[PRODUCTS_POST]', error);
+    return new NextResponse('Internal error', { status: 500 });
   }
 }
 
@@ -41,72 +43,40 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const category = searchParams.get('category');
-    const type = searchParams.get('type');
-    const subcategory = searchParams.get('subcategory');
-    const brand = searchParams.get('brand');
     const search = searchParams.get('search');
-    const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '12');
-
-    const filters = {
-      ...(category && { category }),
-      ...(type && { type }),
-      ...(subcategory && { subcategory }),
-      ...(brand && { brand }),
-      ...(search && { search }),
-    };
-
-    const pagination = {
-      limit,
-      page, // page is guaranteed to have a value due to the default above
-    };
-
-    const { products, total } = await ProductService.getAllProducts(
-      filters.category,
-      filters.type,
-      filters.subcategory,
-      filters.brand,
-      pagination.page - 1, // Now TypeScript knows pagination.page is a number
-      pagination.limit,
-      filters.search
-    );
-
-    const formattedProducts = products.map((product) => ({
-      ...product,
-      media: Array.isArray(product.media)
-        ? product.media.map((media) => ({
-            url: media.url,
-            type: media.type || 'image',
-            alt: media.alt || product.name,
-            order: media.order || 0,
-          }))
-        : [],
-      features: (() => {
-        try {
-          if (typeof product.features === 'string') {
-            return JSON.parse(product.features);
+    const products = await prisma.product.findMany({
+      where: {
+        ...(category && { category }),
+        ...(search && {
+          OR: [
+            { name: { contains: search, mode: 'insensitive' } },
+            { description: { contains: search, mode: 'insensitive' } },
+            {
+              translations: {
+                some: {
+                  OR: [
+                    { name: { contains: search, mode: 'insensitive' } },
+                    { description: { contains: search, mode: 'insensitive' } }
+                  ]
+                }
+              }
+            }
+          ]
+        })
+      },
+      include: {
+        translations: true,
+        media: {
+          orderBy: {
+            order: 'asc'
           }
-          return Array.isArray(product.features) ? product.features : [];
-        } catch {
-          return [];
         }
-      })(),
-    }));
-
-    return NextResponse.json({
-      products: formattedProducts,
-      pagination: {
-        total,
-        page: pagination.page,
-        limit: pagination.limit,
-        totalPages: Math.ceil(total / pagination.limit)
       }
     });
+
+    return NextResponse.json({ products });
   } catch (error) {
-    console.error('Error fetching products:', { error: error instanceof Error ? error.message : 'Unknown error' });
-    return NextResponse.json(
-      { error: 'Failed to fetch products' },
-      { status: 500 }
-    );
+    console.error('[PRODUCTS_GET]', error);
+    return new NextResponse('Internal error', { status: 500 });
   }
 }

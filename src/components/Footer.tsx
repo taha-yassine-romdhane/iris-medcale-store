@@ -10,7 +10,7 @@ import {
   Instagram,
   Locate, // Icône pour les zones de couverture
 } from "lucide-react";
-import { useTranslation } from "@/context/TranslationContext";
+import { useTranslation } from "@/contexts/TranslationContext";
 
 export default function Footer() {
   const { t } = useTranslation();

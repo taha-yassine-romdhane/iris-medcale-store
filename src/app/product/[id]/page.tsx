@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useCart } from '@/hooks/useCart';
 import { Product } from '@/types/product';
-import { useTranslation } from '@/context/TranslationContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 
 export default function ProductPage() {
   const { t } = useTranslation();
@@ -75,8 +75,8 @@ export default function ProductPage() {
   }
 
   const features = (Array.isArray(product.features) ? product.features :
-    typeof product.features as string === 'string' ? JSON.parse(product.features) :
-      []).slice(0, 3).map((feature: string) => (
+    typeof product.features === 'string' ? JSON.parse(product.features) : []
+      ).slice(0, 3).map((feature: string) => (
         <>
           <span className="text-blue-500 mr-2"></span>
           {feature}
@@ -90,7 +90,7 @@ export default function ProductPage() {
           <ol className="flex items-center space-x-2 text-sm">
             <li>
               <Link href="/" className="text-gray-500 hover:text-gray-700">
-                Accueil
+                {t('productsPage.products.home')}
               </Link>
             </li>
             <li>
@@ -177,21 +177,21 @@ export default function ProductPage() {
             {/* Product Meta Information */}
             <div className="flex flex-wrap items-center gap-4 mb-6">
               <div className="flex items-center">
-                <span className="text-gray-600 font-medium">Marque:</span>
+                <span className="text-gray-600 font-medium">{t('productsPage.products.brand')}:</span>
                 <span className="ml-2 text-blue-900 font-bold">{product.brand}</span>
               </div>
               <div className="flex items-center">
-                <span className="text-gray-600 font-medium">Catégorie:</span>
+                <span className="text-gray-600 font-medium">{t('productsPage.products.category')}:</span>
                 <span className="ml-2 text-blue-900">{product.category}</span>
               </div>
               {product.subCategory && (
                 <div className="flex items-center">
-                  <span className="text-gray-600 font-medium">Sous-catégorie:</span>
+                  <span className="text-gray-600 font-medium">{t('productsPage.products.subCategory')}:</span>
                   <span className="ml-2 text-blue-900">{product.subCategory}</span>
                 </div>
               )}
               <div className="flex items-center">
-                <span className="text-gray-600 font-medium">Type:</span>
+                <span className="text-gray-600 font-medium">{t('productsPage.products.type')}:</span>
                 <span className="ml-2 text-blue-900">{product.type}</span>
               </div>
             </div>
@@ -236,14 +236,14 @@ export default function ProductPage() {
 
             {/* Description */}
             <div className="mb-6">
-              <h2 className="text-lg font-bold text-gray-900 mb-2">Description</h2>
+              <h2 className="text-lg font-bold text-gray-900 mb-2">{t('productsPage.products.description')}</h2>
               <p className="text-gray-600">{product.description}</p>
             </div>
 
             {/* Features */}
             {features.length > 0 && (
               <div className="mb-8">
-                <h2 className="text-lg font-bold text-gray-900 mb-4">Caractéristiques</h2>
+                <h2 className="text-lg font-bold text-gray-900 mb-4">{t('productsPage.products.features')}</h2>
                 <ul className="space-y-3">
                   {features.map((feature: string, index: number) => (
                     <li key={index} className="flex items-start">
