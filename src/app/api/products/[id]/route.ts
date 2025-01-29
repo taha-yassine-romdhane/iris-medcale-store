@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import * as ProductService from '@/lib/services/products';
 import prisma from '@/lib/prisma';
 import {  StockStatus } from '@/types/product';
 import { UTApi } from 'uploadthing/server';
@@ -35,7 +34,19 @@ export async function GET(
   // Await the params object before destructuring
   const { id } = await params;
   try {
-    const product = await ProductService.getProductById(id);
+    const product = await prisma.product.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        media: {
+          orderBy: {
+            order: 'asc',
+          },
+        },
+        translations: true,
+      },
+    });
 
     if (!product) {
       console.warn('Product not found for ID:', id); // Log a warning if product is not found

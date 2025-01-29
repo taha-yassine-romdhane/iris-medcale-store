@@ -38,7 +38,21 @@ export default function ProductsSection() {
     lits: useRef<HTMLDivElement | null>(null)
   };
 
-  const { t } = useTranslation(); // Use the translation hook
+  const { t, language } = useTranslation(); // Use the translation hook
+
+  const getTranslatedContent = (product: Product, field: keyof Product) => {
+    if (!product.translations?.length) return product[field];
+    
+    const translation : any = product.translations.find(
+      (t) => t.language.toLowerCase() === language.toLowerCase()
+    );
+    
+    if (field === 'features') {
+      return translation?.features || product?.features || {};
+    }
+    
+    return translation?.[field] || product[field];
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -205,10 +219,10 @@ export default function ProductsSection() {
 
                   <div className="p-4 sm:p-5">
                     <Link href={`/product/${product.id}`} className="block group-hover:text-blue-700 transition-colors duration-200">
-                      <h3 className="font-semibold text-base sm:text-lg mb-2 text-blue-900">{product.name}</h3>
+                      <h3 className="font-semibold text-base sm:text-lg mb-2 text-blue-900">{getTranslatedContent(product, 'name')}</h3>
                     </Link>
                     <p className="text-xs sm:text-sm text-blue-800/70 mb-4 line-clamp-2">
-                      {product.description}
+                      {getTranslatedContent(product, 'description')}
                     </p>
                     <div className="flex justify-between items-center">
                       <Link

@@ -18,7 +18,7 @@ export async function POST(request: Request) {
         subCategory: data.subCategory,
         stock: data.stock,
         translations: {
-          create: data.translations?.map((translation: any) => ({
+          create: data.translations?.map((translation: { language: Language; name: string; description: string; features?: string[] | string }) => ({
             language: translation.language as Language,
             name: translation.name,
             description: translation.description,
@@ -41,9 +41,10 @@ export async function POST(request: Request) {
 
 export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(request.url);
-    const category = searchParams.get('category');
-    const search = searchParams.get('search');
+    const url = new URL(request.url);
+    const category = url.searchParams.get('category');
+    const search = url.searchParams.get('search');
+
     const products = await prisma.product.findMany({
       where: {
         ...(category && { category }),
@@ -51,27 +52,21 @@ export async function GET(request: Request) {
           OR: [
             { name: { contains: search, mode: 'insensitive' } },
             { description: { contains: search, mode: 'insensitive' } },
-            {
-              translations: {
-                some: {
-                  OR: [
-                    { name: { contains: search, mode: 'insensitive' } },
-                    { description: { contains: search, mode: 'insensitive' } }
-                  ]
-                }
-              }
-            }
-          ]
-        })
+            { brand: { contains: search, mode: 'insensitive' } },
+            { type: { contains: search, mode: 'insensitive' } },
+            { category: { contains: search, mode: 'insensitive' } },
+            { subCategory: { contains: search, mode: 'insensitive' } },
+          ],
+        }),
       },
       include: {
-        translations: true,
         media: {
           orderBy: {
-            order: 'asc'
-          }
-        }
-      }
+            order: 'asc',
+          },
+        },
+        translations: true,
+      },
     });
 
     return NextResponse.json({ products });

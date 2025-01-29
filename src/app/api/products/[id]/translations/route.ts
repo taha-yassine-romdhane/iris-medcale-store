@@ -7,13 +7,38 @@ import { URL } from 'url'; // Node.js native module for parsing URLs
 interface TranslationData {
   name: string;
   description: string;
-  features?: Record<string, any>;
+  features?: string[] | string;
 }
 
 interface TranslationsBody {
   translations: {
     [key in Language]?: TranslationData;
   };
+}
+export async function GET(request: Request) {
+  try {
+    // Parse the URL to extract the `id` parameter
+    const url = new URL(request.url); // Use Node.js URL module
+    const pathSegments = url.pathname.split('/').filter(Boolean);
+    const id = pathSegments[pathSegments.length - 2]; // Extract the second last segment as the ID
+
+    console.log(`Extracted product ID: ${id}`);
+
+    if (!id) {
+      return new NextResponse('Product ID is required', { status: 400 });
+    }
+
+    const translations = await prisma.productTranslation.findMany({
+      where: {
+        productId: id,
+      },
+    });
+
+    return new NextResponse(JSON.stringify(translations), { status: 200 });
+  } catch (error) {
+    console.error('Error fetching product translations:', error);
+    return new NextResponse('Error fetching product translations', { status: 500 });
+  }
 }
 
 export async function POST(request: Request) {

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
@@ -15,19 +15,32 @@ export default function ProductPage() {
   const id = params?.id as string;
 
   const [product, setProduct] = useState<Product | null>(null);
+  const [translations, setTranslations] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { addToCart } = useCart();
+  const { language } = useTranslation();
 
   useEffect(() => {
     async function fetchProduct() {
       if (!id) return;
 
       try {
-        const response = await fetch(`/api/products/${id}`);
-        if (!response.ok) throw new Error('Failed to fetch product');
-        const data = await response.json();
-        setProduct(data);
+        const [productRes, translationsRes] = await Promise.all([
+          fetch(`/api/products/${id}`),
+          fetch(`/api/products/${id}/translations`)
+        ]);
+
+        if (!productRes.ok) throw new Error('Failed to fetch product');
+        if (!translationsRes.ok) throw new Error('Failed to fetch translations');
+
+        const [productData, translationsData] = await Promise.all([
+          productRes.json(),
+          translationsRes.json()
+        ]);
+
+        setProduct(productData);
+        setTranslations(translationsData);
       } catch (error) {
         console.error('Error fetching product:', error);
       } finally {
@@ -37,6 +50,18 @@ export default function ProductPage() {
 
     fetchProduct();
   }, [id]);
+
+  const getTranslatedContent = (field: keyof Product) => {
+    if (!translations) return product?.[field] || '';
+    
+    const translation = translations.find((t: { language: string }) => t.language.toLowerCase() === language.toLowerCase());
+    
+    if (field === 'features') {
+      return translation?.features || product?.features || {};
+    }
+    
+    return translation?.[field] || product?.[field] || '';
+  };
 
   const nextImage = () => {
     if (product?.media) {
@@ -74,14 +99,9 @@ export default function ProductPage() {
     );
   }
 
-  const features = (Array.isArray(product.features) ? product.features :
-    typeof product.features === 'string' ? JSON.parse(product.features) : []
-      ).slice(0, 3).map((feature: string) => (
-        <>
-          <span className="text-blue-500 mr-2"></span>
-          {feature}
-        </>
-      ));
+  const features = getTranslatedContent('features');
+  const featureEntries = typeof features === 'object' ? Object.entries(features) : [];
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
@@ -96,7 +116,7 @@ export default function ProductPage() {
             <li>
               <span className="text-gray-500">/</span>
             </li>
-            <li className="text-gray-900 font-medium">{product.name}</li>
+            <li className="text-gray-900 font-medium">{getTranslatedContent('name')}</li>
           </ol>
         </nav>
 
@@ -108,7 +128,7 @@ export default function ProductPage() {
               {product.media[currentImageIndex]?.type === 'image' ? (
                 <Image
                   src={product.media[currentImageIndex].url}
-                  alt={product.media[currentImageIndex].alt || product.name}
+                  alt={product.media[currentImageIndex].alt || getTranslatedContent('name')}
                   width={600}
                   height={600}
                   className="object-cover object-center"
@@ -148,7 +168,7 @@ export default function ProductPage() {
                   >
                     <Image
                       src={media.url}
-                      alt={media.alt || `${product.name} thumbnail ${index + 1}`}
+                      alt={media.alt || `${getTranslatedContent('name')} thumbnail ${index + 1}`}
                       width={100}
                       height={100}
                       className="object-cover"
@@ -172,7 +192,7 @@ export default function ProductPage() {
 
           {/* Product Info */}
           <div className="flex flex-col min-h-[600px]">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">{product.name}</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">{getTranslatedContent('name')}</h1>
 
             {/* Product Meta Information */}
             <div className="flex flex-wrap items-center gap-4 mb-6">
@@ -237,18 +257,21 @@ export default function ProductPage() {
             {/* Description */}
             <div className="mb-6">
               <h2 className="text-lg font-bold text-gray-900 mb-2">{t('productsPage.products.description')}</h2>
-              <p className="text-gray-600">{product.description}</p>
+              <p className="text-gray-600">{getTranslatedContent('description')}</p>
             </div>
 
             {/* Features */}
-            {features.length > 0 && (
+            {featureEntries.length > 0 && (
               <div className="mb-8">
                 <h2 className="text-lg font-bold text-gray-900 mb-4">{t('productsPage.products.features')}</h2>
                 <ul className="space-y-3">
-                  {features.map((feature: string, index: number) => (
-                    <li key={index} className="flex items-start">
+                  {featureEntries.map(([key, value], index) => (
+                    <li key={key} className="flex items-start">
                       <span className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-blue-500 mr-3"></span>
-                      <span className="text-gray-600">{feature}</span>
+                      <div>
+                        <span className="font-medium text-gray-900">{key}:</span>
+                        <span className="ml-2 text-gray-600">{String(value)}</span>
+                      </div>
                     </li>
                   ))}
                 </ul>

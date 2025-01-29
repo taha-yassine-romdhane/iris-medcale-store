@@ -10,7 +10,7 @@ interface Product {
   id: string;
   name: string;
   description: string;
-  features: Record<string, any>;
+  features: string[] | string;
   brand: string;
   category: string;
   subCategory?: string;
@@ -23,7 +23,7 @@ interface ProductTranslation {
   language: 'EN' | 'FR' | 'AR';
   name: string;
   description: string;
-  features: Record<string, any>;
+  features: string[] | string;
 }
 
 export default function TranslationsPage() {
@@ -149,6 +149,22 @@ export default function TranslationsPage() {
         },
       },
     }));
+  };
+
+  const handleAddFeature = (language: 'EN' | 'FR' | 'AR') => {
+    const featureKey = prompt('Enter feature name:');
+    if (featureKey && featureKey.trim()) {
+      setTranslations(prev => ({
+        ...prev,
+        [language]: {
+          ...prev[language],
+          features: {
+            ...prev[language].features,
+            [featureKey.trim()]: ''
+          }
+        }
+      }));
+    }
   };
 
   const handleSaveTranslations = async () => {
@@ -394,9 +410,12 @@ export default function TranslationsPage() {
                               </div>
                             ))}
                             <button
-                              onClick={() => handleFeatureChange(lang, '', '')}
-                              className="mt-2 text-blue-600 hover:underline"
+                              onClick={() => handleAddFeature(lang)}
+                              className="mt-2 inline-flex items-center text-blue-600 hover:text-blue-700 hover:underline"
                             >
+                              <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                              </svg>
                               Add Feature
                             </button>
                           </div>

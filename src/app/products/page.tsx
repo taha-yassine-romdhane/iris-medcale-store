@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
-import { Product } from '@/types/product';
+import { useEffect, useState, useCallback, ReactElement, ReactNode } from 'react';
+import { Product, Language } from '@/types/product';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -20,6 +20,7 @@ import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import { useTranslation } from '@/contexts/TranslationContext';
 import { useSearchParams } from 'next/navigation';
+import { Readable } from 'stream';
 
 interface Filters {
   categories: string[];
@@ -27,8 +28,11 @@ interface Filters {
   types: string[];
   subCategories: string[];
 }
+
+type TranslatableField = keyof Pick<Product['translations'][0], 'name' | 'description' | 'features'>;
+
 export default function ProductsPage() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const searchParams = useSearchParams();
   const { addToCart } = useCart();
   const [isLoading, setIsLoading] = useState(true);
@@ -173,6 +177,40 @@ export default function ProductsPage() {
     setSelectedMedia(prev => ({ ...prev, [productId]: newIndex }));
   }, [products, selectedMedia]);
 
+  const isTranslatableField = (field: keyof Product): field is TranslatableField => {
+    return ['name', 'description', 'features'].includes(field as string);
+  };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const getTranslatedContent = (product: Product, field: keyof Product): string | any => {
+    if (!product.translations?.length) return product[field] as string;
+
+    const translation = product.translations.find(
+      (t) => t.language.toLowerCase() === language.toLowerCase()
+    );
+
+    if (field === 'features' && typeof translation?.features === 'object') {
+      return (
+        <ul className="text-sm text-gray-600 space-y-1">
+          {Object.entries(translation.features).slice(0, 3).map(([key, value]) => (
+            <li key={key} className="flex items-start">
+              <span className="flex-shrink-0 w-1.5 h-1.5 mt-2 rounded-full bg-blue-500 mr-2"></span>
+              <div>
+                <span className="font-medium text-gray-900">{key}:</span>
+                <span className="ml-1 text-gray-600">{String(value)}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      );
+    }
+
+    if (translation && isTranslatableField(field)) {
+      return translation[field] || product[field];
+    }
+
+    return product[field];
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 pt-32">
@@ -287,122 +325,39 @@ export default function ProductsPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProducts.map((product) => {
-              const currentMediaIndex = selectedMedia[product.id] || 0;
-              const currentMedia = product.media[currentMediaIndex];
-
-              return (
-                <div
-                  key={product.id}
-                  className="group relative bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
-                >
-                  {/* Main Product Image/Video */}
-                  <div className="relative aspect-square">
+            {filteredProducts.map((product) => (
+              <div
+                key={product.id}
+                className="group relative bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg"
+              >
+                <Link href={`/product/${product.id}`}>
+                  <div className="aspect-square relative overflow-hidden">
                     {product.media && product.media.length > 0 ? (
-                      currentMedia?.type === 'image' ? (
-                        <Link href={`/product/${product.id}`} className="block w-full h-full">
-                          <Image
-                            src={currentMedia.url}
-                            alt={currentMedia.alt || product.name}
-                            fill
-                            className="object-contain p-4 cursor-pointer transition-transform group-hover:scale-105"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            priority
-                          />
-                        </Link>
-                      ) : (
-                        <video
-                          src={currentMedia?.url}
-                          controls
-                          className="w-full h-full object-contain p-4"
-                        />
-                      )
+                      <Image
+                        src={product.media[selectedMedia[product.id] || 0]?.url || ''}
+                        alt={product.name}
+                        width={300}
+                        height={300}
+                        className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                      />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-gray-100">
                         <span className="text-gray-400">{t('productsPage.products.noImage')}</span>
                       </div>
                     )}
-
-                    {/* Navigation Buttons for Multiple Media */}
-                    {product.media.length > 1 && (
-                      <>
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleMediaNavigation(product.id, 'prev');
-                          }}
-                          className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full hover:bg-black/70"
-                        >
-                          <ChevronLeft className="h-4 w-4" />
-                        </button>
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleMediaNavigation(product.id, 'next');
-                          }}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full hover:bg-black/70"
-                        >
-                          <ChevronRight className="h-4 w-4" />
-                        </button>
-                      </>
-                    )}
-
-                    {/* Type and Stock Badges */}
-                    <div className="absolute top-7 right-4 bg-blue-600 text-white px-2 rounded-full text-sm font-medium">
-                      {product.type}
-                    </div>
-                    <div className={cn(
-                      "absolute top-1 right-4 px-2 rounded-full text-sm font-medium",
-                      product.stock === 'IN_STOCK' 
-                        ? "bg-green-500 text-white" 
-                        : product.stock === 'LOW_STOCK'
-                        ? "bg-yellow-500 text-white"
-                        : product.stock === 'PRE_ORDER'
-                        ? "bg-orange-500 text-white"
-                        : product.stock === 'COMING_SOON'
-                        ? "bg-blue-500 text-white"
-                        : "bg-red-500 text-white"
-                    )}>
-                      {product.stock === 'IN_STOCK' 
-                        ? t('productsPage.products.inStock')
-                        : product.stock === 'LOW_STOCK'
-                        ? t('productsPage.products.lowStock')
-                        : product.stock === 'PRE_ORDER'
-                        ? t('productsPage.products.preOrder')
-                        : product.stock === 'COMING_SOON'
-                        ? t('productsPage.products.comingSoon')
-                        : t('productsPage.products.outOfStock')}
-                    </div>
                   </div>
 
-                  {/* Product Info */}
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-2">
-                      <Link href={`/product/${product.id}`} className="text-sm font-semibold text-blue-600 hover:underline">
-                        {product.brand}
-                      </Link>
-                      {product.category && (
-                        <Badge variant="secondary">{product.category}</Badge>
-                      )}
-                    </div>
-
-                    <Link href={`/product/${product.id}`} className="block group-hover:text-blue-600">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">{product.name}</h3>
-                      <p className="text-gray-600 text-sm line-clamp-2">{product.description}</p>
-                    </Link>
+                  <div className="p-4">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      {getTranslatedContent(product, 'name')}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                      {getTranslatedContent(product, 'description')}
+                    </p>
 
                     {/* Features List */}
                     <div className="mt-4">
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        {(Array.isArray(product.features) ? product.features :
-                          typeof product.features === 'string' ? JSON.parse(product.features) :
-                            []).slice(0, 3).map((feature: string, index: number) => (
-                              <li key={index} className="flex items-start">
-                                <span className="text-blue-500 mr-2">•</span>
-                                {feature}
-                              </li>
-                            ))}
-                      </ul>
+                      {getTranslatedContent(product, 'features')}
                     </div>
 
                     {/* Add to Cart Button */}
@@ -428,9 +383,9 @@ export default function ProductsPage() {
                         : t('productsPage.products.outOfStock')}
                     </Button>
                   </div>
-                </div>
-              );
-            })}
+                </Link>
+              </div>
+            ))}
           </div>
         )}
       </div>

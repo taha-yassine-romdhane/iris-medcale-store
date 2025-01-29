@@ -41,6 +41,8 @@ export interface ProductTranslation {
   name: string;
   description: string;
   features?: Record<string, any>; // JSON object for translated features
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface CommandeItem {
