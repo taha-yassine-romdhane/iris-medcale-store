@@ -9,7 +9,7 @@ import {
   ShoppingBag,
   JapaneseYen
 } from 'lucide-react';
-import TranslationsPage from './translations/page';
+
 
 export default function DashboardPage() {
   return (

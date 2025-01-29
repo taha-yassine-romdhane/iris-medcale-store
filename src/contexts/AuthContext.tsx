@@ -1,18 +1,7 @@
 'use client';
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
-
-interface User {
-  id: string;
-  email: string;
-  nom: string;
-  prenom: string;
-  telephone?: string;
-  adresse?: string;
-  ville?: string;
-  codePostal?: string;
-  role: 'ADMIN' | 'EMPLOYE' | 'CLIENT';
-}
+import { User } from '@/types/user';
 
 interface AuthState {
   user: User | null;
@@ -40,6 +29,8 @@ const initialAuthState: AuthState = {
 
 
 };
+
+
 
 
 

@@ -5,26 +5,8 @@ import { ArrowLeft, Search, Loader2, Filter } from 'lucide-react';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import Image from 'next/image';
+import { Product } from '@/types/product';
 
-interface Product {
-  id: string;
-  name: string;
-  description: string;
-  features: string[] | string;
-  brand: string;
-  category: string;
-  subCategory?: string;
-  media: Array<{ url: string }>;
-  translations: ProductTranslation[];
-}
-
-interface ProductTranslation {
-  id: string;
-  language: 'EN' | 'FR' | 'AR';
-  name: string;
-  description: string;
-  features: string[] | string;
-}
 
 export default function TranslationsPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -35,8 +17,11 @@ export default function TranslationsPage() {
   const [categories, setCategories] = useState<string[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
   const [translations, setTranslations] = useState<{
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     EN: { name: string; description: string; features: Record<string, any> };
+     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     FR: { name: string; description: string; features: Record<string, any> };
+     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     AR: { name: string; description: string; features: Record<string, any> };
   }>({
     EN: { name: '', description: '', features: {} },
@@ -79,7 +64,7 @@ export default function TranslationsPage() {
       if (!response.ok) throw new Error('Failed to fetch products');
       
       const data = await response.json();
-      const productsWithTranslations = data.products.map((product: any) => ({
+      const productsWithTranslations = data.products.map((product: Product) => ({
         ...product,
         translations: product.translations || []
       }));
@@ -402,7 +387,7 @@ export default function TranslationsPage() {
                                 </label>
                                 <input
                                   type="text"
-                                  value={translations[lang].features[featureKey]}
+                                  value={translations[lang].features[featureKey] }
                                   onChange={(e) => handleFeatureChange(lang, featureKey, e.target.value)}
                                   className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                   dir={lang === 'AR' ? 'rtl' : 'ltr'}

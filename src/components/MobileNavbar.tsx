@@ -2,11 +2,12 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { LogOut, User, X, Heart, Info, Phone, ChevronDown, ShoppingCart, Settings2, User2, LucideSquareActivity, SquareChevronRight } from 'lucide-react';
+import { LogOut, User2, X, Heart, Info, Phone, ChevronDown, ShoppingCart, Settings2,  LucideSquareActivity, SquareChevronRight } from 'lucide-react';
 import { useTranslation } from '@/contexts/TranslationContext';
 import SearchBar from './SearchBar';
 import { useState, useEffect } from 'react';
-
+import { User } from '@/types/user'
+ 
 interface CategoryType {
   category: string;
   types: string[];
@@ -16,7 +17,7 @@ interface CategoryType {
 interface MobileNavbarProps {
   isOpen: boolean;
   onClose: () => void;
-  user: any;
+  user: null | User ;
   handleLogout: () => void;
 }
 
@@ -111,7 +112,7 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                 <div className="py-4 border-b border-gray-100">
                   <div className="flex items-center space-x-3">
                     <div className="bg-blue-100 p-2 rounded-full">
-                      <User className="h-6 w-6 text-blue-600" />
+                      <User2 className="h-6 w-6 text-blue-600" />
                     </div>
                     <div>
                       <p className="font-semibold text-gray-800">{user.prenom} {user.nom}</p>
@@ -141,7 +142,7 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                       className="flex items-center space-x-3 p-3 hover:bg-blue-50 rounded-lg"
                       onClick={onClose}
                     >
-                      <User className="h-5 w-5 text-gray-600" />
+                      <User2 className="h-5 w-5 text-gray-600" />
                       <span className="text-gray-800">{t('navbar.myProfile')}</span>
                     </Link>
                     <button
@@ -158,7 +159,7 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                     className="flex items-center space-x-3 p-3 hover:bg-blue-50 rounded-lg"
                     onClick={onClose}
                   >
-                    <User className="h-5 w-5 text-blue-800" />
+                    <User2 className="h-5 w-5 text-blue-800" />
                     <span className="text-blue-800">{t('navbar.login')}</span>
                   </Link>
                 )}

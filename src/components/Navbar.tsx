@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { Suspense } from 'react';
-import { User, Menu } from "lucide-react";
+import { User2 , Menu } from "lucide-react";
+import { User } from "@/types/user";
 import { useState, useEffect } from "react";
 import CategoryNavbar from './CategoryNavbar';
 import Image from 'next/image';
@@ -13,6 +14,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useTranslation } from '@/contexts/TranslationContext';
 import { motion, AnimatePresence } from "framer-motion";
 import MobileNavbar from "./MobileNavbar";
+
 
 const Navbar = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
@@ -141,10 +143,10 @@ const Navbar = () => {
                       className="flex items-center space-x-1 focus:outline-none"
                     >
                       <div className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-100">
-                        <User className="h-5 w-5 text-blue-600" />
+                        <User2 className="h-5 w-5 text-blue-600" />
                       </div>
                       <span className="font-bold text-sm hidden lg:inline-block">
-                        {user.prenom} {user.nom}
+                        {(user as User).prenom} {(user as User).nom}
                       </span>
                     </motion.button>
                     <AnimatePresence>
@@ -157,8 +159,8 @@ const Navbar = () => {
                           className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl z-20 border border-gray-100"
                         >
                           <div className="px-4 py-2 border-b border-gray-100">
-                            <p className="text-sm font-semibold text-blue-900">{user.prenom} {user.nom}</p>
-                            <p className="text-xs text-gray-500">{user.email}</p>
+                            <p className="text-sm font-semibold text-blue-900">{(user as User).prenom} {(user as User).nom}</p>
+                            <p className="text-xs text-gray-500">{(user as User).email}</p>
                           </div>
                           <Link
                             href="/profile"
@@ -174,7 +176,7 @@ const Navbar = () => {
                           >
                             <span>{t('navbar.myOrders')}</span>
                           </Link>
-                          {(user.role === 'ADMIN' || user.role === 'EMPLOYE') && (
+                          {((user as User).role === 'ADMIN' || (user as User).role === 'EMPLOYE') && (
                             <Link
                               href="/dashboard"
                               className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-blue-900 hover:bg-blue-50"
@@ -199,7 +201,7 @@ const Navbar = () => {
                       href="/login"
                       className="text-blue-900 hover:text-blue-600 flex font-bold items-center gap-2"
                     >
-                      <User className="h-6 w-6" />
+                      <User2 className="h-6 w-6" />
                       <span>{t('navbar.login')}</span>
                     </Link>
                   </motion.div>

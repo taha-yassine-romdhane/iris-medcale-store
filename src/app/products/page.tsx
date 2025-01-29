@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState, useCallback, ReactElement, ReactNode } from 'react';
-import { Product, Language } from '@/types/product';
+import { useEffect, useState, useCallback } from 'react';
+import { Product } from '@/types/product';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -15,12 +15,12 @@ import { Badge } from "@/components/ui/badge";
 import { useCart } from '@/hooks/useCart';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ShoppingCart, ChevronLeft, ChevronRight, Search, Filter } from 'lucide-react';
+import { ShoppingCart, Search, Filter } from 'lucide-react';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import { useTranslation } from '@/contexts/TranslationContext';
 import { useSearchParams } from 'next/navigation';
-import { Readable } from 'stream';
+
 
 interface Filters {
   categories: string[];
@@ -159,23 +159,6 @@ export default function ProductsPage() {
     addToCart(product);
     toast.success('Product added to cart');
   }, [addToCart]);
-
-  const handleMediaNavigation = useCallback((productId: string, direction: 'prev' | 'next') => {
-    const currentIndex = selectedMedia[productId] || 0;
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
-
-    const maxIndex = product.media.length - 1;
-    let newIndex;
-
-    if (direction === 'prev') {
-      newIndex = currentIndex === 0 ? maxIndex : currentIndex - 1;
-    } else {
-      newIndex = currentIndex === maxIndex ? 0 : currentIndex + 1;
-    }
-
-    setSelectedMedia(prev => ({ ...prev, [productId]: newIndex }));
-  }, [products, selectedMedia]);
 
   const isTranslatableField = (field: keyof Product): field is TranslatableField => {
     return ['name', 'description', 'features'].includes(field as string);

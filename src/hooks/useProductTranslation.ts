@@ -21,7 +21,7 @@ export function useProductTranslation() {
 
   const getTranslatedProduct = (product: Product) => {
     // Find translation for current language
-    const translation = product.translations?.find(t => t.language === language);
+    const translation = product.translations?.find(t => 't.language === language');
 
     // Return translated content or fallback to default
     return {

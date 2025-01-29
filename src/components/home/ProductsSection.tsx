@@ -42,7 +42,7 @@ export default function ProductsSection() {
 
   const getTranslatedContent = (product: Product, field: keyof Product) => {
     if (!product.translations?.length) return product[field];
-    
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const translation : any = product.translations.find(
       (t) => t.language.toLowerCase() === language.toLowerCase()
     );

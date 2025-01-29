@@ -40,7 +40,8 @@ export interface ProductTranslation {
   language: Language; // Enum for Language
   name: string;
   description: string;
-  features?: Record<string, any>; // JSON object for translated features
+  features: Record<string, string | number | boolean>;// JSON object for translated features
+  [key: string]: any;
   createdAt: Date;
   updatedAt: Date;
 }

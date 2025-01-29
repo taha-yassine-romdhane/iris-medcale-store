@@ -8,6 +8,9 @@ import { useParams } from 'next/navigation';
 import { useCart } from '@/hooks/useCart';
 import { Product } from '@/types/product';
 import { useTranslation } from '@/contexts/TranslationContext';
+import { ProductTranslation } from '@/types/product';
+
+
 
 export default function ProductPage() {
   const { t } = useTranslation();
@@ -15,7 +18,7 @@ export default function ProductPage() {
   const id = params?.id as string;
 
   const [product, setProduct] = useState<Product | null>(null);
-  const [translations, setTranslations] = useState<any>(null);
+  const [translations, setTranslations] = useState<ProductTranslation[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { addToCart } = useCart();
@@ -50,11 +53,14 @@ export default function ProductPage() {
 
     fetchProduct();
   }, [id]);
+ 
 
   const getTranslatedContent = (field: keyof Product) => {
     if (!translations) return product?.[field] || '';
     
-    const translation = translations.find((t: { language: string }) => t.language.toLowerCase() === language.toLowerCase());
+    const translation = translations.find((t: ProductTranslation) => 
+      t.language.toLowerCase() === language.toLowerCase()
+    );
     
     if (field === 'features') {
       return translation?.features || product?.features || {};
