@@ -19,9 +19,9 @@ export default function TranslationsPage() {
   const [translations, setTranslations] = useState<{
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     EN: { name: string; description: string; features: Record<string, any> };
-     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     FR: { name: string; description: string; features: Record<string, any> };
-     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     AR: { name: string; description: string; features: Record<string, any> };
   }>({
     EN: { name: '', description: '', features: {} },
@@ -44,7 +44,7 @@ export default function TranslationsPage() {
   useEffect(() => {
     const filtered = products.filter(product => {
       const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          product.brand.toLowerCase().includes(searchTerm.toLowerCase());
+        product.brand.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = !selectedCategory || product.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
@@ -60,9 +60,9 @@ export default function TranslationsPage() {
           'Authorization': authToken || '',
         },
       });
-      
+
       if (!response.ok) throw new Error('Failed to fetch products');
-      
+
       const data = await response.json();
       const productsWithTranslations = data.products.map((product: Product) => ({
         ...product,
@@ -151,6 +151,24 @@ export default function TranslationsPage() {
       }));
     }
   };
+  const handleRemoveFeature = (
+    language: 'EN' | 'FR' | 'AR',
+    featureKey: string
+  ) => {
+    if (window.confirm(`Are you sure you want to remove this feature?`)) {
+      setTranslations(prev => {
+        const newFeatures = { ...prev[language].features };
+        delete newFeatures[featureKey];
+        return {
+          ...prev,
+          [language]: {
+            ...prev[language],
+            features: newFeatures
+          }
+        };
+      });
+    }
+  };
 
   const handleSaveTranslations = async () => {
     if (!selectedProduct) return;
@@ -223,7 +241,7 @@ export default function TranslationsPage() {
                   className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
-              
+
               <div className="mt-4">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Filter by Category
@@ -253,9 +271,8 @@ export default function TranslationsPage() {
                   <button
                     key={product.id}
                     onClick={() => handleProductSelect(product.id)}
-                    className={`w-full text-left p-4 hover:bg-gray-50 transition-colors ${
-                      selectedProduct === product.id ? 'bg-blue-50' : ''
-                    }`}
+                    className={`w-full text-left p-4 hover:bg-gray-50 transition-colors ${selectedProduct === product.id ? 'bg-blue-50' : ''
+                      }`}
                   >
                     <div className="flex items-center space-x-3">
                       {product.media?.[0] && (
@@ -279,11 +296,10 @@ export default function TranslationsPage() {
                           {(['FR', 'EN', 'AR'] as const).map(lang => (
                             <span
                               key={lang}
-                              className={`text-xs mr-2 px-2 py-1 rounded ${
-                                product.translations?.some(t => t.language === lang)
+                              className={`text-xs mr-2 px-2 py-1 rounded ${product.translations?.some(t => t.language === lang)
                                   ? 'bg-green-100 text-green-800'
                                   : 'bg-gray-100 text-gray-600'
-                              }`}
+                                }`}
                             >
                               {lang}
                             </span>
@@ -338,17 +354,16 @@ export default function TranslationsPage() {
                           <h3 className="text-lg font-medium text-gray-900">
                             {lang === 'EN' ? 'English' : lang === 'FR' ? 'French' : 'Arabic'}
                           </h3>
-                          <span className={`px-2 py-1 text-xs rounded-full ${
-                            translations[lang].name || translations[lang].description
+                          <span className={`px-2 py-1 text-xs rounded-full ${translations[lang].name || translations[lang].description
                               ? 'bg-green-100 text-green-800'
                               : 'bg-gray-200 text-gray-600'
-                          }`}>
+                            }`}>
                             {translations[lang].name || translations[lang].description
                               ? 'Translated'
                               : 'Not translated'}
                           </span>
                         </div>
-                        
+
                         <div className="space-y-4">
                           <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -382,12 +397,34 @@ export default function TranslationsPage() {
                             </label>
                             {Object.keys(translations[lang].features).map((featureKey) => (
                               <div key={featureKey} className="mb-2">
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
-                                  {featureKey}
-                                </label>
+                                <div className="flex items-center justify-between gap-2">
+                                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    {featureKey}
+                                  </label>
+                                  <button
+                                    type="button"
+                                    onClick={() => handleRemoveFeature(lang, featureKey)}
+                                    className="text-red-500 hover:text-red-700 p-1 rounded-full hover:bg-red-50 transition-colors"
+                                    title="Remove feature"
+                                  >
+                                    <svg
+                                      className="w-5 h-5"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                      />
+                                    </svg>
+                                  </button>
+                                </div>
                                 <input
                                   type="text"
-                                  value={translations[lang].features[featureKey] }
+                                  value={translations[lang].features[featureKey]}
                                   onChange={(e) => handleFeatureChange(lang, featureKey, e.target.value)}
                                   className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                   dir={lang === 'AR' ? 'rtl' : 'ltr'}

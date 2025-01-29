@@ -122,7 +122,7 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
       // Wait a bit before redirecting
       setTimeout(() => {
         closeModal();
-        router.push('/account/orders');
+        router.push('/');
       }, 2000);
 
     } catch (error) {
