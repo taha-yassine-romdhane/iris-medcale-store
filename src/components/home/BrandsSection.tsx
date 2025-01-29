@@ -6,16 +6,16 @@ import { useTranslation } from '@/contexts/TranslationContext';
 
 const brands = [
   {
+    name: 'Yuwell',
+    logo: '/brands/Yuwell.png',
+  },
+  {
     name: 'ResMed',
     logo: '/brands/ResMed.png',
   },
   {
     name: 'Löwenstein',
     logo: '/brands/Löwenstein.png',
-  },
-  {
-    name: 'Yuwell',
-    logo: '/brands/Yuwell.png',
   },
   {
     name: 'DeVilbiss Healthcare',

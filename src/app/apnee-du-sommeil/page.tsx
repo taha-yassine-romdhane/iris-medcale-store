@@ -11,9 +11,6 @@ export default function SleepApneaPage() {
 
     return (
         <div className="min-h-screen">
-            {/* Spacer for navbar */}
-            <div className="pt-16"></div>
-
             {/* Hero Section */}
             <section className="relative bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
                 <div className="absolute inset-0 bg-black/30"></div>
@@ -28,6 +25,7 @@ export default function SleepApneaPage() {
                     </div>
                 </div>
             </section>
+            
 
             {/* Main Content */}
             <section className="pt-12 bg-gray-50">
