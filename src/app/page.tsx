@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import HeroSection from "@/components/home/HeroSection";
 import ProductsSection from "@/components/home/ProductsSection";
 import BrandsSection from "@/components/home/BrandsSection";
-import { YuwellSection } from '@/components/home/YuwellSection';
 
 // Animation variants for sections
 const sectionVariants = {
