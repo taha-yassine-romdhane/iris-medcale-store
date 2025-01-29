@@ -56,7 +56,6 @@ export default function HomePage() {
         variants={sectionVariants}
       >
         <ProductsSection />
-        <YuwellSection />
       </motion.div>
 
       {/* Brands Section */}
