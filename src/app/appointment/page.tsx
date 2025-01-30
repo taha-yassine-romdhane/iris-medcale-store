@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Clock, Send } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from "@/components/ui/use-toast";
-import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { format, addMonths, startOfMonth, getDaysInMonth, addHours, isBefore, isSameDay } from 'date-fns';
