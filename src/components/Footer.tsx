@@ -6,17 +6,38 @@ import {
   Mail,
   Phone,
   Facebook,
-  Linkedin,
-  Instagram,
   Locate, // Icône pour les zones de couverture
 } from "lucide-react";
 import { useTranslation } from "@/contexts/TranslationContext";
 
+
 export default function Footer() {
   const { t } = useTranslation();
+
+  // Define regions data structure
+  const regions = {
+    north: [
+      "grandTunis",
+      "capBon",
+      "bizerte",
+      "beja",
+      "jendouba",
+      "leKef",
+    ],
+    center: [
+      "siliana",
+      "sousse",
+      "monastir",
+      "mahdia",
+      "kairouan",
+      "sfax",
+      "gafsa"
+    ]
+  };
+
   return (
     <footer className="bg-blue-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 py-16">
+      <div className="container mx-auto px-2 py-16">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Company Description */}
           <div className="space-y-4">
@@ -26,15 +47,10 @@ export default function Footer() {
             <p className="text-blue-100 leading-relaxed">
               {t('footer.description')}
             </p>
-            <div className="flex space-x-4 pt-4">
-              <Link href="#" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-400 transition-colors">
-                <Facebook size={24} />
-              </Link>
-              <Link href="#" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-400 transition-colors">
-                <Linkedin size={24} />
-              </Link>
-              <Link href="#" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-400 transition-colors">
-                <Instagram size={24} />
+            <div className="flex space-x-4 pt-4 flex justify-start">
+              <Link href="https://www.facebook.com/share/15zdLven1F/" target="_blank" rel="noopener noreferrer" className="flex items-center text-white hover:text-red-400 transition-colors">
+                <Facebook size={24} />  
+                <span className="ml-2">Facebook</span>
               </Link>
             </div>
           </div>
@@ -46,34 +62,22 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3">
               <li>
-                <Link
-                  href="/services"
-                  className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300"
-                >
+                <Link href="/services" className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300">
                   {t('footer.cpapMachines')}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/a-propos"
-                  className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300"
-                >
+                <Link href="/a-propos" className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300">
                   {t('footer.aboutUs')}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/contact"
-                  className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300"
-                >
+                <Link href="/contact" className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300">
                   {t('footer.contact')}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/apnee-du-sommeil"
-                  className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300"
-                >
+                <Link href="/apnee-du-sommeil" className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300">
                   {t('footer.sleepApnea')}
                 </Link>
               </li>
@@ -107,34 +111,41 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Coverage Areas */}
+          {/* Coverage Areas - Split into two columns */}
           <div>
             <h3 className="text-xl font-bold text-white mb-4 border-b-2 border-red-500 pb-2">
               {t('footer.coverageAreas')}
             </h3>
-            <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
               {/* North Region */}
               <div>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 mb-2">
                   <Locate className="text-red-500" size={20} />
                   <h4 className="font-semibold text-white">{t('footer.northRegion')}</h4>
                 </div>
-                <ul className="mt-2 pl-7 space-y-2 text-blue-100">
-                  <li>{t('footer.grandTunis')}</li>
-                  <li>{t('footer.capBon')}</li>
+                <ul className="space-y-2 text-blue-100 text-sm">
+                  {regions.north.map((region, index) => (
+                    <li key={index} className="flex items-center space-x-1">
+                      <span className="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                      <span>{t(`footer.${region}`)}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
               {/* Center Region */}
               <div>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 mb-2">
                   <Locate className="text-red-500" size={20} />
                   <h4 className="font-semibold text-white">{t('footer.centerRegion')}</h4>
                 </div>
-                <ul className="mt-2 pl-7 space-y-2 text-blue-100">
-                  <li>{t('footer.sousse')}</li>
-                  <li>{t('footer.monastir')}</li>
-                  <li>{t('footer.mahdia')}</li>
+                <ul className="space-y-2 text-blue-100 text-sm">
+                  {regions.center.map((region, index) => (
+                    <li key={index} className="flex items-center space-x-1">
+                      <span className="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                      <span>{t(`footer.${region}`)}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>

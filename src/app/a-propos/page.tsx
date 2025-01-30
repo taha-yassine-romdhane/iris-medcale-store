@@ -32,7 +32,7 @@ const keyPoints = [
   "keyPoint3",
   "keyPoint4",
   "keyPoint5",
-  "keyPoint6"
+  "keyPoint6",
 ];
 
 export default function AboutPage() {
@@ -160,32 +160,49 @@ export default function AboutPage() {
                   {t('aboutPage.coverage.description')}
                 </p>
                 <div className="grid grid-cols-2 gap-4 pt-4">
+                  {/* Coverage Title */}
+                  <div className="col-span-2 text-center">
+                    <h3 className="text-xl font-bold text-gray-900">
+                      {t('servicesPage.mainContent.coverageTitle')}
+                    </h3>
+                  </div>
+
+                  {/* North Region */}
                   <div className="bg-gray-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-gray-900">
-                      {t('aboutPage.coverage.northRegion')}
-                    </h4>
+                    <h4 className="font-semibold text-gray-900">Régions Nord</h4>
                     <ul className="mt-2 space-y-2">
-                      {['grandTunis', 'capBon'].map((region, index) => (
+                      {["Grand Tunis", "Cap Bon", "Bizerte", "Beja", "Jendouba", "Le Kef", "Siliana"].map(
+                        (region, index) => (
+                          <li key={index} className="flex items-center space-x-2">
+                            <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                            <span className="text-gray-700">{region}</span>
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </div>
+
+                  {/* Center Region */}
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h4 className="font-semibold text-gray-900">Régions Centre</h4>
+                    <ul className="mt-2 space-y-2">
+                      {["Sousse", "Monastir", "Mahdia", "Kairouan"].map((region, index) => (
                         <li key={index} className="flex items-center space-x-2">
                           <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                          <span className="text-gray-700">
-                            {t(`aboutPage.coverage.regions.${region}`)}
-                          </span>
+                          <span className="text-gray-700">{region}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-gray-900">
-                      {t('aboutPage.coverage.centerRegion')}
-                    </h4>
+
+                  {/* South/West Region */}
+                  <div className="bg-gray-50 p-4 rounded-lg col-span-2">
+                    <h4 className="font-semibold text-gray-900">Régions Sud/Ouest</h4>
                     <ul className="mt-2 space-y-2">
-                      {['sousse', 'monastir', 'mahdia'].map((region, index) => (
+                      {["Sfax", "Gafsa"].map((region, index) => (
                         <li key={index} className="flex items-center space-x-2">
                           <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                          <span className="text-gray-700">
-                            {t(`aboutPage.coverage.regions.${region}`)}
-                          </span>
+                          <span className="text-gray-700">{region}</span>
                         </li>
                       ))}
                     </ul>

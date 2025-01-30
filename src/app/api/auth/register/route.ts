@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     if (email.toLowerCase().endsWith('@elite.com')) {
       return NextResponse.json(
         { error: 'Les adresses email @elite.com ne sont pas autorisées pour l\'inscription' },
-        { status: 400 }
+        { status: 403 }
       );
     }
 
@@ -42,9 +42,13 @@ export async function POST(request: Request) {
     });
 
     if (existingUser) {
+      // Return a specific status code (409 Conflict) for existing email
       return NextResponse.json(
-        { error: 'Un utilisateur avec cet email existe déjà' },
-        { status: 400 }
+        { 
+          error: 'EMAIL_EXISTS',
+          message: 'Cette adresse email est déjà utilisée'
+        },
+        { status: 409 }
       );
     }
 
@@ -63,10 +67,10 @@ export async function POST(request: Request) {
         nom,
         prenom,
         role: RoleUtilisateur.CLIENT,
-        telephone: telephone || null,
-        adresse: adresse || null,
-        ville: ville || null,
-        codePostal: codePostal || null,
+        telephone: telephone,
+        adresse: adresse,
+        ville: ville,
+        codePostal: codePostal,
         emailVerified: false,
         verificationToken: {
           create: {
@@ -84,7 +88,6 @@ export async function POST(request: Request) {
       emailSent = true;
     } catch (error) {
       console.error('Failed to send verification email:', error);
-      // Continue with registration but inform the user about email issue
     }
 
     // Generate JWT token
@@ -96,15 +99,18 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       message: emailSent 
-        ? 'Registration successful. Please check your email to verify your account.'
-        : 'Registration successful but we could not send the verification email. Please contact support.',
+        ? 'Inscription réussie. Veuillez vérifier votre email pour activer votre compte.'
+        : 'Inscription réussie mais l\'envoi de l\'email a échoué. Veuillez contacter le support.',
       token,
       emailSent,
     });
   } catch (error) {
     console.error('Registration error:', error);
     return NextResponse.json(
-      { error: 'Une erreur est survenue lors de l\'inscription' },
+      { 
+        error: 'REGISTRATION_FAILED',
+        message: 'Une erreur est survenue lors de l\'inscription'
+      },
       { status: 500 }
     );
   }

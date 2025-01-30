@@ -52,38 +52,6 @@ export default function CheckoutPage() {
             {t('checkoutPage.subtitle')}
           </p>
         </div>
-
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          <div className="bg-white p-6 rounded-lg shadow-sm text-center">
-            <Package className="h-8 w-8 text-blue-600 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold mb-2">
-              {t('checkoutPage.features.qualityProducts.title')}
-            </h3>
-            <p className="text-gray-600">
-              {t('checkoutPage.features.qualityProducts.description')}
-            </p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm text-center">
-            <Truck className="h-8 w-8 text-blue-600 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold mb-2">
-              {t('checkoutPage.features.fastDelivery.title')}
-            </h3>
-            <p className="text-gray-600">
-              {t('checkoutPage.features.fastDelivery.description')}
-            </p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm text-center">
-            <Phone className="h-8 w-8 text-blue-600 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold mb-2">
-              {t('checkoutPage.features.personalizedSupport.title')}
-            </h3>
-            <p className="text-gray-600">
-              {t('checkoutPage.features.personalizedSupport.description')}
-            </p>
-          </div>
-        </div>
-
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start xl:gap-x-16">
           {/* Cart Items */}
           <div className="lg:col-span-7">
@@ -149,6 +117,7 @@ export default function CheckoutPage() {
                 </div>
               ))}
             </div>
+            
           </div>
 
           {/* Summary Card */}
@@ -200,6 +169,36 @@ export default function CheckoutPage() {
                 {t('checkoutPage.summary.footer')}
               </p>
             </div>
+          </div>
+        </div>
+          {/* Features Grid */}
+          <div className="p-5 grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div className="bg-white p-6 rounded-lg shadow-sm text-center">
+            <Package className="h-8 w-8 text-blue-600 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold mb-2">
+              {t('checkoutPage.features.qualityProducts.title')}
+            </h3>
+            <p className="text-gray-600">
+              {t('checkoutPage.features.qualityProducts.description')}
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-sm text-center">
+            <Truck className="h-8 w-8 text-blue-600 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold mb-2">
+              {t('checkoutPage.features.fastDelivery.title')}
+            </h3>
+            <p className="text-gray-600">
+              {t('checkoutPage.features.fastDelivery.description')}
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-sm text-center">
+            <Phone className="h-8 w-8 text-blue-600 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold mb-2">
+              {t('checkoutPage.features.personalizedSupport.title')}
+            </h3>
+            <p className="text-gray-600">
+              {t('checkoutPage.features.personalizedSupport.description')}
+            </p>
           </div>
         </div>
       </div>

@@ -140,9 +140,9 @@ model Commande {
 model CommandeItem {
   id         String   @id @default(cuid())
   quantity   Int
-  commande   Commande @relation(fields: [commandeId], references: [id])
+  commande   Commande @relation(fields: [commandeId], references: [id], onDelete: Cascade)
   commandeId String
-  product    Product  @relation(fields: [productId], references: [id])
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId  String
 }
 
@@ -151,7 +151,7 @@ model Contact {
   id            String      @id @default(cuid())
   dateCreation  DateTime    @default(now())
   message       String      @db.Text
-  utilisateur   Utilisateur @relation(fields: [utilisateurId], references: [id])
+  utilisateur   Utilisateur @relation(fields: [utilisateurId], references: [id],  onDelete: Cascade)
   utilisateurId String
 }
 
@@ -168,7 +168,7 @@ model Appointment {
   dateRdv       DateTime
   motif         String      @db.Text
   status        StatusRdv   @default(EN_ATTENTE)
-  utilisateur   Utilisateur @relation(fields: [utilisateurId], references: [id])
+  utilisateur   Utilisateur @relation(fields: [utilisateurId], references: [id], onDelete: Cascade )
   utilisateurId String
 }
 

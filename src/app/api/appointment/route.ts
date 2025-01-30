@@ -3,32 +3,40 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+// Guest user account ID for all guest appointments
+const GUEST_USER_ID = 'cm6iok3fw0008bq2klp8oqzak';
+
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
-    const { appointment, user } = data;
+    const { appointment, user, isGuest } = data;
 
-    if (!appointment || !user) {
+    if (!appointment) {
       return NextResponse.json(
-        { error: 'Les informations de rendez-vous et utilisateur sont requises' },
+        { error: 'Les informations de rendez-vous sont requises' },
         { status: 400 }
       );
     }
 
-    // Create a proper date string from the selected day
-    const [day, month, year] = new Date().toLocaleDateString('fr-FR').split('/');
-    const dateString = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-
     // Create the appointment date by combining date and time
-    const dateRdv = new Date(`${dateString}T${appointment.time}`);
+    const dateRdv = new Date(`${appointment.date}T${appointment.time}`);
+
+    // For guests, include their details in the reason
+    const appointmentReason = isGuest ? `
+Guest Appointment:
+Name: ${user.nom}
+Email: ${user.email}
+${user.telephone ? `Phone: ${user.telephone}\n` : ''}
+Reason:
+${appointment.reason}` : appointment.reason;
 
     // Save appointment to database
     const newAppointment = await prisma.appointment.create({
       data: {
         dateRdv,
-        motif: appointment.reason,
+        motif: appointmentReason,
         status: 'EN_ATTENTE',
-        utilisateurId: user.id
+        utilisateurId: isGuest ? GUEST_USER_ID : user.id
       },
     });
 

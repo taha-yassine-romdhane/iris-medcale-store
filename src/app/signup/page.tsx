@@ -5,11 +5,41 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import { User, Mail, Lock, Phone, MapPin, Building, Hash } from 'lucide-react';
+import { z } from 'zod';
+
+// Define the validation schema
+const signUpSchema = z.object({
+  email: z.string()
+    .email('Format d\'email invalide')
+    .min(1, 'L\'email est requis'),
+  motDePasse: z.string()
+    .min(8, 'Le mot de passe doit contenir au moins 8 caractères')
+    .regex(/[0-9]/, 'Le mot de passe doit contenir au moins un chiffre'),
+  nom: z.string()
+    .min(1, 'Le nom est requis')
+    .max(50, 'Le nom ne peut pas dépasser 50 caractères'),
+  prenom: z.string()
+    .min(1, 'Le prénom est requis')
+    .max(50, 'Le prénom ne peut pas dépasser 50 caractères'),
+  telephone: z.string()
+    .min(8, 'Le numéro de téléphone doit contenir au moins 8 chiffres')
+    .regex(/^[0-9+\s-]+$/, 'Numéro de téléphone invalide'),
+  adresse: z.string()
+    .min(1, 'L\'adresse est requise'),
+  ville: z.string()
+    .min(1, 'La ville est requise'),
+  codePostal: z.string()
+    .min(1, 'Le code postal est requis')
+    .regex(/^\d{4}$/, 'Le code postal doit contenir 4 chiffres'),
+});
+
+type SignUpFormData = z.infer<typeof signUpSchema>;
 
 export default function SignUpPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [formData, setFormData] = useState<SignUpFormData>({
     email: '',
     motDePasse: '',
     nom: '',
@@ -26,12 +56,43 @@ export default function SignUpPage() {
       ...prev,
       [name]: value,
     }));
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: '',
+      }));
+    }
+  };
+
+  const validateForm = () => {
+    try {
+      signUpSchema.parse(formData);
+      setErrors({});
+      return true;
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const newErrors: { [key: string]: string } = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) {
+            newErrors[err.path[0].toString()] = err.message;
+          }
+        });
+        setErrors(newErrors);
+      }
+      return false;
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+  
     setLoading(true);
-
+  
     try {
       const response = await fetch('/api/auth/register', {
         method: 'POST',
@@ -40,16 +101,41 @@ export default function SignUpPage() {
         },
         body: JSON.stringify(formData),
       });
-
+  
       const data = await response.json();
-
+  
       if (!response.ok) {
-        throw new Error(data.error || 'Une erreur est survenue');
+        // Handle specific error cases
+        if (response.status === 409) {
+          setErrors((prev) => ({
+            ...prev,
+            email: data.message || 'Cette adresse email est déjà utilisée'
+          }));
+          toast.error(data.message || 'Cette adresse email est déjà utilisée');
+          return;
+        }
+  
+        if (response.status === 403) {
+          setErrors((prev) => ({
+            ...prev,
+            email: data.error
+          }));
+          toast.error(data.error);
+          return;
+        }
+  
+        if (response.status === 400) {
+          // Handle validation errors
+          toast.error(data.error);
+          return;
+        }
+  
+        throw new Error(data.message || 'Une erreur est survenue');
       }
-
-      // Store token
+  
+      // Success case
       localStorage.setItem('token', data.token);
-
+  
       if (data.emailSent) {
         toast.success('Inscription réussie ! Veuillez vérifier votre email pour activer votre compte.');
         router.push('/check-email');
@@ -58,11 +144,41 @@ export default function SignUpPage() {
         router.push('/login');
       }
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : 'Une erreur est survenue');
+      console.error('Registration error:', error);
+      toast.error(error instanceof Error ? error.message : 'Une erreur est survenue lors de l\'inscription');
     } finally {
       setLoading(false);
     }
   };
+  // Helper function to render input field with error
+  const renderInput = (
+    name: keyof SignUpFormData,
+    label: string,
+    type: string,
+    icon: React.ReactNode,
+    required: boolean = true
+  ) => (
+    <div>
+      <label className="flex items-center text-sm font-medium text-gray-700">
+        {icon}
+        {label}
+        {required && <span className="text-red-500 ml-1">*</span>}
+      </label>
+      <input
+        type={type}
+        name={name}
+        value={formData[name]}
+        onChange={handleChange}
+        required={required}
+        className={`mt-1 block w-full px-3 py-2 border ${
+          errors[name] ? 'border-red-500' : 'border-gray-300'
+        } rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
+      />
+      {errors[name] && (
+        <p className="mt-1 text-sm text-red-600">{errors[name]}</p>
+      )}
+    </div>
+  );
 
   return (
     <div className="min-h-screen py-14 px-4 sm:px-6 lg:px-8 bg-gray-50">
@@ -79,133 +195,14 @@ export default function SignUpPage() {
 
         <div className="bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
-            {/* Email */}
-            <div>
-              <label className="flex items-center text-sm font-medium text-gray-700">
-                <Mail className="h-4 w-4 mr-2" />
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-
-            {/* Password */}
-            <div>
-              <label className="flex items-center text-sm font-medium text-gray-700">
-                <Lock className="h-4 w-4 mr-2" />
-                Mot de passe
-              </label>
-              <input
-                type="password"
-                name="motDePasse"
-                required
-                value={formData.motDePasse}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-
-            {/* Nom */}
-            <div>
-              <label className="flex items-center text-sm font-medium text-gray-700">
-                <User className="h-4 w-4 mr-2" />
-                Nom
-              </label>
-              <input
-                type="text"
-                name="nom"
-                required
-                value={formData.nom}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-
-            {/* Prénom */}
-            <div>
-              <label className="flex items-center text-sm font-medium text-gray-700">
-                <User className="h-4 w-4 mr-2" />
-                Prénom
-              </label>
-              <input
-                type="text"
-                name="prenom"
-                required
-                value={formData.prenom}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-
-            {/* Téléphone */}
-            <div>
-              <label className="flex items-center text-sm font-medium text-gray-700">
-                <Phone className="h-4 w-4 mr-2" />
-                Téléphone
-              </label>
-              <input
-                type="tel"
-                name="telephone"
-                value={formData.telephone}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Optionnel"
-              />
-            </div>
-
-            {/* Adresse */}
-            <div>
-              <label className="flex items-center text-sm font-medium text-gray-700">
-                <MapPin className="h-4 w-4 mr-2" />
-                Adresse
-              </label>
-              <input
-                type="text"
-                name="adresse"
-                value={formData.adresse}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Optionnel"
-              />
-            </div>
-
-            {/* Ville */}
-            <div>
-              <label className="flex items-center text-sm font-medium text-gray-700">
-                <Building className="h-4 w-4 mr-2" />
-                Ville
-              </label>
-              <input
-                type="text"
-                name="ville"
-                value={formData.ville}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Optionnel"
-              />
-            </div>
-
-            {/* Code Postal */}
-            <div>
-              <label className="flex items-center text-sm font-medium text-gray-700">
-                <Hash className="h-4 w-4 mr-2" />
-                Code Postal
-              </label>
-              <input
-                type="text"
-                name="codePostal"
-                value={formData.codePostal}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Optionnel"
-              />
-            </div>
+            {renderInput('email', 'Email', 'email', <Mail className="h-4 w-4 mr-2" />)}
+            {renderInput('motDePasse', 'Mot de passe', 'password', <Lock className="h-4 w-4 mr-2" />)}
+            {renderInput('nom', 'Nom', 'text', <User className="h-4 w-4 mr-2" />)}
+            {renderInput('prenom', 'Prénom', 'text', <User className="h-4 w-4 mr-2" />)}
+            {renderInput('telephone', 'Téléphone', 'tel', <Phone className="h-4 w-4 mr-2" />)}
+            {renderInput('adresse', 'Adresse', 'text', <MapPin className="h-4 w-4 mr-2" />)}
+            {renderInput('ville', 'Ville', 'text', <Building className="h-4 w-4 mr-2" />)}
+            {renderInput('codePostal', 'Code Postal', 'text', <Hash className="h-4 w-4 mr-2" />)}
 
             <div>
               <button

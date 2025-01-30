@@ -7,14 +7,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Input } from '@/components/ui/input';
 import { useTranslation } from '@/contexts/TranslationContext';
 
 const contactInfo = [
@@ -47,22 +40,38 @@ const contactInfo = [
 export default function ContactPage() {
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showLoginDialog, setShowLoginDialog] = useState(false);
+  const [guestData, setGuestData] = useState({
+    nom: '',
+    email: '',
+    telephone: ''
+  });
   const { user } = useAuth();
   const { toast } = useToast();
   const router = useRouter();
   const { t } = useTranslation();
 
+  const handleGuestDataChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setGuestData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!user) {
-      setShowLoginDialog(true);
-      return;
-    }
-
     setIsSubmitting(true);
     try {
+      const userData = user ? {
+        id: user.id,
+        nom: user.nom,
+        email: user.email,
+        telephone: user.telephone
+      } : {
+        ...guestData
+      };
+
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -70,12 +79,8 @@ export default function ContactPage() {
         },
         body: JSON.stringify({
           message,
-          user: {
-            id: user.id,
-            nom: user.nom,
-            email: user.email,
-            telephone: user.telephone
-          }
+          user: userData,
+          isGuest: !user
         }),
       });
 
@@ -91,6 +96,9 @@ export default function ContactPage() {
       
       // Clear form
       setMessage('');
+      if (!user) {
+        setGuestData({ nom: '', email: '', telephone: '' });
+      }
     } catch (error) {
       console.error('Error sending message:', error);
       toast({
@@ -131,54 +139,122 @@ export default function ContactPage() {
             })}
           </div>
 
-          {/* Contact Form */}
+          {/* Contact Form Section */}
           <div className="max-w-2xl mx-auto">
             <div className="bg-white rounded-2xl shadow-xl p-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-8">
                 {t('contactPage.form.title')}
               </h2>
+
               <form onSubmit={handleSubmit} className="space-y-6">
-                {user && (
+                {user ? (
+                  // Logged-in User Information Display
                   <div className="bg-gray-50 p-4 rounded-lg mb-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">
                       {t('contactPage.form.userInfo')}
                     </h3>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-1">
                         <p className="text-sm text-gray-600">{t('contactPage.form.name')}</p>
                         <p className="font-medium text-gray-900">{user.nom}</p>
                       </div>
-                      <div>
+                      <div className="space-y-1">
                         <p className="text-sm text-gray-600">{t('contactPage.form.email')}</p>
                         <p className="font-medium text-gray-900">{user.email}</p>
                       </div>
                       {user.telephone && (
-                        <div>
+                        <div className="space-y-1">
                           <p className="text-sm text-gray-600">{t('contactPage.form.phone')}</p>
                           <p className="font-medium text-gray-900">{user.telephone}</p>
                         </div>
                       )}
+                      <div className="space-y-1">
+                        <p className="text-sm text-gray-600">{t('contactPage.form.lastContact')}</p>
+                        <p className="font-medium text-gray-900">
+                          {new Date().toLocaleString('fr-FR', {
+                            dateStyle: 'long',
+                            timeStyle: 'short'
+                          })}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  // Guest User Form Fields
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label className="block text-sm font-medium text-gray-700">
+                          {t('contactPage.form.name')}*
+                        </label>
+                        <Input
+                          name="nom"
+                          value={guestData.nom}
+                          onChange={handleGuestDataChange}
+                          className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                          required
+                          placeholder={t('contactPage.form.namePlaceholder')}
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="block text-sm font-medium text-gray-700">
+                          {t('contactPage.form.email')}*
+                        </label>
+                        <Input
+                          type="email"
+                          name="email"
+                          value={guestData.email}
+                          onChange={handleGuestDataChange}
+                          className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                          required
+                          placeholder={t('contactPage.form.emailPlaceholder')}
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="block text-sm font-medium text-gray-700">
+                        {t('contactPage.form.phone')}
+                      </label>
+                      <Input
+                        type="tel"
+                        name="telephone"
+                        value={guestData.telephone}
+                        onChange={handleGuestDataChange}
+                        className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        placeholder={t('contactPage.form.phonePlaceholder')}
+                      />
+                      <p className="text-sm text-gray-500 mt-1">
+                        {t('contactPage.form.phoneOptional')}
+                      </p>
                     </div>
                   </div>
                 )}
 
+                {/* Message Field - Common for both user types */}
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
-                    {t('contactPage.form.messageLabel')}
+                    {t('contactPage.form.messageLabel')}*
                   </label>
                   <Textarea
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder={t('contactPage.form.messagePlaceholder')}
-                    className="h-32"
+                    className="w-full h-32 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
                 </div>
 
+                {/* Submit Button */}
                 <Button
                   type="submit"
-                  className="w-full"
-                  disabled={isSubmitting || !message.trim()}
+                  className={`w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+                    isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
+                  }`}
+                  disabled={
+                    isSubmitting ||
+                    !message.trim() ||
+                    (!user && (!guestData.nom.trim() || !guestData.email.trim()))
+                  }
                 >
                   {isSubmitting ? (
                     <span className="flex items-center gap-2">
@@ -192,6 +268,12 @@ export default function ContactPage() {
                     </span>
                   )}
                 </Button>
+
+                {/* Form Guidelines */}
+                <div className="mt-4 text-sm text-gray-500">
+                  <p>{t('contactPage.form.requiredFields')}</p>
+                  <p className="mt-1">{t('contactPage.form.responseTime')}</p>
+                </div>
               </form>
             </div>
           </div>
@@ -201,7 +283,7 @@ export default function ContactPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-8">
               {t('contactPage.map.title')}
             </h2>
-            <div className="w-full h-[500px] rounded-xl overflow-hidden">
+            <div className="w-full h-[500px] rounded-xl overflow-hidden shadow-inner">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d240.10481402433365!2d10.573908195586109!3d35.73488462620345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fdf5d82cc1ff89%3A0x327231a45eeeab57!2s%C3%94%20Medical%20Store!5e1!3m2!1sfr!2stn!4v1734970851542!5m2!1sfr!2stn"
                 width="100%"
@@ -211,43 +293,11 @@ export default function ContactPage() {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="rounded-xl"
-              ></iframe>
+              />
             </div>
           </div>
         </div>
       </div>
-
-      {/* Login Dialog */}
-      <Dialog open={showLoginDialog} onOpenChange={setShowLoginDialog}>
-        <DialogContent className="bg-white border border-blue-100 rounded-lg shadow-lg">
-          <DialogHeader className="space-y-4">
-            <DialogTitle className="text-blue-900 text-xl font-bold">
-              {t('contactPage.loginDialog.title')}
-            </DialogTitle>
-            <DialogDescription className="text-blue-800">
-              {t('contactPage.loginDialog.description')}
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter className="flex justify-end space-x-2">
-            <Button
-              variant="outline"
-              onClick={() => setShowLoginDialog(false)}
-              className="text-blue-900 border-blue-200 hover:bg-blue-50 hover:border-blue-300"
-            >
-              {t('contactPage.loginDialog.cancelButton')}
-            </Button>
-            <Button
-              onClick={() => {
-                setShowLoginDialog(false);
-                router.push('/login');
-              }}
-              className="bg-blue-900 text-white hover:bg-blue-800"
-            >
-              {t('contactPage.loginDialog.loginButton')}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </>
   );
 }

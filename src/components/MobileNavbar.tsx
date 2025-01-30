@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { LogOut, User2, X, Heart, Info, Phone, ChevronDown, ShoppingCart, Settings2,  LucideSquareActivity, SquareChevronRight } from 'lucide-react';
+import { LogOut, User2, X, Heart, Info, Phone, ChevronDown, ShoppingCart, Settings2,  LucideSquareActivity, SquareChevronRight, Calendar } from 'lucide-react';
 import { useTranslation } from '@/contexts/TranslationContext';
 import SearchBar from './SearchBar';
 import { useState, useEffect } from 'react';
@@ -20,6 +20,20 @@ interface MobileNavbarProps {
   user: null | User ;
   handleLogout: () => void;
 }
+const CATEGORY_ORDER = [
+  'APPAREILS CPAP/PPC',
+  'ACCESSOIRES CPAP/PPC',
+  'CONCENTRATEURS D\'OXYGENE',
+  'ACCESSOIRES D\'OXYGENE',
+  'MASQUES',
+  'APPAREILS BIPAP/VNI',
+  'APPAREILS NEBULISEUR',
+  'APPAREILS ASPIRATUER',
+  'APPAREILS AEROSOL',
+  'ACCESSOIRES AEROSOL',
+  'ACCESSOIRE ASPIRATEUR',
+  'LIT MEDICALISE'
+] as const;
 
 const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps) => {
   const { t } = useTranslation();
@@ -27,13 +41,17 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
   const [openCategory, setOpenCategory] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+
+
   useEffect(() => {
     const fetchCategoryTypes = async () => {
       try {
         const response = await fetch('/api/category-types');
         if (!response.ok) throw new Error('Failed to fetch category types');
         const data = await response.json();
-        setCategoryTypes(data);
+        // Sort the categories according to CATEGORY_ORDER
+        const sortedCategories = sortCategoriesByOrder(data);
+        setCategoryTypes(sortedCategories);
       } catch (error) {
         console.error('Error fetching category types:', error);
         setCategoryTypes([]);
@@ -44,8 +62,24 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
 
     if (isOpen) fetchCategoryTypes();
   }, [isOpen]);
-
+ 
   // Click handlers remain the same
+  const sortCategoriesByOrder = (categories: CategoryType[]): CategoryType[] => {
+    return [...categories].sort((a, b) => {
+      const indexA = CATEGORY_ORDER.findIndex(
+        order => order.toLowerCase() === a.category.toLowerCase()
+      );
+      const indexB = CATEGORY_ORDER.findIndex(
+        order => order.toLowerCase() === b.category.toLowerCase()
+      );
+      
+      if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+      if (indexA !== -1) return -1;
+      if (indexB !== -1) return 1;
+      return 0;
+    });
+  };
+ 
 
   const mobileMenuVariants = {
     hidden: { opacity: 0, y: "-100vh" },
@@ -93,7 +127,7 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
             {/* Header */}
             <div className="p-4 bg-cover bg-center text-white bg-blue-600">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold text-white">Menu</h2>
+                <h2 className="text-xl font-bold text-white">{t('navbar.title')}</h2>
                 <button
                   onClick={onClose}
                   className="p-2 hover:bg-white/10 rounded-full"
@@ -101,9 +135,7 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                   <X className="h-6 w-6 text-white" />
                 </button>
               </div>
-              <div className="mb-4 text-blue-800">
-                <SearchBar />
-              </div>
+              
             </div>
                 {/* Content */}
                 <div className="flex-1 overflow-y-auto px-4">
@@ -127,6 +159,7 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                 Account
               </h3>
               <div className="space-y-1">
+
                 {user ? (
                   <>
                     <Link
@@ -294,14 +327,6 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                     <span className="text-sm font-medium">{t('navbar.sleepApnea')}</span>
                   </Link>
                   <Link
-                    href="/contact"
-                    className="p-3 bg-blue-50 hover:bg-blue-100 rounded-lg flex flex-col items-center text-center"
-                    onClick={onClose}
-                  >
-                    <Phone className="h-6 w-6 text-blue-600 mb-1" />
-                    <span className="text-sm font-medium">{t('navbar.contact')}</span>
-                  </Link>
-                  <Link
                     href="/services"
                     className="p-3 bg-blue-50 hover:bg-blue-100 rounded-lg flex flex-col items-center text-center"
                     onClick={onClose}
@@ -310,7 +335,7 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                     <span className="text-sm font-medium">{t('navbar.services')}</span>
                   </Link>
                   <Link
-                    href="/about"
+                    href="/a-propos"
                     className="p-3 bg-blue-50 hover:bg-blue-100 rounded-lg flex flex-col items-center text-center"
                     onClick={onClose}
                   >
@@ -324,6 +349,14 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                   >
                     <Phone className="h-6 w-6 text-blue-600 mb-1" />
                     <span className="text-sm font-medium">{t('navbar.contact')}</span>
+                  </Link>
+                  <Link
+                    href="/appointment"
+                    className="p-3 bg-blue-50 hover:bg-blue-100 rounded-lg flex flex-col items-center text-center"
+                    onClick={onClose}
+                  >
+                    <Calendar className="h-6 w-6 text-blue-600 mb-1" />
+                    <span className="text-sm font-medium">{t('navbar.appointment')}</span>
                   </Link>
                   <Link
                     href="/space-pro"

@@ -1,5 +1,6 @@
 {
   "navbar": {
+    "title": "Menu",
     "home": "Home",
     "ourProducts": "Our Products",
     "allProducts": "All Products",
@@ -22,6 +23,7 @@
     "ourServices": "Space Professional",
     "aboutUs": "About Us"
   },
+  
   "CategoryNavbar": {
     "home": "Home",
     "allProducts": "All Products",
@@ -36,22 +38,31 @@
   },
   "footer": {
     "companyName": "Elite Medicale Service",
-    "description": "Your trusted source for medical equipment and innovative healthcare solutions.",
-    "quickLinks": "Quick Links",
-    "cpapMachines": "Our Services",
-    "aboutUs": "About Us",
+    "description": "Votre source de confiance pour les équipements médicaux et les solutions de santé innovantes.",
+    "quickLinks": "Liens Rapides",
+    "cpapMachines": "Nos Services",
+    "aboutUs": "À Propos",
     "contact": "Contact",
-    "sleepApnea": "Sleep Apnea",
-    "contactUs": "Contact Us",
-    "coverageAreas": "Coverage Areas",
-    "northRegion": "North Region",
+    "sleepApnea": "Apnée du Sommeil",
+    "contactUs": "Contactez-Nous",
+    "coverageAreas": "Zones de Couverture",
+    "northRegion": "Région Nord",
     "grandTunis": "Grand Tunis",
     "capBon": "Cap Bon",
-    "centerRegion": "Center Region",
+    "bizerte": "Bizerte",
+    "beja": "Beja",
+    "jendouba": "Jendouba",
+    "leKef": "Le Kef",
+    "siliana": "Siliana",
+    "centerRegion": "Régions Centre",
     "sousse": "Sousse",
     "monastir": "Monastir",
     "mahdia": "Mahdia",
-    "copyright": " 2024 Elite Medicale Service. All rights reserved."
+    "kairouan": "Kairouan",
+    "southWestRegion": "Régions Sud-Ouest",
+    "sfax": "Sfax",
+    "gafsa": "Gafsa",
+    "copyright": "2024 Elite Medicale Service. Tous droits réservés."
   },
   "login": {
     "leftSide": {
@@ -129,6 +140,13 @@
       "title": "Success",
       "description": "Appointment requested successfully"
     },
+    "guestInfo": {
+      "title": "Guest Information",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "phoneOptional": "Optional - for emergencies"
+    },
     "error": {
       "title": "Error",
       "description": "An error occurred",
@@ -161,7 +179,7 @@
       },
       "email": {
         "title": "Email",
-        "detail": "Response within 24h"
+        "detail": "Response within 24 hours"
       },
       "address": {
         "title": "Address",
@@ -173,28 +191,35 @@
       }
     },
     "form": {
-      "title": "Send us a message",
+      "title": "Contact Us",
       "userInfo": "Your Information",
-      "name": "Name",
-      "email": "Email",
-      "phone": "Phone",
+      "name": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "email": "Email Address",
+      "emailPlaceholder": "Enter your email address",
+      "phone": "Phone Number",
+      "phonePlaceholder": "Enter your phone number",
+      "phoneOptional": "Optional - for urgent matters",
       "messageLabel": "Your Message",
-      "messagePlaceholder": "How can we help you?",
+      "messagePlaceholder": "How can we help you today?",
       "submitButton": "Send Message",
-      "submitting": "Submitting..."
+      "submitting": "Sending...",
+      "requiredFields": "* Required fields",
+      "responseTime": "We typically respond within 24 hours",
+      "lastContact": "Contact Time",
+      "success": {
+        "title": "Message Sent",
+        "description": "Thank you for contacting us. We will get back to you soon."
+      }
     },
     "map": {
-      "title": "Our Location"
+      "title": "Find Us"
     },
     "loginDialog": {
-      "title": "Login Required",
-      "description": "You must be logged in to send a message. Would you like to log in now?",
-      "cancelButton": "Cancel",
-      "loginButton": "Log In"
-    },
-    "success": {
-      "title": "Success",
-      "description": "Your message has been sent successfully."
+      "title": "Want to Login?",
+      "description": "Login to your account to keep track of your messages and get faster responses.",
+      "loginButton": "Login",
+      "cancelButton": "Continue as Guest"
     }
   },
   "checkoutPage": {
@@ -352,7 +377,15 @@
       "Monastir",
       "Mahdia",
       "Cap Bon",
-      "Grand Tunis"
+      "Grand Tunis",
+      "Bizerte",
+      "Béja",
+      "Jendouba",
+      "Le Kef",
+      "Siliana",
+      "Kairouan",
+      "Sfax",
+      "Gafsa"
     ],
     "contact": {
       "title": "Need Assistance?",
@@ -431,10 +464,10 @@
       "addToCart": "Add to Cart",
       "features": "Features"
     },
-    "masks": "Masks",
+    "masks": "MASKES",
     "cpap": "CPAP",
-    "oxygen": "Oxygen",
-    "lits": "Lits",
+    "oxygen": "OXYGENES",
+    "lits": "LITS MEDICALISE",
     "scrollLeft": "Scroll Left",
     "scrollRight": "Scroll Right",
     "viewDetails": "View Details"

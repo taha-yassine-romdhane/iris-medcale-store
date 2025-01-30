@@ -9,26 +9,20 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { format, addMonths, startOfMonth, getDaysInMonth, addHours, isBefore, isSameDay } from 'date-fns';
 import { fr } from 'date-fns/locale';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { useTranslation } from '@/contexts/TranslationContext';
 
 export default function AppointmentSection() {
   const [formData, setFormData] = useState({
     date: '',
     time: '',
-    reason: ''
+    reason: '',
+    guestName: '',
+    guestEmail: '',
+    guestPhone: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
   const [selectedMonth, setSelectedMonth] = useState(new Date());
-  const [showLoginDialog, setShowLoginDialog] = useState(false);
   const { user } = useAuth();
   const { toast } = useToast();
   const router = useRouter();
@@ -74,12 +68,6 @@ export default function AppointmentSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!user) {
-      setShowLoginDialog(true);
-      return;
-    }
-
     setIsSubmitting(true);
 
     try {
@@ -94,9 +82,14 @@ export default function AppointmentSection() {
             time: formData.time,
             reason: formData.reason,
           },
-          user: {
+          user: user ? {
             id: user.id,
+          } : {
+            nom: formData.guestName,
+            email: formData.guestEmail,
+            telephone: formData.guestPhone
           },
+          isGuest: !user
         }),
       });
 
@@ -111,7 +104,14 @@ export default function AppointmentSection() {
         description: t('appointmentSection.success.description'),
       });
 
-      setFormData({ date: '', time: '', reason: '' });
+      setFormData({
+        date: '',
+        time: '',
+        reason: '',
+        guestName: '',
+        guestEmail: '',
+        guestPhone: ''
+      });
       setSelectedDay(null);
     } catch (error) {
       console.error('Error:', error);
@@ -235,11 +235,66 @@ export default function AppointmentSection() {
                 />
               </div>
 
+              {/* Guest Information Fields (only show if not logged in) */}
+              {!user && (
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold text-blue-900">
+                    {t('appointmentSection.guestInfo.title')}
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="block text-sm font-medium text-blue-900">
+                        {t('appointmentSection.guestInfo.name')}*
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.guestName}
+                        onChange={(e) => setFormData(prev => ({ ...prev, guestName: e.target.value }))}
+                        className="w-full border-blue-900 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="block text-sm font-medium text-blue-900">
+                        {t('appointmentSection.guestInfo.email')}*
+                      </label>
+                      <input
+                        type="email"
+                        value={formData.guestEmail}
+                        onChange={(e) => setFormData(prev => ({ ...prev, guestEmail: e.target.value }))}
+                        className="w-full border-blue-900 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2 md:col-span-2">
+                      <label className="block text-sm font-medium text-blue-900">
+                        {t('appointmentSection.guestInfo.phone')}
+                      </label>
+                      <input
+                        type="tel"
+                        value={formData.guestPhone}
+                        onChange={(e) => setFormData(prev => ({ ...prev, guestPhone: e.target.value }))}
+                        className="w-full border-blue-900 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                      />
+                      <p className="text-sm text-gray-500">
+                        {t('appointmentSection.guestInfo.phoneOptional')}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Submit Button */}
               <Button
                 type="submit"
                 className="w-full bg-blue-900 text-white hover:bg-blue-800"
-                disabled={isSubmitting || !formData.date || !formData.time || !formData.reason}
+                disabled={
+                  isSubmitting || 
+                  !formData.date || 
+                  !formData.time || 
+                  !formData.reason || 
+                  (!user && (!formData.guestName || !formData.guestEmail))
+                }
               >
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">
@@ -257,38 +312,6 @@ export default function AppointmentSection() {
           </div>
         </div>
       </div>
-
-      {/* Login Dialog */}
-      <Dialog open={showLoginDialog} onOpenChange={setShowLoginDialog}>
-        <DialogContent className="bg-white border border-blue-900 rounded-lg shadow-lg">
-          <DialogHeader className="space-y-4">
-            <DialogTitle className="text-blue-900 text-xl font-bold">
-              {t('appointmentSection.loginDialog.title')}
-            </DialogTitle>
-            <DialogDescription className="text-blue-800">
-              {t('appointmentSection.loginDialog.description')}
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter className="flex justify-end space-x-2">
-            <Button
-              variant="outline"
-              onClick={() => setShowLoginDialog(false)}
-              className="text-blue-900 border-blue-900 hover:bg-blue-50 hover:border-blue-800"
-            >
-              {t('appointmentSection.loginDialog.cancelButton')}
-            </Button>
-            <Button
-              onClick={() => {
-                setShowLoginDialog(false);
-                router.push('/login');
-              }}
-              className="bg-blue-900 text-white hover:bg-blue-800"
-            >
-              {t('appointmentSection.loginDialog.loginButton')}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </>
   );
 }

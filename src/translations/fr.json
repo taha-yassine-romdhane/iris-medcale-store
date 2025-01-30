@@ -1,5 +1,6 @@
 {
   "navbar": {
+    "title": "Menu",
     "home": "Accueil",
     "ourProducts": "Nos Produits",
     "allProducts": "Tous les produits",
@@ -34,7 +35,7 @@
     "noResult": "Aucun résultat trouvé pour",
     "tryDifferent": "Essayez avec des termes différents"
   },
-  "footer": {
+"footer": {
     "companyName": "Elite Medicale Service",
     "description": "Votre source de confiance pour les équipements médicaux et les solutions de santé innovantes.",
     "quickLinks": "Liens Rapides",
@@ -47,12 +48,21 @@
     "northRegion": "Région Nord",
     "grandTunis": "Grand Tunis",
     "capBon": "Cap Bon",
+    "bizerte": "Bizerte",
+    "beja": "Beja",
+    "jendouba": "Jendouba",
+    "leKef": "Le Kef",
+    "siliana": "Siliana",
     "centerRegion": "Régions Centre",
     "sousse": "Sousse",
     "monastir": "Monastir",
     "mahdia": "Mahdia",
-    "copyright": " 2024 Elite Medicale Service. Tous droits réservés."
-  },
+    "kairouan": "Kairouan",
+    "southWestRegion": "Régions Sud-Ouest",
+    "sfax": "Sfax",
+    "gafsa": "Gafsa",
+    "copyright": "2024 Elite Medicale Service. Tous droits réservés."
+},
   "login": {
     "leftSide": {
       "title": "Espace Client Elite Medicale Service",
@@ -135,6 +145,13 @@
       "failedToRequestAppointment": "Échec de la demande de rendez-vous",
       "generic": "Quelque chose s'est mal passé"
     },
+    "guestInfo": {
+      "title": "Informations de l'internaute",
+      "name": "Nom",
+      "email": "Email",
+      "phone": "Numéro de téléphone",
+      "phoneOptional": "Optionnel - pour les urgences"
+    },
     "loginDialog": {
       "title": "Connexion requise",
       "description": "Vous devez être connecté pour prendre un rendez-vous. Voulez-vous vous connecter maintenant ?",
@@ -157,44 +174,51 @@
     "contactInfo": {
       "phone": {
         "title": "Téléphone",
-        "detail": "Disponible 24/7"
+        "detail": "Disponible 24h/24 et 7j/7"
       },
       "email": {
         "title": "Email",
-        "detail": "Réponse sous 24h"
+        "detail": "Réponse sous 24 heures"
       },
       "address": {
         "title": "Adresse",
-        "detail": "Bureaux principaux"
+        "detail": "Bureau Principal"
       },
       "openingHours": {
         "title": "Heures d'ouverture",
-        "detail": "Service d'urgence 24/7"
+        "detail": "Service d'urgence 24h/24 et 7j/7"
       }
     },
     "form": {
-      "title": "Envoyez-nous un message",
-      "userInfo": "Vos informations",
-      "name": "Nom",
-      "email": "Email",
-      "phone": "Téléphone",
-      "messageLabel": "Votre message",
-      "messagePlaceholder": "Comment pouvons-nous vous aider ?",
-      "submitButton": "Envoyer le message",
-      "submitting": "En cours..."
+      "title": "Contactez-nous",
+      "userInfo": "Vos Informations",
+      "name": "Nom Complet",
+      "namePlaceholder": "Entrez votre nom complet",
+      "email": "Adresse Email",
+      "emailPlaceholder": "Entrez votre adresse email",
+      "phone": "Numéro de Téléphone",
+      "phonePlaceholder": "Entrez votre numéro de téléphone",
+      "phoneOptional": "Optionnel - pour les urgences",
+      "messageLabel": "Votre Message",
+      "messagePlaceholder": "Comment pouvons-nous vous aider aujourd'hui ?",
+      "submitButton": "Envoyer le Message",
+      "submitting": "Envoi en cours...",
+      "requiredFields": "* Champs obligatoires",
+      "responseTime": "Nous répondons généralement sous 24 heures",
+      "lastContact": "Heure de Contact",
+      "success": {
+        "title": "Message Envoyé",
+        "description": "Merci de nous avoir contacté. Nous vous répondrons bientôt."
+      }
     },
     "map": {
-      "title": "Notre emplacement"
+      "title": "Nous Trouver"
     },
     "loginDialog": {
-      "title": "Connexion requise",
-      "description": "Vous devez être connecté pour envoyer un message. Voulez-vous vous connecter maintenant ?",
-      "cancelButton": "Annuler",
-      "loginButton": "Se connecter"
-    },
-    "success": {
-      "title": "Succès",
-      "description": "Votre message a été envoyé avec succès."
+      "title": "Voulez-vous vous connecter ?",
+      "description": "Connectez-vous à votre compte pour suivre vos messages et obtenir des réponses plus rapides.",
+      "loginButton": "Se Connecter",
+      "cancelButton": "Continuer en tant qu'invité"
     }
   },
   "checkoutPage": {
@@ -352,7 +376,15 @@
       "Monastir",
       "Mahdia",
       "Cap Bon",
-      "Grand Tunis"
+      "Grand Tunis",
+      "Bizerte",
+      "Beja",
+      "Jendouba",
+      "Le Kef",
+      "Siliana",
+      "Kairouan",
+      "Sfax",
+      "Gafsa"
     ],
     "contact": {
       "title": "Besoin d'Assistance ?",
@@ -432,10 +464,10 @@
       "features": "Caractéristiques"
       
     },
-    "masks":"Masques",
+    "masks":"MASQUES",
     "cpap":"CPAP",
-    "oxygen":"oxygénothérapie",
-    "lits":"Lits",
+    "oxygen":"OXYGENES",
+    "lits":"LITS MEDICALISE",
     "scrollLeft": "Défiler à gauche",
     "scrollRight": "Défiler à droite",
     "viewDetails" : "Plus de detail"

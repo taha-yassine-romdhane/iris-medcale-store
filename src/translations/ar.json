@@ -1,5 +1,6 @@
 {
     "navbar": {
+        "title": "القائمة",
         "home": "الرئيسية",
         "ourProducts": "منتجاتنا",
         "allProducts": "جميع المنتجات",
@@ -34,7 +35,7 @@
         "noResult": "لم يتم العثور على نتائج لـ",
         "tryDifferent": "حاول البحث بكلمات مفتاحية مختلفة"
     },
-    "footer": {
+     "footer": {
         "companyName": "خدمة النخبة الطبية",
         "description": "مصدر موثوق لمعدات الرعاية الصحية المبتكرة.",
         "quickLinks": "روابط سريعة",
@@ -47,10 +48,19 @@
         "northRegion": "المنطقة الشمالية",
         "grandTunis": "تونس الكبرى",
         "capBon": "كاب بون",
+        "bizerte": "بنزرت",
+        "beja": "باجة",
+        "jendouba": "جندوبة",
+        "leKef": "الكاف",
+        "siliana": "سليانة",
         "centerRegion": "المنطقة الوسطى",
         "sousse": "سوسة",
         "monastir": "المنستير",
         "mahdia": "المهدية",
+        "kairouan": "القيروان",
+        "southWestRegion": "المنطقة الجنوبية الغربية",
+        "sfax": "صفاقس",
+        "gafsa": "قفصة",
         "copyright": " 2024 خدمة النخبة الطبية. جميع الحقوق محفوظة."
     },
     "login": {
@@ -129,6 +139,13 @@
             "title": "نجاح",
             "description": "تم طلب الموعد بنجاح"
         },
+        "guestInfo": {
+            "title": "معلومات الزائر",
+            "name": "الاسم",
+            "email": "البريد الإلكتروني",
+            "phone": "رقم الهاتف",
+            "phoneOptional": "اختياري - للحالات العاجلة"
+        },
         "error": {
             "title": "خطأ",
             "description": "حدث خطأ",
@@ -155,48 +172,55 @@
     },
     "contactPage": {
         "contactInfo": {
-            "phone": {
-                "title": "الهاتف",
-                "detail": "متاح 24/7"
-            },
-            "email": {
-                "title": "البريد الإلكتروني",
-                "detail": "الرد خلال 24 ساعة"
-            },
-            "address": {
-                "title": "العنوان",
-                "detail": "المكتب الرئيسي"
-            },
-            "openingHours": {
-                "title": "ساعات العمل",
-                "detail": "خدمة الطوارئ 24/7"
-            }
+          "phone": {
+            "title": "رقم الهاتف",
+            "detail": "متوفر على مدار الساعة"
+          },
+          "email": {
+            "title": "البريد الإلكتروني",
+            "detail": "الرد خلال 24 ساعة"
+          },
+          "address": {
+            "title": "العنوان",
+            "detail": "المكتب الرئيسي"
+          },
+          "openingHours": {
+            "title": "ساعات العمل",
+            "detail": "خدمة الطوارئ متوفرة 24/7"
+          }
         },
         "form": {
-            "title": "أرسل لنا رسالة",
-            "userInfo": "معلوماتك",
-            "name": "الاسم",
-            "email": "البريد الإلكتروني",
-            "phone": "الهاتف",
-            "messageLabel": "رسالتك",
-            "messagePlaceholder": "كيف يمكننا مساعدتك؟",
-            "submitButton": "إرسال الرسالة",
-            "submitting": "جارٍ الإرسال..."
+          "title": "اتصل بنا",
+          "userInfo": "معلوماتك",
+          "name": "الاسم الكامل",
+          "namePlaceholder": "أدخل اسمك الكامل",
+          "email": "البريد الإلكتروني",
+          "emailPlaceholder": "أدخل بريدك الإلكتروني",
+          "phone": "رقم الهاتف",
+          "phonePlaceholder": "أدخل رقم هاتفك",
+          "phoneOptional": "اختياري - للحالات العاجلة",
+          "messageLabel": "رسالتك",
+          "messagePlaceholder": "كيف يمكننا مساعدتك اليوم؟",
+          "submitButton": "إرسال الرسالة",
+          "submitting": "جاري الإرسال...",
+          "requiredFields": "* الحقول المطلوبة",
+          "responseTime": "نرد عادةً خلال 24 ساعة",
+          "lastContact": "وقت الاتصال",
+          "success": {
+            "title": "تم إرسال الرسالة",
+            "description": "شكراً لتواصلك معنا. سنرد عليك قريباً."
+          }
         },
         "map": {
-            "title": "موقعنا"
+          "title": "موقعنا"
         },
         "loginDialog": {
-            "title": "تسجيل الدخول مطلوب",
-            "description": "يجب أن تكون مسجلاً لإرسال رسالة. هل ترغب في تسجيل الدخول الآن؟",
-            "cancelButton": "إلغاء",
-            "loginButton": "تسجيل الدخول"
-        },
-        "success": {
-            "title": "نجاح",
-            "description": "تم إرسال رسالتك بنجاح."
+          "title": "هل تريد تسجيل الدخول؟",
+          "description": "سجّل دخولك لمتابعة رسائلك والحصول على ردود أسرع.",
+          "loginButton": "تسجيل الدخول",
+          "cancelButton": "المتابعة كزائر"
         }
-    },
+      },
     "checkoutPage": {
         "emptyCart": {
             "title": "السلة فارغة",
@@ -351,8 +375,16 @@
             "سوسة",
             "المنستير",
             "المهدية",
-            "كاب بون",
-            "تونس الكبرى"
+            "الرأس الطيب",
+            "تونس الكبرى",
+            "بنزرت",
+            "باجة",
+            "جندوبة",
+            "الكاف",
+            "سليانة",
+            "القيروان",
+            "صفاقس",
+            "قفصة"
         ],
         "contact": {
             "title": "تحتاج إلى مساعدة؟",
@@ -431,10 +463,10 @@
             "addToCart": "إضافة إلى السلة",
             "features": "المواصفات"
         },
-        "masks": "ماسكات",
+        "masks": "MASQUES",
         "cpap": "CPAP",
-        "oxygen": "Oxygen",
-        "lits": "Lits",
+        "oxygen": "OXYGENE",
+        "lits": "LITS MEDICALISE",
         "scrollLeft": "العودة إلى الأول",
         "scrollRight": "العودة إلى الأخير",
         "viewDetails": "اظهار التفاصيل"
