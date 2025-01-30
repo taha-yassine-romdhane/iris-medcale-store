@@ -25,7 +25,6 @@ export default function AppointmentSection() {
   const [selectedMonth, setSelectedMonth] = useState(new Date());
   const { user } = useAuth();
   const { toast } = useToast();
-  const router = useRouter();
   const { t } = useTranslation();
 
   // Get available months (current month + next 2 months)

@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { LogOut, User2, X, Heart, Info, Phone, ChevronDown, ShoppingCart, Settings2,  LucideSquareActivity, SquareChevronRight, Calendar } from 'lucide-react';
 import { useTranslation } from '@/contexts/TranslationContext';
-import SearchBar from './SearchBar';
 import { useState, useEffect } from 'react';
 import { User } from '@/types/user'
  

@@ -47,7 +47,6 @@ export default function ContactPage() {
   });
   const { user } = useAuth();
   const { toast } = useToast();
-  const router = useRouter();
   const { t } = useTranslation();
 
   const handleGuestDataChange = (e: React.ChangeEvent<HTMLInputElement>) => {
