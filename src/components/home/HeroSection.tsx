@@ -8,12 +8,14 @@ const heroProducts = [
   {
     id: 1,
     image: "/hero section/slider3.jpeg",
+    mobileImage: "/hero section/slider3Mobile.jpeg",
     position: "center",
     alt: "cm5y5bbek0004l103t3bmd9dn",
   },
   {
     id: 2,
     image: "/hero section/slider4.jpeg",
+    mobileImage: "/hero section/slider3Mobile.jpeg", // Using slider3Mobile.jpeg for the second slide on mobile
     position: "center",
     alt: "cm5y5zi2g0000mn03a508mb4y",
   },
@@ -29,7 +31,7 @@ export default function HeroSection() {
     setCurrentIndex((prevIndex) =>
       prevIndex === heroProducts.length - 1 ? 0 : prevIndex + 1
     );
-    setTimeout(() => setIsAnimating(false), 500); // Match the transition duration
+    setTimeout(() => setIsAnimating(false), 500);
   }, [isAnimating]);
 
   const prevSlide = useCallback(() => {
@@ -38,14 +40,14 @@ export default function HeroSection() {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? heroProducts.length - 1 : prevIndex - 1
     );
-    setTimeout(() => setIsAnimating(false), 500); // Match the transition duration
+    setTimeout(() => setIsAnimating(false), 500);
   }, [isAnimating]);
 
   const goToSlide = (index: number) => {
     if (isAnimating) return;
     setIsAnimating(true);
     setCurrentIndex(index);
-    setTimeout(() => setIsAnimating(false), 500); // Match the transition duration
+    setTimeout(() => setIsAnimating(false), 500);
   };
 
   useEffect(() => {
@@ -67,13 +69,25 @@ export default function HeroSection() {
           >
             <Link href={`/product/${product.alt}`}>
               <div className="relative w-full h-full cursor-pointer">
+                {/* Desktop Image */}
                 <Image
                   src={product.image}
                   alt={product.alt}
                   width={0}
                   height={0}
-                  className="object-contain w-full h-fit"
-                  style={{ objectPosition: product.position }} // Adjust image position
+                  className="object-contain w-full h-fit hidden sm:block"
+                  style={{ objectPosition: product.position }}
+                  priority={index === 0}
+                  sizes="100vw"
+                />
+                {/* Mobile Image */}
+                <Image
+                  src={product.mobileImage}
+                  alt={product.alt}
+                  width={0}
+                  height={0}
+                  className="object-contain w-full h-fit block sm:hidden"
+                  style={{ objectPosition: product.position }}
                   priority={index === 0}
                   sizes="100vw"
                 />
