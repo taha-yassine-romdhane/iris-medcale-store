@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useTranslation } from '@/contexts/TranslationContext';
 import { motion } from 'framer-motion';
