@@ -62,7 +62,7 @@ export const metadata: Metadata = {
   other: {
     'revisit-after': '7 days',
     'msapplication-TileColor': '#2563eb',
-    'google-site-verification': 'google8f86c4dbcb3b593a.html', // 👈 Add your Google Verification Code
+    'google-site-verification': 'UtU39-ipWVaxllm5GhD5WRnE18EuRC2uUkqyC50Rujk', // 👈 Add your Google Verification Code
   },
 };
 
@@ -90,7 +90,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="fr">
       <head>
         {/* Google Site Verification */}
-        <meta name="google-site-verification" content="google8f86c4dbcb3b593a.html" />
+        <meta name="google-site-verification" content="UtU39-ipWVaxllm5GhD5WRnE18EuRC2uUkqyC50Rujk" />
 
         {/* Structured Data for Google */}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
