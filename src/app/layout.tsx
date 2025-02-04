@@ -11,12 +11,12 @@ import { Providers } from '@/components/Providers';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://materiel-medical.tn'),
+  metadataBase: new URL('https://www.elitemedicaleservices.tn/'),
   title: {
-    default: "Matériel Médical Pro - Vente et Location d'Équipements Médicaux",
-    template: "%s | Matériel Médical Pro"
+    default: "Elite Medical Services - Vente et Location d'Équipements Médicaux",
+    template: "%s | Elite Medical Services"
   },
-  description: "Expert en matériel médical professionnel : CPAP, BiPAP, oxygénothérapie, masques et accessoires. Vente et location d'équipements médicaux de haute qualité pour professionnels et particuliers.",
+  description: "Expert en matériel médical : CPAP, BiPAP, oxygénothérapie, masques et accessoires. Vente et location d'équipements médicaux de haute qualité pour professionnels et particuliers.",
   keywords: [
     "matériel médical",
     "équipement médical",
@@ -32,21 +32,37 @@ export const metadata: Metadata = {
   ],
   authors: [
     {
-      name: "Matériel Médical Pro",
-      url: "https://materiel-medical.tn",
+      name: "Elite Medical Services",
+      url: "https://www.elitemedicaleservices.tn/",
     },
   ],
-  creator: "Matériel Médical Pro",
-  publisher: "Matériel Médical Pro",
+  creator: "Elite Medical Services",
+  publisher: "Elite Medical Services",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  classification: 'Équipements Médicaux Professionnels',
+  classification: 'Équipements Médicaux',
+  openGraph: {
+    type: "website",
+    url: "https://www.elitemedicaleservices.tn/",
+    title: "Elite Medical Services - Vente et Location d'Équipements Médicaux",
+    description: "Expert en matériel médical professionnel : CPAP, BiPAP, oxygénothérapie, masques et accessoires.",
+    siteName: "Elite Medical Services",
+    images: [
+      {
+        url: "https://www.elitemedicaleservices.tn/og-image.jpg", // Replace with actual OG image URL
+        width: 1200,
+        height: 630,
+        alt: "Elite Medical Services",
+      },
+    ],
+  },
   other: {
     'revisit-after': '7 days',
     'msapplication-TileColor': '#2563eb',
+    'google-site-verification': 'google8f86c4dbcb3b593a.html', // 👈 Add your Google Verification Code
   },
 };
 
@@ -69,39 +85,56 @@ function FooterFallback() {
   return <div className="h-64 bg-gray-100 animate-pulse" />;
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
+      <head>
+        {/* Google Site Verification */}
+        <meta name="google-site-verification" content="google8f86c4dbcb3b593a.html" />
+
+        {/* Structured Data for Google */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "MedicalBusiness",
+          "name": "Elite Medical Services",
+          "url": "https://www.elitemedicaleservices.tn/",
+          "logo": "https://www.elitemedicaleservices.tn/logo.png",
+          "description": "Vente et location d'équipements médicaux : CPAP, BiPAP, oxygénothérapie et accessoires médicaux.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "11 RUE TAIEB MHIRI",
+            "addressLocality": "Sousse",
+            "postalCode": "4070",
+            "addressCountry": "TN"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+21655820000",
+            "contactType": "customer service"
+          }
+        }) }} />
+      </head>
       <body>
         <Providers>
           <CartProvider>
             <FilterProvider>
-            {/* Ensure NextSSRPlugin is used in a Client Component */}
-            <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-            
-            {/* Wrap Navbar in Suspense */}
-            <div className="w-full h-screen">
+              <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
 
-            <Suspense fallback={<NavbarFallback />}>
-              <Navbar />
-            </Suspense>
+              <div className="w-full h-screen">
+                <Suspense fallback={<NavbarFallback />}>
+                  <Navbar />
+                </Suspense>
 
-            {/* Wrap main content in Suspense */}
-            <Suspense fallback={<MainFallback />}>
-              <>{children}</>
-            </Suspense>
+                <Suspense fallback={<MainFallback />}>
+                  <>{children}</>
+                </Suspense>
 
-            {/* Wrap Footer in Suspense */}
-            <Suspense fallback={<FooterFallback />}>
-              <FooterClient />
-            </Suspense>
-            </div>
-          </FilterProvider>
-        </CartProvider>
+                <Suspense fallback={<FooterFallback />}>
+                  <FooterClient />
+                </Suspense>
+              </div>
+            </FilterProvider>
+          </CartProvider>
         </Providers>
       </body>
     </html>

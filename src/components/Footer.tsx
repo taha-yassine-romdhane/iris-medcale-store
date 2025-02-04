@@ -21,11 +21,8 @@ export default function Footer() {
       "capBon",
       "bizerte",
       "beja",
-      "jendouba",
-      "leKef",
     ],
     center: [
-      "siliana",
       "sousse",
       "monastir",
       "mahdia",
@@ -81,6 +78,11 @@ export default function Footer() {
                   {t('footer.sleepApnea')}
                 </Link>
               </li>
+              <li>
+                <Link href="/appointment" className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300">
+                  {t('footer.appointment')}
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -105,7 +107,7 @@ export default function Footer() {
               <li className="flex items-center text-blue-100">
                 <MapPin className="mr-3 text-red-500" size={20} />
                 <Link href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                  011 Rue tayeb el hedi 4070 M&#39;saken
+                  11 RUE TAIEB MHIRI 4070 MSAKEN SOUSSE 
                 </Link>
               </li>
             </ul>

@@ -43,11 +43,15 @@ export async function GET(request: Request) {
   try {
     const url = new URL(request.url);
     const category = url.searchParams.get('category');
+    const type = url.searchParams.get('type');
+    const subCategory = url.searchParams.get('subCategory');
     const search = url.searchParams.get('search');
 
     const products = await prisma.product.findMany({
       where: {
-        ...(category && { category }),
+        ...(category && { category }), // Filter by category if provided
+        ...(type && { type }), // Filter by type if provided
+        ...(subCategory && { subCategory }), // Filter by subCategory if provided
         ...(search && {
           OR: [
             { name: { contains: search, mode: 'insensitive' } },

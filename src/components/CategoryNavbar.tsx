@@ -23,7 +23,6 @@ interface CategoryType {
   subcategories: string[];
 }
 
-// Move categoryOrder outside the component as a constant
 const CATEGORY_ORDER = [
   'APPAREILS CPAP/PPC',
   'ACCESSOIRES CPAP/PPC',
@@ -42,9 +41,19 @@ const CATEGORY_ORDER = [
 export default function CategoryNavbar() {
   const [categoryTypes, setCategoryTypes] = useState<CategoryType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const { t } = useTranslation();
 
-  // Memoize sortCategories with no dependencies since it uses constant CATEGORY_ORDER
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 1600 || window.innerHeight < 900);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const sortCategories = useCallback((categories: CategoryType[]): CategoryType[] => {
     const orderMap = new Map(CATEGORY_ORDER.map((cat, index) => [cat.trim(), index]));
     return [...categories].sort((a, b) => {
@@ -98,13 +107,11 @@ export default function CategoryNavbar() {
   return (
     <nav className="hidden md:block bg-white z-40 border-t border-blue-100 font-spartan shadow-md">
       <div className="flex justify-start max-w-8xl mx-auto">
-        <div className="flex items-center h-14 space-x-8 ml-[22%]">
-          {/* Home Link */}
+      <div className="flex items-center h-14 space-x-8 ml-0 md:ml-[300px] lg:ml-[22%]">
           <Link href="/" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
             <span>{t('CategoryNavbar.home')}</span>
           </Link>
 
-          {/* Categories Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
@@ -181,28 +188,71 @@ export default function CategoryNavbar() {
           </DropdownMenu>
         </div>
         <div className="flex items-center space-x-4">
-          {/* Other Links */}
-          <Link href="/apnee-du-sommeil" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
-            <Heart className="h-5 w-5 mr-2" />
-            {t('navbar.sleepApnea')}
-          </Link>
-
-          <Link href="/a-propos" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
-            <Info className="w-5 h-5" />
-            <span>{t('navbar.aboutUs')}</span>
-          </Link>
-          <Link href="/contact" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
-            <Phone className="w-5 h-5 mr-2" />
-            {t('navbar.contact')}
-          </Link>
-          <Link href="/appointment" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
-            <Calendar className="w-5 h-5 mr-2" />
-            <span>{t('navbar.makeAnAppointment')}</span>
-          </Link>
-          <Link href="/space-pro" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
-            <User className="w-5 h-5" />
-            <span>{t('navbar.ourServices')}</span>
-          </Link>
+          {isSmallScreen ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
+                  <Menu className="h-5 w-5" />
+                  <span>Menu</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-48 bg-white rounded-lg shadow-lg border border-blue-100">
+                <DropdownMenuItem asChild>
+                  <Link href="/apnee-du-sommeil" className="w-full text-blue-900 hover:text-blue-600">
+                    <Heart className="h-5 w-5 mr-2" />
+                    {t('navbar.sleepApnea')}
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/a-propos" className="w-full text-blue-900 hover:text-blue-600">
+                    <Info className="w-5 h-5 mr-2" />
+                    {t('navbar.aboutUs')}
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/contact" className="w-full text-blue-900 hover:text-blue-600">
+                    <Phone className="w-5 h-5 mr-2" />
+                    {t('navbar.contact')}
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/appointment" className="w-full text-blue-900 hover:text-blue-600">
+                    <Calendar className="w-5 h-5 mr-2" />
+                    {t('navbar.makeAnAppointment')}
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/space-pro" className="w-full text-blue-900 hover:text-blue-600">
+                    <User className="w-5 h-5 mr-2" />
+                    {t('navbar.ourServices')}
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <>
+              <Link href="/apnee-du-sommeil" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
+                <Heart className="h-5 w-5 mr-2" />
+                {t('navbar.sleepApnea')}
+              </Link>
+              <Link href="/a-propos" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
+                <Info className="w-5 h-5" />
+                <span>{t('navbar.aboutUs')}</span>
+              </Link>
+              <Link href="/contact" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
+                <Phone className="w-5 h-5 mr-2" />
+                {t('navbar.contact')}
+              </Link>
+              <Link href="/appointment" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
+                <Calendar className="w-5 h-5 mr-2" />
+                <span>{t('navbar.makeAnAppointment')}</span>
+              </Link>
+              <Link href="/space-pro" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
+                <User className="w-5 h-5" />
+                <span>{t('navbar.ourServices')}</span>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>

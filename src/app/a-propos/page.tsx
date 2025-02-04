@@ -171,7 +171,7 @@ export default function AboutPage() {
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <h4 className="font-semibold text-gray-900">Régions Nord</h4>
                     <ul className="mt-2 space-y-2">
-                      {["Grand Tunis", "Cap Bon", "Bizerte", "Beja", "Jendouba", "Le Kef", "Siliana"].map(
+                      {["Grand Tunis", "Cap Bon", "Bizerte", "Beja"].map(
                         (region, index) => (
                           <li key={index} className="flex items-center space-x-2">
                             <div className="w-3 h-3 rounded-full bg-blue-500"></div>

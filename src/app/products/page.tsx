@@ -57,54 +57,41 @@ export default function ProductsPage() {
         if (!response.ok) {
           throw new Error('Failed to fetch products');
         }
-
+  
         const data = await response.json();
         if (!data || !Array.isArray(data.products)) {
           throw new Error('Invalid data format');
         }
-
+  
         setProducts(data.products);
-        setFilteredProducts(data.products);
-
+  
+        // Apply filters based on URL parameters
+        let filtered = data.products;
+        const category = searchParams?.get('category');
+        const type = searchParams?.get('type');
+        const subCategory = searchParams?.get('subCategory');
+  
+        if (category) {
+          filtered = filtered.filter((product: Product) => product.category === category);
+        }
+  
+        if (type) {
+          filtered = filtered.filter((product: Product) => product.type === type);
+        }
+  
+        if (subCategory) {
+          filtered = filtered.filter((product: Product) => product.subCategory === subCategory);
+        }
+  
+        setFilteredProducts(filtered);
+  
         // Update available filters
         if (data.products.length > 0) {
           const uniqueFilters: Filters = {
-            categories: Array.from(
-              new Set(
-                data.products
-                  .map((p: Product) => p.category)
-                  .filter((category: string ): category is string => 
-                    typeof category === 'string' && category.length > 0
-                  )
-              )
-            ),
-            brands: Array.from(
-              new Set(
-                data.products
-                  .map((p: Product) => p.brand)
-                  .filter((brand: string ): brand is string => 
-                    typeof brand === 'string' && brand.length > 0
-                  )
-              )
-            ),
-            types: Array.from(
-              new Set(
-                data.products
-                  .map((p: Product) => p.type)
-                  .filter((type: string ): type is string => 
-                    typeof type === 'string' && type.length > 0
-                  )
-              )
-            ),
-            subCategories: Array.from(
-              new Set(
-                data.products
-                  .map((p: Product) => p.subCategory)
-                  .filter((subCategory: string ): subCategory is string => 
-                    typeof subCategory === 'string' && subCategory.length > 0
-                  )
-              )
-            ),
+            categories: Array.from(new Set(data.products.map((p: Product) => p.category).filter(Boolean))),
+            brands: Array.from(new Set(data.products.map((p: Product) => p.brand).filter(Boolean))),
+            types: Array.from(new Set(data.products.map((p: Product) => p.type).filter(Boolean))),
+            subCategories: Array.from(new Set(data.products.map((p: Product) => p.subCategory).filter(Boolean))),
           };
           setFilters(uniqueFilters);
         }
@@ -117,7 +104,7 @@ export default function ProductsPage() {
         setIsLoading(false);
       }
     };
-
+  
     fetchProducts();
   }, [searchParams, t]);
 
