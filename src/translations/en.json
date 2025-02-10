@@ -307,15 +307,21 @@
     },
     "coverage": {
       "title": "Our Coverage",
-      "description": "Our qualified technicians cover the regions of Sousse, Monastir, Mahdia, Cap Bon, and Grand Tunis, ensuring quick installation and rigorous technical follow-up.",
-      "northRegion": "North Regions",
-      "centerRegion": "Center Regions",
+      "description": "Our qualified technicians cover the areas of Sousse, Monastir, Mahdia, Cap Bon, and Greater Tunis, ensuring quick installation and precise technical follow-up.",
+      "northRegion": "Northern Regions",
+      "centerRegion": "Central Regions",
+      "southRegion": "Southern Regions",
       "regions": {
-        "grandTunis": "Grand Tunis",
-        "capBon": "Cap Bon",
-        "sousse": "Sousse",
-        "monastir": "Monastir",
-        "mahdia": "Mahdia"
+          "grandTunis": "Greater Tunis",
+          "capBon": "Cap Bon",
+          "sousse": "Sousse",
+          "monastir": "Monastir",
+          "mahdia": "Mahdia",
+          "beja": "Beja",
+          "bizerte": "Bizerte",
+          "kairouan": "Kairouan",
+          "sfax": "Sfax",
+          "gafsa": "Gafsa"
       },
       "imageAlt": "Coverage Map of Tunisia"
     },

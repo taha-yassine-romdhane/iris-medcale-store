@@ -306,21 +306,27 @@
     },
     "coverage": {
       "title": "Notre Couverture",
-      "description": "Nos techniciens qualifiés couvrent les régions de Sousse, Monastir, Mahdia, Cap Bon et le Grand Tunis, assurant une installation rapide et un suivi technique rigoureux.",
+      "description": "Nos techniciens qualifiés couvrent les régions de Sousse, Monastir, Mahdia, Cap Bon et Grand Tunis, assurant une installation rapide et un suivi technique précis.",
       "northRegion": "Régions Nord",
       "centerRegion": "Régions Centre",
+      "southRegion": "Régions Sud",
       "regions": {
-        "grandTunis": "Grand Tunis",
-        "capBon": "Cap Bon",
-        "sousse": "Sousse",
-        "monastir": "Monastir",
-        "mahdia": "Mahdia"
+          "grandTunis": "Grand Tunis",
+          "capBon": "Cap Bon",
+          "sousse": "Sousse",
+          "monastir": "Monastir",
+          "mahdia": "Mahdia",
+          "beja": "Beja",
+          "bizerte": "Bizerte",
+          "kairouan": "Kairouan",
+          "sfax": "Sfax",
+          "gafsa": "Gafsa"
       },
       "imageAlt": "Carte de couverture en Tunisie"
     },
     "cta": {
       "title": "Besoin de nos services ?",
-      "subtitle": "Contactez-nous dès aujourd'hui pour discuter de vos besoins en matière de santé respiratoire.",
+      "subtitle": "Contactez-nous aujourd'hui pour discuter de vos besoins en matière de santé respiratoire.",
       "button": "Contactez-nous"
     }
   },

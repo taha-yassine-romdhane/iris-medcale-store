@@ -46,7 +46,7 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4 pt-4 flex justify-start">
               <Link href="https://www.facebook.com/share/15zdLven1F/" target="_blank" rel="noopener noreferrer" className="flex items-center text-white hover:text-red-400 transition-colors">
-                <Facebook size={24} />  
+                <Facebook size={24} />
                 <span className="ml-2">Facebook</span>
               </Link>
             </div>
@@ -95,7 +95,7 @@ export default function Footer() {
               <li className="flex items-center text-blue-100">
                 <Mail className="mr-3 text-red-500" size={20} />
                 <Link href="mailto:eliteMedicaleServices@Gmail.com" className="hover:text-white transition-colors">
-                  eliteMedicaleServices@Gmail.com
+                  elitemedicaleservices@Gmail.com
                 </Link>
               </li>
               <li className="flex items-center text-blue-100">
@@ -106,8 +106,8 @@ export default function Footer() {
               </li>
               <li className="flex items-center text-blue-100">
                 <MapPin className="mr-3 text-red-500" size={20} />
-                <Link href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                  11 RUE TAIEB MHIRI 4070 MSAKEN SOUSSE 
+                <Link href="https://www.google.com/maps/place/Elite+medicale+services/@35.7348885,10.5760534,1049m/data=!3m1!1e3!4m6!3m5!1s0x12fdf50006296803:0x58c40e5f3c989eec!8m2!3d35.734867!4d10.5740649!16s%2Fg%2F11ly_7f5t1?entry=ttu&g_ep=EgoyMDI1MDIwNS4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  11 RUE TAIEB MHIRI 4070 MSAKEN SOUSSE
                 </Link>
               </li>
             </ul>

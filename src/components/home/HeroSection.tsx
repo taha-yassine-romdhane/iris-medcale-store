@@ -8,14 +8,14 @@ const heroProducts = [
   {
     id: 1,
     image: "/hero section/slider3.jpeg",
-    mobileImage: "/hero section/slider3Mobile.jpeg",
+    mobileImage: "/hero section/slider3Mobilev2.jpg",
     position: "center",
     alt: "cm5y5bbek0004l103t3bmd9dn",
   },
   {
     id: 2,
     image: "/hero section/slider4.jpeg",
-    mobileImage: "/hero section/slider3Mobile.jpeg", // Using slider3Mobile.jpeg for the second slide on mobile
+    mobileImage: "/hero section/slider3Mobilev2.jpg", // Using slider3Mobile.jpeg for the second slide on mobile
     position: "center",
     alt: "cm5y5zi2g0000mn03a508mb4y",
   },
