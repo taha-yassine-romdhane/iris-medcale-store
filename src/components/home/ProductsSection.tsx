@@ -156,7 +156,7 @@ export default function ProductsSection() {
           <div className="w-full overflow-hidden px-4">
             <div
               ref={sliderRefs[refKey]}
-              className="flex w-full gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar py-5 px-2"
+              className="flex w-full gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar py-5 px-2"
               style={{
                 WebkitOverflowScrolling: 'touch',
                 scrollBehavior: 'smooth',
@@ -167,7 +167,7 @@ export default function ProductsSection() {
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className="flex-none w-[75vw] max-w-[240px] min-w-[120px] bg-gradient-to-r from-blue-50 to-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group snap-start"
+                  className="flex-none w-[calc(50%-8px)] sm:w-[240px] min-w-[150px] bg-gradient-to-r from-blue-50 to-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group snap-start"
                 >
                   <Link href={`/product/${product.id}`} className="block">
                     <div className="relative aspect-square w-full overflow-hidden rounded-lg">
@@ -175,9 +175,9 @@ export default function ProductsSection() {
                         <Image
                           src={product.media[0].url}
                           alt={product.name}
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                           fill
-                          className="object-contain p-8 group-hover:scale-105 transition-transform duration-300"
+                          className="object-contain p-6 group-hover:scale-105 transition-transform duration-300"
                         />
                       )}
                       <div className="absolute top-2 right-2 sm:top-3 sm:right-3">

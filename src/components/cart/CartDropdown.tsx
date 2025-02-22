@@ -22,7 +22,7 @@ export default function CartDropdown() {
       {/* Cart Icon */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative text-gray-700 hover:text-blue-600 p-2 transition-colors duration-200"
+        className="relative text-blue-900 hover:text-blue-600 p-2 transition-colors duration-200"
       >
         <ShoppingBag className="h-6 w-6" />
         {cart?.items?.length > 0 && (

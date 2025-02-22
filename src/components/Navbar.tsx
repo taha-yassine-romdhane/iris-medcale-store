@@ -15,7 +15,6 @@ import { useTranslation } from '@/contexts/TranslationContext';
 import { motion, AnimatePresence } from "framer-motion";
 import MobileNavbar from "./MobileNavbar";
 
-
 const Navbar = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -85,7 +84,7 @@ const Navbar = () => {
         animate={{ opacity: 1 }}
         className="bg-white z-50 shadow-sm relative"
       >
-        {/* Mobile Search Bar - Added this new section */}
+        {/* Mobile Search Bar */}
         <div className="lg:hidden w-full px-4 py-2 bg-white border-b">
           <SearchBar />
         </div>
@@ -110,18 +109,38 @@ const Navbar = () => {
           </motion.div>
 
           <div className="flex justify-between items-center h-16 px-4">
-            {/* Mobile Logo */}
-            <div className="md:hidden">
-              <Link href="/" className="flex items-center">
-                <Image
-                  src="/logo_No_BG.png"
-                  alt="Elite Medicale Service Logo"
-                  width={120}
-                  height={120}
-                  className="object-contain"
-                  priority
-                />
-              </Link>
+            {/* Mobile Logo and Navigation */}
+            <div className="md:hidden flex items-center justify-between w-full">
+              {/* Menu Button - Left */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 rounded hover:bg-blue-100 flex items-center gap-2"
+              >
+                <Menu className="h-6 w-6 text-blue-900" />
+                <span className="text-blue-900 font-medium">{t('navbar.title')}</span>
+              </motion.button>
+
+              {/* Logo - Center */}
+              <div className="absolute left-1/2 transform -translate-x-1/2">
+                <Link href="/" className="flex items-center">
+                  <Image
+                    src="/logo_No_BG.png"
+                    alt="Elite Medicale Service Logo"
+                    width={120}
+                    height={120}
+                    className="object-contain"
+                    priority
+                  />
+                </Link>
+              </div>
+
+              {/* Language Switcher and Cart - Right */}
+              <div className="flex items-center gap-2">
+                <LanguageSwitcher />
+               
+              </div>
             </div>
 
             {/* Desktop Search Bar */}
@@ -212,20 +231,9 @@ const Navbar = () => {
                 )}
               </div>
 
-              <div className="md:block">
+              <div className="hidden md:block">
                 <LanguageSwitcher />
               </div>
-
-              {/* Mobile Menu Button */}
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-2 rounded hover:bg-blue-100 flex items-center gap-2"
-              >
-                <Menu className="h-6 w-6 text-blue-900" />
-                <span className="text-blue-900 font-medium">{t('navbar.title')}</span>
-              </motion.button>
             </div>
           </div>
         </div>

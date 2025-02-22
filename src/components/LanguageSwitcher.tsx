@@ -63,7 +63,7 @@ export function LanguageSwitcher() {
             className="object-cover"
           />
         </div>
-        <span className="text-sm font-medium" dir={currentLanguage.dir}>{currentLanguage.name}</span>
+        <span className="hidden sm:inline text-sm font-medium" dir={currentLanguage.dir}>{currentLanguage.name}</span>
         <ChevronDown
           className={`w-4 h-4 transition-transform duration-200 ${
             isOpen ? 'transform rotate-180' : ''
