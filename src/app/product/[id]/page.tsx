@@ -149,15 +149,20 @@ export default function ProductPage() {
           {/* Product Images and Video */}
           <div className="relative space-y-6">
             {/* Main Image Display */}
-            <div className="aspect-w-1 aspect-h-1 w-full rounded-lg overflow-hidden bg-gray-100 min-h-[400px]">
+            <div className="relative aspect-square w-full rounded-lg overflow-hidden bg-gray-100">
               {product.media[currentImageIndex]?.type === 'image' ? (
                 <Image
                   src={product.media[currentImageIndex].url}
                   alt={product.media[currentImageIndex].alt || getTranslatedContent('name')}
-                  width={600}
-                  height={600}
-                  className="object-cover object-center"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 600px"
+                  className="object-contain"
                   priority
+                  quality={85}
+                  onError={(e) => {
+                    const img = e.target as HTMLImageElement;
+                    img.src = '/placeholder-image.jpg'; // Add a placeholder image in your public folder
+                  }}
                 />
               ) : null}
             </div>
@@ -188,15 +193,22 @@ export default function ProductPage() {
                   <button
                     key={media.id}
                     onClick={() => setCurrentImageIndex(index)}
-                    className={`relative aspect-w-1 aspect-h-1 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow ${currentImageIndex === index ? 'ring-2 ring-blue-500' : ''
-                      }`}
+                    className={`relative aspect-square rounded-lg overflow-hidden bg-gray-100 shadow-sm hover:shadow-md transition-shadow ${
+                      currentImageIndex === index ? 'ring-2 ring-blue-500' : ''
+                    }`}
                   >
                     <Image
                       src={media.url}
                       alt={media.alt || `${getTranslatedContent('name')} thumbnail ${index + 1}`}
-                      width={100}
-                      height={100}
-                      className="object-cover"
+                      fill
+                      sizes="(max-width: 768px) 25vw, 150px"
+                      className="object-contain"
+                      loading="lazy"
+                      quality={60}
+                      onError={(e) => {
+                        const img = e.target as HTMLImageElement;
+                        img.src = '/placeholder-image.jpg'; // Add a placeholder image in your public folder
+                      }}
                     />
                   </button>
                 ))}
@@ -294,7 +306,6 @@ export default function ProductPage() {
                     <li key={key} className="flex items-start">
                       <span className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-blue-500 mr-3"></span>
                       <div>
-                        <span className="font-medium text-gray-900">{key}:</span>
                         <span className="ml-2 text-gray-600">{String(value)}</span>
                       </div>
                     </li>

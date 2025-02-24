@@ -308,7 +308,7 @@ export default function ProductsPage() {
                         alt={product.name}
                         width={300}
                         height={300}
-                        className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                        className="object-contain w-full h-full transition-transform duration-300 group-hover:scale-105 bg-white"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-gray-100">
@@ -321,14 +321,27 @@ export default function ProductsPage() {
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
                       {getTranslatedContent(product, 'name')}
                     </h3>
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      <Badge variant={product.stock === 'IN_STOCK' ? 'success' : 'destructive'} className="text-xs">
+                        {product.stock === 'IN_STOCK' 
+                          ? t('productsPage.products.inStock')
+                          : product.stock === 'LOW_STOCK'
+                          ? t('productsPage.products.lowStock')
+                          : product.stock === 'PRE_ORDER'
+                          ? t('productsPage.products.preOrder')
+                          : product.stock === 'COMING_SOON'
+                          ? t('productsPage.products.comingSoon')
+                          : t('productsPage.products.outOfStock')}
+                      </Badge>
+                      {product.brand && (
+                        <Badge variant="outline" className="text-xs">
+                          {product.brand}
+                        </Badge>
+                      )}
+                    </div>
                     <p className="text-sm text-gray-600 mb-4 line-clamp-2">
                       {getTranslatedContent(product, 'description')}
                     </p>
-
-                    {/* Features List */}
-                    <div className="mt-4">
-                      {getTranslatedContent(product, 'features')}
-                    </div>
 
                     {/* Add to Cart Button */}
                     <Button
