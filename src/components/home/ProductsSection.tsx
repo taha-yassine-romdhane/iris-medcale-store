@@ -7,6 +7,7 @@ import { useCart } from '@/hooks/useCart';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Product } from '@/types/product';
 import { useTranslation } from '@/contexts/TranslationContext';
+import MobileProductGrid from './MobileProductGrid';
 
 interface CategoryProducts {
   cpap: Product[];
@@ -30,6 +31,7 @@ export default function ProductsSection() {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const sliderRefs = {
     cpap: useRef<HTMLDivElement | null>(null),
@@ -109,6 +111,17 @@ export default function ProductsSection() {
     fetchProducts();
   }, []);
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const handleScroll = (direction: 'left' | 'right', refKey: keyof typeof sliderRefs) => {
     const container = sliderRefs[refKey].current;
     if (!container) return;
@@ -124,6 +137,10 @@ export default function ProductsSection() {
 
   const ProductSlider = ({ title, products, refKey }: { title: string, products: Product[], refKey: keyof CategoryProducts }) => {
     const { addToCart } = useCart();
+
+    if (isMobile) {
+      return <MobileProductGrid products={products} title={title} />;
+    }
 
     return (
       <div className="mb-12 last:mb-0 overflow-hidden">
@@ -271,11 +288,11 @@ export default function ProductsSection() {
   return (
     <div className="max-w-[1400px] mx-auto bg-white rounded-2xl p-4 sm:p-8 my-8 sm:my-12 w-full">
       {loading ? (
-        <div className="text-center py-12">
+        <div className="text-center py-8">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto"></div>
         </div>
       ) : error ? (
-        <div className="text-center text-red-600 py-12">{error}</div>
+        <div className="text-center text-red-600 py-8">{error}</div>
       ) : (
         <>
           <ProductSlider title="cpap" products={products.cpap} refKey="cpap" />

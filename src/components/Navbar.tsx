@@ -110,36 +110,36 @@ const Navbar = () => {
 
           <div className="flex justify-between items-center h-16 px-4">
             {/* Mobile Logo and Navigation */}
-            <div className="md:hidden flex items-center justify-between w-full">
-              {/* Menu Button - Left */}
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded hover:bg-blue-100 flex items-center gap-2"
-              >
-                <Menu className="h-6 w-6 text-blue-900" />
-                <span className="text-blue-900 font-medium">{t('navbar.title')}</span>
-              </motion.button>
-
-              {/* Logo - Center */}
-              <div className="absolute left-1/2 transform -translate-x-1/2">
+            <div className="md:hidden flex items-center w-full">
+              {/* Left side with Logo and Menu */}
+              <div className="flex items-center gap-2">
+                {/* Logo */}
                 <Link href="/" className="flex items-center">
                   <Image
                     src="/logo_No_BG.png"
                     alt="Elite Medicale Service Logo"
-                    width={120}
-                    height={120}
+                    width={80}
+                    height={80}
                     className="object-contain"
                     priority
                   />
                 </Link>
+
+                {/* Menu Button with Hi text */}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  className="p-2 rounded hover:bg-blue-100 flex items-center gap-2"
+                >
+                  <Menu className="h-6 w-6 text-blue-900" />
+                  <span className="text-blue-900 font-medium">{t('navbar.title')}</span>
+                </motion.button>
               </div>
 
-              {/* Language Switcher and Cart - Right */}
-              <div className="flex items-center gap-2">
+              {/* Language Switcher - Right */}
+              <div className="flex items-center gap-2 ml-auto">
                 <LanguageSwitcher />
-               
               </div>
             </div>
 
