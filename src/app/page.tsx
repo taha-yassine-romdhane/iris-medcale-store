@@ -14,29 +14,7 @@ const sectionVariants = {
 export default function HomePage() {
   return (
     <div className="flex flex-col w-full">
-        {/* Floating Particles Background */}
-        <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-4 h-4 bg-blue-100 rounded-full"
-            initial={{ 
-              x: Math.random() * window.innerWidth, 
-              y: Math.random() * window.innerHeight 
-            }}
-            animate={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-        ))}
-      </div>
+       
       {/* Hero Section */}
       <motion.div
         initial="hidden"
