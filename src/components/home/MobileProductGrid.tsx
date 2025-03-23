@@ -44,9 +44,9 @@ export default function MobileProductGrid({ products, title }: MobileProductGrid
   };
 
   return (
-    <div className="mb-8">
+    <div className="mb-3">
       {/* Title and Navigation */}
-      <div className="flex justify-between items-center mb-6 px-4">
+      <div className="flex justify-between items-center mb-1 px-4">
         <h2 className="text-xl font-bold text-blue-900">{t(`productsSection.${title}`)}</h2>
         <div className="flex gap-3">
           <button
@@ -70,7 +70,7 @@ export default function MobileProductGrid({ products, title }: MobileProductGrid
       <div className="w-full overflow-hidden">
         <div
           ref={sliderRef}
-          className="flex gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar py-5 px-4"
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar py-1 px-4"
           style={{
             WebkitOverflowScrolling: 'touch',
             scrollBehavior: 'smooth',
@@ -131,12 +131,12 @@ export default function MobileProductGrid({ products, title }: MobileProductGrid
                 </div>
               </Link>
 
-              <div className="p-2">
+              <div className="p-1.5">
                 <Link href={`/product/${product.id}`} className="block">
                   <h3 className="font-medium text-blue-900 text-sm line-clamp-1 mb-0.5">
                     {getTranslatedContent(product, 'name')}
                   </h3>
-                  <p className="text-xs text-gray-600 line-clamp-1 mb-2">
+                  <p className="text-xs text-gray-600 line-clamp-1 mb-1">
                     {getTranslatedContent(product, 'description')}
                   </p>
                 </Link>
