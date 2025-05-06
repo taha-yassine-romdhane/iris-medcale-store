@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage (Highest Priority) -->
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/</loc>
+    <lastmod>2024-06-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Informational Pages -->
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/apnee-du-sommeil</loc>
+    <lastmod>2024-06-15</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/a-propos</loc>
+    <lastmod>2024-06-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/contact</loc>
+    <lastmod>2024-06-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Appointment & Professional Pages -->
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/appointment</loc>
+    <lastmod>2024-06-15</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/space-pro</loc>
+    <lastmod>2024-06-15</lastmod>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Authentication Pages (Lower Priority) -->
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/login</loc>
+    <lastmod>2024-06-15</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/signup</loc>
+    <lastmod>2024-06-15</lastmod>
+    <priority>0.3</priority>
+  </url>
+  
+  <!-- Product Categories (High SEO Value) -->
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/products?category=APPAREILS+CPAP%2FPPC</loc>
+    <lastmod>2024-06-15</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/products?category=ACCESSOIRES+CPAP%2FPPC</loc>
+    <lastmod>2024-06-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/products?category=CONCENTRATEURS+D%27OXYGENE</loc>
+    <lastmod>2024-06-15</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/products?category=MASQUES</loc>
+    <lastmod>2024-06-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/products?category=APPAREILS+NEBULISEUR</loc>
+    <lastmod>2024-06-15</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/products?category=APPAREILS+ASPIRATEUR</loc>
+    <lastmod>2024-06-15</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/products?category=ACCESSOIRES+AEROSOL</loc>
+    <lastmod>2024-06-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/products?category=ACCESSOIRE+ASPIRATEUR</loc>
+    <lastmod>2024-06-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/products?category=LIT+MEDICALISE</loc>
+    <lastmod>2024-06-15</lastmod>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Search Page (Low Priority) -->
+  <url>
+    <loc>https://www.elitemedicaleservices.tn/search?q=cpap</loc>
+    <lastmod>2024-06-15</lastmod>
+    <priority>0.2</priority>
+  </url>
+</urlset>

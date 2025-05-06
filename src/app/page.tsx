@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import HeroSection from "@/components/home/HeroSection";
 import ProductsSection from "@/components/home/ProductsSection";
 import BrandsSection from "@/components/home/BrandsSection";
+import CatalogueFlipBook from "@/components/home/CatalogueFlipBook";
 
 // Animation variants for sections
 const sectionVariants = {
@@ -33,6 +34,16 @@ export default function HomePage() {
         variants={sectionVariants}
       >
         <ProductsSection />
+      </motion.div>
+
+      {/* Catalogue Flip Book Section */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={sectionVariants}
+      >
+        <CatalogueFlipBook />
       </motion.div>
 
       {/* Brands Section */}

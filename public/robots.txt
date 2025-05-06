@@ -1,0 +1,35 @@
+# https://www.elitemedicaleservices.tn/robots.txt
+# Allow all crawlers full access
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /account/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /api/          # Block API routes
+Disallow: /_next/       # Block Next.js internals
+Disallow: /*?*          # Block dynamic URLs with params (unless needed)
+Disallow: /*.json$      # Block JSON files
+Disallow: /*.js$        # Block JS source files
+
+# Sitemap location
+Sitemap: https://www.elitemedicaleservices.tn/sitemap.xml
+
+# Specify crawl rate for Google
+User-agent: Googlebot
+Crawl-delay: 1
+Allow: /*.css$
+Allow: /*.js$           # Allow JS for proper rendering
+Disallow: /search?      # Block search result pages
+
+# Specify crawl rate for Bing
+User-agent: Bingbot
+Crawl-delay: 1
+
+# Block admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /account/
+Disallow: /cart/
+Disallow: /checkout/
