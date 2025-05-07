@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ZoomIn, ZoomOut, X, Search, MaximizeIcon } from 'lucide-react';
+import { ZoomIn, ZoomOut, X, Search } from 'lucide-react';
 
 interface BookPageProps {
   src: string;
