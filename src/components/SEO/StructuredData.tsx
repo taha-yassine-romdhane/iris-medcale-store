@@ -2,7 +2,6 @@ import React from 'react';
 
 interface StructuredDataProps {
   type?: 'organization' | 'localBusiness' | 'product' | 'breadcrumb' | 'faq';
-  //disable slint
   // eslint-disable-next-line
   data?: any;
 }

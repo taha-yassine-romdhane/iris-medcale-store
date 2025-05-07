@@ -49,18 +49,33 @@ export const getSiteMetadata = (): Metadata => {
       "vente traitement apnée sommeil Tunisie",
       "vente location concentrateur oxygène Tunisie",
       "CPAP Tunisie prix",
-      "CPAP Auto Tunisie",               // Added
-      "CPAP Auto ResMed Tunisie",        // Added
-      "meilleur CPAP Auto Tunisie",      // Added
+      "CPAP Auto Tunisie",               
+      "CPAP Auto ResMed Tunisie",        
+      "meilleur CPAP Auto Tunisie",      
       "meilleur CPAP Tunisie",
       "achat CPAP Tunisie",
       "CPAP ResMed Tunisie",
-      "CPAP Philips Tunisie",
+      "CPAP Yuwell Tunisie",
+      "CPAP Yuwell Auto Tunisie",
+      "Masque CPAP Yuwell Tunisie",
+      "Masque CPAP",
+      "VNI",
+      "appareil respiratoire",
+      "appareil de ventilation non invasive",
+      "Masque CPAP Yuwell Auto Tunisie",
+      "appareil pour apnée du sommeil",
+      "solution apnée du sommeil",
+
 
       // BiPAP Keywords
       "BiPAP Tunisie prix",
       "location BiPAP Tunisie",
       "BiPAP vs CPAP Tunisie",
+      "location VNI Tunisie",
+      "polygraphie du someill Tunisie",
+      "polygraphie du someill",
+      "assistance respiratoire Tunisie",
+      "assistance respiratoire",
 
       // Sleep Apnea Keywords
       "traitement apnée du sommeil Tunisie",
@@ -69,22 +84,29 @@ export const getSiteMetadata = (): Metadata => {
 
       // Oxygen Therapy Keywords
       "concentrateur oxygène Tunisie prix",
-      "location concentrateur oxygène Tunis",
+      "location concentrateur oxygène Tunisie",
+      "concentrateur oxygéne 5L",
+      "concentrateur oxygéne 10L",
+      "concentrateur oxygéne 10L portable",
+      "concentrateur oxygéne 5L portable",
+      "concentrateur oxygéne 5L Tunisie",
+      "concentrateur oxygéne 10L Tunisie",
+      "concentrateur oxygéne 10L portable Tunisie",
+      "concentrateur oxygéne 5L portable Tunisie",
       "oxygénothérapie à domicile Tunisie",
 
       // Medical Equipment Keywords
-      "matériel médical Tunisie pas cher",
       "équipement médical Tunisie professionnel",
       "vente matériel médical Tunis",
 
       // Respiratory Equipment Keywords
       "masques CPAP Tunisie",
-      "accessoires CPAP Auto Tunisie",   // Added
+      "accessoires CPAP Auto Tunisie",    
       "accessoires respiratoires Tunisie",
       "équipement VNI Tunisie",
 
       // Location Services Keywords
-      "location CPAP Auto Tunisie",      // Added
+      "location CPAP Auto Tunisie",
       "location CPAP Tunisie",
       "location BiPAP Tunis",
       "location appareil respiratoire Sousse",
