@@ -36,7 +36,7 @@ function FooterFallback() {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr">
+    <html lang="fr" suppressHydrationWarning>
       <head>
         {/* Google Site Verification */}
         <meta name="google-site-verification" content="UtU39-ipWVaxllm5GhD5WRnE18EuRC2uUkqyC50Rujk" />

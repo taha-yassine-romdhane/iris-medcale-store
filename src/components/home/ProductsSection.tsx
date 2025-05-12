@@ -5,8 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from '@/hooks/useCart';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Product } from '@/types/product';
 import { useTranslation } from '@/contexts/TranslationContext';
+import { Product } from '@/types/product';
+import { createProductSlug } from '@/utils/slugify';
 import MobileProductGrid from './MobileProductGrid';
 
 interface CategoryProducts {
@@ -186,7 +187,7 @@ export default function ProductsSection() {
                   key={product.id}
                   className="flex-none w-[calc(50%-8px)] sm:w-[240px] min-w-[150px] bg-gradient-to-r from-blue-50 to-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group snap-start"
                 >
-                  <Link href={`/product/${product.id}`} className="block">
+                  <Link href={`/product/${createProductSlug(product.name, product.id)}`} className="block">
                     <div className="relative aspect-square w-full overflow-hidden rounded-lg">
                       {product.media && product.media[0] && (
                         <Image
@@ -235,7 +236,7 @@ export default function ProductsSection() {
                   </Link>
 
                   <div className="p-4 sm:p-5">
-                    <Link href={`/product/${product.id}`} className="block group-hover:text-blue-700 transition-colors duration-200">
+                    <Link href={`/product/${createProductSlug(product.name, product.id)}`} className="block group-hover:text-blue-700 transition-colors duration-200">
                       <h3 className="font-semibold text-base sm:text-lg mb-2 text-blue-900">{getTranslatedContent(product, 'name')}</h3>
                     </Link>
                     <p className="text-xs sm:text-sm text-blue-800/70 mb-4 line-clamp-2">

@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from '@/contexts/TranslationContext';
+import { createProductSlug } from '@/utils/slugify';
 
 interface Product {
   id: string;
@@ -105,7 +106,7 @@ export default function SearchBar() {
               {products.map((product) => (
                 <Link
                   key={product.id}
-                  href={`/product/${product.id}`}
+                  href={`/product/${createProductSlug(product.name, product.id)}`}
                   className="flex items-start px-6 py-4 hover:bg-blue-50 transition-colors group"
                   onClick={() => setShowResults(false)}
                 >

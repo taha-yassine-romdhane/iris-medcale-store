@@ -215,12 +215,7 @@ export default function CategoryNavbar() {
                     {t('navbar.contact')}
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/appointment" className="w-full text-blue-900 hover:text-blue-600">
-                    <Calendar className="w-5 h-5 mr-2" />
-                    {t('navbar.makeAnAppointment')}
-                  </Link>
-                </DropdownMenuItem>
+            
                 <DropdownMenuItem asChild>
                   <Link href="/space-pro" className="w-full text-blue-900 hover:text-blue-600">
                     <User className="w-5 h-5 mr-2" />
@@ -243,10 +238,7 @@ export default function CategoryNavbar() {
                 <Phone className="w-5 h-5 mr-2" />
                 {t('navbar.contact')}
               </Link>
-              <Link href="/appointment" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
-                <Calendar className="w-5 h-5 mr-2" />
-                <span>{t('navbar.makeAnAppointment')}</span>
-              </Link>
+          
               <Link href="/space-pro" className="text-blue-900 hover:text-blue-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
                 <User className="w-5 h-5" />
                 <span>{t('navbar.ourServices')}</span>

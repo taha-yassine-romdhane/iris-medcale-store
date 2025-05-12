@@ -19,6 +19,7 @@ import { ShoppingCart, Search, Filter } from 'lucide-react';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import { useTranslation } from '@/contexts/TranslationContext';
+import { createProductSlug } from '@/utils/slugify';
 import { useSearchParams } from 'next/navigation';
 
 
@@ -300,7 +301,7 @@ export default function ProductsPage() {
                 key={product.id}
                 className="group relative bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg"
               >
-                <Link href={`/product/${product.id}`}>
+                <Link href={`/product/${createProductSlug(product.name, product.id)}`}>
                   <div className="aspect-square relative overflow-hidden">
                     {product.media && product.media.length > 0 ? (
                       <Image

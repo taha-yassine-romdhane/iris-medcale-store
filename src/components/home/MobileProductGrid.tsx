@@ -5,6 +5,7 @@ import { useCart } from '@/hooks/useCart';
 import { useTranslation } from '@/contexts/TranslationContext';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useRef } from 'react';
+import { createProductSlug } from '@/utils/slugify';
 
 interface MobileProductGridProps {
   products: Product[];
@@ -83,7 +84,7 @@ export default function MobileProductGrid({ products, title }: MobileProductGrid
               key={product.id}
               className="flex-none w-[calc(50%-8px)] min-w-[150px] bg-gradient-to-r from-blue-50 to-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group snap-start"
             >
-              <Link href={`/product/${product.id}`} className="block">
+              <Link href={`/product/${createProductSlug(product.name, product.id)}`} className="block">
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
                   {product.media && product.media[0] && (
                     <Image
@@ -132,7 +133,7 @@ export default function MobileProductGrid({ products, title }: MobileProductGrid
               </Link>
 
               <div className="p-1.5">
-                <Link href={`/product/${product.id}`} className="block">
+                <Link href={`/product/${createProductSlug(product.name, product.id)}`} className="block">
                   <h3 className="font-medium text-blue-900 text-sm line-clamp-1 mb-0.5">
                     {getTranslatedContent(product, 'name')}
                   </h3>
