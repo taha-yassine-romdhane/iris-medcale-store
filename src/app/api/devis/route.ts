@@ -3,6 +3,7 @@ import prisma from '@/lib/prisma';
 import { verifyToken } from '@/lib/jwt';
 import { CartItem } from '@/types/cart';
 import { Prisma, StatusCommande } from '@prisma/client';
+import { sendDevisNotificationEmail } from '@/lib/email';
 
 // Ensure JWT_SECRET is available
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -194,6 +195,30 @@ export async function POST(req: NextRequest) {
         }
       }
     });
+
+    // Send email notification
+    try {
+      // Format the data for the email
+      const emailData = {
+        orderNumber: order.id,
+        customerName: `${user.prenom || ''} ${user.nom || ''}`.trim(),
+        customerEmail: user.email,
+        customerPhone: user.telephone,
+        items: order.items.map(item => ({
+          name: item.product.name,
+          brand: item.product.brand,
+          type: item.product.type,
+          quantity: item.quantity
+        }))
+      };
+      
+      // Send the email notification
+      await sendDevisNotificationEmail(emailData);
+      console.log('Devis notification email sent successfully');
+    } catch (emailError) {
+      // Log the error but don't fail the request if email sending fails
+      console.error('Error sending devis notification email:', emailError);
+    }
 
     return NextResponse.json(
       { success: true, data: order },

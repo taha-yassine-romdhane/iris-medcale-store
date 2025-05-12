@@ -19,7 +19,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "email",
-    content: "eliteMedicaleServices@Gmail.com",
+    content: "contact@elitemedicaleservices.tn",
     detail: "responseWithin24h"
   },
   {

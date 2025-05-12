@@ -94,8 +94,8 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center text-blue-100">
                 <Mail className="mr-3 text-red-500" size={20} />
-                <Link href="mailto:eliteMedicaleServices@Gmail.com" className="hover:text-white transition-colors">
-                  elitemedicaleservices@Gmail.com
+                <Link href="mailto:contact@elitemedicaleservices.tn" className="hover:text-white transition-colors">
+                  contact@elitemedicaleservices.tn
                 </Link>
               </li>
               <li className="flex items-center text-blue-100">

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import { sendContactFormEmail } from '@/lib/email';
 
 const prisma = new PrismaClient();
 
@@ -26,6 +27,21 @@ export async function POST(request: NextRequest) {
           utilisateurId: user.id,
         },
       });
+      
+      // Send email notification for logged-in user
+      try {
+        await sendContactFormEmail({
+          name: `${user.prenom || ''} ${user.nom || ''}`.trim(),
+          email: user.email,
+          phone: user.telephone,
+          message: message
+        });
+        console.log('Contact form email sent successfully');
+      } catch (emailError) {
+        // Log the error but don't fail the request
+        console.error('Error sending contact form email:', emailError);
+      }
+      
       return NextResponse.json({ success: true, contact });
     } else {
       // For guests, include their details in the message and use guest account
@@ -44,6 +60,20 @@ ${message}`;
           utilisateurId: GUEST_USER_ID, // Use the guest user account
         },
       });
+      
+      // Send email notification for guest user
+      try {
+        await sendContactFormEmail({
+          name: user.nom,
+          email: user.email,
+          phone: user.telephone,
+          message: message
+        });
+        console.log('Contact form email sent successfully');
+      } catch (emailError) {
+        // Log the error but don't fail the request
+        console.error('Error sending contact form email:', emailError);
+      }
       
       return NextResponse.json({ success: true, contact });
     }
