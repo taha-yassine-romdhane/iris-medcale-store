@@ -80,7 +80,7 @@ export default function ProductClient() {
     return () => {
       isMounted = false;
     };
-  }, [slug]);
+  }, [slug, product]);
  
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
   const getTranslatedContent = (field: keyof Product): any => {

@@ -1,16 +1,17 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import ProductClient from './ProductClient';
+
+type Props = {
+  params: { slug: string }
+}
 
 // Generate dynamic metadata for SEO
 export async function generateMetadata(
-  { params }: { params: { slug: string } }
+  { params }: Props,
 ): Promise<Metadata> {
-  // Ensure params is properly awaited
-  const resolvedParams = await Promise.resolve(params);
-  const slug = resolvedParams.slug;
+  const slug = params.slug;
   
   try {
-    // Fetch product data with absolute URL
     const baseUrl = process.env.NODE_ENV === 'development' 
       ? 'http://localhost:3001' 
       : 'https://www.elitemedicaleservices.tn';
