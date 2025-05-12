@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Calendar, ChevronDown, Heart, Info, Menu, Phone, User } from 'lucide-react';
+import { ChevronDown, Heart, Info, Menu, Phone, User } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,

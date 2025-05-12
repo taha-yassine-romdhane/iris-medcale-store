@@ -106,7 +106,7 @@ export default function SearchBar() {
               {products.map((product) => (
                 <Link
                   key={product.id}
-                  href={`/product/${createProductSlug(product.name, product.id)}`}
+                  href={`/product/${createProductSlug(product.name)}`}
                   className="flex items-start px-6 py-4 hover:bg-blue-50 transition-colors group"
                   onClick={() => setShowResults(false)}
                 >

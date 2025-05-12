@@ -15,10 +15,9 @@ export function slugify(name: string): string {
 /**
  * Creates a SEO-friendly URL slug from a product name
  * @param name The product name
- * @param id The product ID (not used in the slug, but kept for backward compatibility)
  * @returns A URL-friendly slug in the format "product-name"
  */
-export function createProductSlug(name: string, id: string): string {
+export function createProductSlug(name: string): string {
   return slugify(name);
 }
 

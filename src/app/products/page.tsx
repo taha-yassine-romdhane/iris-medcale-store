@@ -301,7 +301,7 @@ export default function ProductsPage() {
                 key={product.id}
                 className="group relative bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg"
               >
-                <Link href={`/product/${createProductSlug(product.name, product.id)}`}>
+                <Link href={`/product/${createProductSlug(product.name)}`}>
                   <div className="aspect-square relative overflow-hidden">
                     {product.media && product.media.length > 0 ? (
                       <Image

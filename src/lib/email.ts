@@ -1,6 +1,4 @@
 import { Resend } from 'resend';
-import { CartItem } from '@/types/cart';
-
 const resend = new Resend(process.env.RESEND_API_KEY || '');
 
 if (!process.env.RESEND_API_KEY) {
