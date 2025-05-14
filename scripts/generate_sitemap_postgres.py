@@ -43,8 +43,14 @@ def get_products_from_db():
         # Create a cursor that returns dictionaries
         cursor = conn.cursor(cursor_factory=RealDictCursor)
         
-        # Execute query to get products
-        cursor.execute("SELECT id, name, \"updatedAt\" FROM \"Product\"")
+        # Execute query to get products with their media
+        cursor.execute("""
+            SELECT p.id, p.name, p."updatedAt", p.brand, 
+                   json_agg(json_build_object('url', m.url, 'alt', m.alt)) as media
+            FROM "Product" p
+            LEFT JOIN "Media" m ON m."productId" = p.id
+            GROUP BY p.id, p.name, p."updatedAt", p.brand
+        """)
         
         # Fetch all products
         products = cursor.fetchall()
@@ -74,7 +80,8 @@ def generate_sitemap():
     
     # Start building the sitemap XML
     sitemap = f"""<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <!-- Homepage (Highest Priority) -->
   <url>
     <loc>{base_url}/</loc>
@@ -181,11 +188,40 @@ def generate_sitemap():
         lastmod = product.get('updatedAt', current_date)
         if isinstance(lastmod, datetime.datetime):
             lastmod = lastmod.strftime('%Y-%m-%d')
-            
+        
+        # Start the URL entry
         sitemap += f"""  <url>
     <loc>{base_url}/product/{product_slug}</loc>
     <lastmod>{lastmod}</lastmod>
     <priority>0.8</priority>
+"""
+        
+        # Add image information if available
+        media = product.get('media')
+        if media and isinstance(media, list) and len(media) > 0:
+            # Filter out any None values
+            media_items = [item for item in media if item and isinstance(item, dict) and item.get('url')]
+            
+            for media_item in media_items:
+                image_url = media_item.get('url')
+                if image_url:
+                    # Ensure the URL is absolute
+                    if not image_url.startswith('http'):
+                        image_url = f"{base_url}{image_url if image_url.startswith('/') else '/' + image_url}"
+                    
+                    # Get the alt text or use the product name
+                    image_alt = media_item.get('alt') or product.get('name', '')
+                    image_title = f"{product.get('name', '')} | {product.get('brand', '')}"
+                    
+                    sitemap += f"""
+    <image:image>
+      <image:loc>{image_url}</image:loc>
+      <image:title>{image_title}</image:title>
+      <image:caption>{image_alt}</image:caption>
+    </image:image>"""
+        
+        # Close the URL entry
+        sitemap += """
   </url>
 """
     

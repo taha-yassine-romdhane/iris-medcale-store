@@ -9,16 +9,21 @@ export const getSiteMetadata = (): Metadata => {
 
     // Title optimized with location keywords for better local search ranking
     title: {
-      default: "Elite Medical Services - Équipements Médicaux CPAP et Oxygénothérapie en Tunisie",
-      template: "%s | Elite Medical Services Tunisie"
+      default: "CPAP Tunisie - Vente & Location d'Appareils | Elite Medical Services",
+      template: "%s | CPAP Tunisie - Elite Medical Services"
     },
 
     // Enhanced description with location-specific keywords and targeted services
-    description: "Expert en matériel médical en Tunisie: CPAP, BiPAP, oxygénothérapie, concentrateurs d'oxygène, masques et accessoires. Vente et location d'équipements médicaux de haute qualité à Tunis, Sousse et partout en Tunisie. Services pour l'apnée du sommeil et assistance respiratoire.",
+    description: "Spécialiste CPAP en Tunisie ✓ Large choix d'appareils ✓ Service technique ✓ Livraison rapide ✓ Masques ResMed & Philips ✓ Meilleurs prix",
 
     // Expanded keywords with location-specific terms and common search phrases
     keywords: [
-      "CPAP Tunisie",
+      'CPAP Tunisie',
+      'Machine CPAP Tunisie',
+      'Vente CPAP Tunisie',
+      'Location CPAP Tunisie',
+      'Prix CPAP Tunisie',
+      'Appareil CPAP Tunisie',
       "BiPAP Tunisie",
       "apnée du sommeil Tunisie",
       "oxygénothérapie Tunis",

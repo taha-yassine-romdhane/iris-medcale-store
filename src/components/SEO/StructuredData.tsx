@@ -67,14 +67,13 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
         "closes": "13:00"
       }
     ],
-    // Add more specific services related to your business
     "makesOffer": [
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Vente d'appareils CPAP en Tunisie",
-          "description": "Large gamme d'appareils CPAP pour le traitement de l'apnée du sommeil."
+          "name": "Vente et location de machines CPAP",
+          "description": "Solutions CPAP pour l'apnée du sommeil en Tunisie"
         }
       },
       {
