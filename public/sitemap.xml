@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <!-- Homepage (Highest Priority) -->
   <url>
     <loc>https://www.elitemedicaleservices.tn/</loc>
@@ -102,22 +103,29 @@
     <loc>https://www.elitemedicaleservices.tn/product/airsense-10-autoset</loc>
     <lastmod>2025-01-26</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="ResMed"/>
+    <xhtml:meta name="product:category" content="APPAREILS CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="AUTO-PILOTE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/Df43Y0C0ioj81HpY9omTU6rC4FmxezylKS32Zp15bwYdtBN7</image:loc>
       <image:title>AirSense 10 AutoSet | ResMed</image:title>
       <image:caption>cpap resmed airsense 10 autoset.png</image:caption>
     </image:image>
-    <image:image>
-      <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/1)CPAP-PPC/1)CPAP AUTO-PILOTEE/CPAP AUTO PILOTEE RESMED/ResMed - Apprenez à utiliser votre équipement ResMed.mp4</image:loc>
-      <image:title>AirSense 10 AutoSet | ResMed</image:title>
-      <image:caption>Guide d'utilisation AirSense 10 AutoSet</image:caption>
-    </image:image>
   </url>
   <url>
     <loc>https://www.elitemedicaleservices.tn/product/masque-facial-yf-02</loc>
     <lastmod>2025-02-23</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="MASQUES"/>
+    <xhtml:meta name="product:type" content="MASQUE FACIAL"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/Df43Y0C0ioj80Aeek5E5bGkro3SV7Be9E1uKXlpI0vyhxzOY</image:loc>
@@ -129,6 +137,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/humidificateur-löwenstein-prisma</loc>
     <lastmod>2025-01-19</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Löwenstein"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="HUMIDIFICATEUR"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuUZ81xj2clMYfDQLsvKPyRXCndz0aN9m82OEB</image:loc>
@@ -140,6 +154,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/8f-10</loc>
     <lastmod>2025-02-23</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="CONCENTRATEURS D'OXYGENE"/>
+    <xhtml:meta name="product:type" content="10 LITRES"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/Df43Y0C0ioj8HnmJRjWvvntfkRCpE40ulb1WZF97eaIAzPS2</image:loc>
@@ -151,6 +171,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/alimentation-löwenstein</loc>
     <lastmod>2025-01-19</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Löwenstein"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="ALIMENTATION"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuE1w9MWXc5awUIROJTdhHNpeLSjlqY734xgMf</image:loc>
@@ -162,6 +188,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/lit-médicalisé-électrique</loc>
     <lastmod>2025-02-23</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Medical Bed"/>
+    <xhtml:meta name="product:category" content="LIT MEDICALISE"/>
+    <xhtml:meta name="product:type" content="LIT MEDICALISE ELECTRIQUE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/Df43Y0C0ioj80e3RmGE5bGkro3SV7Be9E1uKXlpI0vyhxzOY</image:loc>
@@ -173,6 +205,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/filtre-standard-löwenstein</loc>
     <lastmod>2025-01-27</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Löwenstein"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="FILTRE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuiK4oWgnDzMA749Qu0VfUOZLd6BTSb8kEhwIv</image:loc>
@@ -184,6 +222,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/tuyau-standard-22mm</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Universel"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="TUYAU-STANDARD"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/1)CPAP-PPC/3)ACECCESSOIRE CPAP/TUYAU-CIRCUIT/TUYEAU STANDARD 22MM/tuyeau22MM.jpg</image:loc>
@@ -195,6 +239,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/tuyau-standard-15mm</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Universel"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="TUYAU-STANDARD"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/1)CPAP-PPC/3)ACECCESSOIRE CPAP/TUYAU-CIRCUIT/TUYEAU STANDARD 15/tuyea 15mm.jpg</image:loc>
@@ -206,6 +256,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/bipap-resmed-lumis</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Resmed"/>
+    <xhtml:meta name="product:category" content="APPAREILS BIPAP/VNI"/>
+    <xhtml:meta name="product:type" content="APPAREIL"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/4)BIPAP-VNI/VNI RESMED/VNI RESMED LUMIS.png</image:loc>
@@ -217,6 +273,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/yp-01</loc>
     <lastmod>2025-03-16</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="MASQUES"/>
+    <xhtml:meta name="product:type" content="MASQUE NARINAIRE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCu9wx9hhrtGzLpDsmKnCAuNJ8jXM1ObBSvwIEc</image:loc>
@@ -238,22 +300,29 @@
     <loc>https://www.elitemedicaleservices.tn/product/7f-10</loc>
     <lastmod>2025-01-24</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="CONCENTRATEURS D'OXYGENE"/>
+    <xhtml:meta name="product:type" content="10 LITRES"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCu17gst35NkjWAOQiI4FvXRolzq87tVGguxbMD</image:loc>
       <image:title>7F-10 | YUWELL</image:title>
       <image:caption>concentrateur d'oxygene 7F-10.png</image:caption>
     </image:image>
-    <image:image>
-      <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/3)OXYGENE/CONCENTRATEUR D'OXYGENE/OXYGENE YUWELL/7F-10 Oxygen concentrator Operation Video.mp4</image:loc>
-      <image:title>7F-10 | YUWELL</image:title>
-      <image:caption>Concentrateur d'oxygène Yuwell</image:caption>
-    </image:image>
   </url>
   <url>
     <loc>https://www.elitemedicaleservices.tn/product/raccord-y</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="MEDICAL"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES D'OXYGENE"/>
+    <xhtml:meta name="product:type" content="RACCORD Y"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuscmxDeaZ2RvlwVi7gUurnFE53ked8Qf6J0hj</image:loc>
@@ -265,6 +334,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/bipap-resmed-s9</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Resmed"/>
+    <xhtml:meta name="product:category" content="APPAREILS BIPAP/VNI"/>
+    <xhtml:meta name="product:type" content="APPAREIL"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/4)BIPAP-VNI/VNI RESMED/VNI RESMED S9.jpg</image:loc>
@@ -276,6 +351,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/concentrateur-doxygène-7f-5</loc>
     <lastmod>2025-02-03</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="CONCENTRATEURS D'OXYGENE"/>
+    <xhtml:meta name="product:type" content="5 LITRES"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuNQYHbXJuhDiObpj2sce6ov8UM1TPJlFyC4BW</image:loc>
@@ -287,6 +368,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/prisma-smart-basic</loc>
     <lastmod>2025-03-16</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Löwenstein"/>
+    <xhtml:meta name="product:category" content="APPAREILS CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="FIXE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCukCTy0UPYLDWiNeOX7zgnVIsuch0A3ftkGwBo</image:loc>
@@ -298,6 +385,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/carte-sd-yuwell</loc>
     <lastmod>2025-01-19</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="CARTE SD"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuckHGid4JxmXVrbC4joLT5psIDdKgHzaFt2Eu</image:loc>
@@ -309,6 +402,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/masque-narinaire-yuwell</loc>
     <lastmod>2025-03-16</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="MASQUES"/>
+    <xhtml:meta name="product:type" content="MASQUE NARINAIRE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuOBTYe6wyfSt5YsGuDr30IX9oNEeqpWFJ6Uxz</image:loc>
@@ -330,6 +429,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/nébuliseur-rossmax</loc>
     <lastmod>2025-01-27</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Rossmax"/>
+    <xhtml:meta name="product:category" content="APPAREILS NEBULISEUR"/>
+    <xhtml:meta name="product:type" content="NEBULISEUR"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuEWdcJfDXc5awUIROJTdhHNpeLSjlqY734xgM</image:loc>
@@ -341,14 +446,15 @@
     <loc>https://www.elitemedicaleservices.tn/product/masque-facial-airfit-f30</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Resmed"/>
+    <xhtml:meta name="product:category" content="MASQUES"/>
+    <xhtml:meta name="product:type" content="MASQUE FACIAL"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/2)MASQUE/1)MASQUE FACIAL/MASQUE RESMED FACIAL/masque resmed airfit f30.png</image:loc>
-      <image:title>Masque Facial AirFit F30 | Resmed</image:title>
-      <image:caption>Masque Facial AirFit F30i</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/2)MASQUE/1)MASQUE FACIAL/MASQUE RESMED FACIAL/Fitting tips F30.mp4</image:loc>
       <image:title>Masque Facial AirFit F30 | Resmed</image:title>
       <image:caption>Masque Facial AirFit F30i</image:caption>
     </image:image>
@@ -357,6 +463,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/raccord</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="MEDICAL"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES D'OXYGENE"/>
+    <xhtml:meta name="product:type" content="RACCORD "/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCu7qT9XThcuzVJOkjl0Y49mMfrodpQ1IZsghbN</image:loc>
@@ -368,6 +480,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/sac-doxygene-sy-42l</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES D'OXYGENE"/>
+    <xhtml:meta name="product:type" content="SAC D'OXYGENE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuGjJ3VhNRZ3QutIEHn91pN8qTyJM4UdvOYDbm</image:loc>
@@ -379,6 +497,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/spirit-6</loc>
     <lastmod>2025-02-23</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Spirit"/>
+    <xhtml:meta name="product:category" content="CONCENTRATEURS D'OXYGENE"/>
+    <xhtml:meta name="product:type" content="PORTABLE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/Df43Y0C0ioj8e3zjS0saHYnc36ewrJAzEf1Fol2yIWRtQUNB</image:loc>
@@ -390,6 +514,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/humidificateur-yuwell</loc>
     <lastmod>2025-01-19</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="HUMIDIFICATEUR"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuOSFPGAwyfSt5YsGuDr30IX9oNEeqpWFJ6Uxz</image:loc>
@@ -401,6 +531,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/carte-sd-löwenstein</loc>
     <lastmod>2025-01-19</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Löwenstein"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="CARTE SD"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCudne8NdWUk3mGQ4XASRIjVKuF198YMoszacHN</image:loc>
@@ -412,14 +548,15 @@
     <loc>https://www.elitemedicaleservices.tn/product/masque-nasal-airfit-n30i</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Resmed"/>
+    <xhtml:meta name="product:category" content="MASQUES"/>
+    <xhtml:meta name="product:type" content="MASQUE NASAL"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/2)MASQUE/2)MASQUE NASAL/MASQUE NASAL RESMED/masque resmed airfit n20.jpg</image:loc>
-      <image:title>Masque Nasal AirFit N30i | Resmed</image:title>
-      <image:caption>Masque Nasal AirFit N30i</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/2)MASQUE/2)MASQUE NASAL/MASQUE NASAL RESMED/AirFit N20 Nasal mask_ How to fit your mask.mp4</image:loc>
       <image:title>Masque Nasal AirFit N30i | Resmed</image:title>
       <image:caption>Masque Nasal AirFit N30i</image:caption>
     </image:image>
@@ -428,6 +565,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/masque-nasal-yuwell-yn-02</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="MASQUES"/>
+    <xhtml:meta name="product:type" content="MASQUE NASAL"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/2)MASQUE/2)MASQUE NASAL/MASQUE NASAL YUWELL/masque yuwell YN-02.png</image:loc>
@@ -439,6 +582,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/tuyau-chauffant-climatelineair</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="ResMed"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="TUYAU-CIRCUIT"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/1)CPAP-PPC/3)ACECCESSOIRE CPAP/TUYAU-CIRCUIT/TUYAU-CIRCUIT CHAUFFANT/TUYAU-CIRCUIT CHAUFFANT.png</image:loc>
@@ -450,6 +599,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/masque-facial-yuwell-yf-01</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="MASQUES"/>
+    <xhtml:meta name="product:type" content="MASQUE FACIAL"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/2)MASQUE/1)MASQUE FACIAL/MASQUE YUWELL FACIAL/masque yuwell YF-01.jpg</image:loc>
@@ -461,6 +616,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/aspirateur-chirurgical-yuwell</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="APPAREILS ASPIRATUER"/>
+    <xhtml:meta name="product:type" content="ASPIRATUER"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/6)ASPERATEUR THERAPIE/APPAREIL ASPIRATEUR/ASPERATEUR YUWELL/aspirateur.png</image:loc>
@@ -472,6 +633,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/alimentation-resmed</loc>
     <lastmod>2025-01-19</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="ResMed"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="ALIMENTATION"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuRRiwGtUdJuETxhgzOW4HveBY1aC5jQXc7AkU</image:loc>
@@ -483,6 +650,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/masque-à-haute-concentration</loc>
     <lastmod>2025-01-19</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Medical"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES D'OXYGENE"/>
+    <xhtml:meta name="product:type" content="MASQUE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuYYCsqp9fIPn9RrizJ3c0XoaKtkh1y56wV7M4</image:loc>
@@ -494,6 +667,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/concentrateur-doxygène-devilbiss</loc>
     <lastmod>2025-02-04</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="DeVilbiss"/>
+    <xhtml:meta name="product:category" content="CONCENTRATEURS D'OXYGENE"/>
+    <xhtml:meta name="product:type" content="5 LITRES"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuOePfvgwyfSt5YsGuDr30IX9oNEeqpWFJ6Uxz</image:loc>
@@ -505,6 +684,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/accessoires-aérosol</loc>
     <lastmod>2025-01-27</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="ROSSMAX"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES AEROSOL"/>
+    <xhtml:meta name="product:type" content="ACCESSOIRES"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuaogpyEMewfVLPkcQ3mGKE2SiCdXg9AxUJ6FW</image:loc>
@@ -516,6 +701,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/spirit-3</loc>
     <lastmod>2025-02-23</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Spirit"/>
+    <xhtml:meta name="product:category" content="CONCENTRATEURS D'OXYGENE"/>
+    <xhtml:meta name="product:type" content="PORTABLE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/Df43Y0C0ioj8TVA0JA9bCxqSANOIVQnHo9paUiThGe0smktK</image:loc>
@@ -527,6 +718,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/masque-nasal-yuwell-yn-03</loc>
     <lastmod>2025-02-23</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="MASQUES"/>
+    <xhtml:meta name="product:type" content="MASQUE NASAL"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/Df43Y0C0ioj8Q4J52QNe6CRn9fZkoYcrp1bimtaL3uXWFj0N</image:loc>
@@ -538,14 +735,15 @@
     <loc>https://www.elitemedicaleservices.tn/product/masque-narinaire-airfit-p10</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Resmed"/>
+    <xhtml:meta name="product:category" content="MASQUES"/>
+    <xhtml:meta name="product:type" content="MASQUE NARINAIRE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/2)MASQUE/3)MASQUE NARINAIRE/MASQUE NARINAIRE RESMED/masque resmed p10.jpg</image:loc>
-      <image:title>Masque Narinaire AirFit P10 | Resmed</image:title>
-      <image:caption>Masque Narinaire AirFit P10</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/2)MASQUE/3)MASQUE NARINAIRE/MASQUE NARINAIRE RESMED/ResMed - Présentation du masque narinaire AirFit™ P10.mp4</image:loc>
       <image:title>Masque Narinaire AirFit P10 | Resmed</image:title>
       <image:caption>Masque Narinaire AirFit P10</image:caption>
     </image:image>
@@ -554,6 +752,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/batterie-spirit-3</loc>
     <lastmod>2025-01-27</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES D'OXYGENE"/>
+    <xhtml:meta name="product:type" content="BATTERIE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCu7XHP7pGhcuzVJOkjl0Y49mMfrodpQ1IZsghb</image:loc>
@@ -565,6 +769,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/cpap-auto-prisma-smart</loc>
     <lastmod>2025-02-04</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Löwenstein"/>
+    <xhtml:meta name="product:category" content="APPAREILS CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="AUTO-PILOTE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuR9BddRUdJuETxhgzOW4HveBY1aC5jQXc7AkU</image:loc>
@@ -576,22 +786,29 @@
     <loc>https://www.elitemedicaleservices.tn/product/concentrateur-doxygène-8f-5</loc>
     <lastmod>2025-02-23</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="CONCENTRATEURS D'OXYGENE"/>
+    <xhtml:meta name="product:type" content="5 LITRES"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/Df43Y0C0ioj8aCY0AHzCxZw6BS2zrJhDYy7KUdlQ1oqaAuvN</image:loc>
       <image:title>Concentrateur d'oxygène 8F-5 | YUWELL</image:title>
       <image:caption>image-removebg-preview (6).png</image:caption>
     </image:image>
-    <image:image>
-      <image:loc>https://utfs.io/f/Df43Y0C0ioj8NNihUpJC3JhdoQw9KptvE4LZcAflUxB6gz5i</image:loc>
-      <image:title>Concentrateur d'oxygène 8F-5 | YUWELL</image:title>
-      <image:caption>8F-5A Oxygen concentrator Operation Video.mp4</image:caption>
-    </image:image>
   </url>
   <url>
     <loc>https://www.elitemedicaleservices.tn/product/airsense-10-elite</loc>
     <lastmod>2025-03-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="ResMed"/>
+    <xhtml:meta name="product:category" content="APPAREILS CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="FIXE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuK3oy3kL0KIxzMhbwLBC7A4GyOg2oXdm5t1EU</image:loc>
@@ -603,6 +820,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/lunettes-à-oxygène</loc>
     <lastmod>2025-01-19</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Medical"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES D'OXYGENE"/>
+    <xhtml:meta name="product:type" content="LUNETTE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuJPETaGudXejHmqrPzENJTfv72GWCOxp5KMaS</image:loc>
@@ -614,6 +837,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/yh-830</loc>
     <lastmod>2025-01-24</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="APPAREILS BIPAP/VNI"/>
+    <xhtml:meta name="product:type" content="APPAREIL"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCu7XY1UAFhcuzVJOkjl0Y49mMfrodpQ1IZsghb</image:loc>
@@ -625,6 +854,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/yh-550</loc>
     <lastmod>2025-02-20</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="APPAREILS CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="AUTO-PILOTE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuNVn3N7JuhDiObpj2sce6ov8UM1TPJlFyC4BW</image:loc>
@@ -641,6 +876,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/sonde-daspiration</loc>
     <lastmod>2025-01-27</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="MEDICAL"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRE ASPIRATEUR"/>
+    <xhtml:meta name="product:type" content="SONDE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuGfUbBdNRZ3QutIEHn91pN8qTyJM4UdvOYDbm</image:loc>
@@ -652,6 +893,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/harnais-de-masque-universel</loc>
     <lastmod>2025-01-19</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Universel"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="HARNAIS MASQUE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuQVW4PyGNensr0kJYGz1K9H4Abvfghl36WQTt</image:loc>
@@ -663,6 +910,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/masque-sans-fuite-yuwell</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="MASQUES"/>
+    <xhtml:meta name="product:type" content="MASQUE SANS FUITE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCu341oC7YyJNozDQcYX7TanU5pSdmhG1wv2qFI</image:loc>
@@ -674,6 +927,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/filtre-resmed-airsense</loc>
     <lastmod>2025-02-03</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="ResMed"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="FILTRE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuuZMdH67bVkr4nxwg0fv3P578S29KmBEjQDaI</image:loc>
@@ -685,6 +944,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/cpap-yh-450</loc>
     <lastmod>2025-02-23</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="APPAREILS CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="AUTO-PILOTE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/Df43Y0C0ioj8NxQw2XJC3JhdoQw9KptvE4LZcAflUxB6gz5i</image:loc>
@@ -696,6 +961,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/masque-facial-airfit-f20</loc>
     <lastmod>2025-02-23</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Resmed"/>
+    <xhtml:meta name="product:category" content="MASQUES"/>
+    <xhtml:meta name="product:type" content="MASQUE FACIAL"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/Df43Y0C0ioj8uoQqSoPR64ONc8vL7pMlrFfxAEB9WdjQzahX</image:loc>
@@ -707,6 +978,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/alimentation-yuwell</loc>
     <lastmod>2025-01-19</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="ALIMENTATION"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuujKjWz7bVkr4nxwg0fv3P578S29KmBEjQDaI</image:loc>
@@ -718,6 +995,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/humidificateur-resmed-humidair</loc>
     <lastmod>2025-01-19</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="ResMed"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="HUMIDIFICATEUR"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuhdYkpLsEaMBdkP7RULWz3iVeqX4SKwAxhY0y</image:loc>
@@ -729,6 +1012,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/raccord-vni</loc>
     <lastmod>2025-01-24</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="MEDICAL"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES D'OXYGENE"/>
+    <xhtml:meta name="product:type" content="RACCORD "/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuEEWbv9Xc5awUIROJTdhHNpeLSjlqY734xgMf</image:loc>
@@ -740,6 +1029,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/bipap-resmed-aircurve-10</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Resmed"/>
+    <xhtml:meta name="product:category" content="APPAREILS BIPAP/VNI"/>
+    <xhtml:meta name="product:type" content="APPAREIL"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/4)BIPAP-VNI/VNI RESMED/vni resmed aircurve 10.jpg</image:loc>
@@ -751,6 +1046,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/carte-sd-resmed</loc>
     <lastmod>2025-01-19</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="ResMed"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="CARTE SD"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCud8QG5qWUk3mGQ4XASRIjVKuF198YMoszacHN</image:loc>
@@ -762,6 +1063,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/cpap-yh-680</loc>
     <lastmod>2025-05-05</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="APPAREILS CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="AUTO-PILOTE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/Df43Y0C0ioj8KbdPBGeLoKyvj0tx3lNkiuGQnAcaSOdCbV5T</image:loc>
@@ -778,6 +1085,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/filtre-yuwell</loc>
     <lastmod>2025-01-27</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="FILTRE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuwKfUsbQP9kQsFAgxNqpzIcfR3v5D2bWnmiGB</image:loc>
@@ -789,6 +1102,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/lit-medicalise</loc>
     <lastmod>2025-02-23</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="MEDICAL"/>
+    <xhtml:meta name="product:category" content="LIT MEDICALISE"/>
+    <xhtml:meta name="product:type" content="LIT MEDICALISE MANUELLE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/Df43Y0C0ioj8rOdWRpnlHvBeK8INPoDnQsOMwYCz9WRgbtJU</image:loc>
@@ -800,6 +1119,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/yh-350</loc>
     <lastmod>2025-01-15</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="YUWELL"/>
+    <xhtml:meta name="product:category" content="APPAREILS CPAP/PPC"/>
+    <xhtml:meta name="product:type" content="FIXE"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://www.elitemedicaleservices.tn/SITE DE VENTE ET LOCATION 1/1)CPAP-PPC/2)CPAP FIXE/CPAP FIXE YUWELL/cpap yuwell yh-350.jpg</image:loc>
@@ -811,6 +1136,12 @@
     <loc>https://www.elitemedicaleservices.tn/product/barboteur-pour-oxygène</loc>
     <lastmod>2025-01-19</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="Medical"/>
+    <xhtml:meta name="product:category" content="ACCESSOIRES D'OXYGENE"/>
+    <xhtml:meta name="product:type" content="BARBOTEUR"/>
+    <xhtml:meta name="product:availability" content="IN_STOCK"/>
 
     <image:image>
       <image:loc>https://utfs.io/f/AblcyIscdOCuUYtRYG2clMYfDQLsvKPyRXCndz0aN9m82OEB</image:loc>

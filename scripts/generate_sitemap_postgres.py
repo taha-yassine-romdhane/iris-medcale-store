@@ -43,13 +43,16 @@ def get_products_from_db():
         # Create a cursor that returns dictionaries
         cursor = conn.cursor(cursor_factory=RealDictCursor)
         
-        # Execute query to get products with their media
+        # Execute query to get products with their media and additional details
         cursor.execute("""
-            SELECT p.id, p.name, p."updatedAt", p.brand, 
-                   json_agg(json_build_object('url', m.url, 'alt', m.alt)) as media
+            SELECT p.id, p.name, p."updatedAt", p.brand, p.category, p.type, p.stock,
+                   p.description, p.features,
+                   json_agg(json_build_object('url', m.url, 'alt', m.alt, 'type', m.type)) as media,
+                   (SELECT AVG(r.rating) FROM "Review" r WHERE r."productId" = p.id) as average_rating,
+                   (SELECT COUNT(r.id) FROM "Review" r WHERE r."productId" = p.id) as review_count
             FROM "Product" p
             LEFT JOIN "Media" m ON m."productId" = p.id
-            GROUP BY p.id, p.name, p."updatedAt", p.brand
+            GROUP BY p.id, p.name, p."updatedAt", p.brand, p.category, p.type, p.stock, p.description, p.features
         """)
         
         # Fetch all products
@@ -78,10 +81,11 @@ def generate_sitemap():
     # Get products from database
     products = get_products_from_db()
     
-    # Start building the sitemap XML
+    # Start building the sitemap XML with additional namespaces for structured data
     sitemap = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <!-- Homepage (Highest Priority) -->
   <url>
     <loc>{base_url}/</loc>
@@ -189,18 +193,46 @@ def generate_sitemap():
         if isinstance(lastmod, datetime.datetime):
             lastmod = lastmod.strftime('%Y-%m-%d')
         
+        # Get stock status
+        stock_status = product.get('stock', 'IN_STOCK')
+        
+        # Get product details
+        product_name = product.get('name', '')
+        product_brand = product.get('brand', '')
+        product_category = product.get('category', '')
+        product_type = product.get('type', '')
+        product_description = product.get('description', '')
+        
+        # Get rating information
+        average_rating = product.get('average_rating')
+        review_count = product.get('review_count', 0)
+        
         # Start the URL entry
         sitemap += f"""  <url>
     <loc>{base_url}/product/{product_slug}</loc>
     <lastmod>{lastmod}</lastmod>
     <priority>0.8</priority>
+    
+    <!-- Product metadata for search engines -->
+    <xhtml:meta name="product:brand" content="{product_brand}"/>
+    <xhtml:meta name="product:category" content="{product_category}"/>
+    <xhtml:meta name="product:type" content="{product_type}"/>
+    <xhtml:meta name="product:availability" content="{stock_status}"/>
+"""
+        
+        # Add rating information if available
+        if average_rating is not None and review_count > 0:
+            sitemap += f"""
+    <xhtml:meta name="product:rating" content="{average_rating:.1f}"/>
+    <xhtml:meta name="product:review_count" content="{review_count}"/>
 """
         
         # Add image information if available
         media = product.get('media')
         if media and isinstance(media, list) and len(media) > 0:
-            # Filter out any None values
-            media_items = [item for item in media if item and isinstance(item, dict) and item.get('url')]
+            # Filter out any None values and only include images
+            media_items = [item for item in media if item and isinstance(item, dict) 
+                          and item.get('url') and item.get('type', 'image') == 'image']
             
             for media_item in media_items:
                 image_url = media_item.get('url')
@@ -211,7 +243,7 @@ def generate_sitemap():
                     
                     # Get the alt text or use the product name
                     image_alt = media_item.get('alt') or product.get('name', '')
-                    image_title = f"{product.get('name', '')} | {product.get('brand', '')}"
+                    image_title = f"{product_name} | {product_brand}"
                     
                     sitemap += f"""
     <image:image>
