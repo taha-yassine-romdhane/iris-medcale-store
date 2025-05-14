@@ -2,6 +2,8 @@
 # Allow all crawlers full access
 User-agent: *
 Allow: /
+
+# Block sensitive and private areas
 Disallow: /admin/
 Disallow: /private/
 Disallow: /account/
@@ -9,9 +11,12 @@ Disallow: /cart/
 Disallow: /checkout/
 Disallow: /api/          # Block API routes
 Disallow: /_next/       # Block Next.js internals
-Disallow: /*?*          # Block dynamic URLs with params (unless needed)
 Disallow: /*.json$      # Block JSON files
-Disallow: /*.js$        # Block JS source files
+
+# Allow product category pages with parameters
+Allow: /products?category=*
+Allow: /product/*        # Explicitly allow all product pages
+Allow: /images/*         # Explicitly allow all images
 
 # Sitemap location
 Sitemap: https://www.elitemedicaleservices.tn/sitemap.xml
@@ -21,15 +26,21 @@ User-agent: Googlebot
 Crawl-delay: 1
 Allow: /*.css$
 Allow: /*.js$           # Allow JS for proper rendering
-Disallow: /search?      # Block search result pages
+Disallow: /search?q=*    # Only block search query pages
 
 # Specify crawl rate for Bing
 User-agent: Bingbot
 Crawl-delay: 1
+Allow: /*.css$
+Allow: /*.js$           # Allow JS for proper rendering
 
-# Block admin and private areas
+# Google Image crawler specific rules
+User-agent: Googlebot-Image
+Allow: /
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.webp$
 Disallow: /admin/
 Disallow: /private/
-Disallow: /account/
-Disallow: /cart/
-Disallow: /checkout/
