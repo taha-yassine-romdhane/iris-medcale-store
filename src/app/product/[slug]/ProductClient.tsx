@@ -9,6 +9,7 @@ import { useCart } from '@/hooks/useCart';
 import { Product } from '@/types/product';
 import { useTranslation } from '@/contexts/TranslationContext';
 import { ProductTranslation } from '@/types/product';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
 export default function ProductClient() {
   const { t } = useTranslation();
@@ -25,16 +26,12 @@ export default function ProductClient() {
   useEffect(() => {
     // Track if the component is mounted to prevent state updates after unmount
     let isMounted = true;
-    // Keep track of the previous slug to prevent duplicate fetches
-    const prevSlug = slug;
     
     async function fetchProduct() {
       if (!slug) return;
       
-      // Set loading state only on initial load or when slug changes
-      if (!product || prevSlug !== slug) {
-        setLoading(true);
-      }
+      // Set loading state when fetching starts
+      setLoading(true);
 
       try {
         // Use AbortController to cancel fetch requests if component unmounts
@@ -80,7 +77,7 @@ export default function ProductClient() {
     return () => {
       isMounted = false;
     };
-  }, [slug, product]);
+  }, [slug]); // Only depend on slug, not product
  
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
   const getTranslatedContent = (field: keyof Product): any => {
@@ -157,6 +154,7 @@ export default function ProductClient() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Breadcrumbs productName={getTranslatedContent('name')} categoryName={product?.category} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         {/* Breadcrumb */}
         <nav className="mb-8">

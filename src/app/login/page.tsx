@@ -57,7 +57,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row mt-[50px]">
+    <div className="min-h-screen flex flex-col md:flex-row">
       {/* Left side - Decorative */}
       <div className="hidden md:flex md:w-1/2 bg-blue-600 text-white p-12 flex-col justify-between relative">
         <div>

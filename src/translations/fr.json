@@ -35,7 +35,18 @@
     "noResult": "Aucun résultat trouvé pour",
     "tryDifferent": "Essayez avec des termes différents"
   },
-"footer": {
+  "navigation": {
+    "home": "Accueil",
+    "products": "Produits",
+    "product": "Produit",
+    "category": "Catégorie",
+    "contact": "Contact",
+    "about": "À Propos",
+    "services": "Services",
+    "appointment": "Rendez-vous",
+    "sleepApnea": "Apnée du Sommeil"
+  },
+  "footer": {
     "companyName": "Elite Medicale Service",
     "description": "Votre source de confiance pour les équipements médicaux et les solutions de santé innovantes.",
     "quickLinks": "Liens Rapides",

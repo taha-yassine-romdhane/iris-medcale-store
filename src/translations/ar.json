@@ -35,7 +35,18 @@
         "noResult": "لم يتم العثور على نتائج لـ",
         "tryDifferent": "حاول البحث بكلمات مفتاحية مختلفة"
     },
-     "footer": {
+    "navigation": {
+        "home": "الرئيسية",
+        "products": "المنتجات",
+        "product": "المنتج",
+        "category": "الفئة",
+        "contact": "اتصل بنا",
+        "about": "من نحن",
+        "services": "الخدمات",
+        "appointment": "حجز موعد",
+        "sleepApnea": "انقطاع النفس أثناء النوم"
+    },
+    "footer": {
         "companyName": "خدمة النخبة الطبية",
         "description": "مصدر موثوق لمعدات الرعاية الصحية المبتكرة.",
         "quickLinks": "روابط سريعة",

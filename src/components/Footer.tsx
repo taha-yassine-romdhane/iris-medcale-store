@@ -44,7 +44,7 @@ export default function Footer() {
             <p className="text-blue-100 leading-relaxed">
               {t('footer.description')}
             </p>
-            <div className="flex space-x-4 pt-4 flex justify-start">
+            <div className="flex space-x-4 pt-4 justify-start">
               <Link href="https://www.facebook.com/share/15zdLven1F/" target="_blank" rel="noopener noreferrer" className="flex items-center text-white hover:text-red-400 transition-colors">
                 <Facebook size={24} />
                 <span className="ml-2">Facebook</span>
@@ -76,11 +76,6 @@ export default function Footer() {
               <li>
                 <Link href="/apnee-du-sommeil" className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300">
                   {t('footer.sleepApnea')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/appointment" className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300">
-                  {t('footer.appointment')}
                 </Link>
               </li>
             </ul>
