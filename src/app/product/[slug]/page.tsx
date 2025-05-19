@@ -14,9 +14,8 @@ export async function generateMetadata(
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
   
-  // Get the user's preferred language from cookies or default to French
-  // This would ideally be passed from the request headers or context
-  const preferredLanguage = 'fr'; // Default to French, but should be dynamic
+  // Always use French as the preferred language
+  const preferredLanguage = 'fr';
   
   try {
     // We need to use an absolute URL for server-side fetch
