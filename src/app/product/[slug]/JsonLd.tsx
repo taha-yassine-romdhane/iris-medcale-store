@@ -1,9 +1,9 @@
-import { Product } from '@/types/product';
+import { Product, ProductTranslation } from '@/types/product';
 
 interface JsonLdProductProps {
   product: Product;
   url: string;
-  translations?: any[];
+  translations?: ProductTranslation[];
   language?: string;
 }
 
@@ -49,9 +49,6 @@ export default function JsonLdProduct({ product, url, translations = [], languag
       'caption': 'Elite Médicale Services Logo'
     });
   }
-  
-  // Main image for simple references
-  const mainImageUrl = productImages.length > 0 ? productImages[0].url : 'https://www.elitemedicaleservices.tn/logo.png';
   
   // Map stock status to Schema.org availability
   let availability = 'https://schema.org/OutOfStock';
