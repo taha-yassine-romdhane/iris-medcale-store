@@ -74,7 +74,7 @@
     "sfax": "Sfax",
     "gafsa": "Gafsa",
     "copyright": "2024 Elite Medicale Service. Tous droits réservés."
-},
+  },
   "login": {
     "leftSide": {
       "title": "Espace Client Elite Medicale Service",
@@ -322,16 +322,16 @@
       "centerRegion": "Régions Centre",
       "southRegion": "Régions Sud",
       "regions": {
-          "grandTunis": "Grand Tunis",
-          "capBon": "Cap Bon",
-          "sousse": "Sousse",
-          "monastir": "Monastir",
-          "mahdia": "Mahdia",
-          "beja": "Beja",
-          "bizerte": "Bizerte",
-          "kairouan": "Kairouan",
-          "sfax": "Sfax",
-          "gafsa": "Gafsa"
+        "grandTunis": "Grand Tunis",
+        "capBon": "Cap Bon",
+        "sousse": "Sousse",
+        "monastir": "Monastir",
+        "mahdia": "Mahdia",
+        "beja": "Beja",
+        "bizerte": "Bizerte",
+        "kairouan": "Kairouan",
+        "sfax": "Sfax",
+        "gafsa": "Gafsa"
       },
       "imageAlt": "Carte de couverture en Tunisie"
     },
@@ -469,6 +469,102 @@
     "confirming": "Confirmation en cours...",
     "confirm": "Confirmer le devis"
   },
+  "respiratoryTherapyBlog": {
+    "pageTitle": "Les Avantages de la Thérapie Respiratoire",
+    "pageDescription": "Découvrez comment les traitements respiratoires modernes améliorent la qualité de vie et offrent des bénéfices significatifs pour la santé à long terme.",
+    "heroImageAlt": "Thérapie respiratoire et ses avantages pour la santé",
+    "introduction": {
+      "title": "Pourquoi la Thérapie Respiratoire Est-Elle Essentielle?",
+      "paragraph1": "La thérapie respiratoire représente un ensemble de traitements médicaux conçus pour améliorer la fonction respiratoire chez les personnes souffrant de troubles respiratoires chroniques ou aigus. Ces thérapies, qui incluent l'oxygénothérapie, les appareils CPAP/PPC, et les nébuliseurs, offrent des avantages considérables qui vont bien au-delà du simple soulagement des symptômes respiratoires.",
+      "paragraph2": "Que vous souffriez d'apnée du sommeil, de BPCO, d'asthme ou d'autres affections pulmonaires, les thérapies respiratoires modernes peuvent transformer votre qualité de vie et améliorer significativement votre santé globale. Dans cet article, nous explorons les nombreux avantages de ces traitements essentiels."
+    },
+    "keyBenefits": {
+      "title": "Principaux Avantages de la Thérapie Respiratoire",
+      "cardiovascularHealth": {
+        "title": "Amélioration de la Santé Cardiovasculaire",
+        "description": "Une meilleure oxygénation réduit la charge sur le cœur, diminuant les risques d'hypertension artérielle, d'arythmie et d'autres complications cardiaques. Des études montrent une réduction de 30% du risque d'événements cardiovasculaires chez les patients suivant régulièrement leur thérapie respiratoire."
+      },
+      "cognitiveFunction": {
+        "title": "Fonction Cognitive Optimisée",
+        "description": "L'apport adéquat d'oxygène au cerveau améliore la concentration, la mémoire et les fonctions cognitives. Les patients utilisant régulièrement leur CPAP rapportent une amélioration de 40% de leur clarté mentale et de leur capacité à résoudre des problèmes complexes."
+      },
+      "energyLevels": {
+        "title": "Augmentation des Niveaux d'Énergie",
+        "description": "Une respiration efficace signifie plus d'oxygène pour vos cellules, ce qui se traduit par une augmentation significative des niveaux d'énergie quotidiens. 85% des utilisateurs de thérapie respiratoire rapportent une réduction de la fatigue chronique après seulement deux semaines de traitement."
+      },
+      "sleepQuality": {
+        "title": "Amélioration de la Qualité du Sommeil",
+        "description": "Les thérapies comme la CPAP éliminent les interruptions respiratoires pendant le sommeil, permettant d'atteindre les phases profondes et réparatrices du sommeil. Les patients constatent une amélioration moyenne de 70% de leur qualité de sommeil, avec moins de réveils nocturnes et un sommeil plus réparateur."
+      }
+    },
+    "longTermBenefits": {
+      "title": "Bénéfices à Long Terme",
+      "lifeExpectancy": {
+        "title": "Prolongation de l'Espérance de Vie",
+        "description": "Les recherches médicales démontrent que les patients atteints de BPCO qui suivent fidèlement leur thérapie respiratoire peuvent augmenter leur espérance de vie de 5 à 7 ans. Le traitement régulier des troubles respiratoires réduit significativement le risque de complications potentiellement mortelles."
+      },
+      "diseaseProgression": {
+        "title": "Ralentissement de la Progression des Maladies",
+        "description": "Une thérapie respiratoire appropriée peut ralentir considérablement la progression de maladies comme la BPCO et la fibrose pulmonaire. Les études cliniques montrent une réduction de 45% du taux de déclin de la fonction pulmonaire chez les patients suivant rigoureusement leur traitement."
+      },
+      "exerciseCapacity": {
+        "title": "Amélioration de la Capacité d'Exercice",
+        "description": "Avec une meilleure oxygénation, les patients constatent une augmentation significative de leur endurance et de leur capacité à pratiquer des activités physiques. Les tests de marche de 6 minutes montrent une amélioration moyenne de 60 mètres après 3 mois de thérapie respiratoire régulière."
+      },
+      "socialRelationships": {
+        "title": "Amélioration des Relations Sociales",
+        "description": "Moins de fatigue et plus d'énergie signifient une vie sociale plus active. Les patients rapportent une amélioration significative de leurs interactions sociales et familiales, réduisant l'isolement souvent associé aux maladies respiratoires chroniques."
+      }
+    },
+    "therapyTypes": {
+      "title": "Types de Thérapies Respiratoires et Leurs Avantages Spécifiques",
+      "oxygenTherapy": {
+        "title": "Oxygénothérapie",
+        "description": "L'oxygénothérapie fournit un apport supplémentaire d'oxygène, essentiel pour les patients souffrant d'hypoxémie chronique. Cette thérapie améliore la qualité de vie en réduisant l'essoufflement, en augmentant la capacité d'exercice et en diminuant la charge sur le cœur.",
+        "learnMore": "En savoir plus sur les concentrateurs d'oxygène"
+      },
+      "cpapTherapy": {
+        "title": "Thérapie CPAP/PPC",
+        "description": "La thérapie par pression positive continue (CPAP/PPC) est le traitement de référence pour l'apnée du sommeil. Elle maintient les voies respiratoires ouvertes pendant le sommeil, améliorant la qualité du sommeil, réduisant la somnolence diurne et diminuant les risques cardiovasculaires associés.",
+        "discover": "Découvrir nos appareils CPAP"
+      },
+      "nebulization": {
+        "title": "Nébulisation",
+        "description": "La nébulisation permet d'administrer des médicaments directement dans les poumons sous forme de brouillard fin. Cette méthode est particulièrement efficace pour les patients asthmatiques ou atteints de BPCO, offrant un soulagement rapide des symptômes et une meilleure pénétration des médicaments dans les voies respiratoires.",
+        "discover": "Explorer nos nébuliseurs"
+      }
+    },
+    "testimonials": {
+      "title": "Témoignages de Patients",
+      "testimonial1": {
+        "quote": "Depuis que j'ai commencé l'oxygénothérapie, ma vie a complètement changé. Je peux maintenant monter les escaliers sans m'arrêter, jouer avec mes petits-enfants et même me remettre au jardinage. C'est comme si j'avais retrouvé une partie de ma jeunesse.",
+        "author": "Marie, 68 ans - Utilisatrice de concentrateur d'oxygène"
+      },
+      "testimonial2": {
+        "quote": "Mon appareil CPAP a transformé mes nuits et mes journées. Avant, j'étais constamment fatigué et irritable. Maintenant, je me réveille reposé et plein d'énergie. Ma femme dit que je ne ronfle plus, ce qui a amélioré notre relation. C'est un véritable miracle pour moi.",
+        "author": "Thomas, 52 ans - Utilisateur de CPAP pour apnée du sommeil"
+      }
+    },
+    "maintenance": {
+      "title": "Maximiser les Bénéfices : Entretien et Observance",
+      "regularMaintenance": {
+        "title": "L'Importance de l'Entretien Régulier",
+        "description": "Pour maximiser les avantages de votre thérapie respiratoire, un entretien régulier de votre équipement est essentiel. Des filtres propres, des masques bien ajustés et des appareils correctement calibrés garantissent une efficacité optimale du traitement et prolongent la durée de vie de votre équipement.",
+        "linkText": "Guide d'entretien de votre équipement respiratoire"
+      },
+      "treatmentCompliance": {
+        "title": "Observance du Traitement",
+        "description1": "Les études montrent que les patients qui suivent fidèlement leur thérapie respiratoire (au moins 6 heures par nuit pour la CPAP, par exemple) obtiennent des résultats significativement meilleurs que ceux qui l'utilisent de manière intermittente. L'utilisation régulière est la clé pour profiter pleinement des avantages à long terme.",
+        "description2": "Si vous rencontrez des difficultés avec votre traitement, n'hésitez pas à consulter votre professionnel de santé ou à nous contacter pour des conseils personnalisés. De petits ajustements peuvent souvent faire une grande différence dans votre confort et votre observance."
+      }
+    },
+    "ctaSection": {
+      "title": "Prenez le Contrôle de Votre Santé Respiratoire Aujourd'hui",
+      "description": "Ne laissez pas les problèmes respiratoires limiter votre vie. Notre équipe d'experts est là pour vous guider vers la solution thérapeutique la plus adaptée à vos besoins spécifiques.",
+      "appointmentButton": "Prendre Rendez-vous",
+      "contactButton": "Nous Contacter"
+    }
+  },
   "productsSection": {
     "products": {
       "noProducts": "Aucun produit trouvé",
@@ -480,20 +576,313 @@
       "comingSoon": "En Arrivage",
       "addToCart": "Ajouter ",
       "features": "Caractéristiques"
-      
     },
-    "masks":"MASQUES",
-    "cpap":"CPAP",
-    "oxygen":"OXYGENES",
-    "lits":"LITS MEDICALISE",
+    "masks": "MASQUES",
+    "cpap": "CPAP",
+    "oxygen": "OXYGENES",
+    "lits": "LITS MEDICALISE",
     "scrollLeft": "Défiler à gauche",
     "scrollRight": "Défiler à droite",
-    "viewDetails" : "Plus de detail"
+    "viewDetails": "Plus de detail"
   },
   "cart": {
     "title": "Mon Panier",
     "empty": "Votre panier est vide",
     "continue": "Continuer vos achats",
     "requestQuote": "Demander un devis"
+  },
+  "blog": {
+    "title": "Blog Elite Médicale",
+    "posts": {
+      "oxygenTherapy": {
+        "title": "Guide Complet sur l'Oxygénothérapie et les Machines CPAP",
+        "excerpt": "Tout ce que vous devez savoir sur les équipements d'oxygénothérapie et leur utilisation pour améliorer la santé respiratoire."
+      },
+      "oxygenConcentrator": {
+        "title": "Comment Choisir le Bon Concentrateur d'Oxygène",
+        "excerpt": "Notre guide expert pour sélectionner le concentrateur adapté à vos besoins médicaux et votre mode de vie."
+      },
+      "respiratoryEquipment": {
+        "title": "Entretien des Équipements Respiratoires: Guide Complet",
+        "excerpt": "Les procédures d'entretien essentielles pour maintenir vos appareils en parfait état de fonctionnement."
+      },
+      "respiratoryTherapy": {
+        "title": "Les Avantages de la Thérapie Respiratoire à Domicile",
+        "excerpt": "Comment la thérapie respiratoire à domicile peut améliorer votre qualité de vie et votre santé globale."
+      }
+    },
+    "oxygenConcentrator": {
+      "title": "Comment Choisir le Bon Concentrateur d'Oxygène",
+      "description": "Notre guide expert pour sélectionner le concentrateur adapté à vos besoins médicaux et votre mode de vie.",
+      "sections": {
+        "whyImportant": {
+          "title": "Pourquoi le bon choix est crucial",
+          "description": "Un concentrateur adapté peut améliorer considérablement:",
+          "points": [
+            "Votre qualité de vie quotidienne",
+            "Votre autonomie et mobilité",
+            "L'efficacité de votre traitement",
+            "Votre confort pendant le sommeil"
+          ]
+        },
+        "selectionCriteria": {
+          "title": "Critères de Sélection",
+          "mobility": {
+            "title": "2. Mobilité nécessaire",
+            "fixedModels": {
+              "title": "🔌 Modèles fixes",
+              "pros": [
+                "+ Plus puissants",
+                "+ Moins chers",
+                "- Pour usage domestique seulement"
+              ]
+            },
+            "portableModels": {
+              "title": "⚡ Modèles portables",
+              "pros": [
+                "+ Autonomie avec batterie",
+                "+ Léger (2-5kg)",
+                "- Débit souvent limité"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "common": {
+    "readTime": "{{count}} min de lecture",
+    "readArticle": "Lire l'article"
+  },
+  "oxygenTherapyPage": {
+    "title": "Guide Complet sur l'Oxygénothérapie et les Machines CPAP",
+    "description": "Tout ce que vous devez savoir pour améliorer votre santé respiratoire avec nos équipements médicaux professionnels.",
+    "introduction": {
+      "title": "Pourquoi cet équipement est essentiel",
+      "description": "L'oxygénothérapie et les machines CPAP sauvent des vies en traitant:",
+      "conditions": [
+        "Apnée obstructive du sommeil",
+        "BPCO (Bronchopneumopathie Chronique Obstructive)",
+        "Fibrose pulmonaire",
+        "Insuffisance respiratoire chronique"
+      ],
+      "expertTip": {
+        "title": "Conseil Expert:",
+        "description": "Une utilisation régulière de votre appareil peut améliorer votre qualité de sommeil de 70% et réduire les risques cardiovasculaires."
+      }
+    },
+    "equipment": {
+      "title": "Nos Solutions Professionnelles",
+      "oxygenConcentrators": {
+        "title": "CONCENTRATEURS D'OXYGÈNE",
+        "description": "Nos concentrateurs médicaux filtrent et purifient l'oxygène de l'air ambiant (jusqu'à 95% de pureté) avec une technologie silencieuse.",
+        "new": "Nouveau",
+        "portableModel": "Modèle portartable Spirit 3 (2.5kg seulement)",
+        "bestSeller": "Best-seller",
+        "homeOxPro": "Spirit pour usage domestique",
+        "autonomy": "Autonomie",
+        "longBattery": "Modèles avec batterie longue durée",
+        "viewConcentrators": "Voir nos concentrateurs"
+      },
+      "cpapMachines": {
+        "title": "MACHINES CPAP",
+        "description": "Nos appareils CPAP maintiennent une pression positive constante pour garder les voies respiratoires ouvertes pendant le sommeil, traitant efficacement l'apnée du sommeil.",
+        "features": [
+          "Pression auto-ajustable",
+          "Humidificateur intégré",
+          "Fonctionnement silencieux (<25dB)"
+        ]
+      }
+    },
+    "resources": {
+      "title": "Ressources Utiles",
+      "videoDemo": {
+        "title": "Vidéo Démonstration",
+        "description": "Apprenez à installer correctement votre masque pour un confort optimal.",
+        "videoTitle": "Installation d'un masque CPAP"
+      },
+      "faq": {
+        "title": "Questions Fréquentes",
+        "questions": [
+          {
+            "question": "Combien d'heures par nuit dois-je utiliser mon CPAP?",
+            "answer": "Pour des résultats optimaux, nous recommandons un minimum de 4 heures par nuit, idéalement 6-8 heures."
+          },
+          {
+            "question": "Comment nettoyer mon équipement?",
+            "answer": "Utilisez de l'eau tiède et un savon doux quotidiennement pour les masques, et changez les filtres mensuellement."
+          }
+        ],
+        "viewAll": "Voir toutes les questions"
+      }
+    },
+    "products": {
+      "title": "Nos Appareils CPAP YUWELL",
+      "models": [
+        {
+          "name": "YUWELL YH-550",
+          "type": "CPAP Standard",
+          "features": [
+            "Confort optimal",
+            "Silencieux",
+            "Facile à utiliser"
+          ]
+        },
+        {
+          "name": "YUWELL YH-350",
+          "type": "CPAP Compact",
+          "features": [
+            "Design compact",
+            "Traitement efficace",
+            "Idéal pour voyager"
+          ]
+        },
+        {
+          "name": "YUWELL YH-680",
+          "type": "Auto-CPAP",
+          "features": [
+            "Ajustement automatique",
+            "Écran tactile",
+            "Données détaillées"
+          ]
+        }
+      ],
+      "viewProduct": "Voir le produit"
+    },
+    "cta": {
+      "title": "Besoin d'Aide pour Choisir Votre Équipement?",
+      "description": "Nos experts respiratoires sont disponibles pour vous conseiller gratuitement sur le meilleur équipement pour vos besoins spécifiques.",
+      "contactExpert": "Contactez un Expert",
+      "phone": "+216 55 820 000"
+    },
+    "relatedArticles": {
+      "title": "Articles Liés",
+      "concentratorGuide": {
+        "title": "Comment Choisir le Bon Concentrateur d'Oxygène",
+        "description": "Notre guide expert pour sélectionner le concentrateur adapté à vos besoins."
+      },
+      "maintenanceGuide": {
+        "title": "Entretien des Équipements Respiratoires",
+        "description": "Les procédures d'entretien essentielles pour maintenir vos appareils en parfait état."
+      }
+    }
+  },
+  "maintenanceGuide": {
+    "title": "Guide Complet d'Entretien des Équipements Respiratoires",
+    "description": "Protégez votre investissement et assurez des performances optimales avec nos procédures d'entretien expertes.",
+    "dailyMaintenance": {
+      "title": "Entretien Quotidien",
+      "maskCleaning": {
+        "title": "Nettoyage du Masque",
+        "steps": [
+          "Démonter les pièces selon les instructions",
+          "Laver à l'eau tiède et au savon doux",
+          "Rincer abondamment à l'eau claire",
+          "Sécher à l'air libre"
+        ]
+      },
+      "humidifier": {
+        "title": "Humidificateur",
+        "steps": [
+          "Vider l'eau résiduelle chaque matin",
+          "Nettoyer le réservoir avec du vinaigre blanc dilué",
+          "Rincer soigneusement",
+          "Remplir avec de l'eau distillée"
+        ]
+      }
+    },
+    "weeklyMaintenance": {
+      "title": "Entretien Hebdomadaire",
+      "tubulures": {
+        "title": "Entretien des Tubulures",
+        "recommendedProducts": "Produits recommandés:",
+        "standardTubing22mm": "Tuyau Standard 22mm",
+        "standardTubing15mm": "Tuyau Standard 15mm",
+        "steps": [
+          "Nettoyer les tubulures avec une solution désinfectante spéciale",
+          "Laisser sécher complètement avant réutilisation",
+          "Remplacer tous les 3-6 mois selon l'utilisation"
+        ]
+      },
+      "filters": {
+        "title": "Remplacement des Filtres",
+        "description": "Remplacer ou nettoyer les filtres selon les recommandations du fabricant",
+        "standardFilter": "Filtre Standard Löwenstein",
+        "steps": [
+          "Vérifier l'état des filtres chaque semaine",
+          "Remplacer les filtres selon les recommandations du fabricant",
+          "Inspecter toutes les connexions pour détecter d'éventuelles fuites"
+        ],
+        "tip": "Conseil: Remplacez les filtres tous les 30 jours pour une performance optimale"
+      }
+    },
+    "troubleshooting": {
+      "title": "Dépannage des Problèmes Courants",
+      "unusualNoise": {
+        "title": "Bruit inhabituel",
+        "description": "Vérifiez les filtres et assurez-vous qu'aucun objet n'obstrue les entrées/sorties d'air.",
+        "action": "Voir les filtres de remplacement"
+      },
+      "oxygenFlowReduction": {
+        "title": "Réduction du débit d'oxygène",
+        "description": "Contrôlez les tubulures pour des plis ou blocages et remplacez les filtres si encrassés.",
+        "action": "Voir les tubulures de remplacement"
+      },
+      "maskLeaks": {
+        "title": "Fuites au niveau du masque",
+        "description": "Vérifiez l'ajustement du masque et l'intégrité des joints d'étanchéité",
+        "action": "Explorer nos masques"
+      },
+      "deviceFailure": {
+        "title": "Panne de l'appareil",
+        "description": "Si votre appareil ne s'allume pas ou présente un code d'erreur, contactez notre service technique.",
+        "action": "Contacter le support technique"
+      }
+    },
+    "maintenanceSchedule": {
+      "title": "Calendrier d'Entretien",
+      "element": "Élément",
+      "frequency": "Fréquence",
+      "action": "Action",
+      "recommendedProducts": "Produits recommandés",
+      "items": {
+        "mask": {
+          "name": "Masque",
+          "frequency": "Quotidienne",
+          "action": "Nettoyage",
+          "product": "Masque Facial YF-02"
+        },
+        "tubing": {
+          "name": "Tubulures",
+          "frequency": "Hebdomadaire",
+          "action": "Nettoyage approfondi",
+          "product": "Tuyau Standard 22mm"
+        },
+        "filters": {
+          "name": "Filtres",
+          "frequency": "Mensuelle",
+          "action": "Remplacement",
+          "product": "Filtre Standard Löwenstein"
+        },
+        "humidifier": {
+          "name": "Humidificateur",
+          "frequency": "Hebdomadaire",
+          "action": "Détartrage",
+          "product": "Humidificateur Löwenstein"
+        },
+        "technicalCheck": {
+          "name": "Contrôle technique",
+          "frequency": "Annuelle",
+          "action": "Par un technicien",
+          "product": "Prendre rendez-vous"
+        }
+      }
+    },
+    "cta": {
+      "title": "Besoin d'Assistance pour l'Entretien?",
+      "description": "Nos techniciens certifiés sont disponibles pour vous aider avec l'entretien de vos équipements respiratoires.",
+      "accessories": "Voir tous nos accessoires",
+      "contact": "Contacter un technicien"
+    }
   }
 }

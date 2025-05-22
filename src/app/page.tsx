@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import HeroSection from "@/components/home/HeroSection";
 import ProductsSection from "@/components/home/ProductsSection";
 import BrandsSection from "@/components/home/BrandsSection";
+import BlogPage from './blog/page';
 
 // Animation variants for sections
 const sectionVariants = {
@@ -44,6 +45,17 @@ export default function HomePage() {
       >
         <BrandsSection />
       </motion.div>
+
+      {/* Blog Section */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={sectionVariants}
+      >
+        <BlogPage />
+      </motion.div>
+
     </div>
   );
 }

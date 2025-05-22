@@ -364,6 +364,102 @@
       "fetchError": "An error occurred while fetching orders."
     }
   },
+  "respiratoryTherapyBlog": {
+    "testimonials": {
+      "title": "Patient Testimonials",
+      "testimonial1": {
+        "quote": "Since I started oxygen therapy, my life has completely changed. I can now climb stairs without stopping, play with my grandchildren, and even get back to gardening. It's like I've regained part of my youth.",
+        "author": "Marie, 68 years old - Oxygen concentrator user"
+      },
+      "testimonial2": {
+        "quote": "My CPAP machine has transformed my nights and days. Before, I was constantly tired and irritable. Now, I wake up rested and full of energy. My wife says I don't snore anymore, which has improved our relationship. It's a real miracle for me.",
+        "author": "Thomas, 52 years old - CPAP user for sleep apnea"
+      }
+    },
+    "maintenance": {
+      "title": "Maximizing Benefits: Maintenance and Compliance",
+      "regularMaintenance": {
+        "title": "The Importance of Regular Maintenance",
+        "description": "To maximize the benefits of your respiratory therapy, regular maintenance of your equipment is essential. Clean filters, well-fitted masks, and properly calibrated devices ensure optimal treatment effectiveness and extend the life of your equipment.",
+        "linkText": "Guide to maintaining your respiratory equipment"
+      },
+      "treatmentCompliance": {
+        "title": "Treatment Compliance",
+        "description1": "Studies show that patients who faithfully follow their respiratory therapy (at least 6 hours per night for CPAP, for example) achieve significantly better results than those who use it intermittently. Regular use is the key to fully benefiting from long-term advantages.",
+        "description2": "If you experience difficulties with your treatment, don't hesitate to consult your healthcare professional or contact us for personalized advice. Small adjustments can often make a big difference in your comfort and compliance."
+      }
+    },
+    "pageTitle": "Benefits of Respiratory Therapy",
+    "pageDescription": "Discover how modern respiratory treatments improve quality of life and offer significant long-term health benefits.",
+    "heroImageAlt": "Respiratory therapy and its health benefits",
+    "introduction": {
+      "title": "Why is Respiratory Therapy Essential?",
+      "paragraph1": "Respiratory therapy represents a set of medical treatments designed to improve respiratory function in people suffering from chronic or acute respiratory disorders. These therapies, which include oxygen therapy, CPAP/BiPAP devices, and nebulizers, offer considerable benefits that go far beyond simple relief of respiratory symptoms.",
+      "paragraph2": "Whether you suffer from sleep apnea, COPD, asthma, or other lung conditions, modern respiratory therapies can transform your quality of life and significantly improve your overall health. In this article, we explore the many benefits of these essential treatments."
+    },
+    "keyBenefits": {
+      "title": "Key Benefits of Respiratory Therapy",
+      "cardiovascularHealth": {
+        "title": "Improved Cardiovascular Health",
+        "description": "Better oxygenation reduces the strain on the heart, decreasing the risks of high blood pressure, arrhythmia, and other cardiac complications. Studies show a 30% reduction in the risk of cardiovascular events in patients regularly following their respiratory therapy."
+      },
+      "cognitiveFunction": {
+        "title": "Enhanced Cognitive Function",
+        "description": "Adequate oxygen supply to the brain improves concentration, memory, and cognitive functions. Regular CPAP users report a 40% improvement in mental clarity and problem-solving abilities."
+      },
+      "energyLevels": {
+        "title": "Increased Energy Levels",
+        "description": "Efficient breathing means more oxygen for your cells, resulting in a significant increase in daily energy levels. 85% of respiratory therapy users report reduced chronic fatigue after just two weeks of treatment."
+      },
+      "sleepQuality": {
+        "title": "Improved Sleep Quality",
+        "description": "Therapies like CPAP eliminate breathing interruptions during sleep, allowing for deeper, more restorative sleep phases. Patients report an average 70% improvement in sleep quality, with fewer nighttime awakenings and more restful sleep."
+      }
+    },
+    "longTermBenefits": {
+      "title": "Long-Term Benefits",
+      "lifeExpectancy": {
+        "title": "Increased Life Expectancy",
+        "description": "Medical research shows that COPD patients who faithfully follow their respiratory therapy can increase their life expectancy by 5 to 7 years. Regular treatment of respiratory disorders significantly reduces the risk of potentially fatal complications."
+      },
+      "diseaseProgression": {
+        "title": "Slowed Disease Progression",
+        "description": "Appropriate respiratory therapy can significantly slow the progression of diseases like COPD and pulmonary fibrosis. Clinical studies show a 45% reduction in the rate of lung function decline in patients who strictly follow their treatment."
+      },
+      "exerciseCapacity": {
+        "title": "Improved Exercise Capacity",
+        "description": "With better oxygenation, patients experience a significant increase in their endurance and ability to perform physical activities. Six-minute walk tests show an average improvement of 60 meters after 3 months of regular respiratory therapy."
+      },
+      "socialRelationships": {
+        "title": "Enhanced Social Relationships",
+        "description": "Less fatigue and more energy mean a more active social life. Patients report significant improvement in their social and family interactions, reducing the isolation often associated with chronic respiratory diseases."
+      }
+    },
+    "therapyTypes": {
+      "title": "Types of Respiratory Therapies and Their Specific Benefits",
+      "oxygenTherapy": {
+        "title": "Oxygen Therapy",
+        "description": "Oxygen therapy provides additional oxygen, essential for patients with chronic hypoxemia. This therapy improves quality of life by reducing shortness of breath, increasing exercise capacity, and decreasing the workload on the heart.",
+        "learnMore": "Learn more about oxygen concentrators"
+      },
+      "cpapTherapy": {
+        "title": "CPAP/BiPAP Therapy",
+        "description": "Continuous Positive Airway Pressure (CPAP/BiPAP) therapy is the gold standard treatment for sleep apnea. It keeps the airways open during sleep, improving sleep quality, reducing daytime sleepiness, and decreasing associated cardiovascular risks.",
+        "discover": "Discover our CPAP devices"
+      },
+      "nebulization": {
+        "title": "Nebulization",
+        "description": "Nebulization allows for the direct administration of medications into the lungs as a fine mist. This method is particularly effective for asthma patients or those with COPD, providing rapid relief of symptoms and better medication penetration into the respiratory tract.",
+        "discover": "Explore our Nebulizers"
+      }
+    },
+    "ctaSection": {
+      "title": "Take Control of Your Respiratory Health Today",
+      "description": "Don't let breathing problems limit your life. Our team of experts is here to guide you to the most suitable therapeutic solution for your specific needs.",
+      "appointmentButton": "Book an Appointment",
+      "contactButton": "Contact Us"
+    }
+  },
   "servicesPage": {
     "hero": {
       "title": "Professional Oxygen Therapy Services",
@@ -495,5 +591,300 @@
     "empty": "Your cart is empty",
     "continue": "Continue Shopping",
     "requestQuote": "Request a Quote"
+  },
+  "blog": {
+    "title": "Elite Medical Blog",
+    "posts": {
+      "oxygenTherapy": {
+        "title": "Complete Guide to Oxygen Therapy and CPAP Machines",
+        "excerpt": "Everything you need to know about oxygen therapy equipment and how to use it to improve respiratory health."
+      },
+      "oxygenConcentrator": {
+        "title": "How to Choose the Right Oxygen Concentrator",
+        "excerpt": "Our expert guide to selecting the concentrator that fits your medical needs and lifestyle."
+      },
+      "respiratoryEquipment": {
+        "title": "Respiratory Equipment Maintenance: Complete Guide",
+        "excerpt": "Essential maintenance procedures to keep your equipment in perfect working condition."
+      },
+      "respiratoryTherapy": {
+        "title": "Benefits of Home Respiratory Therapy",
+        "excerpt": "How home respiratory therapy can improve your quality of life and overall health."
+      }
+    },
+    "oxygenConcentrator": {
+    "title": "How to Choose the Right Oxygen Concentrator",
+    "description": "Our expert guide to selecting the concentrator that fits your medical needs and lifestyle.",
+    "sections": {
+      "whyImportant": {
+        "title": "Why the Right Choice is Crucial",
+        "description": "The right concentrator can significantly improve:",
+        "points": [
+          "Your daily quality of life",
+          "Your autonomy and mobility",
+          "The effectiveness of your treatment",
+          "Your comfort during sleep"
+        ]
+      },
+      "selectionCriteria": {
+        "title": "Selection Criteria",
+        "mobility": {
+          "title": "2. Mobility Needed",
+          "fixedModels": {
+            "title": "🔌 Fixed Models",
+            "pros": [
+              "+ More powerful",
+              "+ Less expensive",
+              "- For home use only"
+            ]
+          },
+          "portableModels": {
+            "title": "⚡ Portable Models",
+            "pros": [
+              "+ Battery-powered",
+              "+ Lightweight (2-5kg)",
+              "- Often limited flow rate"
+            ]
+          }
+        }
+      }
+    }
   }
+  },
+  "common": {
+    "readTime": "{{count}} min read",
+    "readArticle": "Read article"
+  },
+  "oxygenTherapyPage": {
+    "title": "Complete Guide to Oxygen Therapy and CPAP Machines",
+    "description": "Everything you need to know to improve your respiratory health with our professional medical equipment.",
+    "introduction": {
+      "title": "Why This Equipment is Essential",
+      "description": "Oxygen therapy and CPAP machines save lives by treating:",
+      "conditions": [
+        "Obstructive sleep apnea",
+        "COPD (Chronic Obstructive Pulmonary Disease)",
+        "Pulmonary fibrosis",
+        "Chronic respiratory failure"
+      ],
+      "expertTip": {
+        "title": "Expert Advice:",
+        "description": "Regular use of your device can improve your sleep quality by 70% and reduce cardiovascular risks."
+      }
+    },
+    "equipment": {
+      "title": "Our Professional Solutions",
+      "oxygenConcentrators": {
+        "title": "OXYGEN CONCENTRATORS",
+        "description": "Our medical concentrators filter and purify oxygen from ambient air (up to 95% purity) with silent technology.",
+        "new": "New",
+        "portableModel": "Spirit 3 model (only 2.5kg)",
+        "bestSeller": "Best-seller",
+        "homeOxPro": "Spirit 3 for home use",
+        "autonomy": "Autonomy",
+        "longBattery": "Models with long-lasting battery",
+        "viewConcentrators": "View our concentrators"
+      },
+      "cpapMachines": {
+        "title": "CPAP MACHINES",
+        "description": "Our CPAP devices maintain constant positive pressure to keep airways open during sleep, effectively treating sleep apnea.",
+        "features": [
+          "Auto-adjusting pressure",
+          "Integrated humidifier",
+          "Quiet operation (<25dB)"
+        ]
+      }
+    },
+    "resources": {
+      "title": "Useful Resources",
+      "videoDemo": {
+        "title": "Video Demonstration",
+        "description": "Learn how to properly install your mask for optimal comfort.",
+        "videoTitle": "CPAP Mask Installation"
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "questions": [
+          {
+            "question": "How many hours per night should I use my CPAP?",
+            "answer": "For optimal results, we recommend a minimum of 4 hours per night, ideally 6-8 hours."
+          },
+          {
+            "question": "How do I clean my equipment?",
+            "answer": "Use warm water and mild soap daily for masks, and change filters monthly."
+          }
+        ],
+        "viewAll": "View all questions"
+      }
+    },
+    "products": {
+      "title": "Our YUWELL CPAP Devices",
+      "models": [
+        {
+          "name": "YUWELL YH-550",
+          "type": "Standard CPAP",
+          "features": [
+            "Optimal comfort",
+            "Quiet operation",
+            "Easy to use"
+          ]
+        },
+        {
+          "name": "YUWELL YH-350",
+          "type": "Compact CPAP",
+          "features": [
+            "Compact design",
+            "Efficient treatment",
+            "Ideal for travel"
+          ]
+        },
+        {
+          "name": "YUWELL YH-680",
+          "type": "Auto-CPAP",
+          "features": [
+            "Automatic adjustment",
+            "Touch screen",
+            "Detailed data"
+          ]
+        }
+      ],
+      "viewProduct": "View product"
+    },
+    "cta": {
+      "title": "Need Help Choosing Your Equipment?",
+      "description": "Our respiratory experts are available to provide free advice on the best equipment for your specific needs.",
+      "contactExpert": "Contact an Expert",
+      "phone": "+216 55 820 000"
+    },
+    "relatedArticles": {
+      "title": "Related Articles",
+      "concentratorGuide": {
+        "title": "How to Choose the Right Oxygen Concentrator",
+        "description": "Our expert guide to selecting the concentrator that fits your needs."
+      },
+      "maintenanceGuide": {
+        "title": "Respiratory Equipment Maintenance",
+        "description": "Essential maintenance procedures to keep your devices in perfect condition."
+      }
+    }
+  },
+  "maintenanceGuide": {
+    "title": "Complete Guide to Respiratory Equipment Maintenance",
+    "description": "Protect your investment and ensure optimal performance with our expert maintenance procedures.",
+    "dailyMaintenance": {
+      "title": "Daily Maintenance",
+      "maskCleaning": {
+        "title": "Mask Cleaning",
+        "steps": [
+          "Disassemble parts according to instructions",
+          "Wash with warm water and mild soap",
+          "Rinse thoroughly with clean water",
+          "Air dry"
+        ]
+      },
+      "humidifier": {
+        "title": "Humidifier",
+        "steps": [
+          "Empty residual water each morning",
+          "Clean tank with diluted white vinegar",
+          "Rinse thoroughly",
+          "Fill with distilled water"
+        ]
+      }
+    },
+    "weeklyMaintenance": {
+      "title": "Weekly Maintenance",
+      "tubulures": {
+        "title": "Tubing Maintenance",
+        "recommendedProducts": "Recommended products:",
+        "standardTubing22mm": "Standard Tubing 22mm",
+        "standardTubing15mm": "Standard Tubing 15mm",
+        "steps": [
+          "Clean tubing with a special disinfectant solution",
+          "Allow to dry completely before reuse",
+          "Replace every 3-6 months depending on usage"
+        ]
+      },
+      "filters": {
+        "title": "Filter Replacement",
+        "description": "Replace or clean filters as recommended by the manufacturer",
+        "standardFilter": "Standard Löwenstein Filter",
+        "steps": [
+          "Check filter condition weekly",
+          "Replace filters according to manufacturer recommendations",
+          "Inspect all connections for potential leaks"
+        ],
+        "tip": "Tip: Replace filters every 30 days for optimal performance"
+      }
+    },
+    "troubleshooting": {
+      "title": "Troubleshooting Common Problems",
+      "unusualNoise": {
+        "title": "Unusual Noise",
+        "description": "Check filters and ensure no objects are obstructing air inlets/outlets.",
+        "action": "View replacement filters"
+      },
+      "oxygenFlowReduction": {
+        "title": "Reduced Oxygen Flow",
+        "description": "Check tubing for kinks or blockages and replace filters if clogged.",
+        "action": "View replacement tubing"
+      },
+      "maskLeaks": {
+        "title": "Mask Leaks",
+        "description": "Check mask fit and seal integrity.",
+        "action": "Explore our masks"
+      },
+      "deviceFailure": {
+        "title": "Device Failure",
+        "description": "If your device won't turn on or displays an error code, contact our technical support.",
+        "action": "Contact technical support"
+      }
+    },
+    "maintenanceSchedule": {
+      "title": "Maintenance Calendar",
+      "element": "Element",
+      "frequency": "Frequency",
+      "action": "Action",
+      "recommendedProducts": "Recommended Products",
+      "items": {
+        "mask": {
+          "name": "Mask",
+          "frequency": "Daily",
+          "action": "Cleaning",
+          "product": "Facial Mask YF-02"
+        },
+        "tubing": {
+          "name": "Tubing",
+          "frequency": "Weekly",
+          "action": "Deep cleaning",
+          "product": "Standard Tubing 22mm"
+        },
+        "filters": {
+          "name": "Filters",
+          "frequency": "Monthly",
+          "action": "Replacement",
+          "product": "Standard Löwenstein Filter"
+        },
+        "humidifier": {
+          "name": "Humidifier",
+          "frequency": "Weekly",
+          "action": "Descaling",
+          "product": "Löwenstein Humidifier"
+        },
+        "technicalCheck": {
+          "name": "Technical check",
+          "frequency": "Annual",
+          "action": "By a technician",
+          "product": "Make an appointment"
+        }
+      }
+    },
+    "cta": {
+      "title": "Need Maintenance Assistance?",
+      "description": "Our certified technicians are available to help you with your respiratory equipment maintenance.",
+      "accessories": "View all our accessories",
+      "contact": "Contact a technician"
+    }
+  }
+
 }
