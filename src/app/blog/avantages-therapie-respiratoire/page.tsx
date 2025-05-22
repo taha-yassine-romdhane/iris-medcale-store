@@ -223,7 +223,7 @@ export default function RespiratoryTherapyBenefits() {
           
           <div className="grid gap-6 md:grid-cols-2">
             <div className="bg-blue-50 p-6 rounded-xl relative">
-              <div className="text-blue-300 absolute top-4 left-4 text-4xl">"</div>
+              <div className="text-blue-300 absolute top-4 left-4 text-4xl">&quot;</div>
               <div className="ml-6 mt-2">
                 <p className="text-gray-700 italic mb-4">
                   {t('respiratoryTherapyBlog.testimonials.testimonial1.quote')}
@@ -233,7 +233,7 @@ export default function RespiratoryTherapyBenefits() {
             </div>
             
             <div className="bg-blue-50 p-6 rounded-xl relative">
-              <div className="text-blue-300 absolute top-4 left-4 text-4xl">"</div>
+              <div className="text-blue-300 absolute top-4 left-4 text-4xl">&quot;</div>
               <div className="ml-6 mt-2">
                 <p className="text-gray-700 italic mb-4">
                   {t('respiratoryTherapyBlog.testimonials.testimonial2.quote')}

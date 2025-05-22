@@ -1,15 +1,9 @@
 'use client';
 import { 
-  ShieldCheck, 
   Phone, 
   Mail,
   CheckCircle,
-  Battery,
-  Home,
   Move3D,
-  Droplets,
-  Settings,
-  HeartPulse
 } from 'lucide-react';
 import { useTranslation } from '@/contexts/TranslationContext';
 import Link from 'next/link';

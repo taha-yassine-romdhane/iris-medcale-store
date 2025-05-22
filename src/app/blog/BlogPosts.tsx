@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { 
   Puzzle, 
   Filter, 
-  BookOpen, 
   Stethoscope, 
   Bed,
   ArrowRight

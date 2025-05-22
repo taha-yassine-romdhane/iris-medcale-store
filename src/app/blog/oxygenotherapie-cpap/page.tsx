@@ -7,7 +7,6 @@ import {
   Stethoscope, 
   Clock, 
   Battery, 
-  Droplets, 
   Phone, 
   Mail,
   Puzzle,
@@ -15,7 +14,6 @@ import {
   MessageCircleQuestion
 } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useTranslation } from '@/contexts/TranslationContext';
 
 export default function OxygenTherapyPage() {
