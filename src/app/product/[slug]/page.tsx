@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import ProductClient from './ProductClient';
 import JsonLdProduct from './JsonLd';
+import { createProductSlug } from '@/utils/slugify';
 
 type Props = {
   params: { slug: string }
@@ -19,8 +20,7 @@ export async function generateMetadata(
   
   try {
     // We need to use an absolute URL for server-side fetch
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 
-                  (process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.elitemedicaleservices.tn');
+    const baseUrl =  'https://www.elitemedicaleservices.tn';
     // Fetch both product and translations in parallel for better performance
     const [productRes, translationsRes] = await Promise.all([
       fetch(`${baseUrl}/api/products/by-name/${slug}`, { next: { revalidate: 3600 } }),
@@ -92,32 +92,39 @@ export async function generateMetadata(
     
     // Generate hreflang alternates for each supported language
     const languageAlternates: Record<string, string> = {};
+    const productSlug = createProductSlug(product.name);
     languages.forEach(lang => {
-      languageAlternates[lang] = `${process.env.NEXT_PUBLIC_SITE_URL || 
-        (process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.elitemedicaleservices.tn')}/product/${slug}?lang=${lang}`;
+      languageAlternates[lang] = `https://www.elitemedicaleservices.tn/product/${productSlug}?lang=${lang}`;
     });
     
-    return {
+    const metadata: Metadata = {
       title: `${productName} | ${product.brand} | Elite Médicale Services`,
-      description: productDescription?.substring(0, 160) || `Découvrez ${productName} de ${product.brand} chez Elite Médicale Services. Livraison rapide en Tunisie.`,
+      description: productDescription?.substring(0, 155) || `Découvrez ${productName} de ${product.brand} chez Elite Médicale Services. Livraison rapide en Tunisie.`,
       keywords: [productName, product.brand, product.category, product.type, 'équipement médical', 'Tunisie'].filter(Boolean).join(', '),
       openGraph: {
         title: `${productName} | ${product.brand}`,
-        description: productDescription?.substring(0, 160) || `Découvrez ${productName} de ${product.brand} chez Elite Médicale Services.`,
+        description: (productDescription?.substring(0, 155) || `Découvrez ${productName} de ${product.brand} chez Elite Médicale Services.`) + ' Livraison en Tunisie.',
         images: productImages,
-        type: 'website', // Using website type as it's compatible with Next.js
-        locale: 'tn-TN',
+        type: 'website',
+        locale: 'fr_TN',
         siteName: 'Elite Médicale Services',
+        url: `https://www.elitemedicaleservices.tn/product/${createProductSlug(product.name)}`,
       },
       twitter: {
         card: 'summary_large_image',
-        title: `${productName} | ${product.brand}`,
-        description: productDescription?.substring(0, 160) || `Découvrez ${productName} de ${product.brand} chez Elite Médicale Services.`,
-        images: [imageUrl],
+        title: `${productName} | ${product.brand} | Elite Médicale Services`,
+        description: (productDescription?.substring(0, 155) || `Découvrez ${productName} de ${product.brand} chez Elite Médicale Services.`) + ' Livraison en Tunisie.',
+        images: [{
+          url: imageUrl,
+          alt: `${productName} - ${product.brand}`,
+          width: 1200,
+          height: 630,
+        }],
+        site: '@elitemedicaleservices',
+        creator: '@elitemedicaleservices',
       },
       alternates: {
-        canonical: `${process.env.NEXT_PUBLIC_SITE_URL || 
-                  (process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.elitemedicaleservices.tn')}/product/${slug}`,
+        canonical: `https://www.elitemedicaleservices.tn/product/${createProductSlug(product.name)}`,
         languages: languageAlternates,
       },
       robots: {
@@ -128,16 +135,30 @@ export async function generateMetadata(
           follow: true,
           'max-image-preview': 'large',
           'max-snippet': -1,
+          'max-video-preview': -1,
         },
       },
       other: {
+        // OpenGraph product properties
+        'og:type': 'website',
+        'og:product': 'true',
         'product:brand': product.brand,
         'product:category': product.category,
         'product:availability': product.stock === 'IN_STOCK' ? 'in stock' : 'out of stock',
         'product:condition': 'new',
         'product:retailer_item_id': product.id,
+        'product:retailer_title': 'Elite Médicale Services',
+        // Facebook Product Tags
+        'fb:app_id': 'YOUR_FACEBOOK_APP_ID', // Replace with your Facebook App ID
+        // Additional structured data hints
+        'twitter:label1': 'Disponibilité',
+        'twitter:data1': product.stock === 'IN_STOCK' ? 'En stock' : 'Rupture de stock',
+        'twitter:label2': 'Service Client',
+        'twitter:data2': product.stock === 'IN_STOCK' ? 'En stock' : 'Rupture de stock',
       }
     };
+    
+    return metadata;
   } catch (error) {
     console.error('Error generating product metadata:', error);
     return {
@@ -153,8 +174,7 @@ export default async function ProductPage({ params }: Props) {
   const slug = resolvedParams.slug;
   
   // Get the base URL for the site
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 
-                (process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.elitemedicaleservices.tn');
+  const baseUrl = 'https://www.elitemedicaleservices.tn';
   
   // Fetch product data for JSON-LD
   console.log(`Fetching data for JSON-LD structured data: ${slug}`);
@@ -185,7 +205,7 @@ export default async function ProductPage({ params }: Props) {
     });
     
     // Get the full URL for the product
-    const productUrl = `${baseUrl}/product/${slug}`;
+    const productUrl = `${baseUrl}/product/${createProductSlug(product.name)}`;
     
     return (
       <>

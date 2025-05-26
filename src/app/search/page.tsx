@@ -5,6 +5,7 @@ import { Product } from '@/types/product';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Search, ArrowLeft } from 'lucide-react';
+import { createProductSlug } from '@/utils/slugify';
 
 // Separate the search results content into its own component
 function SearchResults({ query }: { query: string }) {
@@ -61,7 +62,7 @@ function SearchResults({ query }: { query: string }) {
       {products.map((product) => (
         <Link
           key={product.id}
-          href={`/product/${product.id}`}
+          href={`/product/${createProductSlug(product.name)}`}
           className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden group"
         >
           <div className="relative h-64 bg-gray-100">

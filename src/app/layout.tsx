@@ -41,8 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Google Site Verification */}
         <meta name="google-site-verification" content="UtU39-ipWVaxllm5GhD5WRnE18EuRC2uUkqyC50Rujk" />
         
-        {/* Canonical URL */}
-        <link rel="canonical" href="https://www.elitemedicaleservices.tn/" />
+        {/* Canonical URLs are now set dynamically in each page */}
         
         {/* Enhanced Structured Data for improved SEO */}
         <StructuredData type="localBusiness" />
