@@ -266,17 +266,6 @@ export default function SleepApneaPage() {
                             </div>
                         )}
                     </div>
-
-                    {/* Call to Action */}
-                    <div className="mt-16 text-center py-12 bg-gray-100  ">
-                        <h3 className="text-2xl font-bold mb-4">{t('apneeDuSommeil.vousPensezSouffrirDApneesDuSommeil')}</h3>
-                        <p className="text-lg text-gray-700 mb-6">
-                            {t('apneeDuSommeil.diagnosticPrecoce')}
-                        </p>
-                        <a href="/appointment" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-                            {t('apneeDuSommeil.prendreRendezVous')}
-                        </a>
-                    </div>
                 </div> 
             </section>
         </div>

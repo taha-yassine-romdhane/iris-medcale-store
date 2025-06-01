@@ -78,6 +78,11 @@ export default function Footer() {
                 {t('footer.sleepApnea')}
               </Link>
             </li>
+            <li>
+              <Link href="/blog" className="text-gray-600 hover:text-blue-600 hover:pl-2 transition-all duration-300">
+                {t('footer.blog')}
+              </Link>
+            </li>
           </ul>
         </div>
 
