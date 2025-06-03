@@ -3,10 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { useTranslation } from '@/contexts/TranslationContext';
 
 export default function PpcCpapVoyagePage() {
-  const { t } = useTranslation();
 
   return (
     <article className="mx-auto px-4 md:px-8 py-12 bg-gradient-to-b from-blue-50 via-white to-blue-100 rounded-2xl shadow-xl text-blue-900">
@@ -33,7 +31,7 @@ export default function PpcCpapVoyagePage() {
           Appareils PPC / CPAP de voyage en Tunisie : liberté et traitement combinés
         </h1>
         <p className="text-blue-800 text-lg md:text-xl max-w-2xl">
-          Découvrez comment les <strong>CPAP de voyage</strong> permettent de maintenir votre <strong>traitement de l’apnée du sommeil</strong> lors de vos déplacements, que vous soyez en vacances ou en mission professionnelle.
+          Découvrez comment les <strong>CPAP de voyage</strong> permettent de maintenir votre <strong>traitement de l&apos;apnée du sommeil</strong> lors de vos déplacements, que vous soyez en vacances ou en mission professionnelle.
         </p>
       </header>
 
@@ -53,31 +51,31 @@ export default function PpcCpapVoyagePage() {
       <div className="space-y-8 text-blue-900">
         <h2 className="mt-0 text-2xl font-bold">Pourquoi utiliser un CPAP de voyage&nbsp;?</h2>
         <p>
-          Voyager avec un <strong>appareil CPAP classique</strong> peut s'avérer difficile en raison de sa taille, de son poids et de la nécessité d'accès à une alimentation électrique. C’est ici qu’interviennent les <strong>CPAP de voyage</strong>, spécialement conçus pour les déplacements.
+          Voyager avec un <strong>appareil CPAP classique</strong> peut s&apos;avérer difficile en raison de sa taille, de son poids et de la nécessité d&apos;accès à une alimentation électrique. C&apos;est ici qu&apos;interviennent les <strong>CPAP de voyage</strong>, spécialement conçus pour les déplacements.
         </p>
 
         <blockquote className="border-l-4 border-blue-300 pl-4 italic text-blue-800">
-          <strong>Bon à savoir :</strong> La majorité des compagnies aériennes en Tunisie et à l'international acceptent les appareils CPAP en cabine, mais une <strong>lettre de votre médecin</strong> est souvent recommandée.
+          <strong>Bon à savoir :</strong> La majorité des compagnies aériennes en Tunisie et à l&apos;international acceptent les appareils CPAP en cabine, mais une <strong>lettre de votre médecin</strong> est souvent recommandée.
         </blockquote>
 
-        <h3 className="text-xl font-semibold">Qu'est-ce qu’un CPAP de voyage&nbsp;?</h3>
+        <h3 className="text-xl font-semibold">Qu&apos;est-ce qu&apos;un CPAP de voyage&nbsp;?</h3>
         <p>
-          Il s’agit d’une <strong>version compacte et légère</strong> des appareils CPAP standard, offrant une <strong>solution efficace pour le traitement de l’apnée du sommeil</strong> tout en restant facile à transporter.
+          Il s&apos;agit d&apos;une <strong>version compacte et légère</strong> des appareils CPAP standard, offrant une <strong>solution efficace pour le traitement de l&apos;apnée du sommeil</strong> tout en restant facile à transporter.
         </p>
 
         <h3 className="text-xl font-semibold">Caractéristiques clés des CPAP de voyage</h3>
         <ul className="list-disc pl-6 space-y-2">
           <li><strong>Ultra-portables</strong> : parfaits pour le sac à dos ou le bagage cabine</li>
           <li><strong>Batterie autonome</strong> : utile pour le camping ou les vols long-courriers</li>
-          <li><strong>Silencieux</strong> : idéal pour ne pas déranger les autres dans l’avion ou l’hôtel</li>
+          <li><strong>Silencieux</strong> : idéal pour ne pas déranger les autres dans l&apos;avion ou l&apos;hôtel</li>
           <li><strong>Compatibles avec les masques CPAP ResMed et Philips</strong></li>
         </ul>
 
-        <h3 className="text-xl font-semibold">Quels sont les avantages&nbsp;?</h3>
+        <h3 className="text-xl font-semibold">Quels sont les avantages ?</h3>
         <ul className="list-disc pl-6 space-y-2">
-          <li>Maintien du <strong>traitement de l’apnée du sommeil</strong> sans interruption</li>
-          <li>Moins d’encombrement dans les transports</li>
-          <li>Idéal pour les voyages en <strong>Tunisie</strong> ou à l'étranger</li>
+          <li>Maintien du <strong>traitement de l&apos;apnée du sommeil</strong> sans interruption</li>
+          <li>Moins d&apos;encombrement dans les transports</li>
+          <li>Idéal pour les voyages en <strong>Tunisie</strong> ou à l&apos;étranger</li>
           <li>Plus grande autonomie avec des batteries ou adaptateurs voiture</li>
         </ul>
 
@@ -89,15 +87,15 @@ export default function PpcCpapVoyagePage() {
         </div>
 
         <h3 className="text-xl font-semibold">Comment choisir le bon modèle&nbsp;?</h3>
-        <p>Voici quelques critères à considérer avant l'achat&nbsp;:</p>
+        <p>Voici quelques critères à considérer avant l&apos;achat :</p>
         <ul className="list-disc pl-6 space-y-2">
-          <li><strong>Poids et taille</strong> : assurez-vous qu’il tient dans vos bagages</li>
+          <li><strong>Poids et taille</strong> : assurez-vous qu&apos;il tient dans vos bagages</li>
           <li><strong>Autonomie de la batterie</strong> : essentielle pour les zones sans électricité</li>
           <li><strong>Compatibilité avec vos accessoires actuels</strong></li>
           <li><strong>Fiabilité de la marque</strong> : ResMed, Philips, Yuwell, etc.</li>
         </ul>
 
-        <h3 className="text-xl font-semibold">Besoin de conseils personnalisés&nbsp;?</h3>
+        <h3 className="text-xl font-semibold">Besoin de conseils personnalisés ?</h3>
         <p>
           Notre équipe spécialisée en <strong>appareils CPAP Tunisie</strong> peut vous aider à choisir un modèle adapté à votre situation. Contactez-nous ou consultez nos <Link href="/produits/cpap" className="text-blue-700 underline hover:text-blue-900">CPAP de voyage disponibles</Link>.
         </p>

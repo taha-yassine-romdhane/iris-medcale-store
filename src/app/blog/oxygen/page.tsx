@@ -21,7 +21,7 @@ export default function ConcentrateurOxygenePage() {
         </div>
         
         <h1 className="text-4xl md:text-5xl font-extrabold text-cyan-900 mb-4 leading-tight drop-shadow-lg">
-          Concentrateur d'oxygène : indications et pathologies
+          Concentrateur d&apos;oxygène : indications et pathologies
         </h1>
       </header>
       
@@ -37,13 +37,13 @@ export default function ConcentrateurOxygenePage() {
       
       {/* Content */}
       <div className="prose prose-lg max-w-none space-y-8">
-        <h2 className="mt-0 text-cyan-800 font-semibold">Qu'est-ce qu'un concentrateur d'oxygène ?</h2>
+        <h2 className="mt-0 text-cyan-800 font-semibold">Qu&apos;est-ce qu&apos;un concentrateur d&apos;oxygène ?</h2>
         
         <p className="text-cyan-700">
-          Un concentrateur d'oxygène est un dispositif médical qui extrait l'oxygène de l'air ambiant et le concentre 
-          pour délivrer de l'oxygène médical à une concentration supérieure à 90%. Contrairement aux bouteilles d'oxygène, 
-          il fonctionne électriquement et produit de l'oxygène en continu, offrant une solution pratique et économique 
-          pour l'oxygénothérapie de longue durée.
+          Un concentrateur d&apos;oxygène est un dispositif médical qui extrait l&apos;oxygène de l&apos;air ambiant et le concentre 
+          pour délivrer de l&apos;oxygène médical à une concentration supérieure à 90%. Contrairement aux bouteilles d&apos;oxygène, 
+          il fonctionne électriquement et produit de l&apos;oxygène en continu, offrant une solution pratique et économique 
+          pour l&apos;oxygénothérapie de longue durée.
         </p>
         
         <div className="bg-cyan-50 rounded-xl p-6 shadow mb-8 border-l-4 border-cyan-400">
@@ -52,25 +52,25 @@ export default function ConcentrateurOxygenePage() {
             <div>
               <p className="text-cyan-800 font-semibold mb-2">Principe de fonctionnement</p>
               <p className="text-cyan-700">
-                Le concentrateur utilise la technologie PSA (Pressure Swing Adsorption) qui sépare l'oxygène 
-                de l'azote présent dans l'air ambiant grâce à des tamis moléculaires, permettant une production 
-                continue d'oxygène médical.
+                Le concentrateur utilise la technologie PSA (Pressure Swing Adsorption) qui sépare l&apos;oxygène 
+                de l&apos;azote présent dans l&apos;air ambiant grâce à des tamis moléculaires, permettant une production 
+                continue d&apos;oxygène médical.
               </p>
             </div>
           </div>
         </div>
         
-        <h3 className="text-cyan-800 font-semibold">Pathologies nécessitant un concentrateur d'oxygène</h3>
+        <h3 className="text-cyan-800 font-semibold">Pathologies nécessitant un concentrateur d&apos;oxygène</h3>
         
         <p className="text-cyan-700">
-          L'oxygénothérapie par concentrateur est indiquée dans plusieurs pathologies chroniques présentant 
-          une hypoxémie (diminution du taux d'oxygène dans le sang) :
+          L&apos;oxygénothérapie par concentrateur est indiquée dans plusieurs pathologies chroniques présentant 
+          une hypoxémie (diminution du taux d&apos;oxygène dans le sang) :
         </p>
         
         <h4 className="text-cyan-800 font-semibold">BPCO (Bronchopneumopathie Chronique Obstructive)</h4>
         
         <p className="text-cyan-700">
-          La BPCO est la première indication de l'oxygénothérapie de longue durée. Elle est prescrite lorsque :
+          La BPCO est la première indication de l&apos;oxygénothérapie de longue durée. Elle est prescrite lorsque :
         </p>
         
         <ul className="text-cyan-900">
@@ -86,8 +86,8 @@ export default function ConcentrateurOxygenePage() {
         </p>
         
         <ul className="text-cyan-900">
-          <li><strong className="text-cyan-800">Dyspnée progressive</strong> d'abord à l'effort puis au repos</li>
-          <li><strong className="text-cyan-800">Désaturation à l'effort</strong> puis au repos</li>
+          <li><strong className="text-cyan-800">Dyspnée progressive</strong> d&apos;abord à l&apos;effort puis au repos</li>
+          <li><strong className="text-cyan-800">Désaturation à l&apos;effort</strong> puis au repos</li>
           <li><strong className="text-cyan-800">Toux sèche chronique</strong></li>
           <li><strong className="text-cyan-800">Fatigue importante</strong></li>
         </ul>
@@ -95,7 +95,7 @@ export default function ConcentrateurOxygenePage() {
         <h4 className="text-cyan-800 font-semibold">Insuffisance cardiaque sévère</h4>
         
         <p className="text-cyan-700">
-          L'oxygénothérapie peut être nécessaire dans l'insuffisance cardiaque avancée avec :
+          L&apos;oxygénothérapie peut être nécessaire dans l&apos;insuffisance cardiaque avancée avec :
         </p>
         
         <ul className="text-cyan-900">
@@ -108,8 +108,8 @@ export default function ConcentrateurOxygenePage() {
         <div className="rounded-lg bg-cyan-100 border-l-4 border-cyan-400 p-4 my-8">
           <strong className="text-cyan-900">Témoignage :</strong>
           <p className="text-cyan-800 mt-2 italic">
-            "Depuis que j'ai mon concentrateur, je peux à nouveau faire mes courses et voir mes petits-enfants 
-            sans être essoufflée. C'est un vrai retour à la vie normale."
+            &quot;Depuis que j&apos;ai mon concentrateur, je peux à nouveau faire mes courses et voir mes petits-enfants 
+            sans être essoufflée. C&apos;est un vrai retour à la vie normale.&quot;
             <br />
             <span className="text-cyan-700">— Marie, 67 ans, atteinte de BPCO</span>
           </p>
@@ -126,7 +126,7 @@ export default function ConcentrateurOxygenePage() {
           <li><strong className="text-cyan-800">Malformations thoraciques</strong> sévères</li>
         </ul>
         
-        <h3 className="text-cyan-800 font-semibold">Types de concentrateurs d'oxygène</h3>
+        <h3 className="text-cyan-800 font-semibold">Types de concentrateurs d&apos;oxygène</h3>
         
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           <div className="bg-white p-6 rounded-xl shadow-lg border border-cyan-200">
@@ -167,8 +167,8 @@ export default function ConcentrateurOxygenePage() {
         <div className="bg-cyan-50 rounded-xl p-6 shadow mb-8">
           <h4 className="text-cyan-800 font-bold text-lg mb-4">Critères de prescription</h4>
           <p className="text-cyan-700 mb-4">
-            L'oxygénothérapie de longue durée est prescrite sur la base d'une gazométrie artérielle 
-            réalisée en état stable (en dehors d'une exacerbation) et confirmée à 3 semaines d'intervalle.
+            L&apos;oxygénothérapie de longue durée est prescrite sur la base d&apos;une gazométrie artérielle 
+            réalisée en état stable (en dehors d&apos;une exacerbation) et confirmée à 3 semaines d&apos;intervalle.
           </p>
           
           <div className="grid md:grid-cols-2 gap-4">
@@ -190,7 +190,7 @@ export default function ConcentrateurOxygenePage() {
           </div>
         </div>
         
-        <h4 className="text-cyan-800 font-semibold">Durée d'utilisation recommandée</h4>
+        <h4 className="text-cyan-800 font-semibold">Durée d&apos;utilisation recommandée</h4>
         
         <ul className="text-cyan-900">
           <li><strong className="text-cyan-800">Minimum 15 heures par jour</strong> pour être efficace</li>
@@ -199,13 +199,13 @@ export default function ConcentrateurOxygenePage() {
           <li><strong className="text-cyan-800">Maintien durant les activités</strong> quotidiennes</li>
         </ul>
         
-        <h3 className="text-cyan-800 font-semibold">Bénéfices de l'oxygénothérapie</h3>
+        <h3 className="text-cyan-800 font-semibold">Bénéfices de l&apos;oxygénothérapie</h3>
         
         <div className="flex flex-col md:flex-row gap-8 items-center bg-cyan-50 rounded-xl p-6 shadow mt-8 mb-8">
           <div className="flex-1">
             <h4 className="text-cyan-800 font-bold text-lg mb-2">Amélioration prouvée</h4>
             <p className="text-cyan-700">
-              L'oxygénothérapie de longue durée améliore significativement la survie et la qualité de vie 
+              L&apos;oxygénothérapie de longue durée améliore significativement la survie et la qualité de vie 
               des patients hypoxémiques chroniques, particulièrement dans la BPCO.
             </p>
           </div>
@@ -218,8 +218,8 @@ export default function ConcentrateurOxygenePage() {
           <li><strong className="text-cyan-800">Amélioration de la survie</strong> (études NOTT et MRC)</li>
           <li><strong className="text-cyan-800">Réduction de la polyglobulie</strong></li>
           <li><strong className="text-cyan-800">Amélioration des fonctions cognitives</strong></li>
-          <li><strong className="text-cyan-800">Réduction de l'hypertension artérielle pulmonaire</strong></li>
-          <li><strong className="text-cyan-800">Amélioration de la capacité d'exercice</strong></li>
+          <li><strong className="text-cyan-800">Réduction de l&apos;hypertension artérielle pulmonaire</strong></li>
+          <li><strong className="text-cyan-800">Amélioration de la capacité d&apos;exercice</strong></li>
           <li><strong className="text-cyan-800">Réduction des hospitalisations</strong></li>
           <li><strong className="text-cyan-800">Amélioration du sommeil</strong></li>
         </ul>
@@ -227,13 +227,13 @@ export default function ConcentrateurOxygenePage() {
         <h3 className="text-cyan-800 font-semibold">Surveillance et suivi</h3>
         
         <p className="text-cyan-700">
-          Le suivi de l'oxygénothérapie comprend :
+          Le suivi de l&apos;oxygénothérapie comprend :
         </p>
         
         <ul className="text-cyan-900">
           <li><strong className="text-cyan-800">Contrôle gazométrique</strong> à 1-3 mois puis tous les 6-12 mois</li>
           <li><strong className="text-cyan-800">Vérification du débit</strong> et ajustement si nécessaire</li>
-          <li><strong className="text-cyan-800">Évaluation de l'observance</strong> (compteur horaire)</li>
+          <li><strong className="text-cyan-800">Évaluation de l&apos;observance</strong> (compteur horaire)</li>
           <li><strong className="text-cyan-800">Surveillance des effets secondaires</strong></li>
           <li><strong className="text-cyan-800">Maintenance du matériel</strong></li>
           <li><strong className="text-cyan-800">Éducation thérapeutique</strong> continue</li>
@@ -278,9 +278,9 @@ export default function ConcentrateurOxygenePage() {
             <div>
               <p className="text-cyan-800 font-semibold mb-2">Message important :</p>
               <p className="text-cyan-700">
-                L'oxygénothérapie de longue durée est un traitement vital pour de nombreuses pathologies chroniques. 
+                L&apos;oxygénothérapie de longue durée est un traitement vital pour de nombreuses pathologies chroniques. 
                 Une utilisation régulière et conforme aux prescriptions médicales peut considérablement améliorer 
-                votre qualité de vie et votre pronostic. N'hésitez pas à contacter votre équipe soignante pour 
+                votre qualité de vie et votre pronostic. N&apos;hésitez pas à contacter votre équipe soignante pour 
                 toute question concernant votre traitement.
               </p>
             </div>

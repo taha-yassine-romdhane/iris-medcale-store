@@ -3,7 +3,6 @@ import Link from 'next/link';
 import {
   ArrowRight,
 } from 'lucide-react';
-import { useTranslation } from '@/contexts/TranslationContext';
 
 type BlogPost = {
   slug: string;
@@ -15,12 +14,11 @@ type BlogPost = {
 };
 
 export default function BlogPosts() {
-  const { t } = useTranslation(); // Assuming t() is used for future localization
 
   const posts: BlogPost[] = [
     {
       slug: 'les-solutions-medicales-pour-traiter-les-ronflements',
-      title: 'Les différents types d’apnée du sommeil',
+      title: 'Les différents types d\'apnée du sommeil',
       excerpt: 'L\'apnée du sommeil est un phénomène courant qui peut perturber la qualité du sommeil et affecter la santé globale. Il est souvent un signe de troubles respiratoires et peut être associé à...',
       image: '/catalogue photo/ApneesDuSommeil-scaled.jpg',
       date: '21 février 2025',

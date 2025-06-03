@@ -3,10 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { useTranslation } from '@/contexts/TranslationContext';
 
 export default function TroubleRespiratoirePage() {
-  const { t } = useTranslation();
   
   return (
     <article className="mx-auto px-4 md:px-8 py-12 bg-gradient-to-b from-blue-50 via-white to-blue-100 rounded-2xl shadow-xl">
@@ -30,7 +28,7 @@ export default function TroubleRespiratoirePage() {
         </div>
         
         <h1 className="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4 leading-tight drop-shadow-lg">
-          Qu'est-ce qu'un trouble respiratoire ?
+          Qu&apos;est-ce qu&apos;un trouble respiratoire ?
         </h1>
         <p className="text-blue-800 text-lg md:text-xl max-w-2xl">
           Comprendre les causes, symptômes et traitements des troubles respiratoires pour mieux gérer votre santé.
@@ -55,13 +53,13 @@ export default function TroubleRespiratoirePage() {
         
         <p className="text-blue-800">
           Un trouble respiratoire est une condition médicale qui affecte la respiration normale, souvent entraînant des difficultés 
-          à respirer et d'autres complications de santé. Ces troubles peuvent varier en gravité, allant de légers et temporaires 
+          à respirer et d&apos;autres complications de santé. Ces troubles peuvent varier en gravité, allant de légers et temporaires 
           à chroniques et potentiellement mortels.
         </p>
         
         <p className="text-blue-800">
-          La respiration est un processus vital qui permet à l'organisme d'absorber l'oxygène nécessaire à son fonctionnement 
-          et d'éliminer le dioxyde de carbone. Toute perturbation de ce processus peut avoir des conséquences importantes 
+          La respiration est un processus vital qui permet à l&apos;organisme d&apos;absorber l&apos;oxygène nécessaire à son fonctionnement 
+          et d&apos;éliminer le dioxyde de carbone. Toute perturbation de ce processus peut avoir des conséquences importantes 
           sur la santé et la qualité de vie.
         </p>
         
@@ -71,21 +69,21 @@ export default function TroubleRespiratoirePage() {
         
         <p className="text-blue-800">
           Ces troubles sont caractérisés par une obstruction ou un rétrécissement des voies respiratoires, 
-          rendant l'expiration difficile. Les principaux troubles obstructifs comprennent :
+          rendant l&apos;expiration difficile. Les principaux troubles obstructifs comprennent :
         </p>
         
         <ul className='list-disc pl-6 space-y-2 text-blue-800'>
           <li>
             <strong className="text-blue-700">Asthme</strong> : Inflammation chronique des voies respiratoires qui provoque des épisodes récurrents 
-            de respiration sifflante, d'essoufflement, d'oppression thoracique et de toux.
+            de respiration sifflante, d&apos;essoufflement, d&apos;oppression thoracique et de toux.
           </li>
           <li>
             <strong className="text-blue-700">Bronchopneumopathie chronique obstructive (BPCO)</strong> : Groupe de maladies pulmonaires qui bloquent 
-            le flux d'air et rendent la respiration difficile, principalement causées par le tabagisme.
+            le flux d&apos;air et rendent la respiration difficile, principalement causées par le tabagisme.
           </li>
           <li>
-            <strong className="text-blue-700">Syndrome d'apnées obstructives du sommeil (SAOS)</strong> : Trouble caractérisé par des pauses respiratoires 
-            répétées pendant le sommeil dues à l'obstruction des voies aériennes supérieures.
+            <strong className="text-blue-700">Syndrome d&apos;apnées obstructives du sommeil (SAOS)</strong> : Trouble caractérisé par des pauses respiratoires 
+            répétées pendant le sommeil dues à l&apos;obstruction des voies aériennes supérieures.
           </li> 
           <li>
             <strong className="text-blue-700">Bronchiolite</strong> : Inflammation des petites voies respiratoires (bronchioles), souvent observée chez les nourrissons.
@@ -95,7 +93,7 @@ export default function TroubleRespiratoirePage() {
         <h4 className="text-blue-700 font-semibold">2. Troubles restrictifs</h4>
         
         <p className="text-blue-800">
-          Ces troubles limitent l'expansion des poumons, rendant l'inspiration difficile. Ils peuvent être causés par :
+          Ces troubles limitent l&apos;expansion des poumons, rendant l&apos;inspiration difficile. Ils peuvent être causés par :
         </p>
         
         <ul className='list-disc pl-6 space-y-2 text-blue-800'>
@@ -103,13 +101,13 @@ export default function TroubleRespiratoirePage() {
             <strong className="text-blue-700">Fibrose pulmonaire</strong> : Formation de tissu cicatriciel dans les poumons qui réduit leur élasticité.
           </li>
           <li>
-            <strong className="text-blue-700">Pneumoconioses</strong> : Maladies pulmonaires causées par l'inhalation de poussières, comme la silicose ou l'asbestose.
+            <strong className="text-blue-700">Pneumoconioses</strong> : Maladies pulmonaires causées par l&apos;inhalation de poussières, comme la silicose ou l&apos;asbestose.
           </li>
           <li>
             <strong className="text-blue-700">Scoliose sévère</strong> : Déformation de la colonne vertébrale qui peut comprimer les poumons.
           </li>
           <li>
-            <strong className="text-blue-700">Obésité morbide</strong> : L'excès de poids peut limiter l'expansion de la cage thoracique.
+            <strong className="text-blue-700">Obésité morbide</strong> : L&apos;excès de poids peut limiter l&apos;expansion de la cage thoracique.
           </li>
         </ul>
         
@@ -125,7 +123,7 @@ export default function TroubleRespiratoirePage() {
             de signalisation du cerveau vers les muscles respiratoires.
           </li>
           <li>
-            <strong className="text-blue-700">Syndrome d'hypoventilation centrale</strong> : Défaut congénital du contrôle automatique de la respiration.
+            <strong className="text-blue-700">Syndrome d&apos;hypoventilation centrale</strong> : Défaut congénital du contrôle automatique de la respiration.
           </li>
         </ul>
         
@@ -137,7 +135,7 @@ export default function TroubleRespiratoirePage() {
         
         <ul className='list-disc pl-6 space-y-2 text-blue-800'>
           <li>
-            <strong className="text-blue-700">Embolie pulmonaire</strong> : Obstruction d'une artère pulmonaire par un caillot sanguin.
+            <strong className="text-blue-700">Embolie pulmonaire</strong> : Obstruction d&apos;une artère pulmonaire par un caillot sanguin.
           </li>
           <li>
             <strong className="text-blue-700">Hypertension pulmonaire</strong> : Pression artérielle élevée dans les vaisseaux pulmonaires.
@@ -148,7 +146,7 @@ export default function TroubleRespiratoirePage() {
         
         <ul className='list-disc pl-6 space-y-2 text-blue-800'>
           <li>
-            <strong className="text-blue-700" >Pneumonie</strong> : Infection des poumons causée par des bactéries, des virus ou des champignons.
+            <strong className="text-blue-700">Pneumonie</strong> : Infection des poumons causée par des bactéries, des virus ou des champignons.
           </li>
           <li>
             <strong className="text-blue-700">Tuberculose</strong> : Infection bactérienne qui affecte principalement les poumons.
@@ -171,7 +169,7 @@ export default function TroubleRespiratoirePage() {
           <li>Production excessive de mucus</li>
           <li>Douleur ou inconfort thoracique</li>
           <li>Fatigue et faiblesse</li>
-          <li>Cyanose (coloration bleuâtre de la peau due au manque d'oxygène)</li>
+          <li>Cyanose (coloration bleuâtre de la peau due au manque d&apos;oxygène)</li>
           <li>Troubles du sommeil</li>
         </ul>
         
@@ -186,7 +184,7 @@ export default function TroubleRespiratoirePage() {
             <strong className="text-blue-700">Tabagisme</strong> : Principal facteur de risque pour de nombreuses maladies respiratoires, y compris la BPCO et le cancer du poumon.
           </li>
           <li>
-            <strong className="text-blue-700">Pollution de l'air</strong> : L'exposition à la pollution atmosphérique, aux produits chimiques ou aux poussières industrielles.
+            <strong className="text-blue-700">Pollution de l&apos;air</strong> : L&apos;exposition à la pollution atmosphérique, aux produits chimiques ou aux poussières industrielles.
           </li>
           <li>
             <strong className="text-blue-700">Allergènes</strong> : Exposition à des allergènes comme le pollen, les acariens ou les moisissures.
@@ -195,10 +193,10 @@ export default function TroubleRespiratoirePage() {
             <strong className="text-blue-700">Génétique</strong> : Certains troubles respiratoires ont une composante génétique.
           </li>
           <li>
-            <strong className="text-blue-700">Infections respiratoires récurrentes</strong> : Particulièrement pendant l'enfance.
+            <strong className="text-blue-700">Infections respiratoires récurrentes</strong> : Particulièrement pendant l&apos;enfance.
           </li>
           <li>
-            <strong className="text-blue-700">Obésité</strong> : Augmente le risque de plusieurs troubles respiratoires, dont l'apnée du sommeil.
+            <strong className="text-blue-700">Obésité</strong> : Augmente le risque de plusieurs troubles respiratoires, dont l&apos;apnée du sommeil.
           </li>
         </ul>
         
@@ -222,10 +220,10 @@ export default function TroubleRespiratoirePage() {
             <strong className="text-blue-700">Tests de sommeil</strong> : Polysomnographie pour diagnostiquer les troubles respiratoires liés au sommeil.
           </li>
           <li>
-            <strong className="text-blue-700">Analyses de sang</strong> : Mesure des gaz sanguins artériels, recherche de marqueurs d'inflammation.
+            <strong className="text-blue-700">Analyses de sang</strong> : Mesure des gaz sanguins artériels, recherche de marqueurs d&apos;inflammation.
           </li>
           <li>
-            <strong className="text-blue-700">Tests d'allergie</strong> : Pour identifier les déclencheurs potentiels.
+            <strong className="text-blue-700">Tests d&apos;allergie</strong> : Pour identifier les déclencheurs potentiels.
           </li>
         </ul>
         
@@ -240,13 +238,13 @@ export default function TroubleRespiratoirePage() {
             <strong className="text-blue-700">Médicaments</strong> : Bronchodilatateurs, corticostéroïdes, antibiotiques, antihistaminiques.
           </li>
           <li>
-            <strong className="text-blue-700">Oxygénothérapie</strong> : Administration d'oxygène supplémentaire pour les patients souffrant d'hypoxémie.
+            <strong className="text-blue-700">Oxygénothérapie</strong> : Administration d&apos;oxygène supplémentaire pour les patients souffrant d&apos;hypoxémie.
           </li>
           <li>
-            <strong className="text-blue-700">Thérapie par pression positive</strong> : CPAP, BiPAP pour traiter l'apnée du sommeil et certaines insuffisances respiratoires.
+            <strong className="text-blue-700">Thérapie par pression positive</strong> : CPAP, BiPAP pour traiter l&apos;apnée du sommeil et certaines insuffisances respiratoires.
           </li>
           <li>
-            <strong className="text-blue-700">Réhabilitation pulmonaire</strong> : Programme d'exercices, d'éducation et de soutien pour améliorer la capacité respiratoire.
+            <strong className="text-blue-700">Réhabilitation pulmonaire</strong> : Programme d&apos;exercices, d&apos;éducation et de soutien pour améliorer la capacité respiratoire.
           </li>
           <li>
             <strong className="text-blue-700">Chirurgie</strong> : Dans certains cas, comme la réduction de volume pulmonaire pour la BPCO sévère ou la transplantation pulmonaire.
@@ -263,8 +261,8 @@ export default function TroubleRespiratoirePage() {
         </p>
         
         <ul className="list-disc pl-6 space-y-2 text-blue-800" >
-          <li>Ne pas fumer et éviter l'exposition à la fumée secondaire</li>
-          <li>Éviter l'exposition aux polluants et aux irritants</li>
+          <li>Ne pas fumer et éviter l&apos;exposition à la fumée secondaire</li>
+          <li>Éviter l&apos;exposition aux polluants et aux irritants</li>
           <li>Se faire vacciner contre la grippe et la pneumonie</li>
           <li>Maintenir une bonne hygiène pour prévenir les infections</li>
           <li>Traiter rapidement les infections respiratoires</li>

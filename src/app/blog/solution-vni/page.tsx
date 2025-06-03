@@ -1,4 +1,5 @@
 import { ArrowLeft, CheckCircle, Star, Shield, Zap, Heart, Award } from 'lucide-react';
+import Image from 'next/image';
 
 import Link from 'next/link';
 
@@ -118,7 +119,7 @@ export default function SolutionsVniPage() {
               </div>
               
               <p className="text-emerald-700 text-lg mb-4">
-                Le YH-830 représente l'excellence en matière de ventilation non invasive. 
+                Le YH-830 représente l&apos;excellence en matière de ventilation non invasive. 
                 Conçu avec les dernières innovations technologiques, il offre un traitement 
                 personnalisé et efficace pour tous types de pathologies respiratoires.
               </p>
@@ -143,7 +144,7 @@ export default function SolutionsVniPage() {
             
             {/* Product Image */}
             <div className="p-8 flex items-center justify-center ">
-              <img
+              <Image
                 src="/catalogue photo/yh-830.webp"
                 alt="Ventilateur YH-830 - Image produit médical pour VNI"
                 className="max-h-72 w-auto rounded-lg shadow-md object-contain"
@@ -195,7 +196,7 @@ export default function SolutionsVniPage() {
               <h4 className="text-emerald-800 font-semibold text-lg">Technologie Avancée</h4>
             </div>
             <ul className="text-emerald-700 space-y-2 text-sm">
-              <li>• Algorithmes intelligents d'adaptation automatique</li>
+              <li>• Algorithmes intelligents d&apos;adaptation automatique</li>
               <li>• Détection avancée des apnées et hypopnées</li>
               <li>• Compensation automatique des fuites</li>
               <li>• Rampe de pression progressive</li>
@@ -230,8 +231,8 @@ export default function SolutionsVniPage() {
                 ))}
               </div>
               <p className="text-emerald-700 italic mb-3">
-                "Le YH-830 a littéralement changé ma vie. Je dors enfin paisiblement et j'ai retrouvé 
-                mon énergie d'avant. L'équipe d'Elite Médicale Services a été exceptionnelle."
+                Le YH-830 a littéralement changé ma vie. Je dors enfin paisiblement et j&apos;ai retrouvé 
+                mon énergie d&apos;avant. L&apos;équipe d&apos;Elite Médicale Services a été exceptionnelle.
               </p>
               <p className="text-emerald-600 font-semibold">— Ahmed, 58 ans, Tunis</p>
             </div>
@@ -243,8 +244,8 @@ export default function SolutionsVniPage() {
                 ))}
               </div>
               <p className="text-emerald-700 italic mb-3">
-                "Grâce à ma VNI, je peux enfin voyager et profiter de mes petits-enfants. 
-                La technologie est remarquable et le service après-vente impeccable."
+                Grâce à ma VNI, je peux enfin voyager et profiter de mes petits-enfants. 
+                La technologie est remarquable et le service après-vente impeccable.
               </p>
               <p className="text-emerald-600 font-semibold">— Fatma, 62 ans, Sfax</p>
             </div>
@@ -258,8 +259,8 @@ export default function SolutionsVniPage() {
               <h4 className="text-emerald-800 font-semibold text-lg mb-3">Installation & Formation</h4>
               <ul className="text-emerald-700 space-y-2">
                 <li>• Installation à domicile par nos techniciens</li>
-                <li>• Formation complète à l'utilisation</li>
-                <li>• Guide d'utilisation personnalisé</li>
+                <li>• Formation complète à l&apos;utilisation</li>
+                <li>• Guide d&apos;utilisation personnalisé</li>
                 <li>• Suivi post-installation</li>
               </ul>
             </div>
@@ -280,7 +281,7 @@ export default function SolutionsVniPage() {
         <div className="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl p-8 text-center text-white shadow-xl">
           <h3 className="text-2xl font-bold mb-4">Prêt à Transformer Votre Qualité de Vie ?</h3>
           <p className="text-emerald-100 mb-6 text-lg">
-            Contactez-nous dès aujourd'hui pour une consultation personnalisée et découvrez 
+            Contactez-nous dès aujourd&apos;hui pour une consultation personnalisée et découvrez 
             la solution VNI qui vous convient le mieux.
           </p>
           
