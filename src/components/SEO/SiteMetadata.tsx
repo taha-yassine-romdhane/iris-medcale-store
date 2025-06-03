@@ -61,6 +61,14 @@ export const getSiteMetadata = (): Metadata => {
       "achat CPAP Tunisie",
       "CPAP ResMed Tunisie",
       "CPAP Yuwell Tunisie",
+      "Concentrateur Yuwell Tunisie",
+      "Concentrateur Oxygen Yuwell Tunisie",
+      "Concentrateur d'Oxygen Yuwell Tunisie",
+      "Concentrateur d'Oxygen Yuwell",
+      "VNI Yuwell Tunisie",
+      "vente VNI Yuwell Tunisie",
+      "location VNI Tunisie",
+      "location VNI Yuwell Tunisie",
       "CPAP Yuwell Auto Tunisie",
       "Masque CPAP Yuwell Tunisie",
       "Masque CPAP",
@@ -99,6 +107,32 @@ export const getSiteMetadata = (): Metadata => {
       "concentrateur oxygéne 10L portable Tunisie",
       "concentrateur oxygéne 5L portable Tunisie",
       "oxygénothérapie à domicile Tunisie",
+
+      
+      // vente Oxygen Therapy Keywords
+      "vente concentrateur oxygène Tunisie",
+      "location concentrateur oxygène Tunisie",
+      "vente concentrateur oxygéne 5L",
+      "vente concentrateur oxygéne 10L",
+      "vente concentrateur oxygéne 10L portable",
+      "vente concentrateur oxygéne 5L portable",
+      "vente concentrateur oxygéne 5L Tunisie",
+      "vente concentrateur oxygéne 10L Tunisie",
+      "vente concentrateur oxygéne 10L portable Tunisie",
+      "vente concentrateur oxygéne 5L portable Tunisie",
+      "oxygénothérapie Tunisie",
+
+        // location Oxygen Therapy Keywords
+        "location concentrateur oxygène Tunisie",
+        "location  concentrateur oxygéne 5L",
+        "location  concentrateur oxygéne 10L",
+        "location  concentrateur oxygéne 10L portable",
+        "location  concentrateur oxygéne 5L portable",
+        "location  concentrateur oxygéne 5L Tunisie",
+        "location  concentrateur oxygéne 10L Tunisie",
+        "location  concentrateur oxygéne 10L portable Tunisie",
+        "location  concentrateur oxygéne 5L portable Tunisie",
+        "oxygénothérapie Tunisie",
 
       // Medical Equipment Keywords
       "équipement médical Tunisie professionnel",
