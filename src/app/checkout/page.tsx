@@ -148,7 +148,7 @@ export default function CheckoutPage() {
 
               <button
                 type="button"
-                className="w-full bg-blue-600 text-white py-3 px-4 rounded-md text-sm font-medium hover:bg-blue-700 transition disabled:opacity-50 flex items-center justify-center"
+                className="w-full bg-green-600 text-white py-3 px-4 rounded-md text-sm font-medium hover:bg-green-700 transition disabled:opacity-50 flex items-center justify-center"
                 disabled={loading}
                 onClick={handleDevisRequest}
               >
@@ -174,7 +174,7 @@ export default function CheckoutPage() {
           {/* Features Grid */}
           <div className="p-5 grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div className="bg-white p-6 rounded-lg shadow-sm text-center">
-            <Package className="h-8 w-8 text-blue-600 mx-auto mb-4" />
+            <Package className="h-8 w-8 text-green-600 mx-auto mb-4" />
             <h3 className="text-lg font-semibold mb-2">
               {t('checkoutPage.features.qualityProducts.title')}
             </h3>
@@ -183,7 +183,7 @@ export default function CheckoutPage() {
             </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm text-center">
-            <Truck className="h-8 w-8 text-blue-600 mx-auto mb-4" />
+            <Truck className="h-8 w-8 text-green-600 mx-auto mb-4" />
             <h3 className="text-lg font-semibold mb-2">
               {t('checkoutPage.features.fastDelivery.title')}
             </h3>
@@ -192,7 +192,7 @@ export default function CheckoutPage() {
             </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm text-center">
-            <Phone className="h-8 w-8 text-blue-600 mx-auto mb-4" />
+            <Phone className="h-8 w-8 text-green-600 mx-auto mb-4" />
             <h3 className="text-lg font-semibold mb-2">
               {t('checkoutPage.features.personalizedSupport.title')}
             </h3>

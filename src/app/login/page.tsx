@@ -59,12 +59,12 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* Left side - Decorative */}
-      <div className="hidden md:flex md:w-1/2 bg-blue-600 text-white p-12 flex-col justify-between relative">
+      <div className="hidden md:flex md:w-1/2 bg-gradient-to-b from-green-500 to-blue-500 text-white p-12 flex-col justify-between relative">
         <div>
           <h1 className="py-10 text-4xl font-bold mb-6">
             {t('login.leftSide.title')}
           </h1>
-          <p className="text-xl text-blue-100 mb-8">
+          <p className="text-xl text-green-100 mb-8">
             {t('login.leftSide.description')}
           </p>
         </div>
@@ -130,7 +130,7 @@ export default function LoginPage() {
                       type="email"
                       autoComplete="email"
                       required
-                      className="pl-10 appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="pl-10 appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                       placeholder={t('login.form.emailPlaceholder')}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -155,7 +155,7 @@ export default function LoginPage() {
                       type="password"
                       autoComplete="current-password"
                       required
-                      className="pl-10 appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="pl-10 appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                       placeholder={t('login.form.passwordPlaceholder')}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
@@ -167,7 +167,7 @@ export default function LoginPage() {
               <div>
                 <button
                   type="submit"
-                  className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition flex items-center justify-center"
+                  className="w-full py-2 px-4 bg-green-600 text-white font-semibold rounded-lg shadow hover:bg-green-700 transition flex items-center justify-center"
                   disabled={loading}
                 >
                   {loading ? (
@@ -182,14 +182,14 @@ export default function LoginPage() {
                   {t('login.form.noAccount')}{' '}
                   <Link
                     href="/signup"
-                    className="font-medium text-blue-600 hover:text-blue-500"
+                    className="font-medium text-green-600 hover:text-green-600"
                   >
                     {t('login.form.signupLink')}
                   </Link>
                 </p>
                 <Link
                   href="/forgot-password"
-                  className="text-blue-600 hover:underline"
+                  className="text-green-600 hover:underline"
                 >
                   {t('login.form.forgotPassword')}
                 </Link>

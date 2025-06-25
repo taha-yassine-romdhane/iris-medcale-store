@@ -220,7 +220,7 @@ export default function ProductClient() {
                     key={media.id}
                     onClick={() => setCurrentImageIndex(index)}
                     className={`relative aspect-square rounded-lg overflow-hidden bg-gray-100 shadow-sm hover:shadow-md transition-shadow ${
-                      currentImageIndex === index ? 'ring-2 ring-blue-500' : ''
+                      currentImageIndex === index ? 'ring-2 ring-green-500' : ''
                     }`}
                   >
                     <Image
@@ -261,21 +261,21 @@ export default function ProductClient() {
             <div className="flex flex-wrap items-center gap-4 mb-6">
               <div className="flex items-center">
                 <span className="text-gray-600 font-medium">{t('productsPage.products.brand')}:</span>
-                <span className="ml-2 text-blue-900 font-bold">{product.brand}</span>
+                <span className="ml-2 text-green-900 font-bold">{product.brand}</span>
               </div>
               <div className="flex items-center">
                 <span className="text-gray-600 font-medium">{t('productsPage.products.category')}:</span>
-                <span className="ml-2 text-blue-900">{product.category}</span>
+                <span className="ml-2 text-green-900">{product.category}</span>
               </div>
               {product.subCategory && (
                 <div className="flex items-center">
                   <span className="text-gray-600 font-medium">{t('productsPage.products.subCategory')}:</span>
-                  <span className="ml-2 text-blue-900">{product.subCategory}</span>
+                  <span className="ml-2 text-green-900">{product.subCategory}</span>
                 </div>
               )}
               <div className="flex items-center">
                 <span className="text-gray-600 font-medium">{t('productsPage.products.type')}:</span>
-                <span className="ml-2 text-blue-900">{product.type}</span>
+                <span className="ml-2 text-green-900">{product.type}</span>
               </div>
             </div>
 
@@ -330,7 +330,7 @@ export default function ProductClient() {
                 <ul className="space-y-3">
                   {featureEntries.map(([key, value]) => (
                     <li key={key} className="flex items-start">
-                      <span className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-blue-500 mr-3"></span>
+                      <span className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-green-500 mr-3"></span>
                       <div>
                         <span className="ml-2 text-gray-600">{String(value)}</span>
                       </div>
@@ -348,11 +348,11 @@ export default function ProductClient() {
                 disabled={product.stock === 'OUT_OF_STOCK' || product.stock === 'COMING_SOON'}
                 className={`w-full py-4 px-6 rounded-lg font-bold text-lg transition-all flex items-center justify-center gap-2 ${
                   product.stock === 'IN_STOCK'
-                    ? "bg-blue-800 hover:bg-blue-900 text-white"
+                    ? "bg-green-800 hover:bg-green-900 text-white"
                     : product.stock === 'LOW_STOCK'
-                    ? "bg-blue-900 hover:bg-blue-900 text-white"
+                    ? "bg-green-900 hover:bg-green-900 text-white"
                     : product.stock === 'PRE_ORDER'
-                    ? "bg-blue-900 hover:bg-blue-900 text-white"
+                    ? "bg-green-900 hover:bg-green-900 text-white"
                     : product.stock === 'COMING_SOON'
                     ? "bg-blue-500 text-white cursor-not-allowed opacity-60"
                     : "bg-gray-400 text-white cursor-not-allowed opacity-60"

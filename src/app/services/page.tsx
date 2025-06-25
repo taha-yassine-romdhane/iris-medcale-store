@@ -27,9 +27,9 @@ const ServicesPage = () => {
   const regions = t('servicesPage.regions', { returnObjects: true }) || [];
   
   return (
-    <main className="pt-16">
+    <main>
       {/* Hero Section */}
-      <section className="bg-blue-600 text-white py-16">
+      <section className="bg-green-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             {t('servicesPage.hero.title')}
@@ -63,14 +63,14 @@ const ServicesPage = () => {
                 </p>
               </div>
 
-              <div className="bg-blue-50 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold text-blue-800 mb-4">
+              <div className="bg-green-50 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold text-green-800 mb-4">
                   {t('servicesPage.mainContent.coverageTitle')}
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
                   {regions.map((region, index) => (
                     <div key={index} className="flex items-center space-x-2">
-                      <MapPin className="h-5 w-5 text-blue-600" />
+                      <MapPin className="h-5 w-5 text-green-600" />
                       <span className="text-gray-700">{region}</span>
                     </div>
                   ))}
@@ -83,11 +83,11 @@ const ServicesPage = () => {
               {services.map((service, index) => (
                 <div
                   key={index}
-                  className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+                  className="bg-green-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
                 >
                   <div className="flex items-start space-x-4">
-                    <div className="bg-blue-100 p-3 rounded-lg">
-                      <service.icon className="h-6 w-6 text-blue-600" />
+                    <div className="bg-green-100 p-3 rounded-lg">
+                      <service.icon className="h-6 w-6 text-green-600" />
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
@@ -115,7 +115,7 @@ const ServicesPage = () => {
           <div className="flex justify-center">
             <a
               href="/contact"
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+              className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
             >
               {t('aboutPage.cta.button')}
             </a>

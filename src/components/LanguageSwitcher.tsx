@@ -53,7 +53,7 @@ export function LanguageSwitcher() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-blue-50 hover:bg-blue-300 transition-colors duration-200 text-black"
+        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-green-50 hover:bg-green-300 transition-colors duration-200 text-black"
       >
         <div className="relative w-5 h-5 rounded-full overflow-hidden">
           <Image
@@ -82,7 +82,7 @@ export function LanguageSwitcher() {
               }}
               className={`w-full flex items-center gap-3 px-4 py-2 text-sm ${
                 language === lang.code
-                  ? 'bg-blue-200 text-black'
+                  ? 'bg-green-200 text-black'
                   : 'text-gray-700 hover:bg-gray-50'
               }`}
             >

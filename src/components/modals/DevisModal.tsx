@@ -197,7 +197,7 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
                           name="name"
                           value={guestInfo.name}
                           onChange={handleGuestInfoChange}
-                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
                           placeholder="Votre nom complet"
                           required
                         />
@@ -212,7 +212,7 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
                           name="email"
                           value={guestInfo.email}
                           onChange={handleGuestInfoChange}
-                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
                           placeholder="votre@email.com"
                           required
                         />
@@ -227,7 +227,7 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
                           name="phone"
                           value={guestInfo.phone}
                           onChange={handleGuestInfoChange}
-                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
                           placeholder="+216 XX XXX XXX"
                           required
                         />
@@ -239,7 +239,7 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
                 <div className="mt-8">
                   <p className="text-sm text-gray-500 text-center">
                     {t('devisModal.message')}
-                    <a href="tel:+21655820000" className="text-blue-600 font-medium">
+                    <a href="tel:+21655820000" className="text-green-600 font-medium">
                       +216 55 820 000
                     </a>
                   </p>
@@ -249,7 +249,7 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
                   {!isConfirmed && (
                     <button
                       type="button"
-                      className="inline-flex justify-center items-center rounded-md bg-blue-600 px-6 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:opacity-50"
+                      className="inline-flex justify-center items-center rounded-md bg-green-600 px-6 py-2 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 disabled:opacity-50"
                       onClick={handleConfirmDevis}
                       disabled={isSubmitting}
                     >
@@ -265,7 +265,7 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
                   )}
                   <button
                     type="button"
-                    className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-6 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-6 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
                     onClick={closeModal}
                   >
                     {isConfirmed ? 'Fermer' : 'Annuler'}

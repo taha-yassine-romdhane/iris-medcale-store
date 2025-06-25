@@ -48,7 +48,7 @@
     "sleepApnea": "Sleep Apnea"
   },
   "footer": {
-    "companyName": "Elite Medical Service",
+    "companyName": "Iris Medical",
     "description": "Your trusted source for medical equipment and innovative healthcare solutions.",
     "quickLinks": "Quick Links",
     "cpapMachines": "Our Services",
@@ -75,11 +75,11 @@
     "southWestRegion": "South-West Regions",
     "sfax": "Sfax",
     "gafsa": "Gafsa",
-    "copyright": "2024 Elite Medical Service. All rights reserved."
+    "copyright": "2025 Iris Medical. All rights reserved."
   },
   "login": {
     "leftSide": {
-      "title": "Elite Medicale Service Client Area",
+      "title": "Iris Medical Client Area",
       "description": "Log in to access your personalized information and services.",
       "bullet1": "Secure access to company data",
       "bullet2": "Two-factor authentication for added security"
@@ -273,7 +273,7 @@
   },
   "aboutPage": {
     "hero": {
-      "title": "About Elite Medicale Service",
+      "title": "About Iris Medical",
       "subtitle": "Leader in oxygen therapy and respiratory assistance solutions in Tunisia"
     },
     "mission": {
@@ -468,7 +468,7 @@
     },
     "mainContent": {
       "title": "Our Expertise at Your Service",
-      "description1": "Welcome to Elite Médicale Services, your trusted partner in oxygen therapy, ventilation, and home services. Since our founding in 2018",
+      "description1": "Welcome to Iris Medical, your trusted partner in oxygen therapy, ventilation, and home services. Since our founding in 2018",
       "description2": "Specializing in oxygen therapy and home respiratory assistance, we offer sales and rental services, ensuring our patients have the most suitable devices. We are contracted with the National Health Insurance Fund (CNAM) and health insurance companies to facilitate access to care for all.",
       "description3": "Our dedicated and professional team is committed to providing fast, secure, and warm assistance, ensuring a human, professional, and quality service designed to support your daily health, as well as the well-being and peace of mind for each patient and their family.",
       "coverageTitle": "Coverage Areas"
@@ -594,7 +594,7 @@
     "requestQuote": "Request a Quote"
   },
   "blog": {
-    "title": "Elite Medical Blog",
+    "title": "Iris Medical Blog",
     "posts": {
       "oxygenTherapy": {
         "title": "Complete Guide to Oxygen Therapy and CPAP Machines",

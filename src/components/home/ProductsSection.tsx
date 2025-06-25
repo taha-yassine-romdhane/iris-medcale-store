@@ -147,7 +147,7 @@ export default function ProductsSection() {
       <div className="mb-12 last:mb-0 overflow-hidden">
         {/* Title */}
         <div className="flex justify-between items-center mb-6 px-4 sm:px-6">
-          <h2 className="text-xl sm:text-2xl font-bold text-blue-900">{t(`productsSection.${title}`)}</h2> {/* Translate the title */}
+          <h2 className="text-xl sm:text-2xl font-bold text-green-900">{t(`productsSection.${title}`)}</h2> {/* Translate the title */}
         </div>
 
         {/* Slider Container */}
@@ -156,17 +156,17 @@ export default function ProductsSection() {
           <div className="hidden sm:flex gap-3 absolute -top-12 right-6">
             <button
               onClick={() => handleScroll('left', refKey)}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-50 border border-blue-200 shadow-sm hover:bg-blue-100 hover:border-blue-300 transition-all duration-200"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-green-50 border border-green-200 shadow-sm hover:bg-green-100 hover:border-green-300 transition-all duration-200"
               aria-label={t('productsSection.scrollLeft')}
             >
-              <ChevronLeft className="w-5 h-5 text-blue-900" />
+              <ChevronLeft className="w-5 h-5 text-green-900" />
             </button>
             <button
               onClick={() => handleScroll('right', refKey)}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-50 border border-blue-200 shadow-sm hover:bg-blue-100 hover:border-blue-300 transition-all duration-200"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-green-50 border border-green-200 shadow-sm hover:bg-green-100 hover:border-green-300 transition-all duration-200"
               aria-label={t('productsSection.scrollRight')}
             >
-              <ChevronRight className="w-5 h-5 text-blue-900" />
+              <ChevronRight className="w-5 h-5 text-green-900" />
             </button>
           </div>
 
@@ -185,7 +185,7 @@ export default function ProductsSection() {
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className="flex-none w-[calc(50%-8px)] sm:w-[240px] min-w-[150px] bg-gradient-to-r from-blue-50 to-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group snap-start"
+                  className="flex-none w-[calc(50%-8px)] sm:w-[240px] min-w-[150px] bg-gradient-to-r from-green-50 to-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group snap-start"
                 >
                   <Link href={`/product/${createProductSlug(product.name)}`} className="block">
                     <div className="relative aspect-square w-full overflow-hidden rounded-lg">
@@ -236,16 +236,16 @@ export default function ProductsSection() {
                   </Link>
 
                   <div className="p-4 sm:p-5">
-                    <Link href={`/product/${createProductSlug(product.name)}`} className="block group-hover:text-blue-700 transition-colors duration-200">
-                      <h3 className="font-semibold text-base sm:text-lg mb-2 text-blue-900">{getTranslatedContent(product, 'name')}</h3>
+                    <Link href={`/product/${createProductSlug(product.name)}`} className="block group-hover:text-green-700 transition-colors duration-200">
+                      <h3 className="font-semibold text-base sm:text-lg mb-2 text-green-900">{getTranslatedContent(product, 'name')}</h3>
                     </Link>
-                    <p className="text-xs sm:text-sm text-blue-800/70 mb-4 line-clamp-2">
+                    <p className="text-xs sm:text-sm text-green-800/70 mb-4 line-clamp-2">
                       {getTranslatedContent(product, 'description')}
                     </p>
                     <div className="flex justify-between items-center">
                       <Link
                         href={`/product/${product.id}`}
-                        className="text-blue-700 hover:text-blue-800 font-medium text-xs sm:text-sm transition-colors duration-200"
+                        className="text-green-700 hover:text-green-800 font-medium text-xs sm:text-sm transition-colors duration-200"
                       >
                         {t('productsSection.viewDetails')}
                       </Link>
@@ -257,14 +257,14 @@ export default function ProductsSection() {
                         disabled={product.stock === 'OUT_OF_STOCK' || product.stock === 'COMING_SOON'}
                         className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all ${
                           product.stock === 'IN_STOCK'
-                            ? "bg-blue-800 hover:bg-blue-900 text-white"
+                            ? "bg-green-800 hover:bg-green-900 text-white"
                             : product.stock === 'LOW_STOCK'
-                            ? "bg-blue-800 hover:bg-blue-900 text-white"
+                            ? "bg-green-800 hover:bg-green-900 text-white"
                             : product.stock === 'PRE_ORDER'
-                            ? "bg-blue-800 hover:bg-blue-900 text-white"
+                            ? "bg-green-800 hover:bg-green-900 text-white"
                             : product.stock === 'COMING_SOON'
-                            ? "bg-blue-500 text-white cursor-not-allowed opacity-60"
-                            : "bg-blue-500 text-white cursor-not-allowed opacity-60"
+                            ? "bg-green-500 text-white cursor-not-allowed opacity-60"
+                            : "bg-green-500 text-white cursor-not-allowed opacity-60"
                         }`}
                       >
                         {product.stock === 'IN_STOCK' || product.stock === 'LOW_STOCK'
@@ -290,7 +290,7 @@ export default function ProductsSection() {
     <div className="max-w-[1400px] mx-auto bg-white rounded-2xl p-4 sm:p-8 my-8 sm:my-12 w-full">
       {loading ? (
         <div className="text-center py-8">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-900 mx-auto"></div>
         </div>
       ) : error ? (
         <div className="text-center text-red-600 py-8">{error}</div>

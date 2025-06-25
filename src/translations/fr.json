@@ -47,7 +47,7 @@
     "sleepApnea": "Apnée du Sommeil"
   },
   "footer": {
-    "companyName": "Elite Medicale Service",
+    "companyName": "Iris Medical",
     "description": "Votre source de confiance pour les équipements médicaux et les solutions de santé innovantes.",
     "quickLinks": "Liens Rapides",
     "cpapMachines": "Nos Services",
@@ -74,11 +74,11 @@
     "southWestRegion": "Régions Sud-Ouest",
     "sfax": "Sfax",
     "gafsa": "Gafsa",
-    "copyright": "2024 Elite Medicale Service. Tous droits réservés."
+    "copyright": "2024 Iris Medical. Tous droits réservés."
   },
   "login": {
     "leftSide": {
-      "title": "Espace Client Elite Medicale Service",
+      "title": "Espace Client Iris Medical",
       "description": "Connectez-vous pour accéder à vos informations et services personnalisés.",
       "bullet1": "Accès sécurisé aux données de l'entreprise",
       "bullet2": "Double authentification pour plus de sécurité"
@@ -272,7 +272,7 @@
   },
   "aboutPage": {
     "hero": {
-      "title": "À Propos de Elite Medicale Service",
+      "title": "À Propos de Iris Medical",
       "subtitle": "Leader en solutions d'oxygénothérapie et d'assistance respiratoire en Tunisie"
     },
     "mission": {
@@ -371,7 +371,7 @@
     },
     "mainContent": {
       "title": "Notre Expertise à Votre Service",
-      "description1": "Bienvenue chez Elite Médicale Services, votre partenaire de confiance en oxygénothérapie, ventilation et services à domicile. Depuis notre fondation en 2018",
+      "description1": "Bienvenue chez Iris Medical, votre partenaire de confiance en oxygénothérapie, ventilation et services à domicile. Depuis notre fondation en 2018",
       "description2": "Spécialisés dans l'oxygénothérapie et l'assistance respiratoire à domicile, nous offrons des services de vente et de location, garantissant que nos patients disposent des dispositifs les mieux adaptés. Nous sommes conventionnés avec la Caisse Nationale d'Assurance Maladie (CNAM) et les assurances maladies pour faciliter l’accès aux soins pour tous.",
       "description3": "Notre équipe dévouée et professionnelle s’engage à fournir une assistance rapide, sécurisée et chaleureuse, assurant un service humain, professionnel et de qualité, conçu pour accompagner votre santé au quotidien, ainsi que le bien-être et la tranquillité d’esprit pour chaque patient et sa famille.",
       "coverageTitle": "Zones de Couverture"
@@ -543,7 +543,7 @@
       },
       "testimonial2": {
         "quote": "Mon appareil CPAP a transformé mes nuits et mes journées. Avant, j'étais constamment fatigué et irritable. Maintenant, je me réveille reposé et plein d'énergie. Ma femme dit que je ne ronfle plus, ce qui a amélioré notre relation. C'est un véritable miracle pour moi.",
-        "author": "Thomas, 52 ans - Utilisateur de CPAP pour apnée du sommeil"
+        "author": "Med khalil, 52 ans - Utilisateur de CPAP pour apnée du sommeil"
       }
     },
     "maintenance": {
@@ -593,7 +593,7 @@
     "requestQuote": "Demander un devis"
   },
   "blog": {
-    "title": "Blog Elite Médicale",
+    "title": "Blog Iris Médical",
     "posts": {
       "oxygenTherapy": {
         "title": "Guide Complet sur l'Oxygénothérapie et les Machines CPAP",

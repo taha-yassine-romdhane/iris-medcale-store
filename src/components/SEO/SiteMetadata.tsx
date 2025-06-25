@@ -2,15 +2,15 @@ import { Metadata } from 'next';
 
 // Centralized metadata configuration for better SEO management
 export const getSiteMetadata = (): Metadata => {
-  const siteUrl = 'https://www.elitemedicaleservices.tn';
+  const siteUrl = 'https://www.irismedicaltunisie.com/';
 
   return {
     metadataBase: new URL(siteUrl),
 
     // Title optimized with location keywords for better local search ranking
     title: {
-      default: "CPAP Tunisie - Vente & Location d'Appareils | Elite Medical Services",
-      template: "%s | CPAP Tunisie - Elite Medical Services"
+      default: "CPAP Tunisie - Vente & Location d'Appareils | Iris Medical",
+      template: "%s | CPAP Tunisie - Iris Medical"
     },
 
     // Enhanced description with location-specific keywords and targeted services
@@ -158,13 +158,13 @@ export const getSiteMetadata = (): Metadata => {
 
     authors: [
       {
-        name: "Elite Medical Services Tunisie",
+        name: "Iris Medical Tunisie",
         url: siteUrl,
       },
     ],
 
-    creator: "Elite Medical Services",
-    publisher: "Elite Medical Services Tunisie",
+    creator: "Iris Medical",
+    publisher: "Iris Medical Tunisie",
 
     // Improved classification with more specific categories
     classification: 'Équipements Médicaux, CPAP, Oxygénothérapie, Tunisie',
@@ -180,15 +180,15 @@ export const getSiteMetadata = (): Metadata => {
     openGraph: {
       type: "website",
       url: siteUrl,
-      title: "Elite Medical Services - Expert en CPAP et Oxygénothérapie en Tunisie",
+      title: "Iris Medical - Expert en CPAP et Oxygénothérapie en Tunisie",
       description: "Spécialiste en équipements médicaux CPAP, BiPAP, concentrateurs d'oxygène et accessoires respiratoires en Tunisie. Vente et location pour professionnels et particuliers.",
-      siteName: "Elite Medical Services Tunisie",
+      siteName: "Iris Medical Tunisie",
       images: [
         {
           url: `${siteUrl}/og-image.jpg`,
           width: 1200,
           height: 630,
-          alt: "Elite Medical Services - Équipements Médicaux en Tunisie",
+          alt: "Iris Medical - Équipements Médicaux en Tunisie",
         },
       ],
       locale: 'fr_TN',
@@ -197,7 +197,7 @@ export const getSiteMetadata = (): Metadata => {
     // Twitter card for better social media presentation
     twitter: {
       card: 'summary_large_image',
-      title: "Elite Medical Services - CPAP et Équipements Médicaux en Tunisie",
+      title: "Iris Medical - CPAP et Équipements Médicaux en Tunisie",
       description: "Expert en matériel médical CPAP, BiPAP et oxygénothérapie en Tunisie. Vente et location d'équipements respiratoires de qualité.",
       images: [`${siteUrl}/twitter-image.jpg`],
     },
@@ -206,12 +206,10 @@ export const getSiteMetadata = (): Metadata => {
     other: {
       'revisit-after': '7 days',
       'msapplication-TileColor': '#2563eb',
-      'google-site-verification': 'UtU39-ipWVaxllm5GhD5WRnE18EuRC2uUkqyC50Rujk',
+      'google-site-verification': '9YJu7kIRsf-Qk0RLs3Kt8ujauYPEM3UJQ16f9v7bIr0',
       'facebook-domain-verification': '', // Add your Facebook verification code if available
       'geo.region': 'TN',
       'geo.placename': 'Tunisie',
-      'geo.position': '36.8;10.1',  // Tunisia coordinates
-      'ICBM': '36.8, 10.1',  // Same as geo.position
     },
 
     // Canonical URL

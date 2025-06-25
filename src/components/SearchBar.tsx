@@ -85,10 +85,10 @@ export default function SearchBar() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t('search.placeholder')}
-            className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 text-lg"
+            className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-200 text-lg"
           />
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <Search className="h-6 w-6 text-blue-500" />
+            <Search className="h-6 w-6 text-green-500" />
           </div>
         </div>
       </form>
@@ -98,7 +98,7 @@ export default function SearchBar() {
         <div className="absolute mt-2 w-full bg-white rounded-xl shadow-2xl border border-gray-100 max-h-[32rem] overflow-y-auto z-50">
           {isLoading ? (
             <div className="p-6 text-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-500 mx-auto"></div>
               <p className="mt-2 text-gray-500">{t('search.loading')}</p>
             </div>
           ) : products.length > 0 ? (
@@ -107,10 +107,10 @@ export default function SearchBar() {
                 <Link
                   key={product.id}
                   href={`/product/${createProductSlug(product.name)}`}
-                  className="flex items-start px-6 py-4 hover:bg-blue-50 transition-colors group"
+                  className="flex items-start px-6 py-4 hover:bg-green-50 transition-colors group"
                   onClick={() => setShowResults(false)}
                 >
-                  <div className="relative h-24 w-24 flex-shrink-0 bg-white rounded-lg overflow-hidden border border-gray-100 group-hover:border-blue-200 transition-colors">
+                  <div className="relative h-24 w-24 flex-shrink-0 bg-white rounded-lg overflow-hidden border border-gray-100 group-hover:border-green-200 transition-colors">
                     {product.media && product.media[0] ? (
                       <Image
                         src={product.media[0].url}
@@ -128,16 +128,16 @@ export default function SearchBar() {
                   <div className="ml-6 flex-1">
                     <div className="flex items-start justify-between">
                       <div>
-                        <h4 className="text-lg font-medium text-gray-900 group-hover:text-blue-600 transition-colors">{product.name}</h4>
+                        <h4 className="text-lg font-medium text-gray-900 group-hover:text-green-600 transition-colors">{product.name}</h4>
                         {product.brand && (
-                          <p className="text-sm text-blue-600 font-medium mt-0.5">{product.brand}</p>
+                          <p className="text-sm text-green-600 font-medium mt-0.5">{product.brand}</p>
                         )}
                       </div>
                     
                     </div>
                     <div className="mt-1 flex items-center space-x-2">
                       {product.category && (
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                           {product.category}
                         </span>
                       )}

@@ -24,7 +24,7 @@ function MainFallback() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
       <div className="animate-pulse">
-        <div className="h-32 w-32 bg-blue-200 rounded-full" />
+        <div className="h-32 w-32 bg-green-200 rounded-full" />
       </div>
     </div>
   );
@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="fr" suppressHydrationWarning>
       <head>
         {/* Google Site Verification */}
-        <meta name="google-site-verification" content="UtU39-ipWVaxllm5GhD5WRnE18EuRC2uUkqyC50Rujk" />
+        <meta name="google-site-verification" content="9YJu7kIRsf-Qk0RLs3Kt8ujauYPEM3UJQ16f9v7bIr0" />
         
         {/* Canonical URLs are now set dynamically in each page */}
         

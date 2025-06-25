@@ -164,7 +164,7 @@ export default function ProductsPage() {
         <ul className="text-sm text-gray-600 space-y-1">
           {Object.entries(translation.features).slice(0, 3).map(([key, value]) => (
             <li key={key} className="flex items-start">
-              <span className="flex-shrink-0 w-1.5 h-1.5 mt-2 rounded-full bg-blue-500 mr-2"></span>
+              <span className="flex-shrink-0 w-1.5 h-1.5 mt-2 rounded-full bg-green-500 mr-2"></span>
               <div>
                 <span className="font-medium text-gray-900">{key}:</span>
                 <span className="ml-1 text-gray-600">{String(value)}</span>
@@ -214,7 +214,7 @@ export default function ProductsPage() {
         <div className="mb-8 bg-white rounded-lg shadow-lg p-6">
           <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
             <div className="flex items-center gap-2">
-              <Filter className="h-5 w-5 text-blue-600" />
+              <Filter className="h-5 w-5 text-green-600" />
               <h2 className="text-xl font-semibold text-gray-900">{t('productsPage.filters.title')}</h2>
             </div>
             <div className="flex flex-wrap gap-4 items-center flex-1 md:justify-end">
@@ -349,7 +349,7 @@ export default function ProductsPage() {
                       variant="default"
                       size="lg"
                       className={cn(
-                        "w-full mt-4 bg-blue-600 hover:bg-blue-700 flex items-center justify-center gap-2",
+                        "w-full mt-4 bg-green-600 hover:bg-green-700 flex items-center justify-center gap-2",
                         product.stock !== 'IN_STOCK' && "opacity-50 cursor-not-allowed"
                       )}
                       onClick={() => product.stock === 'IN_STOCK' && handleAddToCart(product)}

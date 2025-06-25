@@ -39,7 +39,7 @@ export default function SolutionsRonflementsPage() {
       <div className="relative w-full h-72 md:h-96 mb-12 rounded-xl overflow-hidden shadow-lg border-4 border-blue-200">
         <Image
           src="/catalogue photo/ApneesDuSommeil-scaled.jpg"
-          alt="CPAP Tunisie - Appareils pour apnée du sommeil Elite Medical Services"
+          alt="CPAP Tunisie - Appareils pour apnée du sommeil Iris Medical"
           fill
           className="object-cover"
           priority
@@ -54,7 +54,7 @@ export default function SolutionsRonflementsPage() {
 
         <p className='text-blue-800'>
           L&apos;apnée du sommeil affecte des milliers de Tunisiens chaque année, perturbant la qualité du sommeil et impactant 
-          la santé cardiovasculaire. Chez Elite Medical Services, nous proposons des solutions CPAP complètes adaptées 
+          la santé cardiovasculaire. Chez Iris Medical, nous proposons des solutions CPAP complètes adaptées 
           aux besoins spécifiques de nos patients tunisiens.
         </p>
 
@@ -83,7 +83,7 @@ export default function SolutionsRonflementsPage() {
           <li>Fatigue chronique et irritabilité</li>
         </ul>
 
-        <p className='text-blue-800'><strong>Solution recommandée :</strong> Traitement CPAP (Continuous Positive Airway Pressure) avec nos appareils ResMed et Yuwell disponibles chez Elite Medical Services.</p>
+        <p className='text-blue-800'><strong>Solution recommandée :</strong> Traitement CPAP (Continuous Positive Airway Pressure) avec nos appareils ResMed et Yuwell disponibles chez Iris Medical.</p>
 
         <h4 className='text-blue-700 font-semibold'>2. Apnée Centrale du Sommeil - Solution BiPAP</h4>
 
@@ -104,7 +104,7 @@ export default function SolutionsRonflementsPage() {
           <div className="flex-1">
             <h4 className="text-blue-800 font-bold text-lg mb-2">Témoignage Client - Tunis</h4>
             <p className="text-blue-700">
-            &quot;Grâce à Elite Medical Services, j&apos;ai trouvé l&apos;appareil CPAP parfait. Le service technique est excellent 
+            &quot;Grâce à Iris Medical, j&apos;ai trouvé l&apos;appareil CPAP parfait. Le service technique est excellent 
               et la livraison en Tunisie très rapide. Ma qualité de sommeil s&apos;est considérablement améliorée.&quot;
               <br />
               <span className="text-blue-600 font-medium">— Ahmed M., 52 ans, La Marsa</span>
@@ -122,7 +122,7 @@ export default function SolutionsRonflementsPage() {
         <h2 className='text-blue-700 font-semibold'>Nos Solutions CPAP Professionnelles en Tunisie</h2>
 
         <p className='text-blue-800'>
-          Elite Medical Services propose la gamme complète d&apos;équipements respiratoires pour le traitement de l&apos;apnée 
+          Iris Medical propose la gamme complète d&apos;équipements respiratoires pour le traitement de l&apos;apnée 
           du sommeil en Tunisie, avec service technique expert et garantie constructeur.
         </p>
 
@@ -188,7 +188,7 @@ export default function SolutionsRonflementsPage() {
         </ul>
 
         <div className="rounded-lg bg-blue-100 border-l-4 border-blue-400 p-6 my-8">
-          <h4 className="text-blue-900 font-bold mb-2">Service Elite Medical Services</h4>
+          <h4 className="text-blue-900 font-bold mb-2">Service Iris Medical</h4>
           <ul className="text-blue-800 space-y-1">
             <li>✓ Livraison rapide dans toute la Tunisie</li>
             <li>✓ Installation et formation à domicile</li>
@@ -220,14 +220,14 @@ export default function SolutionsRonflementsPage() {
 
         <p className='text-blue-800'>
           Suite au diagnostic, la prescription médicale détermine les paramètres thérapeutiques optimaux. 
-          Nos techniciens Elite Medical Services assurent le réglage précis de votre appareil CPAP selon 
+          Nos techniciens Iris Medical assurent le réglage précis de votre appareil CPAP selon 
           l&apos;ordonnance médicale.
         </p>
 
         <h2 className='text-blue-700 font-semibold'>Prix CPAP Tunisie - Options Vente et Location</h2>
 
         <p className='text-blue-800'>
-          Elite Medical Services propose des solutions financières flexibles pour l&apos;acquisition d&apos;équipements 
+          Iris Medical propose des solutions financières flexibles pour l&apos;acquisition d&apos;équipements 
           CPAP en Tunisie, adaptées aux budgets individuels et aux remboursements d&apos;assurance.
         </p>
 
@@ -275,7 +275,7 @@ export default function SolutionsRonflementsPage() {
 
         <p className='text-blue-800'>
           La longévité et l&apos;efficacité de votre matériel CPAP dépendent d&apos;un entretien régulier. 
-          Elite Medical Services fournit tous les consommables et assure la maintenance préventive.
+          Iris Medical fournit tous les consommables et assure la maintenance préventive.
         </p>
 
         <p className='text-blue-800'><strong>Programme de maintenance :</strong></p>
@@ -288,7 +288,7 @@ export default function SolutionsRonflementsPage() {
         </ul>
 
         <div className="rounded-lg bg-blue-50 border-l-4 border-blue-400 p-6 my-8">
-          <h4 className="text-blue-800 font-bold mb-2">Contactez Elite Medical Services</h4>
+          <h4 className="text-blue-800 font-bold mb-2">Contactez Iris Medical</h4>
           <p className="text-blue-700">
             Pour un devis personnalisé CPAP en Tunisie ou une consultation technique, 
             contactez nos experts. Livraison rapide et service après-vente garanti dans toute la Tunisie.
@@ -299,7 +299,7 @@ export default function SolutionsRonflementsPage() {
 
         <p className='text-blue-800'>
           L&apos;apnée du sommeil nécessite une prise en charge médicale sérieuse et des équipements fiables. 
-          Elite Medical Services vous accompagne dans toutes les étapes de votre traitement CPAP en Tunisie, 
+          Iris Medical vous accompagne dans toutes les étapes de votre traitement CPAP en Tunisie, 
           de la prescription initiale au suivi thérapeutique à long terme.
         </p>
 

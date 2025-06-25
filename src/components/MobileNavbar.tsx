@@ -124,7 +124,7 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
             className="absolute inset-0 bg-white shadow-xl rounded-t-2xl overflow-hidden flex flex-col"
           >
             {/* Header */}
-            <div className="p-4 bg-cover bg-center text-white bg-blue-600">
+            <div className="p-4 bg-cover bg-center text-white bg-green-900">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold text-white">{t('navbar.title')}</h2>
                 <button
@@ -142,8 +142,8 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
               {user && (
                 <div className="py-4 border-b border-gray-100">
                   <div className="flex items-center space-x-3">
-                    <div className="bg-blue-100 p-2 rounded-full">
-                      <User2 className="h-6 w-6 text-blue-600" />
+                    <div className="bg-green-100 p-2 rounded-full">
+                      <User2 className="h-6 w-6 text-green-600" />
                     </div>
                     <div>
                       <p className="font-semibold text-gray-800">{user.prenom} {user.nom}</p>
@@ -163,7 +163,7 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                   <>
                     <Link
                       href="/mes-commandes"
-                      className="flex items-center space-x-3 p-3 hover:bg-blue-50 rounded-lg"
+                      className="flex items-center space-x-3 p-3 hover:bg-green-50 rounded-lg"
                       onClick={onClose}
                     >
                       <ShoppingCart className="h-5 w-5 text-gray-600" />
@@ -171,7 +171,7 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                     </Link>
                     <Link
                       href="/mon-profil"
-                      className="flex items-center space-x-3 p-3 hover:bg-blue-50 rounded-lg"
+                      className="flex items-center space-x-3 p-3 hover:bg-green-50 rounded-lg"
                       onClick={onClose}
                     >
                       <User2 className="h-5 w-5 text-gray-600" />
@@ -188,11 +188,11 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                 ) : (
                   <Link
                     href="/login"
-                    className="flex items-center space-x-3 p-3 hover:bg-blue-50 rounded-lg"
+                    className="flex items-center space-x-3 p-3 hover:bg-green-50 rounded-lg"
                     onClick={onClose}
                   >
-                    <User2 className="h-5 w-5 text-blue-800" />
-                    <span className="text-blue-800">{t('navbar.login')}</span>
+                    <User2 className="h-5 w-5 text-green-800" />
+                    <span className="text-green-800">{t('navbar.login')}</span>
                   </Link>
                 )}
               </div>
@@ -222,20 +222,20 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                         className="group"
                       >
                         <motion.div
-                          className="flex items-center justify-between p-3 hover:bg-blue-50 rounded-lg"
+                          className="flex items-center justify-between p-3 hover:bg-green-50 rounded-lg"
                           whileHover={{ scale: 1.02 }}
                         >
                           <button
                             onClick={() => handleCategoryClick(cat.category)}
                             className="flex items-center space-x-2"
                           >
-                            <LucideSquareActivity className="h-5 w-5 text-blue-600" />
+                            <LucideSquareActivity className="h-5 w-5 text-green-600" />
                             <span className="font-medium text-gray-800">{cat.category}</span>
                           </button>
                           {(cat.types?.length > 0 || cat.subcategories?.length > 0) && (
                             <motion.button
                               onClick={() => setOpenCategory(openCategory === cat.category ? null : cat.category)}
-                              className="p-1 hover:bg-blue-100 rounded-full"
+                              className="p-1 hover:bg-green-100 rounded-full"
                               animate={{ rotate: openCategory === cat.category ? 180 : 0 }}
                               transition={{ duration: 0.2 }}
                             >
@@ -251,7 +251,7 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                               animate={{ opacity: 1, height: 'auto' }}
                               exit={{ opacity: 0, height: 0 }}
                               transition={{ duration: 0.2 }}
-                              className="ml-8 pl-3 border-l-2 border-blue-100"
+                              className="ml-8 pl-3 border-l-2 border-green-100"
                             >
                               <motion.div
                                 initial={{ opacity: 0 }}
@@ -270,9 +270,9 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                                         animate={{ x: 0, opacity: 1 }}
                                         exit={{ x: -10, opacity: 0 }}
                                         onClick={() => handleTypeClick(cat.category, type)}
-                                        className="flex items-center w-full text-left p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg"
+                                        className="flex items-center w-full text-left p-2 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg"
                                       >
-                                        <SquareChevronRight className="m-1 h-5 w-5 text-blue-600" />
+                                        <SquareChevronRight className="m-1 h-5 w-5 text-green-600" />
                                         {type}
                                       </motion.button>
                                     ))}
@@ -290,11 +290,11 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                                         animate={{ x: 0, opacity: 1 }}
                                         exit={{ x: -10, opacity: 0 }}
                                         onClick={() => handleSubcategoryClick(cat.category, subcat)}
-                                        className="flex items-center w-full text-left p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg"
+                                        className="flex items-center w-full text-left p-2 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg"
                                       >
                                         {/* Center the icon and text */}
                                         <div className="flex items-center space-x-2 w-full">
-                                          <SquareChevronRight className="h-5 w-5 text-blue-600 flex-shrink-0" />
+                                          <SquareChevronRight className="h-5 w-5 text-green-600 flex-shrink-0" />
                                           <span>{subcat}</span>
                                         </div>
                                       </motion.button>
@@ -319,50 +319,50 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                 <div className="grid grid-cols-2 gap-2">
                   <Link
                     href="/apnee-du-sommeil"
-                    className="p-3 bg-blue-50 hover:bg-blue-100 rounded-lg flex flex-col items-center text-center"
+                    className="p-3 bg-green-50 hover:bg-green-100 rounded-lg flex flex-col items-center text-center"
                     onClick={onClose}
                   >
-                    <Heart className="h-6 w-6 text-blue-600 mb-1" />
+                    <Heart className="h-6 w-6 text-green-600 mb-1" />
                     <span className="text-sm font-medium">{t('navbar.sleepApnea')}</span>
                   </Link>
                   <Link
                     href="/services"
-                    className="p-3 bg-blue-50 hover:bg-blue-100 rounded-lg flex flex-col items-center text-center"
+                    className="p-3 bg-green-50 hover:bg-green-100 rounded-lg flex flex-col items-center text-center"
                     onClick={onClose}
                   >
-                    <Settings2 className="h-6 w-6 text-blue-600 mb-1" />
+                    <Settings2 className="h-6 w-6 text-green-600 mb-1" />
                     <span className="text-sm font-medium">{t('navbar.services')}</span>
                   </Link>
                   <Link
                     href="/a-propos"
-                    className="p-3 bg-blue-50 hover:bg-blue-100 rounded-lg flex flex-col items-center text-center"
+                    className="p-3 bg-green-50 hover:bg-green-100 rounded-lg flex flex-col items-center text-center"
                     onClick={onClose}
                   >
-                    <Info className="h-6 w-6 text-blue-600 mb-1" />
+                    <Info className="h-6 w-6 text-green-600 mb-1" />
                     <span className="text-sm font-medium">{t('navbar.about')}</span>
                   </Link>
                   <Link
                     href="/contact"
-                    className="p-3 bg-blue-50 hover:bg-blue-100 rounded-lg flex flex-col items-center text-center"
+                    className="p-3 bg-green-50 hover:bg-green-100 rounded-lg flex flex-col items-center text-center"
                     onClick={onClose}
                   >
-                    <Phone className="h-6 w-6 text-blue-600 mb-1" />
+                    <Phone className="h-6 w-6 text-green-600 mb-1" />
                     <span className="text-sm font-medium">{t('navbar.contact')}</span>
                   </Link>
                   <Link
                     href="/appointment"
-                    className="p-3 bg-blue-50 hover:bg-blue-100 rounded-lg flex flex-col items-center text-center"
+                    className="p-3 bg-green-50 hover:bg-green-100 rounded-lg flex flex-col items-center text-center"
                     onClick={onClose}
                   >
-                    <Calendar className="h-6 w-6 text-blue-600 mb-1" />
+                    <Calendar className="h-6 w-6 text-green-600 mb-1" />
                     <span className="text-sm font-medium">{t('navbar.appointment')}</span>
                   </Link>
                   <Link
                     href="/space-pro"
-                    className="p-3 bg-blue-50 hover:bg-blue-100 rounded-lg flex flex-col items-center text-center"
+                    className="p-3 bg-green-50 hover:bg-green-100 rounded-lg flex flex-col items-center text-center"
                     onClick={onClose}
                   >
-                    <User2 className="h-6 w-6 text-blue-600 mb-1" />
+                    <User2 className="h-6 w-6 text-green-600 mb-1" />
                     <span className="text-sm font-medium">Espace Professionnel</span>
                   </Link>
                 </div>
@@ -375,7 +375,7 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
             <div className="p-4 border-t border-gray-100 bg-gray-50">
               <div className="flex items-center justify-between">
 
-                <p className="text-sm text-gray-500">&copy; {new Date().getFullYear()} Elite Médicale Services</p>
+                <p className="text-sm text-gray-500">&copy; {new Date().getFullYear()} Iris Medical</p>
               </div>
             </div>
           </motion.div>

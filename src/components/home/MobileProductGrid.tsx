@@ -48,21 +48,21 @@ export default function MobileProductGrid({ products, title }: MobileProductGrid
     <div className="mb-3">
       {/* Title and Navigation */}
       <div className="flex justify-between items-center mb-1 px-4">
-        <h2 className="text-xl font-bold text-blue-900">{t(`productsSection.${title}`)}</h2>
+        <h2 className="text-xl font-bold text-green-900">{t(`productsSection.${title}`)}</h2>
         <div className="flex gap-3">
           <button
             onClick={() => handleScroll('left')}
-            className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-50 border border-blue-200 shadow-sm hover:bg-blue-100 hover:border-blue-300 transition-all duration-200"
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-green-50 border border-green-200 shadow-sm hover:bg-green-100 hover:border-green-300 transition-all duration-200"
             aria-label={t('productsSection.scrollLeft')}
           >
-            <ChevronLeft className="w-4 h-4 text-blue-900" />
+            <ChevronLeft className="w-4 h-4 text-green-900" />
           </button>
           <button
             onClick={() => handleScroll('right')}
-            className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-50 border border-blue-200 shadow-sm hover:bg-blue-100 hover:border-blue-300 transition-all duration-200"
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-green-50 border border-green-200 shadow-sm hover:bg-green-100 hover:border-green-300 transition-all duration-200"
             aria-label={t('productsSection.scrollRight')}
           >
-            <ChevronRight className="w-4 h-4 text-blue-900" />
+            <ChevronRight className="w-4 h-4 text-green-900" />
           </button>
         </div>
       </div>
@@ -82,7 +82,7 @@ export default function MobileProductGrid({ products, title }: MobileProductGrid
           {products.map((product) => (
             <div
               key={product.id}
-              className="flex-none w-[calc(50%-8px)] min-w-[150px] bg-gradient-to-r from-blue-50 to-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group snap-start"
+              className="flex-none w-[calc(50%-8px)] min-w-[150px] bg-gradient-to-r from-green-50 to-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group snap-start"
             >
               <Link href={`/product/${createProductSlug(product.name)}`} className="block">
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
@@ -134,7 +134,7 @@ export default function MobileProductGrid({ products, title }: MobileProductGrid
 
               <div className="p-1.5">
                 <Link href={`/product/${createProductSlug(product.name)}`} className="block">
-                  <h3 className="font-medium text-blue-900 text-sm line-clamp-1 mb-0.5">
+                  <h3 className="font-medium text-green-900 text-sm line-clamp-1 mb-0.5">
                     {getTranslatedContent(product, 'name')}
                   </h3>
                   <p className="text-xs text-gray-600 line-clamp-1 mb-1">
@@ -149,14 +149,14 @@ export default function MobileProductGrid({ products, title }: MobileProductGrid
                         disabled={product.stock === 'OUT_OF_STOCK' || product.stock === 'COMING_SOON'}
                         className={`w-full px-2 py-1 rounded-lg text-xs font-medium transition-all ${
                           product.stock === 'IN_STOCK'
-                            ? "bg-blue-800 hover:bg-blue-900 text-white"
+                            ? "bg-green-800 hover:bg-green-900 text-white"
                             : product.stock === 'LOW_STOCK'
-                            ? "bg-blue-800 hover:bg-blue-900 text-white"
+                            ? "bg-green-800 hover:bg-green-900 text-white"
                             : product.stock === 'PRE_ORDER'
-                            ? "bg-blue-800 hover:bg-blue-900 text-white"
+                            ? "bg-green-800 hover:bg-green-900 text-white"
                             : product.stock === 'COMING_SOON'
-                            ? "bg-blue-500 text-white cursor-not-allowed opacity-60"
-                            : "bg-blue-500 text-white cursor-not-allowed opacity-60"
+                            ? "bg-green-500 text-white cursor-not-allowed opacity-60"
+                            : "bg-green-500 text-white cursor-not-allowed opacity-60"
                         }`}
                       >
                         {product.stock === 'IN_STOCK' || product.stock === 'LOW_STOCK'

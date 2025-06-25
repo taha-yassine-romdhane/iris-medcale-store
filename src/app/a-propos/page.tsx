@@ -41,7 +41,7 @@ export default function AboutPage() {
   return (
     <main className="pt-16 min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
+      <section className="bg-gradient-to-r from-green-600 to-green-800 text-white py-16">
         <div className="max-w-7xl mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             {t('aboutPage.hero.title')}
@@ -66,7 +66,7 @@ export default function AboutPage() {
               <div className="space-y-4">
                 {keyPoints.map((point, index) => (
                   <div key={index} className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
+                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
                     <span className="text-gray-700">{t(`aboutPage.mission.keyPoints.${point}`)}</span>
                   </div>
                 ))}
@@ -97,8 +97,8 @@ export default function AboutPage() {
                 key={index}
                 className="bg-gray-50 p-6 rounded-lg text-center hover:shadow-md transition-shadow"
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-4">
-                  <value.icon className="h-6 w-6 text-blue-600" />
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-green-100 rounded-full mb-4">
+                  <value.icon className="h-6 w-6 text-green-600" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
                   {t(`aboutPage.values.${value.title}.title`)}
@@ -126,7 +126,7 @@ export default function AboutPage() {
               <div className="space-y-4">
                 {[1, 2, 3, 4].map((index) => (
                   <div key={index} className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
+                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
                     <span className="text-gray-700">
                       {t(`aboutPage.cnam.bullet${index}`)}
                     </span>
@@ -173,7 +173,7 @@ export default function AboutPage() {
                     <ul className="mt-2 space-y-2">
                       {["grandTunis", "capBon", "bizerte", "beja"].map((region, index) => (
                         <li key={index} className="flex items-center space-x-2">
-                          <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                          <div className="w-3 h-3 rounded-full bg-green-500"></div>
                           <span className="text-gray-700">{t(`aboutPage.coverage.regions.${region}`)}</span>
                         </li>
                       ))}
@@ -186,7 +186,7 @@ export default function AboutPage() {
                     <ul className="mt-2 space-y-2">
                       {["sousse", "monastir", "mahdia", "kairouan"].map((region, index) => (
                         <li key={index} className="flex items-center space-x-2">
-                          <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                          <div className="w-3 h-3 rounded-full bg-green-500"></div>
                           <span className="text-gray-700">{t(`aboutPage.coverage.regions.${region}`)}</span>
                         </li>
                       ))}
@@ -199,7 +199,7 @@ export default function AboutPage() {
                     <ul className="mt-2 space-y-2">
                       {["sfax", "gafsa"].map((region, index) => (
                         <li key={index} className="flex items-center space-x-2">
-                          <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                          <div className="w-3 h-3 rounded-full bg-green-500"></div>
                           <span className="text-gray-700">{t(`aboutPage.coverage.regions.${region}`)}</span>
                         </li>
                       ))}
@@ -224,7 +224,7 @@ export default function AboutPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-blue-600 text-white py-16">
+      <section className="bg-green-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">
             {t('aboutPage.cta.title')}
@@ -234,7 +234,7 @@ export default function AboutPage() {
           </p>
           <a
             href="/contact"
-            className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors"
+            className="bg-white text-green-600 px-8 py-3 rounded-full font-semibold hover:bg-green-50 transition-colors"
           >
             {t('aboutPage.cta.button')}
           </a>

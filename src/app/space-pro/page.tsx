@@ -188,7 +188,7 @@ export default function ComingSoonPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.6, duration: 0.8 }}
         >
-          &copy; 2025 Elite Medical Services. Tous droits réservés.
+          &copy; 2025 Iris Medical. Tous droits réservés.
         </motion.p>
       </motion.div>
     </div>

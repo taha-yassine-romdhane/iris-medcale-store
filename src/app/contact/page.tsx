@@ -13,19 +13,19 @@ const contactInfo = [
   {
     icon: Phone,
     title: "phone",
-    content: "+216 55 820 000",
+    content: "+216 73 820 320",
     detail: "available24_7"
   },
   {
     icon: Mail,
     title: "email",
-    content: "contact@elitemedicaleservices.tn",
+    content: "contact@irismedicaltunisie.com",
     detail: "responseWithin24h"
   },
   {
     icon: MapPin,
     title: "address",
-    content: "11 Rue tayeb el hedi 4070 M'Saken Sousse",
+    content: "Rue Yasser Arafet Immeuble Mahdi appartement 201 4054 , Sousse",
     detail: "mainOffice"
   },
   {
@@ -111,7 +111,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-32">
+      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-4 space-y-16">
           {/* Contact Info Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
@@ -122,13 +122,13 @@ export default function ContactPage() {
                   key={index}
                   className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
                 >
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-blue-600" />
+                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-green-600" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     {t(`contactPage.contactInfo.${info.title}.title`)}
                   </h3>
-                  <p className="text-blue-600 font-medium mb-1">{info.content}</p>
+                  <p className="text-green-600 font-medium mb-1">{info.content}</p>
                   <p className="text-gray-500 text-sm">
                     {t(`contactPage.contactInfo.${info.title}.detail`)}
                   </p>
@@ -189,7 +189,7 @@ export default function ContactPage() {
                           name="nom"
                           value={guestData.nom}
                           onChange={handleGuestDataChange}
-                          className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
                           required
                           placeholder={t('contactPage.form.namePlaceholder')}
                         />
@@ -203,7 +203,7 @@ export default function ContactPage() {
                           name="email"
                           value={guestData.email}
                           onChange={handleGuestDataChange}
-                          className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
                           required
                           placeholder={t('contactPage.form.emailPlaceholder')}
                         />
@@ -218,7 +218,7 @@ export default function ContactPage() {
                         name="telephone"
                         value={guestData.telephone}
                         onChange={handleGuestDataChange}
-                        className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        className="w-full border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
                         placeholder={t('contactPage.form.phonePlaceholder')}
                       />
                       <p className="text-sm text-gray-500 mt-1">
@@ -237,7 +237,7 @@ export default function ContactPage() {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder={t('contactPage.form.messagePlaceholder')}
-                    className="w-full h-32 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full h-32 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
                     required
                   />
                 </div>
@@ -245,7 +245,7 @@ export default function ContactPage() {
                 {/* Submit Button */}
                 <Button
                   type="submit"
-                  className={`w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+                  className={`w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 ${
                     isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
                   }`}
                   disabled={
@@ -277,7 +277,7 @@ export default function ContactPage() {
           </div>
 
           {/* Map Section */}
-          <div className="w-full bg-white rounded-2xl shadow-xl p-8">
+          <div className=" bg-white rounded-2xl shadow-xl p-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-8">
               {t('contactPage.map.title')}
             </h2>

@@ -29,7 +29,7 @@ export default function BrandsSection() {
   return (
     <section className="py-8 sm:py-12 bg-white overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 text-center">
-        <h2 className="text-2xl sm:text-3xl font-bold text-blue-900 mb-6 sm:mb-8">
+        <h2 className="text-2xl sm:text-3xl font-bold text-green-900 mb-6 sm:mb-8">
           {t('home.brands.title')}
         </h2>
         <div className="relative overflow-hidden">
@@ -61,7 +61,7 @@ export default function BrandsSection() {
                         priority={index === 0 && setIndex === 0}
                       />
                     </motion.div>
-                    <h3 className="text-sm sm:text-lg font-medium text-blue-900">
+                    <h3 className="text-sm sm:text-lg font-medium text-green-900">
                       {brand.name}
                     </h3>
                   </motion.div>

@@ -12,7 +12,7 @@ export default function SleepApneaPage() {
     return (
         <div className="min-h-screen">
             {/* Hero Section */}
-            <section className="relative bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
+            <section className="relative bg-gradient-to-r from-green-600 to-green-800 text-white py-20">
                 <div className="absolute inset-0 bg-black/30"></div>
                 <div className="relative max-w-screen-2xl mx-auto px-4">
                     <div className="text-center max-w-3xl mx-auto">
@@ -47,7 +47,7 @@ export default function SleepApneaPage() {
                             {/* Text Content */}
                             <div>
                                 <div className="flex items-center gap-3 mb-6">
-                                    <Info className="h-8 w-8 text-blue-600" />
+                                    <Info className="h-8 w-8 text-green-600" />
                                     <h2 className="text-2xl font-bold text-gray-900">{t('apneeDuSommeil.question')}</h2>
                                 </div>
                                 <p className="text-lg text-gray-700 leading-relaxed">
@@ -72,19 +72,19 @@ export default function SleepApneaPage() {
                     <div className="flex justify-center mb-12">
                         <div className="inline-flex rounded-lg border border-gray-200 bg-white p-1">
                             <button
-                                className={`px-4 py-2 rounded-md ${activeTab === 'symptoms' ? 'bg-blue-600 text-white' : 'text-gray-700'}`}
+                                className={`px-4 py-2 rounded-md ${activeTab === 'symptoms' ? 'bg-green-600 text-white' : 'text-gray-700'}`}
                                 onClick={() => setActiveTab('symptoms')}
                             >
                                 {t('apneeDuSommeil.symptoms')}
                             </button>
                             <button
-                                className={`px-4 py-2 rounded-md ${activeTab === 'risks' ? 'bg-blue-600 text-white' : 'text-gray-700'}`}
+                                className={`px-4 py-2 rounded-md ${activeTab === 'risks' ? 'bg-green-600 text-white' : 'text-gray-700'}`}
                                 onClick={() => setActiveTab('risks')}
                             >
                                 {t('apneeDuSommeil.risks')}
                             </button>
                             <button
-                                className={`px-4 py-2 rounded-md ${activeTab === 'treatment' ? 'bg-blue-600 text-white' : 'text-gray-700'}`}
+                                className={`px-4 py-2 rounded-md ${activeTab === 'treatment' ? 'bg-green-600 text-white' : 'text-gray-700'}`}
                                 onClick={() => setActiveTab('treatment')}
                             >
                                 {t('apneeDuSommeil.treatment')}
@@ -98,24 +98,24 @@ export default function SleepApneaPage() {
                             <div className="grid md:grid-cols-2 gap-8">
                                 <div className="bg-white p-6 rounded-xl shadow-lg">
                                     <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                                        <Clock className="h-6 w-6 text-blue-600" />
+                                        <Clock className="h-6 w-6 text-green-600" />
                                         {t('apneeDuSommeil.pendantLaNuit')}
                                     </h3>
                                     <ul className="space-y-3">
                                         <li className="flex items-start gap-2">
-                                            <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                                            <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                                             <span>{t('apneeDuSommeil.ronflements')}</span>
                                         </li>
                                         <li className="flex items-start gap-2">
-                                            <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                                            <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                                             <span>{t('apneeDuSommeil.pausesRespiratoires')}</span>
                                         </li>
                                         <li className="flex items-start gap-2">
-                                            <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                                            <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                                             <span>{t('apneeDuSommeil.reveils')}</span>
                                         </li>
                                         <li className="flex items-start gap-2">
-                                            <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                                            <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                                             <span>{t('apneeDuSommeil.etouffement')}</span>
                                         </li>
                                     </ul>
@@ -123,24 +123,24 @@ export default function SleepApneaPage() {
 
                                 <div className="bg-white p-6 rounded-xl shadow-lg">
                                     <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                                        <Brain className="h-6 w-6 text-blue-600" />
+                                        <Brain className="h-6 w-6 text-green-600" />
                                         {t('apneeDuSommeil.pendantLaJournee')}
                                     </h3>
                                     <ul className="space-y-3">
                                         <li className="flex items-start gap-2">
-                                            <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                                            <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                                             <span>{t('apneeDuSommeil.fatigueEtSomnolenceExcessive')}</span>
                                         </li>
                                         <li className="flex items-start gap-2">
-                                            <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                                            <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                                             <span>{t('apneeDuSommeil.mauxDeTeteMatinaux')}</span>
                                         </li>
                                         <li className="flex items-start gap-2">
-                                            <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                                            <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                                             <span>{t('apneeDuSommeil.difficultesDeConcentration')}</span>
                                         </li>
                                         <li className="flex items-start gap-2">
-                                            <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                                            <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                                             <span>{t('apneeDuSommeil.irritabiliteEtChangementsDHumeur')}</span>
                                         </li>
                                     </ul>
@@ -162,7 +162,7 @@ export default function SleepApneaPage() {
                         {activeTab === 'risks' && (
                             <div className="bg-white p-8 rounded-xl shadow-lg">
                                 <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-                                    <AlertTriangle className="h-6 w-6 text-blue-600" />
+                                    <AlertTriangle className="h-6 w-6 text-green-600" />
                                     {t('apneeDuSommeil.complicationsPossibles')}
                                 </h3>
                                 <div className="grid md:grid-cols-2 gap-6">
@@ -217,7 +217,7 @@ export default function SleepApneaPage() {
                             <div className="space-y-8">
                                 <div className="bg-white p-6 rounded-xl shadow-lg">
                                     <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                                        <Stethoscope className="h-6 w-6 text-blue-600" />
+                                        <Stethoscope className="h-6 w-6 text-green-600" />
                                         {t('apneeDuSommeil.solutionsTherapeutiques')}
                                     </h3>
                                     <div className="space-y-6">
@@ -237,15 +237,15 @@ export default function SleepApneaPage() {
                                             <h4 className="font-medium mb-2">{t('apneeDuSommeil.changementsDeModeDeVie')}</h4>
                                             <ul className="space-y-2">
                                                 <li className="flex items-center gap-2">
-                                                    <CheckCircle className="h-5 w-5 text-blue-600" />
+                                                    <CheckCircle className="h-5 w-5 text-green-600" />
                                                     <span>{t('apneeDuSommeil.perteDePoidsSiNecessaire')}</span>
                                                 </li>
                                                 <li className="flex items-center gap-2">
-                                                    <CheckCircle className="h-5 w-5 text-blue-600" />
+                                                    <CheckCircle className="h-5 w-5 text-green-600" />
                                                     <span>{t('apneeDuSommeil.positionDeSommeilAdaptee')}</span>
                                                 </li>
                                                 <li className="flex items-center gap-2">
-                                                    <CheckCircle className="h-5 w-5 text-blue-600" />
+                                                    <CheckCircle className="h-5 w-5 text-green-600" />
                                                     <span>{t('apneeDuSommeil.arretDuTabacEtReductionDeLalcool')}</span>
                                                 </li>
                                             </ul>

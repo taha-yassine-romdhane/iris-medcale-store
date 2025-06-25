@@ -120,7 +120,7 @@ export default function MonProfilPage() {
         <div className="mb-6">
           <Link
             href="/"
-            className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
+            className="inline-flex items-center text-green-600 hover:text-green-800 font-medium"
           >
             <Home className="h-5 w-5 mr-2" />
             Retour à l&apos;accueil
@@ -135,7 +135,7 @@ export default function MonProfilPage() {
               {/* Email */}
               <div>
                 <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <Mail className="h-4 w-4 mr-2 text-blue-600" />
+                  <Mail className="h-4 w-4 mr-2 text-green-600" />
                   Email
                 </label>
                 <input
@@ -144,14 +144,14 @@ export default function MonProfilPage() {
                   value={formData.email || ''}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 disabled:bg-gray-100"
                 />
               </div>
 
               {/* Nom */}
               <div>
                 <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <Users className="h-4 w-4 mr-2 text-blue-600" />
+                  <Users className="h-4 w-4 mr-2 text-green-600" />
                   Nom
                 </label>
                 <input
@@ -160,14 +160,14 @@ export default function MonProfilPage() {
                   value={formData.nom || ''}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 disabled:bg-gray-100"
                 />
               </div>
 
               {/* Prénom */}
               <div>
                 <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <Users className="h-4 w-4 mr-2 text-blue-600" />
+                  <Users className="h-4 w-4 mr-2 text-green-600" />
                   Prénom
                 </label>
                 <input
@@ -176,14 +176,14 @@ export default function MonProfilPage() {
                   value={formData.prenom || ''}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 disabled:bg-gray-100"
                 />
               </div>
 
               {/* Téléphone */}
               <div>
                 <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <Phone className="h-4 w-4 mr-2 text-blue-600" />
+                  <Phone className="h-4 w-4 mr-2 text-green-600" />
                   Téléphone
                 </label>
                 <input
@@ -192,14 +192,14 @@ export default function MonProfilPage() {
                   value={formData.telephone || ''}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 disabled:bg-gray-100"
                 />
               </div>
 
               {/* Adresse */}
               <div>
                 <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <MapPin className="h-4 w-4 mr-2 text-blue-600" />
+                  <MapPin className="h-4 w-4 mr-2 text-green-600" />
                   Adresse
                 </label>
                 <input
@@ -208,14 +208,14 @@ export default function MonProfilPage() {
                   value={formData.adresse || ''}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 disabled:bg-gray-100"
                 />
               </div>
 
               {/* Ville */}
               <div>
                 <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <Building className="h-4 w-4 mr-2 text-blue-600" />
+                  <Building className="h-4 w-4 mr-2 text-green-600" />
                   Ville
                 </label>
                 <input
@@ -224,14 +224,14 @@ export default function MonProfilPage() {
                   value={formData.ville || ''}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 disabled:bg-gray-100"
                 />
               </div>
 
               {/* Code Postal */}
               <div>
                 <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  <Hash className="h-4 w-4 mr-2 text-blue-600" />
+                  <Hash className="h-4 w-4 mr-2 text-green-600" />
                   Code Postal
                 </label>
                 <input
@@ -240,7 +240,7 @@ export default function MonProfilPage() {
                   value={formData.codePostal || ''}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 disabled:bg-gray-100"
                 />
               </div>
 
@@ -261,7 +261,7 @@ export default function MonProfilPage() {
                     </button>
                     <button
                       type="submit"
-                      className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50"
+                      className="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-700 transition-colors disabled:opacity-50"
                       disabled={saving}
                     >
                       {saving ? 'Enregistrement...' : 'Enregistrer'}
@@ -271,7 +271,7 @@ export default function MonProfilPage() {
                   <button
                     type="button"
                     onClick={() => setIsEditing(true)}
-                    className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors"
+                    className="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-700 transition-colors"
                   >
                     Modifier
                   </button>

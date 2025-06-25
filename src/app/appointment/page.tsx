@@ -125,17 +125,17 @@ export default function AppointmentSection() {
 
   return (
     <>
-      <div className="min-h-screen bg-blue-50 py-16 from-white to-blue-900 pt-32">
+      <div className="min-h-screen bg-green-50 py-16 from-white to-green-900 pt-32">
         <div className="max-w-4xl mx-auto px-4">
           <div className="bg-white rounded-2xl shadow-xl p-8">
-            <h1 className="text-3xl font-bold text-blue-900 mb-8">
+            <h1 className="text-3xl font-bold text-green-900 mb-8">
               {t('appointmentSection.title')}
             </h1>
 
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* Month Selection */}
               <div className="space-y-4">
-                <label className="block text-sm font-medium text-blue-900">
+                <label className="block text-sm font-medium text-green-900">
                   {t('appointmentSection.selectMonth')}
                 </label>
                 <div className="flex gap-4">
@@ -146,8 +146,8 @@ export default function AppointmentSection() {
                       variant={selectedMonth.getMonth() === month.getMonth() ? "default" : "outline"}
                       onClick={() => setSelectedMonth(month)}
                       className={`flex-1 ${selectedMonth.getMonth() === month.getMonth()
-                          ? 'bg-blue-900 text-white hover:bg-blue-800'
-                          : 'bg-white text-blue-900 border-blue-900 hover:bg-blue-50'
+                          ? 'bg-green-900 text-white hover:bg-green-800'
+                          : 'bg-white text-green-900 border-green-900 hover:bg-green-50'
                         }`}
                     >
                       {format(month, 'MMMM yyyy', { locale: fr })}
@@ -158,7 +158,7 @@ export default function AppointmentSection() {
 
               {/* Day Selection */}
               <div className="space-y-4">
-                <label className="block text-sm font-medium text-blue-900">
+                <label className="block text-sm font-medium text-green-900">
                   {t('appointmentSection.selectDay')}
                 </label>
                 <div className="grid grid-cols-7 gap-2">
@@ -176,8 +176,8 @@ export default function AppointmentSection() {
                         onClick={() => !isDisabled && handleDaySelect(day)}
                         disabled={isDisabled}
                         className={`h-16 flex flex-col items-center justify-center ${selectedDay === day
-                            ? 'bg-blue-900 text-white hover:bg-blue-800'
-                            : 'bg-white text-blue-900 border-blue-900 hover:bg-blue-50'
+                            ? 'bg-green-900 text-white hover:bg-green-800'
+                            : 'bg-white text-green-900 border-green-900 hover:bg-green-50'
                           } ${isDisabled ? 'opacity-50' : ''}`}
                       >
                         <span className="text-sm font-medium">{dayOfWeek}</span>
@@ -191,7 +191,7 @@ export default function AppointmentSection() {
               {/* Time Selection */}
               {selectedDay && (
                 <div className="space-y-4">
-                  <label className="block text-sm font-medium text-blue-900">
+                  <label className="block text-sm font-medium text-green-900">
                     {t('appointmentSection.selectTime')}
                   </label>
                   <div className="grid grid-cols-4 gap-2">
@@ -207,8 +207,8 @@ export default function AppointmentSection() {
                           onClick={() => !isDisabled && handleTimeSelect(time)}
                           disabled={isDisabled}
                           className={`h-12 ${formData.time === time
-                              ? 'bg-blue-900 text-white hover:bg-blue-800'
-                              : 'bg-white text-blue-900 border-blue-900 hover:bg-blue-50'
+                              ? 'bg-green-900 text-white hover:bg-green-800'
+                              : 'bg-white text-green-900 border-green-900 hover:bg-green-50'
                             } ${isDisabled ? 'opacity-50' : ''}`}
                         >
                           {time}
@@ -221,14 +221,14 @@ export default function AppointmentSection() {
 
               {/* Reason Input */}
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-blue-900">
+                <label className="block text-sm font-medium text-green-900">
                   {t('appointmentSection.reasonLabel')}
                 </label>
                 <Textarea
                   value={formData.reason}
                   onChange={(e) => setFormData(prev => ({ ...prev, reason: e.target.value }))}
                   placeholder={t('appointmentSection.reasonPlaceholder')}
-                  className="h-32 border-blue-900 focus:border-blue-900 focus:ring-blue-900"
+                  className="h-32 border-green-900 focus:border-green-900 focus:ring-green-900"
                   required
                 />
               </div>
@@ -236,43 +236,43 @@ export default function AppointmentSection() {
               {/* Guest Information Fields (only show if not logged in) */}
               {!user && (
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-blue-900">
+                  <h3 className="text-lg font-semibold text-green-900">
                     {t('appointmentSection.guestInfo.title')}
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <label className="block text-sm font-medium text-blue-900">
+                      <label className="block text-sm font-medium text-green-900">
                         {t('appointmentSection.guestInfo.name')}*
                       </label>
                       <input
                         type="text"
                         value={formData.guestName}
                         onChange={(e) => setFormData(prev => ({ ...prev, guestName: e.target.value }))}
-                        className="w-full border-blue-900 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        className="w-full border-green-900 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
                         required
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="block text-sm font-medium text-blue-900">
+                      <label className="block text-sm font-medium text-green-900">
                         {t('appointmentSection.guestInfo.email')}*
                       </label>
                       <input
                         type="email"
                         value={formData.guestEmail}
                         onChange={(e) => setFormData(prev => ({ ...prev, guestEmail: e.target.value }))}
-                        className="w-full border-blue-900 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        className="w-full border-green-900 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
                         required
                       />
                     </div>
                     <div className="space-y-2 md:col-span-2">
-                      <label className="block text-sm font-medium text-blue-900">
+                      <label className="block text-sm font-medium text-green-900">
                         {t('appointmentSection.guestInfo.phone')}
                       </label>
                       <input
                         type="tel"
                         value={formData.guestPhone}
                         onChange={(e) => setFormData(prev => ({ ...prev, guestPhone: e.target.value }))}
-                        className="w-full border-blue-900 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        className="w-full border-green-900 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
                       />
                       <p className="text-sm text-gray-500">
                         {t('appointmentSection.guestInfo.phoneOptional')}
@@ -285,7 +285,7 @@ export default function AppointmentSection() {
               {/* Submit Button */}
               <Button
                 type="submit"
-                className="w-full bg-blue-900 text-white hover:bg-blue-800"
+                className="w-full bg-green-900 text-white hover:bg-green-800"
                 disabled={
                   isSubmitting || 
                   !formData.date || 

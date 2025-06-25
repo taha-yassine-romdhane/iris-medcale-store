@@ -82,10 +82,10 @@ const Navbar = () => {
       <motion.nav
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="bg-white z-50 shadow-sm relative"
+        className="bg-gradient-to-r from-blue-100 via-white to-green-100 z-50 shadow-sm relative"
       >
         {/* Mobile Search Bar */}
-        <div className="lg:hidden w-full px-4 py-2 bg-white border-b">
+        <div className="lg:hidden w-full px-4 py-2 ">
           <SearchBar />
         </div>
         <div className="max-w-[1836px] mx-auto relative">
@@ -94,14 +94,14 @@ const Navbar = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="absolute left-1 -bottom-12 z-50 bg-white rounded-b-lg p-2 hidden md:block"
+            className="absolute left-1 -bottom-12 z-50  rounded-b-lg p-2 hidden md:block"
           >
             <Link href="/" className="flex items-center">
               <Image
-                src="/logo_No_BG.png"
+                src="/logo_iris_no_bg.png"
                 alt="Elite Medicale Service Logo"
-                width={250}
-                height={250}
+                width={280}
+                height={280}
                 className="object-contain"
                 priority
               />
@@ -116,7 +116,7 @@ const Navbar = () => {
                 {/* Logo */}
                 <Link href="/" className="flex items-center">
                   <Image
-                    src="/logo_No_BG.png"
+                    src="/logo_iris_no_bg.png"
                     alt="Elite Medicale Service Logo"
                     width={80}
                     height={80}
@@ -130,10 +130,10 @@ const Navbar = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className="p-2 rounded hover:bg-blue-100 flex items-center gap-2"
+                  className="p-2 rounded hover:bg-green-100 flex items-center gap-2"
                 >
-                  <Menu className="h-6 w-6 text-blue-900" />
-                  <span className="text-blue-900 font-medium">{t('navbar.title')}</span>
+                  <Menu className="h-6 w-6 text-green-900" />
+                  <span className="text-green-900 font-medium">{t('navbar.title')}</span>
                 </motion.button>
               </div>
 
@@ -165,8 +165,8 @@ const Navbar = () => {
                       onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                       className="flex items-center space-x-1 focus:outline-none"
                     >
-                      <div className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-100">
-                        <User2 className="h-5 w-5 text-blue-600" />
+                      <div className="w-8 h-8 flex items-center justify-center rounded-full bg-green-100">
+                        <User2 className="h-5 w-5 text-green-600" />
                       </div>
                       <span className="font-bold text-sm hidden lg:inline-block">
                         {(user as User).prenom} {(user as User).nom}
@@ -182,19 +182,19 @@ const Navbar = () => {
                           className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl z-20 border border-gray-100"
                         >
                           <div className="px-4 py-2 border-b border-gray-100">
-                            <p className="text-sm font-semibold text-blue-900">{(user as User).prenom} {(user as User).nom}</p>
+                            <p className="text-sm font-semibold text-green-900">{(user as User).prenom} {(user as User).nom}</p>
                             <p className="text-xs text-gray-500">{(user as User).email}</p>
                           </div>
                           <Link
                             href="/profile"
-                            className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-blue-900 hover:bg-blue-50"
+                            className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-green-900 hover:bg-green-50"
                             onClick={() => setIsUserMenuOpen(false)}
                           >
                             <span>{t('navbar.myProfile')}</span>
                           </Link>
                           <Link
                             href="/mes-commandes"
-                            className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-blue-900 hover:bg-blue-50"
+                            className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-green-900 hover:bg-green-50"
                             onClick={() => setIsUserMenuOpen(false)}
                           >
                             <span>{t('navbar.myOrders')}</span>
@@ -202,7 +202,7 @@ const Navbar = () => {
                           {((user as User).role === 'ADMIN' || (user as User).role === 'EMPLOYE') && (
                             <Link
                               href="/dashboard"
-                              className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-blue-900 hover:bg-blue-50"
+                              className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-green-900 hover:bg-green-50"
                               onClick={() => setIsUserMenuOpen(false)}
                             >
                               <span>{t('navbar.dashboard')}</span>
@@ -222,7 +222,7 @@ const Navbar = () => {
                   <motion.div whileHover={{ scale: 1.05 }}>
                     <Link
                       href="/login"
-                      className="text-blue-900 hover:text-blue-600 flex font-bold items-center gap-2"
+                      className="text-green-900 hover:text-green-600 flex font-bold items-center gap-2"
                     >
                       <User2 className="h-6 w-6" />
                       <span>{t('navbar.login')}</span>

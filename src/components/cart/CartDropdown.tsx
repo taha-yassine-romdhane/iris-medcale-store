@@ -22,11 +22,11 @@ export default function CartDropdown() {
       {/* Cart Icon */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative text-blue-900 hover:text-blue-600 p-2 transition-colors duration-200"
+        className="relative text-green-900 hover:text-green-600 p-2 transition-colors duration-200"
       >
         <ShoppingBag className="h-6 w-6" />
         {cart?.items?.length > 0 && (
-          <span className="absolute -top-1 -left-1 bg-blue-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
+          <span className="absolute -top-1 -left-1 bg-green-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
             {cart.items.length}
           </span>
         )}
@@ -69,7 +69,7 @@ export default function CartDropdown() {
                   <p className="text-gray-500 text-center mb-4">{t('cart.empty')}</p>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
+                    className="text-green-600 hover:text-green-700 font-medium transition-colors duration-200"
                   >
                     {t('cart.continue')}
                   </button>
@@ -107,14 +107,14 @@ export default function CartDropdown() {
                             <div className="flex items-center mt-3 space-x-3">
                               <button
                                 onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                className="p-1 rounded-full hover:bg-gray-100 text-gray-500 hover:text-blue-600 transition-colors duration-200"
+                                className="p-1 rounded-full hover:bg-gray-100 text-gray-500 hover:text-green-600 transition-colors duration-200"
                               >
                                 <Minus className="h-4 w-4" />
                               </button>
                               <span className="text-sm font-medium w-8 text-center">{item.quantity}</span>
                               <button
                                 onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                className="p-1 rounded-full hover:bg-gray-100 text-gray-500 hover:text-blue-600 transition-colors duration-200"
+                                className="p-1 rounded-full hover:bg-gray-100 text-gray-500 hover:text-green-600 transition-colors duration-200"
                               >
                                 <Plus className="h-4 w-4" />
                               </button>
@@ -137,7 +137,7 @@ export default function CartDropdown() {
                   <div className="p-6 border-t border-gray-100 bg-gray-50">
                     <Link
                       href="/checkout"
-                      className="flex items-center justify-center w-full bg-blue-600 text-white py-3 px-4 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors duration-200 shadow-sm hover:shadow-md"
+                      className="flex items-center justify-center w-full bg-green-600 text-white py-3 px-4 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors duration-200 shadow-sm hover:shadow-md"
                       onClick={() => setIsOpen(false)}
                     >
                       {t('cart.requestQuote')}

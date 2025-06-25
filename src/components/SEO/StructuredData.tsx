@@ -15,40 +15,33 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
   const organizationData = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    "@id": "https://www.elitemedicaleservices.tn/#organization",
-    "name": "Elite Medical Services Tunisie",
-    "url": "https://www.elitemedicaleservices.tn/",
-    "logo": "https://www.elitemedicaleservices.tn/logo.png",
+    "@id": "https://www.irismedicaltunisie.com/#organization",
+    "name": "Iris Medical Tunisie",
+    "url": "https://www.irismedicaltunisie.com/",
+    "logo": "https://www.irismedicaltunisie.com/logo_iris.png",
     "description": "Spécialiste en vente et location d'équipements médicaux CPAP, BiPAP, oxygénothérapie et accessoires en Tunisie.",
     "sameAs": [
-      "https://www.facebook.com/profile.php?id=100058891157559",
+      "https://www.facebook.com/IrisMedTn",
       // Add more social profiles if you have them
     ],
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "11 RUE TAIEB MHIRI",
+      "streetAddress": "Rue Yasser Arafet Immeuble Mahdi appartement 201 4054 , Sousse",
       "addressLocality": "Sousse",
-      "postalCode": "4070",
+      "postalCode": "4054",
       "addressCountry": "TN",
       "addressRegion": "Sousse"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 35.734867,
-      "longitude": 10.5740649
+      "latitude": "35.734867",
+      "longitude": "10.5740649"
     },
     "contactPoint": [
       {
         "@type": "ContactPoint",
-        "telephone": "+21655820000",
+        "telephone": "+216 73 820 320",
         "contactType": "customer service",
-        "areaServed": "TN",
-        "availableLanguage": ["French", "Arabic"]
-      },
-      {
-        "@type": "ContactPoint",
-        "telephone": "+21655820000",
-        "contactType": "sales",
         "areaServed": "TN",
         "availableLanguage": ["French", "Arabic"]
       }
@@ -99,12 +92,12 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
   const localBusinessData = {
     ...organizationData,
     "@type": "MedicalBusiness",
-    "name": "Elite Medical Services - Spécialiste Équipements Respiratoires",
+    "name": "Iris Medical - Spécialiste Équipements Respiratoires",
     "description": "Fournisseur leader d'équipements médicaux respiratoires en Tunisie : CPAP, BiPAP, oxygénothérapie et accessoires pour l'apnée du sommeil",
-    "priceRange": "€€-€€€",
-    "hasMap": "https://www.google.com/maps?cid=VotreCIDGoogleMyBusiness", // Remplacez par votre vrai CID
+    "priceRange": "",
+    "hasMap": "", // Remplacez par votre vrai CID
     "currenciesAccepted": "TND",
-    "paymentAccepted": "Espèces, Carte Bancaire, Paiement échelonné", // Ajout paiement échelonné
+    "paymentAccepted": "Espèces, CNAM et assurances , cheques et virement bancaire , traites de paiement", // Ajout paiement échelonné
     "openingHours": "Mo-Fr 08:00-18:00, Sa 09:00-13:00",
     "areaServed": {
       "@type": "Country",
@@ -124,10 +117,10 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
     ],
     // Équipements médicaux (avec marques connues)
     "medicalEquipment": [
-      "Appareils CPAP (ResMed, Philips)",
+      "Appareils CPAP (ResMed, Yuwell)",
       "Machines BiPAP",
       "Concentrateurs d'oxygène",
-      "Masques respiratoires (AirFit, DreamWear)",
+      "Masques respiratoires (AirFit, Yuwell)",
       "Ventilateurs médicaux"
     ],
     // Services supplémentaires (important pour le référencement local)
@@ -144,16 +137,16 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://www.elitemedicaleservices.tn/#website",
-    "url": "https://www.elitemedicaleservices.tn/",
-    "name": "Elite Medical Services - Équipements Médicaux en Tunisie",
+    "@id": "https://www.irismedicaltunisie.com/#website",
+    "url": "https://www.irismedicaltunisie.com/",
+    "name": "Iris Medical - Équipements Médicaux en Tunisie",
     "description": "Spécialiste en CPAP, BiPAP et oxygénothérapie en Tunisie",
     "publisher": {
-      "@id": "https://www.elitemedicaleservices.tn/#organization"
+      "@id": "https://www.irismedicaltunisie.com/#organization"
     },
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://www.elitemedicaleservices.tn/search?q={search_term_string}",
+      "target": "https://www.irismedicaltunisie.com/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };

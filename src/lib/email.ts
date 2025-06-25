@@ -36,12 +36,12 @@ export async function sendVerificationEmail(email: string, token: string) {
   try {
     const { data, error } = await resend.emails.send({
       from: 'Elite Medicale <no-reply@elitemedicaleservices.tn>',
-      to: 'contact@elitemedicaleservices.tn',
+      to: 'contact@irismedicaltunisie.com',
       subject: 'Verify your email address - Elite Medicale Service',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
           <div style="text-align: center; margin-bottom: 20px;">
-            <img src="https://www.elitemedicaleservices.tn/logo.png" alt="Elite Medicale Logo" style="max-width: 150px;">
+            <img src="https://www.irismedicaltunisie.com/logo_iris_no_bg.png" alt="Elite Medicale Logo" style="max-width: 150px;">
           </div>
           <h2 style="color: #333; text-align: center;">Welcome to Elite Medicale Service!</h2>
           <p style="color: #555; text-align: center;">Thank you for registering. Please click the button below to verify your email address:</p>
@@ -84,12 +84,12 @@ export async function sendContactFormEmail(data: ContactFormData) {
   try {
     const { data: emailData, error } = await resend.emails.send({
       from: 'Elite Medicale <no-reply@elitemedicaleservices.tn>',
-      to: 'contact@elitemedicaleservices.tn',
+      to: 'contact@irismedicaltunisie.com',
       subject: `Nouveau message de contact de ${data.name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
           <div style="text-align: center; margin-bottom: 20px;">
-            <img src="https://www.elitemedicaleservices.tn/logo.png" alt="Elite Medicale Logo" style="max-width: 150px;">
+            <img src="https://www.irismedicaltunisie.com/logo_iris_no_bg.png" alt="Elite Medicale Logo" style="max-width: 150px;">
           </div>
           <h2 style="color: #333; text-align: center;">Nouveau message de contact</h2>
           
@@ -106,7 +106,7 @@ export async function sendContactFormEmail(data: ContactFormData) {
           </div>
           
           <div style="text-align: center; margin-top: 30px; color: #666; font-size: 14px;">
-            <p>Ce message a été envoyé via le formulaire de contact de Elite Medicale Services.</p>
+            <p>Ce message a été envoyé via le formulaire de contact de Iris Medical Tunisie.</p>
           </div>
         </div>
       `,
@@ -144,13 +144,13 @@ export async function sendDevisNotificationEmail(data: DevisEmailData) {
     }).join('');
 
     const { data: emailData, error } = await resend.emails.send({
-      from: 'Elite Medicale <no-reply@elitemedicaleservices.tn>',
-      to: 'contact@elitemedicaleservices.tn',
+      from: 'Iris Medical <no-reply@irismedicaltunisie.com>',
+      to: 'contact@irismedicaltunisie.com',
       subject: `Nouvelle demande de devis #${data.orderNumber}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
           <div style="text-align: center; margin-bottom: 20px;">
-            <img src="https://www.elitemedicaleservices.tn/logo.png" alt="Elite Medicale Logo" style="max-width: 150px;">
+            <img src="https://www.irismedicaltunisie.com/logo_iris_no_bg.png" alt="Elite Medicale Logo" style="max-width: 150px;">
           </div>
           <h2 style="color: #333; text-align: center;">Nouvelle demande de devis</h2>
           <p style="color: #555;"><strong>Numéro de commande:</strong> ${data.orderNumber}</p>
@@ -174,11 +174,11 @@ export async function sendDevisNotificationEmail(data: DevisEmailData) {
           </table>
           
           <div style="margin-top: 30px; padding: 15px; background-color: #f9f9f9; border-radius: 5px;">
-            <p style="color: #555; margin: 0;">Cette demande de devis a été générée automatiquement depuis le site web Elite Médicale Services.</p>
+            <p style="color: #555; margin: 0;">Cette demande de devis a été générée automatiquement depuis le site web Iris Medical Tunisie.</p>
           </div>
           
           <div style="text-align: center; margin-top: 30px; color: #888; font-size: 14px;">
-            <p>Elite Medicale Service</p>
+            <p>Iris Medical Tunisie</p>
             <p>Téléphone: +216 55 820 000</p>
           </div>
         </div>
