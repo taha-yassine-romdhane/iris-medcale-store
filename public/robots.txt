@@ -1,4 +1,4 @@
-# https://www.elitemedicaleservices.tn/robots.txt
+# https://www.irismedicaltunisie.com/robots.txt
 # Allow all crawlers full access
 User-agent: *
 Allow: /
@@ -19,7 +19,7 @@ Allow: /product/*        # Explicitly allow all product pages
 Allow: /images/*         # Explicitly allow all images
 
 # Sitemap location
-Sitemap: https://www.elitemedicaleservices.tn/sitemap.xml
+Sitemap: https://www.irismedicaltunisie.com/sitemap.xml
 
 # Specify crawl rate for Google
 User-agent: Googlebot

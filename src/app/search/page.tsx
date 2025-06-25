@@ -35,7 +35,7 @@ function SearchResults({ query }: { query: string }) {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500"></div>
       </div>
     );
   }
@@ -81,17 +81,17 @@ function SearchResults({ query }: { query: string }) {
             )}
           </div>
           <div className="p-6">
-            <h2 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+            <h2 className="text-lg font-semibold text-gray-900 group-hover:text-green-600 transition-colors">
               {product.name}
             </h2>
             {product.brand && (
-              <p className="text-sm text-blue-600 font-medium mt-1">
+              <p className="text-sm text-green-600 font-medium mt-1">
                 {product.brand}
               </p>
             )}
             <div className="mt-2 flex flex-wrap gap-2">
               {product.category && (
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                   {product.category}
                 </span>
               )}
@@ -150,7 +150,7 @@ function SearchPageContent() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <Link href="/" className="inline-flex items-center text-blue-600 hover:text-blue-800">
+        <Link href="/" className="inline-flex items-center text-green-600 hover:text-green-800">
           <ArrowLeft className="h-4 w-4 mr-2" />
           Retour à l&apos;accueil
         </Link>

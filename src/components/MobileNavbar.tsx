@@ -349,14 +349,7 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                     <Phone className="h-6 w-6 text-green-600 mb-1" />
                     <span className="text-sm font-medium">{t('navbar.contact')}</span>
                   </Link>
-                  <Link
-                    href="/appointment"
-                    className="p-3 bg-green-50 hover:bg-green-100 rounded-lg flex flex-col items-center text-center"
-                    onClick={onClose}
-                  >
-                    <Calendar className="h-6 w-6 text-green-600 mb-1" />
-                    <span className="text-sm font-medium">{t('navbar.appointment')}</span>
-                  </Link>
+           
                   <Link
                     href="/space-pro"
                     className="p-3 bg-green-50 hover:bg-green-100 rounded-lg flex flex-col items-center text-center"
