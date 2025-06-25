@@ -45,7 +45,7 @@ export default function Footer() {
             {t('footer.description')}
           </p>
           <div className="flex space-x-4 pt-4 justify-start">
-            <Link href="https://www.facebook.com/share/15zdLven1F/" target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-600 hover:text-blue-600 transition-colors">
+            <Link href="https://www.facebook.com/IrisMedTn" target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-600 hover:text-blue-600 transition-colors">
               <Facebook size={18} />
               <span className="ml-2">Facebook</span>
             </Link>
