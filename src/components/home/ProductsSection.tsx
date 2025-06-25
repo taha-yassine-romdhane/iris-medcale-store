@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from '@/hooks/useCart';
-import { ChevronLeft, ChevronRight, ShoppingCart, Eye, Sparkles } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ShoppingCart, Eye } from 'lucide-react';
 import { useTranslation } from '@/contexts/TranslationContext';
 import { Product } from '@/types/product';
 import { createProductSlug } from '@/utils/slugify';

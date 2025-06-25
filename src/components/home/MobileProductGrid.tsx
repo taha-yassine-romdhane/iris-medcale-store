@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Product } from '@/types/product';
 import { useCart } from '@/hooks/useCart';
 import { useTranslation } from '@/contexts/TranslationContext';
-import { ChevronLeft, ChevronRight, Plus, Zap, Heart, Star } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 import { useRef } from 'react';
 import { createProductSlug } from '@/utils/slugify';
 
