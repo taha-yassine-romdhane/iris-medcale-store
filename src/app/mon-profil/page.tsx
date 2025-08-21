@@ -6,9 +6,11 @@ import { toast } from 'react-hot-toast';
 import { User as UserIcon, Mail, Phone, MapPin, Building, Hash, Home, Edit3, Save, X, Shield } from 'lucide-react';
 import Link from 'next/link';
 import type { User} from '@/types/user';
+import { useTranslation } from '@/contexts/TranslationContext';
 
 export default function MonProfilPage() {
   const router = useRouter();
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [profile, setProfile] = useState<User | null>(null);
@@ -21,7 +23,7 @@ export default function MonProfilPage() {
         const token = localStorage.getItem('token');
         
         if (!token) {
-          toast.error('Veuillez vous connecter pour accéder à votre profil');
+          toast.error(t('profilePage.errors.loginRequired'));
           router.push('/login');
           return;
         }
@@ -36,7 +38,7 @@ export default function MonProfilPage() {
         
         if (!response.ok) {
           if (response.status === 401) {
-            toast.error('Session expirée. Veuillez vous reconnecter.');
+            toast.error(t('profilePage.errors.sessionExpired'));
             router.push('/login');
             return;
           }
@@ -50,7 +52,7 @@ export default function MonProfilPage() {
         setFormData(data);
       } catch (error) {
         console.error('Error fetching profile:', error);
-        toast.error('Erreur lors de la récupération du profil');
+        toast.error(t('profilePage.errors.fetchError'));
       } finally {
         setLoading(false);
       }
@@ -74,7 +76,7 @@ export default function MonProfilPage() {
     try {
       const token = localStorage.getItem('token');
       if (!token) {
-        toast.error('Veuillez vous connecter pour mettre à jour votre profil');
+        toast.error(t('profilePage.errors.loginToUpdate'));
         router.push('/login');
         return;
       }
@@ -96,10 +98,10 @@ export default function MonProfilPage() {
       const updatedProfile = await response.json();
       setProfile(updatedProfile);
       setIsEditing(false);
-      toast.success('Profil mis à jour avec succès');
+      toast.success(t('profilePage.success.profileUpdated'));
     } catch (error) {
       console.error('Error updating profile:', error);
-      toast.error('Erreur lors de la mise à jour du profil');
+      toast.error(t('profilePage.errors.updateError'));
     } finally {
       setSaving(false);
     }
@@ -123,13 +125,13 @@ export default function MonProfilPage() {
             className="inline-flex items-center text-gray-600 hover:text-gray-900 text-sm font-medium transition-colors mb-6"
           >
             <Home className="h-4 w-4 mr-2" />
-            Accueil
+            {t('profilePage.breadcrumb.home')}
           </Link>
           
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-1 h-8 bg-gradient-to-b from-emerald-500 to-blue-500 rounded-full"></div>
-              <h1 className="text-3xl font-bold text-gray-900">Mon Profil</h1>
+              <h1 className="text-3xl font-bold text-gray-900">{t('profilePage.title')}</h1>
             </div>
             {!isEditing ? (
               <button
@@ -138,7 +140,7 @@ export default function MonProfilPage() {
                 className="inline-flex items-center px-4 py-2 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
               >
                 <Edit3 className="h-4 w-4 mr-2" />
-                Modifier
+                {t('profilePage.buttons.edit')}
               </button>
             ) : null}
           </div>
@@ -163,7 +165,7 @@ export default function MonProfilPage() {
               <div className="p-6 space-y-4">
                 <div className="flex items-center text-sm text-gray-600">
                   <Shield className="h-4 w-4 mr-3 text-emerald-600" />
-                  <span>Compte vérifié</span>
+                  <span>{t('profilePage.sidebar.verifiedAccount')}</span>
                 </div>
             
               </div>
@@ -175,7 +177,7 @@ export default function MonProfilPage() {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg border border-gray-200 p-6">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-semibold text-gray-900">Informations personnelles</h3>
+                <h3 className="text-lg font-semibold text-gray-900">{t('profilePage.sections.personalInfo')}</h3>
                 {isEditing && (
                   <button
                     type="button"
@@ -196,7 +198,7 @@ export default function MonProfilPage() {
                     {/* Prénom */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Prénom
+                        {t('profilePage.fields.firstName')}
                       </label>
                       <div className="relative">
                         <UserIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -207,7 +209,7 @@ export default function MonProfilPage() {
                           onChange={handleInputChange}
                           disabled={!isEditing}
                           className="w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 disabled:bg-gray-50 disabled:text-gray-500 transition-colors"
-                          placeholder="Votre prénom"
+                          placeholder={t('profilePage.placeholders.firstName')}
                         />
                       </div>
                     </div>
@@ -215,7 +217,7 @@ export default function MonProfilPage() {
                     {/* Nom */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Nom
+                        {t('profilePage.fields.lastName')}
                       </label>
                       <div className="relative">
                         <UserIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -226,7 +228,7 @@ export default function MonProfilPage() {
                           onChange={handleInputChange}
                           disabled={!isEditing}
                           className="w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 disabled:bg-gray-50 disabled:text-gray-500 transition-colors"
-                          placeholder="Votre nom"
+                          placeholder={t('profilePage.placeholders.lastName')}
                         />
                       </div>
                     </div>
@@ -234,13 +236,13 @@ export default function MonProfilPage() {
 
                   {/* Contact Information */}
                   <div className="space-y-4">
-                    <h4 className="text-sm font-medium text-gray-900 pb-2 border-b border-gray-100">Informations de contact</h4>
+                    <h4 className="text-sm font-medium text-gray-900 pb-2 border-b border-gray-100">{t('profilePage.sections.contactInfo')}</h4>
                     
                     <div className="grid md:grid-cols-2 gap-6">
                       {/* Email */}
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Email
+                          {t('profilePage.fields.email')}
                         </label>
                         <div className="relative">
                           <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -251,7 +253,7 @@ export default function MonProfilPage() {
                             onChange={handleInputChange}
                             disabled={!isEditing}
                             className="w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 disabled:bg-gray-50 disabled:text-gray-500 transition-colors"
-                            placeholder="votre@email.com"
+                            placeholder={t('profilePage.placeholders.email')}
                           />
                         </div>
                       </div>
@@ -259,7 +261,7 @@ export default function MonProfilPage() {
                       {/* Téléphone */}
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Téléphone
+                          {t('profilePage.fields.phone')}
                         </label>
                         <div className="relative">
                           <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -270,7 +272,7 @@ export default function MonProfilPage() {
                             onChange={handleInputChange}
                             disabled={!isEditing}
                             className="w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 disabled:bg-gray-50 disabled:text-gray-500 transition-colors"
-                            placeholder="+216 XX XXX XXX"
+                            placeholder={t('profilePage.placeholders.phone')}
                           />
                         </div>
                       </div>
@@ -279,12 +281,12 @@ export default function MonProfilPage() {
 
                   {/* Address Information */}
                   <div className="space-y-4">
-                    <h4 className="text-sm font-medium text-gray-900 pb-2 border-b border-gray-100">Adresse de livraison</h4>
+                    <h4 className="text-sm font-medium text-gray-900 pb-2 border-b border-gray-100">{t('profilePage.sections.shippingAddress')}</h4>
                     
                     {/* Adresse */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Adresse
+                        {t('profilePage.fields.address')}
                       </label>
                       <div className="relative">
                         <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -295,7 +297,7 @@ export default function MonProfilPage() {
                           onChange={handleInputChange}
                           disabled={!isEditing}
                           className="w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 disabled:bg-gray-50 disabled:text-gray-500 transition-colors"
-                          placeholder="Rue, numéro, quartier..."
+                          placeholder={t('profilePage.placeholders.address')}
                         />
                       </div>
                     </div>
@@ -304,7 +306,7 @@ export default function MonProfilPage() {
                       {/* Ville */}
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Ville
+                          {t('profilePage.fields.city')}
                         </label>
                         <div className="relative">
                           <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -315,7 +317,7 @@ export default function MonProfilPage() {
                             onChange={handleInputChange}
                             disabled={!isEditing}
                             className="w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 disabled:bg-gray-50 disabled:text-gray-500 transition-colors"
-                            placeholder="Tunis, Sousse, Sfax..."
+                            placeholder={t('profilePage.placeholders.city')}
                           />
                         </div>
                       </div>
@@ -323,7 +325,7 @@ export default function MonProfilPage() {
                       {/* Code Postal */}
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Code Postal
+                          {t('profilePage.fields.postalCode')}
                         </label>
                         <div className="relative">
                           <Hash className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -334,7 +336,7 @@ export default function MonProfilPage() {
                             onChange={handleInputChange}
                             disabled={!isEditing}
                             className="w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 disabled:bg-gray-50 disabled:text-gray-500 transition-colors"
-                            placeholder="0000"
+                            placeholder={t('profilePage.placeholders.postalCode')}
                           />
                         </div>
                       </div>
@@ -353,7 +355,7 @@ export default function MonProfilPage() {
                         className="px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
                         disabled={saving}
                       >
-                        Annuler
+                        {t('profilePage.buttons.cancel')}
                       </button>
                       <button
                         type="submit"
@@ -363,12 +365,12 @@ export default function MonProfilPage() {
                         {saving ? (
                           <>
                             <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2"></div>
-                            Enregistrement...
+                            {t('profilePage.buttons.saving')}
                           </>
                         ) : (
                           <>
                             <Save className="h-4 w-4 mr-2" />
-                            Enregistrer
+                            {t('profilePage.buttons.save')}
                           </>
                         )}
                       </button>
