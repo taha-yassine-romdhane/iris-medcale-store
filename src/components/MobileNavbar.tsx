@@ -5,7 +5,6 @@ import { LogOut, User2, X, Heart, Info, Phone, ChevronDown, ShoppingCart, Settin
 import { useTranslation } from '@/contexts/TranslationContext';
 import { useState, useEffect } from 'react';
 import { User } from '@/types/user';
-import CartDropdown from './cart/CartDropdown';
  
 interface CategoryType {
   category: string;

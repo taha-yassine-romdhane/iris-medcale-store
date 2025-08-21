@@ -45,7 +45,7 @@ export default function SpaceProPage() {
           </div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Une plateforme complète pour les professionnels de santé permettant de gérer efficacement 
-            les équipements médicaux, les patients et les services d'assistance respiratoire.
+            les équipements médicaux, les patients et les services d&apos;assistance respiratoire.
           </p>
         </div>
 
@@ -93,7 +93,7 @@ export default function SpaceProPage() {
         {/* Contact Section */}
         <div className="bg-white border border-gray-200 rounded-lg p-8 text-center">
           <h3 className="text-xl font-medium text-gray-900 mb-3">
-            Intéressé par l'Espace Professionnel ?
+            Intéressé par l&apos;Espace Professionnel ?
           </h3>
           <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
             Contactez-nous dès maintenant pour être informé du lancement et découvrir comment cette plateforme 
