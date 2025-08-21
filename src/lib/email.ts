@@ -179,7 +179,7 @@ export async function sendDevisNotificationEmail(data: DevisEmailData) {
           
           <div style="text-align: center; margin-top: 30px; color: #888; font-size: 14px;">
             <p>Iris Medical Tunisie</p>
-            <p>Téléphone: +216 55 820 000</p>
+            <p>Téléphone: (+216) 73 820 320 / (+216) 93 945 118</p>
           </div>
         </div>
       `,

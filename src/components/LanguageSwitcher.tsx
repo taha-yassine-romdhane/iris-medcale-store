@@ -53,9 +53,9 @@ export function LanguageSwitcher() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-green-50 hover:bg-green-300 transition-colors duration-200 text-black"
+        className="flex items-center gap-2 px-3 py-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-50"
       >
-        <div className="relative w-5 h-5 rounded-full overflow-hidden">
+        <div className="relative w-4 h-4 rounded-full overflow-hidden">
           <Image
             src={currentLanguage.flag}
             alt={currentLanguage.name}
@@ -63,16 +63,18 @@ export function LanguageSwitcher() {
             className="object-cover"
           />
         </div>
-        <span className="hidden sm:inline text-sm font-medium" dir={currentLanguage.dir}>{currentLanguage.name}</span>
+        <span className="hidden sm:inline text-sm font-medium" dir={currentLanguage.dir}>
+          {currentLanguage.name}
+        </span>
         <ChevronDown
-          className={`w-4 h-4 transition-transform duration-200 ${
+          className={`w-4 h-4 transition-transform ${
             isOpen ? 'transform rotate-180' : ''
           }`}
         />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 z-50">
+        <div className="absolute right-0 mt-2 py-1 w-40 bg-white rounded-md shadow-lg border border-gray-200 z-50">
           {languages.map((lang) => (
             <button
               key={lang.code}
@@ -80,13 +82,13 @@ export function LanguageSwitcher() {
                 setLanguage(lang.code as 'en' | 'fr' | 'ar');
                 setIsOpen(false);
               }}
-              className={`w-full flex items-center gap-3 px-4 py-2 text-sm ${
+              className={`w-full flex items-center gap-2 px-3 py-2 text-sm ${
                 language === lang.code
-                  ? 'bg-green-200 text-black'
+                  ? 'bg-gray-100 text-gray-900'
                   : 'text-gray-700 hover:bg-gray-50'
               }`}
             >
-              <div className="relative w-5 h-5 rounded-full overflow-hidden">
+              <div className="relative w-4 h-4 rounded-full overflow-hidden">
                 <Image
                   src={lang.flag}
                   alt={lang.name}

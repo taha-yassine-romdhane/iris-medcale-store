@@ -12,7 +12,6 @@ import SearchBar from "./SearchBar";
 import CartDropdown from './cart/CartDropdown';
 import { useAuth } from "@/hooks/useAuth";
 import { useTranslation } from '@/contexts/TranslationContext';
-import { motion, AnimatePresence } from "framer-motion";
 import MobileNavbar from "./MobileNavbar";
 
 const Navbar = () => {
@@ -38,202 +37,157 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
-  const dropdownVariants = {
-    hidden: {
-      opacity: 0,
-      y: -10,
-      transition: {
-        duration: 0.2,
-        ease: "easeInOut"
-      }
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.2,
-        ease: "easeOut"
-      }
-    }
-  };
-
   if (loading) {
     return (
-      <motion.nav
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="bg-white shadow-lg"
-      >
+      <nav className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between h-16">
-            <div className="flex">
+          <div className="flex justify-between h-24">
+            <div className="flex items-center">
               <Link href="/" className="flex items-center">
-                <Image src="/logo.png" alt="Logo" width={40} height={40} />
+                <Image src="/logo_nouri_new.jpeg" alt="Logo" width={72} height={72} className="object-contain" />
               </Link>
             </div>
           </div>
         </div>
-      </motion.nav>
+      </nav>
     );
   }
 
   return (
-    <div className="flex flex-col gap-0">
-      <motion.nav
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="bg-gradient-to-r from-blue-100 via-white to-green-100 z-50 shadow-sm relative"
-      >
+    <div className="flex flex-col">
+      <nav className="bg-white z-50 border-b sticky top-0">
         {/* Mobile Search Bar */}
-        <div className="lg:hidden w-full px-4 py-2 ">
+        <div className="lg:hidden w-full px-3 py-2 bg-gray-50 border-b">
           <SearchBar />
         </div>
-        <div className="max-w-[1836px] mx-auto relative">
-          {/* Desktop Logo */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="absolute left-1 -bottom-12 z-50  rounded-b-lg p-2 hidden md:block"
-          >
-            <Link href="/" className="flex items-center">
-              <Image
-                src="/logo_iris_no_bg.png"
-                alt="Elite Medicale Service Logo"
-                width={280}
-                height={280}
-                className="object-contain"
-                priority
-              />
-            </Link>
-          </motion.div>
+        
+        <div className="max-w-7xl mx-auto px-3 md:px-4">
+          <div className="flex justify-between items-center h-16 md:h-24">
+            {/* Logo - Desktop - Positioned absolutely to span both navbars */}
+            <div className="hidden md:block absolute left-4 top-0 z-20">
+              <Link href="/" className="flex items-center">
+                <div className="bg-white rounded-lg p-2 shadow-sm">
+                  <Image
+                    src="/logo_nouri_new.jpeg"
+                    alt="Elite Medicale Service Logo"
+                    width={180}
+                    height={180}
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+              </Link>
+            </div>
 
-          <div className="flex justify-between items-center h-16 px-4">
-            {/* Mobile Logo and Navigation */}
-            <div className="md:hidden flex items-center w-full">
-              {/* Left side with Logo and Menu */}
+            {/* Mobile Logo and Menu */}
+            <div className="md:hidden flex items-center justify-between w-full">
               <div className="flex items-center gap-2">
-                {/* Logo */}
                 <Link href="/" className="flex items-center">
                   <Image
-                    src="/logo_iris_no_bg.png"
+                    src="/logo_nouri_new.jpeg"
                     alt="Elite Medicale Service Logo"
-                    width={80}
-                    height={80}
+                    width={56}
+                    height={56}
                     className="object-contain"
                     priority
                   />
                 </Link>
-
-                {/* Menu Button with Hi text */}
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                
+                <button
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className="p-2 rounded hover:bg-green-100 flex items-center gap-2"
+                  className="p-1.5 text-gray-600 hover:text-gray-900"
                 >
-                  <Menu className="h-6 w-6 text-green-900" />
-                  <span className="text-green-900 font-medium">{t('navbar.title')}</span>
-                </motion.button>
+                  <Menu className="h-5 w-5" />
+                </button>
               </div>
 
-              {/* Language Switcher - Right */}
-              <div className="flex items-center gap-2 ml-auto">
+              <div className="flex items-center gap-2">
+                <CartDropdown />
                 <LanguageSwitcher />
               </div>
             </div>
 
-            {/* Desktop Search Bar */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="absolute left-1/2 transform -translate-x-1/2 hidden lg:block w-[600px]"
-            >
+            {/* Desktop Search Bar - Centered with logo offset */}
+            <div className="hidden lg:block flex-1 max-w-xl mx-8 ml-52">
               <SearchBar />
-            </motion.div>
+            </div>
 
-            <div className="flex items-center space-x-4 ml-auto">
+            {/* Desktop Right Section */}
+            <div className="hidden md:flex items-center gap-4">
               <CartDropdown />
 
-              {/* Desktop User Menu */}
-              <div className="hidden md:block">
-                {user ? (
-                  <div className="relative">
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                      className="flex items-center space-x-1 focus:outline-none"
-                    >
-                      <div className="w-8 h-8 flex items-center justify-center rounded-full bg-green-100">
-                        <User2 className="h-5 w-5 text-green-600" />
+              {/* User Menu */}
+              {user ? (
+                <div className="relative">
+                  <button
+                    onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                    className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
+                  >
+                    <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100">
+                      <User2 className="h-5 w-5 text-gray-600" />
+                    </div>
+                    <span className="hidden lg:inline-block">
+                      {(user as User).prenom} {(user as User).nom}
+                    </span>
+                  </button>
+                  
+                  {isUserMenuOpen && (
+                    <div className="absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg border">
+                      <div className="px-4 py-3 border-b">
+                        <p className="text-sm font-medium text-gray-900">
+                          {(user as User).prenom} {(user as User).nom}
+                        </p>
+                        <p className="text-xs text-gray-500 mt-0.5">
+                          {(user as User).email}
+                        </p>
                       </div>
-                      <span className="font-bold text-sm hidden lg:inline-block">
-                        {(user as User).prenom} {(user as User).nom}
-                      </span>
-                    </motion.button>
-                    <AnimatePresence>
-                      {isUserMenuOpen && (
-                        <motion.div
-                          initial="hidden"
-                          animate="visible"
-                          exit="hidden"
-                          variants={dropdownVariants}
-                          className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl z-20 border border-gray-100"
+                      
+                      <Link
+                        href="/profile"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                        onClick={() => setIsUserMenuOpen(false)}
+                      >
+                        {t('navbar.myProfile')}
+                      </Link>
+                      
+                      <Link
+                        href="/mes-commandes"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                        onClick={() => setIsUserMenuOpen(false)}
+                      >
+                        {t('navbar.myOrders')}
+                      </Link>
+                      
+                      {((user as User).role === 'ADMIN' || (user as User).role === 'EMPLOYE') && (
+                        <Link
+                          href="/dashboard"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                          onClick={() => setIsUserMenuOpen(false)}
                         >
-                          <div className="px-4 py-2 border-b border-gray-100">
-                            <p className="text-sm font-semibold text-green-900">{(user as User).prenom} {(user as User).nom}</p>
-                            <p className="text-xs text-gray-500">{(user as User).email}</p>
-                          </div>
-                          <Link
-                            href="/profile"
-                            className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-green-900 hover:bg-green-50"
-                            onClick={() => setIsUserMenuOpen(false)}
-                          >
-                            <span>{t('navbar.myProfile')}</span>
-                          </Link>
-                          <Link
-                            href="/mes-commandes"
-                            className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-green-900 hover:bg-green-50"
-                            onClick={() => setIsUserMenuOpen(false)}
-                          >
-                            <span>{t('navbar.myOrders')}</span>
-                          </Link>
-                          {((user as User).role === 'ADMIN' || (user as User).role === 'EMPLOYE') && (
-                            <Link
-                              href="/dashboard"
-                              className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-green-900 hover:bg-green-50"
-                              onClick={() => setIsUserMenuOpen(false)}
-                            >
-                              <span>{t('navbar.dashboard')}</span>
-                            </Link>
-                          )}
-                          <button
-                            onClick={handleLogout}
-                            className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50"
-                          >
-                            <span>{t('navbar.logout')}</span>
-                          </button>
-                        </motion.div>
+                          {t('navbar.dashboard')}
+                        </Link>
                       )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <motion.div whileHover={{ scale: 1.05 }}>
-                    <Link
-                      href="/login"
-                      className="text-green-900 hover:text-green-600 flex font-bold items-center gap-2"
-                    >
-                      <User2 className="h-6 w-6" />
-                      <span>{t('navbar.login')}</span>
-                    </Link>
-                  </motion.div>
-                )}
-              </div>
+                      
+                      <button
+                        onClick={handleLogout}
+                        className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-50 border-t"
+                      >
+                        {t('navbar.logout')}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  href="/login"
+                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-md hover:bg-gray-800"
+                >
+                  <User2 className="h-4 w-4" />
+                  <span>{t('navbar.login')}</span>
+                </Link>
+              )}
 
-              <div className="hidden md:block">
-                <LanguageSwitcher />
-              </div>
+              <LanguageSwitcher />
             </div>
           </div>
         </div>
@@ -245,7 +199,7 @@ const Navbar = () => {
           user={user}
           handleLogout={handleLogout}
         />
-      </motion.nav>
+      </nav>
 
       <Suspense fallback={<div>Loading...</div>}>
         <CategoryNavbar />

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import HeroSection from "@/components/home/HeroSection";
 import ProductsSection from "@/components/home/ProductsSection";
+import CTASection from "@/components/home/CTASection";
 import BrandsSection from "@/components/home/BrandsSection";
 
 // Animation variants for sections
@@ -33,6 +34,16 @@ export default function HomePage() {
         variants={sectionVariants}
       >
         <ProductsSection />
+      </motion.div>
+
+      {/* CTA Section */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={sectionVariants}
+      >
+        <CTASection />
       </motion.div>
 
       {/* Brands Section */}

@@ -59,22 +59,25 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* Left side - Decorative */}
-      <div className="hidden md:flex md:w-1/2 bg-gradient-to-b from-green-500 to-blue-500 text-white p-12 flex-col justify-between relative">
+      <div className="hidden md:flex md:w-1/2 bg-gray-900 text-white p-12 flex-col justify-between relative">
         <div>
-          <h1 className="py-10 text-4xl font-bold mb-6">
-            {t('login.leftSide.title')}
-          </h1>
-          <p className="text-xl text-green-100 mb-8">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-1 h-12 bg-gradient-to-b from-emerald-500 to-blue-500 rounded-full"></div>
+            <h1 className="text-3xl font-bold">
+              {t('login.leftSide.title')}
+            </h1>
+          </div>
+          <p className="text-lg text-gray-300 mb-8">
             {t('login.leftSide.description')}
           </p>
         </div>
         <div className="space-y-4">
           <div className="flex items-center space-x-3">
-            <Shield className="h-6 w-6" />
+            <Shield className="h-5 w-5 text-emerald-500" />
             <span>{t('login.leftSide.bullet1')}</span>
           </div>
           <div className="flex items-center space-x-3">
-            <Lock className="h-6 w-6" />
+            <Lock className="h-5 w-5 text-emerald-500" />
             <span>{t('login.leftSide.bullet2')}</span>
           </div>
         </div>
@@ -94,11 +97,14 @@ export default function LoginPage() {
             />
           </div>
 
-          <div className="w-full max-w-md space-y-8 p-10 rounded-lg shadow-lg bg-white">
+          <div className="w-full max-w-md space-y-6 p-8 rounded-lg border border-gray-200 bg-white">
             <div className="text-center">
-              <h2 className="mt-6 text-3xl font-bold text-gray-900">
-                {t('login.form.title')}
-              </h2>
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="w-1 h-8 bg-gradient-to-b from-emerald-500 to-blue-500 rounded-full"></div>
+                <h2 className="text-2xl font-semibold text-gray-900">
+                  {t('login.form.title')}
+                </h2>
+              </div>
             </div>
 
             {(errorMessage || error) && (
@@ -130,7 +136,7 @@ export default function LoginPage() {
                       type="email"
                       autoComplete="email"
                       required
-                      className="pl-10 appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="pl-10 appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                       placeholder={t('login.form.emailPlaceholder')}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -155,7 +161,7 @@ export default function LoginPage() {
                       type="password"
                       autoComplete="current-password"
                       required
-                      className="pl-10 appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="pl-10 appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                       placeholder={t('login.form.passwordPlaceholder')}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
@@ -167,7 +173,7 @@ export default function LoginPage() {
               <div>
                 <button
                   type="submit"
-                  className="w-full py-2 px-4 bg-green-600 text-white font-semibold rounded-lg shadow hover:bg-green-700 transition flex items-center justify-center"
+                  className="w-full py-2 px-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-emerald-800 transition flex items-center justify-center"
                   disabled={loading}
                 >
                   {loading ? (
@@ -182,14 +188,14 @@ export default function LoginPage() {
                   {t('login.form.noAccount')}{' '}
                   <Link
                     href="/signup"
-                    className="font-medium text-green-600 hover:text-green-600"
+                    className="font-medium text-emerald-600 hover:text-emerald-700"
                   >
                     {t('login.form.signupLink')}
                   </Link>
                 </p>
                 <Link
                   href="/forgot-password"
-                  className="text-green-600 hover:underline"
+                  className="text-emerald-600 hover:text-emerald-700"
                 >
                   {t('login.form.forgotPassword')}
                 </Link>

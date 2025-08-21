@@ -85,80 +85,79 @@ export default function SearchBar() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t('search.placeholder')}
-            className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-200 text-lg"
+            className="w-full pl-10 pr-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500 text-sm"
           />
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <Search className="h-6 w-6 text-green-500" />
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <Search className="h-4 w-4 text-gray-400" />
           </div>
         </div>
       </form>
 
-      {/* Enhanced Search Results Dropdown */}
+      {/* Search Results Dropdown */}
       {showResults && (searchQuery.trim().length >= 2) && (
-        <div className="absolute mt-2 w-full bg-white rounded-xl shadow-2xl border border-gray-100 max-h-[32rem] overflow-y-auto z-50">
+        <div className="absolute mt-2 w-full bg-white rounded-md shadow-lg border border-gray-200 max-h-96 overflow-y-auto z-50">
           {isLoading ? (
-            <div className="p-6 text-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-500 mx-auto"></div>
-              <p className="mt-2 text-gray-500">{t('search.loading')}</p>
+            <div className="p-4 text-center">
+              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-gray-900 mx-auto"></div>
+              <p className="mt-2 text-gray-500 text-sm">{t('search.loading')}</p>
             </div>
           ) : products.length > 0 ? (
-            <div className="py-2">
+            <div className="py-1">
               {products.map((product) => (
                 <Link
                   key={product.id}
                   href={`/product/${createProductSlug(product.name)}`}
-                  className="flex items-start px-6 py-4 hover:bg-green-50 transition-colors group"
+                  className="flex items-start px-4 py-3 hover:bg-gray-50"
                   onClick={() => setShowResults(false)}
                 >
-                  <div className="relative h-24 w-24 flex-shrink-0 bg-white rounded-lg overflow-hidden border border-gray-100 group-hover:border-green-200 transition-colors">
+                  <div className="relative h-16 w-16 flex-shrink-0 bg-white rounded border border-gray-200 overflow-hidden">
                     {product.media && product.media[0] ? (
                       <Image
                         src={product.media[0].url}
                         alt={product.media[0].alt || product.name}
                         fill
-                        className="object-contain p-2"
-                        sizes="96px"
+                        className="object-contain p-1"
+                        sizes="64px"
                       />
                     ) : (
-                      <div className="h-full w-full bg-gray-50 rounded-lg flex items-center justify-center">
-                        <Search className="h-8 w-8 text-gray-400" />
+                      <div className="h-full w-full bg-gray-50 rounded flex items-center justify-center">
+                        <Search className="h-6 w-6 text-gray-400" />
                       </div>
                     )}
                   </div>
-                  <div className="ml-6 flex-1">
+                  <div className="ml-3 flex-1">
                     <div className="flex items-start justify-between">
                       <div>
-                        <h4 className="text-lg font-medium text-gray-900 group-hover:text-green-600 transition-colors">{product.name}</h4>
+                        <h4 className="text-sm font-medium text-gray-900">{product.name}</h4>
                         {product.brand && (
-                          <p className="text-sm text-green-600 font-medium mt-0.5">{product.brand}</p>
+                          <p className="text-xs text-gray-600 mt-0.5">{product.brand}</p>
                         )}
                       </div>
-                    
                     </div>
                     <div className="mt-1 flex items-center space-x-2">
                       {product.category && (
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
                           {product.category}
                         </span>
                       )}
                       {product.type && (
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600">
                           {product.type}
                         </span>
                       )}
                     </div>
                     {product.description && (
-                      <p className="mt-2 text-sm text-gray-600 line-clamp-2">{product.description}</p>
+                      <p className="mt-1 text-xs text-gray-600 line-clamp-1">{product.description}</p>
                     )}
                   </div>
                 </Link>
               ))}
             </div>
           ) : (
-            <div className="p-6 text-center">
-              <Search className="h-8 w-8 text-gray-400 mx-auto mb-2" />
-              <p className="text-gray-500 text-lg">{t('search.noResult')}</p>
-              <p className="text-sm text-gray-400 mt-1">{t('search.tryDifferent')}</p>
+            <div className="p-4 text-center">
+              <Search className="h-6 w-6 text-gray-400 mx-auto mb-2" />
+              <p className="text-gray-500 text-sm">{t('search.noResult')}</p>
+              <p className="text-xs text-gray-400 mt-1">{t('search.tryDifferent')}</p>
             </div>
           )}
         </div>

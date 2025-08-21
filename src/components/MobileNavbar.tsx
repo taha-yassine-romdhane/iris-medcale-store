@@ -1,11 +1,11 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { LogOut, User2, X, Heart, Info, Phone, ChevronDown, ShoppingCart, Settings2,  LucideSquareActivity, SquareChevronRight } from 'lucide-react';
+import { LogOut, User2, X, Heart, Info, Phone, ChevronDown, ShoppingCart, Settings2, Activity, ChevronRight } from 'lucide-react';
 import { useTranslation } from '@/contexts/TranslationContext';
 import { useState, useEffect } from 'react';
-import { User } from '@/types/user'
+import { User } from '@/types/user';
+import CartDropdown from './cart/CartDropdown';
  
 interface CategoryType {
   category: string;
@@ -80,19 +80,6 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
   };
  
 
-  const mobileMenuVariants = {
-    hidden: { opacity: 0, y: "-100vh" },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 20
-      }
-    },
-    exit: { opacity: 0, y: "-100vh" }
-  };
   const handleCategoryClick = (category: string) => {
     window.location.href = `/products?category=${encodeURIComponent(category)}`;
   };
@@ -106,93 +93,87 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
   };
 
   return (
-    <AnimatePresence>
+    <>
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50"
+        <div
+          className="fixed inset-0 bg-black/30 z-50"
           onClick={onClose}
         >
-          <motion.div
-            variants={mobileMenuVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
+          <div
             onClick={(e) => e.stopPropagation()}
-            className="absolute inset-0 bg-white shadow-xl rounded-t-2xl overflow-hidden flex flex-col"
+            className="absolute inset-0 bg-white overflow-hidden flex flex-col"
           >
             {/* Header */}
-            <div className="p-4 bg-cover bg-center text-white bg-green-900">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold text-white">{t('navbar.title')}</h2>
+            <div className="p-4 bg-gray-900 text-white">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-3">
+                  <div className="w-1 h-6 bg-gradient-to-b from-emerald-500 to-blue-500 rounded-full"></div>
+                  <h2 className="text-lg font-semibold">{t('navbar.title')}</h2>
+                </div>
                 <button
                   onClick={onClose}
-                  className="p-2 hover:bg-white/10 rounded-full"
+                  className="p-2 hover:bg-gray-800 rounded-md"
                 >
-                  <X className="h-6 w-6 text-white" />
+                  <X className="h-5 w-5" />
                 </button>
               </div>
-              
             </div>
                 {/* Content */}
                 <div className="flex-1 overflow-y-auto px-4">
               {/* User Section */}
               {user && (
-                <div className="py-4 border-b border-gray-100">
+                <div className="py-4 border-b border-gray-200">
                   <div className="flex items-center space-x-3">
-                    <div className="bg-green-100 p-2 rounded-full">
-                      <User2 className="h-6 w-6 text-green-600" />
+                    <div className="bg-gray-100 p-2 rounded-md">
+                      <User2 className="h-5 w-5 text-gray-600" />
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-800">{user.prenom} {user.nom}</p>
+                      <p className="font-medium text-gray-900">{user.prenom} {user.nom}</p>
                       <p className="text-sm text-gray-500">{user.email}</p>
                     </div>
                   </div>
                 </div>
               )}
             {/* Account Section */}
-            <div className="py-4 border-t border-gray-100">
-              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2 px-4">
+            <div className="py-4 border-t border-gray-200">
+              <h3 className="text-sm font-medium text-gray-500 uppercase mb-3">
                 Account
               </h3>
-              <div className="space-y-1">
-
+              <div className="space-y-2">
                 {user ? (
                   <>
                     <Link
                       href="/mes-commandes"
-                      className="flex items-center space-x-3 p-3 hover:bg-green-50 rounded-lg"
+                      className="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded-md border border-gray-200"
                       onClick={onClose}
                     >
-                      <ShoppingCart className="h-5 w-5 text-gray-600" />
-                      <span className="text-gray-800">{t('navbar.myOrders')}</span>
+                      <ShoppingCart className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-900">{t('navbar.myOrders')}</span>
                     </Link>
                     <Link
                       href="/mon-profil"
-                      className="flex items-center space-x-3 p-3 hover:bg-green-50 rounded-lg"
+                      className="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded-md border border-gray-200"
                       onClick={onClose}
                     >
-                      <User2 className="h-5 w-5 text-gray-600" />
-                      <span className="text-gray-800">{t('navbar.myProfile')}</span>
+                      <User2 className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-900">{t('navbar.myProfile')}</span>
                     </Link>
                     <button
                       onClick={handleLogout}
-                      className="w-full flex items-center space-x-3 p-3 hover:bg-red-50 rounded-lg text-red-600"
+                      className="w-full flex items-center space-x-3 p-3 hover:bg-red-50 rounded-md border border-red-200 text-red-600"
                     >
-                      <LogOut className="h-5 w-5" />
+                      <LogOut className="h-4 w-4" />
                       <span>{t('navbar.logout')}</span>
                     </button>
                   </>
                 ) : (
                   <Link
                     href="/login"
-                    className="flex items-center space-x-3 p-3 hover:bg-green-50 rounded-lg"
+                    className="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded-md border border-gray-200"
                     onClick={onClose}
                   >
-                    <User2 className="h-5 w-5 text-green-800" />
-                    <span className="text-green-800">{t('navbar.login')}</span>
+                    <User2 className="h-4 w-4 text-gray-600" />
+                    <span className="text-gray-900">{t('navbar.login')}</span>
                   </Link>
                 )}
               </div>
@@ -202,161 +183,134 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
 
               {/* Categories */}
               <div className="py-4">
-                <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">
+                <h3 className="text-sm font-medium text-gray-500 uppercase mb-3">
                   Menu
                 </h3>
                 {isLoading ? (
                   <div className="space-y-2">
                     {[...Array(5)].map((_, i) => (
-                      <div key={i} className="h-10 bg-gray-100 animate-pulse rounded-lg" />
+                      <div key={i} className="h-10 bg-gray-100 animate-pulse rounded-md" />
                     ))}
                   </div>
                 ) : (
-                  <div className="space-y-1">
-                    {categoryTypes.map((cat, index) => (
-                      <motion.div
+                  <div className="space-y-2">
+                    {categoryTypes.map((cat) => (
+                      <div
                         key={cat.category}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.05 }}
-                        className="group"
+                        className="border border-gray-200 rounded-md overflow-hidden"
                       >
-                        <motion.div
-                          className="flex items-center justify-between p-3 hover:bg-green-50 rounded-lg"
-                          whileHover={{ scale: 1.02 }}
-                        >
+                        <div className="flex items-center justify-between p-3 hover:bg-gray-50">
                           <button
                             onClick={() => handleCategoryClick(cat.category)}
-                            className="flex items-center space-x-2"
+                            className="flex items-center space-x-2 flex-1"
                           >
-                            <LucideSquareActivity className="h-5 w-5 text-green-600" />
-                            <span className="font-medium text-gray-800">{cat.category}</span>
+                            <Activity className="h-4 w-4 text-emerald-600" />
+                            <span className="font-medium text-gray-900 text-left">{cat.category}</span>
                           </button>
                           {(cat.types?.length > 0 || cat.subcategories?.length > 0) && (
-                            <motion.button
+                            <button
                               onClick={() => setOpenCategory(openCategory === cat.category ? null : cat.category)}
-                              className="p-1 hover:bg-green-100 rounded-full"
-                              animate={{ rotate: openCategory === cat.category ? 180 : 0 }}
-                              transition={{ duration: 0.2 }}
+                              className="p-1 hover:bg-gray-100 rounded-md"
                             >
-                              <ChevronDown className="h-5 w-5 text-gray-600" />
-                            </motion.button>
+                              <ChevronDown className={`h-4 w-4 text-gray-600 transition-transform ${
+                                openCategory === cat.category ? 'rotate-180' : ''
+                              }`} />
+                            </button>
                           )}
-                        </motion.div>
+                        </div>
 
-                        <AnimatePresence>
-                          {openCategory === cat.category && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: 'auto' }}
-                              exit={{ opacity: 0, height: 0 }}
-                              transition={{ duration: 0.2 }}
-                              className="ml-8 pl-3 border-l-2 border-green-100"
-                            >
-                              <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ staggerChildren: 0.05 }}
-                              >
-                                {cat.types?.length > 0 && (
-                                  <div className="py-2 space-y-2">
-                                    <h4 className="text-xs font-medium text-gray-500 uppercase">
-                                      {t('navbar.types')}
-                                    </h4>
-                                    {cat.types.map((type) => (
-                                      <motion.button
-                                        key={type}
-                                        initial={{ x: -10, opacity: 0 }}
-                                        animate={{ x: 0, opacity: 1 }}
-                                        exit={{ x: -10, opacity: 0 }}
-                                        onClick={() => handleTypeClick(cat.category, type)}
-                                        className="flex items-center w-full text-left p-2 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg"
-                                      >
-                                        <SquareChevronRight className="m-1 h-5 w-5 text-green-600" />
-                                        {type}
-                                      </motion.button>
-                                    ))}
-                                  </div>
-                                )}
-                                {cat.subcategories?.length > 0 && (
-                                  <div className="py-2 space-y-2">
-                                    <h4 className="text-xs font-medium text-gray-500 uppercase">
-                                      {t('navbar.otherTypes')}
-                                    </h4>
-                                    {cat.subcategories.map((subcat) => (
-                                      <motion.button
-                                        key={subcat}
-                                        initial={{ x: -10, opacity: 0 }}
-                                        animate={{ x: 0, opacity: 1 }}
-                                        exit={{ x: -10, opacity: 0 }}
-                                        onClick={() => handleSubcategoryClick(cat.category, subcat)}
-                                        className="flex items-center w-full text-left p-2 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg"
-                                      >
-                                        {/* Center the icon and text */}
-                                        <div className="flex items-center space-x-2 w-full">
-                                          <SquareChevronRight className="h-5 w-5 text-green-600 flex-shrink-0" />
-                                          <span>{subcat}</span>
-                                        </div>
-                                      </motion.button>
-                                    ))}
-                                  </div>
-                                )}
-                              </motion.div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </motion.div>
+                        {openCategory === cat.category && (
+                          <div className="bg-gray-50 border-t border-gray-200">
+                            <div className="p-3 space-y-2">
+                              {cat.types?.length > 0 && (
+                                <div className="space-y-1">
+                                  <h4 className="text-xs font-medium text-gray-500 uppercase">
+                                    {t('navbar.types')}
+                                  </h4>
+                                  {cat.types.map((type) => (
+                                    <button
+                                      key={type}
+                                      onClick={() => handleTypeClick(cat.category, type)}
+                                      className="flex items-center w-full text-left p-2 text-gray-600 hover:text-emerald-600 hover:bg-white rounded-md"
+                                    >
+                                      <ChevronRight className="h-3 w-3 text-emerald-600 mr-2" />
+                                      {type}
+                                    </button>
+                                  ))}
+                                </div>
+                              )}
+                              {cat.subcategories?.length > 0 && (
+                                <div className="space-y-1">
+                                  <h4 className="text-xs font-medium text-gray-500 uppercase">
+                                    {t('navbar.otherTypes')}
+                                  </h4>
+                                  {cat.subcategories.map((subcat) => (
+                                    <button
+                                      key={subcat}
+                                      onClick={() => handleSubcategoryClick(cat.category, subcat)}
+                                      className="flex items-center w-full text-left p-2 text-gray-600 hover:text-emerald-600 hover:bg-white rounded-md"
+                                    >
+                                      <ChevronRight className="h-3 w-3 text-emerald-600 mr-2" />
+                                      <span>{subcat}</span>
+                                    </button>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     ))}
                   </div>
                 )}
               </div>
 
               {/* Quick Links */}
-              <div className="py-4 border-t border-gray-100">
-                <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">
+              <div className="py-4 border-t border-gray-200">
+                <h3 className="text-sm font-medium text-gray-500 uppercase mb-3">
                   Liens Rapides
                 </h3>
                 <div className="grid grid-cols-2 gap-2">
                   <Link
                     href="/apnee-du-sommeil"
-                    className="p-3 bg-green-50 hover:bg-green-100 rounded-lg flex flex-col items-center text-center"
+                    className="p-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-md flex flex-col items-center text-center"
                     onClick={onClose}
                   >
-                    <Heart className="h-6 w-6 text-green-600 mb-1" />
-                    <span className="text-sm font-medium">{t('navbar.sleepApnea')}</span>
+                    <Heart className="h-5 w-5 text-emerald-600 mb-1" />
+                    <span className="text-xs font-medium text-gray-900">{t('navbar.sleepApnea')}</span>
                   </Link>
                   <Link
                     href="/services"
-                    className="p-3 bg-green-50 hover:bg-green-100 rounded-lg flex flex-col items-center text-center"
+                    className="p-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-md flex flex-col items-center text-center"
                     onClick={onClose}
                   >
-                    <Settings2 className="h-6 w-6 text-green-600 mb-1" />
-                    <span className="text-sm font-medium">{t('navbar.services')}</span>
+                    <Settings2 className="h-5 w-5 text-emerald-600 mb-1" />
+                    <span className="text-xs font-medium text-gray-900">{t('navbar.services')}</span>
                   </Link>
                   <Link
                     href="/a-propos"
-                    className="p-3 bg-green-50 hover:bg-green-100 rounded-lg flex flex-col items-center text-center"
+                    className="p-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-md flex flex-col items-center text-center"
                     onClick={onClose}
                   >
-                    <Info className="h-6 w-6 text-green-600 mb-1" />
-                    <span className="text-sm font-medium">{t('navbar.about')}</span>
+                    <Info className="h-5 w-5 text-emerald-600 mb-1" />
+                    <span className="text-xs font-medium text-gray-900">{t('navbar.about')}</span>
                   </Link>
                   <Link
                     href="/contact"
-                    className="p-3 bg-green-50 hover:bg-green-100 rounded-lg flex flex-col items-center text-center"
+                    className="p-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-md flex flex-col items-center text-center"
                     onClick={onClose}
                   >
-                    <Phone className="h-6 w-6 text-green-600 mb-1" />
-                    <span className="text-sm font-medium">{t('navbar.contact')}</span>
+                    <Phone className="h-5 w-5 text-emerald-600 mb-1" />
+                    <span className="text-xs font-medium text-gray-900">{t('navbar.contact')}</span>
                   </Link>
            
                   <Link
                     href="/space-pro"
-                    className="p-3 bg-green-50 hover:bg-green-100 rounded-lg flex flex-col items-center text-center"
+                    className="p-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-md flex flex-col items-center text-center col-span-2"
                     onClick={onClose}
                   >
-                    <User2 className="h-6 w-6 text-green-600 mb-1" />
-                    <span className="text-sm font-medium">Espace Professionnel</span>
+                    <User2 className="h-5 w-5 text-emerald-600 mb-1" />
+                    <span className="text-xs font-medium text-gray-900">Espace Professionnel</span>
                   </Link>
                 </div>
               </div>
@@ -365,16 +319,13 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
             </div>
 
             {/* Footer */}
-            <div className="p-4 border-t border-gray-100 bg-gray-50">
-              <div className="flex items-center justify-between">
-
-                <p className="text-sm text-gray-500">&copy; {new Date().getFullYear()} Iris Medical</p>
-              </div>
+            <div className="p-4 border-t border-gray-200 bg-gray-50">
+              <p className="text-sm text-gray-500 text-center">&copy; {new Date().getFullYear()} Iris Medical</p>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       )}
-    </AnimatePresence>
+    </>
   );
 };
 

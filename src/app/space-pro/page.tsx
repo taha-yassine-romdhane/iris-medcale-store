@@ -1,196 +1,129 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import {  Rocket, Database, RefreshCw, Box, BarChart, Shield } from 'lucide-react';
-import { useEffect, useState, useMemo } from 'react';
+import { Settings, Database, RefreshCw, Package, BarChart, Shield } from 'lucide-react';
 
-export default function ComingSoonPage() {
-  // Calculate the date 6 months from now (only once)
-  const launchDate = useMemo(() => {
-    const currentDate = new Date();
-    currentDate.setMonth(currentDate.getMonth() + 6);
-    return currentDate;
-  }, []);
-
-  // Countdown timer state
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  // Update the countdown every second
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date();
-      const difference = launchDate.getTime() - now.getTime();
-
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((difference / (1000 * 60)) % 60);
-        const seconds = Math.floor((difference / 1000) % 60);
-
-        setTimeLeft({ days, hours, minutes, seconds });
-      } else {
-        clearInterval(interval);
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [launchDate]);
-
-  // Feature data with icons
+export default function SpaceProPage() {
   const features = [
     {
-      icon: <Database className="h-6 w-6 text-blue-600" />,
+      icon: <Database className="w-6 h-6 text-gray-700" />,
       title: 'Gestion des Données Utilisateurs',
+      description: 'Interface centralisée pour gérer toutes les informations patients et utilisateurs'
     },
     {
-      icon: <RefreshCw className="h-6 w-6 text-blue-600" />,
-      title: 'Suivi des Transfers',
+      icon: <RefreshCw className="w-6 h-6 text-gray-700" />,
+      title: 'Suivi des Transferts',
+      description: 'Traçabilité complète des équipements et interventions'
     },
     {
-      icon: <Box className="h-6 w-6 text-blue-600" />,
+      icon: <Package className="w-6 h-6 text-gray-700" />,
       title: 'Gestion des Stocks',
+      description: 'Inventaire en temps réel et gestion automatisée des commandes'
     },
     {
-      icon: <BarChart className="h-6 w-6 text-blue-600" />,
+      icon: <BarChart className="w-6 h-6 text-gray-700" />,
       title: 'Analyse en Temps Réel',
+      description: 'Tableaux de bord et rapports pour optimiser vos opérations'
     },
     {
-      icon: <Shield className="h-6 w-6 text-blue-600" />,
+      icon: <Shield className="w-6 h-6 text-gray-700" />,
       title: 'Sécurité Avancée',
+      description: 'Conformité à la loi tunisienne sur la protection des données personnelles et sécurisation des données médicales'
     },
   ];
 
-  // Function to animate countdown numbers
-  const AnimatedNumber = ({ value, label }: { value: number; label: string }) => {
-    return (
-      <motion.div
-        className="flex flex-col items-center"
-        key={value} // Key ensures re-render and animation on value change
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 10 }}
-        transition={{ duration: 0.3 }}
-      >
-        <span className="text-3xl font-bold text-blue-900">{value}</span>
-        <span className="text-sm text-blue-600">{label}</span>
-      </motion.div>
-    );
-  };
-
   return (
-    <div className="min-h-screen bg-white-50 flex items-center justify-center p-6">
-      <motion.div
-        className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl shadow-2xl p-8 max-w-2xl w-full text-center"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-      >
-        {/* Rocket Icon Animation */}
-        <motion.div
-          className="flex justify-center mb-6"
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ delay: 0.5, duration: 1, type: 'spring', stiffness: 100 }}
-        >
-          <Rocket className="h-16 w-16 text-blue-600" />
-        </motion.div>
-
-        {/* Heading */}
-        <motion.h1
-          className="text-5xl font-bold text-blue-900 mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-        >
-          Bientôt Disponible
-        </motion.h1>
-
-        {/* Subheading */}
-        <motion.p
-          className="text-lg text-blue-700 mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
-        >
-          Nous construisons une plateforme professionnelle pour gérer tous vos services. Restez à l&ecirc;crois !
-        </motion.p>
-
-        {/* Countdown Timer */}
-        <motion.div
-          className="flex justify-center space-x-6 mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-        >
-          <AnimatePresence mode="wait">
-            <AnimatedNumber value={timeLeft.days} label="jours" />
-          </AnimatePresence>
-          <AnimatePresence mode="wait">
-            <AnimatedNumber value={timeLeft.hours} label="heures" />
-          </AnimatePresence>
-          <AnimatePresence mode="wait">
-            <AnimatedNumber value={timeLeft.minutes} label="minutes" />
-          </AnimatePresence>
-          <AnimatePresence mode="wait">
-            <AnimatedNumber value={timeLeft.seconds} label="secondes" />
-          </AnimatePresence>
-        </motion.div>
-
-        {/* Feature Table */}
-        <motion.div
-          className="mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.4, duration: 0.8 }}
-        >
-          <h2 className="text-2xl font-bold text-blue-900 mb-4">Fonctionnalités à Venir</h2>
-          <div className="overflow-x-auto">
-            <table className="min-w-full bg-white border border-blue-200">
-              <thead>
-                <tr className="bg-blue-50">
-                  <th className="py-3 px-4 text-left text-blue-900 font-semibold">Fonctionnalité</th>
-                </tr>
-              </thead>
-              <tbody>
-                {features.map((feature, index) => (
-                  <motion.tr
-                    key={index}
-                    className="border-b border-blue-200 hover:bg-blue-50 transition-colors"
-                    whileHover={{ scale: 1.05, backgroundColor: '#f0f4ff' }}
-                    transition={{ type: 'spring', stiffness: 300 }}
-                  >
-                    <td className="py-3 px-4 text-blue-800 flex items-center space-x-2">
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 1.6 + index * 0.2, duration: 0.5, type: 'spring' }}
-                      >
-                        {feature.icon}
-                      </motion.div>
-                      <span>{feature.title}</span>
-                    </td>
-                  </motion.tr>
-                ))}
-              </tbody>
-            </table>
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <div className="w-1 h-5 bg-gradient-to-b from-emerald-500 to-blue-500 rounded-full"></div>
+            <h1 className="text-3xl font-semibold text-gray-900">
+              Espace Professionnel
+            </h1>
           </div>
-        </motion.div>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Une plateforme complète pour les professionnels de santé permettant de gérer efficacement 
+            les équipements médicaux, les patients et les services d'assistance respiratoire.
+          </p>
+        </div>
 
-        {/* Footer */}
-        <motion.p
-          className="text-sm text-blue-500 mt-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.6, duration: 0.8 }}
-        >
-          &copy; 2025 Iris Medical. Tous droits réservés.
-        </motion.p>
-      </motion.div>
+        {/* Status Banner */}
+        <div className="bg-white border border-gray-200 rounded-lg p-6 mb-12 text-center">
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <Settings className="w-6 h-6 text-gray-700" />
+            <span className="text-lg font-medium text-gray-900">En Cours de Développement</span>
+          </div>
+          <p className="text-gray-600 mb-4">
+            Nous travaillons actuellement sur cette plateforme pour vous offrir la meilleure expérience possible.
+          </p>
+          <div className="inline-flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm">
+            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+            Lancement prévu: Premier semestre 2025
+          </div>
+        </div>
+
+        {/* Features Grid */}
+        <div className="mb-12">
+          <div className="flex items-center gap-2 mb-8">
+            <div className="w-1 h-5 bg-gradient-to-b from-emerald-500 to-blue-500 rounded-full"></div>
+            <h2 className="text-2xl font-semibold text-gray-900">
+              Fonctionnalités Prévues
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <div key={index} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-sm transition-shadow duration-200">
+                <div className="flex items-center gap-3 mb-4">
+                  {feature.icon}
+                  <h3 className="font-medium text-gray-900">
+                    {feature.title}
+                  </h3>
+                </div>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Contact Section */}
+        <div className="bg-white border border-gray-200 rounded-lg p-8 text-center">
+          <h3 className="text-xl font-medium text-gray-900 mb-3">
+            Intéressé par l'Espace Professionnel ?
+          </h3>
+          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+            Contactez-nous dès maintenant pour être informé du lancement et découvrir comment cette plateforme 
+            peut optimiser la gestion de vos services médicaux.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a 
+              href="/contact" 
+              className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg transition-colors duration-200"
+            >
+              Nous Contacter
+            </a>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
+              <a 
+                href="tel:+21673820320" 
+                className="text-emerald-600 hover:text-emerald-700 transition-colors duration-200"
+              >
+                (+216) 73 820 320
+              </a>
+              <a 
+                href="tel:+21693945118" 
+                className="text-emerald-600 hover:text-emerald-700 transition-colors duration-200"
+              >
+                (+216) 93 945 118
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   );
 }

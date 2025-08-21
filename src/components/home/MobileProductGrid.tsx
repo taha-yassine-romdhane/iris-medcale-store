@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Product } from '@/types/product';
 import { useCart } from '@/hooks/useCart';
 import { useTranslation } from '@/contexts/TranslationContext';
-import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ShoppingCart } from 'lucide-react';
 import { useRef } from 'react';
 import { createProductSlug } from '@/utils/slugify';
 
@@ -35,7 +35,7 @@ export default function MobileProductGrid({ products, title }: MobileProductGrid
     const container = sliderRef.current;
     if (!container) return;
 
-    const cardWidth = Math.min(window.innerWidth * 0.75, 300);
+    const cardWidth = 180;
     const scrollAmount = direction === 'left' ? -cardWidth : cardWidth;
 
     container.scrollBy({
@@ -44,86 +44,42 @@ export default function MobileProductGrid({ products, title }: MobileProductGrid
     });
   };
 
-  // Dynamic color schemes for different categories
-  const getColorScheme = (categoryTitle: string) => {
-    const schemes = {
-      cpap: {
-        gradient: 'from-green-500/20 via-green-500/10 to-green-500/20',
-        accent: 'green',
-        textGradient: 'from-green-600 to-green-700',
-        button: 'from-green-600 to-green-700',
-        border: 'green'
-      },
-      masks: {
-        gradient: 'from-cyan-500/20 via-blue-500/10 to-indigo-500/20',
-        accent: 'cyan',
-        textGradient: 'from-cyan-600 to-blue-700',
-        button: 'from-cyan-600 to-blue-700',
-        border: 'blue'
-      },
-      oxygen: {
-        gradient: 'from-emerald-500/20 via-teal-500/10 to-green-500/20',
-        accent: 'emerald',
-        textGradient: 'from-emerald-600 to-teal-700',
-        button: 'from-emerald-600 to-teal-700',
-        border: 'green'
-      },
-      lits: {
-        gradient: 'from-orange-500/20 via-amber-500/10 to-yellow-500/20',
-        accent: 'orange',
-        textGradient: 'from-orange-600 to-amber-700',
-        button: 'from-orange-600 to-amber-700',
-        border: 'orange'
-      }
-    };
-    return schemes[categoryTitle as keyof typeof schemes] || schemes.cpap;
-  };
-
-  const colorScheme = getColorScheme(title);
-
   return (
-    <div className="mb-8 relative">
-      {/* Dynamic Background Pattern */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${colorScheme.gradient} rounded-3xl opacity-50`}></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.3),transparent_40%)] rounded-3xl"></div>
-      
-      <div className={`relative backdrop-blur-sm bg-white/30 rounded-3xl border border-${colorScheme.border}-400 shadow-xl p-4`}>
-        {/* Modern Header with Floating Elements */}
-        <div className="flex justify-between items-center mb-6 relative">
+    <div className="mb-8">
+      <div className="bg-white rounded-lg border border-gray-200 p-4">
+        {/* Header */}
+        <div className="flex justify-between items-center mb-4">
           <div className="flex items-center gap-3">
-            {/* Animated Icon */}
-         
-            
-            {/* Gradient Title */}
-            <h2 className={`text-xl font-black bg-gradient-to-r ${colorScheme.textGradient} bg-clip-text text-transparent`}>
+            <div className="w-1 h-6 bg-gradient-to-b from-emerald-500 to-blue-500 rounded-full"></div>
+            <h2 className="text-lg font-semibold text-gray-900">
               {t(`productsSection.${title}`)}
             </h2>
           </div>
 
-          {/* Floating Navigation */}
+          {/* Navigation */}
           <div className="flex gap-2">
             <button
               onClick={() => handleScroll('left')}
-              className={`w-10 h-10 flex items-center justify-center rounded-2xl bg-white/80 backdrop-blur-md border border-${colorScheme.border}-600 shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300`}
+              className="w-8 h-8 flex items-center justify-center rounded-md bg-white border border-gray-200 hover:bg-gray-50 transition-colors"
               aria-label={t('productsSection.scrollLeft')}
             >
-              <ChevronLeft className={`w-4 h-4 text-${colorScheme.accent}-700`} />
+              <ChevronLeft className="w-4 h-4 text-gray-600" />
             </button>
             <button
               onClick={() => handleScroll('right')}
-              className={`w-10 h-10 flex items-center justify-center rounded-2xl bg-white/80 backdrop-blur-md border border-${colorScheme.border}-600 shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300`}
+              className="w-8 h-8 flex items-center justify-center rounded-md bg-white border border-gray-200 hover:bg-gray-50 transition-colors"
               aria-label={t('productsSection.scrollRight')}
             >
-              <ChevronRight className={`w-4 h-4 text-${colorScheme.accent}-700`} />
+              <ChevronRight className="w-4 h-4 text-gray-600" />
             </button>
           </div>
         </div>
 
-        {/* Redesigned Cards Container */}
+        {/* Products Container */}
         <div className="w-full overflow-hidden">
           <div
             ref={sliderRef}
-            className="flex gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar py-2 px-1"
+            className="flex gap-3 overflow-x-auto snap-x snap-mandatory no-scrollbar"
             style={{
               WebkitOverflowScrolling: 'touch',
               scrollBehavior: 'smooth',
@@ -131,104 +87,80 @@ export default function MobileProductGrid({ products, title }: MobileProductGrid
               scrollbarWidth: 'none'
             }}
           >
-            {products.map((product, index) => (
+            {products.map((product) => (
               <div
                 key={product.id}
-                className="group flex-none w-[160px] min-w-[160px] snap-start"
-                style={{ animationDelay: `${index * 50}ms` }}
+                className="flex-none w-[160px] min-w-[160px] snap-start"
               >
-                {/* Neo-morphism Style Card */}
-                <div className={`relative bg-white/60 backdrop-blur-xl rounded-3xl border border-${colorScheme.border}-400  transition-all duration-500 overflow-hidden group-hover:scale-105`}>
-                  {/* Glowing Border Effect */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${colorScheme.button} rounded-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-sm`}></div>
-                  
-                  {/* Product Image Section */}
+                <div className="bg-gray-50 rounded-lg border border-gray-200 overflow-hidden hover:shadow-sm transition-shadow flex flex-col h-full">
+                  {/* Product Image */}
                   <Link href={`/product/${createProductSlug(product.name)}`} className="block">
-                    <div className="relative aspect-square w-full overflow-hidden rounded-t-3xl">
+                    <div className="relative aspect-square w-full overflow-hidden bg-white">
                       {product.media && product.media[0] && (
                         <Image
                           src={product.media[0].url}
                           alt={getTranslatedContent(product, 'name')}
-                          sizes="(max-width: 768px) 50vw, 33vw"
+                          sizes="160px"
                           fill
-                          className="object-contain p-4 group-hover:scale-110 group-hover:rotate-2 transition-all duration-700"
+                          className="object-contain p-3"
                         />
                       )}
                       
-                      {/* Floating Stock Badge */}
-                      <div className="absolute top-2 right-2">
-                        <div className={`backdrop-blur-md rounded-2xl px-2 py-1 text-[10px] font-bold shadow-lg ${
+                      {/* Stock Badge */}
+                      <div className="absolute top-1 right-1">
+                        <div className={`px-1.5 py-0.5 text-[10px] font-medium rounded-full ${
                           product.stock === 'IN_STOCK'
-                            ? `bg-${colorScheme.border}-500/30 text-${colorScheme.border}-900 border border-${colorScheme.border}-400/40`
+                            ? 'bg-emerald-100 text-emerald-700 border border-emerald-200'
                             : product.stock === 'LOW_STOCK'
-                            ? `bg-${colorScheme.border}-500/30 text-${colorScheme.border}-900 border border-${colorScheme.border}-400/40`
+                            ? 'bg-yellow-100 text-yellow-700 border border-yellow-200'
                             : product.stock === 'PRE_ORDER'
-                            ? `bg-${colorScheme.border}-500/30 text-${colorScheme.border}-900 border border-${colorScheme.border}-400/40`
+                            ? 'bg-blue-100 text-blue-700 border border-blue-200'
                             : product.stock === 'COMING_SOON'
-                            ? `bg-${colorScheme.border}-500/30 text-${colorScheme.border}-900 border border-${colorScheme.border}-400/40`
-                            : `bg-${colorScheme.border}-500/30 text-${colorScheme.border}-900 border border-${colorScheme.border}-400/40`
+                            ? 'bg-purple-100 text-purple-700 border border-purple-200'
+                            : 'bg-red-100 text-red-700 border border-red-200'
                         }`}>
-                          <div className="flex items-center gap-1">
-                            <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${
-                              product.stock === 'IN_STOCK' ? `bg-${colorScheme.border}-600`
-                              : product.stock === 'LOW_STOCK' ? `bg-${colorScheme.border}-600`
-                              : product.stock === 'PRE_ORDER' ? `bg-${colorScheme.border}-600`
-                              : product.stock === 'COMING_SOON' ? `bg-${colorScheme.border}-600`
-                              : `bg-${colorScheme.border}-600`
-                            }`} />
-                            {product.stock === 'IN_STOCK'
-                              ? t('productsSection.products.inStock')
-                              : product.stock === 'LOW_STOCK'
-                              ? t('productsSection.products.lowStock')
-                              : product.stock === 'PRE_ORDER'
-                              ? t('productsSection.products.preOrder')
-                              : product.stock === 'COMING_SOON'
-                              ? t('productsSection.products.comingSoon')
-                              : t('productsSection.products.outOfStock')}
-                          </div>
+                          {product.stock === 'IN_STOCK'
+                            ? t('productsSection.products.inStock')
+                            : product.stock === 'LOW_STOCK'
+                            ? t('productsSection.products.lowStock')
+                            : product.stock === 'PRE_ORDER'
+                            ? t('productsSection.products.preOrder')
+                            : product.stock === 'COMING_SOON'
+                            ? t('productsSection.products.comingSoon')
+                            : t('productsSection.products.outOfStock')}
                         </div>
                       </div>
-
-                      {/* Overlay Gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   </Link>
 
-                  {/* Content Section with Floating Design */}
-                  <div className="relative p-3 space-y-3">
-                    <Link href={`/product/${createProductSlug(product.name)}`} className="block">
-                      <h3 className="font-bold text-sm text-gray-900 line-clamp-2 leading-tight group-hover:text-gray-700 transition-colors">
+                  {/* Content */}
+                  <div className="p-3 flex-1 flex flex-col">
+                    <Link href={`/product/${createProductSlug(product.name)}`} className="block flex-1 mb-2">
+                      <h3 className="font-medium text-sm text-gray-900 line-clamp-2 leading-tight">
                         {getTranslatedContent(product, 'name')}
                       </h3>
-                      <p className="text-xs text-gray-600/80 line-clamp-2 mt-1 leading-relaxed">
-                        {getTranslatedContent(product, 'description')}
-                      </p>
                     </Link>
-                    
-                    {/* Modern CTA Button */}
+                  </div>
+                  
+                  {/* Add to Cart Button - Outside content div */}
+                  <div className="p-3 pt-0">
                     <button
                       onClick={(e) => {
                         e.preventDefault();
-                        addToCart(product);
+                        e.stopPropagation();
+                        if (product.stock === 'IN_STOCK' || product.stock === 'LOW_STOCK' || product.stock === 'PRE_ORDER') {
+                          addToCart(product);
+                        }
                       }}
                       disabled={product.stock === 'OUT_OF_STOCK' || product.stock === 'COMING_SOON'}
-                      className={`group/btn w-full py-2.5 px-3 rounded-2xl text-xs font-bold transition-all duration-300 relative overflow-hidden ${
+                      className={`w-full py-2 px-2 rounded-md text-xs font-medium transition-colors flex items-center justify-center gap-1 ${
                         product.stock === 'IN_STOCK' || product.stock === 'LOW_STOCK' || product.stock === 'PRE_ORDER'
-                          ? `bg-gradient-to-r ${colorScheme.button} text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-95`
-                          : "bg-gray-300/60 text-gray-500 cursor-not-allowed backdrop-blur-sm"
+                          ? 'bg-gray-900 hover:bg-emerald-800 text-white'
+                          : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                       }`}
                     >
-                      {/* Button Shine Effect */}
-                      {(product.stock === 'IN_STOCK' || product.stock === 'LOW_STOCK' || product.stock === 'PRE_ORDER') && (
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
-                      )}
-                      
-                      <div className="relative flex items-center justify-center gap-1.5">
-                        <Plus className={`w-3 h-3 ${
-                          product.stock === 'IN_STOCK' || product.stock === 'LOW_STOCK' || product.stock === 'PRE_ORDER'
-                            ? "group-hover/btn:rotate-90"
-                            : ""
-                        } transition-transform duration-300`} />
+                      <ShoppingCart className="w-3 h-3" />
+                      <span className="truncate">
                         {product.stock === 'IN_STOCK' || product.stock === 'LOW_STOCK'
                           ? t('productsSection.products.addToCart')
                           : product.stock === 'PRE_ORDER'
@@ -236,15 +168,8 @@ export default function MobileProductGrid({ products, title }: MobileProductGrid
                           : product.stock === 'COMING_SOON'
                           ? t('productsSection.products.comingSoon')
                           : t('productsSection.products.outOfStock')}
-                      </div>
+                      </span>
                     </button>
-                  </div>
-
-                  {/* Floating Accent Dots */}
-                  <div className="absolute top-1/2 left-1 w-1 h-8 flex flex-col gap-1 opacity-30 group-hover:opacity-60 transition-opacity">
-                    <div className={`w-1 h-1 rounded-full bg-${colorScheme.accent}-500 animate-pulse`}></div>
-                    <div className={`w-1 h-1 rounded-full bg-${colorScheme.accent}-400 animate-pulse`} style={{ animationDelay: '0.2s' }}></div>
-                    <div className={`w-1 h-1 rounded-full bg-${colorScheme.accent}-300 animate-pulse`} style={{ animationDelay: '0.4s' }}></div>
                   </div>
                 </div>
               </div>

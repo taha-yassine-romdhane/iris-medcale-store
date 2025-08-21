@@ -185,6 +185,8 @@
     "networkError": "Network error. Please check your connection and try again."
   },
   "contactPage": {
+    "title": "Contact Us",
+    "subtitle": "Our team is available to answer all your questions and assist you with your medical equipment needs.",
     "contactInfo": {
       "phone": {
         "title": "Phone",
@@ -545,6 +547,27 @@
   "home": {
     "brands": {
       "title": "Our Brands Partners"
+    },
+    "cta": {
+      "title": "Need Expert Medical Equipment Guidance?",
+      "description": "Our team of respiratory health specialists is ready to help you find the perfect medical equipment solution tailored to your specific needs. Get professional consultation and personalized support.",
+      "features": {
+        "expert": {
+          "title": "Expert Consultation",
+          "description": "Professional guidance from certified medical equipment specialists"
+        },
+        "personalized": {
+          "title": "Personalized Solutions",
+          "description": "Customized equipment recommendations based on your specific health needs"
+        },
+        "support": {
+          "title": "24/7 Support",
+          "description": "Round-the-clock technical assistance and patient support services"
+        }
+      },
+      "contactButton": "Contact Our Experts",
+      "responseTime": "We typically respond within 2 hours",
+      "needHelp": "Need immediate assistance? Call us directly:"
     }
   },
   "verifyEmail": {
@@ -755,7 +778,7 @@
       "title": "Need Help Choosing Your Equipment?",
       "description": "Our respiratory experts are available to provide free advice on the best equipment for your specific needs.",
       "contactExpert": "Contact an Expert",
-      "phone": "+216 55 820 000"
+      "phone": "(+216) 73 820 320 / (+216) 93 945 118"
     },
     "relatedArticles": {
       "title": "Related Articles",
@@ -886,6 +909,59 @@
       "accessories": "View all our accessories",
       "contact": "Contact a technician"
     }
+  },
+  "signup": {
+    "title": "Create Account",
+    "subtitle": "Or",
+    "loginLink": "sign in to your existing account",
+    "sections": {
+      "accountInfo": "Login Information",
+      "personalInfo": "Personal Information",
+      "addressInfo": "Address"
+    },
+    "fields": {
+      "email": {
+        "label": "Email Address",
+        "placeholder": "example@email.com"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "At least 8 characters with a number"
+      },
+      "firstName": {
+        "label": "First Name",
+        "placeholder": "John"
+      },
+      "lastName": {
+        "label": "Last Name",
+        "placeholder": "Smith"
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "+216 12 345 678"
+      },
+      "address": {
+        "label": "Full Address",
+        "placeholder": "15 Main Street, Tunis"
+      },
+      "city": {
+        "label": "City",
+        "placeholder": "Tunis"
+      },
+      "postalCode": {
+        "label": "Postal Code",
+        "placeholder": "1000"
+      }
+    },
+    "button": {
+      "submit": "Create My Account",
+      "loading": "Creating Account..."
+    },
+    "terms": {
+      "text": "By creating an account, you agree to our",
+      "termsLink": "terms of service",
+      "and": "and our",
+      "privacyLink": "privacy policy"
+    }
   }
-
 }

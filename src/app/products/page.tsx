@@ -164,7 +164,7 @@ export default function ProductsPage() {
         <ul className="text-sm text-gray-600 space-y-1">
           {Object.entries(translation.features).slice(0, 3).map(([key, value]) => (
             <li key={key} className="flex items-start">
-              <span className="flex-shrink-0 w-1.5 h-1.5 mt-2 rounded-full bg-green-500 mr-2"></span>
+              <span className="flex-shrink-0 w-1.5 h-1.5 mt-2 rounded-full bg-emerald-500 mr-2"></span>
               <div>
                 <span className="font-medium text-gray-900">{key}:</span>
                 <span className="ml-1 text-gray-600">{String(value)}</span>
@@ -184,7 +184,7 @@ export default function ProductsPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 pt-32">
+      <div className="min-h-screen bg-white pt-24">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
             <div className="animate-pulse">
@@ -192,7 +192,7 @@ export default function ProductsPage() {
               <div className="h-4 bg-gray-200 rounded w-1/2 mx-auto"></div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                 {[1, 2, 3, 4, 5, 6].map((item) => (
-                  <div key={item} className="bg-white rounded-lg shadow-md p-4">
+                  <div key={item} className="bg-white rounded-lg border border-gray-200 p-4">
                     <div className="h-48 bg-gray-200 rounded-md mb-4"></div>
                     <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
                     <div className="h-4 bg-gray-200 rounded w-1/2"></div>
@@ -207,15 +207,28 @@ export default function ProductsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-24">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-1 h-8 bg-gradient-to-b from-emerald-500 to-blue-500 rounded-full"></div>
+            <h1 className="text-3xl font-bold text-gray-900">
+              {t('productsPage.hero.title')}
+            </h1>
+          </div>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            {t('productsPage.hero.description')}
+          </p>
+        </div>
+
         {/* Filters Section */}
-        <div className="mb-8 bg-white rounded-lg shadow-lg p-6">
+        <div className="mb-8 bg-gray-50 rounded-lg border border-gray-200 p-6">
           <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
             <div className="flex items-center gap-2">
-              <Filter className="h-5 w-5 text-green-600" />
-              <h2 className="text-xl font-semibold text-gray-900">{t('productsPage.filters.title')}</h2>
+              <Filter className="h-5 w-5 text-emerald-600" />
+              <h2 className="text-lg font-medium text-gray-900">{t('productsPage.filters.title')}</h2>
             </div>
             <div className="flex flex-wrap gap-4 items-center flex-1 md:justify-end">
               <div className="relative flex-grow md:max-w-xs">
@@ -225,14 +238,14 @@ export default function ProductsPage() {
                   placeholder={t('productsPage.filters.searchPlaceholder')}
                   value={typeof searchQuery === 'string' ? searchQuery : ''}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 border-gray-300 focus:border-emerald-500 focus:ring-emerald-500"
                 />
               </div>
               <Select
                 value={selectedBrand}
                 onValueChange={(value) => setSelectedBrand(value)}
               >
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-[180px] border-gray-300 focus:border-emerald-500 focus:ring-emerald-500">
                   <SelectValue placeholder={t('productsPage.filters.selectBrand')} />
                 </SelectTrigger>
                 <SelectContent>
@@ -250,7 +263,7 @@ export default function ProductsPage() {
           {/* Active Filters */}
           <div className="mt-4 flex flex-wrap gap-2">
             {searchQuery && (
-              <Badge variant="secondary" className="flex items-center gap-1">
+              <Badge variant="secondary" className="flex items-center gap-1 bg-gray-100 text-gray-700">
                 Search: {searchQuery}
                 <button 
                   onClick={() => setSearchQuery('')}
@@ -261,7 +274,7 @@ export default function ProductsPage() {
               </Badge>
             )}
             {selectedBrand && selectedBrand !== 'all' && (
-              <Badge variant="secondary" className="flex items-center gap-1">
+              <Badge variant="secondary" className="flex items-center gap-1 bg-gray-100 text-gray-700">
                 Brand: {selectedBrand}
                 <button 
                   onClick={() => setSelectedBrand('all')}
@@ -272,17 +285,17 @@ export default function ProductsPage() {
               </Badge>
             )}
             {searchParams?.get('category') && (
-              <Badge variant="secondary" className="flex items-center gap-1">
+              <Badge variant="secondary" className="flex items-center gap-1 bg-gray-100 text-gray-700">
                 {t('productsPage.filters.activeFilters.category')}: {searchParams.get('category')}
               </Badge>
             )}
             {searchParams?.get('type') && (
-              <Badge variant="secondary" className="flex items-center gap-1">
+              <Badge variant="secondary" className="flex items-center gap-1 bg-gray-100 text-gray-700">
                 {t('productsPage.filters.activeFilters.type')}: {searchParams.get('type')}
               </Badge>
             )}
             {searchParams?.get('subCategory') && (
-              <Badge variant="secondary" className="flex items-center gap-1">
+              <Badge variant="secondary" className="flex items-center gap-1 bg-gray-100 text-gray-700">
                 {t('productsPage.filters.activeFilters.subcategory')}: {searchParams.get('subCategory')}
               </Badge>
             )}
@@ -295,21 +308,21 @@ export default function ProductsPage() {
             <p className="text-lg text-gray-600">{t('productsPage.products.noProducts')}</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
-                className="group relative bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg"
+                className="group relative bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-sm transition-shadow flex flex-col"
               >
-                <Link href={`/product/${createProductSlug(product.name)}`}>
-                  <div className="aspect-square relative overflow-hidden">
+                <Link href={`/product/${createProductSlug(product.name)}`} className="flex-1 flex flex-col">
+                  <div className="aspect-square relative overflow-hidden bg-gray-50">
                     {product.media && product.media.length > 0 ? (
                       <Image
                         src={product.media[selectedMedia[product.id] || 0]?.url || ''}
                         alt={product.name}
                         width={300}
                         height={300}
-                        className="object-contain w-full h-full transition-transform duration-300 group-hover:scale-105 bg-white"
+                        className="object-contain w-full h-full p-6 hover:scale-105 transition-transform duration-200"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-gray-100">
@@ -318,12 +331,22 @@ export default function ProductsPage() {
                     )}
                   </div>
 
-                  <div className="p-4">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  <div className="p-4 flex-1 flex flex-col">
+                    <h3 className="text-lg font-medium text-gray-900 mb-2 line-clamp-2">
                       {getTranslatedContent(product, 'name')}
                     </h3>
                     <div className="flex flex-wrap gap-2 mb-3">
-                      <Badge variant={product.stock === 'IN_STOCK' ? 'success' : 'destructive'} className="text-xs">
+                      <div className={`px-2 py-1 text-xs font-medium rounded-full ${
+                        product.stock === 'IN_STOCK'
+                          ? 'bg-emerald-100 text-emerald-700 border border-emerald-200'
+                          : product.stock === 'LOW_STOCK'
+                            ? 'bg-yellow-100 text-yellow-700 border border-yellow-200'
+                            : product.stock === 'PRE_ORDER'
+                              ? 'bg-blue-100 text-blue-700 border border-blue-200'
+                              : product.stock === 'COMING_SOON'
+                                ? 'bg-purple-100 text-purple-700 border border-purple-200'
+                                : 'bg-red-100 text-red-700 border border-red-200'
+                      }`}>
                         {product.stock === 'IN_STOCK' 
                           ? t('productsPage.products.inStock')
                           : product.stock === 'LOW_STOCK'
@@ -333,41 +356,43 @@ export default function ProductsPage() {
                           : product.stock === 'COMING_SOON'
                           ? t('productsPage.products.comingSoon')
                           : t('productsPage.products.outOfStock')}
-                      </Badge>
+                      </div>
                       {product.brand && (
-                        <Badge variant="outline" className="text-xs">
+                        <div className="px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-700 border border-gray-200">
                           {product.brand}
-                        </Badge>
+                        </div>
                       )}
                     </div>
-                    <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                    <p className="text-sm text-gray-600 mb-4 line-clamp-2 flex-1">
                       {getTranslatedContent(product, 'description')}
                     </p>
-
-                    {/* Add to Cart Button */}
-                    <Button
-                      variant="default"
-                      size="lg"
-                      className={cn(
-                        "w-full mt-4 bg-green-600 hover:bg-green-700 flex items-center justify-center gap-2",
-                        product.stock !== 'IN_STOCK' && "opacity-50 cursor-not-allowed"
-                      )}
-                      onClick={() => product.stock === 'IN_STOCK' && handleAddToCart(product)}
-                      disabled={product.stock !== 'IN_STOCK'}
-                    >
-                      <ShoppingCart className="h-4 w-4" />
-                      {product.stock === 'IN_STOCK' 
-                        ? t('productsPage.products.addToCart')
-                        : product.stock === 'LOW_STOCK'
-                        ? t('productsPage.products.lowStock')
-                        : product.stock === 'PRE_ORDER'
-                        ? t('productsPage.products.preOrder')
-                        : product.stock === 'COMING_SOON'
-                        ? t('productsPage.products.comingSoon')
-                        : t('productsPage.products.outOfStock')}
-                    </Button>
                   </div>
                 </Link>
+
+                {/* Add to Cart Button - Outside Link */}
+                <div className="p-4 pt-0">
+                  <Button
+                    variant="default"
+                    size="lg"
+                    className={cn(
+                      "w-full bg-gray-900 hover:bg-emerald-800 flex items-center justify-center gap-2 transition-colors",
+                      product.stock !== 'IN_STOCK' && "opacity-50 cursor-not-allowed"
+                    )}
+                    onClick={() => product.stock === 'IN_STOCK' && handleAddToCart(product)}
+                    disabled={product.stock !== 'IN_STOCK'}
+                  >
+                    <ShoppingCart className="h-4 w-4" />
+                    {product.stock === 'IN_STOCK' 
+                      ? t('productsPage.products.addToCart')
+                      : product.stock === 'LOW_STOCK'
+                      ? t('productsPage.products.lowStock')
+                      : product.stock === 'PRE_ORDER'
+                      ? t('productsPage.products.preOrder')
+                      : product.stock === 'COMING_SOON'
+                      ? t('productsPage.products.comingSoon')
+                      : t('productsPage.products.outOfStock')}
+                  </Button>
+                </div>
               </div>
             ))}
           </div>

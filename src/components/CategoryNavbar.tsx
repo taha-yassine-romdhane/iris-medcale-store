@@ -19,8 +19,8 @@ import { useTranslation } from '@/contexts/TranslationContext';
 
 interface CategoryType {
   category: string;
-  types: string[];
-  subcategories: string[];
+  types: Array<{ original: string; display: string }>;
+  subcategories: Array<{ original: string; display: string }>;
 }
 
 const CATEGORY_ORDER = [
@@ -75,8 +75,8 @@ export default function CategoryNavbar() {
         const data = await response.json();
         const processedData = data.map((cat: { category: string; types: string[]; subcategories: string[] }) => ({
           category: (cat.category || '').trim(),
-          types: Array.isArray(cat.types) ? cat.types : [],
-          subcategories: Array.isArray(cat.subcategories) ? cat.subcategories : []
+          types: Array.isArray(cat.types) ? cat.types.map(type => ({ original: type, display: type.toLowerCase() })) : [],
+          subcategories: Array.isArray(cat.subcategories) ? cat.subcategories.map(subcat => ({ original: subcat, display: subcat.toLowerCase() })) : []
         }));
         const sortedData = sortCategories(processedData);
         setCategoryTypes(sortedData);
@@ -104,24 +104,27 @@ export default function CategoryNavbar() {
   };
 
   return (
-    <nav className="hidden md:block bg-gradient-to-r from-blue-100 via-white to-green-100 z-40 border-t border-green-100 font-spartan shadow-md">
-      <div className="flex justify-start max-w-8xl mx-auto">
-      <div className="flex items-center h-14 space-x-8 ml-0 md:ml-[300px] lg:ml-[22%]">
-          <Link href="/" className="text-green-900 hover:text-green-600 text-lg hover:bg-green-50 rounded-lg px-2 py-1 font-semibold tracking-wide flex items-center space-x-2">
-            <span>{t('CategoryNavbar.home')}</span>
+    <nav className="hidden md:block bg-gray-50 z-40 border-b border-gray-200 relative">
+      {/* White gradient background for logo area */}
+      <div className="absolute left-0 top-0 bottom-0 w-52 bg-gradient-to-r from-white via-white to-gray-50"></div>
+      <div className="flex justify-start max-w-7xl mx-auto relative">
+        <div className="flex items-center h-12 space-x-6 px-4 ml-48">
+          <Link 
+            href="/" 
+            className="text-gray-700 hover:text-gray-900 text-sm font-medium flex items-center"
+          >
+            {t('CategoryNavbar.home')}
           </Link>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="text-green-900 hover:text-green-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
-                <Menu className="h-5 w-5" />
-                <span className="flex items-center text-green-900 hover:text-green-600 transition-colors px-3 py-2 font-bold">
-                  {t('navbar.ourProducts')}
-                </span>
-                <ChevronDown className="h-4 w-4 text-blue-600" />
+              <Button variant="ghost" className="text-gray-700 hover:text-gray-900 text-sm font-medium flex items-center gap-1">
+                <Menu className="h-4 w-4" />
+                <span>{t('navbar.ourProducts')}</span>
+                <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-72 bg-white rounded-lg shadow-lg border border-green-100" align="start">
+            <DropdownMenuContent className="w-72 bg-white rounded-md shadow-lg border" align="start">
               {isLoading ? (
                 <DropdownMenuItem disabled>
                   <span className="text-gray-500">{t('CategoryNavbar.loading')}</span>
@@ -133,47 +136,47 @@ export default function CategoryNavbar() {
               ) : (
                 categoryTypes.map((cat) => (
                   <DropdownMenuSub key={cat.category}>
-                    <DropdownMenuSubTrigger className="flex items-center justify-between py-3 px-4 hover:bg-green-50 focus:bg-green-50">
-                      <span className="font-semibold text-green-900">{cat.category}</span>
+                    <DropdownMenuSubTrigger className="flex items-center justify-between py-2 px-3 hover:bg-gray-50">
+                      <span className="font-medium text-gray-700 capitalize">{cat.category.toLowerCase()}</span>
                     </DropdownMenuSubTrigger>
                     <DropdownMenuPortal>
-                      <DropdownMenuSubContent className="min-w-[200px] bg-white rounded-lg shadow-lg border border-green-100">
+                      <DropdownMenuSubContent className="min-w-[200px] bg-white rounded-md shadow-lg border">
                         <DropdownMenuItem 
-                          className="py-2 px-4 hover:bg-green-50 text-green-900 font-medium"
+                          className="py-2 px-3 hover:bg-gray-50 text-gray-700 font-medium"
                           onClick={() => handleCategoryClick(cat.category)}
                         >
                           {t('navbar.allProducts')}
                         </DropdownMenuItem>
                         {cat.types && cat.types.length > 0 && (
                           <>
-                            <DropdownMenuSeparator className="bg-green-100" />
-                            <div className="py-1 px-4">
-                              <span className="text-xs font-semibold text-green-600 uppercase">Types</span>
+                            <DropdownMenuSeparator className="bg-gray-200" />
+                            <div className="py-1 px-3">
+                              <span className="text-xs font-medium text-gray-500 uppercase">Types</span>
                             </div>
                             {cat.types.map((type) => (
                               <DropdownMenuItem 
-                                key={type} 
-                                className="py-2 px-4 hover:bg-green-50 text-green-900"
-                                onClick={() => handleTypeClick(cat.category, type)}
+                                key={type.original} 
+                                className="py-2 px-3 hover:bg-gray-50 text-gray-700"
+                                onClick={() => handleTypeClick(cat.category, type.original)}
                               >
-                                {type}
+                                <span className="capitalize">{type.display}</span>
                               </DropdownMenuItem>
                             ))}
                           </>
                         )}
                         {cat.subcategories && cat.subcategories.length > 0 && (
                           <>
-                            <DropdownMenuSeparator className="bg-green-100" />
-                            <div className="py-1 px-4">
-                              <span className="text-xs font-semibold text-blue-600 uppercase">Autres-types</span>
+                            <DropdownMenuSeparator className="bg-gray-200" />
+                            <div className="py-1 px-3">
+                              <span className="text-xs font-medium text-gray-500 uppercase">Autres-types</span>
                             </div>
                             {cat.subcategories.map((subcat) => (
                               <DropdownMenuItem 
-                                key={subcat} 
-                                className="py-2 px-4 hover:bg-green-50 text-green-900"
-                                onClick={() => handleSubcategoryClick(cat.category, subcat)}
+                                key={subcat.original} 
+                                className="py-2 px-3 hover:bg-gray-50 text-gray-700"
+                                onClick={() => handleSubcategoryClick(cat.category, subcat.original)}
                               >
-                                {subcat}
+                                <span className="capitalize">{subcat.display}</span>
                               </DropdownMenuItem>
                             ))}
                           </>
@@ -186,38 +189,38 @@ export default function CategoryNavbar() {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-        <div className="flex items-center space-x-4">
+
+        <div className="flex items-center space-x-6 ml-auto px-4">
           {isSmallScreen ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="text-green-900 hover:text-green-600 text-lg font-semibold tracking-wide flex items-center space-x-2">
-                  <Menu className="h-5 w-5" />
+                <Button variant="ghost" className="text-gray-700 hover:text-gray-900 text-sm font-medium flex items-center gap-1">
+                  <Menu className="h-4 w-4" />
                   <span>Menu</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-48 bg-white rounded-lg shadow-lg border border-green-100">
+              <DropdownMenuContent className="w-48 bg-white rounded-md shadow-lg border">
                 <DropdownMenuItem asChild>
-                  <Link href="/apnee-du-sommeil" className="w-full text-green-900 hover:text-green-600">
-                    <Heart className="h-5 w-5 mr-2" />
+                  <Link href="/apnee-du-sommeil" className="w-full text-gray-700 hover:text-gray-900">
+                    <Heart className="h-4 w-4 mr-2" />
                     {t('navbar.sleepApnea')}
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/a-propos" className="w-full text-green-900 hover:text-green-600">
-                    <Info className="w-5 h-5 mr-2" />
+                  <Link href="/a-propos" className="w-full text-gray-700 hover:text-gray-900">
+                    <Info className="w-4 h-4 mr-2" />
                     {t('navbar.aboutUs')}
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/contact" className="w-full text-green-900 hover:text-green-600">
-                    <Phone className="w-5 h-5 mr-2" />
+                  <Link href="/contact" className="w-full text-gray-700 hover:text-gray-900">
+                    <Phone className="w-4 h-4 mr-2" />
                     {t('navbar.contact')}
                   </Link>
                 </DropdownMenuItem>
-            
                 <DropdownMenuItem asChild>
-                  <Link href="/space-pro" className="w-full text-green-900 hover:text-green-600">
-                    <User className="w-5 h-5 mr-2" />
+                  <Link href="/space-pro" className="w-full text-gray-700 hover:text-gray-900">
+                    <User className="w-4 h-4 mr-2" />
                     {t('navbar.ourServices')}
                   </Link>
                 </DropdownMenuItem>
@@ -225,22 +228,33 @@ export default function CategoryNavbar() {
             </DropdownMenu>
           ) : (
             <>
-              <Link href="/apnee-du-sommeil" className="text-green-900 hover:text-green-600 text-lg hover:bg-green-50 rounded-lg px-2 py-1 font-semibold tracking-wide flex items-center space-x-2">
-                <Heart className="h-5 w-5 mr-2" />
+              <Link 
+                href="/apnee-du-sommeil" 
+                className="text-gray-700 hover:text-gray-900 text-sm font-medium flex items-center gap-1"
+              >
+                <Heart className="h-4 w-4" />
                 {t('navbar.sleepApnea')}
               </Link>
-              <Link href="/a-propos" className="text-green-900 hover:text-green-600 text-lg hover:bg-green-50 rounded-lg px-2 py-1 font-semibold tracking-wide flex items-center space-x-2">
-                <Info className="w-5 h-5" />
-                <span>{t('navbar.aboutUs')}</span>
+              <Link 
+                href="/a-propos" 
+                className="text-gray-700 hover:text-gray-900 text-sm font-medium flex items-center gap-1"
+              >
+                <Info className="w-4 h-4" />
+                {t('navbar.aboutUs')}
               </Link>
-              <Link href="/contact" className="text-green-900 hover:text-green-600 text-lg hover:bg-green-50 rounded-lg px-2 py-1 font-semibold tracking-wide flex items-center space-x-2">
-                <Phone className="w-5 h-5 mr-2" />
+              <Link 
+                href="/contact" 
+                className="text-gray-700 hover:text-gray-900 text-sm font-medium flex items-center gap-1"
+              >
+                <Phone className="w-4 h-4" />
                 {t('navbar.contact')}
               </Link>
-          
-              <Link href="/space-pro" className="text-green-900 hover:text-green-600 text-lg hover:bg-green-50 rounded-lg px-2 py-1 font-semibold tracking-wide flex items-center space-x-2">
-                <User className="w-5 h-5" />
-                <span>{t('navbar.ourServices')}</span>
+              <Link 
+                href="/space-pro" 
+                className="text-gray-700 hover:text-gray-900 text-sm font-medium flex items-center gap-1"
+              >
+                <User className="w-4 h-4" />
+                {t('navbar.ourServices')}
               </Link>
             </>
           )}

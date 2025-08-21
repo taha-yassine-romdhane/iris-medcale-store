@@ -184,6 +184,8 @@
     "networkError": "Erreur réseau. Veuillez vérifier votre connexion et réessayer."
   },
   "contactPage": {
+    "title": "Contactez-nous",
+    "subtitle": "Notre équipe est disponible pour répondre à toutes vos questions et vous accompagner dans vos besoins en équipements médicaux.",
     "contactInfo": {
       "phone": {
         "title": "Téléphone",
@@ -448,6 +450,27 @@
   "home": {
     "brands": {
       "title": "Nos Marques Partenaires"
+    },
+    "cta": {
+      "title": "Besoin de Conseils d'Experts en Équipements Médicaux ?",
+      "description": "Notre équipe de spécialistes en santé respiratoire est prête à vous aider à trouver la solution d'équipement médical parfaite adaptée à vos besoins spécifiques. Obtenez une consultation professionnelle et un soutien personnalisé.",
+      "features": {
+        "expert": {
+          "title": "Consultation d'Expert",
+          "description": "Guidance professionnelle de spécialistes certifiés en équipements médicaux"
+        },
+        "personalized": {
+          "title": "Solutions Personnalisées",
+          "description": "Recommandations d'équipements personnalisées selon vos besoins de santé spécifiques"
+        },
+        "support": {
+          "title": "Support 24/7",
+          "description": "Assistance technique et services de support patient disponibles 24h/24"
+        }
+      },
+      "contactButton": "Contacter Nos Experts",
+      "responseTime": "Nous répondons généralement dans les 2 heures",
+      "needHelp": "Besoin d'assistance immédiate ? Appelez-nous directement :"
     }
   },
   "verifyEmail": {
@@ -754,7 +777,7 @@
       "title": "Besoin d'Aide pour Choisir Votre Équipement?",
       "description": "Nos experts respiratoires sont disponibles pour vous conseiller gratuitement sur le meilleur équipement pour vos besoins spécifiques.",
       "contactExpert": "Contactez un Expert",
-      "phone": "+216 55 820 000"
+      "phone": "(+216) 73 820 320 / (+216) 93 945 118"
     },
     "relatedArticles": {
       "title": "Articles Liés",
@@ -884,6 +907,60 @@
       "description": "Nos techniciens certifiés sont disponibles pour vous aider avec l'entretien de vos équipements respiratoires.",
       "accessories": "Voir tous nos accessoires",
       "contact": "Contacter un technicien"
+    }
+  },
+  "signup": {
+    "title": "Créer un compte",
+    "subtitle": "Ou",
+    "loginLink": "connectez-vous à votre compte existant",
+    "sections": {
+      "accountInfo": "Informations de connexion",
+      "personalInfo": "Informations personnelles",
+      "addressInfo": "Adresse"
+    },
+    "fields": {
+      "email": {
+        "label": "Adresse email",
+        "placeholder": "exemple@email.com"
+      },
+      "password": {
+        "label": "Mot de passe",
+        "placeholder": "Au moins 8 caractères avec un chiffre"
+      },
+      "firstName": {
+        "label": "Prénom",
+        "placeholder": "Ahmed"
+      },
+      "lastName": {
+        "label": "Nom de famille",
+        "placeholder": "Ben Ali"
+      },
+      "phone": {
+        "label": "Numéro de téléphone",
+        "placeholder": "+216 12 345 678"
+      },
+      "address": {
+        "label": "Adresse complète",
+        "placeholder": "15 Avenue Habib Bourguiba, Tunis"
+      },
+      "city": {
+        "label": "Ville",
+        "placeholder": "Tunis"
+      },
+      "postalCode": {
+        "label": "Code postal",
+        "placeholder": "1000"
+      }
+    },
+    "button": {
+      "submit": "Créer mon compte",
+      "loading": "Inscription en cours..."
+    },
+    "terms": {
+      "text": "En créant un compte, vous acceptez nos",
+      "termsLink": "conditions d'utilisation",
+      "and": "et notre",
+      "privacyLink": "politique de confidentialité"
     }
   }
 }
