@@ -1,373 +1,372 @@
 {
-    "navbar": {
-        "title": "القائمة",
-        "home": "الرئيسية",
-        "ourProducts": "منتجاتنا",
-        "allProducts": "جميع المنتجات",
-        "types": "الأنواع",
-        "otherTypes": "أنواع أخرى",
-        "loading": "جار التحميل...",
-        "noCategories": "لم يتم العثور على فئات",
-        "services": "خدماتنا",
-        "about": "حول",
-        "contact": "اتصل",
-        "appointment": "حجز موعد",
-        "login": "تسجيل الدخول",
-        "logout": "تسجيل الخروج",
-        "dashboard": "لوحة التحكم",
-        "myOrders": "طلباتي",
-        "myProfile": "ملفي الشخصي",
-        "search": "بحث",
-        "sleepApnea": "انقطاع النفس أثناء النوم",
-        "makeAnAppointment": "حجز موعد",
-        "ourServices": "الخدمات المهنية",
-        "aboutUs": "من نحن"
+  "navbar": {
+    "title": "القائمة",
+    "home": "الرئيسية",
+    "ourProducts": "منتجاتنا",
+    "allProducts": "جميع المنتجات",
+    "types": "الأنواع",
+    "otherTypes": "أنواع أخرى",
+    "loading": "جار التحميل...",
+    "noCategories": "لم يتم العثور على فئات",
+    "services": "خدماتنا",
+    "about": "حول",
+    "contact": "اتصل",
+    "appointment": "حجز موعد",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "dashboard": "لوحة التحكم",
+    "myOrders": "طلباتي",
+    "myProfile": "ملفي الشخصي",
+    "search": "بحث",
+    "sleepApnea": "انقطاع النفس أثناء النوم",
+    "makeAnAppointment": "حجز موعد",
+    "ourServices": "الخدمات المهنية",
+    "aboutUs": "من نحن"
+  },
+  "CategoryNavbar": {
+    "home": "الرئيسية",
+    "allProducts": "جميع المنتجات",
+    "loading": "جار التحميل...",
+    "noCategories": "لم يتم العثور على فئات"
+  },
+  "search": {
+    "placeholder": "ابحث عن المنتجات...",
+    "loading": "جار التحميل...",
+    "noResult": "لم يتم العثور على نتائج لـ",
+    "tryDifferent": "حاول البحث بكلمات مفتاحية مختلفة"
+  },
+  "navigation": {
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "product": "المنتج",
+    "category": "الفئة",
+    "contact": "اتصل بنا",
+    "about": "من نحن",
+    "services": "الخدمات",
+    "appointment": "حجز موعد",
+    "sleepApnea": "انقطاع النفس أثناء النوم"
+  },
+  "footer": {
+    "companyName": "Iris Medical",
+    "description": "مصدر موثوق لمعدات الرعاية الصحية المبتكرة.",
+    "quickLinks": "روابط سريعة",
+    "cpapMachines": "خدماتنا",
+    "aboutUs": "من نحن",
+    "blog": "المدونة",
+    "contact": "اتصل",
+    "appointment": "حجز موعد",
+    "sleepApnea": "انقطاع النفس أثناء النوم",
+    "contactUs": "اتصل بنا",
+    "coverageAreas": "مناطق التغطية",
+    "northRegion": "المنطقة الشمالية",
+    "grandTunis": "تونس الكبرى",
+    "capBon": "الوطن القبلي",
+    "bizerte": "بنزرت",
+    "beja": "باجة",
+    "jendouba": "جندوبة",
+    "leKef": "الكاف",
+    "siliana": "سليانة",
+    "centerRegion": "المنطقة الوسطى",
+    "sousse": "سوسة",
+    "monastir": "المنستير",
+    "mahdia": "المهدية",
+    "kairouan": "القيروان",
+    "southWestRegion": "المنطقة الجنوبية الغربية",
+    "sfax": "صفاقس",
+    "gafsa": "قفصة",
+    "copyright": " 2024 Iris Medical. جميع الحقوق محفوظة."
+  },
+  "login": {
+    "leftSide": {
+      "title": "منطقة العملاء لخدمة النخبة الطبية",
+      "description": "سجل الدخول للوصول إلى معلوماتك وخدماتك الشخصية.",
+      "bullet1": "الوصول الآمن إلى بيانات الشركة",
+      "bullet2": "التحقق الثنائي لتحسين الأمان"
     },
-    "CategoryNavbar": {
-        "home": "الرئيسية",
-        "allProducts": "جميع المنتجات",
-        "loading": "جار التحميل...",
-        "noCategories": "لم يتم العثور على فئات"
+    "form": {
+      "title": "تسجيل الدخول",
+      "emailLabel": "البريد الإلكتروني",
+      "emailPlaceholder": "your_email@example.com",
+      "passwordLabel": "كلمة المرور",
+      "passwordPlaceholder": "كلمة المرور الخاصة بك",
+      "submitButton": "تسجيل الدخول",
+      "noAccount": "ليس لديك حساب؟",
+      "signupLink": "اشترك",
+      "forgotPassword": "نسيت كلمة المرور؟"
     },
-    "search": {
-        "placeholder": "ابحث عن المنتجات...",
-        "loading": "جار التحميل...",
-        "noResult": "لم يتم العثور على نتائج لـ",
-        "tryDifferent": "حاول البحث بكلمات مفتاحية مختلفة"
+    "error": {
+      "fillAllFields": "يرجى ملء جميع الحقول",
+      "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة"
+    }
+  },
+  "apneeDuSommeil": {
+    "apnéesDuSommeil": "انقطاع النفس أثناء النوم",
+    "comprendreDiagnostiquerEtTraiterLesTroublesDuSommeil": "فهم وتشخيص وعلاج اضطرابات النوم",
+    "question": "ما هو انقطاع النفس أثناء النوم؟",
+    "reponse": "انقطاع النفس أثناء النوم هو اضطراب في الجهاز التنفسي يتميز بتوقفات وتنفس متكرر وطويل أثناء النوم، مما يعطل دورة النوم الطبيعية ويؤثر على الصحة ونوعية الحياة.",
+    "symptoms": "الأعراض",
+    "risks": "المخاطر",
+    "treatment": "العلاج",
+    "etouffement": "الاختناق",
+    "reveils": "الاستيقاظ",
+    "pausesRespiratoires": "توقف التنفس",
+    "ronflements": "الشخير",
+    "pendantLaNuit": "أثناء الليل",
+    "pendantLaJournee": "أثناء النهار",
+    "fatigueEtSomnolenceExcessive": "التعب والنعاس المفرط",
+    "mauxDeTeteMatinaux": "الصداع الصباحي",
+    "difficultesDeConcentration": "صعوبة التركيز",
+    "irritabiliteEtChangementsDHumeur": "التهيج وتغيرات المزاج",
+    "complicationsPossibles": "المضاعفات المحتملة",
+    "problemesCardiovasculaires": "مشاكل القلب والأوعية الدموية",
+    "hypertensionRisqueDavcTroublesDuRythmeCardiaque": "ارتفاع ضغط الدم وخطر السكتة الدماغية واضطرابات ضربات القلب",
+    "troublesCognitifs": "الاضطرابات الإدراكية",
+    "perteDeMemoireDifficultesDeConcentration": "فقدان الذاكرة وصعوبة التركيز",
+    "complicationsMetaboliques": "المضاعفات الأيضية",
+    "diabetePriseDePoidsSyndromeMetabolique": "داء السكري وزيادة الوزن ومتلازمة التمثيل الغذائي",
+    "autresRisques": "مخاطر أخرى",
+    "accidentsDeLaRouteDepressionProblemesRelationnels": "حوادث الطرق والاكتئاب والمشاكل العلاقية",
+    "solutionsTherapeutiques": "الحلول العلاجية",
+    "ppcPressionPositiveContinue": "ضغط الهواء الإيجابي المستمر",
+    "descriptionPpc": "العلاج القياسي الذي يتضمن ارتداء قناع متصل بجهاز يوفر هواءً مضغوطًا أثناء النوم.",
+    "ortheseDavanceeMandibulaire": "جهاز تقديم الفك السفلي",
+    "descriptionOrthèse": "جهاز طبي يبقي الفك السفلي في وضع متقدم لفتح مجرى الهواء.",
+    "changementsDeModeDeVie": "تغييرات في نمط الحياة",
+    "perteDePoidsSiNecessaire": "فقدان الوزن إذا لزم الأمر",
+    "positionDeSommeilAdaptee": "وضعية نوم مناسبة",
+    "arretDuTabacEtReductionDeLalcool": "الإقلاع عن التدخين وتقليل الكحول",
+    "vousPensezSouffrirDApneesDuSommeil": "هل تعتقد أنك تعاني من انقطاع النفس أثناء النوم؟",
+    "diagnosticPrecoce": "التشخيص المبكر يسمح بإدارة أفضل.",
+    "prendreRendezVous": "حجز موعد"
+  },
+  "appointmentSection": {
+    "title": "حجز موعد",
+    "selectMonth": "اختر شهرًا",
+    "selectDay": "اختر يومًا",
+    "selectTime": "اختر وقتًا",
+    "reasonLabel": "سبب الموعد",
+    "reasonPlaceholder": "صف بإيجاز سبب موعدك...",
+    "submitButton": "طلب موعد",
+    "submitting": "جارٍ الإرسال...",
+    "success": {
+      "title": "نجاح",
+      "description": "تم طلب الموعد بنجاح"
     },
-    "navigation": {
-        "home": "الرئيسية",
-        "products": "المنتجات",
-        "product": "المنتج",
-        "category": "الفئة",
-        "contact": "اتصل بنا",
-        "about": "من نحن",
-        "services": "الخدمات",
-        "appointment": "حجز موعد",
-        "sleepApnea": "انقطاع النفس أثناء النوم"
+    "guestInfo": {
+      "title": "معلومات الزائر",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "phoneOptional": "اختياري - للحالات العاجلة"
     },
-    "footer": {
-        "companyName": "Iris Medical",
-        "description": "مصدر موثوق لمعدات الرعاية الصحية المبتكرة.",
-        "quickLinks": "روابط سريعة",
-        "cpapMachines": "خدماتنا",
-        "aboutUs": "من نحن",
-        "blog": "المدونة",
-        "contact": "اتصل",
-        "appointment": "حجز موعد",
-        "sleepApnea": "انقطاع النفس أثناء النوم",
-        "contactUs": "اتصل بنا",
-        "coverageAreas": "مناطق التغطية",
-        "northRegion": "المنطقة الشمالية",
+    "error": {
+      "title": "خطأ",
+      "description": "حدث خطأ",
+      "failedToRequestAppointment": "فشل في طلب الموعد",
+      "generic": "حدث خطأ ما"
+    },
+    "loginDialog": {
+      "title": "تسجيل الدخول مطلوب",
+      "description": "يجب أن تكون مسجلاً لتحديد موعد. هل ترغب في تسجيل الدخول الآن؟",
+      "cancelButton": "إلغاء",
+      "loginButton": "تسجيل الدخول"
+    }
+  },
+  "error": {
+    "fillAllFields": "يرجى ملء جميع الحقول",
+    "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+    "failedToRequestAppointment": "فشل في طلب الموعد",
+    "generic": "حدث خطأ ما",
+    "loginRequired": "يجب تسجيل الدخول لتنفيذ هذا الإجراء.",
+    "invalidDate": "تم اختيار تاريخ غير صالح.",
+    "invalidTime": "تم اختيار وقت غير صالح.",
+    "appointmentConflict": "تم حجز هذا الوقت بالفعل. يرجى اختيار وقت آخر.",
+    "networkError": "خطأ في الشبكة. يرجى التحقق من اتصالك والمحاولة مرة أخرى."
+  },
+  "contactPage": {
+    "title": "اتصل بنا",
+    "subtitle": "فريقنا متاح للإجابة على جميع أسئلتك ومساعدتك في احتياجاتك من المعدات الطبية.",
+    "contactInfo": {
+      "phone": {
+        "title": "رقم الهاتف",
+        "detail": "متوفر على مدار الساعة"
+      },
+      "email": {
+        "title": "البريد الإلكتروني",
+        "detail": "الرد خلال 24 ساعة"
+      },
+      "address": {
+        "title": "العنوان",
+        "detail": "المكتب الرئيسي"
+      },
+      "openingHours": {
+        "title": "ساعات العمل",
+        "detail": "خدمة الطوارئ متوفرة 24/7"
+      }
+    },
+    "form": {
+      "title": "اتصل بنا",
+      "userInfo": "معلوماتك",
+      "name": "الاسم الكامل",
+      "namePlaceholder": "أدخل اسمك الكامل",
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "أدخل بريدك الإلكتروني",
+      "phone": "رقم الهاتف",
+      "phonePlaceholder": "أدخل رقم هاتفك",
+      "phoneOptional": "اختياري - للحالات العاجلة",
+      "messageLabel": "رسالتك",
+      "messagePlaceholder": "كيف يمكننا مساعدتك اليوم؟",
+      "submitButton": "إرسال الرسالة",
+      "submitting": "جاري الإرسال...",
+      "requiredFields": "* الحقول المطلوبة",
+      "responseTime": "نرد عادةً خلال 24 ساعة",
+      "lastContact": "وقت الاتصال",
+      "success": {
+        "title": "تم إرسال الرسالة",
+        "description": "شكراً لتواصلك معنا. سنرد عليك قريباً."
+      }
+    },
+    "map": {
+      "title": "موقعنا"
+    },
+    "loginDialog": {
+      "title": "هل تريد تسجيل الدخول؟",
+      "description": "سجّل دخولك لمتابعة رسائلك والحصول على ردود أسرع.",
+      "loginButton": "تسجيل الدخول",
+      "cancelButton": "المتابعة كزائر"
+    }
+  },
+  "checkoutPage": {
+    "emptyCart": {
+      "title": "السلة فارغة",
+      "description": "سلتك فارغة حاليًا."
+    },
+    "title": "طلب عرض أسعار",
+    "subtitle": "سنقدم لك عرض أسعار مخصص لمنتجاتك المختارة. سيتصل بك فريقنا قريبًا.",
+    "features": {
+      "qualityProducts": {
+        "title": "منتجات عالية الجودة",
+        "description": "جميع منتجاتنا معتمدة وتأتي من علامات تجارية معترف بها."
+      },
+      "fastDelivery": {
+        "title": "توصيل سريع",
+        "description": "خدمة توصيل احترافية في جميع أنحاء تونس."
+      },
+      "personalizedSupport": {
+        "title": "دعم مخصص",
+        "description": "فريق مخصص للإجابة على جميع أسئلتك."
+      }
+    },
+    "selectedProducts": {
+      "title": "المنتجات المختارة",
+      "quantity": "الكمية:"
+    },
+    "summary": {
+      "title": "طلب عرض أسعار",
+      "description": "بالنقر على الزر أدناه، ستتلقى:",
+      "bullet1": "عرض أسعار مخصص",
+      "bullet2": "مكالمة من فريق المبيعات لدينا",
+      "bullet3": "نصائح الخبراء حول المنتجات الخاصة بك",
+      "requestButton": "طلب عرض أسعار",
+      "loading": "جارٍ المعالجة...",
+      "footer": "سيتصل بك فريقنا خلال 24-48 ساعة."
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "حول خدمة النخبة الطبية",
+      "subtitle": "الريادة في حلول الأكسجين والعلاج التنفسي في تونس"
+    },
+    "mission": {
+      "title": "مهمتنا",
+      "description": "نحن شركة متخصصة في علاج الأكسجين، نقدم حلولًا طبية للمرضى الذين يحتاجون إلى مساعدة تنفسية. التزامنا هو ضمان خدمة منزلية مخصصة لضمان راحة ورفاهية مرضانا.",
+      "keyPoints": {
+        "keyPoint1": "تركيب وصيانة المعدات الطبية في المنزل",
+        "keyPoint2": "خدمة الدعم الفني على مدار الساعة",
+        "keyPoint3": "تغطية مناطق سوسة، المنستير، المهدية، كاب بون، وتونس الكبرى",
+        "keyPoint4": "فريق فني عالي الكفاءة",
+        "keyPoint5": "متابعة منتظمة للمرضى",
+        "keyPoint6": "حلول العلاج بالأكسجين والتهوية"
+      },
+      "imageAlt": "معدات طبية"
+    },
+    "values": {
+      "title": "قيمنا",
+      "patientCommitment": {
+        "title": "الالتزام بالمرضى",
+        "description": "أولويتنا القصوى هي راحة ورفاهية مرضانا."
+      },
+      "experiencedTeam": {
+        "title": "فريق ذو خبرة",
+        "description": "فنيين مؤهلين وموظفين طبيين مكرسين."
+      },
+      "medicalExcellence": {
+        "title": "التميز الطبي",
+        "description": "معدات حديثة وخدمات عالية الجودة."
+      },
+      "personalizedService": {
+        "title": "خدمة مخصصة",
+        "description": "حلول مصممة لتلبية احتياجات كل مريض."
+      }
+    },
+    "cnam": {
+      "title": "الشراكة مع CNAM",
+      "description": "كشريك معتمد لصندوق التأمين الصحي الوطني (CNAM)، نسهل الوصول إلى المعدات الطبية الأساسية لمرضانا.",
+      "bullet1": "تغطية مباشرة مع CNAM",
+      "bullet2": "عملية سداد مبسطة",
+      "bullet3": "معدات متوافقة مع CNAM",
+      "bullet4": "المساعدة في الإجراءات الإدارية",
+      "imageAlt": "شعار CNAM تونس"
+    },
+    "coverage": {
+      "title": "تغطيتنا",
+      "description": "يغطي فنينا المؤهلون مناطق سوسة، المنستير، المهدية، كاب بون، وتونس الكبرى، مما يضمن التركيب السريع والمتابعة الفنية الدقيقة.",
+      "northRegion": "المناطق الشمالية",
+      "centerRegion": "المناطق الوسطى",
+      "southRegion": "المناطق الجنوبية",
+      "regions": {
         "grandTunis": "تونس الكبرى",
         "capBon": "الوطن القبلي",
-        "bizerte": "بنزرت",
-        "beja": "باجة",
-        "jendouba": "جندوبة",
-        "leKef": "الكاف",
-        "siliana": "سليانة",
-        "centerRegion": "المنطقة الوسطى",
         "sousse": "سوسة",
         "monastir": "المنستير",
         "mahdia": "المهدية",
+        "beja": "باجة",
+        "bizerte": "بنزرت",
         "kairouan": "القيروان",
-        "southWestRegion": "المنطقة الجنوبية الغربية",
         "sfax": "صفاقس",
-        "gafsa": "قفصة",
-        "copyright": " 2024 Iris Medical. جميع الحقوق محفوظة."
-    },
-    "login": {
-        "leftSide": {
-            "title": "منطقة العملاء لخدمة النخبة الطبية",
-            "description": "سجل الدخول للوصول إلى معلوماتك وخدماتك الشخصية.",
-            "bullet1": "الوصول الآمن إلى بيانات الشركة",
-            "bullet2": "التحقق الثنائي لتحسين الأمان"
-        },
-        "form": {
-            "title": "تسجيل الدخول",
-            "emailLabel": "البريد الإلكتروني",
-            "emailPlaceholder": "your_email@example.com",
-            "passwordLabel": "كلمة المرور",
-            "passwordPlaceholder": "كلمة المرور الخاصة بك",
-            "submitButton": "تسجيل الدخول",
-            "noAccount": "ليس لديك حساب؟",
-            "signupLink": "اشترك",
-            "forgotPassword": "نسيت كلمة المرور؟"
-        },
-        "error": {
-            "fillAllFields": "يرجى ملء جميع الحقول",
-            "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة"
-        }
-    },
-    "apneeDuSommeil": {
-        "apnéesDuSommeil": "انقطاع النفس أثناء النوم",
-        "comprendreDiagnostiquerEtTraiterLesTroublesDuSommeil": "فهم وتشخيص وعلاج اضطرابات النوم",
-        "question": "ما هو انقطاع النفس أثناء النوم؟",
-        "reponse": "انقطاع النفس أثناء النوم هو اضطراب في الجهاز التنفسي يتميز بتوقفات وتنفس متكرر وطويل أثناء النوم، مما يعطل دورة النوم الطبيعية ويؤثر على الصحة ونوعية الحياة.",
-        "symptoms": "الأعراض",
-        "risks": "المخاطر",
-        "treatment": "العلاج",
-        "etouffement": "الاختناق",
-        "reveils": "الاستيقاظ",
-        "pausesRespiratoires": "توقف التنفس",
-        "ronflements": "الشخير",
-        "pendantLaNuit": "أثناء الليل",
-        "pendantLaJournee": "أثناء النهار",
-        "fatigueEtSomnolenceExcessive": "التعب والنعاس المفرط",
-        "mauxDeTeteMatinaux": "الصداع الصباحي",
-        "difficultesDeConcentration": "صعوبة التركيز",
-        "irritabiliteEtChangementsDHumeur": "التهيج وتغيرات المزاج",
-        "complicationsPossibles": "المضاعفات المحتملة",
-        "problemesCardiovasculaires": "مشاكل القلب والأوعية الدموية",
-        "hypertensionRisqueDavcTroublesDuRythmeCardiaque": "ارتفاع ضغط الدم وخطر السكتة الدماغية واضطرابات ضربات القلب",
-        "troublesCognitifs": "الاضطرابات الإدراكية",
-        "perteDeMemoireDifficultesDeConcentration": "فقدان الذاكرة وصعوبة التركيز",
-        "complicationsMetaboliques": "المضاعفات الأيضية",
-        "diabetePriseDePoidsSyndromeMetabolique": "داء السكري وزيادة الوزن ومتلازمة التمثيل الغذائي",
-        "autresRisques": "مخاطر أخرى",
-        "accidentsDeLaRouteDepressionProblemesRelationnels": "حوادث الطرق والاكتئاب والمشاكل العلاقية",
-        "solutionsTherapeutiques": "الحلول العلاجية",
-        "ppcPressionPositiveContinue": "ضغط الهواء الإيجابي المستمر",
-        "descriptionPpc": "العلاج القياسي الذي يتضمن ارتداء قناع متصل بجهاز يوفر هواءً مضغوطًا أثناء النوم.",
-        "ortheseDavanceeMandibulaire": "جهاز تقديم الفك السفلي",
-        "descriptionOrthèse": "جهاز طبي يبقي الفك السفلي في وضع متقدم لفتح مجرى الهواء.",
-        "changementsDeModeDeVie": "تغييرات في نمط الحياة",
-        "perteDePoidsSiNecessaire": "فقدان الوزن إذا لزم الأمر",
-        "positionDeSommeilAdaptee": "وضعية نوم مناسبة",
-        "arretDuTabacEtReductionDeLalcool": "الإقلاع عن التدخين وتقليل الكحول",
-        "vousPensezSouffrirDApneesDuSommeil": "هل تعتقد أنك تعاني من انقطاع النفس أثناء النوم؟",
-        "diagnosticPrecoce": "التشخيص المبكر يسمح بإدارة أفضل.",
-        "prendreRendezVous": "حجز موعد"
-    },
-    "appointmentSection": {
-        "title": "حجز موعد",
-        "selectMonth": "اختر شهرًا",
-        "selectDay": "اختر يومًا",
-        "selectTime": "اختر وقتًا",
-        "reasonLabel": "سبب الموعد",
-        "reasonPlaceholder": "صف بإيجاز سبب موعدك...",
-        "submitButton": "طلب موعد",
-        "submitting": "جارٍ الإرسال...",
-        "success": {
-            "title": "نجاح",
-            "description": "تم طلب الموعد بنجاح"
-        },
-        "guestInfo": {
-            "title": "معلومات الزائر",
-            "name": "الاسم",
-            "email": "البريد الإلكتروني",
-            "phone": "رقم الهاتف",
-            "phoneOptional": "اختياري - للحالات العاجلة"
-        },
-        "error": {
-            "title": "خطأ",
-            "description": "حدث خطأ",
-            "failedToRequestAppointment": "فشل في طلب الموعد",
-            "generic": "حدث خطأ ما"
-        },
-        "loginDialog": {
-            "title": "تسجيل الدخول مطلوب",
-            "description": "يجب أن تكون مسجلاً لتحديد موعد. هل ترغب في تسجيل الدخول الآن؟",
-            "cancelButton": "إلغاء",
-            "loginButton": "تسجيل الدخول"
-        }
-    },
-    "error": {
-        "fillAllFields": "يرجى ملء جميع الحقول",
-        "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
-        "failedToRequestAppointment": "فشل في طلب الموعد",
-        "generic": "حدث خطأ ما",
-        "loginRequired": "يجب تسجيل الدخول لتنفيذ هذا الإجراء.",
-        "invalidDate": "تم اختيار تاريخ غير صالح.",
-        "invalidTime": "تم اختيار وقت غير صالح.",
-        "appointmentConflict": "تم حجز هذا الوقت بالفعل. يرجى اختيار وقت آخر.",
-        "networkError": "خطأ في الشبكة. يرجى التحقق من اتصالك والمحاولة مرة أخرى."
-    },
-    "contactPage": {
-        "title": "اتصل بنا",
-        "subtitle": "فريقنا متاح للإجابة على جميع أسئلتك ومساعدتك في احتياجاتك من المعدات الطبية.",
-        "contactInfo": {
-          "phone": {
-            "title": "رقم الهاتف",
-            "detail": "متوفر على مدار الساعة"
-          },
-          "email": {
-            "title": "البريد الإلكتروني",
-            "detail": "الرد خلال 24 ساعة"
-          },
-          "address": {
-            "title": "العنوان",
-            "detail": "المكتب الرئيسي"
-          },
-          "openingHours": {
-            "title": "ساعات العمل",
-            "detail": "خدمة الطوارئ متوفرة 24/7"
-          }
-        },
-        "form": {
-          "title": "اتصل بنا",
-          "userInfo": "معلوماتك",
-          "name": "الاسم الكامل",
-          "namePlaceholder": "أدخل اسمك الكامل",
-          "email": "البريد الإلكتروني",
-          "emailPlaceholder": "أدخل بريدك الإلكتروني",
-          "phone": "رقم الهاتف",
-          "phonePlaceholder": "أدخل رقم هاتفك",
-          "phoneOptional": "اختياري - للحالات العاجلة",
-          "messageLabel": "رسالتك",
-          "messagePlaceholder": "كيف يمكننا مساعدتك اليوم؟",
-          "submitButton": "إرسال الرسالة",
-          "submitting": "جاري الإرسال...",
-          "requiredFields": "* الحقول المطلوبة",
-          "responseTime": "نرد عادةً خلال 24 ساعة",
-          "lastContact": "وقت الاتصال",
-          "success": {
-            "title": "تم إرسال الرسالة",
-            "description": "شكراً لتواصلك معنا. سنرد عليك قريباً."
-          }
-        },
-        "map": {
-          "title": "موقعنا"
-        },
-        "loginDialog": {
-          "title": "هل تريد تسجيل الدخول؟",
-          "description": "سجّل دخولك لمتابعة رسائلك والحصول على ردود أسرع.",
-          "loginButton": "تسجيل الدخول",
-          "cancelButton": "المتابعة كزائر"
-        }
+        "gafsa": "قفصة"
       },
-    "checkoutPage": {
-        "emptyCart": {
-            "title": "السلة فارغة",
-            "description": "سلتك فارغة حاليًا."
-        },
-        "title": "طلب عرض أسعار",
-        "subtitle": "سنقدم لك عرض أسعار مخصص لمنتجاتك المختارة. سيتصل بك فريقنا قريبًا.",
-        "features": {
-            "qualityProducts": {
-                "title": "منتجات عالية الجودة",
-                "description": "جميع منتجاتنا معتمدة وتأتي من علامات تجارية معترف بها."
-            },
-            "fastDelivery": {
-                "title": "توصيل سريع",
-                "description": "خدمة توصيل احترافية في جميع أنحاء تونس."
-            },
-            "personalizedSupport": {
-                "title": "دعم مخصص",
-                "description": "فريق مخصص للإجابة على جميع أسئلتك."
-            }
-        },
-        "selectedProducts": {
-            "title": "المنتجات المختارة",
-            "quantity": "الكمية:"
-        },
-        "summary": {
-            "title": "طلب عرض أسعار",
-            "description": "بالنقر على الزر أدناه، ستتلقى:",
-            "bullet1": "عرض أسعار مخصص",
-            "bullet2": "مكالمة من فريق المبيعات لدينا",
-            "bullet3": "نصائح الخبراء حول المنتجات الخاصة بك",
-            "requestButton": "طلب عرض أسعار",
-            "loading": "جارٍ المعالجة...",
-            "footer": "سيتصل بك فريقنا خلال 24-48 ساعة."
-        }
+      "imageAlt": "خريطة تغطية تونس"
     },
-    "aboutPage": {
-        "hero": {
-            "title": "حول خدمة النخبة الطبية",
-            "subtitle": "الريادة في حلول الأكسجين والعلاج التنفسي في تونس"
-        },
-        "mission": {
-            "title": "مهمتنا",
-            "description": "نحن شركة متخصصة في علاج الأكسجين، نقدم حلولًا طبية للمرضى الذين يحتاجون إلى مساعدة تنفسية. التزامنا هو ضمان خدمة منزلية مخصصة لضمان راحة ورفاهية مرضانا.",
-            "keyPoints": {
-                "keyPoint1": "تركيب وصيانة المعدات الطبية في المنزل",
-                "keyPoint2": "خدمة الدعم الفني على مدار الساعة",
-                "keyPoint3": "تغطية مناطق سوسة، المنستير، المهدية، كاب بون، وتونس الكبرى",
-                "keyPoint4": "فريق فني عالي الكفاءة",
-                "keyPoint5": "متابعة منتظمة للمرضى",
-                "keyPoint6": "حلول العلاج بالأكسجين والتهوية"
-            },
-            "imageAlt": "معدات طبية"
-        },
-        "values": {
-            "title": "قيمنا",
-            "patientCommitment": {
-                "title": "الالتزام بالمرضى",
-                "description": "أولويتنا القصوى هي راحة ورفاهية مرضانا."
-            },
-            "experiencedTeam": {
-                "title": "فريق ذو خبرة",
-                "description": "فنيين مؤهلين وموظفين طبيين مكرسين."
-            },
-            "medicalExcellence": {
-                "title": "التميز الطبي",
-                "description": "معدات حديثة وخدمات عالية الجودة."
-            },
-            "personalizedService": {
-                "title": "خدمة مخصصة",
-                "description": "حلول مصممة لتلبية احتياجات كل مريض."
-            }
-        },
-        "cnam": {
-            "title": "الشراكة مع CNAM",
-            "description": "كشريك معتمد لصندوق التأمين الصحي الوطني (CNAM)، نسهل الوصول إلى المعدات الطبية الأساسية لمرضانا.",
-            "bullet1": "تغطية مباشرة مع CNAM",
-            "bullet2": "عملية سداد مبسطة",
-            "bullet3": "معدات متوافقة مع CNAM",
-            "bullet4": "المساعدة في الإجراءات الإدارية",
-            "imageAlt": "شعار CNAM تونس"
-        },
-        "coverage": {
-            "title": "تغطيتنا",
-            "description": "يغطي فنينا المؤهلون مناطق سوسة، المنستير، المهدية، كاب بون، وتونس الكبرى، مما يضمن التركيب السريع والمتابعة الفنية الدقيقة.",
-            "northRegion": "المناطق الشمالية",
-            "centerRegion": "المناطق الوسطى",
-            "southRegion": "المناطق الجنوبية",
-            "regions": {
-                "grandTunis": "تونس الكبرى",
-                "capBon": "الوطن القبلي",
-                "sousse": "سوسة",
-                "monastir": "المنستير",
-                "mahdia": "المهدية",
-                "beja": "باجة",
-                "bizerte": "بنزرت",
-                "kairouan": "القيروان",
-                "sfax": "صفاقس",
-                "gafsa": "قفصة"
-            },
-            "imageAlt": "خريطة تغطية تونس"
-        },
-        "cta": {
-            "title": "تحتاج إلى خدماتنا؟",
-            "subtitle": "اتصل بنا اليوم لمناقشة احتياجاتك الصحية التنفسية.",
-            "button": "اتصل بنا"
-        }
-        
+    "cta": {
+      "title": "تحتاج إلى خدماتنا؟",
+      "subtitle": "اتصل بنا اليوم لمناقشة احتياجاتك الصحية التنفسية.",
+      "button": "اتصل بنا"
+    }
+  },
+  "ordersPage": {
+    "title": "طلباتي",
+    "emptyOrders": {
+      "title": "لا توجد طلبات",
+      "description": "لم تقم بأي طلبات بعد."
     },
-    "ordersPage": {
-        "title": "طلباتي",
-        "emptyOrders": {
-            "title": "لا توجد طلبات",
-            "description": "لم تقم بأي طلبات بعد."
-        },
-        "quantity": "الكمية",
-        "status": {
-            "pending": "قيد الانتظار",
-            "confirmed": "مؤكد",
-            "inProgress": "قيد التنفيذ",
-            "delivered": "تم التوصيل",
-            "cancelled": "ملغى",
-            "quote": "عرض سعر"
-        },
-        "errors": {
-            "loginRequired": "يرجى تسجيل الدخول لعرض طلباتك.",
-            "sessionExpired": "انتهت الجلسة. يرجى تسجيل الدخول مرة أخرى.",
-            "fetchFailed": "فشل في جلب الطلبات.",
-            "fetchError": "حدث خطأ أثناء جلب الطلبات."
-        }
+    "quantity": "الكمية",
+    "status": {
+      "pending": "قيد الانتظار",
+      "confirmed": "مؤكد",
+      "inProgress": "قيد التنفيذ",
+      "delivered": "تم التوصيل",
+      "cancelled": "ملغى",
+      "quote": "عرض سعر"
     },
-    "respiratoryTherapyBlog": {
+    "errors": {
+      "loginRequired": "يرجى تسجيل الدخول لعرض طلباتك.",
+      "sessionExpired": "انتهت الجلسة. يرجى تسجيل الدخول مرة أخرى.",
+      "fetchFailed": "فشل في جلب الطلبات.",
+      "fetchError": "حدث خطأ أثناء جلب الطلبات."
+    }
+  },
+  "respiratoryTherapyBlog": {
     "pageTitle": "فوائد العلاج التنفسي",
     "pageDescription": "اكتشف كيف تحسن العلاجات التنفسية الحديثة جودة الحياة وتوفر فوائد صحية كبيرة على المدى الطويل.",
     "heroImageAlt": "العلاج التنفسي وفوائده الصحية",
@@ -467,504 +466,553 @@
     }
   },
   "servicesPage": {
-        "hero": {
-            "title": "خدمات العلاج بالأكسجين المهنية",
-            "description": "حلول طبية متخصصة للمرضى الذين يحتاجون إلى مساعدة تنفسية، مع خدمة منزلية مخصصة لراحتك ورفاهيتك."
-        },
-        "mainContent": {
-            "title": "خبرتنا في خدمتك",
-            "description1": "مرحبًا بكم في خدمات النخبة الطبية، شريككم الموثوق في العلاج بالأكسجين والتهوية والخدمات المنزلية. منذ تأسيسنا في عام 2018",
-            "description2": "نحن متخصصون في العلاج بالأكسجين والمساعدة التنفسية المنزلية، نقدم خدمات البيع والتأجير، مما يضمن أن يحصل مرضانا على الأجهزة الأنسب. نحن متعاقدون مع صندوق التأمين الصحي الوطني (CNAM) وشركات التأمين الصحي لتسهيل الوصول إلى الرعاية للجميع.",
-            "description3": "فريقنا المخصص والمحترف ملتزم بتقديم المساعدة بسرعة وأمان ودافئ، مما يضمن خدمة إنسانية ومهنية وعالية الجودة مصممة لدعم صحتك اليومية، وكذلك رفاهية وراحة البال لكل مريض وعائلته.",
-            "coverageTitle": "مناطق التغطية"
-        },
-        "services": {
-            "service1": {
-                "title": "خدمة منزلية",
-                "description": "تركيب وصيانة المعدات الطبية مباشرة في منزلك"
-            },
-            "service2": {
-                "title": "دعم فني 24/7",
-                "description": "فريق فني مؤهل متاح في جميع الأوقات"
-            },
-            "service3": {
-                "title": "متابعة مخصصة",
-                "description": "دعم مصمم خصيصًا لتلبية احتياجاتك الخاصة"
-            }
-        },
-        "regions": [
-            "سوسة",
-            "المنستير",
-            "المهدية",
-            "الرأس الطيب",
-            "تونس الكبرى",
-            "بنزرت",
-            "باجة",
-            "جندوبة",
-            "الكاف",
-            "سليانة",
-            "القيروان",
-            "صفاقس",
-            "قفصة"
-        ],
-        "contact": {
-            "title": "تحتاج إلى مساعدة؟",
-            "description": "فريقنا متاح على مدار الساعة لتلبية احتياجاتك."
-        }
+    "hero": {
+      "title": "خدمات العلاج بالأكسجين المهنية",
+      "description": "حلول طبية متخصصة للمرضى الذين يحتاجون إلى مساعدة تنفسية، مع خدمة منزلية مخصصة لراحتك ورفاهيتك."
     },
-        "productsPage": {
-          "hero": {
-            "title": "منتجاتنا",
-            "description": "اكتشف مجموعة واسعة من المعدات الطبية والإمدادات عالية الجودة. نقدم أفضل العلامات التجارية والمنتجات لتلبية احتياجاتك الصحية."
-          },
-          "filters": {
-            "title": "فلاتر",
-            "searchPlaceholder": "ابحث عن المنتجات...",
-            "selectBrand": "اختر العلامة التجارية",
-            "allBrands": "جميع العلامات التجارية",
-            "activeFilters": {
-              "category": "الفئة",
-              "type": "النوع",
-              "subcategory": "الفئة الفرعية",
-              "brand": "العلامة التجارية"
-            }
-          },
-          "products": {
-            "home": "الرئيسية",
-            "brand": "العلامة التجارية",
-            "category": "الفئة",
-            "subCategory": "الفئة الفرعية",
-            "type": "النوع",
-            "noProducts": "لا توجد منتجات",
-            "noImage": "لا توجد صورة",
-            "inStock": "متوفر",
-            "outOfStock": "غير متوفر",
-            "lowStock": "كمية محدودة",
-            "addToCart": "إضافة إلى السلة",
-            "features": "المواصفات",
-            "preOrder": "الطلب المسبق",
-            "comingSoon": "قريبا",
-            "description": "الوصف"
-          }
-        },
-    "home": {
-        "brands": {
-            "title": "شركاتنا"
-        },
-        "cta": {
-            "title": "تحتاج إلى إرشادات خبراء في المعدات الطبية؟",
-            "description": "فريقنا من المتخصصين في الصحة التنفسية جاهز لمساعدتك في العثور على الحل المثالي للمعدات الطبية المصمم خصيصاً لتلبية احتياجاتك. احصل على استشارة مهنية ودعم شخصي.",
-            "features": {
-                "expert": {
-                    "title": "استشارة خبراء",
-                    "description": "إرشادات مهنية من متخصصين معتمدين في المعدات الطبية"
-                },
-                "personalized": {
-                    "title": "حلول مخصصة",
-                    "description": "توصيات معدات مخصصة بناءً على احتياجاتك الصحية المحددة"
-                },
-                "support": {
-                    "title": "دعم 24/7",
-                    "description": "مساعدة فنية ودعم المرضى على مدار الساعة"
-                }
-            },
-            "contactButton": "اتصل بخبرائنا",
-            "responseTime": "نرد عادة خلال ساعتين",
-            "needHelp": "تحتاج لمساعدة فورية؟ اتصل بنا مباشرة:"
-        }
+    "mainContent": {
+      "title": "خبرتنا في خدمتك",
+      "description1": "مرحبًا بكم في خدمات النخبة الطبية، شريككم الموثوق في العلاج بالأكسجين والتهوية والخدمات المنزلية. منذ تأسيسنا في عام 2018",
+      "description2": "نحن متخصصون في العلاج بالأكسجين والمساعدة التنفسية المنزلية، نقدم خدمات البيع والتأجير، مما يضمن أن يحصل مرضانا على الأجهزة الأنسب. نحن متعاقدون مع صندوق التأمين الصحي الوطني (CNAM) وشركات التأمين الصحي لتسهيل الوصول إلى الرعاية للجميع.",
+      "description3": "فريقنا المخصص والمحترف ملتزم بتقديم المساعدة بسرعة وأمان ودافئ، مما يضمن خدمة إنسانية ومهنية وعالية الجودة مصممة لدعم صحتك اليومية، وكذلك رفاهية وراحة البال لكل مريض وعائلته.",
+      "coverageTitle": "مناطق التغطية"
     },
-    "verifyEmail": {
-        "title": "تحقق من البريد الإلكتروني",
-        "redirecting": "العودة إلى صفحة الدخول...",
-        "goToLogin": "العودة إلى الدخول"
-    },
-    "checkEmail": {
-        "title": "تحقق من البريد الإلكتروني",
-        "description": "لقد قمنا بإرسال رسالة تحقق للبريد الإلكتروني الخاص بك. يرجى التحقق من صندوق الوارد والنقر على الرابط لتأكيد حسابك.",
-        "spam": "اذا لم ترى البريد، يرجى التحقق من مجموعة البريد الخمي.",
-        "goToLogin": "العودة إلى الدخول"
-    },
-    "devisModal": {
-        "confirmationMessage": "يرجى التحقق من صندوق الوارد والنقر على الرابط لتأكيد حسابك.",
-        "confirmedMessage": "تم الاستلام وتأكيد الطلب. سنتوقع الأمر في غضون 48 ساعات لاستلام الطلب بشكل صحيح.",
-        "title": "ملخص طلبك:",
-        "quantity": "الكميات:",
-        "message": "اذا كنت لديك اي استفسارات، لا تتردد في التواصل معنا في ",
-        "confirming": "جاري التحقق...",
-        "confirm": "تأكيد الطلب"
-    },
-    "productsSection": {
-        "products": {
-            "noProducts": "لا توجد منتجات",
-            "noImage": "لا توجد صورة",
-            "inStock": "متوفر",
-            "outOfStock": "غير متوفر",
-            "lowStock": "منتجات قليلة",
-            "preOrder": "الطلب المسبق",
-            "comingSoon": "قريبا",
-            "addToCart": "إضافة إلى السلة",
-            "features": "المواصفات"
-        },
-        "masks": "MASQUES",
-        "cpap": "CPAP",
-        "oxygen": "OXYGENE",
-        "lits": "LITS MEDICALISE",
-        "scrollLeft": "العودة إلى الأول",
-        "scrollRight": "العودة إلى الأخير",
-        "viewDetails": "اظهار التفاصيل"
-    },
-    "cart": {
-        "title": "سلة التسوق",
-        "empty": "سلة التسوق فارغة",
-        "continue": "متابعة التسوق",
-        "requestQuote": "طلب عرض"
-    },
-    "blog": {
-        "title": "مدونة النخبة الطبية",
-        "posts": {
-          "oxygenTherapy": {
-            "title": "الدليل الشامل للعلاج بالأكسجين وأجهزة الضغط الهوائي الإيجابي المستمر",
-            "excerpt": "كل ما تحتاج لمعرفته حول معدات العلاج بالأكسجين وكيفية استخدامها لتحسين صحة الجهاز التنفسي."
-          },
-          "oxygenConcentrator": {
-            "title": "كيفية اختيار جهاز تركيز الأكسجين المناسب",
-            "excerpt": "دليلنا الخبير لاختيار جهاز التركيز الذي يناسب احتياجاتك الطبية ونمط حياتك."
-          },
-          "respiratoryEquipment": {
-            "title": "صيانة أجهزة التنفس: دليل شامل",
-            "excerpt": "إجراءات الصيانة الأساسية للحفاظ على أجهزتك في حالة عمل مثالية."
-          },
-          "respiratoryTherapy": {
-            "title": "فوائد العلاج التنفسي المنزلي",
-            "excerpt": "كيف يمكن للعلاج التنفسي المنزلي أن يحسن نوعية حياتك وصحتك العامة."
-          }
-        },
-        "oxygenConcentrator": {
-            "title": "كيفية اختيار جهاز تركيز الأكسجين المناسب",
-            "description": "دليلنا الخبير لاختيار جهاز التركيز الذي يناسب احتياجاتك الطبية ونمط حياتك.",
-            "sections": {
-              "whyImportant": {
-                "title": "لماذا يعتبر الاختيار الصحيح حاسمًا",
-                "description": "يمكن للجهاز المناسب أن يحسن بشكل كبير:",
-                "points": [
-                  "جودة حياتك اليومية",
-                  "استقلاليتك وقدرتك على الحركة",
-                  "فعالية علاجك",
-                  "راحتك أثناء النوم"
-                ]
-              },
-              "selectionCriteria": {
-                "title": "معايير الاختيار",
-                "mobility": {
-                  "title": "٢. الحاجة إلى التنقل",
-                  "fixedModels": {
-                    "title": "🔌 نماذج ثابتة",
-                    "pros": [
-                      "+ أكثر قوة",
-                      "+ أقل تكلفة",
-                      "- للاستخدام المنزلي فقط"
-                    ]
-                  },
-                  "portableModels": {
-                    "title": "⚡ نماذج محمولة",
-                    "pros": [
-                      "+ يعمل بالبطارية",
-                      "+ خفيف الوزن (2-5 كجم)",
-                      "- معدل تدفق محدود غالبًا"
-                    ]
-                  }
-                }
-              }
-            }
-          }
+    "services": {
+      "service1": {
+        "title": "خدمة منزلية",
+        "description": "تركيب وصيانة المعدات الطبية مباشرة في منزلك"
       },
-      "common": {
-        "readTime": "{{count}} دقيقة",
-        "readArticle": "اقرأ المقال"
+      "service2": {
+        "title": "دعم فني 24/7",
+        "description": "فريق فني مؤهل متاح في جميع الأوقات"
       },
-      "oxygenTherapyPage": {
-        "title": "دليل شامل للعلاج بالأكسجين وأجهزة CPAP",
-        "description": "كل ما تحتاج معرفته لتحسين صحتك التنفسية باستخدام معداتنا الطبية المحترفة.",
-        "introduction": {
-          "title": "لماذا هذه المعدات ضرورية",
-          "description": "ينقذ العلاج بالأكسجين وأجهزة CPAP الأرواح من خلال علاج:",
-          "conditions": [
-            "انقطاع النفس الانسدادي أثناء النوم",
-            "مرض الانسداد الرئوي المزمن",
-            "تليف الرئة",
-            "قصور الجهاز التنفسي المزمن"
-          ],
-          "expertTip": {
-            "title": "نصيحة الخبراء:",
-            "description": "يمكن أن يحسن الاستخدام المنتظم لجهازك جودة نومك بنسبة 70% ويقلل من مخاطر القلب والأوعية الدموية."
-          }
+      "service3": {
+        "title": "متابعة مخصصة",
+        "description": "دعم مصمم خصيصًا لتلبية احتياجاتك الخاصة"
+      }
+    },
+    "regions": [
+      "سوسة",
+      "المنستير",
+      "المهدية",
+      "الرأس الطيب",
+      "تونس الكبرى",
+      "بنزرت",
+      "باجة",
+      "جندوبة",
+      "الكاف",
+      "سليانة",
+      "القيروان",
+      "صفاقس",
+      "قفصة"
+    ],
+    "contact": {
+      "title": "تحتاج إلى مساعدة؟",
+      "description": "فريقنا متاح على مدار الساعة لتلبية احتياجاتك."
+    }
+  },
+  "productsPage": {
+    "hero": {
+      "title": "منتجاتنا",
+      "description": "اكتشف مجموعة واسعة من المعدات الطبية والإمدادات عالية الجودة. نقدم أفضل العلامات التجارية والمنتجات لتلبية احتياجاتك الصحية."
+    },
+    "filters": {
+      "title": "فلاتر",
+      "searchPlaceholder": "ابحث عن المنتجات...",
+      "selectBrand": "اختر العلامة التجارية",
+      "allBrands": "جميع العلامات التجارية",
+      "activeFilters": {
+        "category": "الفئة",
+        "type": "النوع",
+        "subcategory": "الفئة الفرعية",
+        "brand": "العلامة التجارية"
+      }
+    },
+    "products": {
+      "home": "الرئيسية",
+      "brand": "العلامة التجارية",
+      "category": "الفئة",
+      "subCategory": "الفئة الفرعية",
+      "type": "النوع",
+      "noProducts": "لا توجد منتجات",
+      "noImage": "لا توجد صورة",
+      "inStock": "متوفر",
+      "outOfStock": "غير متوفر",
+      "lowStock": "كمية محدودة",
+      "addToCart": "إضافة إلى السلة",
+      "features": "المواصفات",
+      "preOrder": "الطلب المسبق",
+      "comingSoon": "قريبا",
+      "description": "الوصف"
+    }
+  },
+  "home": {
+    "brands": {
+      "title": "شركاتنا"
+    },
+    "cta": {
+      "title": "تحتاج إلى إرشادات خبراء في المعدات الطبية؟",
+      "description": "فريقنا من المتخصصين في الصحة التنفسية جاهز لمساعدتك في العثور على الحل المثالي للمعدات الطبية المصمم خصيصاً لتلبية احتياجاتك. احصل على استشارة مهنية ودعم شخصي.",
+      "features": {
+        "expert": {
+          "title": "استشارة خبراء",
+          "description": "إرشادات مهنية من متخصصين معتمدين في المعدات الطبية"
         },
-        "equipment": {
-          "title": "حلولنا المهنية",
-          "oxygenConcentrators": {
-            "title": "مكثفات الأكسجين",
-            "description": "تقوم مكثفاتنا الطبية بتصفية وتنقية الأكسجين من الهواء المحيط (حتى 95% نقاء) بتقنية صامتة.",
-            "new": "جديد",
-            "portableModel": "طراز Spirit 3 المحمول (2.5 كجم فقط)",
-            "bestSeller": "الأكثر مبيعاً",
-            "homeOxPro": "Spirit 3 للاستخدام المنزلي",
-            "autonomy": "استقلالية",
-            "longBattery": "طرازات ببطارية طويلة العمر",
-            "viewConcentrators": "عرض مكثفات الأكسجين"
-          },
-          "cpapMachines": {
-            "title": "أجهزة CPAP",
-            "description": "تحافظ أجهزة CPAP لدينا على ضغط إيجابي ثابت للحفاظ على مجاري الهواء مفتوحة أثناء النوم، مما يعالج انقطاع النفس بشكل فعال.",
-            "features": [
-              "ضغط يضبط نفسه تلقائياً",
-              "مرطب مدمج",
-              "تشغيل هادئ (<25 ديسيبل)"
-            ]
-          }
+        "personalized": {
+          "title": "حلول مخصصة",
+          "description": "توصيات معدات مخصصة بناءً على احتياجاتك الصحية المحددة"
         },
-        "resources": {
-          "title": "مصادر مفيدة",
-          "videoDemo": {
-            "title": "فيديو توضيحي",
-            "description": "تعلم كيفية تركيب القناع بشكل صحيح للحصول على أقصى راحة.",
-            "videoTitle": "تركيب قناع CPAP"
-          },
-          "faq": {
-            "title": "الأسئلة الشائعة",
-            "questions": [
-              {
-                "question": "كم ساعة في الليلة يجب أن أستخدم جهاز CPAP الخاص بي؟",
-                "answer": "للحصول على أفضل النتائج، نوصي باستخدامه لمدة 4 ساعات على الأقل كل ليلة، ويفضل 6-8 ساعات."
-              },
-              {
-                "question": "كيف أنظف الجهاز الخاص بي؟",
-                "answer": "استخدم الماء الدافئ والصابون اللطيف يومياً للأقنعة، وقم بتغيير الفلاتر شهرياً."
-              }
-            ],
-            "viewAll": "عرض جميع الأسئلة"
-          }
+        "support": {
+          "title": "دعم 24/7",
+          "description": "مساعدة فنية ودعم المرضى على مدار الساعة"
+        }
+      },
+      "contactButton": "اتصل بخبرائنا",
+      "responseTime": "نرد عادة خلال ساعتين",
+      "needHelp": "تحتاج لمساعدة فورية؟ اتصل بنا مباشرة:"
+    }
+  },
+  "verifyEmail": {
+    "title": "تحقق من البريد الإلكتروني",
+    "redirecting": "العودة إلى صفحة الدخول...",
+    "goToLogin": "العودة إلى الدخول"
+  },
+  "checkEmail": {
+    "title": "تحقق من البريد الإلكتروني",
+    "description": "لقد قمنا بإرسال رسالة تحقق للبريد الإلكتروني الخاص بك. يرجى التحقق من صندوق الوارد والنقر على الرابط لتأكيد حسابك.",
+    "spam": "اذا لم ترى البريد، يرجى التحقق من مجموعة البريد الخمي.",
+    "goToLogin": "العودة إلى الدخول"
+  },
+  "devisModal": {
+    "confirmationMessage": "يرجى التحقق من صندوق الوارد والنقر على الرابط لتأكيد حسابك.",
+    "confirmedMessage": "تم الاستلام وتأكيد الطلب. سنتوقع الأمر في غضون 48 ساعات لاستلام الطلب بشكل صحيح.",
+    "title": "ملخص طلبك:",
+    "quantity": "الكميات:",
+    "message": "اذا كنت لديك اي استفسارات، لا تتردد في التواصل معنا في ",
+    "confirming": "جاري التحقق...",
+    "confirm": "تأكيد الطلب"
+  },
+  "productsSection": {
+    "products": {
+      "noProducts": "لا توجد منتجات",
+      "noImage": "لا توجد صورة",
+      "inStock": "متوفر",
+      "outOfStock": "غير متوفر",
+      "lowStock": "منتجات قليلة",
+      "preOrder": "الطلب المسبق",
+      "comingSoon": "قريبا",
+      "addToCart": "إضافة إلى السلة",
+      "features": "المواصفات"
+    },
+    "masks": "MASQUES",
+    "cpap": "CPAP",
+    "oxygen": "OXYGENE",
+    "lits": "LITS MEDICALISE",
+    "scrollLeft": "العودة إلى الأول",
+    "scrollRight": "العودة إلى الأخير",
+    "viewDetails": "اظهار التفاصيل"
+  },
+  "cart": {
+    "title": "سلة التسوق",
+    "empty": "سلة التسوق فارغة",
+    "continue": "متابعة التسوق",
+    "requestQuote": "طلب عرض"
+  },
+  "blog": {
+    "title": "مدونة النخبة الطبية",
+    "posts": {
+      "oxygenTherapy": {
+        "title": "الدليل الشامل للعلاج بالأكسجين وأجهزة الضغط الهوائي الإيجابي المستمر",
+        "excerpt": "كل ما تحتاج لمعرفته حول معدات العلاج بالأكسجين وكيفية استخدامها لتحسين صحة الجهاز التنفسي."
+      },
+      "oxygenConcentrator": {
+        "title": "كيفية اختيار جهاز تركيز الأكسجين المناسب",
+        "excerpt": "دليلنا الخبير لاختيار جهاز التركيز الذي يناسب احتياجاتك الطبية ونمط حياتك."
+      },
+      "respiratoryEquipment": {
+        "title": "صيانة أجهزة التنفس: دليل شامل",
+        "excerpt": "إجراءات الصيانة الأساسية للحفاظ على أجهزتك في حالة عمل مثالية."
+      },
+      "respiratoryTherapy": {
+        "title": "فوائد العلاج التنفسي المنزلي",
+        "excerpt": "كيف يمكن للعلاج التنفسي المنزلي أن يحسن نوعية حياتك وصحتك العامة."
+      }
+    },
+    "oxygenConcentrator": {
+      "title": "كيفية اختيار جهاز تركيز الأكسجين المناسب",
+      "description": "دليلنا الخبير لاختيار جهاز التركيز الذي يناسب احتياجاتك الطبية ونمط حياتك.",
+      "sections": {
+        "whyImportant": {
+          "title": "لماذا يعتبر الاختيار الصحيح حاسمًا",
+          "description": "يمكن للجهاز المناسب أن يحسن بشكل كبير:",
+          "points": [
+            "جودة حياتك اليومية",
+            "استقلاليتك وقدرتك على الحركة",
+            "فعالية علاجك",
+            "راحتك أثناء النوم"
+          ]
         },
-        "products": {
-          "title": "أجهزة CPAP يوويل",
-          "models": [
-            {
-              "name": "YUWELL YH-550",
-              "type": "CPAP قياسي",
-              "features": [
-                "راحة مثالية",
-                "تشغيل هادئ",
-                "سهل الاستخدام"
+        "selectionCriteria": {
+          "title": "معايير الاختيار",
+          "mobility": {
+            "title": "٢. الحاجة إلى التنقل",
+            "fixedModels": {
+              "title": "🔌 نماذج ثابتة",
+              "pros": [
+                "+ أكثر قوة",
+                "+ أقل تكلفة",
+                "- للاستخدام المنزلي فقط"
               ]
             },
-            {
-              "name": "YUWELL YH-350",
-              "type": "CPAP مدمج",
-              "features": [
-                "تصميم مدمج",
-                "علاج فعال",
-                "مثالي للسفر"
-              ]
-            },
-            {
-              "name": "YUWELL YH-680",
-              "type": "Auto-CPAP",
-              "features": [
-                "ضبط تلقائي",
-                "شاشة لمس",
-                "بيانات مفصلة"
+            "portableModels": {
+              "title": "⚡ نماذج محمولة",
+              "pros": [
+                "+ يعمل بالبطارية",
+                "+ خفيف الوزن (2-5 كجم)",
+                "- معدل تدفق محدود غالبًا"
               ]
             }
-          ],
-          "viewProduct": "عرض المنتج"
-        },
-        "cta": {
-          "title": "هل تحتاج مساعدة في اختيار معداتك؟",
-          "description": "خبراؤنا في الجهاز التنفسي متاحون لتقديم المشورة المجانية حول أفضل المعدات لاحتياجاتك الخاصة.",
-          "contactExpert": "تواصل مع خبير",
-          "phone": "(+216) 73 820 320 / (+216) 93 945 118"
-        },
-        "relatedArticles": {
-          "title": "مقالات ذات صلة",
-          "concentratorGuide": {
-            "title": "كيفية اختيار مكثف الأكسجين المناسب",
-            "description": "دليلنا الخبير لاختيار المكثف المناسب لاحتياجاتك."
-          },
-          "maintenanceGuide": {
-            "title": "صيانة معدات التنفس",
-            "description": "إجراءات الصيانة الأساسية للحفاظ على أجهزتك في حالة مثالية."
           }
-        }
-      },
-      "maintenanceGuide": {
-        "title": "دليل شامل لصيانة أجهزة التنفس",
-        "description": "احمي استثمارك وضمن الأداء الأمثل مع إجراءات الصيانة الخبيرة لدينا.",
-        "dailyMaintenance": {
-          "title": "الصيانة اليومية",
-          "maskCleaning": {
-            "title": "تنظيف القناع",
-            "steps": [
-              "فك الأجزاء حسب التعليمات",
-              "اغسل بالماء الدافئ والصابون المعتدل",
-              "اشطف جيداً بماء نظيف",
-              "جفف في الهواء الطلق"
-            ]
-          },
-          "humidifier": {
-            "title": "المرطب",
-            "steps": [
-              "أفرغ الماء المتبقي كل صباح",
-              "نظف الخزان بالخل الأبيض المخفف",
-              "اشطف جيداً",
-              "املأ بالماء المقطر"
-            ]
-          }
-        },
-        "weeklyMaintenance": {
-          "title": "الصيانة الأسبوعية",
-          "tubulures": {
-            "title": "صيانة الأنابيب",
-            "recommendedProducts": "المنتجات الموصى بها:",
-            "standardTubing22mm": "أنبوب قياسي 22 ملم",
-            "standardTubing15mm": "أنبوب قياسي 15 ملم",
-            "steps": [
-              "نظف الأنابيب بمحلول مطهر خاص",
-              "اتركها تجف تماماً قبل إعادة الاستخدام",
-              "استبدلها كل 3-6 أشهر حسب الاستخدام"
-            ]
-          },
-          "filters": {
-            "title": "استبدال الفلاتر",
-            "description": "استبدل أو نظف الفلاتر حسب توصيات الشركة المصنعة",
-            "standardFilter": "فلتر لوينشتاين القياسي",
-            "steps": [
-              "تحقق من حالة الفلاتر أسبوعياً",
-              "استبدل الفلاتر وفقاً لتوصيات الشركة المصنعة",
-              "افحص جميع التوصيلات للكشف عن أي تسربات محتملة"
-            ],
-            "tip": "نصيحة: استبدل الفلاتر كل 30 يوماً للحصول على أداء مثالي"
-          }
-        },
-        "troubleshooting": {
-          "title": "استكشاف المشكلات الشائعة وإصلاحها",
-          "unusualNoise": {
-            "title": "ضوضاء غير معتادة",
-            "description": "تحقق من الفلاتر وتأكد من عدم وجود أي عوائق تسد مداخل/مخارج الهواء.",
-            "action": "عرض فلاتر بديلة"
-          },
-          "oxygenFlowReduction": {
-            "title": "انخفاض تدفق الأكسجين",
-            "description": "افحص الأنابيب بحثاً عن التواءات أو انسدادات واستبدل الفلاتر إذا كانت مسدودة.",
-            "action": "عرض أنابيب بديلة"
-          },
-          "maskLeaks": {
-            "title": "تسرب من القناع",
-            "description": "تحقق من ملاءمة القناع وسلامة حواف الإغلاق.",
-            "action": "استكشاف أقنعتنا"
-          },
-          "deviceFailure": {
-            "title": "عطل في الجهاز",
-            "description": "إذا لم يعمل جهازك أو ظهر رمز خطأ، اتصل بالدعم الفني لدينا.",
-            "action": "الاتصال بالدعم الفني"
-          }
-        },
-        "maintenanceSchedule": {
-          "title": "جدول الصيانة",
-          "element": "العنصر",
-          "frequency": "التكرار",
-          "action": "الإجراء",
-          "recommendedProducts": "المنتجات الموصى بها",
-          "items": {
-            "mask": {
-              "name": "القناع",
-              "frequency": "يومي",
-              "action": "تنظيف",
-              "product": "قناع الوجه YF-02"
-            },
-            "tubing": {
-              "name": "الأنابيب",
-              "frequency": "أسبوعي",
-              "action": "تنظيف عميق",
-              "product": "أنبوب قياسي 22 ملم"
-            },
-            "filters": {
-              "name": "الفلاتر",
-              "frequency": "شهري",
-              "action": "استبدال",
-              "product": "فلتر لوينشتاين القياسي"
-            },
-            "humidifier": {
-              "name": "المرطب",
-              "frequency": "أسبوعي",
-              "action": "إزالة الترسبات",
-              "product": "مرطب لوينشتاين"
-            },
-            "technicalCheck": {
-              "name": "فحص فني",
-              "frequency": "سنوي",
-              "action": "بواسطة فني",
-              "product": "حجز موعد"
-            }
-          }
-        },
-        "cta": {
-          "title": "هل تحتاج إلى مساعدة في الصيانة؟",
-          "description": "فنّيون معتمدون متاحون لمساعدتك في صيانة معدات التنفس الخاصة بك.",
-          "accessories": "عرض جميع ملحقاتنا",
-          "contact": "اتصل بفني"
-        }
-      },
-      "signup": {
-        "title": "إنشاء حساب",
-        "subtitle": "أو",
-        "loginLink": "تسجيل الدخول إلى حسابك الحالي",
-        "sections": {
-          "accountInfo": "معلومات تسجيل الدخول",
-          "personalInfo": "المعلومات الشخصية",
-          "addressInfo": "العنوان"
-        },
-        "fields": {
-          "email": {
-            "label": "عنوان البريد الإلكتروني",
-            "placeholder": "example@email.com"
-          },
-          "password": {
-            "label": "كلمة المرور",
-            "placeholder": "8 أحرف على الأقل مع رقم"
-          },
-          "firstName": {
-            "label": "الاسم الأول",
-            "placeholder": "محمد"
-          },
-          "lastName": {
-            "label": "اسم العائلة",
-            "placeholder": "العلي"
-          },
-          "phone": {
-            "label": "رقم الهاتف",
-            "placeholder": "+216 12 345 678"
-          },
-          "address": {
-            "label": "العنوان الكامل",
-            "placeholder": "15 شارع الحبيب بورقيبة، تونس"
-          },
-          "city": {
-            "label": "المدينة",
-            "placeholder": "تونس"
-          },
-          "postalCode": {
-            "label": "الرمز البريدي",
-            "placeholder": "1000"
-          }
-        },
-        "button": {
-          "submit": "إنشاء حسابي",
-          "loading": "جارٍ إنشاء الحساب..."
-        },
-        "terms": {
-          "text": "بإنشاء حساب، أنت توافق على",
-          "termsLink": "شروط الخدمة",
-          "and": "و",
-          "privacyLink": "سياسة الخصوصية"
         }
       }
+    }
+  },
+  "common": {
+    "readTime": "{{count}} دقيقة",
+    "readArticle": "اقرأ المقال"
+  },
+  "oxygenTherapyPage": {
+    "title": "دليل شامل للعلاج بالأكسجين وأجهزة CPAP",
+    "description": "كل ما تحتاج معرفته لتحسين صحتك التنفسية باستخدام معداتنا الطبية المحترفة.",
+    "introduction": {
+      "title": "لماذا هذه المعدات ضرورية",
+      "description": "ينقذ العلاج بالأكسجين وأجهزة CPAP الأرواح من خلال علاج:",
+      "conditions": [
+        "انقطاع النفس الانسدادي أثناء النوم",
+        "مرض الانسداد الرئوي المزمن",
+        "تليف الرئة",
+        "قصور الجهاز التنفسي المزمن"
+      ],
+      "expertTip": {
+        "title": "نصيحة الخبراء:",
+        "description": "يمكن أن يحسن الاستخدام المنتظم لجهازك جودة نومك بنسبة 70% ويقلل من مخاطر القلب والأوعية الدموية."
+      }
+    },
+    "equipment": {
+      "title": "حلولنا المهنية",
+      "oxygenConcentrators": {
+        "title": "مكثفات الأكسجين",
+        "description": "تقوم مكثفاتنا الطبية بتصفية وتنقية الأكسجين من الهواء المحيط (حتى 95% نقاء) بتقنية صامتة.",
+        "new": "جديد",
+        "portableModel": "طراز Spirit 3 المحمول (2.5 كجم فقط)",
+        "bestSeller": "الأكثر مبيعاً",
+        "homeOxPro": "Spirit 3 للاستخدام المنزلي",
+        "autonomy": "استقلالية",
+        "longBattery": "طرازات ببطارية طويلة العمر",
+        "viewConcentrators": "عرض مكثفات الأكسجين"
+      },
+      "cpapMachines": {
+        "title": "أجهزة CPAP",
+        "description": "تحافظ أجهزة CPAP لدينا على ضغط إيجابي ثابت للحفاظ على مجاري الهواء مفتوحة أثناء النوم، مما يعالج انقطاع النفس بشكل فعال.",
+        "features": [
+          "ضغط يضبط نفسه تلقائياً",
+          "مرطب مدمج",
+          "تشغيل هادئ (<25 ديسيبل)"
+        ]
+      }
+    },
+    "resources": {
+      "title": "مصادر مفيدة",
+      "videoDemo": {
+        "title": "فيديو توضيحي",
+        "description": "تعلم كيفية تركيب القناع بشكل صحيح للحصول على أقصى راحة.",
+        "videoTitle": "تركيب قناع CPAP"
+      },
+      "faq": {
+        "title": "الأسئلة الشائعة",
+        "questions": [
+          {
+            "question": "كم ساعة في الليلة يجب أن أستخدم جهاز CPAP الخاص بي؟",
+            "answer": "للحصول على أفضل النتائج، نوصي باستخدامه لمدة 4 ساعات على الأقل كل ليلة، ويفضل 6-8 ساعات."
+          },
+          {
+            "question": "كيف أنظف الجهاز الخاص بي؟",
+            "answer": "استخدم الماء الدافئ والصابون اللطيف يومياً للأقنعة، وقم بتغيير الفلاتر شهرياً."
+          }
+        ],
+        "viewAll": "عرض جميع الأسئلة"
+      }
+    },
+    "products": {
+      "title": "أجهزة CPAP يوويل",
+      "models": [
+        {
+          "name": "YUWELL YH-550",
+          "type": "CPAP قياسي",
+          "features": [
+            "راحة مثالية",
+            "تشغيل هادئ",
+            "سهل الاستخدام"
+          ]
+        },
+        {
+          "name": "YUWELL YH-350",
+          "type": "CPAP مدمج",
+          "features": [
+            "تصميم مدمج",
+            "علاج فعال",
+            "مثالي للسفر"
+          ]
+        },
+        {
+          "name": "YUWELL YH-680",
+          "type": "Auto-CPAP",
+          "features": [
+            "ضبط تلقائي",
+            "شاشة لمس",
+            "بيانات مفصلة"
+          ]
+        }
+      ],
+      "viewProduct": "عرض المنتج"
+    },
+    "cta": {
+      "title": "هل تحتاج مساعدة في اختيار معداتك؟",
+      "description": "خبراؤنا في الجهاز التنفسي متاحون لتقديم المشورة المجانية حول أفضل المعدات لاحتياجاتك الخاصة.",
+      "contactExpert": "تواصل مع خبير",
+      "phone": "(+216) 73 820 320 / (+216) 93 945 118"
+    },
+    "relatedArticles": {
+      "title": "مقالات ذات صلة",
+      "concentratorGuide": {
+        "title": "كيفية اختيار مكثف الأكسجين المناسب",
+        "description": "دليلنا الخبير لاختيار المكثف المناسب لاحتياجاتك."
+      },
+      "maintenanceGuide": {
+        "title": "صيانة معدات التنفس",
+        "description": "إجراءات الصيانة الأساسية للحفاظ على أجهزتك في حالة مثالية."
+      }
+    }
+  },
+  "maintenanceGuide": {
+    "title": "دليل شامل لصيانة أجهزة التنفس",
+    "description": "احمي استثمارك وضمن الأداء الأمثل مع إجراءات الصيانة الخبيرة لدينا.",
+    "dailyMaintenance": {
+      "title": "الصيانة اليومية",
+      "maskCleaning": {
+        "title": "تنظيف القناع",
+        "steps": [
+          "فك الأجزاء حسب التعليمات",
+          "اغسل بالماء الدافئ والصابون المعتدل",
+          "اشطف جيداً بماء نظيف",
+          "جفف في الهواء الطلق"
+        ]
+      },
+      "humidifier": {
+        "title": "المرطب",
+        "steps": [
+          "أفرغ الماء المتبقي كل صباح",
+          "نظف الخزان بالخل الأبيض المخفف",
+          "اشطف جيداً",
+          "املأ بالماء المقطر"
+        ]
+      }
+    },
+    "weeklyMaintenance": {
+      "title": "الصيانة الأسبوعية",
+      "tubulures": {
+        "title": "صيانة الأنابيب",
+        "recommendedProducts": "المنتجات الموصى بها:",
+        "standardTubing22mm": "أنبوب قياسي 22 ملم",
+        "standardTubing15mm": "أنبوب قياسي 15 ملم",
+        "steps": [
+          "نظف الأنابيب بمحلول مطهر خاص",
+          "اتركها تجف تماماً قبل إعادة الاستخدام",
+          "استبدلها كل 3-6 أشهر حسب الاستخدام"
+        ]
+      },
+      "filters": {
+        "title": "استبدال الفلاتر",
+        "description": "استبدل أو نظف الفلاتر حسب توصيات الشركة المصنعة",
+        "standardFilter": "فلتر لوينشتاين القياسي",
+        "steps": [
+          "تحقق من حالة الفلاتر أسبوعياً",
+          "استبدل الفلاتر وفقاً لتوصيات الشركة المصنعة",
+          "افحص جميع التوصيلات للكشف عن أي تسربات محتملة"
+        ],
+        "tip": "نصيحة: استبدل الفلاتر كل 30 يوماً للحصول على أداء مثالي"
+      }
+    },
+    "troubleshooting": {
+      "title": "استكشاف المشكلات الشائعة وإصلاحها",
+      "unusualNoise": {
+        "title": "ضوضاء غير معتادة",
+        "description": "تحقق من الفلاتر وتأكد من عدم وجود أي عوائق تسد مداخل/مخارج الهواء.",
+        "action": "عرض فلاتر بديلة"
+      },
+      "oxygenFlowReduction": {
+        "title": "انخفاض تدفق الأكسجين",
+        "description": "افحص الأنابيب بحثاً عن التواءات أو انسدادات واستبدل الفلاتر إذا كانت مسدودة.",
+        "action": "عرض أنابيب بديلة"
+      },
+      "maskLeaks": {
+        "title": "تسرب من القناع",
+        "description": "تحقق من ملاءمة القناع وسلامة حواف الإغلاق.",
+        "action": "استكشاف أقنعتنا"
+      },
+      "deviceFailure": {
+        "title": "عطل في الجهاز",
+        "description": "إذا لم يعمل جهازك أو ظهر رمز خطأ، اتصل بالدعم الفني لدينا.",
+        "action": "الاتصال بالدعم الفني"
+      }
+    },
+    "maintenanceSchedule": {
+      "title": "جدول الصيانة",
+      "element": "العنصر",
+      "frequency": "التكرار",
+      "action": "الإجراء",
+      "recommendedProducts": "المنتجات الموصى بها",
+      "items": {
+        "mask": {
+          "name": "القناع",
+          "frequency": "يومي",
+          "action": "تنظيف",
+          "product": "قناع الوجه YF-02"
+        },
+        "tubing": {
+          "name": "الأنابيب",
+          "frequency": "أسبوعي",
+          "action": "تنظيف عميق",
+          "product": "أنبوب قياسي 22 ملم"
+        },
+        "filters": {
+          "name": "الفلاتر",
+          "frequency": "شهري",
+          "action": "استبدال",
+          "product": "فلتر لوينشتاين القياسي"
+        },
+        "humidifier": {
+          "name": "المرطب",
+          "frequency": "أسبوعي",
+          "action": "إزالة الترسبات",
+          "product": "مرطب لوينشتاين"
+        },
+        "technicalCheck": {
+          "name": "فحص فني",
+          "frequency": "سنوي",
+          "action": "بواسطة فني",
+          "product": "حجز موعد"
+        }
+      }
+    },
+    "cta": {
+      "title": "هل تحتاج إلى مساعدة في الصيانة؟",
+      "description": "فنّيون معتمدون متاحون لمساعدتك في صيانة معدات التنفس الخاصة بك.",
+      "accessories": "عرض جميع ملحقاتنا",
+      "contact": "اتصل بفني"
+    }
+  },
+  "signup": {
+    "title": "إنشاء حساب",
+    "subtitle": "أو",
+    "loginLink": "تسجيل الدخول إلى حسابك الحالي",
+    "sections": {
+      "accountInfo": "معلومات تسجيل الدخول",
+      "personalInfo": "المعلومات الشخصية",
+      "addressInfo": "العنوان"
+    },
+    "fields": {
+      "email": {
+        "label": "عنوان البريد الإلكتروني",
+        "placeholder": "example@email.com"
+      },
+      "password": {
+        "label": "كلمة المرور",
+        "placeholder": "8 أحرف على الأقل مع رقم"
+      },
+      "firstName": {
+        "label": "الاسم الأول",
+        "placeholder": "محمد"
+      },
+      "lastName": {
+        "label": "اسم العائلة",
+        "placeholder": "العلي"
+      },
+      "phone": {
+        "label": "رقم الهاتف",
+        "placeholder": "+216 12 345 678"
+      },
+      "address": {
+        "label": "العنوان الكامل",
+        "placeholder": "15 شارع الحبيب بورقيبة، تونس"
+      },
+      "city": {
+        "label": "المدينة",
+        "placeholder": "تونس"
+      },
+      "postalCode": {
+        "label": "الرمز البريدي",
+        "placeholder": "1000"
+      }
+    },
+    "button": {
+      "submit": "إنشاء حسابي",
+      "loading": "جارٍ إنشاء الحساب..."
+    },
+    "terms": {
+      "text": "بإنشاء حساب، أنت توافق على",
+      "termsLink": "شروط الخدمة",
+      "and": "و",
+      "privacyLink": "سياسة الخصوصية"
+    }
+  },
+  "profilePage": {
+    "title": "ملفي الشخصي",
+    "breadcrumb": {
+      "home": "الرئيسية"
+    },
+    "buttons": {
+      "edit": "تعديل",
+      "save": "حفظ",
+      "cancel": "إلغاء",
+      "saving": "جار الحفظ..."
+    },
+    "sidebar": {
+      "verifiedAccount": "حساب موثق",
+      "memberSince": "عضو منذ "
+    },
+    "sections": {
+      "personalInfo": "المعلومات الشخصية",
+      "contactInfo": "معلومات الاتصال",
+      "shippingAddress": "عنوان التسليم"
+    },
+    "fields": {
+      "firstName": "الاسم الأول",
+      "lastName": "اللقب",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "address": "العنوان",
+      "city": "المدينة",
+      "postalCode": "الرمز البريدي"
+    },
+    "placeholders": {
+      "firstName": "اسمك الأول",
+      "lastName": "لقبك",
+      "email": "your@email.com",
+      "phone": "+216 XX XXX XXX",
+      "address": "الشارع، الرقم، الحي...",
+      "city": "تونس، سوسة، صفاقس...",
+      "postalCode": "0000"
+    },
+    "errors": {
+      "loginRequired": "يرجى تسجيل الدخول للوصول إلى ملفك الشخصي",
+      "sessionExpired": "انتهت صلاحية الجلسة. يرجى تسجيل الدخول مرة أخرى.",
+      "fetchError": "خطأ في استرداد الملف الشخصي",
+      "loginToUpdate": "يرجى تسجيل الدخول لتحديث ملفك الشخصي",
+      "updateError": "خطأ في تحديث الملف الشخصي"
+    },
+    "success": {
+      "profileUpdated": "تم تحديث الملف الشخصي بنجاح"
+    }
+  }
 }

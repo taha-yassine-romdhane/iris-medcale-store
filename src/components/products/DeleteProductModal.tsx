@@ -59,40 +59,45 @@ export default function DeleteProductModal({ isOpen, closeModal, product, onDele
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                <Dialog.Title as="div" className="flex justify-between items-center mb-4">
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">
-                    Supprimer le produit
-                  </h3>
-                  <button
-                    onClick={closeModal}
-                    className="text-gray-400 hover:text-gray-500"
-                  >
-                    <X size={20} />
-                  </button>
-                </Dialog.Title>
-
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    Êtes-vous sûr de vouloir supprimer le produit &quot;{product.name}&quot; ? Cette action est irréversible.
-                  </p>
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-lg bg-white text-left align-middle shadow-xl transition-all">
+                <div className="border-b border-gray-200 px-6 py-4">
+                  <Dialog.Title as="div" className="flex justify-between items-center">
+                    <div className="flex items-center gap-3">
+                      <div className="w-1 h-6 bg-gradient-to-b from-red-500 to-orange-500 rounded-full"></div>
+                      <h3 className="text-lg font-semibold text-gray-900">
+                        Supprimer le produit
+                      </h3>
+                    </div>
+                    <button
+                      onClick={closeModal}
+                      className="text-gray-400 hover:text-gray-600 transition-colors"
+                    >
+                      <X size={20} />
+                    </button>
+                  </Dialog.Title>
                 </div>
 
-                <div className="mt-6 flex justify-end space-x-3">
-                  <button
-                    type="button"
-                    onClick={closeModal}
-                    className="rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                  >
-                    Annuler
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleDelete}
-                    className="rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
-                  >
-                    Supprimer
-                  </button>
+                <div className="p-6">
+                  <p className="text-gray-600 mb-6">
+                    Êtes-vous sûr de vouloir supprimer le produit <span className="font-medium text-gray-900">&quot;{product.name}&quot;</span> ? Cette action est irréversible.
+                  </p>
+
+                  <div className="flex justify-end space-x-3">
+                    <button
+                      type="button"
+                      onClick={closeModal}
+                      className="px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                    >
+                      Annuler
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleDelete}
+                      className="px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors"
+                    >
+                      Supprimer
+                    </button>
+                  </div>
                 </div>
               </Dialog.Panel>
             </Transition.Child>

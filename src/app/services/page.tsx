@@ -1,6 +1,6 @@
 'use client';
 
-import { MapPin, Wrench, Truck, HeartPulse } from 'lucide-react';
+import { MapPin, Wrench, Truck, HeartPulse, CheckCircle } from 'lucide-react';
 import { useTranslation } from '@/contexts/TranslationContext';
 
 const ServicesPage = () => {
@@ -27,14 +27,17 @@ const ServicesPage = () => {
   const regions = t('servicesPage.regions', { returnObjects: true }) || [];
   
   return (
-    <main>
+    <main className="pt-16 min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-green-600 text-white py-16">
+      <section className="bg-gray-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            {t('servicesPage.hero.title')}
-          </h1>
-          <p className="text-xl max-w-2xl">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-1 h-12 bg-gradient-to-b from-emerald-500 to-blue-500 rounded-full"></div>
+            <h1 className="text-3xl md:text-4xl font-bold">
+              {t('servicesPage.hero.title')}
+            </h1>
+          </div>
+          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto text-center">
             {t('servicesPage.hero.description')}
           </p>
         </div>
@@ -46,32 +49,35 @@ const ServicesPage = () => {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Left Column - Main Description */}
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-gray-900">
-                {t('servicesPage.mainContent.title')}
-              </h2>
-              <div className="container mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
-                <p className="text-lg text-gray-700 leading-relaxed">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-1 h-8 bg-gradient-to-b from-emerald-500 to-blue-500 rounded-full"></div>
+                <h2 className="text-2xl font-semibold text-gray-900">
+                  {t('servicesPage.mainContent.title')}
+                </h2>
+              </div>
+              <div className="bg-white p-6 rounded-lg border border-gray-200">
+                <p className="text-gray-700 leading-relaxed">
                   {t('servicesPage.mainContent.description1')}
                 </p>
 
-                <p className="text-lg text-gray-700 leading-relaxed mt-4">
+                <p className="text-gray-700 leading-relaxed mt-4">
                   {t('servicesPage.mainContent.description2')}
                 </p>
 
-                <p className="text-lg text-gray-700 leading-relaxed mt-4">
+                <p className="text-gray-700 leading-relaxed mt-4">
                   {t('servicesPage.mainContent.description3')}
                 </p>
               </div>
 
-              <div className="bg-green-50 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold text-green-800 mb-4">
+              <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                <h3 className="text-lg font-medium text-gray-900 mb-4">
                   {t('servicesPage.mainContent.coverageTitle')}
                 </h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3">
                   {regions.map((region, index) => (
                     <div key={index} className="flex items-center space-x-2">
-                      <MapPin className="h-5 w-5 text-green-600" />
-                      <span className="text-gray-700">{region}</span>
+                      <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+                      <span className="text-gray-700 text-sm">{region}</span>
                     </div>
                   ))}
                 </div>
@@ -83,15 +89,15 @@ const ServicesPage = () => {
               {services.map((service, index) => (
                 <div
                   key={index}
-                  className="bg-green-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+                  className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-sm transition-shadow"
                 >
                   <div className="flex items-start space-x-4">
-                    <div className="bg-green-100 p-3 rounded-lg">
-                      <service.icon className="h-6 w-6 text-green-600" />
+                    <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <service.icon className="h-6 w-6 text-emerald-600" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                      <p className="text-gray-600">{service.description}</p>
+                      <h3 className="text-lg font-medium text-gray-900 mb-2">{service.title}</h3>
+                      <p className="text-gray-600 text-sm">{service.description}</p>
                     </div>
                   </div>
                 </div>
@@ -101,25 +107,24 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+      {/* Call to Action Section */}
+      <section className="bg-gray-900 text-white py-16">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-1 h-8 bg-gradient-to-b from-emerald-500 to-blue-500 rounded-full"></div>
+            <h2 className="text-2xl font-semibold">
               {t('servicesPage.contact.title')}
             </h2>
-            <p className="text-lg text-gray-600">
-              {t('servicesPage.contact.description')}
-            </p>
           </div>
-          <div className="flex justify-center">
-            <a
-              href="/contact"
-              className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
-            >
-              {t('aboutPage.cta.button')}
-            </a>
-          </div>
+          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+            {t('servicesPage.contact.description')}
+          </p>
+          <a
+            href="/contact"
+            className="inline-block bg-white text-gray-900 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+          >
+            {t('aboutPage.cta.button')}
+          </a>
         </div>
       </section>
     </main>

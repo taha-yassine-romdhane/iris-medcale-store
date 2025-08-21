@@ -90,74 +90,81 @@ export default function ProductsPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="space-y-6">
+    <div className="min-h-screen bg-white pt-24 pb-16">
+      <div className="max-w-7xl mx-auto px-4">
         {/* Header Section */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">Gestion des produits</h1>
-          <button
-            onClick={() => router.push('/dashboard')}
-            className="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
-            <Home className="h-5 w-5 mr-2" />
-            retour au panneau de configuration
-          </button>
-          <button
-            onClick={() => setIsAddModalOpen(true)}
-            className="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
-            <PlusCircle className="h-5 w-5 mr-2" />
-            Ajouter un produit
-          </button>
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <div className="w-1 h-8 bg-gradient-to-b from-emerald-500 to-blue-500 rounded-full"></div>
+              <h1 className="text-3xl font-bold text-gray-900">Gestion des produits</h1>
+            </div>
+            <div className="flex gap-3">
+              <button
+                onClick={() => router.push('/dashboard')}
+                className="inline-flex items-center px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+              >
+                <Home className="h-4 w-4 mr-2" />
+                Retour
+              </button>
+              <button
+                onClick={() => setIsAddModalOpen(true)}
+                className="inline-flex items-center px-4 py-2 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
+              >
+                <PlusCircle className="h-4 w-4 mr-2" />
+                Ajouter un produit
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Filters and Search Section */}
-        <div className="bg-white rounded-lg shadow p-4 space-y-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
           <ProductFilters
             onFilter={handleFilter}
             onResetPage={handleResetPage}
-            className="w-full overflow-x-auto"
+            className=""
           />
 
           {/* Search Bar */}
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+          <div className="relative mt-4">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input
               type="text"
               placeholder="Rechercher un produit..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
             />
           </div>
         </div>
 
         {/* Products Table */}
-        <div className="bg-white rounded-lg shadow">
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
           <div className="max-w-full overflow-x-auto">
             <div className="inline-block min-w-full align-middle">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                       Image
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                       Nom
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                       Marque
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                       Type
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                       Categorie
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                       Stock
                     </th>
-                    <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-600 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -167,7 +174,7 @@ export default function ProductsPage() {
                     <tr>
                       <td colSpan={7} className="px-6 py-4 text-center">
                         <div className="flex justify-center items-center">
-                          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-600"></div>
                         </div>
                       </td>
                     </tr>
@@ -230,27 +237,27 @@ export default function ProductsPage() {
                                 setSelectedProduct(product);
                                 setIsViewModalOpen(true);
                               }}
-                              className="text-gray-600 hover:text-gray-900"
+                              className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
                             >
-                              <Eye className="h-5 w-5" />
+                              <Eye className="h-4 w-4" />
                             </button>
                             <button
                               onClick={() => {
                                 setSelectedProduct(product);
                                 setIsEditModalOpen(true);
                               }}
-                              className="text-blue-600 hover:text-blue-900"
+                              className="p-1 text-emerald-600 hover:text-emerald-700 transition-colors"
                             >
-                              <Edit className="h-5 w-5" />
+                              <Edit className="h-4 w-4" />
                             </button>
                             <button
                               onClick={() => {
                                 setSelectedProduct(product);
                                 setIsDeleteModalOpen(true);
                               }}
-                              className="text-red-600 hover:text-red-900"
+                              className="p-1 text-red-500 hover:text-red-600 transition-colors"
                             >
-                              <Trash className="h-5 w-5" />
+                              <Trash className="h-4 w-4" />
                             </button>
                           </div>
                         </td>
@@ -262,8 +269,6 @@ export default function ProductsPage() {
             </div>
           </div>
         </div>
-      </div>
-
       {/* Modals */}
       <ViewProductModal
         isOpen={isViewModalOpen}
@@ -295,6 +300,7 @@ export default function ProductsPage() {
         closeModal={() => setIsAddModalOpen(false)}
         onAdd={handleAddProduct}
       />
+      </div>
     </div>
   );
 }

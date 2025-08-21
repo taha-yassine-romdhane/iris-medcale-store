@@ -41,66 +41,73 @@ export default function ViewProductModal({ isOpen, closeModal, product }: ViewPr
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                <Dialog.Title as="div" className="flex justify-between items-center mb-4">
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">
-                    Détails du produit
-                  </h3>
-                  <button
-                    onClick={closeModal}
-                    className="text-gray-400 hover:text-gray-500"
-                  >
-                    <X size={20} />
-                  </button>
-                </Dialog.Title>
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-lg bg-white text-left align-middle shadow-xl transition-all">
+                <div className="border-b border-gray-200 px-6 py-4">
+                  <Dialog.Title as="div" className="flex justify-between items-center">
+                    <div className="flex items-center gap-3">
+                      <div className="w-1 h-6 bg-gradient-to-b from-emerald-500 to-blue-500 rounded-full"></div>
+                      <h3 className="text-lg font-semibold text-gray-900">
+                        Détails du produit
+                      </h3>
+                    </div>
+                    <button
+                      onClick={closeModal}
+                      className="text-gray-400 hover:text-gray-600 transition-colors"
+                    >
+                      <X size={20} />
+                    </button>
+                  </Dialog.Title>
+                </div>
 
-                <div className="mt-2">
+                <div className="p-6">
                   {product.media && product.media[0] && (
-                    <Image
-                      src={product.media[0]?.url || '/placeholder.jpg'}
-                      alt={product.media[0]?.alt || product.name}
-                      width={400}
-                      height={400}
-                      className="w-full h-auto object-cover rounded-lg"
-                    />
+                    <div className="mb-4">
+                      <Image
+                        src={product.media[0]?.url || '/placeholder.jpg'}
+                        alt={product.media[0]?.alt || product.name}
+                        width={400}
+                        height={400}
+                        className="w-full h-auto object-cover rounded-lg border border-gray-200"
+                      />
+                    </div>
                   )}
 
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     <div>
-                      <h4 className="text-sm font-medium text-gray-500">Nom</h4>
+                      <h4 className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-1">Nom</h4>
                       <p className="text-base text-gray-900">{product.name}</p>
                     </div>
 
                     {product.subCategory && (
                       <div>
-                        <h4 className="text-sm font-medium text-gray-500">Catégorie</h4>
+                        <h4 className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-1">Catégorie</h4>
                         <p className="text-base text-gray-900">{product.subCategory}</p>
                       </div>
                     )}
 
                     {product.brand && (
                       <div>
-                        <h4 className="text-sm font-medium text-gray-500">Marque</h4>
+                        <h4 className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-1">Marque</h4>
                         <p className="text-base text-gray-900">{product.brand}</p>
                       </div>
                     )}
 
                     {product.type && (
                       <div>
-                        <h4 className="text-sm font-medium text-gray-500">Type</h4>
+                        <h4 className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-1">Type</h4>
                         <p className="text-base text-gray-900">{product.type}</p>
                       </div>
                     )}
 
                     {product.description && (
                       <div>
-                        <h4 className="text-sm font-medium text-gray-500">Description</h4>
+                        <h4 className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-1">Description</h4>
                         <p className="text-base text-gray-900">{product.description}</p>
                       </div>
                     )}
 
                     <div>
-                      <h4 className="text-sm font-medium text-gray-500">Statut</h4>
+                      <h4 className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-1">Statut</h4>
                       <span
                         className={`inline-flex px-2 text-xs font-semibold leading-5 rounded-full ${product.stock === 'IN_STOCK'
                             ? 'bg-green-100 text-green-800'

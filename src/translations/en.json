@@ -23,7 +23,6 @@
     "ourServices": "Space Professional",
     "aboutUs": "About Us"
   },
-  
   "CategoryNavbar": {
     "home": "Home",
     "allProducts": "All Products",
@@ -326,16 +325,16 @@
       "centerRegion": "Central Regions",
       "southRegion": "Southern Regions",
       "regions": {
-          "grandTunis": "Greater Tunis",
-          "capBon": "Cap Bon",
-          "sousse": "Sousse",
-          "monastir": "Monastir",
-          "mahdia": "Mahdia",
-          "beja": "Beja",
-          "bizerte": "Bizerte",
-          "kairouan": "Kairouan",
-          "sfax": "Sfax",
-          "gafsa": "Gafsa"
+        "grandTunis": "Greater Tunis",
+        "capBon": "Cap Bon",
+        "sousse": "Sousse",
+        "monastir": "Monastir",
+        "mahdia": "Mahdia",
+        "beja": "Beja",
+        "bizerte": "Bizerte",
+        "kairouan": "Kairouan",
+        "sfax": "Sfax",
+        "gafsa": "Gafsa"
       },
       "imageAlt": "Coverage Map of Tunisia"
     },
@@ -637,43 +636,43 @@
       }
     },
     "oxygenConcentrator": {
-    "title": "How to Choose the Right Oxygen Concentrator",
-    "description": "Our expert guide to selecting the concentrator that fits your medical needs and lifestyle.",
-    "sections": {
-      "whyImportant": {
-        "title": "Why the Right Choice is Crucial",
-        "description": "The right concentrator can significantly improve:",
-        "points": [
-          "Your daily quality of life",
-          "Your autonomy and mobility",
-          "The effectiveness of your treatment",
-          "Your comfort during sleep"
-        ]
-      },
-      "selectionCriteria": {
-        "title": "Selection Criteria",
-        "mobility": {
-          "title": "2. Mobility Needed",
-          "fixedModels": {
-            "title": "🔌 Fixed Models",
-            "pros": [
-              "+ More powerful",
-              "+ Less expensive",
-              "- For home use only"
-            ]
-          },
-          "portableModels": {
-            "title": "⚡ Portable Models",
-            "pros": [
-              "+ Battery-powered",
-              "+ Lightweight (2-5kg)",
-              "- Often limited flow rate"
-            ]
+      "title": "How to Choose the Right Oxygen Concentrator",
+      "description": "Our expert guide to selecting the concentrator that fits your medical needs and lifestyle.",
+      "sections": {
+        "whyImportant": {
+          "title": "Why the Right Choice is Crucial",
+          "description": "The right concentrator can significantly improve:",
+          "points": [
+            "Your daily quality of life",
+            "Your autonomy and mobility",
+            "The effectiveness of your treatment",
+            "Your comfort during sleep"
+          ]
+        },
+        "selectionCriteria": {
+          "title": "Selection Criteria",
+          "mobility": {
+            "title": "2. Mobility Needed",
+            "fixedModels": {
+              "title": "🔌 Fixed Models",
+              "pros": [
+                "+ More powerful",
+                "+ Less expensive",
+                "- For home use only"
+              ]
+            },
+            "portableModels": {
+              "title": "⚡ Portable Models",
+              "pros": [
+                "+ Battery-powered",
+                "+ Lightweight (2-5kg)",
+                "- Often limited flow rate"
+              ]
+            }
           }
         }
       }
     }
-  }
   },
   "common": {
     "readTime": "{{count}} min read",
@@ -962,6 +961,55 @@
       "termsLink": "terms of service",
       "and": "and our",
       "privacyLink": "privacy policy"
+    }
+  },
+  "profilePage": {
+    "title": "My Profile",
+    "breadcrumb": {
+      "home": "Home"
+    },
+    "buttons": {
+      "edit": "Edit",
+      "save": "Save",
+      "cancel": "Cancel",
+      "saving": "Saving..."
+    },
+    "sidebar": {
+      "verifiedAccount": "Verified Account",
+      "memberSince": "Member since {{date}}"
+    },
+    "sections": {
+      "personalInfo": "Personal Information",
+      "contactInfo": "Contact Information",
+      "shippingAddress": "Shipping Address"
+    },
+    "fields": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "city": "City",
+      "postalCode": "Postal Code"
+    },
+    "placeholders": {
+      "firstName": "Your first name",
+      "lastName": "Your last name",
+      "email": "your@email.com",
+      "phone": "+216 XX XXX XXX",
+      "address": "Street, number, neighborhood...",
+      "city": "Tunis, Sousse, Sfax...",
+      "postalCode": "0000"
+    },
+    "errors": {
+      "loginRequired": "Please log in to access your profile",
+      "sessionExpired": "Session expired. Please log in again.",
+      "fetchError": "Error fetching profile",
+      "loginToUpdate": "Please log in to update your profile",
+      "updateError": "Error updating profile"
+    },
+    "success": {
+      "profileUpdated": "Profile updated successfully"
     }
   }
 }
