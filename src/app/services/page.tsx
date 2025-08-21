@@ -1,6 +1,6 @@
 'use client';
 
-import { MapPin, Wrench, Truck, HeartPulse, CheckCircle } from 'lucide-react';
+import { Wrench, Truck, HeartPulse } from 'lucide-react';
 import { useTranslation } from '@/contexts/TranslationContext';
 
 const ServicesPage = () => {

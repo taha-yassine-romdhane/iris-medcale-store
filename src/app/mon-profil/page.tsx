@@ -3,14 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
-import { User as UserIcon, Mail, Phone, MapPin, Building, Hash, Home, Edit3, Save, X, Shield, Calendar } from 'lucide-react';
+import { User as UserIcon, Mail, Phone, MapPin, Building, Hash, Home, Edit3, Save, X, Shield } from 'lucide-react';
 import Link from 'next/link';
 import type { User} from '@/types/user';
-import { useTranslation } from '@/contexts/TranslationContext';
 
 export default function MonProfilPage() {
   const router = useRouter();
-  const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [profile, setProfile] = useState<User | null>(null);
