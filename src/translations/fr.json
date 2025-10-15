@@ -60,8 +60,8 @@
     "northRegion": "Région Nord",
     "grandTunis": "Grand Tunis",
     "capBon": "Cap Bon",
+    "zaghouen": "Zaghouen",
     "bizerte": "Bizerte",
-    "blog": "Blog",
     "beja": "Beja",
     "jendouba": "Jendouba",
     "leKef": "Le Kef",
@@ -69,11 +69,17 @@
     "centerRegion": "Régions Centre",
     "sousse": "Sousse",
     "monastir": "Monastir",
-    "mahdia": "Mahdia",
+    "mehdia": "Mahdia",
     "kairouan": "Kairouan",
+    "sidiBouzid": "Sidi Bouzid",
+    "gafsa": "Gafsa",
+    "kasserine": "Kasserine",
+    "touzeur": "Touzeur",
+    "mednin": "Mednin",
+    "jerba": "Jerba",
+    "gabes": "Gabes",
     "southWestRegion": "Régions Sud-Ouest",
     "sfax": "Sfax",
-    "gafsa": "Gafsa",
     "copyright": "2024 Iris Medical. Tous droits réservés."
   },
   "login": {
@@ -327,14 +333,18 @@
       "regions": {
         "grandTunis": "Grand Tunis",
         "capBon": "Cap Bon",
+        "zaghouen": "Zaghouen",
         "sousse": "Sousse",
         "monastir": "Monastir",
-        "mahdia": "Mahdia",
-        "beja": "Beja",
-        "bizerte": "Bizerte",
+        "mehdia": "Mahdia",
         "kairouan": "Kairouan",
-        "sfax": "Sfax",
-        "gafsa": "Gafsa"
+        "sidiBouzid": "Sidi Bouzid",
+        "gafsa": "Gafsa",
+        "kasserine": "Kasserine",
+        "touzeur": "Touzeur",
+        "mednin": "Mednin",
+        "jerba": "Jerba",
+        "gabes": "Gabes"
       },
       "imageAlt": "Carte de couverture en Tunisie"
     },
@@ -397,15 +407,15 @@
       "Monastir",
       "Mahdia",
       "Cap Bon",
-      "Grand Tunis",
-      "Bizerte",
-      "Beja",
-      "Jendouba",
-      "Le Kef",
-      "Siliana",
+      "Zaghouen",
       "Kairouan",
-      "Sfax",
-      "Gafsa"
+      "Sidi Bouzid",
+      "Gafsa",
+      "Kasserine",
+      "Touzeur",
+      "Mednin",
+      "Jerba",
+      "Gabes"
     ],
     "contact": {
       "title": "Besoin d'Assistance ?",
@@ -777,7 +787,7 @@
       "title": "Besoin d'Aide pour Choisir Votre Équipement?",
       "description": "Nos experts respiratoires sont disponibles pour vous conseiller gratuitement sur le meilleur équipement pour vos besoins spécifiques.",
       "contactExpert": "Contactez un Expert",
-      "phone": "(+216) 73 820 320 / (+216) 93 945 118"
+      "phone": "(+216) 93 945 107 / (+216) 93 945 118"
     },
     "relatedArticles": {
       "title": "Articles Liés",

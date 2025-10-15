@@ -36,7 +36,7 @@ export async function sendVerificationEmail(email: string, token: string) {
   try {
     const { data, error } = await resend.emails.send({
       from: 'Elite Medicale <no-reply@elitemedicaleservices.tn>',
-      to: 'contact@irismedicaltunisie.com',
+      to: 'contact@iris-med.tn',
       subject: 'Verify your email address - Elite Medicale Service',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
@@ -84,7 +84,7 @@ export async function sendContactFormEmail(data: ContactFormData) {
   try {
     const { data: emailData, error } = await resend.emails.send({
       from: 'Elite Medicale <no-reply@elitemedicaleservices.tn>',
-      to: 'contact@irismedicaltunisie.com',
+      to: 'contact@iris-med.tn',
       subject: `Nouveau message de contact de ${data.name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
@@ -145,7 +145,7 @@ export async function sendDevisNotificationEmail(data: DevisEmailData) {
 
     const { data: emailData, error } = await resend.emails.send({
       from: 'Iris Medical <no-reply@irismedicaltunisie.com>',
-      to: 'contact@irismedicaltunisie.com',
+      to: 'contact@iris-med.tn',
       subject: `Nouvelle demande de devis #${data.orderNumber}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
@@ -179,7 +179,7 @@ export async function sendDevisNotificationEmail(data: DevisEmailData) {
           
           <div style="text-align: center; margin-top: 30px; color: #888; font-size: 14px;">
             <p>Iris Medical Tunisie</p>
-            <p>Téléphone: (+216) 73 820 320 / (+216) 93 945 118</p>
+            <p>Téléphone: (+216) 93 945 107 / (+216) 93 945 118</p>
           </div>
         </div>
       `,

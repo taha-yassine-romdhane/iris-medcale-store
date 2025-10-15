@@ -240,7 +240,7 @@ export default function DevisModal({ isOpen, closeModal, items }: DevisModalProp
                   <p className="text-sm text-gray-500 text-center">
                     {t('devisModal.message')}
                     <a href="tel:+21673820320" className="text-green-600 font-medium">
-                      (+216) 73 820 320
+                      (+216) 93 945 107
                     </a>
                     {' / '}
                     <a href="tel:+21693945118" className="text-green-600 font-medium">

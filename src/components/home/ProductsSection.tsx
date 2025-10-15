@@ -17,7 +17,7 @@ interface CategoryProducts {
 }
 
 const orderedProducts = {
-  cpap: ['YH-680', 'YH-450', 'YH-550', 'AirSense 10 Elite', 'Prisma Smart Basic'],
+  cpap: ['YH-680', 'YH-450', 'YH-550', 'YH-350', 'AirSense 10 Elite', 'AirSense 10', 'YH-830', 'Prisma Smart Basic'],
   masks: ['YF-02', 'YN-03', 'YP-01', 'AirFit F20', 'AirFit F30'],
   oxygen: ['8F-5', '8F-10', 'Spirit 6', 'Spirit 3'],
 };
@@ -72,7 +72,10 @@ export default function ProductsSection() {
           cpap: orderedProducts.cpap
             .map(name => data.products.find((p: Product) =>
               p.name.toLowerCase().includes(name.toLowerCase()) &&
-              (p.type?.toLowerCase() === 'fixe' || p.type?.toLowerCase()?.includes('auto-pilote'))
+              (p.type?.toLowerCase() === 'fixe' || 
+               p.type?.toLowerCase()?.includes('auto-pilote') ||
+               p.type?.toLowerCase()?.includes('bipap') ||
+               p.category?.toLowerCase()?.includes('bipap'))
             ))
             .filter((p): p is Product => p !== undefined),
 

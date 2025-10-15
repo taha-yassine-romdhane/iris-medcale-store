@@ -17,18 +17,21 @@ export default function Footer() {
   // Define regions data structure
   const regions = {
     north: [
-      "grandTunis",
       "capBon",
-      "bizerte",
-      "beja",
+      "zaghouen",
     ],
     center: [
       "sousse",
       "monastir",
-      "mahdia",
+      "mehdia",
       "kairouan",
-      "sfax",
-      "gafsa"
+      "sidiBouzid",
+      "gafsa",
+      "kasserine",
+      "touzeur",
+      "mednin",
+      "jerba",
+      "gabes"
     ]
   };
 
@@ -104,15 +107,15 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <Mail className="text-emerald-600 flex-shrink-0 mt-0.5" size={16} />
-                <Link href="mailto:contact@irismedicaltunisie.com" className="text-gray-600 hover:text-emerald-600 transition-colors text-sm">
-                  contact@irismedicaltunisie.com
+                <Link href="mailto:contact@iris-med.tn" className="text-gray-600 hover:text-emerald-600 transition-colors text-sm">
+                  contact@iris-med.tn
                 </Link>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="text-emerald-600 flex-shrink-0 mt-0.5" size={16} />
                 <div className="space-y-1">
                   <Link href="tel:+21673820320" className="block text-gray-600 hover:text-emerald-600 transition-colors text-sm">
-                    (+216) 73 820 320
+                    (+216) 93 945 107
                   </Link>
                   <Link href="tel:+21693945118" className="block text-gray-600 hover:text-emerald-600 transition-colors text-sm">
                     (+216) 93 945 118

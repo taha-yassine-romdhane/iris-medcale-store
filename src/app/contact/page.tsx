@@ -13,13 +13,13 @@ const contactInfo = [
   {
     icon: Phone,
     title: "phone",
-    content: ["+216 73 820 320", "+216 93 945 118"],
+    content: ["+216 93 945 107", "+216 93 945 118"],
     detail: "available24_7"
   },
   {
     icon: Mail,
     title: "email",
-    content: ["contact@irismedicaltunisie.com"],
+    content: ["contact@iris-med.tn"],
     detail: "responseWithin24h"
   },
   {

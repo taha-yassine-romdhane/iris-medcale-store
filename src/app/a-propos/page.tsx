@@ -181,7 +181,7 @@ export default function AboutPage() {
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <h4 className="font-medium text-gray-900 mb-3">{t('aboutPage.coverage.northRegion')}</h4>
                     <div className="grid grid-cols-2 gap-2">
-                      {["grandTunis", "capBon", "bizerte", "beja"].map((region, index) => (
+                      {["capBon", "zaghouen"].map((region, index) => (
                         <div key={index} className="flex items-center space-x-2">
                           <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
                           <span className="text-gray-700 text-sm">{t(`aboutPage.coverage.regions.${region}`)}</span>
@@ -194,7 +194,7 @@ export default function AboutPage() {
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <h4 className="font-medium text-gray-900 mb-3">{t('aboutPage.coverage.centerRegion')}</h4>
                     <div className="grid grid-cols-2 gap-2">
-                      {["sousse", "monastir", "mahdia", "kairouan"].map((region, index) => (
+                      {["sousse", "monastir", "mehdia", "kairouan", "sidiBouzid", "gafsa"].map((region, index) => (
                         <div key={index} className="flex items-center space-x-2">
                           <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
                           <span className="text-gray-700 text-sm">{t(`aboutPage.coverage.regions.${region}`)}</span>
@@ -203,11 +203,11 @@ export default function AboutPage() {
                     </div>
                   </div>
 
-                  {/* South/West Region */}
+                  {/* South Region */}
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <h4 className="font-medium text-gray-900 mb-3">{t('aboutPage.coverage.southRegion')}</h4>
                     <div className="grid grid-cols-2 gap-2">
-                      {["sfax", "gafsa"].map((region, index) => (
+                      {["kasserine", "touzeur", "mednin", "jerba", "gabes"].map((region, index) => (
                         <div key={index} className="flex items-center space-x-2">
                           <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
                           <span className="text-gray-700 text-sm">{t(`aboutPage.coverage.regions.${region}`)}</span>
