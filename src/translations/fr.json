@@ -72,6 +72,7 @@
     "mehdia": "Mahdia",
     "kairouan": "Kairouan",
     "sidiBouzid": "Sidi Bouzid",
+    "southRegion": "Régions Sud",
     "gafsa": "Gafsa",
     "kasserine": "Kasserine",
     "touzeur": "Touzeur",
@@ -612,7 +613,7 @@
       "features": "Caractéristiques"
     },
     "masks": "MASQUES",
-    "cpap": "CPAP",
+    "cpap": "CPAP et VNI",
     "oxygen": "OXYGENES",
     "lits": "LITS MEDICALISE",
     "scrollLeft": "Défiler à gauche",

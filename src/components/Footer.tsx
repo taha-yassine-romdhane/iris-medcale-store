@@ -26,6 +26,8 @@ export default function Footer() {
       "mehdia",
       "kairouan",
       "sidiBouzid",
+    ],
+    south: [
       "gafsa",
       "kasserine",
       "touzeur",
@@ -115,6 +117,9 @@ export default function Footer() {
                 <Phone className="text-emerald-600 flex-shrink-0 mt-0.5" size={16} />
                 <div className="space-y-1">
                   <Link href="tel:+21673820320" className="block text-gray-600 hover:text-emerald-600 transition-colors text-sm">
+                    (+216) 73 820 320
+                  </Link>
+                  <Link href="tel:+21693945107" className="block text-gray-600 hover:text-emerald-600 transition-colors text-sm">
                     (+216) 93 945 107
                   </Link>
                   <Link href="tel:+21693945118" className="block text-gray-600 hover:text-emerald-600 transition-colors text-sm">
@@ -169,6 +174,22 @@ export default function Footer() {
                 </div>
                 <ul className="space-y-1 text-gray-600 text-xs pl-5">
                   {regions.center.map((region, index) => (
+                    <li key={index} className="flex items-center gap-2">
+                      <span className="w-1 h-1 bg-emerald-500 rounded-full flex-shrink-0"></span>
+                      <span>{t(`footer.${region}`)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* South Region */}
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <Locate className="text-emerald-600" size={14} />
+                  <h4 className="font-medium text-gray-800 text-sm">{t('footer.southRegion')}</h4>
+                </div>
+                <ul className="space-y-1 text-gray-600 text-xs pl-5">
+                  {regions.south.map((region, index) => (
                     <li key={index} className="flex items-center gap-2">
                       <span className="w-1 h-1 bg-emerald-500 rounded-full flex-shrink-0"></span>
                       <span>{t(`footer.${region}`)}</span>

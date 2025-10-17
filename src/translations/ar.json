@@ -73,6 +73,7 @@
     "mehdia": "المهدية",
     "kairouan": "القيروان",
     "sidiBouzid": "سيدي بوزيد",
+    "southRegion": "المنطقة الجنوبية",
     "gafsa": "قفصة",
     "kasserine": "القصرين",
     "touzeur": "توزر",
@@ -616,7 +617,7 @@
       "features": "المواصفات"
     },
     "masks": "MASQUES",
-    "cpap": "CPAP",
+    "cpap": "CPAP و VNI",
     "oxygen": "OXYGENE",
     "lits": "LITS MEDICALISE",
     "scrollLeft": "العودة إلى الأول",

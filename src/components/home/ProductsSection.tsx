@@ -17,7 +17,7 @@ interface CategoryProducts {
 }
 
 const orderedProducts = {
-  cpap: ['YH-680', 'YH-450', 'YH-550', 'YH-350', 'AirSense 10 Elite', 'AirSense 10', 'YH-830', 'Prisma Smart Basic'],
+  cpap: ['YH-830','YH-680','YH-550','YH-480' , 'YH-450', 'YH-350', 'AirSense 10 Elite', 'AirSense 10'],
   masks: ['YF-02', 'YN-03', 'YP-01', 'AirFit F20', 'AirFit F30'],
   oxygen: ['8F-5', '8F-10', 'Spirit 6', 'Spirit 3'],
 };

@@ -137,7 +137,9 @@ export default function CategoryNavbar() {
                 categoryTypes.map((cat) => (
                   <DropdownMenuSub key={cat.category}>
                     <DropdownMenuSubTrigger className="flex items-center justify-between py-2 px-3 hover:bg-gray-50">
-                      <span className="font-medium text-gray-700 capitalize">{cat.category.toLowerCase()}</span>
+                      <span className="font-medium text-gray-700 capitalize">
+                        {cat.category === 'CPAP/PPC' ? cat.category : cat.category.toLowerCase()}
+                      </span>
                     </DropdownMenuSubTrigger>
                     <DropdownMenuPortal>
                       <DropdownMenuSubContent className="min-w-[200px] bg-white rounded-md shadow-lg border">

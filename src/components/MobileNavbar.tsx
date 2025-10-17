@@ -204,7 +204,9 @@ const MobileNavbar = ({ isOpen, onClose, user, handleLogout }: MobileNavbarProps
                             className="flex items-center space-x-2 flex-1"
                           >
                             <Activity className="h-4 w-4 text-emerald-600" />
-                            <span className="font-medium text-gray-900 text-left">{cat.category}</span>
+                            <span className="font-medium text-gray-900 text-left">
+                              {cat.category === 'CPAP/PPC' ? cat.category : cat.category}
+                            </span>
                           </button>
                           {(cat.types?.length > 0 || cat.subcategories?.length > 0) && (
                             <button
