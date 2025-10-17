@@ -15,10 +15,10 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
   const organizationData = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    "@id": "https://www.irismedicaltunisie.com/#organization",
+    "@id": "https://www.iris-med.tn/#organization",
     "name": "Iris Medical Tunisie",
-    "url": "https://www.irismedicaltunisie.com/",
-    "logo": "https://www.irismedicaltunisie.com/logo_iris.png",
+    "url": "https://www.iris-med.tn/",
+    "logo": "https://www.iris-med.tn/logo_iris.png",
     "description": "Spécialiste en vente et location d'équipements médicaux CPAP, BiPAP, oxygénothérapie et accessoires en Tunisie.",
     "sameAs": [
       "https://www.facebook.com/IrisMedTn",
@@ -137,16 +137,16 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://www.irismedicaltunisie.com/#website",
-    "url": "https://www.irismedicaltunisie.com/",
+    "@id": "https://www.iris-med.tn/#website",
+    "url": "https://www.iris-med.tn/",
     "name": "Iris Medical - Équipements Médicaux en Tunisie",
     "description": "Spécialiste en CPAP, BiPAP et oxygénothérapie en Tunisie",
     "publisher": {
-      "@id": "https://www.irismedicaltunisie.com/#organization"
+      "@id": "https://www.iris-med.tn/#organization"
     },
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://www.irismedicaltunisie.com/search?q={search_term_string}",
+      "target": "https://www.iris-med.tn/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };

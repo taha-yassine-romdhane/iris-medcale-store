@@ -41,7 +41,7 @@ export async function sendVerificationEmail(email: string, token: string) {
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
           <div style="text-align: center; margin-bottom: 20px;">
-            <img src="https://www.irismedicaltunisie.com/logo_iris_no_bg.png" alt="Elite Medicale Logo" style="max-width: 150px;">
+            <img src="https://www.iris-med.tn/logo_iris_no_bg.png" alt="Elite Medicale Logo" style="max-width: 150px;">
           </div>
           <h2 style="color: #333; text-align: center;">Welcome to Elite Medicale Service!</h2>
           <p style="color: #555; text-align: center;">Thank you for registering. Please click the button below to verify your email address:</p>
@@ -89,7 +89,7 @@ export async function sendContactFormEmail(data: ContactFormData) {
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
           <div style="text-align: center; margin-bottom: 20px;">
-            <img src="https://www.irismedicaltunisie.com/logo_iris_no_bg.png" alt="Elite Medicale Logo" style="max-width: 150px;">
+            <img src="https://www.iris-med.tn/logo_iris_no_bg.png" alt="Elite Medicale Logo" style="max-width: 150px;">
           </div>
           <h2 style="color: #333; text-align: center;">Nouveau message de contact</h2>
           
@@ -144,13 +144,13 @@ export async function sendDevisNotificationEmail(data: DevisEmailData) {
     }).join('');
 
     const { data: emailData, error } = await resend.emails.send({
-      from: 'Iris Medical <no-reply@irismedicaltunisie.com>',
+      from: 'Iris Medical <no-reply@iris-med.tn>',
       to: 'contact@iris-med.tn',
       subject: `Nouvelle demande de devis #${data.orderNumber}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
           <div style="text-align: center; margin-bottom: 20px;">
-            <img src="https://www.irismedicaltunisie.com/logo_iris_no_bg.png" alt="Elite Medicale Logo" style="max-width: 150px;">
+            <img src="https://www.iris-med.tn/logo_iris_no_bg.png" alt="Elite Medicale Logo" style="max-width: 150px;">
           </div>
           <h2 style="color: #333; text-align: center;">Nouvelle demande de devis</h2>
           <p style="color: #555;"><strong>Numéro de commande:</strong> ${data.orderNumber}</p>

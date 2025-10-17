@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 // Centralized metadata configuration for better SEO management
 export const getSiteMetadata = (): Metadata => {
-  const siteUrl = 'https://www.irismedicaltunisie.com/';
+  const siteUrl = 'https://www.iris-med.tn/';
 
   return {
     metadataBase: new URL(siteUrl),
